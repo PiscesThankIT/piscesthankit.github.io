@@ -5,7 +5,7 @@
     <url>/about-me/</url>
     <content><![CDATA[<p>本博客旨在解决 Magento 2 的应用问题，更注重深度挖掘。 博主的信念是 Magento 是一个优秀的开源程序，值得被更多人探索和应用。如能为 Magento 在国内的推广尽绵薄之力，将是我莫大的荣幸。 君子性非异也，善假于物也。希望对诸君有所帮助。</p>
 <h2 id="关于版权"><a href="#关于版权" class="headerlink" title="关于版权"></a><a href="#%E5%85%B3%E4%BA%8E%E7%89%88%E6%9D%83"></a>关于版权</h2><p>除非注明转载，否则本博客下文章皆为原创或原创翻译。转载请注明出处。</p>
-<h2 id="联系信息"><a href="#联系信息" class="headerlink" title="联系信息"></a><a href="#%E8%81%94%E7%B3%BB%E4%BF%A1%E6%81%AF"></a>联系信息</h2><p>QQ 1518525862 <img src="/wp-content/uploads/2016/08/qrcode_1473317238295-150x150.jpg" alt="qrcode_1473317238295"> 微信 <img src="/wp-content/uploads/2016/08/mmqrcode1473308737790-150x150.jpg" alt="mmqrcode1473308737790"> 邮箱：<a href="mailto:&#x77;&#x75;&#x71;&#x69;&#x6f;&#x6e;&#103;&#x31;&#x35;&#x31;&#x38;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x77;&#x75;&#x71;&#x69;&#x6f;&#x6e;&#103;&#x31;&#x35;&#x31;&#x38;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a> 如果觉得我的东西对您有帮助，可以捐赠我 o(*^▽^*)o~♪ 支付宝支持 <img src="/wp-content/uploads/2016/08/1473317716916-150x150.jpg" alt="1473317716916"> 微信支持 <img src="/wp-content/uploads/2016/08/mm_facetoface_collect_qrcode_1473317893092-150x150.png" alt="mm_facetoface_collect_qrcode_1473317893092"></p>
+<h2 id="联系信息"><a href="#联系信息" class="headerlink" title="联系信息"></a><a href="#%E8%81%94%E7%B3%BB%E4%BF%A1%E6%81%AF"></a>联系信息</h2><p>QQ 1518525862 <img src="/wp-content/uploads/2016/08/qrcode_1473317238295-150x150.jpg" alt="qrcode_1473317238295"> 微信 <img src="/wp-content/uploads/2016/08/mmqrcode1473308737790-150x150.jpg" alt="mmqrcode1473308737790"> 邮箱：<a href="mailto:&#x77;&#117;&#113;&#105;&#111;&#110;&#103;&#x31;&#53;&#49;&#x38;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#x77;&#117;&#113;&#105;&#111;&#110;&#103;&#x31;&#53;&#49;&#x38;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a> 如果觉得我的东西对您有帮助，可以捐赠我 o(*^▽^*)o~♪ 支付宝支持 <img src="/wp-content/uploads/2016/08/1473317716916-150x150.jpg" alt="1473317716916"> 微信支持 <img src="/wp-content/uploads/2016/08/mm_facetoface_collect_qrcode_1473317893092-150x150.png" alt="mm_facetoface_collect_qrcode_1473317893092"></p>
 ]]></content>
       <categories>
         <category>uncategorized</category>
@@ -30,6 +30,20 @@
       <tags>
         <tag>php</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>管理员账户</title>
+    <url>/admin-account/</url>
+    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/stores/admin-account.html">原文地址</a></em><br>您的管理员账户在安装时已经初步建好了，可能包含占位符信息还不不完整。您可以随时修改您的账户名、密码，更改姓名和邮箱地址。<br>要了解更多关于管理员用户(Admin users)和角色的，请参阅权限。</p>
+<h2 id="编辑您的账户信息："><a href="#编辑您的账户信息：" class="headerlink" title="编辑您的账户信息："></a><a href="#%E7%BC%96%E8%BE%91%E6%82%A8%E7%9A%84%E8%B4%A6%E6%88%B7%E4%BF%A1%E6%81%AF%EF%BC%9A"></a>编辑您的账户信息：</h2><ol>
+<li>管理后台右上角，点击「账户」(Account)<img src="/wp-content/uploads/2016/08/btn-account.png">图标，选择「账户设置」(Account Setting)</li>
+<li>您可以对账户信息进行必要的修改了，如果您修改了登录所需的信息，一定要写下来以免忘记哦。</li>
+<li>完成后，点击「保存账户信息」(Save Account)<br><img src="/wp-content/uploads/2016/08/admin-account-information_thumb_0_0.png" alt="Account Information"></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用手册</category>
+      </categories>
   </entry>
   <entry>
     <title>关于 view.xml</title>
@@ -64,20 +78,6 @@
       <tags>
         <tag>view.xml</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>管理员账户</title>
-    <url>/admin-account/</url>
-    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/stores/admin-account.html">原文地址</a></em><br>您的管理员账户在安装时已经初步建好了，可能包含占位符信息还不不完整。您可以随时修改您的账户名、密码，更改姓名和邮箱地址。<br>要了解更多关于管理员用户(Admin users)和角色的，请参阅权限。</p>
-<h2 id="编辑您的账户信息："><a href="#编辑您的账户信息：" class="headerlink" title="编辑您的账户信息："></a><a href="#%E7%BC%96%E8%BE%91%E6%82%A8%E7%9A%84%E8%B4%A6%E6%88%B7%E4%BF%A1%E6%81%AF%EF%BC%9A"></a>编辑您的账户信息：</h2><ol>
-<li>管理后台右上角，点击「账户」(Account)<img src="/wp-content/uploads/2016/08/btn-account.png">图标，选择「账户设置」(Account Setting)</li>
-<li>您可以对账户信息进行必要的修改了，如果您修改了登录所需的信息，一定要写下来以免忘记哦。</li>
-<li>完成后，点击「保存账户信息」(Save Account)<br><img src="/wp-content/uploads/2016/08/admin-account-information_thumb_0_0.png" alt="Account Information"></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Magento 2 用户使用手册</category>
-      </categories>
   </entry>
   <entry>
     <title>操作控件</title>
@@ -916,6 +916,15 @@
       </categories>
   </entry>
   <entry>
+    <title>attribute sets and attribute groups</title>
+    <url>/attribute-sets-and-attribute-groups/</url>
+    <content><![CDATA[<p><img src="/wp-content/uploads/2019/06/eav_entity_type.png"> Every entity type have some attributes. Attribute set is used to classify attributes. For example, when you create a new product, you can choose using which attribute set. Theoretically, every entity type can have multiple attribute sets, but, generally, only catalog_product has multiple attribute sets. Attribute group is used to group attributes on an edit page under an accordian to make attributes easier to fnd. For exmaple: catalog_category has six groups. So we can see six sections. <img src="/wp-content/uploads/2019/06/eav_groups.png"> Table <code>eav_entity_attribute</code> stores the relationship between attribute and attribute group.</p>
+]]></content>
+      <categories>
+        <category>M2 Certified Professional Developer</category>
+      </categories>
+  </entry>
+  <entry>
     <title>百度蜘蛛 IP 段</title>
     <url>/baidu-spider-ip/</url>
     <content><![CDATA[<p>博主真是为本站的收录操碎了心哪！每天眼巴巴盼着百度收录内页，可是每天都是老样子，只收录了首页。上一篇<a href="/view_apache_log/">查看 Apache 日志</a>就检查了百度的蜘蛛到底来没来过。来是来过了，为啥还不收录呢？今天又挖呀挖，发现百度蜘蛛的 IP 段还有含义呢！</p>
@@ -931,39 +940,6 @@
 ]]></content>
       <categories>
         <category>uncategorized</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>attribute sets and attribute groups</title>
-    <url>/attribute-sets-and-attribute-groups/</url>
-    <content><![CDATA[<p><img src="/wp-content/uploads/2019/06/eav_entity_type.png"> Every entity type have some attributes. Attribute set is used to classify attributes. For example, when you create a new product, you can choose using which attribute set. Theoretically, every entity type can have multiple attribute sets, but, generally, only catalog_product has multiple attribute sets. Attribute group is used to group attributes on an edit page under an accordian to make attributes easier to fnd. For exmaple: catalog_category has six groups. So we can see six sections. <img src="/wp-content/uploads/2019/06/eav_groups.png"> Table <code>eav_entity_attribute</code> stores the relationship between attribute and attribute group.</p>
-]]></content>
-      <categories>
-        <category>M2 Certified Professional Developer</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>新增 Blocks (Adding New Blocks)</title>
-    <url>/block-add/</url>
-    <content><![CDATA[<p><a href="http://docs.magento.com/m2/ce/user_guide/cms/block-add.html">原文地址</a></p>
-<p>自定义的 blocks 可以被加到页面，一组页面，甚至另一个 blocks 中。你可以在 blocks 中放一个图片轮播，然后把这个 block 放在首页上。</p>
-<p>Blocks 的工作区和 pages 的工作区使用的是相同的控件，来帮助你查找 blocks 以及日常维护操作。</p>
-<p><img src="/wp-content/uploads/2016/11/blocks-workspace.png" alt="Blocks Workspace"></p>
-<h2 id="创建-block"><a href="#创建-block" class="headerlink" title="创建 block"></a><a href="#%E5%88%9B%E5%BB%BA-block"></a>创建 block</h2><ol>
-<li><p>后台侧边栏，点击 <strong>Content</strong>，在 <strong>Elements</strong> 下，选择 <strong>Blocks</strong></p>
-</li>
-<li><p>右上角点击 <strong>Add New Block</strong>，然后，做如下事情：<br>a. 填入 <strong>Block Title</strong><br>b. 填入 <strong>Identifier</strong>，他得是唯一的，使用小写字符，并且使用下划线，不要用空格。<br>c. 选择 Block 可用的 <strong>Store View(s)</strong><br>d. 设置 <strong>Status</strong> 为 “Enabled”，这样改 block 才是可见的。<br>e. 完成 <strong>Content</strong> 内容</p>
-<ul>
-<li>你可以使用编辑器来格式化内容，创建链接，表格，图片等等。</li>
-<li>如果你更喜欢用 HTML 代码，点击 Show&#x2F;Hide Editor</li>
-</ul>
-</li>
-<li><p>完成后，点击 <strong>Save Block</strong></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Magento 2 用户使用手册</category>
       </categories>
   </entry>
   <entry>
@@ -990,6 +966,30 @@
 ]]></content>
       <categories>
         <category>uncategorized</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>新增 Blocks (Adding New Blocks)</title>
+    <url>/block-add/</url>
+    <content><![CDATA[<p><a href="http://docs.magento.com/m2/ce/user_guide/cms/block-add.html">原文地址</a></p>
+<p>自定义的 blocks 可以被加到页面，一组页面，甚至另一个 blocks 中。你可以在 blocks 中放一个图片轮播，然后把这个 block 放在首页上。</p>
+<p>Blocks 的工作区和 pages 的工作区使用的是相同的控件，来帮助你查找 blocks 以及日常维护操作。</p>
+<p><img src="/wp-content/uploads/2016/11/blocks-workspace.png" alt="Blocks Workspace"></p>
+<h2 id="创建-block"><a href="#创建-block" class="headerlink" title="创建 block"></a><a href="#%E5%88%9B%E5%BB%BA-block"></a>创建 block</h2><ol>
+<li><p>后台侧边栏，点击 <strong>Content</strong>，在 <strong>Elements</strong> 下，选择 <strong>Blocks</strong></p>
+</li>
+<li><p>右上角点击 <strong>Add New Block</strong>，然后，做如下事情：<br>a. 填入 <strong>Block Title</strong><br>b. 填入 <strong>Identifier</strong>，他得是唯一的，使用小写字符，并且使用下划线，不要用空格。<br>c. 选择 Block 可用的 <strong>Store View(s)</strong><br>d. 设置 <strong>Status</strong> 为 “Enabled”，这样改 block 才是可见的。<br>e. 完成 <strong>Content</strong> 内容</p>
+<ul>
+<li>你可以使用编辑器来格式化内容，创建链接，表格，图片等等。</li>
+<li>如果你更喜欢用 HTML 代码，点击 Show&#x2F;Hide Editor</li>
+</ul>
+</li>
+<li><p>完成后，点击 <strong>Save Block</strong></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用手册</category>
       </categories>
   </entry>
   <entry>
@@ -2003,6 +2003,42 @@
       </categories>
   </entry>
   <entry>
+    <title>Create new product type</title>
+    <url>/create-new-product-type/</url>
+    <content><![CDATA[<ul>
+<li>Simple Proudct a simple product can be sold individually, or as part of a grouped, configurable, or bundle product. A simple product can have custom options with a variety of input controls, which makes it possible to sell many product variations from a single SKU</li>
+<li>Configurable Product A configurable product allows the shopper to choose options from drop-down lists. Each option in a configurable product represents a separate, simple product with a distinct SKU, which makes it possible to track inventory for each variation. Each drop-down list value is based on an attribute of the “Dropdown” input type(You can choose from (Dropdown &#x2F;visual swatch &#x2F; text swatch)). The drop-down attributes must be included in the attribute set, which is then used as a template for the configurable product. The thumbnail image in the shopping cart can be set to display the image from the configurable product record, or from the product variation. Simple and virtual products that are part of a configurable product cannot have custom options.</li>
+<li>Group Product A grouped product is essentially a collection of simple associated products. Simple and virtual products that are part of a grouped product cannot have custom options. Each item purchased appears individually in the shopping cart, rather than as part of the group. The thumbnail image in the shopping cart can be set to display the image from the grouped parent product, or the associated product. For example with demo data: <a href="http://example.com/set-of-sprite-yoga-straps.html">http://example.com/set-of-sprite-yoga-straps.html</a></li>
+<li>Bundled Product The main point that distinguishes bundled product from grouped products is that when items are bundled together, it is hardly possible for any of the products to be removed from the set. In simple words, one product cannot live without the other, would hardly function if the other is missing. One product complements the other. For example with demo data: <a href="http://example.com/sprite-yoga-companion-kit.html">http://example.com/sprite-yoga-companion-kit.html</a></li>
+<li>Downloadable Products Downloadable products can be uploaded to the server, or linked to from another server on the Internet. You can determine the number of times a customer can download a product. Customers who purchase a downloadable product can be required to log in before going through checkout. The delivery of a downloadable product can be made when the order is in either a “Pending” or “Invoiced” state.</li>
+<li>Virtual Products Virtual products are used for non-tangible products such as services, subscriptions, and warranties. Virtual products are much like simple products, but without the Weight. Shipping Options do not appear during checkout unless there is a tangible product in the cart.</li>
+</ul>
+<h2 id="Experients"><a href="#Experients" class="headerlink" title="Experients"></a><a href="#experients"></a>Experients</h2><h3 id="Config-XML"><a href="#Config-XML" class="headerlink" title="Config XML"></a><a href="#config-xml"></a>Config XML</h3><p>etc&#x2F;product_types.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Catalog:etc/product_types.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;new_product_type&quot; label=&quot;New Product Type&quot; modelInstance=&quot;VendorName\TestModule\Model\Product\Type\NewProductType&quot; indexPriority=&quot;60&quot; sortOrder=&quot;80&quot; isQty=&quot;true&quot;&gt;</span><br><span class="line">        &lt;priceModel instance=&quot;VendorName\TestModule\Model\Product\Price&quot; /&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The <code>type</code> node has three required attributes.</p>
+<ul>
+<li>name: This attribute defines the custom product code which is used in code and in the database.</li>
+<li>label: Defines the product type label in the Magento admin.</li>
+<li>modelInstance: Specifies the fully qualified namespace of the corresponding product type model.</li>
+</ul>
+<h3 id="Product-Type-Model"><a href="#Product-Type-Model" class="headerlink" title="Product Type Model"></a><a href="#product-type-model"></a>Product Type Model</h3><p>Each product instance is associated with an instance of the corresponding product type model. This model has the opportunity to modify product type behavior and attributes and is called during many product manipulation processes.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product\Type;</span><br><span class="line"></span><br><span class="line">class NewProductType extends \Magento\Catalog\Model\Product\Type\AbstractType</span><br><span class="line">&#123;</span><br><span class="line">    const TYPE_ID = &#x27;new_product_type&#x27;;</span><br><span class="line"></span><br><span class="line">    public function deleteTypeSpecificData(\Magento\Catalog\Model\Product $product)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A product model must inherit from the <code>\Magento\Catalog\Model\Product\Type\AbstractType</code> base class. The base class has only one abstract method: <code>deleteTypeSpecificData</code>. This oddly specific method is called during a product instance save if its type has changed, and gives the original product type the opportunity to clean up any type-specific data before the type change is finalized.</p>
+<h3 id="Price-Model"><a href="#Price-Model" class="headerlink" title="Price Model"></a><a href="#price-model"></a>Price Model</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product;</span><br><span class="line"></span><br><span class="line">class Price extends \Magento\Catalog\Model\Product\Type\Price</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function getPrice($product)</span><br><span class="line">    &#123;</span><br><span class="line">        return $product-&gt;getData(&#x27;price&#x27;) + 200;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Associate-With-Price-Attributes"><a href="#Associate-With-Price-Attributes" class="headerlink" title="Associate With Price Attributes"></a><a href="#associate-with-price-attributes"></a>Associate With Price Attributes</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Setup\Patch\Data;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\Setup\Patch\DataPatchInterface;</span><br><span class="line">use Magento\Customer\Model\Customer;</span><br><span class="line">use Magento\Customer\Setup\CustomerSetupFactory;</span><br><span class="line">use Magento\Eav\Setup\EavSetupFactory;</span><br><span class="line">use Magento\Framework\Setup\ModuleDataSetupInterface;</span><br><span class="line">use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;</span><br><span class="line"></span><br><span class="line">class CustomProductTypePatch implements DataPatchInterface</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct(</span><br><span class="line">        ModuleDataSetupInterface $moduleDataSetup,</span><br><span class="line">        CustomerSetupFactory $customerSetupFactory,</span><br><span class="line">        EavSetupFactory $eavSetupFactory,</span><br><span class="line">        AttributeSetFactory $attributeSetFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;moduleDataSetup = $moduleDataSetup;</span><br><span class="line">        $this-&gt;customerSetupFactory = $customerSetupFactory;</span><br><span class="line">        $this-&gt;eavSetupFactory = $eavSetupFactory;</span><br><span class="line">        $this-&gt;attributeSetFactory = $attributeSetFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getAliases()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This internal Magento method, that means that some patches with time can change their names,</span><br><span class="line">         * but changing name should not affect installation process, that&#x27;s why if we will change name of the patch</span><br><span class="line">         * we will add alias here</span><br><span class="line">         */</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function apply()</span><br><span class="line">    &#123;</span><br><span class="line">        /** @var EavSetup $eavSetup */</span><br><span class="line">        $eavSetup = $this-&gt;eavSetupFactory-&gt;create([&#x27;setup&#x27; =&gt; $this-&gt;moduleDataSetup]);</span><br><span class="line"></span><br><span class="line">        //associate these attributes with new product type</span><br><span class="line">        $fieldList = [</span><br><span class="line">            &#x27;price&#x27;,</span><br><span class="line">            &#x27;special_price&#x27;,</span><br><span class="line">            &#x27;special_from_date&#x27;,</span><br><span class="line">            &#x27;special_to_date&#x27;,</span><br><span class="line">            &#x27;minimal_price&#x27;,</span><br><span class="line">            &#x27;cost&#x27;,</span><br><span class="line">            &#x27;tier_price&#x27;,</span><br><span class="line">            &#x27;weight&#x27;,</span><br><span class="line">        ];</span><br><span class="line"></span><br><span class="line">        // make these attributes applicable to new product type</span><br><span class="line">        foreach ($fieldList as $field) &#123;</span><br><span class="line">            $applyTo = explode(</span><br><span class="line">                &#x27;,&#x27;,</span><br><span class="line">                $eavSetup-&gt;getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, &#x27;apply_to&#x27;)</span><br><span class="line">            );</span><br><span class="line">            if (!in_array(\VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID, $applyTo)) &#123;</span><br><span class="line">                $applyTo[] = \VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID;</span><br><span class="line">                $eavSetup-&gt;updateAttribute(</span><br><span class="line">                    \Magento\Catalog\Model\Product::ENTITY,</span><br><span class="line">                    $field,</span><br><span class="line">                    &#x27;apply_to&#x27;,</span><br><span class="line">                    implode(&#x27;,&#x27;, $applyTo)</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static function getDependencies()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This is dependency to another patch. Dependency should be applied first</span><br><span class="line">         * One patch can have few dependencies</span><br><span class="line">         * Patches do not have versions, so if in old approach with Install/Ugrade data scripts you used</span><br><span class="line">         * versions, right now you need to point from patch with higher version to patch with lower version</span><br><span class="line">         * But please, note, that some of your patches can be independent and can be installed in any sequence</span><br><span class="line">         * So use dependencies only if this important for you</span><br><span class="line">         */</span><br><span class="line">        // return [</span><br><span class="line">        //     SomeDependency::class</span><br><span class="line">        // ];</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>After <code>bin/magento setup:upgrade</code>. Now we create a new product using custom product type. <img src="/wp-content/uploads/2019/06/new_product_type.png"> <img src="/wp-content/uploads/2019/06/custom_product_type.png"> <img src="/wp-content/uploads/2019/06/new_product_type_product.png"> The product type instance and product price type is used in <code>Magento\Catalog\Model\Product</code></p>
+<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>You need to create a custom price calculator for simple products. You have already created the new price model. Keeping simplicity in mind, what additional steps do you take to implement this? (Multiple Choice) A. Make your new price model extend \Magento\Catalog\Model\Product\Type\Price. B. Update the frontend templates to use the new price methods. C. Create a plugin for the getPriceModel() method and return your price model. D. In your product_types.xml module, reference the simple product type, and set a value for the priceModel attribute Answer A D</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a href="https://www.ubertheme.com/magento-news/magento-product-types/">Manage Magento 2 Product Types and Catalog Data</a> <a href="https://www.classyllama.com/blog/custom-product-types-magento-2">Custom Product Types in Magento 2</a> <a href="https://www.mageplaza.com/devdocs/how-create-new-product-type-magento-2.html">How to Create a New Product Type in Magento 2</a></p>
+]]></content>
+      <categories>
+        <category>M2 Certified Professional Developer</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CRUD Models in Magento 2</title>
     <url>/crud-models-in-magento-2/</url>
     <content><![CDATA[<p>本篇我们将介绍通过 setup script 创建数据表，创建 Magento 2 model, resource model, collection ，以及如何通过它们对数据进行增删改查。 Magento 2 中的 CRUD Models 用于操纵数据库中的数据，不需要很多代码就可以创建一个 CRUD 。 CRUD 代表 Create, Read, Update and Delete （增删改查）。 我们将创建一个表 <code>thankit_helloworld_post</code></p>
@@ -2077,42 +2113,6 @@
         <tag>Model</tag>
         <tag>Resource Model</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Create new product type</title>
-    <url>/create-new-product-type/</url>
-    <content><![CDATA[<ul>
-<li>Simple Proudct a simple product can be sold individually, or as part of a grouped, configurable, or bundle product. A simple product can have custom options with a variety of input controls, which makes it possible to sell many product variations from a single SKU</li>
-<li>Configurable Product A configurable product allows the shopper to choose options from drop-down lists. Each option in a configurable product represents a separate, simple product with a distinct SKU, which makes it possible to track inventory for each variation. Each drop-down list value is based on an attribute of the “Dropdown” input type(You can choose from (Dropdown &#x2F;visual swatch &#x2F; text swatch)). The drop-down attributes must be included in the attribute set, which is then used as a template for the configurable product. The thumbnail image in the shopping cart can be set to display the image from the configurable product record, or from the product variation. Simple and virtual products that are part of a configurable product cannot have custom options.</li>
-<li>Group Product A grouped product is essentially a collection of simple associated products. Simple and virtual products that are part of a grouped product cannot have custom options. Each item purchased appears individually in the shopping cart, rather than as part of the group. The thumbnail image in the shopping cart can be set to display the image from the grouped parent product, or the associated product. For example with demo data: <a href="http://example.com/set-of-sprite-yoga-straps.html">http://example.com/set-of-sprite-yoga-straps.html</a></li>
-<li>Bundled Product The main point that distinguishes bundled product from grouped products is that when items are bundled together, it is hardly possible for any of the products to be removed from the set. In simple words, one product cannot live without the other, would hardly function if the other is missing. One product complements the other. For example with demo data: <a href="http://example.com/sprite-yoga-companion-kit.html">http://example.com/sprite-yoga-companion-kit.html</a></li>
-<li>Downloadable Products Downloadable products can be uploaded to the server, or linked to from another server on the Internet. You can determine the number of times a customer can download a product. Customers who purchase a downloadable product can be required to log in before going through checkout. The delivery of a downloadable product can be made when the order is in either a “Pending” or “Invoiced” state.</li>
-<li>Virtual Products Virtual products are used for non-tangible products such as services, subscriptions, and warranties. Virtual products are much like simple products, but without the Weight. Shipping Options do not appear during checkout unless there is a tangible product in the cart.</li>
-</ul>
-<h2 id="Experients"><a href="#Experients" class="headerlink" title="Experients"></a><a href="#experients"></a>Experients</h2><h3 id="Config-XML"><a href="#Config-XML" class="headerlink" title="Config XML"></a><a href="#config-xml"></a>Config XML</h3><p>etc&#x2F;product_types.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Catalog:etc/product_types.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;new_product_type&quot; label=&quot;New Product Type&quot; modelInstance=&quot;VendorName\TestModule\Model\Product\Type\NewProductType&quot; indexPriority=&quot;60&quot; sortOrder=&quot;80&quot; isQty=&quot;true&quot;&gt;</span><br><span class="line">        &lt;priceModel instance=&quot;VendorName\TestModule\Model\Product\Price&quot; /&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>The <code>type</code> node has three required attributes.</p>
-<ul>
-<li>name: This attribute defines the custom product code which is used in code and in the database.</li>
-<li>label: Defines the product type label in the Magento admin.</li>
-<li>modelInstance: Specifies the fully qualified namespace of the corresponding product type model.</li>
-</ul>
-<h3 id="Product-Type-Model"><a href="#Product-Type-Model" class="headerlink" title="Product Type Model"></a><a href="#product-type-model"></a>Product Type Model</h3><p>Each product instance is associated with an instance of the corresponding product type model. This model has the opportunity to modify product type behavior and attributes and is called during many product manipulation processes.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product\Type;</span><br><span class="line"></span><br><span class="line">class NewProductType extends \Magento\Catalog\Model\Product\Type\AbstractType</span><br><span class="line">&#123;</span><br><span class="line">    const TYPE_ID = &#x27;new_product_type&#x27;;</span><br><span class="line"></span><br><span class="line">    public function deleteTypeSpecificData(\Magento\Catalog\Model\Product $product)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>A product model must inherit from the <code>\Magento\Catalog\Model\Product\Type\AbstractType</code> base class. The base class has only one abstract method: <code>deleteTypeSpecificData</code>. This oddly specific method is called during a product instance save if its type has changed, and gives the original product type the opportunity to clean up any type-specific data before the type change is finalized.</p>
-<h3 id="Price-Model"><a href="#Price-Model" class="headerlink" title="Price Model"></a><a href="#price-model"></a>Price Model</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product;</span><br><span class="line"></span><br><span class="line">class Price extends \Magento\Catalog\Model\Product\Type\Price</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function getPrice($product)</span><br><span class="line">    &#123;</span><br><span class="line">        return $product-&gt;getData(&#x27;price&#x27;) + 200;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Associate-With-Price-Attributes"><a href="#Associate-With-Price-Attributes" class="headerlink" title="Associate With Price Attributes"></a><a href="#associate-with-price-attributes"></a>Associate With Price Attributes</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Setup\Patch\Data;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\Setup\Patch\DataPatchInterface;</span><br><span class="line">use Magento\Customer\Model\Customer;</span><br><span class="line">use Magento\Customer\Setup\CustomerSetupFactory;</span><br><span class="line">use Magento\Eav\Setup\EavSetupFactory;</span><br><span class="line">use Magento\Framework\Setup\ModuleDataSetupInterface;</span><br><span class="line">use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;</span><br><span class="line"></span><br><span class="line">class CustomProductTypePatch implements DataPatchInterface</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct(</span><br><span class="line">        ModuleDataSetupInterface $moduleDataSetup,</span><br><span class="line">        CustomerSetupFactory $customerSetupFactory,</span><br><span class="line">        EavSetupFactory $eavSetupFactory,</span><br><span class="line">        AttributeSetFactory $attributeSetFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;moduleDataSetup = $moduleDataSetup;</span><br><span class="line">        $this-&gt;customerSetupFactory = $customerSetupFactory;</span><br><span class="line">        $this-&gt;eavSetupFactory = $eavSetupFactory;</span><br><span class="line">        $this-&gt;attributeSetFactory = $attributeSetFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getAliases()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This internal Magento method, that means that some patches with time can change their names,</span><br><span class="line">         * but changing name should not affect installation process, that&#x27;s why if we will change name of the patch</span><br><span class="line">         * we will add alias here</span><br><span class="line">         */</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function apply()</span><br><span class="line">    &#123;</span><br><span class="line">        /** @var EavSetup $eavSetup */</span><br><span class="line">        $eavSetup = $this-&gt;eavSetupFactory-&gt;create([&#x27;setup&#x27; =&gt; $this-&gt;moduleDataSetup]);</span><br><span class="line"></span><br><span class="line">        //associate these attributes with new product type</span><br><span class="line">        $fieldList = [</span><br><span class="line">            &#x27;price&#x27;,</span><br><span class="line">            &#x27;special_price&#x27;,</span><br><span class="line">            &#x27;special_from_date&#x27;,</span><br><span class="line">            &#x27;special_to_date&#x27;,</span><br><span class="line">            &#x27;minimal_price&#x27;,</span><br><span class="line">            &#x27;cost&#x27;,</span><br><span class="line">            &#x27;tier_price&#x27;,</span><br><span class="line">            &#x27;weight&#x27;,</span><br><span class="line">        ];</span><br><span class="line"></span><br><span class="line">        // make these attributes applicable to new product type</span><br><span class="line">        foreach ($fieldList as $field) &#123;</span><br><span class="line">            $applyTo = explode(</span><br><span class="line">                &#x27;,&#x27;,</span><br><span class="line">                $eavSetup-&gt;getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, &#x27;apply_to&#x27;)</span><br><span class="line">            );</span><br><span class="line">            if (!in_array(\VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID, $applyTo)) &#123;</span><br><span class="line">                $applyTo[] = \VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID;</span><br><span class="line">                $eavSetup-&gt;updateAttribute(</span><br><span class="line">                    \Magento\Catalog\Model\Product::ENTITY,</span><br><span class="line">                    $field,</span><br><span class="line">                    &#x27;apply_to&#x27;,</span><br><span class="line">                    implode(&#x27;,&#x27;, $applyTo)</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static function getDependencies()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This is dependency to another patch. Dependency should be applied first</span><br><span class="line">         * One patch can have few dependencies</span><br><span class="line">         * Patches do not have versions, so if in old approach with Install/Ugrade data scripts you used</span><br><span class="line">         * versions, right now you need to point from patch with higher version to patch with lower version</span><br><span class="line">         * But please, note, that some of your patches can be independent and can be installed in any sequence</span><br><span class="line">         * So use dependencies only if this important for you</span><br><span class="line">         */</span><br><span class="line">        // return [</span><br><span class="line">        //     SomeDependency::class</span><br><span class="line">        // ];</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>After <code>bin/magento setup:upgrade</code>. Now we create a new product using custom product type. <img src="/wp-content/uploads/2019/06/new_product_type.png"> <img src="/wp-content/uploads/2019/06/custom_product_type.png"> <img src="/wp-content/uploads/2019/06/new_product_type_product.png"> The product type instance and product price type is used in <code>Magento\Catalog\Model\Product</code></p>
-<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>You need to create a custom price calculator for simple products. You have already created the new price model. Keeping simplicity in mind, what additional steps do you take to implement this? (Multiple Choice) A. Make your new price model extend \Magento\Catalog\Model\Product\Type\Price. B. Update the frontend templates to use the new price methods. C. Create a plugin for the getPriceModel() method and return your price model. D. In your product_types.xml module, reference the simple product type, and set a value for the priceModel attribute Answer A D</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a href="https://www.ubertheme.com/magento-news/magento-product-types/">Manage Magento 2 Product Types and Catalog Data</a> <a href="https://www.classyllama.com/blog/custom-product-types-magento-2">Custom Product Types in Magento 2</a> <a href="https://www.mageplaza.com/devdocs/how-create-new-product-type-magento-2.html">How to Create a New Product Type in Magento 2</a></p>
-]]></content>
-      <categories>
-        <category>M2 Certified Professional Developer</category>
-      </categories>
   </entry>
   <entry>
     <title>css resources</title>
@@ -2361,7 +2361,7 @@
 <p>接触过开源软件的朋友很可能对 GNU协议比较了解，其实GNU与OSL没有本质区别，但是因为今年来一些商业公司针对开源项目提起了一些诉讼，所以产生了法律方面更完善的OSL协议。 我想上面的几条权利和义务已经介绍的很清楚了，更具体的判断行为是否可以，那就需要专业律师咨询了。</p>
 <p>上面一段摘自开源中国社区，<a href="http://www.oschina.net/question/12_4285?_t_t_t=0.3621957151192301">原文地址</a></p>
 <p>可是 magento 的插件算是衍生著作吗？需要继续遵循OSL协议吗？是否必须开源呢？</p>
-<h2 id="询问官方"><a href="#询问官方" class="headerlink" title="询问官方"></a><a href="#%E8%AF%A2%E9%97%AE%E5%AE%98%E6%96%B9"></a>询问官方</h2><p>博主发邮件询问了 magento marketplace 的support(<a href="mailto:&#x6d;&#97;&#114;&#x6b;&#101;&#116;&#112;&#108;&#x61;&#x63;&#x65;&#64;&#x6d;&#x61;&#103;&#x65;&#110;&#116;&#x6f;&#46;&#x63;&#x6f;&#x6d;">&#x6d;&#97;&#114;&#x6b;&#101;&#116;&#112;&#108;&#x61;&#x63;&#x65;&#64;&#x6d;&#x61;&#103;&#x65;&#110;&#116;&#x6f;&#46;&#x63;&#x6f;&#x6d;</a>)</p>
+<h2 id="询问官方"><a href="#询问官方" class="headerlink" title="询问官方"></a><a href="#%E8%AF%A2%E9%97%AE%E5%AE%98%E6%96%B9"></a>询问官方</h2><p>博主发邮件询问了 magento marketplace 的support(<a href="mailto:&#x6d;&#97;&#114;&#107;&#101;&#x74;&#x70;&#x6c;&#97;&#x63;&#101;&#x40;&#109;&#x61;&#x67;&#x65;&#110;&#x74;&#x6f;&#x2e;&#99;&#x6f;&#109;">&#x6d;&#97;&#114;&#107;&#101;&#x74;&#x70;&#x6c;&#97;&#x63;&#101;&#x40;&#109;&#x61;&#x67;&#x65;&#110;&#x74;&#x6f;&#x2e;&#99;&#x6f;&#109;</a>)</p>
 <p>我：Do extensions submit to Marketplace need to be open source ?（提交给marketplace 的插件必须开源么？）</p>
 <p>对方：No the products do not have to be open source （不是必须开源的）</p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a><a href="#%E7%BB%93%E8%AE%BA"></a>结论</h2><p>如果 magento 的插件不要求开源，那说明他就不是 magento 的衍生著作，他是开发者的著作，开发者可自行决定使用什么协议，是否开源。</p>
@@ -2494,6 +2494,26 @@
       </categories>
   </entry>
   <entry>
+    <title>Excel 编辑 csv 中文乱码</title>
+    <url>/excel-csv-utf8/</url>
+    <content><![CDATA[<p>Magento 中很多地方用到 csv 格式的文件，在 <a href="/magento-2-zh-hans-cn-csv/#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%AD%A3%E4%B8%AD%E6%96%87%E5%8C%85">Magento 2 中文化问题（原创）</a> 中提到，对待 csv 文件，你可以使用任何编辑器进行编辑，比如 notepad、sublime text 之类的，或者专门的编辑器 Ron’s Editor。但是 Ron’s Editor 是收费的，破解版也不敢用，而一般的编辑器对付修改不太多的情况还是够用的，但是列一多的话，没有格子，弄起来很不方便。所以看起来还是用 Excel 比较好。</p>
+<p>Excel 处理有中文字符的文件会出现乱码，本篇将介绍怎么处理这种情况。</p>
+<p>出现乱码的原因是 Excel 以 ANSI 格式打开，不会做编码识别。而我们的 csv 文件是 UTF-8 编码的。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a><a href="#%E6%AD%A5%E9%AA%A4"></a>步骤</h2><ol>
+<li>打开 Excel ，新建一个空白的工作簿，<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv.png"></li>
+<li>数据 -&gt; 自文本，选择 csv 文件<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv-2.png"></li>
+<li>此处选择 utf-8 编码，下一步<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv-3.png"></li>
+<li>勾选“逗号”，下一步，完成</li>
+</ol>
+<p>这时候我们就可以编辑他了，最好另存为 Excel 格式的文件，保存中间状态，最后需要 csv 文件格式的时候再另存为 -&gt; CSV (逗号分隔符)(*.csv)</p>
+<p>Update: 发现一个比较好用的编辑工具，Apache OpenOffice</p>
+<p>下载地址：<a href="http://pan.baidu.com/s/1skJVqiD">http://pan.baidu.com/s/1skJVqiD</a></p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+  </entry>
+  <entry>
     <title>events</title>
     <url>/events/</url>
     <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Event/etc/events.xsd&quot;&gt;</span><br><span class="line">    &lt;event name=&quot;controller_custom_event&quot;&gt;</span><br><span class="line">        &lt;observer name=&quot;doA&quot; instance=&quot;VendorName\TestModule\Observer\doA&quot; /&gt;</span><br><span class="line">    &lt;/event&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
@@ -2514,26 +2534,6 @@
 ]]></content>
       <categories>
         <category>M2 Certified Professional Developer</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Excel 编辑 csv 中文乱码</title>
-    <url>/excel-csv-utf8/</url>
-    <content><![CDATA[<p>Magento 中很多地方用到 csv 格式的文件，在 <a href="/magento-2-zh-hans-cn-csv/#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%AD%A3%E4%B8%AD%E6%96%87%E5%8C%85">Magento 2 中文化问题（原创）</a> 中提到，对待 csv 文件，你可以使用任何编辑器进行编辑，比如 notepad、sublime text 之类的，或者专门的编辑器 Ron’s Editor。但是 Ron’s Editor 是收费的，破解版也不敢用，而一般的编辑器对付修改不太多的情况还是够用的，但是列一多的话，没有格子，弄起来很不方便。所以看起来还是用 Excel 比较好。</p>
-<p>Excel 处理有中文字符的文件会出现乱码，本篇将介绍怎么处理这种情况。</p>
-<p>出现乱码的原因是 Excel 以 ANSI 格式打开，不会做编码识别。而我们的 csv 文件是 UTF-8 编码的。</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a><a href="#%E6%AD%A5%E9%AA%A4"></a>步骤</h2><ol>
-<li>打开 Excel ，新建一个空白的工作簿，<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv.png"></li>
-<li>数据 -&gt; 自文本，选择 csv 文件<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv-2.png"></li>
-<li>此处选择 utf-8 编码，下一步<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv-3.png"></li>
-<li>勾选“逗号”，下一步，完成</li>
-</ol>
-<p>这时候我们就可以编辑他了，最好另存为 Excel 格式的文件，保存中间状态，最后需要 csv 文件格式的时候再另存为 -&gt; CSV (逗号分隔符)(*.csv)</p>
-<p>Update: 发现一个比较好用的编辑工具，Apache OpenOffice</p>
-<p>下载地址：<a href="http://pan.baidu.com/s/1skJVqiD">http://pan.baidu.com/s/1skJVqiD</a></p>
-]]></content>
-      <categories>
-        <category>其他</category>
       </categories>
   </entry>
   <entry>
@@ -2812,7 +2812,7 @@
     <content><![CDATA[<p>很多用 Magento 的人可能并不是技术人员，他们也不关心 Magento 是怎么发邮件的，只要能用就好了。不过知道这些会有助于发生问题时更快定位问题所在。</p>
 <p>Magento 发送邮件的功能是建立在 Zend Framework 的 Zend_Mail 类基础上。负责完成该工作的是 <code>Zend_Mail_Transport_Sendmail.php</code> ，这个类又是建立在 PHP 的 Mail 基础上的。PHP 的 Mail 使用的是服务器提供的 sendmail 脚本来发送邮件。</p>
 <p>如果你不知道 Magento 默认是使用服务器的 sendmail 来发邮件的，那么在后台弄好邮件相关设置后，就会莫名其妙地发现 Magento 还是不能发送邮件。</p>
-<p>如何搭建一个简单的邮件服务器（邮件传输代理）呢？可以使用 postfix、sendmail 等等。这种做法的直接好处是，可以使用许多个邮箱地址，完成不同的工作。比如：一般的邮件用 <a href="mailto:&#x6f;&#x77;&#110;&#x65;&#x72;&#64;&#x79;&#111;&#117;&#x72;&#x64;&#111;&#109;&#97;&#x69;&#110;&#x2e;&#x63;&#111;&#109;">&#x6f;&#x77;&#110;&#x65;&#x72;&#64;&#x79;&#111;&#117;&#x72;&#x64;&#111;&#109;&#97;&#x69;&#110;&#x2e;&#x63;&#111;&#109;</a> ，销售相关的用 <a href="mailto:&#115;&#x61;&#x6c;&#101;&#x73;&#64;&#121;&#111;&#x75;&#114;&#x64;&#111;&#109;&#x61;&#105;&#110;&#46;&#x63;&#x6f;&#x6d;">&#115;&#x61;&#x6c;&#101;&#x73;&#64;&#121;&#111;&#x75;&#114;&#x64;&#111;&#109;&#x61;&#105;&#110;&#46;&#x63;&#x6f;&#x6d;</a>。下面的方式就不能使用多个邮箱地址了。</p>
+<p>如何搭建一个简单的邮件服务器（邮件传输代理）呢？可以使用 postfix、sendmail 等等。这种做法的直接好处是，可以使用许多个邮箱地址，完成不同的工作。比如：一般的邮件用 <a href="mailto:&#x6f;&#x77;&#110;&#101;&#x72;&#64;&#121;&#x6f;&#x75;&#x72;&#x64;&#x6f;&#x6d;&#x61;&#105;&#x6e;&#46;&#99;&#111;&#x6d;">&#x6f;&#x77;&#110;&#101;&#x72;&#64;&#121;&#x6f;&#x75;&#x72;&#x64;&#x6f;&#x6d;&#x61;&#105;&#x6e;&#46;&#99;&#111;&#x6d;</a> ，销售相关的用 <a href="mailto:&#x73;&#97;&#108;&#101;&#115;&#x40;&#x79;&#111;&#117;&#x72;&#100;&#x6f;&#x6d;&#x61;&#x69;&#x6e;&#46;&#99;&#x6f;&#x6d;">&#x73;&#97;&#108;&#101;&#115;&#x40;&#x79;&#111;&#117;&#x72;&#100;&#x6f;&#x6d;&#x61;&#x69;&#x6e;&#46;&#99;&#x6f;&#x6d;</a>。下面的方式就不能使用多个邮箱地址了。</p>
 <p>下面要说到的这种方式是使用 SMTP 插件。这种插件的原理是使用新的类代替 <code>Zend_Mail_Transport_Sendmail.php</code> 完成工作（实际上是<code>\Magento\Framework\Mail\Transport</code> 负责的），这个新的类可以设置 SMTP 。这种方式相当于你把账户名，密码告诉他，他直接用外部的邮件服务器发邮件。</p>
 <p>这种方式只能配置一个账户，所以后台邮件地址得设置地和他一样。</p>
 <p>以上是博主的个人理解，有错误还请各位纠正，谢谢！</p>
@@ -4367,6 +4367,15 @@
       </tags>
   </entry>
   <entry>
+    <title>Magento 2 New Configurable product - selecting existing simple products manually</title>
+    <url>/magento-2-new-configurable-product-selecting-existing-simple-products-manually/</url>
+    <content><![CDATA[<p>I create a module which allow simply selecting existing simple products manually without having to generate configurable to see the link ‘Add Products Manually’. See here: <a href="https://github.com/PiscesThankIT/ThankIT_ConfigurableWizard">https://github.com/PiscesThankIT/ThankIT_ConfigurableWizard</a></p>
+]]></content>
+      <categories>
+        <category>Magento 2 高级</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Magento 2 Newsletter Subscription Event</title>
     <url>/magento-2-newsletter-subscription-event/</url>
     <content><![CDATA[<p><code>vendor/module/etc/events.xml</code></p>
@@ -4380,15 +4389,6 @@
 ]]></content>
       <categories>
         <category>其他</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Magento 2 New Configurable product - selecting existing simple products manually</title>
-    <url>/magento-2-new-configurable-product-selecting-existing-simple-products-manually/</url>
-    <content><![CDATA[<p>I create a module which allow simply selecting existing simple products manually without having to generate configurable to see the link ‘Add Products Manually’. See here: <a href="https://github.com/PiscesThankIT/ThankIT_ConfigurableWizard">https://github.com/PiscesThankIT/ThankIT_ConfigurableWizard</a></p>
-]]></content>
-      <categories>
-        <category>Magento 2 高级</category>
       </categories>
   </entry>
   <entry>
@@ -4776,7 +4776,7 @@
 
 <p>那就戳进去看看咯，这个地址提供了单个的包，找到 <code>zh_CN</code> 然后下载后改名为 <code>zh_Hans_CN.csv</code> 然后丢到相应的位置就可以了。</p>
 <h2 id="中文包的位置"><a href="#中文包的位置" class="headerlink" title="中文包的位置"></a><a href="#%E4%B8%AD%E6%96%87%E5%8C%85%E7%9A%84%E4%BD%8D%E7%BD%AE"></a>中文包的位置</h2><p>接下来我们来说位置。Magento 2 的 Component 主要有三种：module、theme、lanaguage package。在 module 和 theme 中 都有 <code>i18n</code> 这个文件夹（如果没有可以自己建），这个文件夹负责放翻译文件。 经过测试，博主发现，module 中 <code>i18n</code> 下的翻译文件会被应用到前台和后台（假设你前后台都是简体中文的话），但是 theme 中的翻译只会被应用到前台。所以理论上讲，你下载了上面的包改名后丢到任意的 module 中，都是可以的。 至于 language package ，他当然前后台都得负责了，关于 language package 的继承问题，还是以后用到的时候再探索吧。 博主的建议是把整站的中文包丢到 language package 里面比较好。就是说 Magento 自带模块的中文翻译放到 language package 中，你购买的主题，插件什么的中文包放在自己对应的目录下，这样会清晰很多。 Magento 拥有中文的 language package，请各位寻找下，如果包都在 vendor 下，那么在该目录下找名字叫 <code>language-zh_hans_cn</code> 的，如果你是 git 上那种目录结构，那么在 <code>app/i18n/Magento/zh_Hans_CN</code> 下 好了，把你的包丢进去，刷新缓存，有效果了吧？</p>
-<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>官方的语言包托管在 Crowdin 上，如果你注册一下，也可以参与翻译，反正就是给有兴趣锻炼翻译的人准备的，而且会有机器翻译提示，质量不是很好。博主查看了语言包的内容，有些实在是风马牛不相及，当然不相关的还是很少的。 另一个问题是 Magento 2 每次有新版本，那么需要翻译的字段都会有一些差异或者是增减。很明显，如果等待官方的更新的话，估计是不太可能了。 然后就是翻译的结构问题。打个比方来说，英文中使用 <code>127 records found</code> 这里的 127 不在翻译短语中，翻译短语是<code>records found</code>，翻成中文就是 <code>找到的记录</code> ，连起来变成 <code>127 找到的记录</code>， 是不是很别扭？因为中英文的句子结构不同。看起来这种事情也没有更好的解决办法了。 最后一个问题就是翻译的情境问题，在 csv 里面你可不知道这个短语在什么情境下面，所以翻译可能不是很贴切，有一些词汇还和业务逻辑有关，如果不是很了解业务逻辑，还真是不可能找到合适的词汇。 好吧，说了这么多，其实总结起来就是中文化是要长期迭代的过程。需要大家的共同努力。 <strong>博主根据上面的官方翻译文件进行了部分校正，发布在 github ，大家可以去下载</strong> 地址是：<a href="https://github.com/PiscesThankIT/zh_Hans_CN">https://github.com/PiscesThankIT/zh_Hans_CN</a> 我的想法是，既然我们有了一个还不错的基础包，<strong>请下载使用的人，在发现有需要改进的词汇或者问题时，在我的 github 下给我提评论，或者在我的博客上评论，或者将你更改后的文件发给我（<a href="mailto:&#x31;&#x35;&#x31;&#x38;&#53;&#50;&#53;&#56;&#54;&#50;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#x6d;">&#x31;&#x35;&#x31;&#x38;&#53;&#50;&#53;&#56;&#54;&#50;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#x6d;</a>），我更正后更新到 github 上，这样我们就有一个正向的循环，大家都能受益。</strong></p>
+<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>官方的语言包托管在 Crowdin 上，如果你注册一下，也可以参与翻译，反正就是给有兴趣锻炼翻译的人准备的，而且会有机器翻译提示，质量不是很好。博主查看了语言包的内容，有些实在是风马牛不相及，当然不相关的还是很少的。 另一个问题是 Magento 2 每次有新版本，那么需要翻译的字段都会有一些差异或者是增减。很明显，如果等待官方的更新的话，估计是不太可能了。 然后就是翻译的结构问题。打个比方来说，英文中使用 <code>127 records found</code> 这里的 127 不在翻译短语中，翻译短语是<code>records found</code>，翻成中文就是 <code>找到的记录</code> ，连起来变成 <code>127 找到的记录</code>， 是不是很别扭？因为中英文的句子结构不同。看起来这种事情也没有更好的解决办法了。 最后一个问题就是翻译的情境问题，在 csv 里面你可不知道这个短语在什么情境下面，所以翻译可能不是很贴切，有一些词汇还和业务逻辑有关，如果不是很了解业务逻辑，还真是不可能找到合适的词汇。 好吧，说了这么多，其实总结起来就是中文化是要长期迭代的过程。需要大家的共同努力。 <strong>博主根据上面的官方翻译文件进行了部分校正，发布在 github ，大家可以去下载</strong> 地址是：<a href="https://github.com/PiscesThankIT/zh_Hans_CN">https://github.com/PiscesThankIT/zh_Hans_CN</a> 我的想法是，既然我们有了一个还不错的基础包，<strong>请下载使用的人，在发现有需要改进的词汇或者问题时，在我的 github 下给我提评论，或者在我的博客上评论，或者将你更改后的文件发给我（<a href="mailto:&#49;&#53;&#49;&#x38;&#53;&#50;&#53;&#x38;&#54;&#50;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#49;&#53;&#49;&#x38;&#53;&#50;&#53;&#x38;&#54;&#50;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>），我更正后更新到 github 上，这样我们就有一个正向的循环，大家都能受益。</strong></p>
 <h2 id="如何更正中文包"><a href="#如何更正中文包" class="headerlink" title="如何更正中文包"></a><a href="#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%AD%A3%E4%B8%AD%E6%96%87%E5%8C%85"></a>如何更正中文包</h2><p>很多朋友不知道如何修改 csv 文件。csv 文件就是纯文本文件，只是用逗号分隔符来分割字段。你完全可以用记事本打开，不过记事本打开实在是很不好查看。默认情况下，你的电脑一定会替你用 EXCEL 打开， 用它打开有中文是会乱码的，要想不乱码，方法有点复杂，修改又有麻烦，所以博主还是放弃了这个念头。 你可以用任何编辑器打开，比如 notepad sublime 之类。博主觉得 notepad 编辑 csv 比较好。他的文件搜索在搜模板文件的时候真的很好用（题外话）。 有朋友推荐使用 csv 的编辑器，当然针对 csv 的编辑器，那查看起来真是很舒服的，but，大部分 csv 编辑器中文依然会乱码，因为不支持 unicode 编码的方式吧。博主找到一个很好用的，可惜免费版不能进行修改，破解版刚下载就提示有毒，吓得宝宝还是不要用了。这个编辑器的名字叫 Ron’s Editor ，不差钱的朋友可以支持下开发者哈。 回到正题，我们现在已经有合适的编辑器来编辑 csv 文件了。打开它，会发现至少有两栏。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;Report Bugs&quot;,报告错误,module,Magento_Backend</span><br></pre></td></tr></table></figure>
 
@@ -6246,7 +6246,7 @@
 <p>以上摘自<a href="http://cn.linux.vbird.org/linux_server/0380mail.php#postfix_basic">鸟哥的 Linux 私房菜</a>，更详细的介绍也可参考该文章。 比较重要的参数设置</p>
 <ul>
 <li><strong>myhostname</strong> 设定主机名 这个参数会被很多其他参数所引用，所以务必设置正确，在本例中，它的值是 <code>mail.example.com</code></li>
-<li><strong>myorigin</strong> 发信时显示的“发信源主机” 在通过 Postfix 发送邮件的时候，如果 From 字段不完整，例如 From: user，Postfix 会根据 myorigin 的值将地址补全为 From: <a href="mailto:&#x75;&#115;&#101;&#114;&#64;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x65;&#x78;&#97;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#x6d;">&#x75;&#115;&#101;&#114;&#64;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x65;&#x78;&#97;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#x6d;</a>。在本例中，我们将它的值设置为 <code>$myhostname</code></li>
+<li><strong>myorigin</strong> 发信时显示的“发信源主机” 在通过 Postfix 发送邮件的时候，如果 From 字段不完整，例如 From: user，Postfix 会根据 myorigin 的值将地址补全为 From: <a href="mailto:&#x75;&#115;&#x65;&#x72;&#64;&#109;&#x61;&#105;&#x6c;&#46;&#x65;&#x78;&#97;&#109;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#x75;&#115;&#x65;&#x72;&#64;&#109;&#x61;&#105;&#x6c;&#46;&#x65;&#x78;&#97;&#109;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;</a>。在本例中，我们将它的值设置为 <code>$myhostname</code></li>
 <li><strong>mynetworks</strong> 规定信任的客户端，默认只有自己</li>
 <li><strong>mydestination</strong> 规定能够收信的主机名 这个设置很重要。在本例中，我希望这台服务器能接受主域名 example.com 的邮件，所以 example.com 要出现在其中。</li>
 </ul>
@@ -6681,6 +6681,86 @@
       </categories>
   </entry>
   <entry>
+    <title>组合商品(Grouped Product)</title>
+    <url>/product-create-grouped/</url>
+    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-grouped.html">原文地址</a></em></p>
+<p>组合商品是一些独立的简单商品的组合，你可以提供简单商品的变体，或者按照季节、主题组合单品形成一套不同的商品。每个单品是可以单独购买的，或者作为组合商品的一部分购买。在购物车中，每个商品是单独列出的。</p>
+<p><img src="/wp-content/uploads/2017/01/product-grouped_thumb_0_0.png"></p>
+<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
+<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Grouped Product</strong></li>
+</ol>
+<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集是产品的模板，要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
+<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
+<li>输入产品的名称 <strong>Product Name</strong></li>
+<li>使用基于产品名称的默认 SKU 或者重新输入一个 SKU</li>
+<li>输入产品的价格 <strong>Price</strong></li>
+<li>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></li>
+<li>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</li>
+<li>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></li>
+</ol>
+<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
+<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
+<li>None</li>
+<li>Taxable Goods</li>
+</ul>
+</li>
+<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
+<li>输入产品的重量</li>
+<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
+<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。</li>
+<li>如果要标记改商品为新品，勾选 New 复选框</li>
+<li>选择 <strong>Country of Manufacture</strong><br><img src="/wp-content/uploads/2017/01/product-grouped-details_thumb_0_0.png"><br>可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
+</ol>
+<h2 id="第五步：将商品添加到组合中"><a href="#第五步：将商品添加到组合中" class="headerlink" title="第五步：将商品添加到组合中"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%B0%86%E5%95%86%E5%93%81%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%84%E5%90%88%E4%B8%AD"></a>第五步：将商品添加到组合中</h2><ol>
+<li>下拉找到 <strong>Grouped Products</strong> 部分，然后点击 <strong>Add Products to Group</strong><br><img src="/wp-content/uploads/2017/01/product-grouped-products.png"></li>
+<li>如有必要，可以使用筛选找出你需要包含的商品</li>
+<li>列表中，勾选需要包含的商品<br><img src="/wp-content/uploads/2017/01/product-grouped-add-products.png"></li>
+<li>点击 <strong>Add Selected Products</strong> 将他们添加进去<br>选中的商品会出现在组合商品部分<br><img src="/wp-content/uploads/2017/01/product-grouped-grouped-products-section.png"></li>
+<li>然后，可以做如下事情：<ul>
+<li>为每个项填入 <strong>Default Quantity</strong></li>
+<li>要调整商品的位置，拖动第一栏的 <img src="/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png"> 图标到新的位置。</li>
+<li>要移除某个商品，点击 <strong>Remove</strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="第六步：填写商品信息"><a href="#第六步：填写商品信息" class="headerlink" title="第六步：填写商品信息"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第六步：填写商品信息</h2><p>往下拉，然后根据需要填写以下部分：</p>
+<ul>
+<li>Content</li>
+<li>Images and Videos</li>
+<li>Related Products, Up-Sells, and Cross-Sells</li>
+<li>Search Engine Optimization</li>
+<li>Customizable Options</li>
+<li>Products in Websites</li>
+<li>Design</li>
+<li>Gift Options</li>
+</ul>
+<h2 id="第七步：发布商品"><a href="#第七步：发布商品" class="headerlink" title="第七步：发布商品"></a><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>第七步：发布商品</h2><ol>
+<li>如果你已经准备好要发布产品了，那么设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>下面你可以点击右上角的 <strong>Save &amp; Close</strong> 或者 <strong>Save</strong> 然后再 <strong>Admin</strong> 菜单中选择 <strong>Customer View</strong> 检查下产品发布信息是否 OK</li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<h2 id="第八步：配置购物车缩略图（可选）"><a href="#第八步：配置购物车缩略图（可选）" class="headerlink" title="第八步：配置购物车缩略图（可选）"></a><a href="#%E7%AC%AC%E5%85%AB%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%BC%A9%E7%95%A5%E5%9B%BE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>第八步：配置购物车缩略图（可选）</h2><p>如果你的组合商品中每个单品的图片都不同，你可以设置购物车中的缩略图使用正确的图片</p>
+<ol>
+<li>后台侧边栏，点击 <strong>Stores</strong>，在 Settings 下，选择 <strong>Configuration</strong></li>
+<li>左侧边栏 Sales 下，选择 <strong>Checkout</strong>，展开 <strong>Shopping Cart</strong> 部分</li>
+<li>设置 <strong>Grouped Product Image</strong> 为 Product Thumbnail Itself</li>
+<li>完成后，点击 <strong>Save Config</strong></li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-grouped-product.png"></p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ul>
+<li>组合商品本质上是简单商品的组合</li>
+<li>作为组合商品的一部分的简单商品和虚拟商品不能拥有自定义选项(custom options)</li>
+<li>组合商品中的每项被购买后都会单独存在于购物车中，而不是作为组合商品的一部分</li>
+<li>购物车中的缩略图，可以被配置为使用组合商品的图片，或是组合商品中单项的图片</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用手册</category>
+      </categories>
+  </entry>
+  <entry>
     <title>可下载商品(Downloadable Product)</title>
     <url>/product-create-downloadable/</url>
     <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-downloadable.html">原文地址</a></em></p>
@@ -6784,86 +6864,6 @@
 <li>你可以决定客户可以下载的次数</li>
 <li>购买可下载商品的客户可以被要求结账前必须登陆</li>
 <li>The delivery of a downloadable product can be made when the order is in either a “Pending” or “Invoiced” state.</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Magento 2 用户使用手册</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>组合商品(Grouped Product)</title>
-    <url>/product-create-grouped/</url>
-    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-grouped.html">原文地址</a></em></p>
-<p>组合商品是一些独立的简单商品的组合，你可以提供简单商品的变体，或者按照季节、主题组合单品形成一套不同的商品。每个单品是可以单独购买的，或者作为组合商品的一部分购买。在购物车中，每个商品是单独列出的。</p>
-<p><img src="/wp-content/uploads/2017/01/product-grouped_thumb_0_0.png"></p>
-<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
-<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
-<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Grouped Product</strong></li>
-</ol>
-<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集是产品的模板，要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
-<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
-<li>输入产品的名称 <strong>Product Name</strong></li>
-<li>使用基于产品名称的默认 SKU 或者重新输入一个 SKU</li>
-<li>输入产品的价格 <strong>Price</strong></li>
-<li>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></li>
-<li>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</li>
-<li>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></li>
-</ol>
-<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
-<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
-<li>None</li>
-<li>Taxable Goods</li>
-</ul>
-</li>
-<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
-<li>输入产品的重量</li>
-<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
-<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。</li>
-<li>如果要标记改商品为新品，勾选 New 复选框</li>
-<li>选择 <strong>Country of Manufacture</strong><br><img src="/wp-content/uploads/2017/01/product-grouped-details_thumb_0_0.png"><br>可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
-</ol>
-<h2 id="第五步：将商品添加到组合中"><a href="#第五步：将商品添加到组合中" class="headerlink" title="第五步：将商品添加到组合中"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%B0%86%E5%95%86%E5%93%81%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%84%E5%90%88%E4%B8%AD"></a>第五步：将商品添加到组合中</h2><ol>
-<li>下拉找到 <strong>Grouped Products</strong> 部分，然后点击 <strong>Add Products to Group</strong><br><img src="/wp-content/uploads/2017/01/product-grouped-products.png"></li>
-<li>如有必要，可以使用筛选找出你需要包含的商品</li>
-<li>列表中，勾选需要包含的商品<br><img src="/wp-content/uploads/2017/01/product-grouped-add-products.png"></li>
-<li>点击 <strong>Add Selected Products</strong> 将他们添加进去<br>选中的商品会出现在组合商品部分<br><img src="/wp-content/uploads/2017/01/product-grouped-grouped-products-section.png"></li>
-<li>然后，可以做如下事情：<ul>
-<li>为每个项填入 <strong>Default Quantity</strong></li>
-<li>要调整商品的位置，拖动第一栏的 <img src="/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png"> 图标到新的位置。</li>
-<li>要移除某个商品，点击 <strong>Remove</strong></li>
-</ul>
-</li>
-</ol>
-<h2 id="第六步：填写商品信息"><a href="#第六步：填写商品信息" class="headerlink" title="第六步：填写商品信息"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第六步：填写商品信息</h2><p>往下拉，然后根据需要填写以下部分：</p>
-<ul>
-<li>Content</li>
-<li>Images and Videos</li>
-<li>Related Products, Up-Sells, and Cross-Sells</li>
-<li>Search Engine Optimization</li>
-<li>Customizable Options</li>
-<li>Products in Websites</li>
-<li>Design</li>
-<li>Gift Options</li>
-</ul>
-<h2 id="第七步：发布商品"><a href="#第七步：发布商品" class="headerlink" title="第七步：发布商品"></a><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>第七步：发布商品</h2><ol>
-<li>如果你已经准备好要发布产品了，那么设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
-<li>下面你可以点击右上角的 <strong>Save &amp; Close</strong> 或者 <strong>Save</strong> 然后再 <strong>Admin</strong> 菜单中选择 <strong>Customer View</strong> 检查下产品发布信息是否 OK</li>
-</ol>
-<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
-<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
-<h2 id="第八步：配置购物车缩略图（可选）"><a href="#第八步：配置购物车缩略图（可选）" class="headerlink" title="第八步：配置购物车缩略图（可选）"></a><a href="#%E7%AC%AC%E5%85%AB%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%BC%A9%E7%95%A5%E5%9B%BE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>第八步：配置购物车缩略图（可选）</h2><p>如果你的组合商品中每个单品的图片都不同，你可以设置购物车中的缩略图使用正确的图片</p>
-<ol>
-<li>后台侧边栏，点击 <strong>Stores</strong>，在 Settings 下，选择 <strong>Configuration</strong></li>
-<li>左侧边栏 Sales 下，选择 <strong>Checkout</strong>，展开 <strong>Shopping Cart</strong> 部分</li>
-<li>设置 <strong>Grouped Product Image</strong> 为 Product Thumbnail Itself</li>
-<li>完成后，点击 <strong>Save Config</strong></li>
-</ol>
-<p><img src="/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-grouped-product.png"></p>
-<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ul>
-<li>组合商品本质上是简单商品的组合</li>
-<li>作为组合商品的一部分的简单商品和虚拟商品不能拥有自定义选项(custom options)</li>
-<li>组合商品中的每项被购买后都会单独存在于购物车中，而不是作为组合商品的一部分</li>
-<li>购物车中的缩略图，可以被配置为使用组合商品的图片，或是组合商品中单项的图片</li>
 </ul>
 ]]></content>
       <categories>
@@ -8337,12 +8337,12 @@
     <title>telnet 登录 SMTP 发邮件</title>
     <url>/telnet-smtp-send-email/</url>
     <content><![CDATA[<p>这篇是有助于理解 SMTP 。</p>
-<p>博主用腾讯的企业邮箱注册了一个 <a href="mailto:&#111;&#x77;&#110;&#101;&#114;&#x40;&#109;&#97;&#x69;&#108;&#x2e;&#104;&#x65;&#x6c;&#108;&#x6f;&#x6d;&#97;&#103;&#101;&#x6e;&#x74;&#x6f;&#50;&#46;&#x63;&#x6f;&#109;">&#111;&#x77;&#110;&#101;&#114;&#x40;&#109;&#97;&#x69;&#108;&#x2e;&#104;&#x65;&#x6c;&#108;&#x6f;&#x6d;&#97;&#103;&#101;&#x6e;&#x74;&#x6f;&#50;&#46;&#x63;&#x6f;&#109;</a> 的地址，下面就以登录该邮箱发送邮件为例。</p>
-<p>首先我们准备好 <a href="mailto:&#x6f;&#119;&#110;&#x65;&#x72;&#x40;&#109;&#97;&#105;&#x6c;&#46;&#x68;&#101;&#x6c;&#x6c;&#111;&#109;&#x61;&#103;&#101;&#x6e;&#116;&#111;&#50;&#46;&#x63;&#x6f;&#x6d;">&#x6f;&#119;&#110;&#x65;&#x72;&#x40;&#109;&#97;&#105;&#x6c;&#46;&#x68;&#101;&#x6c;&#x6c;&#111;&#109;&#x61;&#103;&#101;&#x6e;&#116;&#111;&#50;&#46;&#x63;&#x6f;&#x6d;</a> 的用户名及密码的 base64 编码：</p>
+<p>博主用腾讯的企业邮箱注册了一个 <a href="mailto:&#x6f;&#119;&#x6e;&#101;&#114;&#64;&#109;&#97;&#x69;&#x6c;&#x2e;&#x68;&#x65;&#108;&#x6c;&#x6f;&#109;&#97;&#103;&#101;&#x6e;&#x74;&#x6f;&#50;&#x2e;&#x63;&#x6f;&#x6d;">&#x6f;&#119;&#x6e;&#101;&#114;&#64;&#109;&#97;&#x69;&#x6c;&#x2e;&#x68;&#x65;&#108;&#x6c;&#x6f;&#109;&#97;&#103;&#101;&#x6e;&#x74;&#x6f;&#50;&#x2e;&#x63;&#x6f;&#x6d;</a> 的地址，下面就以登录该邮箱发送邮件为例。</p>
+<p>首先我们准备好 <a href="mailto:&#x6f;&#119;&#x6e;&#x65;&#x72;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#101;&#x6c;&#108;&#111;&#x6d;&#x61;&#x67;&#101;&#x6e;&#x74;&#x6f;&#50;&#x2e;&#x63;&#111;&#109;">&#x6f;&#119;&#x6e;&#x65;&#x72;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#101;&#x6c;&#108;&#111;&#x6d;&#x61;&#x67;&#101;&#x6e;&#x74;&#x6f;&#50;&#x2e;&#x63;&#111;&#109;</a> 的用户名及密码的 base64 编码：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户名：b3duZXJAbWFpbC5oZWxsb21hZ2VudG8yLmNvbQ==</span><br><span class="line">密码（当然是假的）：MTIzNDU2</span><br></pre></td></tr></table></figure>
 
 <p>以下是 CMD 的测试记录（加粗部分是输入）：</p>
-<p><strong>telnet smtp.exmail.qq.com 25</strong><br>220 smtp.qq.com Esmtp QQ Mail Server<br><strong>EHLO smtp.qq.com</strong><br>250-smtp.qq.com<br>250-PIPELINING<br>250-SIZE 73400320<br>250-STARTTLS<br>250-AUTH LOGIN PLAIN<br>250-AUTH&#x3D;LOGIN<br>250-MAILCOMPRESS<br>250 8BITMIME<br><strong>AUTH LOGIN</strong><br>334 VXNlcm5hbWU6<br><strong>b3duZXJAbWFpbC5oZWxsb21hZ2VudG8yLmNvbQ&#x3D;&#x3D;</strong><br>334 UGFzc3dvcmQ6<br><strong>MTIzNDU2</strong><br>235 Authentication successful<br><strong>MAIL FROM: <a href="mailto:&#111;&#x77;&#x6e;&#x65;&#x72;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#x65;&#108;&#108;&#x6f;&#x6d;&#x61;&#x67;&#x65;&#110;&#x74;&#x6f;&#x32;&#46;&#99;&#x6f;&#x6d;">&#111;&#x77;&#x6e;&#x65;&#x72;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#x65;&#108;&#108;&#x6f;&#x6d;&#x61;&#x67;&#x65;&#110;&#x74;&#x6f;&#x32;&#46;&#99;&#x6f;&#x6d;</a></strong><br>250 Ok<br><strong>RCPT TO: <a href="mailto:&#49;&#x35;&#x31;&#x38;&#x35;&#x32;&#x35;&#56;&#x36;&#50;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;">&#49;&#x35;&#x31;&#x38;&#x35;&#x32;&#x35;&#56;&#x36;&#50;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;</a></strong><br>250 Ok<br><strong>DATA</strong><br>354 End data with <CR><LF>.<CR><LF><br><strong>From: <a href="mailto:&#111;&#119;&#110;&#x65;&#114;&#64;&#109;&#97;&#105;&#x6c;&#x2e;&#x68;&#101;&#x6c;&#x6c;&#x6f;&#109;&#x61;&#103;&#x65;&#x6e;&#x74;&#x6f;&#x32;&#x2e;&#x63;&#111;&#109;">&#111;&#119;&#110;&#x65;&#114;&#64;&#109;&#97;&#105;&#x6c;&#x2e;&#x68;&#101;&#x6c;&#x6c;&#x6f;&#109;&#x61;&#103;&#x65;&#x6e;&#x74;&#x6f;&#x32;&#x2e;&#x63;&#111;&#109;</a></strong><br><strong>Subject: test</strong></p>
+<p><strong>telnet smtp.exmail.qq.com 25</strong><br>220 smtp.qq.com Esmtp QQ Mail Server<br><strong>EHLO smtp.qq.com</strong><br>250-smtp.qq.com<br>250-PIPELINING<br>250-SIZE 73400320<br>250-STARTTLS<br>250-AUTH LOGIN PLAIN<br>250-AUTH&#x3D;LOGIN<br>250-MAILCOMPRESS<br>250 8BITMIME<br><strong>AUTH LOGIN</strong><br>334 VXNlcm5hbWU6<br><strong>b3duZXJAbWFpbC5oZWxsb21hZ2VudG8yLmNvbQ&#x3D;&#x3D;</strong><br>334 UGFzc3dvcmQ6<br><strong>MTIzNDU2</strong><br>235 Authentication successful<br><strong>MAIL FROM: <a href="mailto:&#111;&#x77;&#110;&#101;&#x72;&#x40;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#x6c;&#x6f;&#x6d;&#97;&#x67;&#x65;&#110;&#x74;&#111;&#x32;&#46;&#99;&#x6f;&#x6d;">&#111;&#x77;&#110;&#101;&#x72;&#x40;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#x6c;&#x6f;&#x6d;&#97;&#x67;&#x65;&#110;&#x74;&#111;&#x32;&#46;&#99;&#x6f;&#x6d;</a></strong><br>250 Ok<br><strong>RCPT TO: <a href="mailto:&#49;&#x35;&#49;&#x38;&#53;&#50;&#53;&#x38;&#x36;&#50;&#64;&#113;&#x71;&#46;&#99;&#111;&#x6d;">&#49;&#x35;&#49;&#x38;&#53;&#50;&#53;&#x38;&#x36;&#50;&#64;&#113;&#x71;&#46;&#99;&#111;&#x6d;</a></strong><br>250 Ok<br><strong>DATA</strong><br>354 End data with <CR><LF>.<CR><LF><br><strong>From: <a href="mailto:&#x6f;&#119;&#x6e;&#x65;&#x72;&#64;&#x6d;&#x61;&#x69;&#108;&#46;&#x68;&#101;&#108;&#108;&#x6f;&#109;&#97;&#x67;&#101;&#110;&#x74;&#111;&#x32;&#46;&#x63;&#x6f;&#109;">&#x6f;&#119;&#x6e;&#x65;&#x72;&#64;&#x6d;&#x61;&#x69;&#108;&#46;&#x68;&#101;&#108;&#108;&#x6f;&#109;&#97;&#x67;&#101;&#110;&#x74;&#111;&#x32;&#46;&#x63;&#x6f;&#109;</a></strong><br><strong>Subject: test</strong></p>
 <p><strong>body</strong><br><strong>.</strong><br>250 Ok: queued as</p>
 <p>注意：邮件正文前空了一行。<br>然后查看邮件就知道已经收到啦！</p>
 ]]></content>
@@ -8547,13 +8547,13 @@
   <entry>
     <title>免费域名邮箱 —— 使用腾讯企业邮箱</title>
     <url>/use-exmail-qq/</url>
-    <content><![CDATA[<p>博主已经有 hellomagento2.com 的域名了，现在想要一个自己域名的邮箱，就像 <a href="mailto:&#x74;&#104;&#x61;&#x6e;&#x6b;&#x69;&#x74;&#x40;&#104;&#101;&#108;&#108;&#x6f;&#109;&#97;&#x67;&#101;&#x6e;&#x74;&#111;&#50;&#46;&#99;&#111;&#x6d;">&#x74;&#104;&#x61;&#x6e;&#x6b;&#x69;&#x74;&#x40;&#104;&#101;&#108;&#108;&#x6f;&#109;&#97;&#x67;&#101;&#x6e;&#x74;&#111;&#50;&#46;&#99;&#111;&#x6d;</a> 这样的，还得是免费的。该怎么做呢？本篇就将介绍如何使用腾讯的企业邮箱服务来配置自己的域名邮箱。</p>
+    <content><![CDATA[<p>博主已经有 hellomagento2.com 的域名了，现在想要一个自己域名的邮箱，就像 <a href="mailto:&#x74;&#104;&#x61;&#110;&#x6b;&#105;&#116;&#x40;&#x68;&#101;&#108;&#x6c;&#111;&#109;&#x61;&#x67;&#x65;&#x6e;&#116;&#x6f;&#x32;&#x2e;&#x63;&#x6f;&#109;">&#x74;&#104;&#x61;&#110;&#x6b;&#105;&#116;&#x40;&#x68;&#101;&#108;&#x6c;&#111;&#109;&#x61;&#x67;&#x65;&#x6e;&#116;&#x6f;&#x32;&#x2e;&#x63;&#x6f;&#109;</a> 这样的，还得是免费的。该怎么做呢？本篇就将介绍如何使用腾讯的企业邮箱服务来配置自己的域名邮箱。</p>
 <p>首先去<a href="http://exmail.qq.com/onlinesell/intro">腾讯企业邮箱的官网</a>开通一个免费版的。</p>
 <p>按照提示一步步操作即可，如果不太清楚，可以参考<a href="http://service.exmail.qq.com/cgi-bin/help?subtype=1&&no=1001214&&id=20012">官方帮助文档</a>。</p>
 <p>注册管理员账号，添加域名，添加成员等步骤省略不讲。</p>
 <p>下面我们配图如何设置 MX 记录，参照上面的官方文档应该很容易理解的。</p>
 <p><img src="/wp-content/uploads/2016/10/aliyun-mx.png"></p>
-<p>博主这个配置的是 <a href="mailto:&#x73;&#111;&#x6d;&#101;&#111;&#x6e;&#x65;&#64;&#109;&#x61;&#105;&#108;&#46;&#104;&#x65;&#x6c;&#x6c;&#111;&#109;&#97;&#103;&#101;&#110;&#x74;&#x6f;&#50;&#46;&#x63;&#x6f;&#109;">&#x73;&#111;&#x6d;&#101;&#111;&#x6e;&#x65;&#64;&#109;&#x61;&#105;&#108;&#46;&#104;&#x65;&#x6c;&#x6c;&#111;&#109;&#97;&#103;&#101;&#110;&#x74;&#x6f;&#50;&#46;&#x63;&#x6f;&#109;</a> 这种哈。现在登录腾讯企业邮箱给自己发邮件，别人收到的就是自己域名的邮件啦！</p>
+<p>博主这个配置的是 <a href="mailto:&#x73;&#111;&#x6d;&#101;&#x6f;&#x6e;&#101;&#x40;&#109;&#97;&#105;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#108;&#x6f;&#x6d;&#97;&#103;&#101;&#110;&#116;&#111;&#50;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#111;&#x6d;&#101;&#x6f;&#x6e;&#101;&#x40;&#109;&#97;&#105;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#108;&#x6f;&#x6d;&#97;&#103;&#101;&#110;&#116;&#111;&#50;&#x2e;&#x63;&#x6f;&#x6d;</a> 这种哈。现在登录腾讯企业邮箱给自己发邮件，别人收到的就是自己域名的邮件啦！</p>
 ]]></content>
       <categories>
         <category>uncategorized</category>
