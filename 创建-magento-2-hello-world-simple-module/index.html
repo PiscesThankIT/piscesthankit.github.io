@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本篇文章将介绍如何创建一个输出 hello world 的简单模块。 在 Magento 2 中，模块存在于 app&#x2F;code 目录下，格式如下 app&#x2F;code&#x2F;&lt;Vendor&gt;&#x2F;&lt;ModuleName&gt;。 第一步：创建模块所需的目录我们将使用 ThankIT 作为 Vendor name ，HelloWorld 作为 ModuleName ，所以我们现在创建文件目录 a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建 Magento 2 Hello World Simple Module">
+<meta property="og:url" content="http://example.com/%E5%88%9B%E5%BB%BA-magento-2-hello-world-simple-module/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="本篇文章将介绍如何创建一个输出 hello world 的简单模块。 在 Magento 2 中，模块存在于 app&#x2F;code 目录下，格式如下 app&#x2F;code&#x2F;&lt;Vendor&gt;&#x2F;&lt;ModuleName&gt;。 第一步：创建模块所需的目录我们将使用 ThankIT 作为 Vendor name ，HelloWorld 作为 ModuleName ，所以我们现在创建文件目录 a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-08-31T14:26:56.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.259Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="Hello World">
+<meta property="article:tag" content="Magento 2 插件开发">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/%E5%88%9B%E5%BB%BA-magento-2-hello-world-simple-module/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>创建 Magento 2 Hello World Simple Module | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E5%88%9B%E5%BB%BA-magento-2-hello-world-simple-module/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          创建 Magento 2 Hello World Simple Module
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-31 22:26:56" itemprop="dateCreated datePublished" datetime="2017-08-31T22:26:56+08:00">2017-08-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">插件开发系列教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本篇文章将介绍如何创建一个输出 <code>hello world</code> 的简单模块。 在 Magento 2 中，模块存在于 <code>app/code</code> 目录下，格式如下 <code>app/code/&lt;Vendor&gt;/&lt;ModuleName&gt;</code>。</p>
+<h2 id="第一步：创建模块所需的目录"><a href="#第一步：创建模块所需的目录" class="headerlink" title="第一步：创建模块所需的目录"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9D%97%E6%89%80%E9%9C%80%E7%9A%84%E7%9B%AE%E5%BD%95"></a>第一步：创建模块所需的目录</h2><p>我们将使用 <code>ThankIT</code> 作为 Vendor name ，<code>HelloWorld</code> 作为 ModuleName ，所以我们现在创建文件目录 <code>app/code/ThankIT/HelloWorld</code></p>
+<h2 id="第二步：创建-module-xml-声明该模块"><a href="#第二步：创建-module-xml-声明该模块" class="headerlink" title="第二步：创建 module.xml 声明该模块"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-module.xml-%E5%A3%B0%E6%98%8E%E8%AF%A5%E6%A8%A1%E5%9D%97"></a>第二步：创建 module.xml 声明该模块</h2><p>在上面创建的目录下，创建 <code>etc</code> 目录，在 <code>etc</code> 下创建 <code>module.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/ThankIT/HelloWorld/etc/module.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Module/etc/module.xsd&quot;&gt;</span><br><span class="line">    &lt;module name=&quot;ThankIT_HelloWorld&quot; setup_version=&quot;1.0.0&quot; /&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在该配置文件中，我们注册了一个模块名称为 <code>ThankIT_HelloWorld</code> 的模块，它的版本是 <code>1.0.0</code></p>
+<h2 id="第三步：创建-registration-php-注册模块"><a href="#第三步：创建-registration-php-注册模块" class="headerlink" title="第三步：创建 registration.php 注册模块"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-registration.php-%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97"></a>第三步：创建 registration.php 注册模块</h2><p>Magento 2 中的所有模块都必须通过 magento 的 ComponentRegistrar 类进行注册。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/ThankIT/HelloWorld/registration.php</span><br><span class="line">&lt;?php</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::MODULE,</span><br><span class="line">    &#x27;ThankIT_HelloWorld&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四步：Enable-该模块"><a href="#第四步：Enable-该模块" class="headerlink" title="第四步：Enable 该模块"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9Aenable-%E8%AF%A5%E6%A8%A1%E5%9D%97"></a>第四步：Enable 该模块</h2><p>上面步骤做完后，我们就已经创建好了一个空模块，下面输入以下命令行，看看我们的模块是否已经注册好了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento module:status</span><br></pre></td></tr></table></figure>
+
+<p>你会看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List of disabled modules:</span><br><span class="line">ThankIT_HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p>这代表，模块已经被检测到，但 disabled 状态，下面启用它</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento module:enable ThankIT_HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p>如果看到以下信息，表明模块已经成功启用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The following modules has been enabled:</span><br><span class="line">- ThankIT_HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p>这是你第一次启用该模块，magento 需要检查和升级模块的数据库记录，运行以下命令行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+
+<p>现在我们进入后台，在 <code>Stores -&gt; Configuration -&gt; Advanced -&gt; Advanced</code> 下我们可以看到该模块了</p>
+<h2 id="第五步：为模块创建路由"><a href="#第五步：为模块创建路由" class="headerlink" title="第五步：为模块创建路由"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E4%B8%BA%E6%A8%A1%E5%9D%97%E5%88%9B%E5%BB%BA%E8%B7%AF%E7%94%B1"></a>第五步：为模块创建路由</h2><p>Magento 系统中，请求 URL 是如下格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/&lt;router_name&gt;/&lt;controller_name&gt;/&lt;action_name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>路由用来分配 URL 给对应的 controller （控制器）和 action 。在该模块中，我们给前端创建一个路由，所以创建下面的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/ThankIT/HelloWorld/etc/frontend/routes.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:App/etc/routes.xsd&quot;&gt;</span><br><span class="line">    &lt;router id=&quot;standard&quot;&gt;</span><br><span class="line">        &lt;route id=&quot;helloworld&quot; frontName=&quot;helloworld&quot;&gt;</span><br><span class="line">            &lt;module name=&quot;ThankIT_HelloWorld&quot; /&gt;</span><br><span class="line">        &lt;/route&gt;</span><br><span class="line">    &lt;/router&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>定义好路由后，我们的模块 URL 路径变成 <code>http://example.com/helloworld/*</code></p>
+<h2 id="第六步：创建-controller-和-action"><a href="#第六步：创建-controller-和-action" class="headerlink" title="第六步：创建 controller 和 action"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-controller-%E5%92%8C-action"></a>第六步：创建 controller 和 action</h2><p>在该步骤中，我们将创建 controller 和 action 来输出 <code>Hello World</code> 。假设我们的 URL 是 <code>http://example.com/helloworld/index/display</code> 所以我们将创建如下文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Mageplaza/HelloWorld/Controller/Index/Display.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Controller\Index;</span><br><span class="line"></span><br><span class="line">class Display extends \Magento\Framework\App\Action\Action</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct(</span><br><span class="line">        \Magento\Framework\App\Action\Context $context</span><br><span class="line">    )&#123;</span><br><span class="line">    return parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &#x27;Hello World&#x27;;</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果打开 <code>http://example.com/helloworld/index/display</code> 就会看到输出 <code>Hello World</code> 字符串。 如果出现 404 请清空缓存 <code>php bin/magento cache:clean</code></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.mageplaza.com/magento-2-module-development/">Magento 2 Module Development - Magento 2 Hello World Simple Module</a></p>
+<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a><a href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"></a>代码下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/ThankIT_HelloWorld/">ThankIT_HelloWorld 模块代码下载</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hello-World/" rel="tag"># Hello World</a>
+              <a href="/tags/Magento-2-%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag"># Magento 2 插件开发</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/css-%E7%9A%84%E5%87%A0%E4%B8%AA%E9%80%89%E6%8B%A9%E5%99%A8/" rel="prev" title="css 的几个选择器">
+      <i class="fa fa-chevron-left"></i> css 的几个选择器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/magento-2-%E4%B8%AD%E7%9A%84-controller/" rel="next" title="Magento 2 中的 Controller">
+      Magento 2 中的 Controller <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9D%97%E6%89%80%E9%9C%80%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">第一步：创建模块所需的目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-module-xml-%E5%A3%B0%E6%98%8E%E8%AF%A5%E6%A8%A1%E5%9D%97"><span class="nav-number">2.</span> <span class="nav-text">第二步：创建 module.xml 声明该模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-registration-php-%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97"><span class="nav-number">3.</span> <span class="nav-text">第三步：创建 registration.php 注册模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9AEnable-%E8%AF%A5%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">第四步：Enable 该模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E4%B8%BA%E6%A8%A1%E5%9D%97%E5%88%9B%E5%BB%BA%E8%B7%AF%E7%94%B1"><span class="nav-number">5.</span> <span class="nav-text">第五步：为模块创建路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-controller-%E5%92%8C-action"><span class="nav-number">6.</span> <span class="nav-text">第六步：创建 controller 和 action</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">7.</span> <span class="nav-text">参考文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="nav-number">8.</span> <span class="nav-text">代码下载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

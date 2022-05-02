@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Magento2 系统要求官方参考网址：http:&#x2F;&#x2F;devdocs.magento.com&#x2F;guides&#x2F;v2.0&#x2F;install-gde&#x2F;system-requirements.html 操作系统Linux x86-64 (RedHat Enterprise Linux (RHEL), CentOS, Ubuntu, Debian 等) web 服务器软件 Apache 2.2 或者 2.4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云 ECS 安装 Magento 2 (原创)">
+<meta property="og:url" content="http://example.com/aliyun-ecs-install-magento-2/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="Magento2 系统要求官方参考网址：http:&#x2F;&#x2F;devdocs.magento.com&#x2F;guides&#x2F;v2.0&#x2F;install-gde&#x2F;system-requirements.html 操作系统Linux x86-64 (RedHat Enterprise Linux (RHEL), CentOS, Ubuntu, Debian 等) web 服务器软件 Apache 2.2 或者 2.4">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-09T13:48:42.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:16.968Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="ECS">
+<meta property="article:tag" content="LAMP">
+<meta property="article:tag" content="安装">
+<meta property="article:tag" content="推荐">
+<meta property="article:tag" content="阿里云">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/aliyun-ecs-install-magento-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>阿里云 ECS 安装 Magento 2 (原创) | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/aliyun-ecs-install-magento-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          阿里云 ECS 安装 Magento 2 (原创)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-09 21:48:42" itemprop="dateCreated datePublished" datetime="2016-08-09T21:48:42+08:00">2016-08-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Magento 开发教程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Magento2-系统要求"><a href="#Magento2-系统要求" class="headerlink" title="Magento2 系统要求"></a><a href="#magento2-%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"></a>Magento2 系统要求</h2><p>官方参考网址：<br><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/install-gde/system-requirements.html">http://devdocs.magento.com/guides/v2.0/install-gde/system-requirements.html</a></p>
+<h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"></a>操作系统</h3><p>Linux x86-64 (RedHat Enterprise Linux (RHEL), CentOS, Ubuntu, Debian 等)</p>
+<h3 id="web-服务器软件"><a href="#web-服务器软件" class="headerlink" title="web 服务器软件"></a><a href="#web-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AF%E4%BB%B6"></a>web 服务器软件</h3><ol>
+<li>Apache 2.2 或者 2.4 (必须打开 mod_rewrite)</li>
+<li>nginx 1.8 (or latest mainline version)</li>
+</ol>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93"></a>数据库</h3><p>MySQL 5.6 或者 5.7</p>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a><a href="#php"></a>PHP</h3><p>Update: 下面的要求特指 Magneto 2.1.0 后续版本有差异，请参考官方获得最新的消息</p>
+<ol>
+<li>5.6.x</li>
+<li>5.5.x ( x 大于 22)</li>
+<li>7.0.2 至 7.1.0 (除了 7.0.5 和 7.0.4) (7.0.4 官文没有说，但 github 上有 bug 亲测不可用)</li>
+<li>php 扩展<br>bc-math (ee版本才需要)<br>curl<br>gd 或者 ImageMagick 6.3.7及以上版本 也可以两个都装<br>intl<br>mbstring<br>mcrypt<br>mhash<br>openssl<br>PDO&#x2F;MySQL<br>SimpleXML<br>soap<br>xml<br>xsl<br>zip<br>PHP 7 only:<br>json<br>iconv</li>
+</ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a><a href="#%E5%85%B6%E4%BB%96"></a>其他</h3><p>暂时不考虑</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a><a href="#%E7%9B%AE%E6%A0%87"></a>目标</h2><p>阿里云 ECS 操作系统 Ubuntu 14.04 64位<br>Apache 2.4<br>MySQL 5.7<br>PHP 7 (据说速度比 PHP 5 提高25%)<br>Magento 2.1.0</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a><a href="#%E5%87%86%E5%A4%87"></a>准备</h2><p><em>下面的软件可以去这里下：<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1skJVqiD">http://pan.baidu.com/s/1skJVqiD</a></em></p>
+<h3 id="Magento-2-的安装包"><a href="#Magento-2-的安装包" class="headerlink" title="Magento 2 的安装包"></a><a href="#magento-2-%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85"></a>Magento 2 的安装包</h3><ol>
+<li>官方下载地址：<br><a target="_blank" rel="noopener" href="https://www.magentocommerce.com/download">https://www.magentocommerce.com/download</a></li>
+<li>Composer</li>
+<li>GitHub</li>
+</ol>
+<p><em>他们的目录略有不同，个人觉得第一种比较容易哈，下面我们下载 Magento 2.1.0 版本，带 Sample Data的</em></p>
+<h3 id="FTP-工具"><a href="#FTP-工具" class="headerlink" title="FTP 工具"></a><a href="#ftp-%E5%B7%A5%E5%85%B7"></a>FTP 工具</h3><p>一会儿需要用FTP上传到服务器上</p>
+<blockquote>
+<p>个人用的是FileZilla Client</p>
+</blockquote>
+<h3 id="远程登陆工具"><a href="#远程登陆工具" class="headerlink" title="远程登陆工具"></a><a href="#%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E5%B7%A5%E5%85%B7"></a>远程登陆工具</h3><p>用它来远程连接服务器</p>
+<blockquote>
+<p>个人用的是Putty</p>
+</blockquote>
+<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a><a href="#apache"></a>Apache</h2><p>用远程登陆工具登上服务器</p>
+<h3 id="安装-Apache"><a href="#安装-Apache" class="headerlink" title="安装 Apache"></a><a href="#%E5%AE%89%E8%A3%85-apache"></a>安装 Apache</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y update</span><br><span class="line">apt-get -y install apache2</span><br><span class="line">apache2 -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="Enable-rewrites-and-htaccess"><a href="#Enable-rewrites-and-htaccess" class="headerlink" title="Enable rewrites and .htaccess"></a><a href="#enable-rewrites-and-.htaccess"></a>Enable rewrites and .htaccess</h3><ol>
+<li><p>启用Apache rewrite 模块<br><code>a2enmod rewrite</code></p>
+</li>
+<li><p>配置允许存在于.htaccess中的指令<br><code>vi /etc/apache2/sites-available/000-default.conf</code><br>在文件末尾添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www/html&quot;&gt;</span><br><span class="line"> AllowOverride  all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启Apache<br><code>service apache2 restart</code></p>
+</li>
+</ol>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a><a href="#mysql"></a>MySQL</h2><h3 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a><a href="#%E5%AE%89%E8%A3%85mysql"></a>安装MySQL</h3><p>(Ubuntu 自带的源目前没有MySQL 5.7)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y update</span><br><span class="line">apt-get -y upgrade</span><br><span class="line">apt-get install software-properties-common</span><br><span class="line">add-apt-repository -y ppa:ondrej/mysql-5.7</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install mysql-server-5.7</span><br></pre></td></tr></table></figure>
+
+<p>mysql-client 也会自动装好的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -V</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<h3 id="新建一个数据库-demomagento-并授权给用户-demomagento-密码是-Magento"><a href="#新建一个数据库-demomagento-并授权给用户-demomagento-密码是-Magento" class="headerlink" title="新建一个数据库 demomagento 并授权给用户 demomagento 密码是 Magento"></a><a href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93-demomagento-%E5%B9%B6%E6%8E%88%E6%9D%83%E7%BB%99%E7%94%A8%E6%88%B7-demomagento-%E5%AF%86%E7%A0%81%E6%98%AF-magento"></a>新建一个数据库 demomagento 并授权给用户 demomagento 密码是 Magento</h3><p>(仅作演示用)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database demomagento;</span><br><span class="line">GRANT ALL ON demomagento.* TO demomagento@localhost IDENTIFIED BY &#x27;Magento&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="PHP-1"><a href="#PHP-1" class="headerlink" title="PHP"></a><a href="#php"></a>PHP</h2><h3 id="安装-PHP-和扩展"><a href="#安装-PHP-和扩展" class="headerlink" title="安装 PHP 和扩展"></a><a href="#%E5%AE%89%E8%A3%85-php-%E5%92%8C%E6%89%A9%E5%B1%95"></a>安装 PHP 和扩展</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y update</span><br><span class="line">add-apt-repository ppa:ondrej/php</span><br><span class="line">apt-get -y update</span><br><span class="line">apt-get install -y php7.0 libapache2-mod-php7.0 php7.0 php7.0-common php7.0-gd php7.0-mysql php7.0-mcrypt php7.0-curl php7.0-intl php7.0-xsl php7.0-mbstring php7.0-zip php7.0-bcmath php7.0-iconv</span><br></pre></td></tr></table></figure>
+
+<p>查看版本<br><code>php -v</code></p>
+<h3 id="修改-PHP-设置"><a href="#修改-PHP-设置" class="headerlink" title="修改 PHP 设置"></a><a href="#%E4%BF%AE%E6%94%B9-php-%E8%AE%BE%E7%BD%AE"></a>修改 PHP 设置</h3><p><code>vi /etc/php/7.0/apache2/php.ini</code></p>
+<p>该文件是apache使用的配置文件，可通过phpinfo() 找到他。还有一个php.ini配置文件用于命令行，可以通过<code>php -i grep php.ini</code>找到，就像<code>/etc/php/7.0/cli/php.ini</code></p>
+<p>对两个<code>php.ini</code>做如下修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">date.timezone = &quot;Asia/Shanghai&quot;</span><br><span class="line">memory_limit = 1024M</span><br></pre></td></tr></table></figure>
+
+<p>memory_limit 的配置官方是这样说的</p>
+<ol>
+<li>Compiling code, 768M</li>
+<li>Deploying static asses, 768M</li>
+<li>Installing and updating Magento components from Magento Marketplace, 1G</li>
+<li>Testing, 2G</li>
+</ol>
+<h2 id="可以-ping-通但访问超时"><a href="#可以-ping-通但访问超时" class="headerlink" title="可以 ping 通但访问超时"></a><a href="#%E5%8F%AF%E4%BB%A5-ping-%E9%80%9A%E4%BD%86%E8%AE%BF%E9%97%AE%E8%B6%85%E6%97%B6"></a>可以 ping 通但访问超时</h2><p>很可能是防火墙的问题<br><code>ufw allow 80/tcp</code></p>
+<h2 id="访问测试"><a href="#访问测试" class="headerlink" title="访问测试"></a><a href="#%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"></a>访问测试</h2><p>这时候我们应该可以访问默认的页面了</p>
+<h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a><a href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"></a>添加用户</h2><p><code>useradd -r -m -s /bin/bash ThankIT</code><br>配置用户的密码<br><code>passwd ThankIT</code><br>寻找 apache 的 user (www-data)<br><code>ps aux grep apache</code><br>www-data 的 group 也是www-data<br><code>groups www-data</code><br>把 ThankIT 用户创建的任何文件都分配给 www-data 组<br><code>usermod -g www-data ThankIT</code><br>验证下 ThankIT 在 www-data 组<br><code>groups ThankIT</code></p>
+<h2 id="配置虚拟主机"><a href="#配置虚拟主机" class="headerlink" title="配置虚拟主机"></a><a href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA"></a>配置虚拟主机</h2><p>切换成 ThankIT 用户<br><code>su ThankIT</code><br>在<code>/home/ThankIT</code> 下建立文件夹 www<br><code>mkdir www</code><br><code>/home/ThankIT/www</code> 将作为虚拟主机的根目录，对应原来的 <code>/var/www/html</code><br><code>vi /etc/apache2/apache2.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /&gt;</span><br><span class="line">    Require all denied</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+
+<p>改为 <code>Require all granted</code></p>
+<p><code>vi /etc/apache2/sites-available/000-default.conf</code><br>修改DocumentRoot 为 <code>/home/ThankIT/www/M210</code></p>
+<p>添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /home/ThankIT/www/M210&gt;</span><br><span class="line">    Options Indexes FollowSymLinks MultiViews</span><br><span class="line">    AllowOverride all</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>service apache2 restart</code></p>
+<h2 id="搭建-ftp-并上传"><a href="#搭建-ftp-并上传" class="headerlink" title="搭建 ftp 并上传"></a><a href="#%E6%90%AD%E5%BB%BA-ftp-%E5%B9%B6%E4%B8%8A%E4%BC%A0"></a>搭建 ftp 并上传</h2><p>安装 vsftpd<br><code>apt-get install vsftpd</code><br><code>ufw allow 21/tcp</code><br><code>vi /etc/vsftpd.conf</code><br>将 <code>write_enable=YES</code> 前的 # 删除<br>将 <code>local_umask=002</code> 前的 # 删除<br><code>service vsftpd restart</code></p>
+<p>上传准备好的 Magento 2.1.0 ZIP 文件</p>
+<h2 id="安装-Magento-2-1-0"><a href="#安装-Magento-2-1-0" class="headerlink" title="安装 Magento 2.1.0"></a><a href="#%E5%AE%89%E8%A3%85-magento-2.1.0"></a>安装 Magento 2.1.0</h2><h3 id="安装解压缩软件"><a href="#安装解压缩软件" class="headerlink" title="安装解压缩软件"></a><a href="#%E5%AE%89%E8%A3%85%E8%A7%A3%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6"></a>安装解压缩软件</h3><p><code>apt-get install unzip</code></p>
+<h3 id="解压缩并修改权限"><a href="#解压缩并修改权限" class="headerlink" title="解压缩并修改权限"></a><a href="#%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%B9%B6%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"></a>解压缩并修改权限</h3><p><code>unzip -d M210 Magentoce2.1.0.zip</code></p>
+<h3 id="切换-ThankIT-用户并修改文件权限"><a href="#切换-ThankIT-用户并修改文件权限" class="headerlink" title="切换 ThankIT 用户并修改文件权限"></a><a href="#%E5%88%87%E6%8D%A2-thankit-%E7%94%A8%E6%88%B7%E5%B9%B6%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"></a>切换 ThankIT 用户并修改文件权限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su ThankIT</span><br><span class="line">cd /home/ThankIT/www/M210 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w &#123;&#125; \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws &#123;&#125; \; &amp;&amp; chown -R :www-data . &amp;&amp; chmod u+x bin/magento</span><br></pre></td></tr></table></figure>
+
+<h3 id="用浏览器打开网站开始安装-…-安装完成。"><a href="#用浏览器打开网站开始安装-…-安装完成。" class="headerlink" title="用浏览器打开网站开始安装 … 安装完成。"></a><a href="#%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E7%AB%99%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85-...-%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E3%80%82"></a>用浏览器打开网站开始安装 … 安装完成。</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ECS/" rel="tag"># ECS</a>
+              <a href="/tags/LAMP/" rel="tag"># LAMP</a>
+              <a href="/tags/%E5%AE%89%E8%A3%85/" rel="tag"># 安装</a>
+              <a href="/tags/%E6%8E%A8%E8%8D%90/" rel="tag"># 推荐</a>
+              <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" rel="tag"># 阿里云</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/about-me/" rel="prev" title="关于作者">
+      <i class="fa fa-chevron-left"></i> 关于作者
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/wordpress-content-index/" rel="next" title="wordpress 手动添加文章目录（原创）">
+      wordpress 手动添加文章目录（原创） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento2-%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">Magento2 系统要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.1.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">web 服务器软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP"><span class="nav-number">1.4.</span> <span class="nav-text">PHP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.5.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">3.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Magento-2-%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">3.1.</span> <span class="nav-text">Magento 2 的安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FTP-%E5%B7%A5%E5%85%B7"><span class="nav-number">3.2.</span> <span class="nav-text">FTP 工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86%E5%B7%A5%E5%85%B7"><span class="nav-number">3.3.</span> <span class="nav-text">远程登陆工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache"><span class="nav-number">4.</span> <span class="nav-text">Apache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Apache"><span class="nav-number">4.1.</span> <span class="nav-text">安装 Apache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enable-rewrites-and-htaccess"><span class="nav-number">4.2.</span> <span class="nav-text">Enable rewrites and .htaccess</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">5.</span> <span class="nav-text">MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85MySQL"><span class="nav-number">5.1.</span> <span class="nav-text">安装MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93-demomagento-%E5%B9%B6%E6%8E%88%E6%9D%83%E7%BB%99%E7%94%A8%E6%88%B7-demomagento-%E5%AF%86%E7%A0%81%E6%98%AF-Magento"><span class="nav-number">5.2.</span> <span class="nav-text">新建一个数据库 demomagento 并授权给用户 demomagento 密码是 Magento</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP-1"><span class="nav-number">6.</span> <span class="nav-text">PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-PHP-%E5%92%8C%E6%89%A9%E5%B1%95"><span class="nav-number">6.1.</span> <span class="nav-text">安装 PHP 和扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-PHP-%E8%AE%BE%E7%BD%AE"><span class="nav-number">6.2.</span> <span class="nav-text">修改 PHP 设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5-ping-%E9%80%9A%E4%BD%86%E8%AE%BF%E9%97%AE%E8%B6%85%E6%97%B6"><span class="nav-number">7.</span> <span class="nav-text">可以 ping 通但访问超时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="nav-number">8.</span> <span class="nav-text">访问测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="nav-number">9.</span> <span class="nav-text">添加用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA"><span class="nav-number">10.</span> <span class="nav-text">配置虚拟主机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA-ftp-%E5%B9%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">11.</span> <span class="nav-text">搭建 ftp 并上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Magento-2-1-0"><span class="nav-number">12.</span> <span class="nav-text">安装 Magento 2.1.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%A7%A3%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6"><span class="nav-number">12.1.</span> <span class="nav-text">安装解压缩软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%B9%B6%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"><span class="nav-number">12.2.</span> <span class="nav-text">解压缩并修改权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2-ThankIT-%E7%94%A8%E6%88%B7%E5%B9%B6%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">12.3.</span> <span class="nav-text">切换 ThankIT 用户并修改文件权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E7%AB%99%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85-%E2%80%A6-%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E3%80%82"><span class="nav-number">12.4.</span> <span class="nav-text">用浏览器打开网站开始安装 … 安装完成。</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

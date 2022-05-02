@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这是 Magento 官方的白皮书，不代表博主个人观点。翻译也是劳动，谢绝转载！ 原文下载 介绍Magento 2.0 是为下一代电子商务而设计的 —— 让他比以往更快速、更容易、更低成本地创建完美适应您的业务需求的购物体验。 （一大段的介绍非常安利，博主估计，翻译出来也没有多少人会看，所以就概括一下了，有兴趣的请参阅原文。） Magento 2 希望比以往更快速，更容易，更低成本，这一切都建立在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2.0 性能优化配置建议及 benchmark 测试结果(官方白皮书翻译)">
+<meta property="og:url" content="http://example.com/white-paper-magento-2-0-performance-and-scalability/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="这是 Magento 官方的白皮书，不代表博主个人观点。翻译也是劳动，谢绝转载！ 原文下载 介绍Magento 2.0 是为下一代电子商务而设计的 —— 让他比以往更快速、更容易、更低成本地创建完美适应您的业务需求的购物体验。 （一大段的介绍非常安利，博主估计，翻译出来也没有多少人会看，所以就概括一下了，有兴趣的请参阅原文。） Magento 2 希望比以往更快速，更容易，更低成本，这一切都建立在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-layered-architecture.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/magento-database-tier-with-multiple-master-db.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-throught-results.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-catalog-browsing.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-add-to-cart.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-checkout.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-throught-results-big.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-orders-per-hour-big.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-home-page-big.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-category-page-big.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-product-big.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-add-to-cart-big.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-checkout-big.png">
+<meta property="article:published_time" content="2016-12-18T12:33:55.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.190Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="推荐">
+<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="配置建议">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/12/white-paper-magento-layered-architecture.png">
+
+<link rel="canonical" href="http://example.com/white-paper-magento-2-0-performance-and-scalability/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2.0 性能优化配置建议及 benchmark 测试结果(官方白皮书翻译) | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/white-paper-magento-2-0-performance-and-scalability/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2.0 性能优化配置建议及 benchmark 测试结果(官方白皮书翻译)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-18 20:33:55" itemprop="dateCreated datePublished" datetime="2016-12-18T20:33:55+08:00">2016-12-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>这是 Magento 官方的白皮书，不代表博主个人观点。翻译也是劳动，谢绝转载！</em></p>
+<p><a href="/wp-content/uploads/2016/12/White-Paper-Magento-2.0-Performance-and-Scalability-03.31.16.pdf">原文下载</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><a href="#%E4%BB%8B%E7%BB%8D"></a>介绍</h2><p>Magento 2.0 是为下一代电子商务而设计的 —— 让他比以往更快速、更容易、更低成本地创建完美适应您的业务需求的购物体验。</p>
+<p>（一大段的介绍非常安利，博主估计，翻译出来也没有多少人会看，所以就概括一下了，有兴趣的请参阅原文。）</p>
+<p>Magento 2 希望比以往更快速，更容易，更低成本，这一切都建立在 Magento 2 在流行的框架上搭建了一个更现代的架构。（也就是说 Magento 2 团队相信用更先进的技术来实现更快的速度，更低的成本，让他更容易。）他的模块化设计是自定义和灵活性的关键；内置的自动测试框架可以加快开发的速度；他的 API 可以很方便地与第三方系统集成；简化的结账流程以及响应式的设计；重新设计的后台控制面板提高管理效率；系统更容易升级；</p>
+<p>Magento 2.0 ：</p>
+<ul>
+<li>相同的硬件可以每小时可以处理更多订单</li>
+<li>目录浏览可以立马响应</li>
+<li>购物车和结账响应时间下降了两位数</li>
+<li>更好地处理高峰时的订单，超大的目录和庞大的客户名单</li>
+<li>后台支持更多管理用户同时操作</li>
+</ul>
+<p>该白皮书深入探讨了 Magento 2.0 的性能和可扩展性，可以帮助您了解该平台将如何支持您业务的长期发展。本书同时提供了 Magento 2.0 站点优化的配置建议以及基准测试结果。</p>
+<h2 id="建议使用的-Magento-配置"><a href="#建议使用的-Magento-配置" class="headerlink" title="建议使用的 Magento 配置"></a><a href="#%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E7%9A%84-magento-%E9%85%8D%E7%BD%AE"></a>建议使用的 Magento 配置</h2><p>Magneto 为不同的使用情形提供了相当多的部署和配置选项。要充分发挥 Magento 本身的性能和超强的扩展性优势，需要正确设置好 Magento 。此外，关于环境配置的建议，不在本篇范围之内。</p>
+<p><em>重要说明：文中涉及到的测试都是基于建议和支持的配置。配置的偏差可能导致不同的测试结果，不能准确反映出产品设计和构建的自然情况</em></p>
+<h3 id="核心配置"><a href="#核心配置" class="headerlink" title="核心配置"></a><a href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"></a>核心配置</h3><p>Magento 2.0 为使用 PHP7 和 Varnish 而优化，虽然也可以在 PHP5.6 和没有 Varnish 的情况下运行，不过不建议这样用。建议同时使用 PHP7 和 Varnish 来支持站点的业务处理，获得最佳的性能。</p>
+<h3 id="静态资源设置"><a href="#静态资源设置" class="headerlink" title="静态资源设置"></a><a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BE%E7%BD%AE"></a>静态资源设置</h3><p>静态资源的设置决定着 CSS,JavaScript,HTML 和图像等资源，如何准备好供站点使用。</p>
+<ul>
+<li>Stores -&gt; Configuration -&gt; Advanced -&gt; Developer:<ul>
+<li>Grid Settings: Asynchronous indexing: Enable<ul>
+<li>CSS Settings: Minify CSS Files: Yes</li>
+</ul>
+</li>
+<li>JS Settings: Minify JS Files: Yes</li>
+<li>Merge JavaScript Files: No</li>
+<li>Template Settings: Minify HTML: Yes</li>
+<li>JavaScript Settings: Enable JavaScript Bundling: Yes</li>
+</ul>
+</li>
+</ul>
+<h3 id="页面缓存"><a href="#页面缓存" class="headerlink" title="页面缓存"></a><a href="#%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98"></a>页面缓存</h3><p>页面缓存设置决定着使用页面缓存的哪个文件版本，为了获得最佳性能，强烈建议开启 Varnish 的缓存。注意，这需要部署和配置 Varnish</p>
+<ul>
+<li>Stores -&gt; Configuration -&gt; Advanced -&gt; System -&gt; Full page cache<ul>
+<li>Caching Application-&gt;Varnish Caching</li>
+</ul>
+</li>
+</ul>
+<h3 id="Email-设置"><a href="#Email-设置" class="headerlink" title="Email 设置"></a><a href="#email-%E8%AE%BE%E7%BD%AE"></a>Email 设置</h3><p>Email 设置控制着邮件何时发送，它和邮件何时生成相关。</p>
+<ul>
+<li>Stores-&gt;Configuration-&gt;Sales-&gt;Sales Emails:<ul>
+<li>General settings: Asynchronous sending: Enable</li>
+</ul>
+</li>
+</ul>
+<h3 id="索引设置"><a href="#索引设置" class="headerlink" title="索引设置"></a><a href="#%E7%B4%A2%E5%BC%95%E8%AE%BE%E7%BD%AE"></a>索引设置</h3><ul>
+<li>System-&gt;Index Management:<ul>
+<li>All indexers should be in “Update on schedule” mode</li>
+</ul>
+</li>
+</ul>
+<h3 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a><a href="#%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98"></a>应用缓存</h3><ul>
+<li>Configure the platform to use Redis in env.php<ul>
+<li>Requires deployment and configuration of Redis</li>
+</ul>
+</li>
+</ul>
+<h3 id="Production-Mode-（生产模式）"><a href="#Production-Mode-（生产模式）" class="headerlink" title="Production Mode （生产模式）"></a><a href="#production-mode-%EF%BC%88%E7%94%9F%E4%BA%A7%E6%A8%A1%E5%BC%8F%EF%BC%89"></a>Production Mode （生产模式）</h3><p>可以通过如下命令，启用生产模式：<br><code>php bin/magento deploy:mode:set production</code></p>
+<p>如果要让开发者控制其中的过程，可以拆成几个步骤：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento setup:di:compile</span><br><span class="line">php bin/magento setup:static-content:deploy</span><br><span class="line">set MODE production manually in web server config</span><br></pre></td></tr></table></figure>
+
+<h2 id="分层架构"><a href="#分层架构" class="headerlink" title="分层架构"></a><a href="#%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84"></a>分层架构</h2><p>Magento 2.0 平台是分层的架构，公有四层，分别为性能和可扩展性进行了优化。他们是：the client, the page cache, the application, and the database tiers</p>
+<p>此种标准的 web 应用结构，允许架构的不同组件独立地扩展，以应对不同的业务需求和不同的负载情况。</p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-layered-architecture.png"></p>
+<p>接下来的章节将描述 Magento 2.0 对每层做的性能和扩展性的改进</p>
+<h2 id="性能和扩展性的改进"><a href="#性能和扩展性的改进" class="headerlink" title="性能和扩展性的改进"></a><a href="#%E6%80%A7%E8%83%BD%E5%92%8C%E6%89%A9%E5%B1%95%E6%80%A7%E7%9A%84%E6%94%B9%E8%BF%9B"></a>性能和扩展性的改进</h2><p>Magento 2.0 改进了应用如何与浏览器进行交互，以及减少了服务器必须传输给浏览器进行渲染的数据量。这些改进可以显著地提高页面响应时间和加载时间，给建立更快的站点提供一个良好的起点。</p>
+<h3 id="客户端的改进"><a href="#客户端的改进" class="headerlink" title="客户端的改进"></a><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E6%94%B9%E8%BF%9B"></a>客户端的改进</h3><p>页面加载时间很重要，Magneto 通过减少页面渲染必须的数据量来降低加载时间。主要有以下方式：</p>
+<ul>
+<li>使用了压缩 （即删掉不必要的字符）。使用了 jShrink 和 cssmin，以及针对 HTML 的内部开发的压缩引擎。图片使用 PHP 的 gd2 库进行压缩。</li>
+<li>最大限度利用浏览器缓存。初次访问会缓存所有 Js 和 css，这样可以减少下个页面的请求。</li>
+<li>在结账和购物车操作中使用异步操作。</li>
+</ul>
+<h3 id="页面缓存-1"><a href="#页面缓存-1" class="headerlink" title="页面缓存"></a><a href="#%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98"></a>页面缓存</h3><p>通过 Varnish page caching 来提供更快的服务器响应。<br>（原文内容比较多，还提到了Edge Side Includes，博主的水平有限，还是不翻译为妙，需要研究的请参阅原文）</p>
+<h3 id="应用层的增强"><a href="#应用层的增强" class="headerlink" title="应用层的增强"></a><a href="#%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E5%A2%9E%E5%BC%BA"></a>应用层的增强</h3><p>Magento 2.0 架构设计旨在满足大型的、发展中的企业的扩展性和稳定性需求。下面的改进旨在消除后端业务操作过程中的阻塞或表锁定。</p>
+<ul>
+<li>异步的订单和产品更新<br>大企业订单产品都很多，通常同时有很多管理用户同时作业。Magento 2.0 引入了可选的订单和产品异步更新，这样可以消除表锁定和阻塞，提高效率。</li>
+<li>工作队列机制<br>看起来这是 EE 版本特有的功能。有兴趣的请参阅原文。</li>
+<li>PHP Interpreters<br>PHP7 采用了新的解释器，提高了性能，所以 Magento 2 建议使用 PHP7</li>
+</ul>
+<h3 id="数据库提升"><a href="#数据库提升" class="headerlink" title="数据库提升"></a><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E5%8D%87"></a>数据库提升</h3><ul>
+<li>多个主数据库，每个主数据库可以拥有多个从数据库</li>
+</ul>
+<p><img src="/wp-content/uploads/2016/12/magento-database-tier-with-multiple-master-db.png"></p>
+<ul>
+<li>MySQL Cluster Support</li>
+</ul>
+<h3 id="性能测试工具-（Performance-Toolkit）"><a href="#性能测试工具-（Performance-Toolkit）" class="headerlink" title="性能测试工具 （Performance Toolkit）"></a><a href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7-%EF%BC%88performance-toolkit%EF%BC%89"></a>性能测试工具 （Performance Toolkit）</h3><p>The Magento Performance Toolkit is a script and a set of JMeter tests that allow for consistent and<br>repeatable performance testing for Magento applications. The script allows the generation of four distinct<br>customer profiles that are intended to represent diﬀerent eCommerce business sizes. The data from the<br>script populates a Magento instance. The Performance Toolkit is bundled with the Magento distribution<br>(in the setup&#x2F;performance-toolkit directory).</p>
+<h2 id="性能测试结果"><a href="#性能测试结果" class="headerlink" title="性能测试结果"></a><a href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"></a>性能测试结果</h2><p>为了表现，Magento 2.0 灵活架构带来的性能提升，我们对 Magento EE 2.0 和 Magneto EE 1.14.2 基于建议的设置进行了 benchmark （基准）测试。<strong>这些测试表明 Magneto 2.0 (Varnish+PHP7.0)可以为小型和大型商业部署都提供更高的吞吐量（每小时订单数）和更快的响应时间</strong></p>
+<h3 id="测试配置"><a href="#测试配置" class="headerlink" title="测试配置"></a><a href="#%E6%B5%8B%E8%AF%95%E9%85%8D%E7%BD%AE"></a>测试配置</h3><h4 id="软件"><a href="#软件" class="headerlink" title="软件"></a><a href="#%E8%BD%AF%E4%BB%B6"></a>软件</h4><p>我们给下面的软件都使用了推荐设置和本身自带的支持设置（比如 Varnish 就是 Magento 2.0 自带支持的）</p>
+<ul>
+<li>Magento Enterprise Edition 2.0 with PHP7 and Varnish caching</li>
+<li>Magento Enterprise Edition 1.14.2 with PHP5.6 and Full-Page Caching</li>
+</ul>
+<p>其他测试是无效的，因为他们不能提供推荐的或是支持的设置数据。附录中可查看软件的其他的额外细节说明。</p>
+<h4 id="方案"><a href="#方案" class="headerlink" title="方案"></a><a href="#%E6%96%B9%E6%A1%88"></a>方案</h4><p>研究了如下两种情况：</p>
+<ul>
+<li><strong>小型</strong> $100万-$500万 在线销售额，部署在一台的4核 web 服务器上和一台单独的数据库节点上。使用了 25 个同时的 JMeter 线程（模拟25个并发请求）来测试某个时间段的峰值流量。(with $1-$5M in online sales deployed on a single 4-core web node and a single database node. 25 simultaneous JMeter threads (representing 25 concurrent requests) were used to show site performance during a period of peak traffic, such as a sale)</li>
+<li><strong>大型</strong> $5千万-$1亿 在线销售额，部署在5台4核的 web 节点和一太单独的数据库节点上。使用了 25-100 个 JMeter 线程（模拟25到100个并发请求）来测试不断增加负载的情况下的性能。(with $50-$100M in online sales deployed on five 4-core web nodes and a single database node. 25 to 100 simultaneous JMeter threads (representing 25 to 100 concurrent requests) were used to show site performance under increasing traffic loads.)</li>
+</ul>
+<p>附录部分有交代测试的配置情况。博主觉得这个信息很重要，所以把他搬到这里来。</p>
+<p>小型的 Small Merchant Deployment (4 web node cores)</p>
+<ul>
+<li>Software<ul>
+<li>PhP 5.6.13 with Zend Opcache v7.0.6-dev (for Magento Enterprise Edition 1.14.2)</li>
+<li>PhP 7.0.3-1 with Opcache (for Magento Enterprise Edition 2.0)</li>
+<li>Nginx 1.6.2</li>
+<li>MySQL 5.6.28</li>
+<li>Varnish 4.0.2 (for Magento Enterprise Edition 2.0)</li>
+<li>Redis 3.0.5</li>
+<li>CentOS 6.4, CentOS 7.0 and Debian (on core 3.16.7)</li>
+</ul>
+</li>
+<li>1 Web Node<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software</li>
+<li>Nginx</li>
+<li>Varnish (for Magento Enterprise Edition 2.0)</li>
+<li>php-fpm</li>
+</ul>
+</li>
+<li>1 Database Node<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software</li>
+<li>MySQL</li>
+<li>Redis (FPC Cache for Magento Enterprise Edition 1.14.2, Session Storage)</li>
+</ul>
+</li>
+<li>1 JMeter node (to drive the tests)<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+</ul>
+</li>
+<li>All performance tests leverage real cores. Virtual can bring unexpectedly high deviation</li>
+</ul>
+<p>大型的 Larger Merchant Deployment (20 web node cores)</p>
+<ul>
+<li>Software<ul>
+<li>PhP 5.6.13 with Zend Opcache v7.0.6-dev (for Magento Enterprise Edition 1.14.2)</li>
+<li>PhP 7.0.3-1 with Opcache (for Magento Enterprise Edition 2.0)</li>
+<li>Nginx 1.6.2</li>
+<li>MySQL 5.6.28</li>
+<li>Varnish 4.0.2 (for Magento Enterprise Edition 2.0)</li>
+<li>Redis 3.0.5</li>
+<li>Memcache 1.4.21</li>
+<li>CentOS 6.4, CentOS 7.0 and Debian (on core 3.16.7)</li>
+</ul>
+</li>
+<li>5 Web Nodes<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software<ul>
+<li>Web Node #1:<ul>
+<li>Nginx</li>
+<li>Varnish (for Magento Enterprise Edition 2.0)</li>
+<li>php-fpm</li>
+</ul>
+</li>
+<li>Web Node #2 – #5:<ul>
+<li>php-fpm</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1 Database Node<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software<ul>
+<li>MySQL</li>
+<li>Redis (Session Storage, FPC storage for Magento Enterprise Edition 1.14.2)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JMeter node (to drive the tests)<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+</ul>
+</li>
+<li>All performance tests leverage real cores. Virtual can bring unexpectedly high deviation.</li>
+</ul>
+<p>两种情况都假设商店是如下情况：</p>
+<p>Websites &#x2F;Store Views</p>
+<p>SKUs (Simple&#x2F;Configurable)</p>
+<p>Categories &#x2F;Nesting</p>
+<p>Catalog &#x2F; Cart Rules</p>
+<p>Customers (in Database)</p>
+<p>Orders(in Database)</p>
+<p>2 &#x2F; 2</p>
+<p>16,000 &#x2F; 1,000</p>
+<p>300 &#x2F; 3</p>
+<p>20 &#x2F; 20</p>
+<p>200</p>
+<p>1600</p>
+<p>请查看附录了解更多详情</p>
+<h4 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a><a href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"></a>测试方法</h4><p>测试模拟了典型的电子商务网站使用场景，例如：</p>
+<ul>
+<li>目录浏览，包括访问首页，目录页，可配置产品详细页面和简单产品详细页面</li>
+<li>将简单商品和可配置商品都加入购物车</li>
+<li>以访客身份或已注册用户身份完成结账的所有步骤</li>
+</ul>
+<p>我们假设了如下的用户会话的流量模式：</p>
+<ul>
+<li>62% 只浏览</li>
+<li>30% 浏览并将产品添加到购物车，但没有结账</li>
+<li>4% 以访客身份结账</li>
+<li>4% 以注册用户身份结账</li>
+</ul>
+<p>所有的测试使用的 Magento Performance Toolkit，JMeter 用来测量和报告服务器响应时间（以毫秒为单位）</p>
+<h3 id="Small-Merchant-Deployment-（小型部署）"><a href="#Small-Merchant-Deployment-（小型部署）" class="headerlink" title="Small Merchant Deployment （小型部署）"></a><a href="#small-merchant-deployment-%EF%BC%88%E5%B0%8F%E5%9E%8B%E9%83%A8%E7%BD%B2%EF%BC%89"></a>Small Merchant Deployment （小型部署）</h3><p>小型部署的测试表明，Magento EE 2.0 在处理25个并发时可以成功应对。Magento EE 2.0 表现比 Magento EE 1.14.2 好。</p>
+<ul>
+<li>Magento EE 2.0 比 Magneto EE 1.14.2 每小时多处理 28% 订单，达到597个订单每小时。</li>
+<li>目录浏览的响应时间非常小，几乎是立马响应（响应时间和浏览器中客户感受到的时间不一样）</li>
+<li>添加到购物车的响应速度相比较快了 66%</li>
+<li>所有结账步骤合在一起，访客结账响应时间快 48% ， 已注册客户结账响应时间快 36%</li>
+</ul>
+<h4 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a><a href="#%E5%90%9E%E5%90%90%E9%87%8F"></a>吞吐量</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-throught-results.png" alt="吞吐量"></p>
+<h4 id="响应时间"><a href="#响应时间" class="headerlink" title="响应时间"></a><a href="#%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"></a>响应时间</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-catalog-browsing.png" alt="目录浏览"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-add-to-cart.png" alt="添加到购物车"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-checkout.png" alt="结账"></p>
+<h3 id="Large-Merchant-Deployment-大型部署"><a href="#Large-Merchant-Deployment-大型部署" class="headerlink" title="Large Merchant Deployment (大型部署)"></a><a href="#large-merchant-deployment-(%E5%A4%A7%E5%9E%8B%E9%83%A8%E7%BD%B2)"></a>Large Merchant Deployment (大型部署)</h3><p>测试表明 Magento EE 2.0 的表现比 Magneto EE 1.14.2 好</p>
+<ul>
+<li>多处理 39% 的订单，达到 2558 个订单每小时</li>
+<li>目录页面的响应时间几乎是立刻马上</li>
+<li>加入购物车的服务器响应时间在 500 毫秒以下，速度相比较快了 66%</li>
+<li>所有结账步骤加载一起，访客结账的响应时间快了 51%，已注册用户结账的响应时间快了 36%</li>
+</ul>
+<h4 id="吞吐量-1"><a href="#吞吐量-1" class="headerlink" title="吞吐量"></a><a href="#%E5%90%9E%E5%90%90%E9%87%8F"></a>吞吐量</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-throught-results-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-orders-per-hour-big.png"></p>
+<h4 id="服务器响应时间"><a href="#服务器响应时间" class="headerlink" title="服务器响应时间"></a><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"></a>服务器响应时间</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-home-page-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-category-page-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-product-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-add-to-cart-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-checkout-big.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a href="#%E6%80%BB%E7%BB%93"></a>总结</h2><p>Magento 2.0 性能更好，吞吐量更大，响应时间更短。</p>
+<p>三大段英文，博主实在不想翻译了，感兴趣的童鞋请查看原文。原文总结部分的测试数据表格呈现，博主也省略了，因为博主觉得上面的树状图表现力更好。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8E%A8%E8%8D%90/" rel="tag"># 推荐</a>
+              <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+              <a href="/tags/%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE/" rel="tag"># 配置建议</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-feature-list-chinese-3/" rel="prev" title="Magento 基本功能列表（翻译三）">
+      <i class="fa fa-chevron-left"></i> Magento 基本功能列表（翻译三）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/excel-csv-utf8/" rel="next" title="Excel 编辑 csv 中文乱码">
+      Excel 编辑 csv 中文乱码 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E7%9A%84-Magento-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">建议使用的 Magento 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">核心配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">静态资源设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98"><span class="nav-number">2.3.</span> <span class="nav-text">页面缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Email-%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">Email 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.5.</span> <span class="nav-text">索引设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98"><span class="nav-number">2.6.</span> <span class="nav-text">应用缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Production-Mode-%EF%BC%88%E7%94%9F%E4%BA%A7%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="nav-number">2.7.</span> <span class="nav-text">Production Mode （生产模式）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">分层架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%92%8C%E6%89%A9%E5%B1%95%E6%80%A7%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">4.</span> <span class="nav-text">性能和扩展性的改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">4.1.</span> <span class="nav-text">客户端的改进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98-1"><span class="nav-number">4.2.</span> <span class="nav-text">页面缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E5%A2%9E%E5%BC%BA"><span class="nav-number">4.3.</span> <span class="nav-text">应用层的增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E5%8D%87"><span class="nav-number">4.4.</span> <span class="nav-text">数据库提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7-%EF%BC%88Performance-Toolkit%EF%BC%89"><span class="nav-number">4.5.</span> <span class="nav-text">性能测试工具 （Performance Toolkit）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">性能测试结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E9%85%8D%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">测试配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-number">5.1.1.</span> <span class="nav-text">软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%A1%88"><span class="nav-number">5.1.2.</span> <span class="nav-text">方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-number">5.1.3.</span> <span class="nav-text">测试方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Small-Merchant-Deployment-%EF%BC%88%E5%B0%8F%E5%9E%8B%E9%83%A8%E7%BD%B2%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">Small Merchant Deployment （小型部署）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%9E%E5%90%90%E9%87%8F"><span class="nav-number">5.2.1.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"><span class="nav-number">5.2.2.</span> <span class="nav-text">响应时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Large-Merchant-Deployment-%E5%A4%A7%E5%9E%8B%E9%83%A8%E7%BD%B2"><span class="nav-number">5.3.</span> <span class="nav-text">Large Merchant Deployment (大型部署)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%9E%E5%90%90%E9%87%8F-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"><span class="nav-number">5.3.2.</span> <span class="nav-text">服务器响应时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

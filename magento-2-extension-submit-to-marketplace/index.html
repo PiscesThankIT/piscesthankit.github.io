@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Magento MarketPlace 是类似 APPStore 这样的官方应用市场，您可以从 MarketPlace 购买下载插件，然后安装到自己的店铺中，实现所需要的功能。Magento Connect 负责 Magento 1 的插件， Magneto MarketPlace 则负责 Magento 2 的插件。 ThankIT 的支付宝和微信插件既然开发好了，何不提交官方市场呢？于是博主开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 插件提交 MarketPlace 小记">
+<meta property="og:url" content="http://example.com/magento-2-extension-submit-to-marketplace/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="Magento MarketPlace 是类似 APPStore 这样的官方应用市场，您可以从 MarketPlace 购买下载插件，然后安装到自己的店铺中，实现所需要的功能。Magento Connect 负责 Magento 1 的插件， Magneto MarketPlace 则负责 Magento 2 的插件。 ThankIT 的支付宝和微信插件既然开发好了，何不提交官方市场呢？于是博主开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/09/marketplace.png">
+<meta property="article:published_time" content="2016-09-19T10:03:50.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.063Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="MarketPlace">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/09/marketplace.png">
+
+<link rel="canonical" href="http://example.com/magento-2-extension-submit-to-marketplace/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 插件提交 MarketPlace 小记 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-extension-submit-to-marketplace/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 插件提交 MarketPlace 小记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-19 18:03:50" itemprop="dateCreated datePublished" datetime="2016-09-19T18:03:50+08:00">2016-09-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Magento MarketPlace 是类似 APPStore 这样的官方应用市场，您可以从 MarketPlace 购买下载插件，然后安装到自己的店铺中，实现所需要的功能。<br>Magento Connect 负责 Magento 1 的插件， Magneto MarketPlace 则负责 Magento 2 的插件。</p>
+<p>ThankIT 的支付宝和微信插件既然开发好了，何不提交官方市场呢？于是博主开始了暴躁的提交历程。现记述下来，一是不吐不快，二是或可供后来者参考。</p>
+<p>博主翻阅工作日志后，发现 ThankIT 插件从今年8月1日就开始提交 MarketPlace，至今仍然卡在 Market Review 部分，算起来已经有50天了！天，想到这个博主就很暴躁。虽然整个过程中也有忙其他事情，但是等待真的是让人心碎的！</p>
+<p>博主总结一下慢的大原因：<br>一是语言障碍，虽然每个字都看得懂，但是就是没明白啥意思，囧！<br>二是时间差，发邮件询问问题，今天问，最快明天才能看到回答。</p>
+<p>具体原因我们细细说：<br>Magento MarketPlace 的提交流程大致是这样的，先要告诉他们该插件解决了什么问题，然后你插件独特在哪里，通过初步的审核后，可以上传插件进行 Techincal Review 了，这一步会对代码进行检查，如果有 Error 就不能通过，这一步很严格，比如不允许用 echo 直接输出，可以参考如下资料：<br><a target="_blank" rel="noopener" href="http://docs.magento.com/marketplace/user_guide/extensions/review-code-validation.html">Code Validation</a><br><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/111085/how-to-fix-warnings-errors-raised-by-the-magento-marketplace-technical-review/111086">How to fix warnings &#x2F; errors raised by the Magento Marketplace technical review report</a></p>
+<p>这一步博主遇到官方提交的一个坑，就是明明我的描述没有超过规定的字数，鬼知道什么时候他给我的描述加了<code>&lt;p&gt;</code>标签，于是报错不能提交，这时候既无法上传插件又无法修改描述，天，博主的内心是崩溃的！<br>而且位置什么的全错位了。根本没有办法进入下一步。就像这样(这是微信支付插件依赖的一个Package，微信插件已经通过 Technical Review 了)：</p>
+<p><img src="/wp-content/uploads/2016/09/marketplace.png"></p>
+<p>第一次遇到这个问题（ThankIT&#x2F;MobileDetect），我发邮件过去询问没有得到回答，想想算了改个名字（改成了ThankIT&#x2F;DeviceDetect）重新上传一下吧，于是不了了之了。尼玛，这次又遇到了，这次要改名字，有点麻烦了！于是只好再试试看问官方吧，目前还没有得到回复。。</p>
+<p>支付宝的插件已经通过 Technical Review 进入 Market Review 阶段，这个阶段遇到的问题有：介绍自己的文字和图像不过关，我也不晓得有什么区别。。为什么不让过。自己的域名不能包含“magento”二字，博主只好特意又申请一个域名。。标题必须得是英文的（我有中英文啊。。），还有介绍内容得让别人知道 Alipay 是什么等等…最后终于提交 Market Review 博主默默地等了六天，还是没有动静。于是博主问官方，到底要多久啊？对面说，一般非支付插件，5至7个工作日，支付插件要更久一些。。好吧，博主默默等待了小半个月，突然醒悟可能是有文件没签。。就是下面提到的这个：</p>
+<p>支付插件是个特殊的存在，原文如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Hello all,</span><br><span class="line"></span><br><span class="line">We thank you for your patience as we have diligently been working on a process to curate payments extensions.</span><br><span class="line"></span><br><span class="line">As you know, Magento has moved to a highly curated model for the Magento Marketplace and we are requiring that select third-party payment providers approve all payment extensions that are listed in the Marketplace.  This ensures that each payment extension has been evaluated and tested by the payment provider before an extension can be submitted to Magento for review and listing on the Magento Marketplace.  This process will ensure high quality payment capabilities within the Magento platform.</span><br><span class="line"></span><br><span class="line">As we continue to work on the approval process with the payment providers for their “official” payment extension(s), we want to inform merchants that your Magento 2 compatible extensions are already available.  To achieve this, Magento will agree to list your payment extension in the Magento Marketplace on a temporary evaluation basis for  6 months.  If the payment provider does not select your extension as its “official” extension(s), at the conclusion of the 6 month period, your extension will be removed from the Magento Marketplace.</span><br><span class="line"></span><br><span class="line">For those paid extension(s) that have a cost associated with the purchase, the standard Magento Marketplace revenue share terms will apply at the time of listing on the Magento Marketplace, and Magento will remit to you an amount equal to 70% of the Net Revenue from the sale, per the terms of the Developer Agreement.</span><br><span class="line"></span><br><span class="line">To be admitted into the Marketplace, please sign and return a scanned copy of the attached Magento Developer Agreement and Appendix A to marketplace@magento.com.</span><br></pre></td></tr></table></figure>
+
+<p>好吧，还要填表，那就填吧！还要上交“30%”，好吧。。六个月的考核期，也没看明白到底怎么考核的，然后发邮件问，还是没有弄明白，博主已经快要耐心耗尽了，所以管他什么考核，以后再说吧。于是博主填了表发过去。</p>
+<p>后来博主又要填表了，这次好像是关于税的，于是又填了表发过去。</p>
+<p>总结一下：<br>支付宝插件进入 Market Reviw 阶段，希望不要又因为什么被拒绝了。<br>微信插件目前是 Ready for Market Reviw 阶段，但是他依赖的 QRcode 包因为提交 Bug 无法前进了，正在等待官方回复。</p>
+<hr>
+<p>2016年9月20日</p>
+<p>气死本宝宝了，支付宝的插件又被打回来了，现在的状态是 MarketIssue。其中有两个问题是老问题。<br>一是 Developer Avata，要求：<br>Add a Developer Avatar to your profile (company or personal).<br>It must look professional; however, it does not necessarily need to be a picture of you.<br>It should be 255 x 255 px, jpg, gif or png.<br>宝宝的头像是255*255 的png，难道是说我不够正式？我就一个logo 加一个名字而已（ThankIT），MarketPlace 中就有这样的，凭啥说俺们的不正式？</p>
+<p>二是Developer Profile 要求是: Add a short bio to your profile to help merchants better understand you or your company.<br>宝宝的介绍是简短了点，可也是照着MakertPlace 中其他家的写的，到底少什么？</p>
+<p>第三个说是Screen Name 问题，上次倒没有说过，要求是Update your Screen Name to represent you or your company.The Screen Name cannot infer that Magento is affiliated with your company or extension.<br>宝宝的Screen Name 是PiscesThankIT，怎么不满足要求了？哭啊~</p>
+<p>其他问题，如自己的域名不能带 magento ，尼玛，这个问题很麻烦啊！如语法错误，怪我。。说我的详细介绍说得不清楚，得，怪我！<br>可是我真的很怀疑，就算写得很详细歪果仁能搞懂支付宝到底干嘛使的吗，再看看Paypal 的支付插件，寥寥数语，根本没解释Paypal 到底干啥的好吧，严重怀疑，MarketPlace 你是***局啊，管那么宽？<br>花在乱七八糟的文案上的时间都要超过花在技术上的了。虽然 MarketPlace  的本意是为商户着想，<br>但为了兼顾不同语言，要求必须以英文介绍为主，可以加入其他语言，这给开发者增加了提交难度啊。原来1可没有这么严格。。</p>
+<p>关键是我都不知道为什么不符合要求啊。前三个问题宝宝真的是一脸的懵比</p>
+<p>抱怨归抱怨，宝宝还是带着埋怨之意打破沙锅问到底，发邮件去询问官方市场到底错在哪里了，可恶的是，发过去连个自动回复也没有，石沉大海一般。。</p>
+<p>本宝宝，是绝不会轻易放弃的，奶奶的熊！</p>
+<hr>
+<p>9月26日</p>
+<p>9月20日的更新，满满的都是怨气啊，博主应该深刻反省一下。虽然有些事情很容易让人暴躁，可是我们应该学着控制自己的情绪才是。<br>而且今天看到有同学给我加油打气，觉得挺受鼓舞的，谢谢你！</p>
+<p>最近忙着其他事情，所以跟 MarketPlace 的事情慢了。</p>
+<p>上面提到的上传 bug , 官方有回应了，询问了我的产品ID，是否有建议等。不过最近的一封邮件表明他还是没有明白我的意思。<br>他告诉我说我的 Code 中有 Warning，我需要重新上传以通过审核。但是我的问题是，我根本无法重新上传啊，一上传就说我描述信息超过150个字符。博主这次截了图，继续说明问题，虽然上次也截了图的，不过希望这次他可以明白我的意思吧。</p>
+<p>至于最近提到的头像名字错误什么的，博主的询问果然石沉大海一般没有回应了，博主会继续发邮件问的，然后试着按自己的理解修改后提交，试试看能不能过呗。</p>
+<p>博主最近有个感悟，希望在此分享一下。:)</p>
+<p>如果我们理解并接受这个世界上有许多无法掌控的事情，我们会更好地适应环境。减少内心的损耗，也是提高效率的一种方法呢。</p>
+<hr>
+<p>10月5日</p>
+<p>MarketPlace Package 的文件无法上传的问题终于奇迹般的好了，官方并没有回应说是什么问题，只是很意外得收到邮件说QRcode 的 package 被拒绝了。然后我一检查发现 ok 了。不管是为什么，这下终于可以继续推进了。</p>
+<p>中间过程略有曲折，官方说看起来像是禁用了Js，本来应该是富文本的，我却是纯文本的样子，还截了图给我看。宝宝经提醒发现，我的所有package 都是纯文本，而且确实没有禁用Js，检查了加载也没有发现问题，于是截图并附加了文本说明回复。大概是这种方式说得比较明白了，所以终于解决了，哈哈。图的表现力确实会比文字强不少呢！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MarketPlace/" rel="tag"># MarketPlace</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-2-how-to-install-extension-1/" rel="prev" title="Magento 2 如何安装插件">
+      <i class="fa fa-chevron-left"></i> Magento 2 如何安装插件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/download-magento1-extension-directly/" rel="next" title="直接下载 Magento 1 的插件">
+      直接下载 Magento 1 的插件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

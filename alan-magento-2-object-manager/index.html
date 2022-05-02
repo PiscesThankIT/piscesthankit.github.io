@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文网址 原文发布时间：2015年7月10日 Magento 2 相比较 1 有很多变化，尽管你还能看到 1 的影子（EAV, areas, blocks 等），但是 Magento 2 核心团队经过几年努力，已经将 1 的核心换成了更成熟的，“enterprise-java” 类型的系统，更多的类、更多的对象、更多的设计模式。 尽管有些人可能会认为 Magento 2 代码复杂性增加了，Mage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 Object Manager（翻译）">
+<meta property="og:url" content="http://example.com/alan-magento-2-object-manager/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文网址 原文发布时间：2015年7月10日 Magento 2 相比较 1 有很多变化，尽管你还能看到 1 的影子（EAV, areas, blocks 等），但是 Magento 2 核心团队经过几年努力，已经将 1 的核心换成了更成熟的，“enterprise-java” 类型的系统，更多的类、更多的对象、更多的设计模式。 尽管有些人可能会认为 Magento 2 代码复杂性增加了，Mage">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-02-26T06:29:01.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.323Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="magento 2 object manager">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/alan-magento-2-object-manager/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 Object Manager（翻译） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-2-object-manager/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 Object Manager（翻译）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-02-26 14:29:01" itemprop="dateCreated datePublished" datetime="2018-02-26T14:29:01+08:00">2018-02-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://alanstorm.com/magento_2_object_manager/">原文网址</a></p>
+<p>原文发布时间：2015年7月10日</p>
+<p>Magento 2 相比较 1 有很多变化，尽管你还能看到 1 的影子（EAV, areas, blocks 等），但是 Magento 2 核心团队经过几年努力，已经将 1 的核心换成了更成熟的，“enterprise-java” 类型的系统，更多的类、更多的对象、更多的设计模式。</p>
+<p>尽管有些人可能会认为 Magento 2 代码复杂性增加了，Magento 2 核心团队还是花了很多时间来简化和澄清 Magento 1 中的设计。Magento 1 中 rewrite 系统（home grown class rewrite system —— based around blocks, models, and helpers）已经由以来注入容器&#x2F;对象管理器（Kiev grown dependency injection container&#x2F;object-manager system）代替了。</p>
+<p>如果你对 Magento 1 的开发方法，一直是复制粘贴，菜谱式（cookbook style）的，那么 Magento 2 对你来说就是一个新的框架，你以前的方法恐怕不管用了。</p>
+<p>但是，如果你对 1 的开发，是带着理解设计模式的实现、培养阅读源码的能力进行的，那么跟上 Magento 2 就只是小小的“颠簸”——而且，许多方面，这个“颠簸”是为了让开发更加稳定、可预测。</p>
+<p>本文是 Alan 解释 Magento 2 object manager&#x2F;dependency-injection system 系列中的第一篇。我们将探索程序员在 Magento 2 中是怎样创建对象的，探索 Magento 2 的 object system 带来的额外特性，顺便讨论下相比较 Magento 1 的变化，探索 Magento 2 中的惯例。</p>
+<h2 id="Magento-2-命令行框架"><a href="#Magento-2-命令行框架" class="headerlink" title="Magento 2 命令行框架"></a><a href="#magento-2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A1%86%E6%9E%B6"></a>Magento 2 命令行框架</h2><p>Magento 2 的体系结构转变带来的巨大变化之一就是命令行框架。这不是从 Magento 1 中来的简单框架。相反，Magento 2 自带 <a target="_blank" rel="noopener" href="http://symfony.com/doc/current/components/console.html">Symfony’s Console component</a>的完整实现。</p>
+<p>安装完 Magento 2 后，打开终端，输入 <code>php bin/magento</code>，我们会看到很多系统自带的命令。</p>
+<p>你应该会看到类似下面的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Magento CLI version 0.74.0-beta16</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line"> command [options] [arguments]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"> --help (-h)           Display this help message</span><br><span class="line"> --quiet (-q)          Do not output any message</span><br><span class="line"> --verbose (-vvvvvv) Increase the verbosity of messages: 1 for normal</span><br><span class="line">                       output, 2 for more verbose output and 3 for debug</span><br><span class="line"> --version (-V)        Display this application version</span><br><span class="line"> --ansi                Force ANSI output</span><br><span class="line"> --no-ansi             Disable ANSI output</span><br><span class="line"> --no-interaction (-n) Do not ask any interactive question</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line"> help                                      Displays help for a command</span><br><span class="line"> list                                      Lists commands</span><br><span class="line"> //... full command list snipped ...</span><br></pre></td></tr></table></figure>
+
+<p>除了自带许多有用的命令，第三方开发者也可以创建 Magento 模块来加入新的命令。</p>
+<p>我们将使用命令行来运行本教程中的示例代码。命令行是一个对运行示例代码来说，很干净的好地方，我们不需要考虑你的代码到浏览器页面加载过程中经过的各种层，我们可以直接观察输出结果。</p>
+<h2 id="安装示例代码"><a href="#安装示例代码" class="headerlink" title="安装示例代码"></a><a href="#%E5%AE%89%E8%A3%85%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"></a>安装示例代码</h2><p>Alan 准备了示例代码<a target="_blank" rel="noopener" href="https://github.com/astorm/magento2-tutorial-objectmanager1">magento2-tutorial-objectmanager1</a>，下载下来后解压出来，然后放到 app&#x2F;code 目录中，他的目录结构应该是 <code>app/code/Pulsestorm/TutorialObjectManager1/</code></p>
+<p>然后运行下面的命令，应该会看到类似的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:status</span><br><span class="line">List of enabled modules:</span><br><span class="line">Magento_Store</span><br><span class="line">//...</span><br><span class="line"></span><br><span class="line">List of disabled modules:</span><br><span class="line">Pulsestorm_TutorialObjectManager1</span><br></pre></td></tr></table></figure>
+
+<p>我们的模块现在还是 disabled 状态。下面我们打开 <code>app/etc/config.php</code>，然后我们会看到类似的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#File: app/etc/config.php</span><br><span class="line">&lt;?php</span><br><span class="line">return array (</span><br><span class="line">  &#x27;modules&#x27; =&gt;</span><br><span class="line">  array (</span><br><span class="line">    &#x27;Magento_Store&#x27; =&gt; 1,</span><br><span class="line">    //... full module list snipped ...</span><br><span class="line">    &#x27;Magento_Wishlist&#x27; =&gt; 1,</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><code>app/etc/config.php</code> 返回模块的数组，我们现在看见的都是系统自带的模块，下面我们把我们的模块加到列表最后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: app/etc/config.php</span><br><span class="line">&lt;?php</span><br><span class="line">return array (</span><br><span class="line">  &#x27;modules&#x27; =&gt;</span><br><span class="line">  array (</span><br><span class="line">    &#x27;Magento_Store&#x27; =&gt; 1,</span><br><span class="line">    //... full module list snipped ...</span><br><span class="line">    &#x27;Magento_Wishlist&#x27; =&gt; 1,</span><br><span class="line">    &#x27;Pulsestorm_TutorialObjectManager1&#x27; =&gt; 1,</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>这时候我们运行 <code>module:status</code> ，我们的模块就会在 enabled 列表中了</p>
+<p>和 Magento 1 一样，模块的全名由 “namespace” 文件名和 “module name” 文件名构成。但是需要注意以下几点：</p>
+<ol>
+<li>Magento 的 module namespace 是 <code>Magento</code> 不再是 <code>Mage</code></li>
+<li><code>core</code>,<code>community</code>, <code>local</code> code pools 不再有，所有模块都在 <code>app/code</code> 下</li>
+<li>原来 <code>app/etc/modules</code> 下的一堆 (module declaration files) xml 由更简单的，php 设置代替。</li>
+</ol>
+<p>在我（Alan）看来，Mage 到 Magento 的变化，是中立的，但是移除 code pools 和模块申明文件是有利的变化。</p>
+<p>虽然<code>core</code>,<code>community</code>, <code>local</code> code pools 设计让系统所有者可以通过 code pool overrides 快速实现修改，但是这也导致商家更加不愿意升级系统，还有如果开发者修改了某个类过多的隐含 contract ，那么很可能导致微妙的系统问题。</p>
+<p>Magento 1 中的模块声明文件的本意可能是设置哪些模块是 enabled 哪些不是，Magento 2 则通过简单的 on&#x2F;off 配置数组来实现。</p>
+<h2 id="运行命令行和清除缓存"><a href="#运行命令行和清除缓存" class="headerlink" title="运行命令行和清除缓存"></a><a href="#%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8C%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"></a>运行命令行和清除缓存</h2><p>ok 我们模块已经安装好了。下面我们得确保新命令 <code>ps:tutorial-object-manager-1</code> 添加到系统中了。在这之前，我们还有一件事情要做，那就是清理缓存。</p>
+<p>从概念上来说，Magento 2 清理缓存和 Magento 1 中是一样的。第一次长长的运行后，Magento 会缓存结果，用于下次更快的载入。比如说，虽然我们已经把我们的新模块加入 configuration 中了，但是 Magento 的 configuration 被缓存了，所以系统实际上还不知道我们的模块哩。</p>
+<p>我们可以通过 <code>php bin/magento cache:clean</code> 清理缓存。但是，尽管所有有类型的缓存都会被清除，但是还有一些缓存是没有类型的，所以清除命令结果并不是 100% 干净。Magento 1 包含很多没有类型的缓存（比如 Zend’s module column names），Magento 1 的缓存清理命令也不能删除这些没有类型的缓存。Magento 2 还很年轻，我们还没发现这些边缘情况，不过如果你不确定有没有清除干净的话，那么就可以使出终极手段 —— 手动移除 <code>var/cache</code> 目录下的所有文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf /path/to/magento/var/cache/*</span><br></pre></td></tr></table></figure>
+
+<p>此外，Magento 2 某些情况下会自动生成类，虽然严格意义上不是缓存，但是清理这些生成的类有时候对你来说也很重要。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf /path/to/magento/var/generation/*</span><br></pre></td></tr></table></figure>
+
+<p>在 production 系统中，这么做要慎重，慎重，慎重。</p>
+<p>清完缓存后，让我们来看看我们的命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento list</span><br><span class="line"></span><br><span class="line">//...</span><br><span class="line"></span><br><span class="line"> ps:tutorial-object-manager-1              A cli playground for testing</span><br><span class="line">                                           commands</span><br><span class="line">//...</span><br></pre></td></tr></table></figure>
+
+<p>下面运行这个命令看看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">You did it!</span><br></pre></td></tr></table></figure>
+
+<p>恭喜你！你成功的手动安装了一个 Magento 模块。</p>
+<p>当然也可以通过命令行的方式来启用模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_TutorialObjectManager1</span><br><span class="line">The following modules have been enabled:</span><br><span class="line">- Pulsestorm_TutorialObjectManager1</span><br><span class="line"></span><br><span class="line">To make sure that the enabled modules are properly registered, run</span><br><span class="line">&#x27;setup:upgrade&#x27;.</span><br><span class="line"></span><br><span class="line">Cache cleared successfully.</span><br><span class="line">Generated classes cleared successfully.</span><br><span class="line"></span><br><span class="line">Alert: Generated static view files were not cleared. You can clear them</span><br><span class="line">using the --clear-static-content option. Failure to clear static view files</span><br><span class="line">might cause display issues in the Admin and storefront.</span><br></pre></td></tr></table></figure>
+
+<p>上面作为理解，下面进入动手阶段。</p>
+<h2 id="修改我们的命令"><a href="#修改我们的命令" class="headerlink" title="修改我们的命令"></a><a href="#%E4%BF%AE%E6%94%B9%E6%88%91%E4%BB%AC%E7%9A%84%E5%91%BD%E4%BB%A4"></a>修改我们的命令</h2><p>Magento 2 中每个 cli 命令都是由 php 类实现的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $output-&gt;writeln(&quot;You did it!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而安后我们把它改成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php    </span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $output-&gt;writeln(&quot;Hello World!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再运行我们的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
+
+<p>我们上面做的事情就是传递一个字符串给 <code>writeln</code> 方法（等同于 echo 或者 print）。</p>
+<h2 id="Magento-2-Objects"><a href="#Magento-2-Objects" class="headerlink" title="Magento 2 Objects"></a><a href="#magento-2-objects"></a>Magento 2 Objects</h2><p>当我们想实例化一个对象的时候，我们使用 <code>new</code> 关键字，让我们再 <code>execute</code> 方法中实验一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $object = new \Pulsestorm\TutorialObjectManager1\Model\Example;</span><br><span class="line">    $message = $object-&gt;getHelloMessage();</span><br><span class="line">    $output-&gt;writeln(</span><br><span class="line">        $message</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再运行下我们的命令，结果是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello Magento!</span><br></pre></td></tr></table></figure>
+
+<p>我们做的事情是</p>
+<ol>
+<li>实例化 <code>Pulsestorm\TutorialObjectManager1\Model\Example</code></li>
+<li>调用实例化后对象的方法 <code>getHelloWorld</code> 取得字符串</li>
+<li><code>writeln</code> 输出字符串</li>
+</ol>
+<p>到这里都是简单的 php 用法。如果你不熟悉 php 的命名空间，那么这篇文章可能对你有用，<a target="_blank" rel="noopener" href="https://alanstorm.com/php_namespace_primer/">PHP Primer: Namespaces</a></p>
+<p>Magento 2 中没有任何机制不允许你使用 new 来实例化对象。但是如果你使用 Magengo 2 的高级特性(automatic constructor dependency injection, object proxying, etc)，那么你就需要使用 Magento 的 object manager。</p>
+<p>试试下面的用法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $manager = $this-&gt;getObjectManager();</span><br><span class="line">    $object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">    $message = $object-&gt;getHelloMessage();</span><br><span class="line">    $output-&gt;writeln(</span><br><span class="line">        $message</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行命令，我们应该可以看到下面的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello Magento!</span><br></pre></td></tr></table></figure>
+
+<p>和之前的区别就在下面两行代码上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php      </span><br><span class="line">$manager = $this-&gt;getObjectManager();</span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>第一行的 <code>$manager = $this-&gt;getObjectManager();</code> 为我们取得 object manager 。这可不是开发插件时常用的做法 —— <code>getObjectManager</code> 是本次教程自己建的 helper 方法。现在我们只要知道 <code>getObjectManager</code> 会返回 Magento object manager 的实例。</p>
+<p>object manager 是一个很特别的对象，Magento 中几乎所有的对象都是由它实例化的。代码中第二行做的就是实例化类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>我们调用 object manager 的 <code>create</code> 方法，以字符串的形式传递一个 php 类给它。object manager 就实例化了一个 <code>Pulsestorm\TutorialObjectManager1\Model\Example</code> 对象给我们。</p>
+<p>这就是 Magento 2 的 object manager 最简单的形式。看起来这样做无足轻重，但是如果所有对象的实例化都是通过它，那么 Magento 的系统工程师们就可以给这些对象 “超能力”。</p>
+<p>在介绍它的超能力之前，本文不能涵盖所有内容，所以有兴趣的可以查看源代码，Magento 的 object manager 源码位于下列类文件中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: lib/internal/Magento/Framework/ObjectManager/ObjectManager.php</span><br><span class="line">namespace Magento\Framework\ObjectManager;</span><br><span class="line"></span><br><span class="line">class ObjectManager implements \Magento\Framework\ObjectManagerInterface</span><br><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果你是 Magento 1 的开发者，那么 2 中的 object manager 就是 1 中以下方法的替代：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mage::getModel(...);</span><br><span class="line">Mage::helper(...);</span><br><span class="line">Mage::getSingleton(&#x27;core/layout&#x27;)-&gt;createBlock(...);</span><br></pre></td></tr></table></figure>
+
+<p>Magento 2 中仍然存在 model,helper,block 这些概念，但是你再也不需要知道这个类的别名了（core&#x2F;template, model&#x2F;product, etc.）。object manager 可以实例化任何 php 类，不仅仅是 model, helper, block 对象。</p>
+<h2 id="自动的单例对象"><a href="#自动的单例对象" class="headerlink" title="自动的单例对象"></a><a href="#%E8%87%AA%E5%8A%A8%E7%9A%84%E5%8D%95%E4%BE%8B%E5%AF%B9%E8%B1%A1"></a>自动的单例对象</h2><p>今天我们将探讨 Magento 2 的 object manager 带给对象的超能力之一 —— 自动的单例对象。但是再讨论这个之前，我们得先明确单例的含义。</p>
+<p>试试下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$manager = $this-&gt;getObjectManager();</span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$object-&gt;message = &#x27;Hello PHP!&#x27;;</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>运行命令，我们会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello PHP!</span><br><span class="line">Hello Magento!a</span><br></pre></td></tr></table></figure>
+
+<p>代码与前面的类似，只是添加了一些东西。首先我们使用 object manager 从类 <code>Pulsestorm\TutorialObjectManager1\Model\Example</code> 实例化一个对象。然后我们给这个对象的 message 设置一个自定义的字符串，最后把它打印出来。第一段输出的是我们自定义的 message ，而第二段是默认的 message。</p>
+<p>下面我们不用 object manager 的 <code>create</code> 方法，而是用 <code>get</code> 方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$manager = $this-&gt;getObjectManager();</span><br><span class="line">$object  = $manager-&gt;get(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$object-&gt;message = &#x27;Hello PHP!&#x27;;</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$object  = $manager-&gt;get(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>这次的结果就不同了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello PHP!</span><br><span class="line">Hello PHP!</span><br></pre></td></tr></table></figure>
+
+<p>第二次没有打印默认的 message ，而是打印了我们在第一个对象上设置的自定义 message。这是怎么回事呢？因为第二个对象就是第一个对象。</p>
+<p>这就是 Magento object manager 的自动单例特性。（单例就是指一个单例对象的类只有一个实例存在）。如果系统中该单例对象的类已经存在，再实例话这个单例对象的类，还是会返回已经存在的那一个。这通常是通过向类的构造函数添加特殊代码来实现的，但是通过 Magento 2 的 object manager ，任何类都可以变成单例。</p>
+<p>就我们上面的例子来说，第二次我们调用 <code>get</code> 的时候，Magento 返回给我们的对象还是那个我们设置了自定义 message 的对象。</p>
+<p>如果你了解 Magento1 ，那么 <code>create/get</code> 的区别类似于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mage::getModel(...);</span><br><span class="line">Mage::getSingleton(...);</span><br></pre></td></tr></table></figure>
+
+<p>这两个的区别。但是，Magento 2 中这个特性是对所有 class 都有用的，不仅仅是 model 对象。</p>
+<p>自动的单例（Automatic singletons）只是 Magento 2 object manager 带给对象的超能力之一。下次我们将探讨 automatic constructor parameter dependency injection （这可是个大招），还有为啥 Magento 官方文档告诫我们不要使用 object manager (听上去有点自相矛盾)</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/magento-2-object-manager/" rel="tag"># magento 2 object manager</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/postfix-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" rel="prev" title="Postfix 安装与配置">
+      <i class="fa fa-chevron-left"></i> Postfix 安装与配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/phpstorm-%E4%B8%80%E7%9B%B4-index/" rel="next" title="PHPStorm 一直 index">
+      PHPStorm 一直 index <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento-2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A1%86%E6%9E%B6"><span class="nav-number">1.</span> <span class="nav-text">Magento 2 命令行框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">安装示例代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8C%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"><span class="nav-number">3.</span> <span class="nav-text">运行命令行和清除缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%88%91%E4%BB%AC%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">修改我们的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento-2-Objects"><span class="nav-number">5.</span> <span class="nav-text">Magento 2 Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%9A%84%E5%8D%95%E4%BE%8B%E5%AF%B9%E8%B1%A1"><span class="nav-number">6.</span> <span class="nav-text">自动的单例对象</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 在 Alan 的 Magento 2 for PHP MVC系列文章中，曾经提到 RequireJS 是 Magento 2 系统所有 JS 的基础。这的确是事实，但是 RequireJS 仅仅触及 Magento 中 javaScript 可能性的表面。 今天我们将探索 Magento 2 引入的各种系统，以执行非嵌入&lt;script type&#x3D;&quot;text&#x2F;javascr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 Javascript Init Scripts（翻译）">
+<meta property="og:url" content="http://example.com/alan-magento-2-javascript-init-scripts/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 在 Alan 的 Magento 2 for PHP MVC系列文章中，曾经提到 RequireJS 是 Magento 2 系统所有 JS 的基础。这的确是事实，但是 RequireJS 仅仅触及 Magento 中 javaScript 可能性的表面。 今天我们将探索 Magento 2 引入的各种系统，以执行非嵌入&lt;script type&#x3D;&quot;text&#x2F;javascr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-31T09:13:44.000Z">
+<meta property="article:modified_time" content="2022-05-02T05:56:16.570Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/alan-magento-2-javascript-init-scripts/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 Javascript Init Scripts（翻译） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-2-javascript-init-scripts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 Javascript Init Scripts（翻译）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-31 17:13:44" itemprop="dateCreated datePublished" datetime="2016-10-31T17:13:44+08:00">2016-10-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_javascript_init_scripts/">原文地址</a></em> 在 Alan 的 <a target="_blank" rel="noopener" href="http://alanstorm.com/category/magento-2/#magento_2_mvc">Magento 2 for PHP MVC</a>系列文章中，曾经提到 RequireJS 是 Magento 2 系统所有 JS 的基础。这的确是事实，但是 RequireJS 仅仅触及 Magento 中 javaScript 可能性的表面。 今天我们将探索 Magento 2 引入的各种系统，以执行非嵌入<code>&lt;script type=&quot;text/javascript&quot;&gt;</code>标签的 js 代码作为开始。</p>
+<h2 id="JavaScript-Init-Methods"><a href="#JavaScript-Init-Methods" class="headerlink" title="JavaScript Init Methods"></a><a href="#javascript-init-methods"></a>JavaScript Init Methods</h2><p>Magento js init 方法解决了一些不同的问题： 第一，他提供了一种标准机制，阻止直接在页面中嵌入 js 代码的行为。 第二，提供了调用 RequireJS 模块程序的方式（通过 define 来定义）(原话：Second, they provide a way to invoke a stand alone RequireJS module (defined with define) <strong>as a program</strong>.) 第三，提供了给程序传递服务器端产生的 JSON 对象的方式。 第四，提供了一种方式，告诉程序哪个　DOM　节点（如果有的话）是它的作用对象。 记住这四点。They may help you if you’re struggling with the mental model behind these custom framework features.</p>
+<h2 id="Setting-up-a-Module"><a href="#Setting-up-a-Module" class="headerlink" title="Setting up a Module"></a><a href="#setting-up-a-module"></a>Setting up a Module</h2><p>今天的教程和 Magento 的 PHP 不怎么相关，你可以在任何<code>phtml</code>模板上进行实验。 这里 Alan 没有提供示例代码，不过博主建了一个，可以去<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/JavascriptInitTutorial">https://github.com/PiscesThankIT/JavascriptInitTutorial</a>下载。 下载后启用它</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_JavascriptInitTutorial</span><br><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+
+<p>现在在浏览器中输入如下URL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/pulsestorm_javascriptinittutorial/</span><br></pre></td></tr></table></figure>
+
+<p>你应该看到<code>app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</code>模板被渲染出来了。</p>
+<h2 id="Setting-up-a-RequireJS-Module"><a href="#Setting-up-a-RequireJS-Module" class="headerlink" title="Setting up a RequireJS Module"></a><a href="#setting-up-a-requirejs-module"></a>Setting up a RequireJS Module</h2><p>我们现在已经有了一个模块，下面我们创建一个 RequireJS 的模块。 创建如下文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function()&#123;</span><br><span class="line">    alert(&quot;A simple RequireJS module&quot;);</span><br><span class="line">    return &#123;&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这是个很简单的 RequireJS 模块。根据模块的文件位置以及 Magento 载入js 文件的方式，我们可以推得该模块的名称&#x2F;ID是<code>Pulsestorm_JavascriptInitTutorial/example</code> 下面，修改<code>content.phtml</code>文件成下面的样子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    requirejs([&#x27;Pulsestorm_JavascriptInitTutorial/example&#x27;],function(example)&#123;</span><br><span class="line">        alert(&quot;Loaded&quot;);</span><br><span class="line">        console.log(example);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们创建了一个依赖<code>Pulsestorm_JavascriptInitTutorial/example</code>模块的程序。 浏览器中刷新<code>http://magento.example.com/pulsestorm_javascriptinittutorial/</code> URL，你应该看到 alert 弹出。 如果你觉得上面的内容不太熟悉，你可以参阅本站<a href="/alan-magento-2-and-requirejs/">Magento 2 and RequireJS (翻译)</a> 译者注：刷新浏览器后首先看到的是 A simple RequireJS module 弹出框，点击确定后，看到 Loaded 弹出框，点击确定后，在 Console 中看到输出的空对象。 页面载入时先执行了<code>Pulsestorm_JavascriptInitTutorial/example</code> 成功后返回值为空对象，传递给了回调函数的<code>example</code>。执行回调函数内部的alert 和 console 输出。</p>
+<h2 id="X-Magento-Init"><a href="#X-Magento-Init" class="headerlink" title="X-Magento-Init"></a><a href="#x-magento-init"></a>X-Magento-Init</h2><p>首先我们来了解<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code>初始化方法。这个方法最简单的用法是让你运行某个 RequireJS 模块。把<code>content.phtml</code>模板改成下面的样子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;two&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Goodbye World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;*&quot;: &#123;</span><br><span class="line">            &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>现在在重新载入页面，你应该看到 A simple RequireJS module 弹出框。这个是我们<code>example.js</code>中的定义的。 如果你从来没看过这种语法，可能觉得他看起来很怪。让我们一点一点来看一看。 首先是<code>&lt;script/&gt;</code>标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    //...</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这不是 javaScript 的标签。注意<code>type=&quot;text/x-magento-init&quot;</code>属性。如果浏览器不认识 script 标签中的值，它就会忽略该标签中的内容。Magento (其他现代前端框架类似)利用了这个行为来实现它自己的功能。Magento 中有 js 代码会查找带有<code>text/x-magento-init</code>属性的标签，这超出了本篇教程的范围。如果你想进一步探索的话，可以先看看这个<a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/89187/in-magento2-what-is-script-type-text-x-magento-init">this Stack Exchange question and answer</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&#123;</span><br><span class="line">    &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 会查找该对象的键，并且以 RequireJS 模块的方式将他载入进来。这里就是让<code>example.js</code>被载入的关键。 你很可能很想知道为什么这个对象没有值呢。你还可能很想知道为什么这个对象是另一个键为<code>*</code>的对象的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&#123;</span><br><span class="line">    &quot;*&quot;: &#123;/*...*/&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解释这些原因前，我们得先说一说 javascript components。</p>
+<h2 id="Magento-JavaScript-Components"><a href="#Magento-JavaScript-Components" class="headerlink" title="Magento JavaScript Components"></a><a href="#magento-javascript-components"></a>Magento JavaScript Components</h2><p>上面的例子运行了一个 RequireJS 模块程序。Magento 经常用<code>x-magento-init</code>方法调用 RequireJS 模块程序。但是，<code>x-magento-init</code>真正强大的能力是创建<strong>Magento Javascript Component</strong> <strong>Magento Javascript Component are RequireJS modules that return a function。</strong> Magento’s system code will call this function in a specific way that exposes extra functionality. 下面我们来看例子。修改<code>example.js</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function () &#123;</span><br><span class="line">    var mageJsComponent = function()</span><br><span class="line">    &#123;</span><br><span class="line">        alert(&quot;A simple magento component.&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们定义了一个匿名函数，并将他分配给了<code>mageJsComponent</code>变量。然后我们返回他。 重新载入页面，你会看到 A Simple Magento Component 弹出框。 看起来可能有点蠢——如果 Magento 只是要调用它，返回一个 function 的意义是什么呢？你是对的，但是你对是因为我们少了点什么。修改<code>phtml</code>模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;two&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Goodbye World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;*&quot;: &#123;</span><br><span class="line">            &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>修改 RequireJS 模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function () &#123;</span><br><span class="line">    var mageJsComponent = function(config)</span><br><span class="line">    &#123;</span><br><span class="line">        alert(&quot;Look in your browser&#x27;s console&quot;);</span><br><span class="line">        console.log(config);</span><br><span class="line">        //alert(config);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>重新载入页面，你可以看到 alert 中的信息变成了Look in your browser’s console。你在浏览器的 console 中会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;config:&quot;value&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>When we create a Magento Javascript Component, Magento calls the returned function and includes the object from text&#x2F;x-magento-init</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>键是 RequireJS 模块名，值是我们要传递给该 component 的对象。 这些例子可能看起来又傻又抽象。但是，在实际使用的模块中，我们会使用 PHP 来生成 JSON。系统允许我们在 phtml 模板中 render the JSON，并将他们传递给 js 代码。这有助于避免使用 PHP 直接生成 js 代码，直接生成的做法会产生糟糕的代码，还可能引入错误或者安全问题。 结束<code>x-magento-init</code>之前，还有最后一点要说。记得前文说<code>x-magento-init</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提供了给程序传递服务器端产生的 JSON 对象的方式。</span><br><span class="line">提供了一种方式，告诉程序哪个　DOM　节点（如果有的话）是它的作用对象。</span><br></pre></td></tr></table></figure>
+
+<p>我们已经说过如何将服务器端生成的 JSON 传递给js 了，还没有说 DOM 节点。 修改<code>example.js</code>模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function () &#123;</span><br><span class="line">    var mageJsComponent = function(config, node)</span><br><span class="line">    &#123;</span><br><span class="line">        console.log(config);</span><br><span class="line">        console.log(node);</span><br><span class="line">        //alert(config);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们给<code>mageJsComponent</code>函数增加了一个参数。第二个参数就是我们程序要作用的 DOM node。但是，刷新页面，你会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;config:&quot;value&quot;&#125;</span><br><span class="line">&gt; false</span><br></pre></td></tr></table></figure>
+
+<p>Magento 确实传递了值给<code>node</code>——但值输出是<code>false</code>，这个值是什么呢？ Magento不能神奇地知道你要作用于哪个 DOM node。我们得告诉他。修改<code>phtml</code>模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Hello World&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;two&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Goodbye World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;#one&quot;: &#123;</span><br><span class="line">            &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们把原先的<code>*</code>改成了<code>#one</code>。之前我们用的<code>*</code>代表了这样一种特殊情形：当程序不需要作用于任何 DOM node 的时候。这个对象的键实际上是 CSS&#x2F;jQuery style selector 。这个键告诉<code>Pulsestorm_JavascriptInitTutorial/example</code>程序哪个 DOM node 是他的作用对象。现在我们刷新页面（记得刷新下缓存），我们会在 console 中看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;config: &quot;value&quot;&#125;</span><br><span class="line">&gt; &lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Hello World&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>你不仅可以使用id选择器，还可以用css class 选择器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&quot;.foo&quot;: &#123;</span><br><span class="line">    &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 console 中会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">&gt; &lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Hello World&lt;/div&gt;</span><br><span class="line">&gt; Object &#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">&gt; &lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Goodbye World&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过这样的系统，Magento 鼓励开发者避免在 RequireJS 模块中硬编码 DOM nodes。The <code>x-magento-init</code> means there’s a system level path forward for building Javascript modules that rely on server side rendered JSON, and operate on any arbitrary DOM node. It’s always been possible for Magento module developers to implement their own systems for this sort of functionality, but Magento 2 provides a standard, built in way to achieve this.</p>
+<h2 id="Data-mage-init-Attribute"><a href="#Data-mage-init-Attribute" class="headerlink" title="Data-mage-init Attribute"></a><a href="#data-mage-init-attribute"></a>Data-mage-init Attribute</h2><p>除了<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code>方式，还有一种方式可以对特定的 DOM　node 调用实现类似功能，就是使用<code>data-mage-init</code>属性。 将 phtml 模板替换成以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div data-mage-init=&#x27;&#123;&quot;Pulsestorm_JavascriptInitTutorial/example&quot;: &#123;&quot;another&quot;:&quot;example&quot;&amp;#125;&amp;#125;&#x27;&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>cache:clean</code>后重新载入页面，在console 中你应该看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;another: &quot;example&quot;&#125;</span><br><span class="line">&gt; &lt;div&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里，我们给特定的div 增加了一个<code>data-mage-init</code>属性。这个属性的值是一个 JSON 对象。类似于<code>x-magento-init</code>，这个对象的键是我们要调用的 RequireJS 模块或是 Magento Javascript Component，他的值是要传递给js component config 参数的 JSON 对象。 <em>注意，我们的属性中使用的是单引号</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div data-mage-init=&#x27;...&#x27;&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是必要的，<code>data-mage-init</code>属性会严格按照 JSON 格式解析，就是说 JSON 对象必须使用双引号，所以我们的属性就只能用单引号了。</p>
+<h2 id="Wrap-up"><a href="#Wrap-up" class="headerlink" title="Wrap up"></a><a href="#wrap-up"></a>Wrap up</h2><p>不管是用<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code>还是用<code>data-mage-init</code>， both these techniques provide a standard, system unified way of introducing Javascript entry points onto your page.Many of Magento’s front end and back end UI features rely on this syntax, so even if you personally eschew them, understanding how these systems work is an important part of being a Magento 2 developer.</p>
+<h2 id="示例代码下载"><a href="#示例代码下载" class="headerlink" title="示例代码下载"></a><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"></a>示例代码下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/JavascriptInitTutorial">https://github.com/PiscesThankIT/JavascriptInitTutorial</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/alan-magento-2-and-requirejs/" rel="prev" title="Magento 2 and RequireJS (翻译)">
+      <i class="fa fa-chevron-left"></i> Magento 2 and RequireJS (翻译)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/alan-knockoutjs-primer-for-magento-developers/" rel="next" title="KnockoutJS Primer for Magento Developers （翻译）">
+      KnockoutJS Primer for Magento Developers （翻译） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-Init-Methods"><span class="nav-number">1.</span> <span class="nav-text">JavaScript Init Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-up-a-Module"><span class="nav-number">2.</span> <span class="nav-text">Setting up a Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-up-a-RequireJS-Module"><span class="nav-number">3.</span> <span class="nav-text">Setting up a RequireJS Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#X-Magento-Init"><span class="nav-number">4.</span> <span class="nav-text">X-Magento-Init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento-JavaScript-Components"><span class="nav-number">5.</span> <span class="nav-text">Magento JavaScript Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-mage-init-Attribute"><span class="nav-number">6.</span> <span class="nav-text">Data-mage-init Attribute</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrap-up"><span class="nav-number">7.</span> <span class="nav-text">Wrap up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="nav-number">8.</span> <span class="nav-text">示例代码下载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

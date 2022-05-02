@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1.You have added a system configuration field Store Owner Name in module MyModule_MyStoreData. Now you need to add the default value for this field programmatically. In which file would you add this v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Practices Tests 2">
+<meta property="og:url" content="http://example.com/practices-tests-2/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="1.You have added a system configuration field Store Owner Name in module MyModule_MyStoreData. Now you need to add the default value for this field programmatically. In which file would you add this v">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-20T02:11:40.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.409Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/practices-tests-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Practices Tests 2 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/practices-tests-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Practices Tests 2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-20 10:11:40" itemprop="dateCreated datePublished" datetime="2019-11-20T10:11:40+08:00">2019-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>1.You have added a system configuration field Store Owner Name in module MyModule_MyStoreData. Now you need to add the default value for this field programmatically. In which file would you add this value? A. etc&#x2F;system.xml B. etc&#x2F;adminhtml&#x2F;system.xml C. etc&#x2F;config.xml D. etc&#x2F;di.xml Answer C</p>
+<hr>
+<p>2.In a project you need to integrate custom payment provider gateway using Magento standard guidelines. Which of the following 3 steps you need to compulsory follow in order to integrate it? A. Extend the controller Magento\Payment\Controller\ProcessPayment in custom payment module B. Use Response Handler to modify the state of the order based on the gateway client response C. Add gateway command virtual type using dependency injection configuration. D. Create a virtual type in a dependency injection configuration using payment_gateway.xml E. Create transfer object using Transfer Factory interface Magento\Payment\Gateway\Http\TransferFactoryInterface Answer B C E</p>
+<hr>
+<p>3.A merchant sells a number of products related to bed and mattress industry. Some of these products are Bed sheets, pillows and mattresses. Merchant wants to sell these products separately but want to show all the details of these related products on the same page. Keeping maintainability and customization in mind how would you implement this in Magento? A. In Magento admin panel, create simple products for Bedsheets, Pillows, Mattresses and create a custom product type using product_types.xml and write a logic to assign all these products to newly created product type B. In Magento admin panel, create a configurable product using custom attributes. C. In Magento admin panel, create a bundle product using products Bedsheets, Pillows and Mattresses. D. In Magento admin panel, create a grouped product using simple products Bed sheets, Pillows and Mattresses. Answer D</p>
+<hr>
+<p>4.For creating a product dropdown attribute with custom module data as data source, which of the following would you use to fetch the result from custom module model? A. Source Model B. Backend Model C. Frontend Model D. Backend Type Answer A</p>
+<hr>
+<p>5.For a template on frontend, related block has lots of dependencies on other objects to perform the logic before rendering the data through template. In this case you decide to use the viewModel to remove these dependencies from generic block. How would you define the viewModel in magento module? A. Add a viewModel class dependency injection in the generic block for which we need to create view model. B. Add a viewModel class argument in the arguments node of the layout declaration xml. C. Add a viewModel class argument in the arguments node of the dependency injection xml. D. Create a virtual type for the generic block and add the viewModel class as one of the argument. Answer B</p>
+<hr>
+<p>6.Which of the following scenarios will purge the varnish cache automatically in a magento store? (choose any 2) A. Adding new categories from magento admin panel B. Registering any customer from the magento frontend C. Adding any product in the cart on magento frontend D. Creating a new order from magento admin panel E. Adding a catalog pricing rule Answer A E</p>
+<hr>
+<p>7.In Magento Installation, you need to create a custom URL structure where category filters will appear as a readable and user friendly URL like “category&#x2F;4&#x2F;products-within-price- range-10-50-and-having-color-red”. Which of the following would you use to achive this? A. Router B. FrontController C. URL Rewrite D. Controller Action Answer A</p>
+<hr>
+<p>8.In a custom module you have controller in &#x2F;Controller&#x2F;Deposit&#x2F;Index.php Also route id and front name are deposit and depositroute respectively What will be the name of the layout file? A.deposit_depositroute_index.xml B.depositroute_deposit_index.xml C.deposit_deposit_index.xml D.depositroute_index.xml Answer C</p>
+<hr>
+<p>9.Image properties are configured in which file? A. View.xml B. Theme.xml C. config.xml D. Di.xml Answer A</p>
+<hr>
+<p>10.Following is the block declaration in a layout xml. How would you access the block argument “customdata” in a template?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;block name=&quot;get_custom_arg&quot;&gt;</span><br><span class="line">    &lt;arguments&gt;</span><br><span class="line">        &lt;argument name=&quot;customdata&quot; xsi:type=&quot;string&quot;&gt;abcd&lt;/argument&gt;</span><br><span class="line">    &lt;/arguments&gt;</span><br><span class="line">&lt;/block&gt;</span><br></pre></td></tr></table></figure>
+
+<p>A. $block-&gt;getBlockData(‘customdata’); B. $block-&gt;getCustomData(‘customdata’); C. $block-&gt;getData(‘customdata’); D. $block-&gt;getArgument(‘customdata’); Answer C</p>
+<hr>
+<p>11.How would you add a custom shipping address field in a checkout form? A. Create a new EAV attribute for quote model B. Create a new field in the Quote table C. Create a JS mixin and add an extension attribute D. Create a new EAV attribute for Cart Model Answer C</p>
+<hr>
+<p>12.A product has a base price of $30 and a special price of $25. Tiered price discount for this product is $20 for 5 products and there’s also a catalog rule active of 25% discountfor this product. What will the product price shown on product detail page? A. $15 B. $22.5 C. $25 D. $18.75 Answer B</p>
+<hr>
+<p>13.You need to remove static resource linked from a custom page. Which layout instruction would you use? A. <remove> B. <delete> C. <move> D. <unlink> Answer A</p>
+<hr>
+<p>14.In which order the observers will get executed which are listening to the same event? A. Higher to lower depending upon defined sortOrder B. Lower to higher depending upon defined sortOrder C. In any order D. None Answer C</p>
+<hr>
+<p>15.For a certain EAV entity in a magento installation, you need to create an attribute. You also need to store the value of the attribute appending certain string to every value. How would you accomplish this? A. Defining a source model for the attribute while creating and adding the login this model to append string. B. Create an entry for EAV attribute in eav_attribute.xml and set the string as an argument C. Defining a backend model for other the attribute while creating and adding the login this model to append string. D. Setting the string in the dependency injection configuration for \Magento\EAV\Model\Attribute\Source Answer C</p>
+<hr>
+<p>16.How to implement the X-Frame-Options in a magento project? A. Create a new module and add configuration in etc&#x2F;di.xml B. Add configuration in app&#x2F;etc&#x2F;di.xml C. Edit app&#x2F;etc&#x2F;env.php D. Create a jQuery widget Answer C</p>
+<hr>
+<p>17.hich 3 of the following payment operations Magento 2 payment provider supports? A. Refund B. Void C. Encryption D. Sale E. Deposit Answer A B D</p>
+<hr>
+<p>18.Location of the UI component configuration file is A. <code>&lt;Module&gt;/view/ adminhtml /layout/ui_component/&lt;Ui Component Name&gt;.xml</code> B. <code>&lt;Module&gt;/view/ adminhtml /layout/Ui_Component/&lt;Ui Component Name&gt;.xml</code> C. <code>&lt;Module&gt;/view/adminhtml/ui_component/&lt;Ui Component Name&gt;.xml</code> D. <code>&lt;Module&gt;/view/ adminhtml /Ui_Component/&lt;Ui Component Name&gt;.xml</code> Answer C</p>
+<hr>
+<p>19.Where would you place events.xml when event which you want to observe occurs in both frontend and admin area? A. &#x2F;etc&#x2F;base&#x2F;events.xml B. &#x2F;etc&#x2F;adminhtml&#x2F;events.xml C. &#x2F;etc&#x2F;frontend&#x2F;events.xml D. &#x2F;etc&#x2F;events.xml Answer D</p>
+<hr>
+<p>20.With which entities Extension attributes will work? A. Entities which extends AbstractModel B. Entities which are the implementation of \Magento\Framework\Model\AbstractExtensibleModel C. Entities which are implementation of \Magento\Framework\Model\AbstractModel D. Extension attributes are independent of any entities Answer B</p>
+<hr>
+<p>21.How are Proxy classes created? A. Defining proxy class in di.xml and creating implementation of \Magento\Framework\ProxyInterface B. Defining proxy class in di.xml, but that class would be auto generated by Magento C. Extending a class for which the proxy needs to be created D. Adding instance of \Magento\Framework\ProxyInterface in the constructor definition of the class for which the proxy need to be created. Answer B</p>
+<hr>
+<p>22.Which command would you run to create the database schema for the newly created module? A. bin&#x2F;magento setup:static-content:deploy B. bin&#x2F;magento setup:upgrade C. bin&#x2F;magento setup:di:compile D. bin&#x2F;magento setup:Db:Schema Answer B</p>
+<hr>
+<p>23.You need to update the external ERP system after placing order from Magento frontend without affecting the order processing in Magento. How would you proceed keeping maintainability and ease of integration in mind? A. Extend the order model and add the customization functionality to new model B. Create an observer for the event sales_order_place_after C. Create an Plugin for the function where order place functionality is D. Create a cron job to fetch orders and save data in ERP Answer B</p>
+<hr>
+<p>24.How would you go about creating an admin theme? A. Define new admin theme in env.php B. Define new admin theme in config.xml C. Define new admin theme in view.xml D. Define new admin theme in di.xml Answer D</p>
+<hr>
+<p>25.What is the significance of the instruction the layout xml? A. Moving the layout container to other container B. Moving the layout block to other container C. Moving the layout block or container to other container D. Moving layout container to other block Answer C</p>
+<hr>
+<p>26.Which are the schema related files available in a magento 2 installtion? A. UpgradeSchema.php B. InstallSchema.php C. UpgradingData.php D. RecurringData.php E. InstallingData.php Answer A B D</p>
+<hr>
+<p>27.Which 3 are the static deployment strategies? A. Quick B. Default C. Developer D. Compact E. Standard Answer A D E</p>
+<hr>
+<p>28.Which of following is correct? A. While uninstalling a theme, if theme is a parent theme for other theme then you need to set child theme for at least one store view. B. While uninstalling a theme, if theme is a parent theme for other theme then you cannot uninstall child theme. C. While uninstalling a theme, if theme is a parent theme for other theme then you need to uninstall parent theme first. Child theme will be removed automatically. D. While uninstalling a theme, if theme is a parent theme for other theme then you need to uninstall child theme first. Answer D</p>
+<hr>
+<p>29.A merchant wants to create a custom functionality where after a customer adds certain product to cart he’ll get a mail containing related products customer can buy. Now you need to create a new email template for this functionality where would you create the email template? A. <code>&lt;module&gt;/view/&lt;area&gt;/email</code> B. <code>&lt;module&gt;/view/email</code> C. <code>&lt;module&gt;/view/&lt;area&gt;/email-template</code> D. <code>&lt;module&gt;/view/&lt;area&gt;/templates/email</code> Answer A</p>
+<hr>
+<p>30.What are the required files for creating a new theme in a Magento 2 project? A. theme.xml B. view.xml C. registration.php D. composer.json E. default.xml Answer A C</p>
+<hr>
+<p>31.When overriding a base layout in your theme, at which location would you put the layout xml file? A. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/layout/</code> B. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/layout/base/</code> C. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/layout/override/base/</code> D. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/override/base/layout/</code> Answer C</p>
+<hr>
+<p>32.In which product type, created product depend on the multiple simple product types? A. Composite B. Grouped C. Virtual D. Simple E. Bundle Answer B E</p>
+<hr>
+<p>33.You need to customize an order create email template and you have a custom theme where you want to do this? A. &lt;theme_dir&gt;&#x2F;Magento_Sales&#x2F;view&#x2F;template&#x2F;email B. &lt;theme_dir&gt;&#x2F;email C. &lt;theme_dir&gt;&#x2F;Magento_Sales&#x2F;email D. &lt;theme_dir&gt;&#x2F;view&#x2F;frontend&#x2F;template&#x2F;email Answer C</p>
+<hr>
+<p>34.How would you enable dependency graph profiler? A. Run the command bin&#x2F;magento dev:profiler:enable B. Run the command bin&#x2F;magento setup:profiler:enable C. Run the command bin&#x2F;magento dev:dependency-profiler:enable D. Run the command bin&#x2F;magento dev:profiler:dependency Answer A</p>
+<hr>
+<p>35.Which file is used to create a scheduler? A. Config.xml B. Di.xml C. Env.php D. Crontab.xml Answer D</p>
+<hr>
+<p>36.How would you add dependent configuration field in the magento 2? A. Add depends node to the field for which you need to add dependency in system.xml B. Define the dependent field in the config.xml C. Add the virtual type for \Magento\Framework\Config\AbstractSource in di.xml with argument depend and value as field name D. You cannot add dependent field in the configuration area of magento 2 Answer A</p>
+<hr>
+<p>37.Which of the following action does <code>&lt;referenceContainer&gt;</code> node performs in a layout xml? A. Extending block with the same id. B. Extending the container with same id. C. Overriding the container with same id D. Adding the blocks of old container to new container Answer B</p>
+<hr>
+<p>38.Which escape function is need for JSON output in a teamplate? A. escapeHtml B. escapeJson C. escapeString D. no function needed for JSON data Answer D</p>
+<hr>
+<p>39.How would you add a name to new layout page type? A. Add page layout name to the di configuration file B. Create a layout file with name “.xml” and add it to the page_layout.xml under “name” node. C. Create a new page_layout.xml and add attribute “name” to the node “type” with value of new page layout name D. Create a new page_layout.xml and add node “name” with value of new page layout name Create a layout file with name “.xml” under page_layout directory, and add <code>&lt;layout id=&quot;newLayoutName&quot;&gt;</code> to layouts.xml</p>
+<hr>
+<p>40.Which class provides the available routes to the FrontController? A. \Magento\Framework\App\AbstractAction B. \Magento\Framework\App\Action\Action C. \Magento\Framework\App\RouteList D. \Magento\Framework\App\RouteListing Answer C</p>
+<hr>
+<p>41.Which of the following are not adminhtml area routers?(choose 3) A. \Magento\Framework\App\Router\DefaultRouter B. \Magento\Framework\App\Router\Base C. \Magento\Robots\Controller\Router D. \Magento\Backend\App\Router E. \Magento\Admin\App\Router Answer B C E</p>
+<hr>
+<p>42.What are the 3 plugin types in a magento 2 installation? A. Before B. After C. Inside D. Out E. Around Answer A B E</p>
+<hr>
+<p>43.To remove resource intensive dependency injection object from the constructor definition, which of the following functionality does magento 2 provide? A. Virtual types in di.xml B. Proxies C. Factories D. Routes Answer B</p>
+<hr>
+<p>44.What is the significance of the “resource” attribute while defining the menus in the admin area? A. To add the custom link for menu B. To add ACL rule for menu C. To define the needed resources to display the menu D. It’s just a identifier for the declared menu Answer B</p>
+<hr>
+<p>45.While overriding a theme layout in your custom theme, at which location would you put the layout xml file? A. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/layout/override/theme/&lt;Parent_Vendor&gt;/&lt;Parent_Theme&gt;/</code> B. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/layout/theme/</code> C. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/layout/override/theme/</code> D. <code>&lt;theme_Dir&gt;/&lt;Namespace_Module&gt;/override/theme/layout/</code> Answer A</p>
+<hr>
+<p>46.Which of the following are the limitations for the plugins? (choose 3) A. Non-Public method B. Preference C. Final Method D. Argument replacement E. Constructor Answer A C E</p>
+<hr>
+<p>47.To add a custom router to the list of routers for the front controller in which xml file would you need to add&#x2F;change? A. Config.xml B. Di.xml C. Routes.xml D. Route.xml E. Module.xml Answer B</p>
+<hr>
+<p>48.Which of the following are auto generated in magento 2? (choose 3) A. Proxies B. Service contracts C. Routes D. Factories E. Interceptors Answer A D E</p>
+<hr>
+<p>49.Which is the recommended way when you need to alter the functionality of core Magento 2 function? A. Observer B. Plugin C. Argument replacement D. Preference Answer B</p>
+<hr>
+<p>50.If product price is $50 and tier price is $40 for 3 products and catalog rule applied is $5 flat off for that product. What will be final product price? A. $35 B. $45 C. $50 D. $40 Answer B</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/salesforce-commerce-cloud-%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" rel="prev" title="Salesforce Commerce Cloud 开发入门">
+      <i class="fa fa-chevron-left"></i> Salesforce Commerce Cloud 开发入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/price-decimal-precision/" rel="next" title="Price Decimal Precision">
+      Price Decimal Precision <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

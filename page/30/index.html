@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/30/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/30/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/store-details/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/store-details/" class="post-title-link" itemprop="url">店铺详情</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 10:24:44" itemprop="dateCreated datePublished" datetime="2016-08-19T10:24:44+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/store-details.html">原文地址</a></em><br>店铺的基本信息，包括商店名称和地址，联系信息，电子邮箱。这些基本信息会出现在和客户沟通的电子邮件、发票及其他联系方式中。</p>
+<p><img src="/wp-content/uploads/2016/08/config-general-store-details_thumb_0_0.png" alt="General Configuration"></p>
+<h2 id="相关的文章列表"><a href="#相关的文章列表" class="headerlink" title="相关的文章列表"></a><a href="#%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8"></a>相关的文章列表</h2><ul>
+<li><a href="/store-information/">店铺信息</a></li>
+<li><a href="/locale-options/">区域设置选项</a></li>
+<li><a href="/state-options/">行政区域选项</a></li>
+<li><a href="/country-options/">国家选项</a></li>
+<li><a href="/merchant-location/">商户位置</a></li>
+<li><a href="/currency-overview/">货币</a></li>
+<li><a href="/store-email-addresses/">店铺邮箱</a></li>
+<li><a href="/contact-us/">联系我们</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/contact-us/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/contact-us/" class="post-title-link" itemprop="url">联系我们</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 10:08:26" itemprop="dateCreated datePublished" datetime="2016-08-19T10:08:26+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/contact-us.html">原文地址</a></em></p>
+<p>店铺页面底部的联系我们(Contact Us)链接是客户和您保持联系的简易方式。客户可以通过填写表单来给您发送消息。</p>
+<p><img src="/wp-content/uploads/2016/08/storefront-footer-contact-us_thumb_0_0.png"></p>
+<p>表单提交后，客户会看到一个感谢信息。该表单包含在<strong>contact-us-info</strong> block 中，您很容易就可以修改他。<br><img src="/wp-content/uploads/2016/08/storefront-contact-us_thumb_0_0.png"></p>
+<h2 id="配置-联系我们"><a href="#配置-联系我们" class="headerlink" title="配置 联系我们"></a><a href="#%E9%85%8D%E7%BD%AE-%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC"></a>配置 联系我们</h2><ol>
+<li><p>后台侧边栏，点击<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>(Configuration)</p>
+</li>
+<li><p>在左侧面板选择<strong>常规</strong>(General)&gt; <strong>联系人</strong>(Contacts)</p>
+</li>
+<li><p>展开 <strong>联系我们</strong>(Contact Us)，有必要的话，请设置<strong>启用联系我们</strong>(Enable Contact Us)为“是”  </p>
+<p><img src="/wp-content/uploads/2016/08/config-general-contacts-contact-us_thumb_0_0.png"></p>
+</li>
+<li><p>展开<strong>邮箱选项</strong>(Email Options)做如下操作：  </p>
+<p><img src="/wp-content/uploads/2016/08/config-general-contacts-email-options_thumb_0_0.png"></p>
+<p>a. 在<strong>发送电子邮件至</strong>(Send Emails to)字段中，输入联系我们表单将发送邮件的电子邮件地址<br>b. 设置<strong>电子邮件发件人</strong>(Email Sender)。例如：自定义电子邮件<br>c. 设置联系我们表单发送邮件用到的<strong>电子邮件模板</strong>(Email Template)</p>
+</li>
+<li><p>完成后，点击保存设置</p>
+</li>
+</ol>
+<h2 id="定制联系我的表单"><a href="#定制联系我的表单" class="headerlink" title="定制联系我的表单"></a><a href="#%E5%AE%9A%E5%88%B6%E8%81%94%E7%B3%BB%E6%88%91%E7%9A%84%E8%A1%A8%E5%8D%95"></a>定制联系我的表单</h2><ol>
+<li>后台侧边栏，点击<strong>内容</strong>(Content) &gt; <strong>元素</strong>(Elements) &gt; <strong>页块</strong>(Blocks)</li>
+<li>找到 <strong>Contact Us Info</strong> block ，打开编辑<br><img src="/wp-content/uploads/2016/08/content-block-contact-us-info_thumb_0_0.png" alt="Contact Us Info"></li>
+<li>下拉到联系部分，进行修改<ul>
+<li>使用编辑工具格式化文字，加入图片和链接</li>
+<li>点击<strong>Show &#x2F; Hide Editor</strong> 直接操作HTML<br><img src="/wp-content/uploads/2016/08/content-block-contact-us-content_thumb_0_0.png" alt="Contact Us Content"></li>
+</ul>
+</li>
+<li>完成后，点击保存(Save Block)</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/store-email-addresses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/store-email-addresses/" class="post-title-link" itemprop="url">店铺邮箱</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 09:22:32" itemprop="dateCreated datePublished" datetime="2016-08-19T09:22:32+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/store-email-addresses.html">原文地址</a></em></p>
+<p>每个店铺(Store)或店铺视图(View)最多可以有5个不同的邮箱来表示不同的功能或部门。除了下面三个预定义的邮箱标识，剩下两个您可以自己定义。</p>
+<ul>
+<li>一般联系人(General Contact)</li>
+<li>销售代表(Sales Representative)</li>
+<li>客户支持(Customer Support)</li>
+</ul>
+<p>每个标识和他对应得邮箱可以和特定的自动邮件消息联系起来，并显示为从您的店铺发送的电子邮件的发送者。</p>
+<h2 id="第一步：设置您域名的邮箱地址"><a href="#第一步：设置您域名的邮箱地址" class="headerlink" title="第一步：设置您域名的邮箱地址"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E8%AE%BE%E7%BD%AE%E6%82%A8%E5%9F%9F%E5%90%8D%E7%9A%84%E9%82%AE%E7%AE%B1%E5%9C%B0%E5%9D%80"></a>第一步：设置您域名的邮箱地址</h2><p>在配置您的邮箱地址之前，每个邮箱地址都必须是您域名的有效地址。请您按照服务器管理员或电子邮件托管服务提供商提供的说明，创建需要的电子邮箱地址。</p>
+<h2 id="第二步：为店铺配置邮箱"><a href="#第二步：为店铺配置邮箱" class="headerlink" title="第二步：为店铺配置邮箱"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%B8%BA%E5%BA%97%E9%93%BA%E9%85%8D%E7%BD%AE%E9%82%AE%E7%AE%B1"></a>第二步：为店铺配置邮箱</h2><ol>
+<li><p>后台侧边栏，点击<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>(Configuration)</p>
+</li>
+<li><p>在左侧面板选择<strong>常规</strong>(General)&gt; <strong>店铺电子邮箱地址</strong>(Store Email Addresses)</p>
+</li>
+<li><p>展开 <strong>一般联系人</strong>(General Contact) 做如下操作:  </p>
+<p><img src="/wp-content/uploads/2016/08/config-general-store-email-addresses-general-contact_thumb_0_0.png"></p>
+<p>a. 在发件人姓名(Sender Name)字段填入发件人的姓名，它将作为一般联系人的姓名显示在发送的邮件中。<br>b. 发件邮箱(Sender Email)字段填入相关邮箱地址</p>
+</li>
+<li><p>重复上述过程给每个店铺设置好邮箱地址</p>
+</li>
+<li><p>完成后，点击保存设置。</p>
+</li>
+</ol>
+<h2 id="第三步：更新销售电子邮箱的设置"><a href="#第三步：更新销售电子邮箱的设置" class="headerlink" title="第三步：更新销售电子邮箱的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%9B%B4%E6%96%B0%E9%94%80%E5%94%AE%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：更新销售电子邮箱的设置</h2><p>如果您使用自定义的电子邮件地址，请务必更新相关的邮件配置，以正确显示发件人。</p>
+<ol>
+<li><p>在左侧面板<strong>销售</strong>(Sales)下选择<strong>销售电子邮件</strong>(Sales Emails)页面有以下几个单独部分：<br>订单和订单评论 (Order and Order Comments)<br>发票和发票评论 (Invoice and Invoice Comments)<br>装运和装运评论 (Shipment and Shipment Comments)<br>贷项通知单和贷项通知单评论 (Credit Memo and Credit Memo Comments)</p>
+</li>
+<li><p>从 Order 开始，依次展开，选择合适的邮件发送者  </p>
+<p><img src="/wp-content/uploads/2016/08/config-sales-sales-emails-order_thumb_0_0.png"></p>
+</li>
+<li><p>完成后，点击 保存设置</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/currency-overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/currency-overview/" class="post-title-link" itemprop="url">货币</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 08:33:49" itemprop="dateCreated datePublished" datetime="2016-08-19T08:33:49+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/currency-overview.html">原文地址</a></em></p>
+<h2 id="货币设置"><a href="#货币设置" class="headerlink" title="货币设置"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E8%AE%BE%E7%BD%AE%5D()"></a>货币设置</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-rate-setup_212x129.png"><br>设置基础货币和接受的其他外币。建立用于自动更新货币汇率的导入连接和时间表。</p>
+<h2 id="货币符号"><a href="#货币符号" class="headerlink" title="货币符号"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E7%AC%A6%E5%8F%B7%5D()"></a>货币符号</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-symbols_212x127.png"><br>定义出现在商品价格和销售单据，如订单和发票里的货币符号。Magento支持来自世界各地超过200个国家的货币。</p>
+<h2 id="更新货币汇率"><a href="#更新货币汇率" class="headerlink" title="更新货币汇率"></a><a href="#%5B%E6%9B%B4%E6%96%B0%E8%B4%A7%E5%B8%81%E6%B1%87%E7%8E%87%5D()"></a>更新货币汇率</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-rate-update_212x119.png"><br>汇率可以手动进行更新或根据需要，或根据预定的时间表导入到店铺中。</p>
+<h2 id="货币选择器"><a href="#货币选择器" class="headerlink" title="货币选择器"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E9%80%89%E6%8B%A9%E5%99%A8%5D()"></a>货币选择器</h2><p><img src="/wp-content/uploads/2016/08/storefront-currency-chooser_212x103.png"><br>如果有多种货币可供选择，店头会出现货币选择器。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/merchant-location/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/merchant-location/" class="post-title-link" itemprop="url">商户位置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-18 22:23:41" itemprop="dateCreated datePublished" datetime="2016-08-18T22:23:41+08:00">2016-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/payment/merchant-location.html">原文地址</a></em></p>
+<p>商户位置设置用来配置付款方式(Payment methods)，如果没有设置任何值的话，会使用默认的国家(Default Country)</p>
+<p><img src="/wp-content/uploads/2016/08/config-sales-payment-methods-merchant-location_thumb_0_0.png"></p>
+<h2 id="输入商户位置"><a href="#输入商户位置" class="headerlink" title="输入商户位置"></a><a href="#%E8%BE%93%E5%85%A5%E5%95%86%E6%88%B7%E4%BD%8D%E7%BD%AE"></a>输入商户位置</h2><ol>
+<li>后台侧边栏，点击<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>(Configuration)</li>
+<li>在左侧面板选择<strong>销售</strong>(Sales)&gt; <strong>付款方式</strong>(Payment methods)</li>
+<li>展开 <strong>商户位置</strong> (Merchant Location)选择商户位置</li>
+<li>完成后点击保存设置</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/country-options/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/country-options/" class="post-title-link" itemprop="url">国家选项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-18 22:12:29" itemprop="dateCreated datePublished" datetime="2016-08-18T22:12:29+08:00">2016-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/country-options.html">原文地址</a></em></p>
+<p>国家选项确定您开展业务所在的国家及您接受来自哪些国家的付款。</p>
+<p><img src="/wp-content/uploads/2016/08/config-general-general-country-options.png" alt="Country Options"></p>
+<h2 id="设置店铺的国家选项"><a href="#设置店铺的国家选项" class="headerlink" title="设置店铺的国家选项"></a><a href="#%E8%AE%BE%E7%BD%AE%E5%BA%97%E9%93%BA%E7%9A%84%E5%9B%BD%E5%AE%B6%E9%80%89%E9%A1%B9"></a>设置店铺的国家选项</h2><ol>
+<li>后台侧边栏，点击<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>(Configuration)</li>
+<li>在左侧面板选择<strong>常规</strong>(General)&gt; <strong>常规</strong>(General)</li>
+<li>展开 <strong>国家选项</strong> 做如下操作<br>a. 选择您业务所在地的默认国家(Default Country)<br>b. 在<strong>接单国家</strong>(Allow Countries)列表中选择您接受订单的国家。默认情况下，所有国家都是选中的。（多选用Ctrl(PC)或者Command(Mac)）<br>c. 在<strong>邮编可选</strong>(Zip&#x2F;Postal Code is Optional for)列表中选择地址不需要邮编的国家<br>d. 在<strong>最热门的目的地</strong>(Top Destinations)列表中，选择您销售的主要目标国家。</li>
+<li>完成后点击保存设置</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/state-options/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/state-options/" class="post-title-link" itemprop="url">行政区域选项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-18 21:35:55" itemprop="dateCreated datePublished" datetime="2016-08-18T21:35:55+08:00">2016-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/state-options.html">原文地址</a></em></p>
+<p>在很多国家，省、市或者区、州是邮寄地址的必要组成部分。该信息用来计算运输、开票方面的税率等。在没有这样要求的国家，行政区域字段可以被省略或者作为可选项。</p>
+<p>由于各国对地址的格式要求大不相同，您还可以编辑用于发票，装箱单和运输标签上的格式化地址模板。</p>
+<p><img src="/wp-content/uploads/2016/08/config-general-general-state-options_thumb_0_0.png"></p>
+<h2 id="设置行政区域选项"><a href="#设置行政区域选项" class="headerlink" title="设置行政区域选项"></a><a href="#%E8%AE%BE%E7%BD%AE%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%9F%9F%E9%80%89%E9%A1%B9"></a>设置行政区域选项</h2><ol>
+<li>后台侧边栏，点击<strong>店铺</strong>(Stores)&gt; <strong>设置</strong>(Settings)&gt; <strong>配置</strong>(Configuration)</li>
+<li>左侧面板 常规(General)&gt; 常规(General)</li>
+<li>展开行政区域设置(State Options)，做以下操作：<br>a. 在<strong>哪些国家需要行政区域设置</strong>(State is required for)列表中选择需要的国家<br>b. 设置<strong>不强制要求的国家是否需要该字段</strong>(Allow to Choose State if It is Optional for Country)<br>Yes 表示不强制要求必须填行政区域的，将该字段作为可选字段<br>No 表示不强制要求必须填行政区域的国家，直接省略该字段</li>
+<li>完成后，点击保存设置</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/locale-options/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/locale-options/" class="post-title-link" itemprop="url">区域设置选项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-18 17:48:21" itemprop="dateCreated datePublished" datetime="2016-08-18T17:48:21+08:00">2016-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/locale-options.html">原文地址</a></em></p>
+<p>区域决定了您整个店铺中使用的语言，国家，税率以及其他设置。区域设置选项决定了每个店铺的时区、语言，确定每周的营业时间。</p>
+<p><img src="/wp-content/uploads/2016/08/config-general-general-locale-options_thumb_0_0.png"></p>
+<h2 id="设置区域选项"><a href="#设置区域选项" class="headerlink" title="设置区域选项"></a><a href="#%E8%AE%BE%E7%BD%AE%E5%8C%BA%E5%9F%9F%E9%80%89%E9%A1%B9"></a>设置区域选项</h2><ol>
+<li>后台侧边栏，点击<strong>店铺</strong>(Stores)&gt; <strong>设置</strong>(Settings)&gt;<strong>配置</strong>(Configuration)</li>
+<li>左侧面板，选择常规(General) &gt; 常规(General)</li>
+<li>展开<strong>区域选项</strong>(Local Options)</li>
+<li>从列表中选择<strong>时区</strong>(Timezone)，然后做以下操作<br>a. 设置<strong>地区</strong>(Local)他决定了店铺前台的语言<br>b. 设置<strong>重量单位</strong>，他是发货时用到的一般计量单位<br>c. 设置<strong>每周第一天</strong>(First Day of the Week)<br>d. 在休息日(Weekend Days)列表中进行选择（多选请使用Ctrl(PC)或者Command(Mac)）</li>
+<li>完成后，点击保存设置</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/store-information/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/store-information/" class="post-title-link" itemprop="url">店铺信息</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-18 17:21:02" itemprop="dateCreated datePublished" datetime="2016-08-18T17:21:02+08:00">2016-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/store-information.html">原文地址</a></em></p>
+<p>店铺信息部分提供了用在销售文件和其他沟通中的基本信息</p>
+<p><img src="/wp-content/uploads/2016/08/config-general-general-store-information_thumb_0_0.png"></p>
+<h2 id="输入店铺信息"><a href="#输入店铺信息" class="headerlink" title="输入店铺信息"></a><a href="#%E8%BE%93%E5%85%A5%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF"></a>输入店铺信息</h2><ol>
+<li>在后台侧标蓝选择<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>（Configuration）</li>
+<li>左侧面板选择 <strong>常规</strong>(General) &gt; <strong>常规</strong>(General)</li>
+<li>展开<strong>店铺信息</strong>(Store Information)部分，做下列操作<br>a. 输入各种沟通途径中使用的店铺名称<br>b. 输入店铺热线(Store Phone Number)，可以组织成您喜欢的格式<br>c. 输入营业时间(Store Hours of Operation)。例如：周一至周五，9-5<br>d. 选择您开展业务的国家(Country)<br>e. 选择地区 ( Region&#x2F;State)<br>f. 输入店铺地址，如果地址很长，填入第二个地址栏(Store Address Line 2)<br>g. 如果适用，输入<strong>VAT Number</strong>。要验证号码，点击<strong>Validate VAT Number</strong>按钮。</li>
+<li>完成后，点击保存设置</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/admin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/admin/" class="post-title-link" itemprop="url">管理后台</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-18 16:45:44" itemprop="dateCreated datePublished" datetime="2016-08-18T16:45:44+08:00">2016-08-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/stores/admin.html">原文网址</a></em></p>
+<p>您的店铺 Admin 是受密码保护的后台。在后台您可以设置产品，进行促销，管理订单以及执行其他管理任务。所有的基本设置事项和店铺管理操作都是由管理员完成的。</p>
+<p>最初的登录凭证是在 Magento 安装过程中设置的，如果您忘记了密码，会发送临时密码到与管理员账户相关的邮箱中。为了增强安全性，您可以设置店铺登录的用户名和密码区分大小写。为了增强安全性，您可以设置管理员登录需要输入验证码。要了解更多，请参阅设置管理员账户安全</p>
+<h2 id="相关的文章列表"><a href="#相关的文章列表" class="headerlink" title="相关的文章列表"></a><a href="#%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8"></a>相关的文章列表</h2><ul>
+<li><a href="/admin-signin/%E2%80%8E">Admin 登录</a></li>
+<li><a href="/admin-account/">管理员账户</a></li>
+<li><a href="/admin-menu/">管理后台菜单</a></li>
+<li><a href="/admin-workspace/">管理工具</a><ul>
+<li><a href="/admin-dashboard/">控制面板</a></li>
+<li><a href="/admin-message-inbox/">后台消息收件箱</a></li>
+<li><a href="/admin-global-search/">后台全局搜索</a></li>
+<li><a href="/grid-controls/">表格控件</a><ul>
+<li><a href="/admin-grid-layout/">表格布局</a></li>
+</ul>
+</li>
+<li><a href="/admin-actions-control/">操作控件</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本次使用 centos 7.4、Nginx、MySQL、PHP 7.1 搭建 LNMP 环境，安装 Magento 2.2 。 在实践过程中，发现 Magento 官方文档有微小错误，所以本文可做参考佐证。 Magento 官方文档 nginx 安装 nginx12yum -y install epel-releaseyum -y install nginx  安装完成后，启动 ng 设置他开机启">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos 7 搭建 LNMP 环境安装 Magento">
+<meta property="og:url" content="http://example.com/centos-7-%E6%90%AD%E5%BB%BA-lnmp-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-magento/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="本次使用 centos 7.4、Nginx、MySQL、PHP 7.1 搭建 LNMP 环境，安装 Magento 2.2 。 在实践过程中，发现 Magento 官方文档有微小错误，所以本文可做参考佐证。 Magento 官方文档 nginx 安装 nginx12yum -y install epel-releaseyum -y install nginx  安装完成后，启动 ng 设置他开机启">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/ng-conf.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/ng-welcome-page.png">
+<meta property="article:published_time" content="2017-11-06T01:30:56.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.292Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="LNMP 环境安装">
+<meta property="article:tag" content="magento 2.2">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/11/ng-conf.png">
+
+<link rel="canonical" href="http://example.com/centos-7-%E6%90%AD%E5%BB%BA-lnmp-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-magento/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Centos 7 搭建 LNMP 环境安装 Magento | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/centos-7-%E6%90%AD%E5%BB%BA-lnmp-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-magento/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Centos 7 搭建 LNMP 环境安装 Magento
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-06 09:30:56" itemprop="dateCreated datePublished" datetime="2017-11-06T09:30:56+08:00">2017-11-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本次使用 centos 7.4、Nginx、MySQL、PHP 7.1 搭建 LNMP 环境，安装 Magento 2.2 。 在实践过程中，发现 Magento 官方文档有微小错误，所以本文可做参考佐证。 <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.2/install-gde/prereq/nginx.html">Magento 官方文档 nginx</a></p>
+<h2 id="安装-nginx"><a href="#安装-nginx" class="headerlink" title="安装 nginx"></a><a href="#%E5%AE%89%E8%A3%85-nginx"></a>安装 nginx</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br><span class="line">yum -y install nginx</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，启动 ng 设置他开机启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
+
+<p>centos 中 ng 的配置文件一般在 <code>/etc/nginx/nginx.conf</code> 打开后查看下： <img src="/wp-content/uploads/2017/11/ng-conf.png" alt="ng 配置文件"> 访问网站，可以看到欢迎页面: <img src="/wp-content/uploads/2017/11/ng-welcome-page.png" alt="nginx welcome"></p>
+<h2 id="安装-php"><a href="#安装-php" class="headerlink" title="安装 php"></a><a href="#%E5%AE%89%E8%A3%85-php"></a>安装 php</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm</span><br><span class="line">yum -y update</span><br></pre></td></tr></table></figure>
+
+<p>安装 php 扩展</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php71u php71u-pdo php71u-mysqlnd php71u-opcache php71u-xml php71u-mcrypt php71u-gd php71u-devel php71u-mysql php71u-intl php71u-mbstring php71u-bcmath php71u-json php71u-iconv php71u-soap</span><br></pre></td></tr></table></figure>
+
+<p>安装 php-fpm</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php71u-fpm</span><br></pre></td></tr></table></figure>
+
+<p>怎么查看内存多大</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep MemTotal /proc/meminfo</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-php-ini"><a href="#修改-php-ini" class="headerlink" title="修改 php.ini"></a><a href="#%E4%BF%AE%E6%94%B9-php.ini"></a>修改 php.ini</h3><p>打开 <code>/etc/php.ini</code> 去掉 <code>cgi.fix_pathinfo</code> 前 <code>;</code> 并修改值为 0 并且修改以下行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">memory_limit = 2G</span><br><span class="line">max_execution_time = 1800</span><br><span class="line">zlib.output_compression = On</span><br></pre></td></tr></table></figure>
+
+<p>注释下列行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;session.save_path = &quot;/var/lib/php/session&quot;</span><br></pre></td></tr></table></figure>
+
+<p>保存文件。</p>
+<h3 id="修改-phpfpm-的设置"><a href="#修改-phpfpm-的设置" class="headerlink" title="修改 phpfpm 的设置"></a><a href="#%E4%BF%AE%E6%94%B9-phpfpm-%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>修改 phpfpm 的设置</h3><p>打开 <code>/etc/php-fpm.d/www.conf</code> 修改以下行的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">user = nginx</span><br><span class="line">group = nginx</span><br><span class="line">listen = /run/php-fpm/www.sock</span><br><span class="line">listen.owner = nginx</span><br><span class="line">listen.group = nginx</span><br><span class="line">listen.mode = 0660</span><br></pre></td></tr></table></figure>
+
+<p>注释以下行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">env[HOSTNAME] = $HOSTNAME</span><br><span class="line">env[PATH] = /usr/local/bin:/usr/bin:/bin</span><br><span class="line">env[TMP] = /tmp</span><br><span class="line">env[TMPDIR] = /tmp</span><br><span class="line">env[TEMP] = /tmp</span><br></pre></td></tr></table></figure>
+
+<p>注意： php_value[session.save_handler] &#x3D; files php_value[session.save_path] &#x3D; &#x2F;var&#x2F;lib&#x2F;php&#x2F;fpm&#x2F;session 所以更改权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R nginx:nginx /var/lib/php/fpm/</span><br></pre></td></tr></table></figure>
+
+<p>如果不存在则创建：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /run/php-fpm/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R nginx:nginx /run/php-fpm/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start php-fpm</span><br><span class="line">systemctl enable php-fpm</span><br></pre></td></tr></table></figure>
+
+<p>验证下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -pl  grep www.sock</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试-php-能否正常访问（可跳过）"><a href="#测试-php-能否正常访问（可跳过）" class="headerlink" title="测试 php 能否正常访问（可跳过）"></a><a href="#%E6%B5%8B%E8%AF%95-php-%E8%83%BD%E5%90%A6%E6%AD%A3%E5%B8%B8%E8%AE%BF%E9%97%AE%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"></a>测试 php 能否正常访问（可跳过）</h2><p>下面测试 php 是否能正常访问 配置文件： <code>/etc/nginx/nginx.conf</code> 修改其中的 location &#x2F; 添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">location ~ .php$ &#123;</span><br><span class="line">include fastcgi_params;</span><br><span class="line">fastcgi_pass unix:/run/php-fpm/www.sock;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">fastcgi_param PATH_INFO $fastcgi_script_name;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不增加该规则，则 php 文件不会被解析而是被下载。 在 <code>/usr/share/nginx/html</code> 下增加 php.php 文件看是否可以访问</p>
+<h3 id="记-502-错误-（可跳过）"><a href="#记-502-错误-（可跳过）" class="headerlink" title="记 502 错误 （可跳过）"></a><a href="#%E8%AE%B0-502-%E9%94%99%E8%AF%AF-%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"></a>记 502 错误 （可跳过）</h3><p>访问结果是 502 temporarily unavailable 查看错误日志：<code>cat /var/log/nginx/error.log</code> 错误是： <code>connect() to unix:/run/php-fpm/php-fpm.sock failed (2: No such file or directory) while connecting to upstream, client: 117.80.222.3,....</code> 发现实际上 php-fpm 的实际路径和名称是 &#x2F;run&#x2F;php-fpm&#x2F;<a target="_blank" rel="noopener" href="http://www.sock/">www.sock</a> 所以重新回到上面的配置进行更改：</p>
+<ul>
+<li><p>要改的有：<code>/etc/php-fpm.d/www.conf</code> 中的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen = /run/php-fpm/www.sock</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R nginx:nginx /run/php-fpm/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>还有 <code>/etc/nginx/nginx.conf</code> 中的引用</p>
+</li>
+</ul>
+<p>重启 nginx 和 php-fpm</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart nginx</span><br><span class="line">systemctl restart php-fpm</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-MySQL-5-7"><a href="#安装-MySQL-5-7" class="headerlink" title="安装 MySQL 5.7"></a><a href="#%E5%AE%89%E8%A3%85-mysql-5.7"></a>安装 MySQL 5.7</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</span><br><span class="line">yum install mysql-community-server</span><br><span class="line">systemctl start mysqld</span><br><span class="line">systemctl enable mysqld</span><br></pre></td></tr></table></figure>
+
+<p>获得临时密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;temporary&#x27; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p>重新设置密码和进行安全设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建用户和数据库"><a href="#创建用户和数据库" class="headerlink" title="创建用户和数据库"></a><a href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93"></a>创建用户和数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">create database dbname;</span><br><span class="line">GRANT ALL ON dbname.* TO user@localhost IDENTIFIED BY &#x27;userpw&#x27;;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+<h2 id="composer-方式安装-Magento-2-2"><a href="#composer-方式安装-Magento-2-2" class="headerlink" title="composer 方式安装 Magento 2.2"></a><a href="#composer-%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85-magento-2.2"></a>composer 方式安装 Magento 2.2</h2><p>安装 composer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://getcomposer.org/installer  sudo php -- --install-dir=/usr/bin --filename=composer</span><br></pre></td></tr></table></figure>
+
+<p>下载 Magento</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition &lt;installation directory name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后输入帐密开始下载 然后全部给成 nginx 用户和组 给文件权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w &#123;&#125; \; &amp;&amp; find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws &#123;&#125; \; &amp;&amp; chown -R :nginx . &amp;&amp; chmod u+x bin/magento</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-ng-配置"><a href="#修改-ng-配置" class="headerlink" title="修改 ng 配置"></a><a href="#%E4%BF%AE%E6%94%B9-ng-%E9%85%8D%E7%BD%AE"></a>修改 ng 配置</h2><p>重新修改下 ng 的配置 <code>/etc/nginx/nginx.conf</code> 使其包含网站目录下的配置文件。 新建一个 <code>/usr/share/nginx/html/magento/nginx.conf</code> 配置文件(&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F;magento&#x2F; 是网站的根目录) 内容如下，仅供参考：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line">upstream fastcgi_backend &#123;</span><br><span class="line"></span><br><span class="line">server unix:/run/php-fpm/www.sock;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line"></span><br><span class="line">listen 80;</span><br><span class="line"></span><br><span class="line">server_name localhost;</span><br><span class="line"></span><br><span class="line">set $MAGE_ROOT /usr/share/nginx/html/magento;</span><br><span class="line"></span><br><span class="line">#set $MAGE_MODE developer;</span><br><span class="line"></span><br><span class="line">root $MAGE_ROOT/pub;</span><br><span class="line"></span><br><span class="line">index index.php;</span><br><span class="line">autoindex off;</span><br><span class="line">charset UTF-8;</span><br><span class="line">error_page 404 403 = /errors/404.php;</span><br><span class="line">#add_header &quot;X-UA-Compatible&quot; &quot;IE=Edge&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">location ~* ^/setup($/) &#123;</span><br><span class="line">root $MAGE_ROOT;</span><br><span class="line">location ~ ^/setup/index.php &#123;</span><br><span class="line">### This fixes the problem:</span><br><span class="line">fastcgi_split_path_info ^(.+?\.php)(/.*)$;</span><br><span class="line">################################</span><br><span class="line">fastcgi_pass fastcgi_backend;</span><br><span class="line"></span><br><span class="line">fastcgi_param PHP_FLAG &quot;session.auto_start=off \n suhosin.session.cryptua=off&quot;;</span><br><span class="line">fastcgi_param PHP_VALUE &quot;memory_limit=768M \n max_execution_time=600&quot;;</span><br><span class="line">fastcgi_read_timeout 600s;</span><br><span class="line">fastcgi_connect_timeout 600s;</span><br><span class="line"></span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">include fastcgi_params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~ ^/setup/(?!pub/). &#123;</span><br><span class="line">deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~ ^/setup/pub/ &#123;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># PHP entry point for update application</span><br><span class="line">location ~* ^/update($/) &#123;</span><br><span class="line">root $MAGE_ROOT;</span><br><span class="line"></span><br><span class="line">location ~ ^/update/index.php &#123;</span><br><span class="line">fastcgi_split_path_info ^(/update/index.php)(/.+)$;</span><br><span class="line">fastcgi_pass fastcgi_backend;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">fastcgi_param PATH_INFO $fastcgi_path_info;</span><br><span class="line">include fastcgi_params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Deny everything but index.php</span><br><span class="line">location ~ ^/update/(?!pub/). &#123;</span><br><span class="line">deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~ ^/update/pub/ &#123;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">try_files $uri $uri/ /index.php$is_args$args;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">location /pub/ &#123;</span><br><span class="line">location ~ ^/pub/media/(downloadablecustomerimporttheme_customization/.*\.xml) &#123;</span><br><span class="line">deny all;</span><br><span class="line">&#125;</span><br><span class="line">alias $MAGE_ROOT/pub/;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /static/ &#123;</span><br><span class="line"># Uncomment the following line in production mode</span><br><span class="line"># expires max;</span><br><span class="line"></span><br><span class="line"># Remove signature of the static files that is used to overcome the browser cache</span><br><span class="line">location ~ ^/static/version &#123;</span><br><span class="line">rewrite ^/static/(version\d*/)?(.*)$ /static/$2 last;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~* \.(icojpgjpegpnggifsvgjscssswfeotttfotfwoffwoff2)$ &#123;</span><br><span class="line">add_header Cache-Control &quot;public&quot;;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">expires +1y;</span><br><span class="line"></span><br><span class="line">if (!-f $request_filename) &#123;</span><br><span class="line">rewrite ^/static/?(.*)$ /static.php?resource=$1 last;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">location ~* \.(zipgzgzipbz2csvxml)$ &#123;</span><br><span class="line">add_header Cache-Control &quot;no-store&quot;;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">expires off;</span><br><span class="line"></span><br><span class="line">if (!-f $request_filename) &#123;</span><br><span class="line">rewrite ^/static/?(.*)$ /static.php?resource=$1 last;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">if (!-f $request_filename) &#123;</span><br><span class="line">rewrite ^/static/?(.*)$ /static.php?resource=$1 last;</span><br><span class="line">&#125;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /media/ &#123;</span><br><span class="line">try_files $uri $uri/ /get.php$is_args$args;</span><br><span class="line"></span><br><span class="line">location ~ ^/media/theme_customization/.*\.xml &#123;</span><br><span class="line">deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~* \.(icojpgjpegpnggifsvgjscssswfeotttfotfwoffwoff2)$ &#123;</span><br><span class="line">add_header Cache-Control &quot;public&quot;;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">expires +1y;</span><br><span class="line">try_files $uri $uri/ /get.php$is_args$args;</span><br><span class="line">&#125;</span><br><span class="line">location ~* \.(zipgzgzipbz2csvxml)$ &#123;</span><br><span class="line">add_header Cache-Control &quot;no-store&quot;;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">expires off;</span><br><span class="line">try_files $uri $uri/ /get.php$is_args$args;</span><br><span class="line">&#125;</span><br><span class="line">add_header X-Frame-Options &quot;SAMEORIGIN&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /media/customer/ &#123;</span><br><span class="line">deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /media/downloadable/ &#123;</span><br><span class="line">deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /media/import/ &#123;</span><br><span class="line">deny all;</span><br><span class="line">&#125;</span><br><span class="line"># PHP entry point for main application</span><br><span class="line">location ~ (indexgetstaticreport404503)\.php$ &#123;</span><br><span class="line">try_files $uri =404;</span><br><span class="line">fastcgi_pass fastcgi_backend;</span><br><span class="line">fastcgi_buffers 1024 4k;</span><br><span class="line"></span><br><span class="line">fastcgi_param PHP_FLAG &quot;session.auto_start=off \n suhosin.session.cryptua=off&quot;;</span><br><span class="line">fastcgi_param PHP_VALUE &quot;memory_limit=768M \n max_execution_time=18000&quot;;</span><br><span class="line">fastcgi_read_timeout 600s;</span><br><span class="line">fastcgi_connect_timeout 600s;</span><br><span class="line"></span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">include fastcgi_params;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gzip on;</span><br><span class="line">gzip_disable &quot;msie6&quot;;</span><br><span class="line"></span><br><span class="line">gzip_comp_level 6;</span><br><span class="line">gzip_min_length 1100;</span><br><span class="line">gzip_buffers 16 8k;</span><br><span class="line">gzip_proxied any;</span><br><span class="line">gzip_types</span><br><span class="line">text/plain</span><br><span class="line">text/css</span><br><span class="line">text/js</span><br><span class="line">text/xml</span><br><span class="line">text/javascript</span><br><span class="line">application/javascript</span><br><span class="line">application/x-javascript</span><br><span class="line">application/json</span><br><span class="line">application/xml</span><br><span class="line">application/xml+rss</span><br><span class="line">image/svg+xml;</span><br><span class="line">gzip_vary on;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>检查 nginx 设置并重启：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
+
+<p>现在可以进入安装页面了</p>
+<h2 id="记-selinux-对文件权限的影响-（可跳过）"><a href="#记-selinux-对文件权限的影响-（可跳过）" class="headerlink" title="记 selinux 对文件权限的影响 （可跳过）"></a><a href="#%E8%AE%B0-selinux-%E5%AF%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E5%BD%B1%E5%93%8D-%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"></a>记 selinux 对文件权限的影响 （可跳过）</h2><p>SELinux(Security-Enhanced Linux) 是美国国家安全局（NSA）对于强制访问控制的实现。安装过程中发现文件权限设置正确，但仍然出现了 permission denied 错误。 查看状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sestatus</span><br></pre></td></tr></table></figure>
+
+<p>SELinux is in ‘Enforcing’ mode。</p>
+<h3 id="方案一：关闭"><a href="#方案一：关闭" class="headerlink" title="方案一：关闭"></a><a href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E5%85%B3%E9%97%AD"></a>方案一：关闭</h3><p>可以关闭它，临时关闭（不用重启）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+
+<p>设置为 0 成为 permissive 模式，为 1 成为 enforcing模式 。 永久关闭： 修改 <code>/etc/selinux/config</code> 文件 将 SELINUX&#x3D;enforcing 改为 SELINUX&#x3D;disabled 重启机器即可</p>
+<h3 id="方案二：设置权限"><a href="#方案二：设置权限" class="headerlink" title="方案二：设置权限"></a><a href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"></a>方案二：设置权限</h3><p>安装管理工具：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install policycoreutils-python</span><br></pre></td></tr></table></figure>
+
+<p>切换到网站目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">semanage fcontext -a -t httpd_sys_rw_content_t &#x27;/usr/share/nginx/html/magento/app/etc(/.*)?&#x27;</span><br><span class="line">semanage fcontext -a -t httpd_sys_rw_content_t &#x27;/usr/share/nginx/html/magento/var(/.*)?&#x27;</span><br><span class="line">semanage fcontext -a -t httpd_sys_rw_content_t &#x27;/usr/share/nginx/html/magento/generated(/.*)?&#x27;</span><br><span class="line">semanage fcontext -a -t httpd_sys_rw_content_t &#x27;/usr/share/nginx/html/magento/pub/media(/.*)?&#x27;</span><br><span class="line">semanage fcontext -a -t httpd_sys_rw_content_t &#x27;/usr/share/nginx/html/magento/pub/static(/.*)?&#x27;</span><br><span class="line">restorecon -Rv &#x27;/usr/share/nginx/html/magento/&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-ftp-（可选）"><a href="#安装-ftp-（可选）" class="headerlink" title="安装 ftp （可选）"></a><a href="#%E5%AE%89%E8%A3%85-ftp-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>安装 ftp （可选）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install ftp vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>防火墙添加 ftp 服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-service=ftp</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>ftp 的配置文件位置为 <code>/etc/vsftpd/vsftpd.conf</code> 将 write_enable&#x3D;YES 前的 # 删除 将 local_umask&#x3D;002 前的 # 删除 service vsftpd restart</p>
+<h2 id="查看-ng-和-phpfpm-的权限"><a href="#查看-ng-和-phpfpm-的权限" class="headerlink" title="查看 ng 和 phpfpm 的权限"></a><a href="#%E6%9F%A5%E7%9C%8B-ng-%E5%92%8C-phpfpm-%E7%9A%84%E6%9D%83%E9%99%90"></a>查看 ng 和 phpfpm 的权限</h2><p>nginx 本身不能处理 PHP，它只是个 web 服务器。当接收到客户端请求后，如果是 php 请求，则转发给 php 解释器处理，并把结果返回给客户端。如果是静态页面的话，nginx 自己处理，然后把结果返回给客户端。 Nginx 下 php 解释器使用最多的就是 fastcgi 。一般情况 nginx 把 php 请求转发给 fastcgi 管理进程处理，fastcgi 管理进程选择 cgi 子进程进行处理，然后把处理结果返回给 nginx。 在这个过程中就牵涉到两个用户，一个是 nginx 运行的用户，一个是 php-fpm 运行的用户。如果访问的是一个静态文件的话，则只需要 nginx 运行的用户对文件具有读权限或者读写权限。 而如果访问的是一个 php 文件的话，则首先需要 nginx 运行的用户对文件有读取权限，读取到文件后发现是一个 php 文件，则转发给 php-fpm，此时则需要 php-fpm 用户对文件具有有读权限或者读写权限。 查看 nginx 权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps auxgrep nginx</span><br></pre></td></tr></table></figure>
+
+<p>查看 php-fpm 权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux grep php-fpm</span><br></pre></td></tr></table></figure>
+
+<p>参考<a target="_blank" rel="noopener" href="http://www.cnblogs.com/zrp2013/p/4183546.html">脚踏实地云 nginx、php-fpm、mysql用户权限解析</a></p>
+<h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a><a href="#%E5%85%B6%E4%BB%96%E5%8F%82%E8%80%83"></a>其他参考</h2><p><a target="_blank" rel="noopener" href="https://www.howtoforge.com/tutorial/how-to-install-magento-2-1-on-centos-7/">How to Install Magento 2.1 on CentOS 7</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/php/" rel="tag"># php</a>
+              <a href="/tags/centos/" rel="tag"># centos</a>
+              <a href="/tags/LNMP-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/" rel="tag"># LNMP 环境安装</a>
+              <a href="/tags/magento-2-2/" rel="tag"># magento 2.2</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/nginx/" rel="tag"># nginx</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/linux-%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" rel="prev" title="Linux 的文件权限">
+      <i class="fa fa-chevron-left"></i> Linux 的文件权限
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/hyper-v-centos-%E9%9D%99%E6%80%81-ip-%E8%AE%BE%E7%BD%AE/" rel="next" title="hyper-v centos 静态 IP 设置">
+      hyper-v centos 静态 IP 设置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-nginx"><span class="nav-number">1.</span> <span class="nav-text">安装 nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-php"><span class="nav-number">2.</span> <span class="nav-text">安装 php</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-php-ini"><span class="nav-number">2.1.</span> <span class="nav-text">修改 php.ini</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-phpfpm-%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">修改 phpfpm 的设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-php-%E8%83%BD%E5%90%A6%E6%AD%A3%E5%B8%B8%E8%AE%BF%E9%97%AE%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">测试 php 能否正常访问（可跳过）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B0-502-%E9%94%99%E8%AF%AF-%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">记 502 错误 （可跳过）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-MySQL-5-7"><span class="nav-number">4.</span> <span class="nav-text">安装 MySQL 5.7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.1.</span> <span class="nav-text">创建用户和数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#composer-%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85-Magento-2-2"><span class="nav-number">5.</span> <span class="nav-text">composer 方式安装 Magento 2.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-ng-%E9%85%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">修改 ng 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0-selinux-%E5%AF%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E5%BD%B1%E5%93%8D-%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">记 selinux 对文件权限的影响 （可跳过）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%9A%E5%85%B3%E9%97%AD"><span class="nav-number">7.1.</span> <span class="nav-text">方案一：关闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%9A%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"><span class="nav-number">7.2.</span> <span class="nav-text">方案二：设置权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-ftp-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">安装 ftp （可选）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-ng-%E5%92%8C-phpfpm-%E7%9A%84%E6%9D%83%E9%99%90"><span class="nav-number">9.</span> <span class="nav-text">查看 ng 和 phpfpm 的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E8%80%83"><span class="nav-number">10.</span> <span class="nav-text">其他参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Web 安全字体默认情形下，浏览器是以系统中已经安装的字体来进行渲染的。 css 的 font-family 命令，指定了网页元素所使用的字体。下面是一个例子： 1234font-family: Georgia, &quot;Times New Roman&quot;,             &quot;Microsoft YaHei&quot;, &quot;微软雅黑&quot;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web 字体">
+<meta property="og:url" content="http://example.com/web-fonts/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="Web 安全字体默认情形下，浏览器是以系统中已经安装的字体来进行渲染的。 css 的 font-family 命令，指定了网页元素所使用的字体。下面是一个例子： 1234font-family: Georgia, &quot;Times New Roman&quot;,             &quot;Microsoft YaHei&quot;, &quot;微软雅黑&quot;,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/web-fonts.jpg">
+<meta property="article:published_time" content="2016-11-14T08:05:34.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.146Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="字体">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/11/web-fonts.jpg">
+
+<link rel="canonical" href="http://example.com/web-fonts/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Web 字体 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/web-fonts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web 字体
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-14 16:05:34" itemprop="dateCreated datePublished" datetime="2016-11-14T16:05:34+08:00">2016-11-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Web-安全字体"><a href="#Web-安全字体" class="headerlink" title="Web 安全字体"></a><a href="#web-%E5%AE%89%E5%85%A8%E5%AD%97%E4%BD%93"></a>Web 安全字体</h2><p>默认情形下，浏览器是以系统中已经安装的字体来进行渲染的。</p>
+<p>css 的 font-family 命令，指定了网页元素所使用的字体。下面是一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">font-family: Georgia, &quot;Times New Roman&quot;,</span><br><span class="line">             &quot;Microsoft YaHei&quot;, &quot;微软雅黑&quot;,</span><br><span class="line">             STXihei, &quot;华文细黑&quot;,</span><br><span class="line">             serif;</span><br></pre></td></tr></table></figure>
+
+<p>它的规则有三条：</p>
+<ol>
+<li>优先使用排在前面的字体。</li>
+<li>如果找不到该种字体，或者该种字体不包括所要渲染的文字，则使用下一种字体。</li>
+<li>如果所列出的字体，都无法满足需要，则让操作系统自行决定使用哪种字体。</li>
+</ol>
+<p>但是世界上有那么多的系统，那么多版本，预装的字体也大不相同，如果让操作系统自行决定，可能结果不是很好看。所以，人们对主流个人计算机操作系统中的系统字体做了统计，选出最小公分母，也就是大家都有的字体，称之为 Web 安全字体。</p>
+<p>要了解 Web 安全字体，可以参阅 <a target="_blank" rel="noopener" href="http://www.w3schools.com/cssref/css_websafe_fonts.asp">CSS Web Safe Font Combinations</a></p>
+<p>下面举一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: Arial, Helvetica, sans-serif;</span><br></pre></td></tr></table></figure>
+
+<p>我们选择 Arial 作为首选字体（注：Arial 字体是最常用的 sans serif 字体，也是 Windows 的默认字体，当字体很小是不容易阅读），但是，苹果系统中没有这个字体，所以我们选择 Helvetica（和 Arial 很相似）作为第二备选字体，最后我们选择 sans-serif 作为第三备选字体，如果在一个既没有 Arial 也没有 Helvetica 的系统里，那么浏览器会使用默认的 sans-serif 字体来渲染文字。这样，我们很大程度上保证了使用不同操作系统的访问者都能看到相同（至少是类似）的页面文字。</p>
+<p>除了 Arial，常见的安全字体还有：</p>
+<ul>
+<li>Verdana 字体，它是微软公司的核心字体之一，专门为屏幕显示而开发的。它的应用广泛，宽度大而易于阅读，是显示器中最清晰的字体。CSS 写法：<code>font-family: Verdana, Geneva, sans-serif;</code></li>
+<li>Times New Roman 字体，它是最常用的 serif 字体，是浏览器默认的字体。小号字的易读性也很差。CSS 写法：<code>font-family: &#39;Times New Roman&#39;, Times, serif;</code></li>
+</ul>
+<p>以上说的这些其实是西文字体，对于中文字体，当然涉及到各类系统中中文字体的安装情况的一个统计，博主会另写一篇。</p>
+<p>安全字体显然是不够用的，所以也出现了一些通过图像，Adobe Flash或其他基于非文本的技术的解决办法。这里不做展开，但是这种方式的缺点很明显，就是它不是文本，不可以选择、这样就不能很好地被识别，翻译，供残疾人使用的设备访问。所以这种技术越来越被淘汰了。</p>
+<h2 id="font-face"><a href="#font-face" class="headerlink" title="@font-face"></a><a href="#@font-face"></a>@font-face</h2><p>他是 CSS3 的一项新特性，也不是什么新鲜技术，它最早出现在 CSS2 的规范定义中，但在 CSS2.1 中又被删除，现在正式列入 CSS3。目前主流的浏览器（IE 4+&#x2F;Firefox 3.5+&#x2F;Chrome 1+&#x2F;Safari 3.1+&#x2F;Opera 10+）都能够支持这个属性，所以不用担心会有浏览器兼容性问题。</p>
+<p>@font-face 允许您在网页中使用电脑中没有安装的字体，完全摆脱安全字体的限制。只需将字体包安装在服务器上，当用户加载网页时，字体包会自动下载到用户机器上，保证字体能够正确渲染。</p>
+<p>随着 @font-face 的不断流行，产生了许多新的字体格式图标集，称为网络字体。Google Fonts API 就是基于@font-face 的特性开发的一套优秀的网络字体库。</p>
+<p>网络字体的优点有很多：</p>
+<ul>
+<li>使用的是真正的文本，而不是图片，放大和缩小都不会影响渲染效果，用户体验好；</li>
+<li>可以被搜索引擎辨认；</li>
+<li>不像图片每次需要重新生成，添加删除更方便。</li>
+</ul>
+<p>这里先讲原理，首先，使用<code>@font-face</code>声明一个字体集，使用<code>font-family</code>描述符为它提供一个名称，然后使用<code>src</code>指向包含字体本身的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">  src: url(&#x27;awesome-font.ttf&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里，通过链接到一个名为 <code>wesome-font.ttf</code> 的字体文件，定义了一个名为Awesome Font 的字体集。</p>
+<p>然后，在您的CSS中，使用 <code>font-family</code> 属性将该字体应用到一个 HTML 元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1 &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是，Web 字体具有许多不同的格式，并且各种 Web 浏览器支持这些格式的不同子集。</p>
+<p><img src="/wp-content/uploads/2016/11/web-fonts.jpg"></p>
+<p>也就是说，为了支持所有的主流 Web 浏览器，一个 <code>@font-face</code> CSS 声明实际上无法像前面提到的那样那么简单：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">  src: url(&#x27;awesome-font.ttf&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它应该是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">  src: url(&#x27;awesome-font.eot&#x27;); /* IE9 Compat Modes */</span><br><span class="line">  src: url(&#x27;awesome-font.eot?#iefix&#x27;) format(&#x27;embedded-opentype&#x27;), /* IE6-IE8 */</span><br><span class="line">       url(&#x27;awesome-font.woff&#x27;) format(&#x27;woff&#x27;), /* Modern Browsers */</span><br><span class="line">       url(&#x27;awesome-font.ttf&#x27;)  format(&#x27;truetype&#x27;), /* Safari, Android, iOS */</span><br><span class="line">       url(&#x27;awesome-font.svg#svgFontName&#x27;) format(&#x27;svg&#x27;); /* Legacy iOS */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结起来要点就是：</p>
+<ul>
+<li>将 WOFF 2.0 变体提供给支持它的浏览器</li>
+<li>将 WOFF 变体提供给大多数浏览器</li>
+<li>将 TTF 变体提供给旧 Android（4.4 版以下）浏览器</li>
+<li>将 EOT 变体提供给旧 IE（IE9 之下）浏览器</li>
+</ul>
+<p>从技术上讲，还有 SVG 字体容器，但 IE 和 Firefox 从不支持它，并且现在 Chrome 也不再支持它。因此，其用途就很有限。</p>
+<p>看到这里，感觉脑袋都要炸了。Google Fonts 提供了便利。Google Fonts 会根据浏览器的类型，来加载不同的 CSS 以加载不同格式的字体。</p>
+<h2 id="如何使用-Google-Fonts"><a href="#如何使用-Google-Fonts" class="headerlink" title="如何使用 Google Fonts"></a><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-google-fonts"></a>如何使用 Google Fonts</h2><ol>
+<li><p>标准方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">link rel=&#x27;stylesheet&#x27; type=&#x27;text/css&#x27; href=&#x27;http://fonts.googleapis.com/css?family=Condiment&#x27;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>@import</code> 方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import url(http://fonts.googleapis.com/css?family=Condiment);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JavaScript 方式（代码省略）</p>
+</li>
+</ol>
+<h2 id="国内环境使用-Google-Fonts"><a href="#国内环境使用-Google-Fonts" class="headerlink" title="国内环境使用 Google Fonts"></a><a href="#%E5%9B%BD%E5%86%85%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8-google-fonts"></a>国内环境使用 Google Fonts</h2><p>有知乎大神，通过 Best Trace 追踪路由器，发现 Google 字体库的国内服务器在北京和上海，另外通过站长工具 ping 测试<code>http://fonts.googleapis.com</code>，速度是杠杆的。<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24955477">参考地址</a>。</p>
+<p>博主在本地也测试了引用 google fonts 的某个字体，速度是 74ms。所以看起来本阶段可以直接用 Google Fonts 了。之前的观念可以改改了。。</p>
+<p>如果速度依然有问题，可以参考参考文档的最后一条，结合前面的原理，应该是很好理解的。</p>
+<h2 id="字体图标原理"><a href="#字体图标原理" class="headerlink" title="字体图标原理"></a><a href="#%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E5%8E%9F%E7%90%86"></a>字体图标原理</h2><p><code>@font-face</code>引入一个字体集，这个字体集对应着字符的显示信息，那么浏览器读取到 <code>A</code> 的时候，就会使用 <code>A</code> 对应的 Unicode 编码去查找字体集中对应的显示描述信息。</p>
+<p>字体图标只是让某些 unicode 码（可以自己创建）对应我们自定义的字体库，而我们的字体库文件中有关于该 unicode 码的显示描述信息而已。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">font-family: &#x27;Glyphicons Halflings&#x27;;</span><br><span class="line">content: &quot;\e131&quot;;</span><br><span class="line">padding-right: 8px;</span><br><span class="line">color: #b1b1b1;</span><br><span class="line">float: left;</span><br></pre></td></tr></table></figure>
+
+<p>这里 unicode 码就是 <code>\e131</code>。查看网站的加载信息，可以发现我们引用了 Glyphicons Halflings 字体。他的格式和字体的格式也是相同的。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://www.adobe.com/cn/devnet/html5/articles/web-typography-and-css-font-face.html">Web版式和@font-face简介</a><br><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/web/1505_zhangyan_googlefont/#icomments">使用 Google Fonts 为网页添加美观字体</a><br><a target="_blank" rel="noopener" href="https://developers.google.com/fonts/docs/technical_considerations">Google Fonts Technical Considerations</a><br><a target="_blank" rel="noopener" href="https://uhy.github.io/2014/06/22/google-fonts-api/">如何优雅的使用Google Fonts API</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%97%E4%BD%93/" rel="tag"># 字体</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/variables/" rel="prev" title="使用变量(Using Variables)">
+      <i class="fa fa-chevron-left"></i> 使用变量(Using Variables)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blocks/" rel="next" title="Blocks">
+      Blocks <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-%E5%AE%89%E5%85%A8%E5%AD%97%E4%BD%93"><span class="nav-number">1.</span> <span class="nav-text">Web 安全字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#font-face"><span class="nav-number">2.</span> <span class="nav-text">@font-face</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-Google-Fonts"><span class="nav-number">3.</span> <span class="nav-text">如何使用 Google Fonts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8-Google-Fonts"><span class="nav-number">4.</span> <span class="nav-text">国内环境使用 Google Fonts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E5%8E%9F%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">字体图标原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">6.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

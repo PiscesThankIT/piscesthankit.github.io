@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="当有两台以上网络设备需要通信，我们需要组建网络，从物理上来讲，只要做一件事情，一根网线将两者相连。此时在物理上两台机器已经可以通信。你问我你这样做了但是为什么不能联机打游戏，这是因为目前两台设备的网络参数没有被正确的设置，所以互相不理睬对方发来的数据包，所以你游戏玩不起来，但是网络在物理上已经联通了，不信你看下你的网卡上的灯(如果有的话)是不是在闪烁。至于要如何才能达到设备之间的程序可以正常通信(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="专业网络知识要让小白兔看得懂">
+<meta property="og:url" content="http://example.com/%E4%B8%93%E4%B8%9A%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E8%A6%81%E8%AE%A9%E5%B0%8F%E7%99%BD%E5%85%94%E7%9C%8B%E5%BE%97%E6%87%82/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="当有两台以上网络设备需要通信，我们需要组建网络，从物理上来讲，只要做一件事情，一根网线将两者相连。此时在物理上两台机器已经可以通信。你问我你这样做了但是为什么不能联机打游戏，这是因为目前两台设备的网络参数没有被正确的设置，所以互相不理睬对方发来的数据包，所以你游戏玩不起来，但是网络在物理上已经联通了，不信你看下你的网卡上的灯(如果有的话)是不是在闪烁。至于要如何才能达到设备之间的程序可以正常通信(">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-01T06:49:51.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.358Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/%E4%B8%93%E4%B8%9A%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E8%A6%81%E8%AE%A9%E5%B0%8F%E7%99%BD%E5%85%94%E7%9C%8B%E5%BE%97%E6%87%82/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>专业网络知识要让小白兔看得懂 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E4%B8%93%E4%B8%9A%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E8%A6%81%E8%AE%A9%E5%B0%8F%E7%99%BD%E5%85%94%E7%9C%8B%E5%BE%97%E6%87%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          专业网络知识要让小白兔看得懂
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-01 14:49:51" itemprop="dateCreated datePublished" datetime="2019-04-01T14:49:51+08:00">2019-04-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" itemprop="url" rel="index"><span itemprop="name">网络通信</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>当有两台以上网络设备需要通信，我们需要组建网络，从物理上来讲，只要做一件事情，一根网线将两者相连。此时在物理上两台机器已经可以通信。你问我你这样做了但是为什么不能联机打游戏，这是因为目前两台设备的网络参数没有被正确的设置，所以互相不理睬对方发来的数据包，所以你游戏玩不起来，但是网络在物理上已经联通了，不信你看下你的网卡上的灯(如果有的话)是不是在闪烁。至于要如何才能达到设备之间的程序可以正常通信(可以联机打游戏)，需要了解OSI七层模型(虽然你看的似懂非懂，但是你先看一下，混个脸熟)： 1、物理层： 主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用是传输比特流（就是由1、0转化为电流强弱来进行传输,到达目的地后在转化为1、0，也就是我们常说的数模转换与模数转换）。这一层的数据叫做比特。 　　 2、数据链路层： 定义了如何让格式化数据以进行传输，以及如何让控制对物理介质的访问。这一层通常还提供错误检测和纠正，以确保数据的可靠传输。 　　 3、网络层： 在位于不同地理位置的网络中的两个主机系统之间提供连接和路径选择。Internet的发展使得从世界各站点访问信息的用户数大大增加，而网络层正是管理这种连接的层。 　　 4、运输层： 定义了一些传输数据的协议和端口号（WWW端口80等），如： TCP（transmission control protocol –传输控制协议，传输效率低，可靠性强，用于传输可靠性要求高，数据量大的数据） UDP（user datagram protocol–用户数据报协议，与TCP特性恰恰相反，用于传输可靠性要求不高，数据量小的数据，如QQ聊天数据就是通过这种方式传输的）。 主要是将从下层接收的数据进行分段和传输，到达目的地址后再进行重组。常常把这一层数据叫做段。 　　 5、会话层： 通过运输层（端口号：传输端口与接收端口）建立数据传输的通路。主要在你的系统之间发起会话或者接受会话请求（设备之间需要互相认识可以是IP也可以是MAC或者是主机名） 　　 6、表示层： 可确保一个系统的应用层所发送的信息可以被另一个系统的应用层读取。例如，PC程序与另一台计算机进行通信，其中一台计算机使用扩展二一十进制交换码（EBCDIC），而另一台则使用美国信息交换标准码（ASCII）来表示相同的字符。如有必要，表示层会通过使用一种通格式来实现多种数据格式之间的转换。 　　 7、应用层： 是最靠近用户的OSI层。这一层为用户的应用程序（例如电子邮件、文件传输和终端仿真）提供网络服务。 解释一下： 协议：即语法，规范，约定，表示对于现象或者变化遵守协议的双方都对其做相同的理解，并将自己的意愿用公认的方式表达出来，以便于相互之间能够理解和协作。 在两台设备进行程序通讯的时候，我们实实在在看到的是那根不动的网线以及网卡上闪烁的灯，这是你看到的物理设备。在物理设备上，我们开始想象，里面是电信号。是代表1和0的高电压低电压不断的通过。这里每一个高电压与一个低电压就是一个bit，我们看到的这一个个bit就是通讯数据的最基本单位，至于多少的电压理解为1，多少的电压理解为0，这个就是物理层协议规定的问题，也就是说，如果通信设备共同遵循物理层协议，那么双方就能够理解或者发送对方理解的bit流。 数据链路层，是第二层，这一层基于前一层，将bit流打包，形成第二层数据帧，这个你这么理解，我监听对方的数据传输，我们约定我每次监听对方几个bit，将几个bit作为一个组合来理解，这个组合被称为数据帧，因为我们现在看的是按照第二层协议来组合的bit流，因此称为二层数据帧，二层数据帧里面打包了数据的来源设备和目标设备的物理标识(MAC地址)用于区分数据从哪里来要到哪里去。 往后的每一层，都是再前一层的基础上按照各自的目的继续组合数据帧，形成隔层的数据帧，最终这个打包了若干次的数据包被送到对端，对端依次从高到低对数据包进行拆帧，然后理解这个包的意图并做出反应，这个时候你们就可以联机打游戏了(前提游戏支持联机玩哦。。扫雷好像不能联机打)。 现在我们考虑网络的搭建： 将设备相连肯定是要用网线的，两个设备一个网线就够了，三个设备(三个网口)你要几个网线呢？嘿嘿，你的线没法插了。 讲个新设备，集线器(HUB)。 你这样想象集线器：它上面有很多接口。他把任何一个口上收到的数据在所有的接口上发送一遍，这个过程我们广播。也就是说，一个机器发送的数据包，其他设备都是能收到的(这也就是为什么网络可以被监听)，只是这些设备选择性的丢弃掉跟自己不相关的数据包(目的地址(目标MAC)跟我的地址不一样)。 ok，HUB能够解决数据互联的问题，但是这个傻瓜啥事都广播，导致线路里面有大量的包都是没有意义的，需要被丢弃的，所以我们对这个设备进行了升级，我们搞出来一个高级的玩意，叫做交换机。交换机的改进在于交换机会学习各端口所接设备的mac地址，如果没学会就广播数据包，广播后就学到了，学到后就不需要广播了，根据目标mac地址，就可以选择对应的端口发送数据，这样网络性能就有了提高。 然而有了交换机减少了广播报，但是当交换机的设备越来越多，还是会出现许多包需要通过广播来传输，这个时候我们需要控制网络的规模，其实就是为了控制广播量，将广播包的数量控制在交换机性能范围之内。方法简单，拆分，拆成多个小网络，每个网络连接一个独立的交换机，这样每个交换机只在各自的小网络内广播。此时有需要互联，怎么办，直接接在一起，这是不行的，因为你接在一起后一个交换机的数据包会发送到另一台，另一台收到包后还是会有广播的可能，这样还是会有很多数据包在所有交换机上都广播一遍，很明显，这违背了我们隔离小网络的初衷。 我们添加一个新设备，路由器。 路由器工作在第三层，你理解为他在上一层的基础上又添加了ip地址信息，当然数据包除了有了来源mac地址与目标mac地址，又有了来源ip地址和目标ip地址。路由器理解第三层的数据包，我们将独立的交换机接在路由器的各个端口上，当某一个交换机将数据包广播发送到路由器后，路由器接到数据后不会立刻广播，他会看下目标ip地址，然后根据ip地址后选择相应的端口发送，这保证了广播不会出现在不相关的交换机上。这样路由就很好的隔离了各个小网络，同时又让各个小网络能够有序通信。 好了，网络的基础建设就是建设交换机和路由器，用交换机组件小网络，用路由器连接小网络，就这么简单，按照这个方法能够构建高性能且稳定的网络，但是成本可能比较高。 因为每当分隔新的小网络，你就需要添加新的交换机，将新的交换机接到路由器上，然而买新的交换机需要钱，而且路由端口也会有用完的时候，你需要购买更多的路由，总之，你可能忙于布线，忙于添加新设备，忙于连接新设备。 给你一个新技术VLAN(虚拟局域网) 我们设计了一种全新的交换机，他比我们上面说的交换机更加智能，他能够在交换机上设定若干个逻辑区域，然后将端口划分到这些独立区域里面去，这样属于同一个独立区域的端口会参与广播，属于不同独立区域的端口之间不可以广播，这样就可以在交换机上灵活的更改局域网的数量和每个局域网的大小。由于这些网络设备在物理上属于同一个设备，在逻辑上又属于不同的网络，所以我们称这种网络为虚拟局域网，虚拟局域网用一个id来标识,这个id称为VLANID，其范围为1-4096(由相关的协议数据结构决定)。不同的id代表不同的虚拟局域网，不同的局域网内部广播，之间隔离，需要通信可以将不同的局域网内部端口接到路由器上，这样就实现了局域网之间的联通。 再来一个更加智能的设备，三层交换机。这个交换机在上面的基础上，集成了路由模块，你通过这个交换机就可以实现局域网的隔离和通信。 上面你理解的没问题的话，我们再考虑更加靠近实际的问题。 假设公司有两层楼，一层又销售部和生产部，二楼也有销售部和生产部。我们通常会在每一层使用楼道交换机，然后将该层所有端口接入楼道交换机，同时我们可能会希望做这样的隔离，让一楼销售部和二楼销售部在一个局域网中，一楼生产部和二楼生产部在一个局域网中，那你按照之前的知识，你在一楼的交换机上划分两个局域网 vlan1 vlan2，在二楼也划分vlan1 vlan2 然后 一楼交换机的vlan1 和二楼交换机的vlan1用一个跳线接起来，一楼vlan2和二楼vlan2用一个跳线接起来，这样数据就在各自的局域网内部广播了。但是这样做有点麻烦，就是你需要两根条线连接两个交换机。除了多使用一根线，你还需要多消耗端口。当你的部门变多，你需要消耗更多的跳线和端口。 给你一个新技术，trunk。 我们之前所讲的vlan里面的连接口都是access口，在支持vlan的交换机内部，所有的数据帧都是带标签(tag)的(在原始数据帧上添加vlanid表示该数据在属于哪一个vlan，有两种添加标签的方式dot1Q和ISL)，access口的特点是，在数据包发送到对端设备的时候剥离标签，这样普通的网卡就能接收到，因此我们之前一直都是使用access口来达成我们的目标。但是如果两个交换机互联，并且我们希望两个交换机上的多个vlan之间能够广播数据，那么可以使用trunk口，trunk口的作用就是可以配置数据帧在发送的时候不剥离vlan标识，这样另外一个交换机turnk口收到这个包的时候就能知道这个包在原先交换机是属于哪个vlan，这下要转发到哪些端口当中去。这样两端trunk口连接的一根跳线就可以使得不同交换机上的多个vlan能够实现广播通信。 然后讲个稍微烧脑袋的，但是你理解了的话对于你了解trunk口特别有作用： 1、支持vlan的交换机内部转发数据，都是带tag的。 2、交换机端口是untag或者tag是针对不同vlan而言的。可以在vlan1上带tag，在vlan2上不带tag 3、交换机端口需要设定pvid，默认vlanid，其只有一个作用，即使在收到不带tag的包(普通电脑发送的数据包)的时候，打上默认vlanid的标签。 4、端口在某vlan上是tag，那么接受到untag数据帧，就会按照pvid添加tag后交给内部转发，接收到是tag数据帧，则会原样转交内部转发。在发送数据帧的时候，会将转发过来的数据帧进行转发要么本来带数据帧，要么带pvid数据帧。 5、如果端口在某vlan上是untag，那么接收到tag包会直接丢弃，接收到untag后会按照pvid添加tag后转交内部转发，在发送数据帧的时候，会剥离tag信息后进行转发。 6、一个端口只能拥有一个PVID，当一个物理端口拥有了一个PVID的时候，必定会拥有和PVID的TAG等同的VlanID，而且在这个VlanID上，这个物理端口必定是Untagged Port access口与trunk的定义是厂商自己定的，通常如下： 所谓access口，他表示这个端口在某一个vlan上是untagged，因此他不能从对端设备接受tagged包，发送包的时候，会剥离tag信息。它受到的一般都是untagged报文，发送的也是untagged报文 所谓trunk口，表示这个端口在pvid的vlan上是untagged，在其他端口是tagged，这个端口通常只与交换机的turnk连接，收到的都是tagged报文，发送的也是tagged报文。 以上信息了解了你就可以搭建合理的二层网络了，就这样吧。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-1-fpc-%E5%8A%A8%E6%80%81%E5%86%85%E5%AE%B9/" rel="prev" title="magento 1 fpc 动态内容">
+      <i class="fa fa-chevron-left"></i> magento 1 fpc 动态内容
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/ispkautoincrement/" rel="next" title="resource model 中的 $_isPkAutoIncrement">
+      resource model 中的 $_isPkAutoIncrement <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

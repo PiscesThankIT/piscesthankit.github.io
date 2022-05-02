@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/14/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/14/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/set-position-or-order-of-a-new-tab-on-the-product-detail-page-in-magento2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/set-position-or-order-of-a-new-tab-on-the-product-detail-page-in-magento2/" class="post-title-link" itemprop="url">如何修改 Magento 2 product detail page 的 tab 名称和顺序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-25 17:18:21" itemprop="dateCreated datePublished" datetime="2017-08-25T17:18:21+08:00">2017-08-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">Magento 2 主题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Magento 2 product detail page 的 tab 指的是下图中红色框中的选项卡。 假设我想把 More information 改成 Specifications 并且让他在第一个位置，Details 改名为 Description 位于第二个位置。 <img src="/wp-content/uploads/2017/08/magento2-product-detail-page-tab.png"> 博主试过使用 Magento 的 <code>before</code> 和 <code>after</code> 来更改 tab 的顺序，但是没有成功（这不代表这个方法就一定不可以，此处仅是记录一下，以后有机会可以研究为什么没有成功。） 以下是一个成功的方法。通过 <code>catalog_product_view.xml</code> 来修改名称参数，并传递了一个额外的参数用来控制显示的顺序，修改了 <code>details.phtml</code> 来使用该参数，以达到排序的效果。</p>
+<h2 id="第一步：layout-xml-的修改"><a href="#第一步：layout-xml-的修改" class="headerlink" title="第一步：layout xml 的修改"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Alayout-xml-%E7%9A%84%E4%BF%AE%E6%94%B9"></a>第一步：layout xml 的修改</h2><p>我们的修改位于主题层面 <code>&lt;magento_root&gt;/app/design/frontend/&lt;Vendor&gt;/&lt;theme&gt;/Magento_Catalog/layout/catalog_product_view.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">/**</span><br><span class="line"> * Copyright © 2016 SW-THEMES. All rights reserved.</span><br><span class="line"> * See COPYING.txt for license details.</span><br><span class="line"> */</span><br><span class="line">--&gt;</span><br><span class="line">&lt;page layout=&quot;2columns-right&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;referenceBlock name=&quot;product.info.details&quot;&gt;</span><br><span class="line">            &lt;referenceBlock name=&quot;product.attributes&quot;&gt;</span><br><span class="line">                &lt;arguments&gt;</span><br><span class="line">                    &lt;argument name=&quot;title&quot; translate=&quot;true&quot; xsi:type=&quot;string&quot;&gt;Specifications&lt;/argument&gt;</span><br><span class="line">                    &lt;argument name=&quot;priority&quot; xsi:type=&quot;string&quot;&gt;1&lt;/argument&gt;</span><br><span class="line">                &lt;/arguments&gt;</span><br><span class="line">            &lt;/referenceBlock&gt;</span><br><span class="line">            &lt;referenceBlock name=&quot;product.info.description&quot;&gt;</span><br><span class="line">                &lt;arguments&gt;</span><br><span class="line">                    &lt;argument name=&quot;title&quot; translate=&quot;true&quot; xsi:type=&quot;string&quot;&gt;Description&lt;/argument&gt;</span><br><span class="line">                    &lt;argument name=&quot;priority&quot; xsi:type=&quot;string&quot;&gt;2&lt;/argument&gt;</span><br><span class="line">                &lt;/arguments&gt;</span><br><span class="line">            &lt;/referenceBlock&gt;</span><br><span class="line">            &lt;referenceBlock name=&quot;reviews.tab&quot;&gt;</span><br><span class="line">                &lt;arguments&gt;</span><br><span class="line">                    &lt;argument name=&quot;priority&quot; xsi:type=&quot;string&quot;&gt;3&lt;/argument&gt;</span><br><span class="line">                &lt;/arguments&gt;</span><br><span class="line">            &lt;/referenceBlock&gt;</span><br><span class="line">        &lt;/referenceBlock&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二步：修改-details-phtml"><a href="#第二步：修改-details-phtml" class="headerlink" title="第二步：修改 details.phtml"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%BF%AE%E6%94%B9-details.phtml"></a>第二步：修改 details.phtml</h2><p>拷贝 <code>&lt;magento_root&gt;/vendor/magento-catalog-view/frontend/templates/product/view/details.phtml</code> 到 <code>&lt;magento_root&gt;/app/design/frontend/&lt;Vendor&gt;/&lt;theme&gt;/Magento_Catalog/templates/product/view/details.phtml</code> 修改拷贝后的 <code>details.phtml</code> 使用传递的参数排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php if ($detailedInfoGroup = $block-&gt;getGroupChildNames(&#x27;detailed_info&#x27;, &#x27;getChildHtml&#x27;)):?&gt;</span><br><span class="line">    &lt;div class=&quot;product info detailed&quot;&gt;</span><br><span class="line">        &lt;?php $layout = $block-&gt;getLayout(); ?&gt;</span><br><span class="line">        &lt;?php</span><br><span class="line">            # We create a new array;</span><br><span class="line">            $newPriority = array();</span><br><span class="line">            # forEach the original $detailedInfoGroup Array;</span><br><span class="line">            foreach ($detailedInfoGroup as $name)&#123;</span><br><span class="line">                $alias = $layout-&gt;getElementAlias($name);</span><br><span class="line">                # Get the priority which we applied via xml file</span><br><span class="line">                # If no priority is applied via xml file then just set it to 10</span><br><span class="line">                $priority = $block-&gt;getChildData($alias,&#x27;priority&#x27;) ? $block-&gt;getChildData($alias,&#x27;priority&#x27;) : &#x27;10&#x27;;</span><br><span class="line">                # variables pushed into new two-dimensional array</span><br><span class="line">                array_push($newPriority, array($name, $priority));</span><br><span class="line">            &#125;</span><br><span class="line">            # Sort array by priority</span><br><span class="line">            usort($newPriority, function($a, $b) &#123;</span><br><span class="line">                # return $a[&#x27;1&#x27;] &lt;=&gt; $b[&#x27;1&#x27;];</span><br><span class="line">                if ($a == $b) &#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">                return ($a &lt; $b) ? -1 : 1;</span><br><span class="line">            &#125;);</span><br><span class="line">        ?&gt;</span><br><span class="line">        &lt;div class=&quot;product data items&quot; data-mage-init=&#x27;&#123;&quot;tabs&quot;:&#123;&quot;openedState&quot;:&quot;active&quot;&amp;#125;&amp;#125;&#x27;&gt;</span><br><span class="line">            &lt;?php</span><br><span class="line">            # Delete the original forEach statement</span><br><span class="line">            #foreach ($detailedInfoGroup as $name)</span><br><span class="line">            foreach ($newPriority as $name):?&gt;</span><br><span class="line">                &lt;?php</span><br><span class="line">                    # rename $name[0] to $name because it&#x27;s a two-dimensional array</span><br><span class="line">                    # No further changes to this file, it works as explained</span><br><span class="line">                    $name = $name[0];</span><br><span class="line">                    $html = $layout-&gt;renderElement($name);</span><br><span class="line">                    if (!trim($html)) &#123;</span><br><span class="line">                        continue;</span><br><span class="line">                    &#125;</span><br><span class="line">                    $alias = $layout-&gt;getElementAlias($name);</span><br><span class="line">                    $label = $block-&gt;getChildData($alias, &#x27;title&#x27;);</span><br><span class="line">                ?&gt;</span><br><span class="line">                &lt;div class=&quot;data item title&quot;</span><br><span class="line">                     aria-labeledby=&quot;tab-label-&lt;?php /* @escapeNotVerified */ echo $alias;?&gt;-title&quot;</span><br><span class="line">                     data-role=&quot;collapsible&quot; id=&quot;tab-label-&lt;?php /* @escapeNotVerified */ echo $alias;?&gt;&quot;&gt;</span><br><span class="line">                    &lt;a class=&quot;data switch&quot;</span><br><span class="line">                       tabindex=&quot;-1&quot;</span><br><span class="line">                       data-toggle=&quot;switch&quot;</span><br><span class="line">                       href=&quot;#&lt;?php /* @escapeNotVerified */ echo $alias; ?&gt;&quot;</span><br><span class="line">                       id=&quot;tab-label-&lt;?php /* @escapeNotVerified */ echo $alias;?&gt;-title&quot;&gt;</span><br><span class="line">                        &lt;?php /* @escapeNotVerified */ echo $label; ?&gt;</span><br><span class="line">                    &lt;/a&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;data item content&quot; id=&quot;&lt;?php /* @escapeNotVerified */ echo $alias; ?&gt;&quot; data-role=&quot;content&quot;&gt;</span><br><span class="line">                    &lt;?php /* @escapeNotVerified */ echo $html; ?&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;?php endforeach;?&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;?php endif; ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后刷新缓存就奏效了。将来 Magento 升级，可能 detail.phtml 会有更改，所以模版层面的更改，要注意更新。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/104193/set-position-or-order-of-a-new-tab-on-the-product-detail-page-in-magento2">Set position or order of a new tab on the product detail page in Magento2-juhanix 的回答</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/category-hidden/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/category-hidden/" class="post-title-link" itemprop="url">隐藏的类别 (Hidden Categories)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-23 15:42:14" itemprop="dateCreated datePublished" datetime="2017-08-23T15:42:14+08:00">2017-08-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/category-hidden.html">原文地址</a> 隐藏的类别有很多用途。您可能想创建额外的类别用于内部，但不对客户可见。或者，您可能想创建一个不包含在导航中的类别。</p>
+<h2 id="创建隐藏的类别"><a href="#创建隐藏的类别" class="headerlink" title="创建隐藏的类别"></a><a href="#%E5%88%9B%E5%BB%BA%E9%9A%90%E8%97%8F%E7%9A%84%E7%B1%BB%E5%88%AB"></a>创建隐藏的类别</h2><ol>
+<li><p>后台侧边栏，点击 <strong>Products</strong> &gt; <strong>Inventory</strong> &gt; <strong>Categories</strong></p>
+</li>
+<li><p>在类别树中，选中你想隐藏的类别，然后做下面的操作： a. 设置 <strong>Is Active</strong> 为 “Yes” b. 设置 <strong>Include in Menu</strong> 为 “No”</p>
+</li>
+<li><p>在 <strong>Display Settings</strong> 中，设置 <strong>Anchor</strong> 为 “No” 隐藏的类别是 active 状态，但不出现在顶部导航中，也不出现在分层导航中（layered navigation）</p>
+</li>
+<li><p>尽管类别是隐藏的，但是还是可以在它下面创建子类别的，并且使它们 active 为每个隐藏的子类别进行设置： a. 设置 <strong>Enable Category</strong> 为 “Yes” b. 在 <strong>Display Settings</strong> 中，设置 <strong>Anchor</strong> 为 “No”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">active 的类别，可以从店铺的任何位置引用他们，是可用的，但是它们不会出现在导航中，因为他们 **Include in Menu** 为 “No”</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>完成后，点击 <strong>Save</strong></p>
+</li>
+</ol>
+<p><em>译者注：Anchor 为 Yes 的话，子类别的产品将出现在父类别中。</em></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E5%BE%AE%E4%BF%A1%E7%9A%84-ua/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%BE%AE%E4%BF%A1%E7%9A%84-ua/" class="post-title-link" itemprop="url">微信的 UA</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-23 09:44:28" itemprop="dateCreated datePublished" datetime="2017-08-23T09:44:28+08:00">2017-08-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>以下是抓取的 UA 安卓</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Linux; Android 6.0; M5 Note Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043313 Safari/537.36 MicroMessenger/6.5.10.1080 NetType/WIFI Language/zh_CN</span><br></pre></td></tr></table></figure>
+
+<p>IOS 平板</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (iPad; CPU OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12F69 MicroMessenger/6.5.12 NetType/WIFI Language/zh_CN</span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>MicroMessenger</code> 关键词来判断是否是微信 JS 方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function is_weixin()&#123;</span><br><span class="line">    var ua = navigator.userAgent.toLowerCase();</span><br><span class="line">    if(ua.match(/MicroMessenger/i)==&quot;micromessenger&quot;) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PHP 方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function is_weixin()&#123; </span><br><span class="line">    if ( strpos($_SERVER[&#x27;HTTP_USER_AGENT&#x27;], &#x27;MicroMessenger&#x27;) !== false ) &#123;</span><br><span class="line">            return true;</span><br><span class="line">    &#125;   </span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Winodows 微信客户端的 UA</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 MicroMessenger/6.5.2.501 NetType/WIFI WindowsWechat QBCore/3.43.556.400 QQBrowser/9.0.2524.400</span><br></pre></td></tr></table></figure>
+
+<p>多出 <code>WindowsWechat</code> 关键词 IOS 微信客户端使用系统的浏览器，没有单独的浏览器。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/settings-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/settings-basic/" class="post-title-link" itemprop="url">基本设置 （Basic Settings）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-21 10:34:34" itemprop="dateCreated datePublished" datetime="2017-08-21T10:34:34+08:00">2017-08-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/settings-basic.html">原文地址</a></em> “基本设置” 部分旨在帮助您快速创建产品, 包括产品详细信息、图像和视频、搜索引擎优化和网站。 (此部分和 Product Settings 中的部分内容重合) <img src="/wp-content/uploads/2017/08/product-basic-settings.png"></p>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a><a href="#%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB"></a>相关阅读</h2><ul>
+<li><a href="/settings-basic-product-details/">商品详情（Product Details）</a></li>
+<li><a href="/settings-basic-image-management/">图像和视频（Images and Video）</a><ul>
+<li><a href="/product-image-upload/">上传产品图片（Uploading Product Images）</a></li>
+<li><a href="/product-video/">添加产品视频 (Adding Product Video)</a></li>
+<li><a href="/media-gallery/">媒体库(Media Gallery)</a></li>
+<li><a href="/product-image-placeholders/">占位图 (Placeholders)</a></li>
+<li><a href="/product-image-watermarks/">水印 (Watermarks)</a></li>
+<li><a href="/swatches/">色板 (Swatches)</a><ul>
+<li><a href="/swatch-create/">创建色板(Creating Swatches)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/swatch-create/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/swatch-create/" class="post-title-link" itemprop="url">创建色板(Creating Swatches)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-21 10:24:44" itemprop="dateCreated datePublished" datetime="2017-08-21T10:24:44+08:00">2017-08-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/swatch-create.html">原文地址</a></em> 在下面的例子中，Sylvia Capris 可供选购的有特定的红色、绿色和蓝色。因为色板取自产品图像，所以每个色板都是颜色的真实表示。color 属性用来管理所有产品的颜色和色板信息。</p>
+<h2 id="步骤一：创建色板"><a href="#步骤一：创建色板" class="headerlink" title="步骤一：创建色板"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E5%88%9B%E5%BB%BA%E8%89%B2%E6%9D%BF"></a>步骤一：创建色板</h2><p>使用以下任一方法创建色板</p>
+<h3 id="方法一：添加一个颜色色板"><a href="#方法一：添加一个颜色色板" class="headerlink" title="方法一：添加一个颜色色板"></a><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E9%A2%9C%E8%89%B2%E8%89%B2%E6%9D%BF"></a>方法一：添加一个颜色色板</h3><ol>
+<li>使用你喜欢的图像编辑器打开产品图片，用拾色器拾取对应的颜色，记下颜色值。 <img src="/wp-content/uploads/2017/08/swatch-hex-values.png" alt="Hexadecimal Color Values"></li>
+<li>后台侧边栏，点击 <strong>Stores</strong> &gt; <strong>Attributes</strong> &gt; <strong>Product</strong></li>
+<li>在列表中，找到 <strong>color</strong> ，点击进行编辑</li>
+<li>验证 <strong>Catalog Input Type for Store Owner</strong> 被设置为 Visual Swatch</li>
+<li>在 <strong>Manage Swatch</strong> 下点击 <strong>Add Swatch</strong> ，然后做以下事情： <img src="/wp-content/uploads/2017/08/attribute-color-manage-swatch-values.png" alt="Manage Swatch Values"> a. 点击新色板，弹出菜单，选择 <strong>Choose a color</strong> <img src="/wp-content/uploads/2017/08/attribute-color-swatch-menu.png" alt="choose a color"> b. 在拾色器中输入之前取得的颜色值 <img src="/wp-content/uploads/2017/08/attribute-swatch-color-picker-hex-value.png"> c. 点击右下角的颜色图标(<img src="/wp-content/uploads/2017/08/btn-color-wheel.png">)，保存该颜色。 d. 在 Admin 这栏输入 label 用于后台查看的标签。如果合适，给每种语言设置对应的颜色的翻译。在下面的例子中，我们在 Admin label 中包含了产品的 SKU ，因为该颜色用于特定的产品。您可以在 label 中使用空格或者下划线，但不要使用连字符。 e. <strong>Is Default</strong> 栏中，选择作为默认值的色板 f. 要改变色板的顺序，只需要简单地拖动色板到特定位置。 <img src="/wp-content/uploads/2017/08/attribute-swatch-labels.png" alt="Swatch Labels"></li>
+<li>完成后，点击 <strong>Save Attribute</strong>，然后提示刷新缓存</li>
+<li>最后一步就是编辑产品，更新产品的 color 属性。要批量修改产品，请参考下面的步骤。</li>
+</ol>
+<h3 id="方法二：上传图像色板"><a href="#方法二：上传图像色板" class="headerlink" title="方法二：上传图像色板"></a><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%B8%8A%E4%BC%A0%E5%9B%BE%E5%83%8F%E8%89%B2%E6%9D%BF"></a>方法二：上传图像色板</h3><ol>
+<li>使用图像编辑器打开产品图片，选取一小块能够代表颜色、图案、纹理的区域保存。尺寸取决于 theme 。一般来说，保存成正方形有利于保持纵横比。 <img src="/wp-content/uploads/2017/08/swatch-samples.png" alt="Swatch Images"></li>
+<li>后台侧边栏，点击 <strong>Stores</strong> &gt; <strong>Attributes</strong> &gt; <strong>Product</strong></li>
+<li>在列表中，找到 <strong>color</strong> ，点击进行编辑</li>
+<li>验证 <strong>Catalog Input Type for Store Owner</strong> 被设置为 Visual Swatch</li>
+<li>在 <strong>Manage Swatch</strong> 下点击 <strong>Add Swatch</strong> ，然后做以下事情： a. 点击新色板，弹出菜单，选择 <strong>Upload a file</strong> <img src="/wp-content/uploads/2017/08/attribute-swatch-add-upload-file.png" alt="Upload a File"> b. 选择准备好的图片，上传 c. 重复上述步骤，给所有色板都设置好图片 d. 在 Admin 这栏输入 label 用于后台查看的标签。如果合适，给每种语言设置对应的颜色的翻译。在下面的例子中，我们在 Admin label 中包含了产品的 SKU ，因为该颜色用于特定的产品。您可以在 label 中使用空格或者下划线，但不要使用连字符。 <img src="/wp-content/uploads/2017/08/swatch-upload.png" alt="Enter Labels"></li>
+<li>完成后，点击 <strong>Save Attribute</strong>，然后提示刷新缓存</li>
+<li>最后一步就是编辑产品，更新产品的 color 属性。要批量修改产品，请参考下面的步骤。</li>
+</ol>
+<h2 id="步骤二：更新产品"><a href="#步骤二：更新产品" class="headerlink" title="步骤二：更新产品"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%EF%BC%9A%E6%9B%B4%E6%96%B0%E4%BA%A7%E5%93%81"></a>步骤二：更新产品</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> &gt; <strong>Inventory</strong> &gt; <strong>Catalog</strong></li>
+<li><strong>Filter</strong> 筛选出需要修改的产品，下面的例子根据部分产品名称进行筛选。 <img src="/wp-content/uploads/2017/08/swatch-apply-filter-product.png" alt="Filters"></li>
+<li>在列表中，勾选出此次要更改的产品，在本例中，所有蓝色的紧身裤被选中，然后，在 <strong>Actions</strong> 中选择 Update Attributes <img src="/wp-content/uploads/2017/08/swatch-apply-update-attributes.png" alt="Update Attributes"></li>
+<li>向下拉找到 color 属性，勾选 change 复选框 <img src="/wp-content/uploads/2017/08/swatch-update-attributes-choose-color.png" alt="change"></li>
+<li>选择应用的色板，点击 <strong>Save</strong> 刷新缓存 <img src="/wp-content/uploads/2017/08/storefront-swatch-blue-schmear.png" alt="Swatch in Storefront"></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/swatches/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/swatches/" class="post-title-link" itemprop="url">色板 (Swatches)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-10 11:09:37" itemprop="dateCreated datePublished" datetime="2017-08-10T11:09:37+08:00">2017-08-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/swatches.html">原文地址</a></em> 客户对颜色比较敏感，产品描述要能够准确表现可供挑选的颜色、图案或者纹理，这很重要。例如，下面的示例中，女紧身裤可供选择的颜色不是简单的红色、绿色和蓝色，而是特定的蓝色、绿色、和红色，这可能是该产品的独特之处。 可配置产品，可以通过可视色板、文本色板或下拉输入控件来表示。色板可以用在产品详情页、产品列表页以及分层导航中。在产品详情页（译者注：产品列表页也可以），色板选中后，会立刻展示对应的产品图片。选中色板后，色板会被描边，表示该色板已经被选中，同时会显示对应的值（比如 Yellow） <img src="/wp-content/uploads/2017/08/storefront-color-swatches.png" alt="Swatches on Product Page"></p>
+<h2 id="文本色板"><a href="#文本色板" class="headerlink" title="文本色板"></a><a href="#%E6%96%87%E6%9C%AC%E8%89%B2%E6%9D%BF"></a>文本色板</h2><p>如果不可用图像表示，则可以使用文本，它看起来就像是带文本标签的按钮，不过表现行为和图像色板没有差别。文本色板用来表示可选择的尺寸时，不可选购的将被划掉。 <img src="/wp-content/uploads/2017/08/storefront-swatch-size-out-of-stock.png"></p>
+<h2 id="分层导航-Layered-Navigation-中的色板"><a href="#分层导航-Layered-Navigation-中的色板" class="headerlink" title="分层导航(Layered Navigation)中的色板"></a><a href="#%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA(layered-navigation)%E4%B8%AD%E7%9A%84%E8%89%B2%E6%9D%BF"></a>分层导航(Layered Navigation)中的色板</h2><p><code>color</code> 这个 Attribute 的设置中，如果 <code>Use in Layered Navigation</code> 这个属性设置为 <code>Yes</code>，那么这个色板就可以被用在分层导航中。 注：<code>Use in Layered Navigation</code> 有三个可选项：No&#x2F;Filterable (with results)&#x2F;Filterable (no results) （后两个表示 Yes） visual swatches （图片或颜色色板）如下图： <img src="/wp-content/uploads/2017/08/storefront-swatches-layered-navigation.png"> 文本类型的色板 <img src="/wp-content/uploads/2017/08/text-based-swatches.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-image-watermarks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-image-watermarks/" class="post-title-link" itemprop="url">水印 (Watermarks)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-08 22:29:07" itemprop="dateCreated datePublished" datetime="2017-08-08T22:29:07+08:00">2017-08-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-image-watermarks.html">原文网址</a></em> 辛苦半天的原创图，别人点击一次鼠标就偷走了。郁闷吧？增添水印就是为了让别人盗图后用起来有难度，或者根本不好用了。水印文件可以是 jpg (jpeg) gif 或者 png 格式的。gif 和 png 格式都支持透明层，这样水印可以拥有透明的背景。 下面的例子是用在 “small” 图片上的水印，它是拥有透明背景的黑色的 logo ，这张水印图是 png 格式，设置如下：</p>
+<p>Size</p>
+<p>50*50</p>
+<p>Opacity</p>
+<p>5</p>
+<p>Position</p>
+<p>Tile</p>
+<p><img src="/wp-content/uploads/2017/08/storefront-watermark-tiled.png" alt="Tiled Watermark"></p>
+<h2 id="给产品图片加水印"><a href="#给产品图片加水印" class="headerlink" title="给产品图片加水印"></a><a href="#%E7%BB%99%E4%BA%A7%E5%93%81%E5%9B%BE%E7%89%87%E5%8A%A0%E6%B0%B4%E5%8D%B0"></a>给产品图片加水印</h2><ol>
+<li>后台侧边栏，点击 <strong>Content</strong> &gt; <strong>Design</strong> &gt; <strong>Configuration</strong></li>
+<li>找到你想设置的 store view ，在 <strong>Action</strong> 栏点击 <strong>Edit</strong></li>
+<li>在 <strong>Other Settings</strong> 下，展开 <strong>Product Image Watermarks</strong> 部分</li>
+<li>按照下面的操作完成对 <strong>Base</strong> ,<strong>Thumbnail</strong>, <strong>Small</strong>, and <strong>Swatch Image</strong> 的设置，他们的设置都是一样的。 a. 输入 <strong>Image Opacity</strong> ，图片的透明度，百分比格式，例如 40 b. 输入 <strong>Image Size</strong> ，图片的尺寸，px 为单位，例如 200×200 c. 点击 <strong>Upload</strong> 选择要使用的水印图片 d. 设置 <strong>Image Position</strong> 决定水印显示的位置<img src="/wp-content/uploads/2017/08/config-design-product-image-watermarks-base.png" alt="Product Image Watermarks - Base"></li>
+<li>完成后，点击 <strong>Save Config</strong></li>
+<li>刷新缓存</li>
+</ol>
+<h2 id="恢复默认值"><a href="#恢复默认值" class="headerlink" title="恢复默认值"></a><a href="#%E6%81%A2%E5%A4%8D%E9%BB%98%E8%AE%A4%E5%80%BC"></a>恢复默认值</h2><p>点击 <strong>Use Default Value</strong> (<img src="/wp-content/uploads/2017/08/btn-use-default_19x18.png">)</p>
+<h2 id="删除水印"><a href="#删除水印" class="headerlink" title="删除水印"></a><a href="#%E5%88%A0%E9%99%A4%E6%B0%B4%E5%8D%B0"></a>删除水印</h2><ol>
+<li>在图片左下脚，点击 <strong>Delete</strong> <img src="/wp-content/uploads/2017/08/btn-trashcan2_14x18.png"><img src="/wp-content/uploads/2017/08/product-image-watermark-delete.png" alt="Delete Watermark"></li>
+<li>点击 <strong>Save Config</strong></li>
+<li>刷新缓存，如果前台还显示水印，那么回到 Cache Management 页，点击 <strong>Flush Magento Cache</strong></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-image-placeholders/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-image-placeholders/" class="post-title-link" itemprop="url">占位图 (Placeholders)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-08 09:22:12" itemprop="dateCreated datePublished" datetime="2017-08-08T09:22:12+08:00">2017-08-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-image-placeholders.html">原文地址</a></em> Magento 在取得正式图片前会使用临时图片作为占位图。每种角色可以使用不同的占位图。默认的展位图是 Magento 的 logo 图像。您可以使用自己的图片。 <img src="/wp-content/uploads/2017/08/storefront-image-placeholder.png" alt="Image Placeholder"></p>
+<h2 id="如何上传占位图"><a href="#如何上传占位图" class="headerlink" title="如何上传占位图"></a><a href="#%E5%A6%82%E4%BD%95%E4%B8%8A%E4%BC%A0%E5%8D%A0%E4%BD%8D%E5%9B%BE"></a>如何上传占位图</h2><ol>
+<li>后台侧边栏，点击 <strong>Stores</strong> &gt; <strong>Settings</strong> &gt; <strong>Configuration</strong></li>
+<li>在 <strong>Catalog</strong> 下选择 <strong>Catalog</strong></li>
+<li>展开 <strong>Product Image Placeholders</strong> 部分</li>
+<li>每个图片角色，点击 <strong>Choose File</strong> ，选择你要上传的图片。你可以给所有的角色使用相同的图片，也可以每种角色的图片都不同。 <img src="/wp-content/uploads/2017/08/config-catalog-catalog-product-image-placeholders.png" alt="Product Image Placeholders"></li>
+<li>完成后，点击 <strong>Save</strong></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/test-or-style-magento-2-order-success-page/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/test-or-style-magento-2-order-success-page/" class="post-title-link" itemprop="url">Test or Style magento 2 order success page</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-07 14:01:00" itemprop="dateCreated datePublished" datetime="2017-08-07T14:01:00+08:00">2017-08-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E9%AB%98%E7%BA%A7/" itemprop="url" rel="index"><span itemprop="name">Magento 2 高级</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>checkout/onepage/success</code> 页面只会在下单成功后展现一次，然后 session 被清除，再访问该页面就会转向 cart 页面。如果要调试这个页面就会很麻烦。 对 Magento 2 来说，可以在开发时注释掉 <code>\vendor\magento\module-checkout\Controller\Onepage\Success.php</code> 的 19-22 行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (!$this-&gt;_objectManager-&gt;get(&#x27;Magento\Checkout\Model\Session\SuccessValidator&#x27;)-&gt;isValid()) &#123;</span><br><span class="line">   return $this-&gt;resultRedirectFactory-&gt;create()-&gt;setPath(&#x27;checkout/cart&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">$session-&gt;clearQuote();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-controller-and-fpc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-controller-and-fpc/" class="post-title-link" itemprop="url">Magento 2 Controller and FPC</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-08-07 11:37:51" itemprop="dateCreated datePublished" datetime="2017-08-07T11:37:51+08:00">2017-08-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E9%AB%98%E7%BA%A7/" itemprop="url" rel="index"><span itemprop="name">Magento 2 高级</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Magento 2 自带 Full page cache 。当我的 Controller 需要返回动态的信息时，如果 FPC 开着，那么我只能得到缓存的信息。所以问题是，怎样让 Controller 排除掉 FPC 的影响而返回动态信息呢？ 通过 layout xml 的 disable 来禁止某个 block 缓存。 像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;block class=&quot;\Magento\Framework\View\Element\Template&quot; template=&quot;sample:module::sampletemplate.phtml&quot; name=&quot;sampleblock&quot; cacheable=&quot;false&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>cacheable&#x3D;”false”</strong> 就会禁用整个 block 的缓存，但是这会对性能造成影响，这个 block 所在的页面都不会被缓存。 这里不讨论性能问题，相关阅读中可以找到更多这方面的讨论。 在博主的实践中，有一个错误的做法，下面记录下来。 在 controller 中我没有通过 layout xml 来创建页面，而是直接创建了 block 。这样，当我希望该 block 返回动态的内容时，我无法找到与 <strong>cacheable&#x3D;”false”</strong> 相对应的代码来避开 FPC 的影响。直接创建也让别人不方便自定义这个页面 ，所以不推荐这种做法。</p>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a><a href="#%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB"></a>相关阅读</h2><p><a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/146154/exclude-caching-cusotm-module-by-magento-2-built-in-full-page-cachefpc-problem">Exclude caching cusotm module by Magento 2 built in Full page cache(FPC problem)</a> <a target="_blank" rel="noopener" href="https://inviqa.com/blog/how-full-page-cache-works-magento-2">How the full page cache works in Magento 2</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

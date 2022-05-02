@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/11/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/11/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/linux-%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/linux-%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" class="post-title-link" itemprop="url">Linux 的文件权限</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-02 16:37:34" itemprop="dateCreated datePublished" datetime="2017-11-02T16:37:34+08:00">2017-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Linux 是一个多人多任务环境。 一般文件文件可存取的身份分为三个类别： owner&#x2F;group&#x2F;others 三个身份各有 read&#x2F;write&#x2F;execute 等权限 默认情况下，所有系统上的帐号与一般身份使用者，包括 root 都记录在 &#x2F;etc&#x2F;passwd 这个文件内。个人密码在 &#x2F;etc&#x2F;shadow 文件下。所有组名记录在 &#x2F;etc&#x2F;group 内。 <code>ls -al</code> 查看文件属性（包括隐藏文件和权限） <img src="/wp-content/uploads/2017/11/filepermission_3.gif" alt="文件的权限"> 档案类型： 当为[ d ]则是目录； 当为[ - ]则是文件； 若是[ l ]则表示为连结档(link file)； 若是[ b ]则表示为装置文件里面的可供储存的接口设备(可随机存取装置)； 若是[ c ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。 chgrp ：改变文件所属群组 chown ：改变文件拥有者 chmod ：改变文件的权限, SUID, SGID, SBIT等等的特性 -R 可以递归 chown [-R] user:group 文件或目录 权限可以用数字或是符号进行权限变更 r:4 w:2 r:1 chmod 777 file 就是 - rwx rwx rwx <img src="/wp-content/uploads/2017/11/chmod.png" alt="chmod 修改权限"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# chmod  u=rwx,go=rx  .bashrc</span><br><span class="line"># 注意喔！那个 u=rwx,go=rx 是连在一起的，中间并没有任何空格！</span><br><span class="line">[root@www ~]# ls -al .bashrc</span><br><span class="line">-rwxr-xr-x  1 root root 395 Jul  4 11:45 .bashrc</span><br></pre></td></tr></table></figure>
+
+<p>权限对文件的重要性：</p>
+<ul>
+<li>r (read)：可读取此一文件的实际内容，如读取文本文件的文字内容等；</li>
+<li>w (write)：可以编辑、新增或者是修改该文件的内容(但不含删除该文件)；</li>
+<li>x (execute)：该文件具有可以被系统执行的权限。</li>
+</ul>
+<p><em>关于执行，在Windows底下一个文件是否具有执行的能力是藉由『 扩展名 』来判断的， 例如：.exe, .bat, .com 等等，但是在 Linux 底下，我们的文件是否能被执行，则是藉由是否具有『x』这个权限来决定的！跟档名是没有绝对的关系的！ 当你对一个文件具有w权限时，你可以具有写入&#x2F;编辑&#x2F;新增&#x2F;修改文件的内容的权限， 但并不具备有删除该文件本身的权限！对于文件的rwx来说， 主要都是针对『文件的内容』而言，与文件档名的存在与否没有关系喔！因为文件记录的是实际的数据嘛！</em> 权限对目录的重要性：</p>
+<ul>
+<li>r (read contents in directory)： 表示具有读取目录结构列表的权限，所以当你具有读取(r)一个目录的权限时，表示你可以查询该目录下的文件名数据。 所以你就可以利用 ls 这个指令将该目录的内容列表显示出来！</li>
+<li>w (modify contents of directory)： 这个可写入的权限对目录来说，是很了不起的！ 因为他表示你具有异动该目录结构列表的权限，也就是底下这些权限：<ul>
+<li>建立新的文件与目录；</li>
+<li>删除已经存在的文件与目录(不论该文件的权限为何！)</li>
+<li>将已存在的文件或目录进行更名；</li>
+<li>搬移该目录内的文件、目录位置。</li>
+</ul>
+</li>
+<li>x (access directory)： 工作目录对于指令的执行是非常重要的，如果你在某目录下不具有x的权限， 那么你就无法切换到该目录下，也就无法执行该目录下的任何指令，即使你具有该目录的r的权限。</li>
+</ul>
+<p>本文是阅读鸟哥的 Linux 私房菜—— 第六章关于文件权限部分的一个笔记，写的非常好。终于算是对服务器权限有个整理了。 附上参考链接 <a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php">第六章、Linux 的文件权限与目录配置</a> 有练习题，对于理解很有帮助。感谢鸟哥的贡献。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E6%9E%84%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD-web-%E7%AB%99%E7%82%B9%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%9E%84%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD-web-%E7%AB%99%E7%82%B9%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">构建高性能 web 站点笔记（一）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-29 21:02:11" itemprop="dateCreated datePublished" datetime="2017-10-29T21:02:11+08:00">2017-10-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="用户等待时间的构成"><a href="#用户等待时间的构成" class="headerlink" title="用户等待时间的构成"></a><a href="#%E7%94%A8%E6%88%B7%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4%E7%9A%84%E6%9E%84%E6%88%90"></a>用户等待时间的构成</h2><p>用户等待时间 &#x3D; 请求传输时间 + 服务器处理时间（吞吐率，每秒处理请求数，处理时间的倒数） + 数据在网路上的传输时间（响应时间） + 浏览器解析时间</p>
+<p>响应时间的决定因素主要包括数据量和网络带宽</p>
+<p>吞吐率的影响因素有很多，比如服务器的并发策略、 I&#x2F;O 模型、I&#x2F;O 性能、CPU 核数等。也包括应用程序本身的逻辑复杂度等。</p>
+<p>浏览器解析时间影响因素有浏览器采用的并发策略、样式渲染方式、脚本解释器的性能、页面大小、组件的数量、页面组件缓存状况、页面组件域名分布以及域名 DNS 解析等，并且一些因素随着各厂商浏览器版本的不同略有变化。</p>
+<h2 id="带宽与响应时间"><a href="#带宽与响应时间" class="headerlink" title="带宽与响应时间"></a><a href="#%E5%B8%A6%E5%AE%BD%E4%B8%8E%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"></a>带宽与响应时间</h2><p>带宽的单位是 bits&#x2F;s 单位时间的比特数<br>带宽可以解释为数据在线路中的移动速度，带宽的高低表示线路能力的强弱，100M 带宽全称是 100 Mbits&#x2F;s</p>
+<p>响应时间 &#x3D; 发送时间 + 传播时间 + 处理时间（排队时间）<br>响应时间 &#x3D; （数据量比特数 &#x2F; 带宽）+ （传播距离 &#x2F; 传播速度）+ 处理时间</p>
+<p>下载速度 &#x3D; 数据量字节数 &#x2F; 响应时间</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/config-varnish-magento/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/config-varnish-magento/" class="post-title-link" itemprop="url">Varnish 初体验</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-28 17:16:34" itemprop="dateCreated datePublished" datetime="2017-10-28T17:16:34+08:00">2017-10-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://varnish-cache.org/index.html">Varnish</a> 是一款高性能的开源 HTTP 加速器，反向代理缓存，挪威最大的在线报纸 Verdens Gang 使用 3 台 Varnish 代替了原来的 12 台 Squid，性能比以前更好。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><a href="#%E5%AE%89%E8%A3%85"></a>安装</h2><p>以 ubuntu 为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install varnish</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish start</span><br></pre></td></tr></table></figure>
+
+<p>访问网站：以我安装 varnish 的虚拟机为例，访问 <code>192.168.0.215:6081</code> 出现如下提示： <img src="/wp-content/uploads/2017/10/varnish6081.png"> 默认情况下 varnish 会请求他所在服务器的 8080 端口。 而我虚拟机上实际用的是 80 端口。所以 503 错误。 修改配置 <code>etc/varnish/default.vcl</code> 打开该文件会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line">backend default &#123;</span><br><span class="line">    .host = &quot;127.0.0.1&quot;;</span><br><span class="line">    .port = &quot;8080&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我将端口改为 80 后保存，然后 <code>service varnish reload</code> 然后再刷新这下就正常了。跟访问 80 端口一样。</p>
+<h2 id="初步试验"><a href="#初步试验" class="headerlink" title="初步试验"></a><a href="#%E5%88%9D%E6%AD%A5%E8%AF%95%E9%AA%8C"></a>初步试验</h2><p>在安装 varnish 之前，我已经建好了 Magento 2 的一个站点，80 访问正常。 下面用 6081 端口访问，看看有什么问题，记录下来，可能对后面有参照作用。 以下是我发现的问题： 首页正常，但页面中所有的链接仍然会被跳转回 80 端口。就是说尽管我请求的页面是 6081 但是页面中的其他链接仍然是 80 端口的请求。 6081 地址的后台是 404 woff, woff2,ttf 字体文件状态是 canceled 对比请求的头部信息变化： 6081 请求 <img src="/wp-content/uploads/2017/10/6081response-header.png" alt="6081"> 80 请求 <img src="/wp-content/uploads/2017/10/80responseheader.png" alt="80"> 至少可以发现请求头中出现了 <code>X-Varnish</code></p>
+<h2 id="让-Varnish-使用-80"><a href="#让-Varnish-使用-80" class="headerlink" title="让 Varnish 使用 80"></a><a href="#%E8%AE%A9-varnish-%E4%BD%BF%E7%94%A8-80"></a>让 Varnish 使用 80</h2><p>先让 varnish 停下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish stop</span><br></pre></td></tr></table></figure>
+
+<p>我虚拟机是 ubuntu 16.04 （检查版本：lsb_release -a） 其他版本的文件位置可能有变化，请参考文尾的参考链接。 修改 <code>/etc/default/varnish</code> 然后修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DAEMON_OPTS=&quot;-a :6081 \</span><br><span class="line">             -T localhost:6082 \</span><br><span class="line">             -f /etc/varnish/default.vcl \</span><br><span class="line">             -S /etc/varnish/secret \</span><br><span class="line">             -s malloc,256m&quot;</span><br></pre></td></tr></table></figure>
+
+<p>为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DAEMON_OPTS=&quot;-a :80 \</span><br><span class="line">             -T localhost:6082 \</span><br><span class="line">             -f /etc/varnish/default.vcl \</span><br><span class="line">             -S /etc/varnish/secret \</span><br><span class="line">             -s malloc,256m&quot;</span><br></pre></td></tr></table></figure>
+
+<p>完成后启动 varnish</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish start</span><br></pre></td></tr></table></figure>
+
+<p>现在我们更改 <code>/etc/varnish/default.vcl</code> 让他后端去找 8080 端口，所以将</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line">backend default &#123;</span><br><span class="line">    .host = &quot;127.0.0.1&quot;;</span><br><span class="line">    .port = &quot;80&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改回：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line">backend default &#123;</span><br><span class="line">    .host = &quot;127.0.0.1&quot;;</span><br><span class="line">    .port = &quot;8080&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重新载入配置文件 <code>service varnish reload</code> 下面让 Apache 把 80 端口让出来，使用 8080 端口。 首先是 <code>/etc/apache2/ports.conf</code> 将<code>Listen 80</code> 改为 <code>Listen 8080</code> 然后虚拟目录的配置 <code>/etc/apache2/sites-available/000-default.conf</code> <code>&lt;VirtualHost *:80&gt;</code> 80 改为 * 或者 8080 重启 Apache</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+
+<p>然后发现访问 80 的时候提示错误 <code>ERR_CONNECTION_REFUSED</code> 查看端口情况 <code>netstat -lntp</code> 发现真的没有监听 80 端口 然后使用命令:<code>service varnish status</code> 发现他的配置文件是 <code>/lib/systemd/system/varnish.service</code> 下面打开该文件改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/sbin/varnishd -a :80 -T localhost:6082 -f /etc/varnish/default.vcl -S /etc/varnish/secret -s malloc,256m</span><br></pre></td></tr></table></figure>
+
+<p>保存后 <code>systemctl daemon-reload</code> 然后重新启动下 varnish 这下终于可以愉快的玩耍了。</p>
+<h2 id="配置-Magneto"><a href="#配置-Magneto" class="headerlink" title="配置 Magneto"></a><a href="#%E9%85%8D%E7%BD%AE-magneto"></a>配置 Magneto</h2><p>可以通过命令行或者进入后台进行配置，参考文尾的参考链接。 登录管理后台后，进入 <strong>STORES &gt; Configuration &gt; ADVANCED &gt; System &gt; Full Page Cache.</strong> 然后看图： <img src="/wp-content/uploads/2017/10/magento2varnish-configuration.png" alt="Configure Magento to use Varnish"> 刷新缓存，体验飞起来的速度。 φ(゜▽゜*) 首页加载时间如下图，留着以后参考： <img src="/wp-content/uploads/2017/10/homepagetime.png"></p>
+<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p>如果遇到问题，可以参考以下文档，顺藤摸瓜。 <a target="_blank" rel="noopener" href="https://varnish-cache.org/docs/5.0/tutorial/putting_varnish_on_port_80.html">Put Varnish on port 80</a> <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/config-guide/varnish/config-varnish-magento.html">Configure Magento to use Varnish</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-helper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-helper/" class="post-title-link" itemprop="url">magento 2 helper</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-17 11:59:36" itemprop="dateCreated datePublished" datetime="2017-10-17T11:59:36+08:00">2017-10-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">插件开发系列教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Helpers are classes that can be used anywhere we want,we can use them in controllers,views,modeles and even in other helpers. Helpers are usually created to provide methods for a common functionality. 它一般位于 <code>&lt;module_dir&gt;/Helper</code>目录下，常用的文件名是 Data.php 它继承自 <code>Magento\Framework\App\Helper\AbstractHelper</code> 因为他的父类已经注入了<code>\Magento\Framework\App\Config\ScopeConfigInterface</code> 所以我们可以在 helper 中使用 <code>$this-&gt;scopeConfig-&gt;getValue()</code> 来获得配置值。 在 block 中我们可以通过 <code>$this-&gt;helper(&#39;&#123;Vendor&#125;\&#123;Module&#125;\Helper\Data&#39;);</code> 来获得 helper 。注意，此处一定是右斜杠。path 是左斜杠。 举例： File: ThankIT&#x2F;HelloWorld&#x2F;Helper&#x2F;Data.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Helper;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\App\Helper\AbstractHelper;</span><br><span class="line">use Magento\Framework\App\Helper\Context;</span><br><span class="line">use Magento\Store\Model\ScopeInterface;</span><br><span class="line"></span><br><span class="line">class Data extends AbstractHelper</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    const XML_PATH_HELLOWORLD = &#x27;helloworld/general/&#x27;;</span><br><span class="line"></span><br><span class="line">    public function __construct(Context $context)</span><br><span class="line">    &#123;</span><br><span class="line">        parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getConfigValue($field, $storeId = null)</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;scopeConfig-&gt;getValue(</span><br><span class="line">            $field, ScopeInterface::SCOPE_STORE, $storeId</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getGeneralConfig($code, $storeId = null)</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;getConfigValue(self::XML_PATH_HELLOWORLD . $code, $storeId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>File: app\code\ThankIT\HelloWorld\view\frontend\templates\index\index.phtml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;h3&gt;get configuration value by helper file&lt;/h3&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$helper = $this-&gt;helper(&#x27;ThankIT\HelloWorld\Helper\Data&#x27;);</span><br><span class="line">echo $helper-&gt;getConfigValue(&#x27;helloworld/general/display_text&#x27;);</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">echo $helper-&gt;getGeneralConfig(&#x27;display_text&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>参考 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/system-xml-configuration/">System.xml Configuration</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E6%95%B4%E7%90%86%E7%9C%81%E5%B8%82%E5%8C%BA%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E6%95%B4%E7%90%86%E7%9C%81%E5%B8%82%E5%8C%BA%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">整理省市区数据</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-17 09:01:35" itemprop="dateCreated datePublished" datetime="2017-10-17T09:01:35+08:00">2017-10-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文主要是为了记录备查。 为了开发 Magento 2 checkout 页面省市区三级联动，需要整理出我国的省市区数据。 数据以国家统计局公布的 <a target="_blank" rel="noopener" href="http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201703/t20170310_1471429.html">最新县及县以上行政区划代码（截止2016年7月31日）</a> 为参考。 其他年份的参考<a target="_blank" rel="noopener" href="http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/">国家统计局行政区划代码</a> 总计：一级 34 条记录，二级 365 条，三级 2822 条。 刚开始的思路不对，白浪费了许多时间。 附上转化和校正代码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">// 更好的方法</span><br><span class="line">// 从网站上拷贝后整理成 csv 用 file differ</span><br><span class="line">&lt;?php</span><br><span class="line">header(&quot;Content-type: text/html; charset=utf-8&quot;);</span><br><span class="line"></span><br><span class="line">// 转化</span><br><span class="line">$ofile = fopen(&#x27;old.csv&#x27;, &#x27;r&#x27;);</span><br><span class="line"></span><br><span class="line">while (!feof($ofile)) &#123;</span><br><span class="line">    echo json_encode(fgetcsv($ofile), JSON_UNESCAPED_UNICODE);</span><br><span class="line">    echo &#x27;,&lt;br/&gt;&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 以公布数据为本，看整理数据中有哪些缺少或不同</span><br><span class="line">// $res = [</span><br><span class="line">//     [&#x27;110000&#x27;, &#x27;北京&#x27;],</span><br><span class="line">//     [&#x27;120000&#x27;, &#x27;天津&#x27;],</span><br><span class="line">//     [&#x27;130000&#x27;, &#x27;河北省&#x27;],</span><br><span class="line">//     // ... 省略</span><br><span class="line">//     [&#x27;654326&#x27;, &#x27;吉木乃县&#x27;],</span><br><span class="line">// ];</span><br><span class="line"></span><br><span class="line">// $ofile   = fopen(&#x27;old.csv&#x27;, &#x27;r&#x27;);</span><br><span class="line">// $zhaodao = false;</span><br><span class="line"></span><br><span class="line">// while ($data = fgetcsv($ofile)) &#123;</span><br><span class="line"></span><br><span class="line">//     foreach ($res as $key) &#123;</span><br><span class="line">//         if ($data[1] == &#x27;市辖区&#x27;  $data[1] == &#x27;省直辖县级行政区划&#x27;  $data[1] == &#x27;自治区直辖县级行政区划&#x27;) &#123;</span><br><span class="line">//             $zhaodao = true;</span><br><span class="line">//             break;</span><br><span class="line">//         &#125;</span><br><span class="line">//         if ($key[0] == $data[0]) &#123;</span><br><span class="line">//             $zhaodao = true;</span><br><span class="line">//             break;</span><br><span class="line">//         &#125;</span><br><span class="line">//     &#125;</span><br><span class="line">//     if (!$zhaodao) &#123;</span><br><span class="line">//         echo $data[0] . $data[1] . &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">//     &#125;</span><br><span class="line">//     $zhaodao = false;</span><br><span class="line">// &#125;</span><br><span class="line">// fclose($ofile);</span><br><span class="line"></span><br><span class="line">// echo &#x27;------------------&#x27;;</span><br><span class="line"></span><br><span class="line">// 以整理数据为本，对比统计数据，是否多余</span><br><span class="line">// $ofile   = fopen(&#x27;old.csv&#x27;, &#x27;r&#x27;);</span><br><span class="line">// $zhaodao = false;</span><br><span class="line"></span><br><span class="line">// foreach ($res as $key) &#123;</span><br><span class="line"></span><br><span class="line">//     while ($data = fgetcsv($ofile)) &#123;</span><br><span class="line">//         if (($key[0] == $data[0]) &amp;&amp; ($key[1] == $data[1])) &#123;</span><br><span class="line">//             $zhaodao = true;</span><br><span class="line">//             break;</span><br><span class="line">//         &#125;</span><br><span class="line">//     &#125;</span><br><span class="line">//     if (!$zhaodao) &#123;</span><br><span class="line">//         echo $key[0] . $key[1] . &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">//     &#125;</span><br><span class="line">//     $zhaodao = false;</span><br><span class="line">//     fseek($ofile, 0);</span><br><span class="line">// &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/hyper-v-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/hyper-v-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="post-title-link" itemprop="url">hyper-v 创建虚拟机</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-13 09:00:44" itemprop="dateCreated datePublished" datetime="2017-10-13T09:00:44+08:00">2017-10-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>博主是 windows 系统，用 wamp 本地开发经常遇到些奇奇怪怪的问题。所以需要一个虚拟机方案。 从 win8 开始，自带 hyper-v ，你也可以考虑用 VirtualBox 、VMware 等其他方案。</p>
+<h2 id="启用-hyper-v"><a href="#启用-hyper-v" class="headerlink" title="启用 hyper-v"></a><a href="#%E5%90%AF%E7%94%A8-hyper-v"></a>启用 hyper-v</h2><p>控制面板 -&gt; 启用或关闭 windows 功能，勾选 Hyper-v <img src="/wp-content/uploads/2017/10/%E5%90%AF%E7%94%A8Hyper-v.png" alt="启用 Hyper-v"> 然后重启电脑 重启后从搜索中找到 Hyper-v 管理器，然后甩开膀子开始玩吧。。 需要注意，要创建一个外部虚拟交换机，并且设置虚拟机使用该外部虚拟交换机，然后虚拟机就能上网了。</p>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a><a href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"></a>安装系统</h2><p>这个随便你安装什么系统了，博主用的 ubuntu 16，所以本段记录博主遇到的问题。 问题一：ubuntu 16 安装时选择中文，出现错误 “无法安装busybox-initramfs”，然后我试了 14 版本，安装 MySQL 时遇到了错误 “return codecs.ascii_decode(input, self.errors)[0] UnicodeDecodeError: ‘ascii’ codec can’t decode byte 0xc5 in position 92: ordinal not in range(128)” 。 解决方法：安装了 ubuntu 16 但是选择英文。不要问我为什么。。 问题二：hyper-v 本来的连接工具竟然无法使用复制粘贴。 解决方法：安装 ssh 服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install net-tools #安装网络工具</span><br><span class="line">sudo apt-get install openssh-server #安装ssh服务</span><br><span class="line">ufw allow 22/tcp</span><br></pre></td></tr></table></figure>
+
+<p>下面用 ssh 客户端工具连接就行了。博主用的 Putty 。 问题三：hyper-v 虚拟机的网络一般用的是 DHCP，获取的 ip 地址是动态的，要把他设置成静态的。不然每次重启后，可能地址就不一样了，这样要查地址、改地址，不是烦死球了。 解决方法（以 ubuntu 为例）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/network/interfaces</span><br></pre></td></tr></table></figure>
+
+<p>由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet dhcp</span><br></pre></td></tr></table></figure>
+
+<p>改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.0.250</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.0.1</span><br></pre></td></tr></table></figure>
+
+<p>address 是你要设置的静态地址，请根据你的实际情况写。 设置 DNS 服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 192.168.0.250</span><br><span class="line">nameserver 218.2.2.2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/resolvconf/resolv.conf.d/base</span><br></pre></td></tr></table></figure>
+
+<p>添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 192.168.0.250</span><br><span class="line">nameserver 218.2.2.2</span><br></pre></td></tr></table></figure>
+
+<p>重启 networking 服务使其生效：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/networking restart</span><br></pre></td></tr></table></figure>
+
+<p>然后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<p>查看是否生效。 如果还是无效，就重启整个物理机。 参考 <a target="_blank" rel="noopener" href="http://blog.csdn.net/litao31415/article/details/49661399">ubuntu设置静态ip地址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-memory-limit-%E8%AE%BE%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-memory-limit-%E8%AE%BE%E7%BD%AE/" class="post-title-link" itemprop="url">Magento 2 memory_limit 设置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-10 21:41:52" itemprop="dateCreated datePublished" datetime="2017-10-10T21:41:52+08:00">2017-10-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>phpinfo() 的很多部分有两列值：Local Value 和 Master Value 。 Master Value 是 php.ini 文件中设置的值。 Local Value 是当前目录中的设置值，该值会覆盖 Master Value 的值。 web server config 或者 .htaccess 的设置或者程序中的 ini_set() 都可以修改 local value 的值。 所以修改了 php.ini 中的 memory_limit 很可能实际上并未产生实际效果。 打开 Magento 根目录下的 .htacess 文件，修改 memory_limit 为更大的值（默认 768M），然后重启 web server ，检查 phpinfo() 中 memory_limit 的 local value 是否设置好了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/jquery-plugin-and-widget/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/jquery-plugin-and-widget/" class="post-title-link" itemprop="url">jQuery Plugin and Widget</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-09 09:56:16" itemprop="dateCreated datePublished" datetime="2017-10-09T09:56:16+08:00">2017-10-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="创建-jQuery-Plugin"><a href="#创建-jQuery-Plugin" class="headerlink" title="创建 jQuery Plugin"></a><a href="#%E5%88%9B%E5%BB%BA-jquery-plugin"></a>创建 jQuery Plugin</h2><h3 id="方法一-在-jQuery-命名空间上添加方法"><a href="#方法一-在-jQuery-命名空间上添加方法" class="headerlink" title="方法一 在 jQuery 命名空间上添加方法"></a><a href="#%E6%96%B9%E6%B3%95%E4%B8%80-%E5%9C%A8-jquery-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B8%8A%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95"></a>方法一 在 jQuery 命名空间上添加方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;jQuery plugin&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $.sayHello = function() &#123;</span><br><span class="line">        console.log(&#x27;Hello&#x27;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    $.extend(&#123;</span><br><span class="line">        sayHi: function(name) &#123;</span><br><span class="line">            console.log(&#x27;Hi,&#x27; + (name ? name : &#x27;ThankIT&#x27;) + &#x27;!&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    $.sayHello();</span><br><span class="line">    $.sayHi();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果： <img src="/wp-content/uploads/2017/10/jquery-plugin-1.png" alt="jquery plugin"> 此种方法扩展了 jQuery 本身，但它不能选中 DOM 元素。</p>
+<h3 id="方法二-在-fn-上添加方法"><a href="#方法二-在-fn-上添加方法" class="headerlink" title="方法二 在 $.fn 上添加方法"></a><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C-%E5%9C%A8-%60$.fn%60-%E4%B8%8A%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95"></a>方法二 在 <code>$.fn</code> 上添加方法</h3><p>在写插件之前，我们先了解下 jQuery 是怎么工作的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$( &quot;a&quot; ).css( &quot;color&quot;, &quot;red&quot; );</span><br></pre></td></tr></table></figure>
+
+<p>这是很基础的 jQuery 代码。当你用 <code>$</code> 选中元素的时候，它会返回 jQuery 对象，返回的这个 jQuery 对象就包含 <code>css()</code> 方法，还有被选中的元素。 jQuery 对象是从 <code>$.fn</code> (jQuery.prototype 的别名)对象获得方法的。所以，我们可以在 <code>$.fn</code> 方法上添加方法来扩展 jQuery object</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;jQuery plugin&lt;/title&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1 id=&quot;hello&quot;&gt;Hello&lt;/h1&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    // case 1</span><br><span class="line">    $.sayHello = function() &#123;</span><br><span class="line">        console.log(&#x27;Hello&#x27;);</span><br><span class="line">    &#125;;</span><br><span class="line">    $.extend(&#123;</span><br><span class="line">        sayHi: function(name) &#123;</span><br><span class="line">            console.log(&#x27;Hi,&#x27; + (name ? name : &#x27;ThankIT&#x27;) + &#x27;!&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    $.sayHello();</span><br><span class="line">    $.sayHi();</span><br><span class="line"></span><br><span class="line">    // 在 jQuery 上扩展的方法无法选中元素</span><br><span class="line">    // Uncaught TypeError: $(...).sayHi is not a function</span><br><span class="line">    // $( &quot;h1&quot; ).sayHi();</span><br><span class="line"></span><br><span class="line">    // case 2</span><br><span class="line">    // 需要返回 this 以支持链式调用</span><br><span class="line">    $.fn.greenify = function() &#123;</span><br><span class="line">        return this.css( &quot;color&quot;, &quot;green&quot; );</span><br><span class="line">    &#125;;</span><br><span class="line">    $.fn.extend(&#123;</span><br><span class="line">        italic: function() &#123;</span><br><span class="line">            return this.css(&quot;font-style&quot;,&quot;italic&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    $( &quot;h1&quot; ).greenify();</span><br><span class="line">    $( &quot;h1&quot; ).italic();</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果： <img src="/wp-content/uploads/2017/10/jquery-plugin-2.png" alt="jquery plugin"> 参考官方文档 <a target="_blank" rel="noopener" href="http://learn.jquery.com/plugins/">jquery plugins</a></p>
+<h3 id="安全的插件结构"><a href="#安全的插件结构" class="headerlink" title="安全的插件结构"></a><a href="#%E5%AE%89%E5%85%A8%E7%9A%84%E6%8F%92%E4%BB%B6%E7%BB%93%E6%9E%84"></a>安全的插件结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">;(function($,window,document,undefined)&#123;</span><br><span class="line">    // 插件代码</span><br><span class="line">&#125;)(jQuery,window,document);</span><br></pre></td></tr></table></figure>
+
+<p>用自调用匿名函数包裹代码，形成一个作用域，避免对全局命名空间的污染。 使用 <code>;</code> 是为了避免：前面的代码没有以分号结尾，引入我们的 js 后，导致报错无法执行。 比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var foo=function()&#123;</span><br><span class="line">    //别人的代码</span><br><span class="line">&#125;//注意这里没有用分号结尾</span><br><span class="line"></span><br><span class="line">//开始我们的代码。。。</span><br><span class="line">(function()&#123;</span><br><span class="line">    //我们的代码。。</span><br><span class="line">    alert(&#x27;Hello!&#x27;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>参考 <a target="_blank" rel="noopener" href="http://www.cnblogs.com/Wayou/p/jquery_plugin_tutorial.html">jQuery插件开发精品教程，让你的jQuery提升一个台阶</a></p>
+<h2 id="创建-jQuery-Widget"><a href="#创建-jQuery-Widget" class="headerlink" title="创建 jQuery Widget"></a><a href="#%E5%88%9B%E5%BB%BA-jquery-widget"></a>创建 jQuery Widget</h2><p><a target="_blank" rel="noopener" href="http://learn.jquery.com/jquery-ui/">jQuery UI 官方文档</a> 大部分 jQuery 插件是无状态的，完成某个动作就结束了。但是有些插件是有状态的，他们有生命周期和状态，widget factory 定义了如何创建和销毁他们，如何获取和设置选项，调用方法以及监听小部件触发的事件。这样的规范会让使用者更容易使用。 例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;jQuery plugin&lt;/title&gt;</span><br><span class="line">    &lt;link href=&quot;https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;div id=&quot;my-widget1&quot;&gt;color me&lt;/div&gt;</span><br><span class="line">  &lt;div id=&quot;my-widget2&quot;&gt;color me&lt;/div&gt;</span><br><span class="line">  &lt;div id=&quot;my-widget3&quot;&gt;color me&lt;/div&gt;</span><br><span class="line">  &lt;button id=&quot;disable&quot;&gt;Toggle disabled option&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;green&quot;&gt;Go green&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .custom-colorize &#123;</span><br><span class="line">    font-size: 20px;</span><br><span class="line">    position: relative;</span><br><span class="line">    width: 75px;</span><br><span class="line">    height: 75px;</span><br><span class="line">  &#125;</span><br><span class="line">  .custom-colorize-changer &#123;</span><br><span class="line">    font-size: 10px;</span><br><span class="line">    position: absolute;</span><br><span class="line">    right: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">  &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">$( function() &#123;</span><br><span class="line">    // the widget definition, where &quot;custom&quot; is the namespace,</span><br><span class="line">    // &quot;colorize&quot; the widget name</span><br><span class="line">    $.widget( &quot;custom.colorize&quot;, &#123;</span><br><span class="line">      // default options</span><br><span class="line">      options: &#123;</span><br><span class="line">        red: 255,</span><br><span class="line">        green: 0,</span><br><span class="line">        blue: 0,</span><br><span class="line"></span><br><span class="line">        // Callbacks</span><br><span class="line">        change: null,</span><br><span class="line">        random: null</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      // The constructor</span><br><span class="line">      _create: function() &#123;</span><br><span class="line">        this.element</span><br><span class="line">          // add a class for theming</span><br><span class="line">          .addClass( &quot;custom-colorize&quot; );</span><br><span class="line"></span><br><span class="line">        this.changer = $( &quot;&lt;button&gt;&quot;, &#123;</span><br><span class="line">          text: &quot;change&quot;,</span><br><span class="line">          &quot;class&quot;: &quot;custom-colorize-changer&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">        .appendTo( this.element )</span><br><span class="line">        .button();</span><br><span class="line"></span><br><span class="line">        // Bind click events on the changer button to the random method</span><br><span class="line">        this._on( this.changer, &#123;</span><br><span class="line">          // _on won&#x27;t call random when widget is disabled</span><br><span class="line">          click: &quot;random&quot;</span><br><span class="line">        &#125;);</span><br><span class="line">        this._refresh();</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      // Called when created, and later when changing options</span><br><span class="line">      _refresh: function() &#123;</span><br><span class="line">        this.element.css( &quot;background-color&quot;, &quot;rgb(&quot; +</span><br><span class="line">          this.options.red +&quot;,&quot; +</span><br><span class="line">          this.options.green + &quot;,&quot; +</span><br><span class="line">          this.options.blue + &quot;)&quot;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        // Trigger a callback/event</span><br><span class="line">        this._trigger( &quot;change&quot; );</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      // A public method to change the color to a random value</span><br><span class="line">      // can be called directly via .colorize( &quot;random&quot; )</span><br><span class="line">      random: function( event ) &#123;</span><br><span class="line">        var colors = &#123;</span><br><span class="line">          red: Math.floor( Math.random() * 256 ),</span><br><span class="line">          green: Math.floor( Math.random() * 256 ),</span><br><span class="line">          blue: Math.floor( Math.random() * 256 )</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        // Trigger an event, check if it&#x27;s canceled</span><br><span class="line">        if ( this._trigger( &quot;random&quot;, event, colors ) !== false ) &#123;</span><br><span class="line">          this.option( colors );</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      // Events bound via _on are removed automatically</span><br><span class="line">      // revert other modifications here</span><br><span class="line">      _destroy: function() &#123;</span><br><span class="line">        // remove generated elements</span><br><span class="line">        this.changer.remove();</span><br><span class="line"></span><br><span class="line">        this.element</span><br><span class="line">          .removeClass( &quot;custom-colorize&quot; )</span><br><span class="line">          .enableSelection()</span><br><span class="line">          .css( &quot;background-color&quot;, &quot;transparent&quot; );</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      // _setOptions is called with a hash of all options that are changing</span><br><span class="line">      // always refresh when changing options</span><br><span class="line">      _setOptions: function() &#123;</span><br><span class="line">        // _super and _superApply handle keeping the right this-context</span><br><span class="line">        this._superApply( arguments );</span><br><span class="line">        this._refresh();</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      // _setOption is called for each individual option that is changing</span><br><span class="line">      _setOption: function( key, value ) &#123;</span><br><span class="line">        // prevent invalid color values</span><br><span class="line">        if ( /redgreenblue/.test(key) &amp;&amp; (value &lt; 0  value &gt; 255) ) &#123;</span><br><span class="line">          return;</span><br><span class="line">        &#125;</span><br><span class="line">        this._super( key, value );</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // Initialize with default options</span><br><span class="line">    $( &quot;#my-widget1&quot; ).colorize();</span><br><span class="line"></span><br><span class="line">    // Initialize with two customized options</span><br><span class="line">    $( &quot;#my-widget2&quot; ).colorize(&#123;</span><br><span class="line">      red: 60,</span><br><span class="line">      blue: 60</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // Initialize with custom green value</span><br><span class="line">    // and a random callback to allow only colors with enough green</span><br><span class="line">    $( &quot;#my-widget3&quot; ).colorize( &#123;</span><br><span class="line">      green: 128,</span><br><span class="line">      random: function( event, ui ) &#123;</span><br><span class="line">        return ui.green &gt; 128;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // Click to toggle enabled/disabled</span><br><span class="line">    $( &quot;#disable&quot; ).on( &quot;click&quot;, function() &#123;</span><br><span class="line">      // use the custom selector created for each widget to find all instances</span><br><span class="line">      // all instances are toggled together, so we can check the state from the first</span><br><span class="line">      if ( $( &quot;:custom-colorize&quot; ).colorize( &quot;option&quot;, &quot;disabled&quot; ) ) &#123;</span><br><span class="line">        $( &quot;:custom-colorize&quot; ).colorize( &quot;enable&quot; );</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        $( &quot;:custom-colorize&quot; ).colorize( &quot;disable&quot; );</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // Click to set options after initialization</span><br><span class="line">    $( &quot;#green&quot; ).on( &quot;click&quot;, function() &#123;</span><br><span class="line">      $( &quot;:custom-colorize&quot; ).colorize( &quot;option&quot;, &#123;</span><br><span class="line">        red: 64,</span><br><span class="line">        green: 250,</span><br><span class="line">        blue: 8</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; );</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wp-content/uploads/2017/10/jquery-widget.gif" alt="jquery widget"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-js-%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-js-%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Magento 2 JS 开发入门</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-07 22:19:43" itemprop="dateCreated datePublished" datetime="2017-10-07T22:19:43+08:00">2017-10-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">插件开发系列教程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>默认情况下，Magento 2 使用 RequireJS （可参考 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-and-requirejs/#requirejs-and-jquery-plugins">Magento 2 and RequireJS (翻译)</a> 和 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/requirejs-modularity-async/">关于 RequireJS</a>）来异步加载 js 模块，管理模块依赖。在这个大前提下，Magento 2 中使用的主要 JS 库是 jQuery 和 KnockoutJS （简称 ko），还使用了 AngularJS （used for the web based installer）和 Underscore (This provides some useful Javascript functions to manipulate Javascript arrays, functions, objects and collections.) 另外 Magento 做了许多自定义的设置，比如对 ko 模版引擎的改造，让我们不需要用 <code>&lt;script type=&quot;text/html&quot;&gt;</code> 来声明模版，也把模版从 phtml 文件中分离到独立的 html 文件中，有利于模版的复用。比如，创建了 ko 的自定义绑定 <code>scope</code> 。上面提到的可以参考 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-and-konockoutjs/">Magento 2 and konockoutjs</a>。还有，<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code> 也是 Magento 2 的自定义设计（可参考 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-javascript-init-ways/"><code>&lt;script type=&quot;text/x-magento-init&quot;</code>&gt;</a>）。 既然用到了 jQuery ，那么 jQuery 丰富的插件就绝对是绕不过去的话题。但是 jQuery 的插件并不都是符合 AMD 规范的，所以，我们需要用到 requireJS 的 <code>shim</code> ，参考 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/requirejs-%E7%9A%84-shim-%E7%94%A8%E6%B3%95/">RequireJS 的 shim 用法</a>。 <em>RequireJS 的 shim 解决的是加载非 AMD 规范模块的问题，并不限于 jQuery 的插件</em> 我们中文语境中的 <strong>jQuery 插件</strong>，可能指的是 jQuery Plugin 或者是 jQuery widget。但是这两者是有差别的，参考 <a href="/jquery-plugin-and-widget">jQuery Plugin and Widget</a>。下面介绍 Magento 2 中的几个术语，是比较容易混淆的概念。</p>
+<p>术语</p>
+<p>描述</p>
+<p>JavaScript component (JS component)</p>
+<p>Any separate .js file decorated as AMD module。 符合 AMD 规范的 JS 模块，通常都是一个文件一个模块</p>
+<p>Ui component</p>
+<p>JS component located in the Magento_Ui module, in the app&#x2F;code&#x2F;Magento&#x2F;Ui&#x2F;view directory. 他是 Magento_Ui 模块中的一组 JS ，位于 app&#x2F;code&#x2F;Magento&#x2F;Ui&#x2F;view 目录下</p>
+<p>jQuery UI widget</p>
+<p>A JS component&#x2F;widget provided by jQuery UI library used in Magento. jQuery UI 中包含的组件，参考 <a target="_blank" rel="noopener" href="http://jqueryui.com/">jQuery UI</a></p>
+<p>jQuery widget</p>
+<p>Custom widget created using jQuery UI Widget Factory and decorated as AMD module. Many Magento JS components are jQuery widget. 使用 jQuery UI Widget Factory 创建并且符合 AMD 规范的 js 模块， Magento 中许多 js 组件都是 jQuery widget ，参考 <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/javascript-dev-guide/widgets/jquery-widgets-about.html">Magento jQuery widgets</a></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/javascript-dev-guide/javascript/js_overview.html">JavaScript</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/categories-content-settings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/categories-content-settings/" class="post-title-link" itemprop="url">设置内容 (Content Settings)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-01 16:55:15" itemprop="dateCreated datePublished" datetime="2017-10-01T16:55:15+08:00">2017-10-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/categories-content-settings.html">原文地址</a> 内容部分的设置决定 category 页面显示的额外内容。category 页面除了展示产品列表，还可以展示图像、文本和 CMS block <img src="/wp-content/uploads/2017/09/category-content.png" alt="category content"> 字段说明</p>
+<p>field 字段</p>
+<p>scope 作用范围</p>
+<p>description 描述</p>
+<p>Category Image 分类的图像</p>
+<p>Store view</p>
+<p>上传图像，将显示在该分类页的内容区上方位置</p>
+<p>Description</p>
+<p>Store view</p>
+<p>输入对该分类的描述信息</p>
+<p>Add CMS Block</p>
+<p>Store view</p>
+<p>将一个 CMS block 插入到分类页</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

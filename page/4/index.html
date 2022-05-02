@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/virtual-type/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/virtual-type/" class="post-title-link" itemprop="url">Virtual Type</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-11 09:57:48" itemprop="dateCreated datePublished" datetime="2019-06-11T09:57:48+08:00">2019-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>A virtual type allows the developer to create an instance of an existing class that has custom constructor arguments. This is useful in cases where you need a “new” class only because the constructor arguments need to be changed. This is used frequently in Magento to reduce redundant PHP classes.</p>
+<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>You are making some major adjustments to a core Magento class (ClassA). These adjustments are only necessary when utilized from a specific Magento class (ClassB). You have created MyClass that contains the needed customizations. Keeping upgradeability in mind, how do you configure di.xml to make the substitution happen? A. Ensure that MyClass extends ModuleA and set the <code>&lt;argument/&gt;</code>, for ModuleB to point to your new class in di.xml. B. Set a <code>&lt;preference/&gt;</code> for ModuleA to be replaced by MyClass C. Create a virtual type that extends ModuleB, specifying an <code>&lt;argument/&gt;</code> for MyClass. D. Create a rewrite node that injects MyClass into ClassB. Answer A</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/use-zend-cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/use-zend-cache/" class="post-title-link" itemprop="url">use Zend_Cache</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-09 14:32:58" itemprop="dateCreated datePublished" datetime="2019-06-09T14:32:58+08:00">2019-06-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&#x27;display_errors&#x27;, 1);</span><br><span class="line">$backend = &#x27;Cm_Cache_Backend_File&#x27;;</span><br><span class="line">$frontend = &#x27;Magento\Framework\Cache\Core&#x27;;</span><br><span class="line">$frontendOptions = [</span><br><span class="line">        &#x27;cache_id_prefix&#x27; =&gt; &#x27;7f1_&#x27;,</span><br><span class="line">        &#x27;caching&#x27;=&gt;true,</span><br><span class="line">        &#x27;lifetime&#x27; =&gt; 7200,</span><br><span class="line">        &#x27;automatic_cleaning_factor&#x27; =&gt; 0,</span><br><span class="line">        &#x27;type&#x27; =&gt; &#x27;Magento\Framework\Cache\Core&#x27;</span><br><span class="line">];</span><br><span class="line">$backendOptions = [</span><br><span class="line">    &#x27;cache_dir&#x27; =&gt; &#x27;/var/www/html/m230/var/page_cache_test&#x27;,</span><br><span class="line">    &#x27;hashed_directory_level&#x27; =&gt; 1,</span><br><span class="line">    &#x27;file_name_prefix&#x27; =&gt; &#x27;magetest&#x27;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$cache = \Zend_Cache::factory(</span><br><span class="line">    $frontend,</span><br><span class="line">    $backend,</span><br><span class="line">    $frontendOptions,</span><br><span class="line">    $backendOptions,</span><br><span class="line">    true,</span><br><span class="line">    true,</span><br><span class="line">    true</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">var_dump(get_class($cache));</span><br><span class="line"></span><br><span class="line">$cache-&gt;save(&#x27;wanttosavedata&#x27;, &#x27;dataid&#x27;, [&#x27;datatag&#x27;, &#x27;datatag2&#x27;]);</span><br><span class="line">echo $cache-&gt;load(&#x27;first&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>Ok, we will get these files.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var/page_cache_test</span><br><span class="line">    -- magetest-tags</span><br><span class="line">        -- magetest---7f1_datatag</span><br><span class="line">        -- magetest---7f1_datatag2</span><br><span class="line">    -- magetest--0</span><br><span class="line">        -- magetest---7f1_dataid</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/create-cache-type/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/create-cache-type/" class="post-title-link" itemprop="url">create cache type</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-09 13:37:09" itemprop="dateCreated datePublished" datetime="2019-06-09T13:37:09+08:00">2019-06-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>etc/cache.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Cache/etc/cache.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;menu&quot; translate=&quot;label,description&quot; instance=&quot;VendorName\TestModule\Model\Cache\Type&quot;&gt;</span><br><span class="line">        &lt;label&gt;Test cache type&lt;/label&gt;</span><br><span class="line">        &lt;description&gt;Test cache type Description&lt;/description&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Cache;</span><br><span class="line"></span><br><span class="line">class Type extends \Magento\Framework\Cache\Frontend\Decorator\TagScope</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Cache type code unique among all cache types</span><br><span class="line">     */</span><br><span class="line">    const TYPE_IDENTIFIER = &#x27;menu&#x27;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Cache tag used to distinguish the cache type from all other cache</span><br><span class="line">     */</span><br><span class="line">    const CACHE_TAG = &#x27; MENU_TAG&#x27;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Type constructor.</span><br><span class="line">     * @param \Magento\Framework\App\Cache\Type\FrontendPool $cacheFrontendPool</span><br><span class="line">     */</span><br><span class="line">    public function __construct(\Magento\Framework\App\Cache\Type\FrontendPool $cacheFrontendPool)</span><br><span class="line">    &#123;</span><br><span class="line">        parent::__construct($cacheFrontendPool-&gt;get(self::TYPE_IDENTIFIER), self::CACHE_TAG);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wp-content/uploads/2019/06/cache_type.png"> Let’s enable it and some experiments.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$menuCache = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\Cache\Type&#x27;);</span><br><span class="line">$cacheId = &#x27;custom_menu_cache&#x27;;</span><br><span class="line">$cacheTag = [&#x27;menu_tag_1&#x27;, &#x27;menu_tag_2&#x27;];</span><br><span class="line">$data = &#x27;I am custom menu content&#x27;;</span><br><span class="line">$lifeTime = &#x27;600&#x27;;</span><br><span class="line">$menuCache-&gt;save($data, $cacheId, $cacheTag, $lifeTime);</span><br></pre></td></tr></table></figure>
+
+<p>If you look at the var&#x2F;cache folder of Magento at this point, you will see something similar to the following screenshot. we find four <code>44d_CUSTOM_MENU_CACHE</code>(this is the cache id) records in four files(<code>var/cache/mage-tags/mage---44d_MAGE</code>, <code>var/cache/mage-tags/mage---44d_MENU_TAG</code>(the cache tag),<code>var/cache/mage-tags/mage---44d_MENU_TAG_1</code>,<code>var/cache/mage-tags/mage---44d_MENU_TAG_2</code>). <img src="/wp-content/uploads/2019/06/cache_type_tags.png"> And a file named <code>var/cache/mage--6/mage---44d_CUSTOM_MENU_CACHE</code>. <img src="/wp-content/uploads/2019/06/cache_type_id.png"> So, if I want to find all the cache taged with BLOCK_HTML (specified in <code>Magento\Framework\App\Cache\Type\Block</code>), I can search file name with ‘BLOCK_HTML’ <img src="/wp-content/uploads/2019/06/block_html.png"> This file writes down all the cache id taged with ‘BLOCK_HTML’. <img src="/wp-content/uploads/2019/06/block_html_cache_id.png"> the prefix <code>44d_</code> is sepecified in app&#x2F;etc&#x2F;env.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x27;cache&#x27; =&gt; [</span><br><span class="line">        &#x27;frontend&#x27; =&gt; [</span><br><span class="line">            &#x27;default&#x27; =&gt; [</span><br><span class="line">                &#x27;id_prefix&#x27; =&gt; &#x27;44d_&#x27;</span><br><span class="line">            ],</span><br><span class="line">            &#x27;page_cache&#x27; =&gt; [</span><br><span class="line">                &#x27;id_prefix&#x27; =&gt; &#x27;44d_&#x27;</span><br><span class="line">            ]</span><br><span class="line">        ]</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$menuCache = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\Cache\Type&#x27;);</span><br><span class="line">$cacheId = &#x27;custom_menu_cache&#x27;;</span><br><span class="line">$cacheTag = [&#x27;menu_tag_1&#x27;, &#x27;menu_tag_2&#x27;];</span><br><span class="line">$data = &#x27;I am custom menu content&#x27;;</span><br><span class="line">$lifeTime = &#x27;600&#x27;;</span><br><span class="line">$menuCache-&gt;save($data, $cacheId, $cacheTag, $lifeTime);</span><br><span class="line">$content = $menuCache-&gt;load($cacheId);</span><br><span class="line">var_dump($content);</span><br></pre></td></tr></table></figure>
+
+<p>We can get the string ‘I am custom menu content’;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$menuCache = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\Cache\Type&#x27;);</span><br><span class="line">$cacheId = &#x27;custom_menu_cache&#x27;;</span><br><span class="line">$cacheTag = [&#x27;menu_tag_1&#x27;, &#x27;menu_tag_2&#x27;];</span><br><span class="line">$data = &#x27;I am custom menu content&#x27;;</span><br><span class="line">$lifeTime = &#x27;600&#x27;;</span><br><span class="line">$menuCache-&gt;save($data, $cacheId, $cacheTag, $lifeTime);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var_dump($menuCache-&gt;getTag());</span><br><span class="line">echo get_class($menuCache-&gt;getLowLevelFrontend());</span><br><span class="line"></span><br><span class="line">// we will get all the cache ids in system</span><br><span class="line">var_dump($menuCache-&gt;getLowLevelFrontend()-&gt;getIds());</span><br><span class="line">// we will get all the cache tags in system</span><br><span class="line">var_dump($menuCache-&gt;getLowLevelFrontend()-&gt;getTags());</span><br></pre></td></tr></table></figure>
+
+<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>How do you create a new cache type?<br>A. Use a plugin to append to the method arguments for the <code>\Magento\Framework\App\CacheList::collect</code> method.<br>B. Create etc&#x2F;cache.xml and specify a <code>&lt;type name=&quot;cache_name&quot; instance=&quot;Class\Path&quot;/&gt;</code>.<br>C. Inject a new caching class into \Magento\Framework\App\CacheList.<br>D. Add an event observer for the cache_type_collector observer.</p>
+<p>Answer B</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/getflatcolumns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/getflatcolumns/" class="post-title-link" itemprop="url">getFlatColumns</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-07 20:57:40" itemprop="dateCreated datePublished" datetime="2019-06-07T20:57:40+08:00">2019-06-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>After we turn on <strong>Use Flat Catalog Product</strong>, we activate the <strong>catalog_product_flat</strong> index. Run <code>bin/magento indexer:reindex catalog_product_flat</code> A new table <code>catalog_product_flat_&lt;storeId&gt;</code> will be created. In this table, product eav attributes which are configured as <strong>Used in Product Listing</strong> are added as columns. Let’s see how this worked.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;indexer id=&quot;catalog_product_flat&quot; view_id=&quot;catalog_product_flat&quot; class=&quot;Magento\Catalog\Model\Indexer\Product\Flat&quot;&gt;</span><br><span class="line">        &lt;title translate=&quot;true&quot;&gt;Product Flat Data&lt;/title&gt;</span><br><span class="line">        &lt;description translate=&quot;true&quot;&gt;Reorganize EAV product structure to flat structure&lt;/description&gt;</span><br><span class="line">&lt;/indexer&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>Magento\Catalog\Model\Indexer\Product\Flat:executeFull</code> &gt; <code>Magento\Catalog\Model\Indexer\Product\Flat\AbstractAction:_updateRelationProducts</code> &gt; <code>Magento\Catalog\Helper\Product\Flat\Indexer:getFlatColumns</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public function getFlatColumns()</span><br><span class="line">    &#123;</span><br><span class="line">        if ($this-&gt;_columns === null) &#123;</span><br><span class="line">            $this-&gt;_columns = $this-&gt;getFlatColumnsDdlDefinition();</span><br><span class="line">            foreach ($this-&gt;getAttributes() as $attribute) &#123;</span><br><span class="line">                /** @var $attribute \Magento\Eav\Model\Entity\Attribute\AbstractAttribute */</span><br><span class="line">                $columns = $attribute-&gt;setFlatAddFilterableAttributes(</span><br><span class="line">                    $this-&gt;isAddFilterableAttributes()</span><br><span class="line">                )-&gt;setFlatAddChildData(</span><br><span class="line">                    $this-&gt;isAddChildData()</span><br><span class="line">                )-&gt;getFlatColumns();</span><br><span class="line">                if ($columns !== null) &#123;</span><br><span class="line">                    $this-&gt;_columns = array_merge($this-&gt;_columns, $columns);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return $this-&gt;_columns;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Practice-Tests"><a href="#Practice-Tests" class="headerlink" title="Practice Tests"></a><a href="#practice-tests"></a>Practice Tests</h2><p>What is the purpose of the getFlatColumns method in an EAV’s Source model? A. It returns a list of columns in the entity’s _text table. B. It converts option values into row values for the attribute value tables. C. It flattens an array attribute value into a JSON string. D. It returns columns that will be added to the EAV model’s flat table. Answer D</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/m2-index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/m2-index/" class="post-title-link" itemprop="url">index</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-07 17:24:45" itemprop="dateCreated datePublished" datetime="2019-06-07T17:24:45+08:00">2019-06-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Why-need-index"><a href="#Why-need-index" class="headerlink" title="Why need index"></a><a href="#why-need-index"></a>Why need index</h2><p>*Indexing is how Magento transforms data such as products and categories, to improve the performance of your storefront. For example, if you change the price of an item from $4.99 to $3.99. Magento must reindex the price change to display it on your storefront. Without indexing, Magento would have to calculate the price of every product on the fly, taking into account shopping cart price rules, bundle pricing, discounts, tier pricing, etc. Loading the price for a product would take a long time, possibly resulting in cart abandonment.*</p>
+<h2 id="Add-a-custom-indexer"><a href="#Add-a-custom-indexer" class="headerlink" title="Add a custom indexer"></a><a href="#add-a-custom-indexer"></a>Add a custom indexer</h2><p>create a config file <code>app/code/VendorName/TestModule/etc/indexer.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Indexer/etc/indexer.xsd&quot;&gt;</span><br><span class="line">    &lt;indexer id=&quot;custom_index&quot; view_id=&quot;custom_index&quot; class=&quot;VendorName/TestModule\Model\Indexer\ExampleIndexer&quot; shared_index=&quot;custom_index&quot;&gt;</span><br><span class="line">        &lt;title translate=&quot;true&quot;&gt;Indexer Example&lt;/title&gt;</span><br><span class="line">        &lt;description translate=&quot;true&quot;&gt;Indexer Example&lt;/description&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">            &lt;indexer id=&quot;cataloginventory_stock&quot;/&gt;</span><br><span class="line">        &lt;/dependencies&gt;</span><br><span class="line">    &lt;/indexer&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The <strong>id</strong> attribute is used to identify this indexer. You can call it when you want to check the status, mode or reindex this indexer by the command line. The <strong>view_id</strong> is the id of view element, which will be defined in the mview configuration file. The <strong>class</strong> attribute is the name to the class, which processes the indexer method. The <strong>shared_index</strong> attribute is used for combining several indexers into groups. While reindexing one of the group indexers, the others will be labeled as valid. The <strong>dependencies</strong> element is used to mark the dependencies between various indexers. Create an <code>app/code/VendorName/TestModule/etc/mview.xml</code> config file, which will be responsible for the indexation by Cron.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Mview/etc/mview.xsd&quot;&gt;</span><br><span class="line">    &lt;view id=&quot;custom_index&quot; class=&quot;VendorName\TestModule\Model\Indexer\ExampleIndexer&quot; group=&quot;indexer&quot;&gt;</span><br><span class="line">        &lt;subscriptions&gt;</span><br><span class="line">            &lt;table name=&quot;catalog_product_entity&quot; entity_column=&quot;entity_id&quot;/&gt;</span><br><span class="line">        &lt;/subscriptions&gt;</span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The class should implement the interfaces: <code>\Magento\Framework\Indexer\ActionInterface</code>, <code>\Magento\Framework\Mview\ActionInterface</code>. Where the <code>\Magento\Framework\Indexer\ActionInterface</code> interface contains the main indexation methods, and the <code>\Magento\Framework\Mview\ActionInterface interface</code> contains the methods that are applied for the <strong>Update By Schedule mode</strong> of an indexation.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace VendorName\TestModule\Model\Indexer;</span><br><span class="line"></span><br><span class="line">class ExampleIndexer implements \Magento\Framework\Indexer\ActionInterface, \Magento\Framework\Mview\ActionInterface</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute full indexation</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function executeFull()</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement executeFull() method.</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute partial indexation by ID list</span><br><span class="line">     *</span><br><span class="line">     * @param int[] $ids</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function executeList(array $ids)</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement executeList() method.</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute partial indexation by ID</span><br><span class="line">     *</span><br><span class="line">     * @param int $id</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function executeRow($id)</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement executeRow() method.</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute materialization on ids entities</span><br><span class="line">     *</span><br><span class="line">     * @param int[] $ids</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     * @api</span><br><span class="line">     */</span><br><span class="line">    public function execute($ids)</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement execute() method.</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wp-content/uploads/2019/06/custom_indexer.png"> After we change our custom indexer to ‘update by schedule mode’, a mysql trigger will be created on table ‘catalog_product_entity’. When we change mode to ‘update on save’, the trigger will be deleted. <img src="/wp-content/uploads/2019/06/mysql_trigger.png"></p>
+<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p><img src="/wp-content/uploads/2019/06/index.png"></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p>Highly Recomend: <a target="_blank" rel="noopener" href="https://amasty.com/blog/comprehensive-guide-to-magento-2-indexing/">COMPREHENSIVE GUIDE TO MAGENTO 2 INDEXING</a> <a target="_blank" rel="noopener" href="https://devdocs.magento.com/guides/v2.3/extension-dev-guide/indexing.html">Dev docs - Indexing overview</a> <a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/117030/what-is-mview-in-magento2">what is mview in magento2?</a> <a target="_blank" rel="noopener" href="https://maxchadwick.xyz/blog/digging-into-magento-2-partial-reindexing-implementation">Digging Into Magento 2’s Partial Reindexing Implementation</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/eavsetup-classes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/eavsetup-classes/" class="post-title-link" itemprop="url">EavSetup classes</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-06 17:39:41" itemprop="dateCreated datePublished" datetime="2019-06-06T17:39:41+08:00">2019-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>A few classes extend \Magento\Eav\Setup\EavSetupFactory that provide additional features for specifc entity types:</p>
+<ul>
+<li>Product and Category: <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Catalog/Setup/CategorySetup.php">\Magento\Catalog\Setup\CategorySetup</a></li>
+<li>Customer and Customer address : <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Customer/Setup/CustomerSetup.php">\Magento\Customer\Setup\CustomerSetup</a></li>
+<li>Orders, Invoices, Shipments, and Credit memos: <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Sales/Setup/SalesSetup.php">\Magento\Sales\Setup\SalesSetup</a></li>
+<li>Quotes (Quote is not an eav type): <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Quote/Setup/QuoteSetup.php">\Magento\Quote\Setup\QuoteSetup</a></li>
+</ul>
+<p><img src="/wp-content/uploads/2019/06/eavSetup.png"> (The answer marked green is correct)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/catalog-attributes-xml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/catalog-attributes-xml/" class="post-title-link" itemprop="url">catalog_attributes.xml</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-06 16:21:15" itemprop="dateCreated datePublished" datetime="2019-06-06T16:21:15+08:00">2019-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><a href="#experiments"></a>Experiments</h2><p>We use quote_item as an example. We create a custom product attribute with <code>product_brand</code> code.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$productResp = $this-&gt;_objectManager-&gt;get(&#x27;Magento\Catalog\Api\ProductRepositoryInterface&#x27;);</span><br><span class="line">$product = $productResp-&gt;getById(1);</span><br><span class="line">var_dump($product-&gt;getData());</span><br></pre></td></tr></table></figure>
+
+<p>Ok, we can get <code>product_brand</code> attribute value.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$checkoutSession = $this-&gt;_objectManager-&gt;get(&#x27;\Magento\Checkout\Model\Session&#x27;);</span><br><span class="line">$quote = $checkoutSession-&gt;getQuote();</span><br><span class="line">$quoteItems = $quote-&gt;getAllItems();</span><br><span class="line">foreach ($quoteItems as $item) &#123;</span><br><span class="line">    $product = $item-&gt;getProduct();</span><br><span class="line">&#125;</span><br><span class="line">var_dump($product-&gt;getData());</span><br></pre></td></tr></table></figure>
+
+<p>However, we can’t get <code>product_brand</code> attribute value through qutoe item. Let’s create a etc&#x2F;catalog_attributes.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">        xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd&quot;&gt;</span><br><span class="line">    &lt;group name=&quot;quote_item&quot;&gt;</span><br><span class="line">        &lt;attribute name=&quot;product_brand&quot;/&gt;</span><br><span class="line">    &lt;/group&gt;</span><br><span class="line">    &lt;group name=&quot;wishlist_item&quot;&gt;</span><br><span class="line">        &lt;attribute name=&quot;product_brand&quot; /&gt;</span><br><span class="line">    &lt;/group&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>This time, we can get <code>product_brand</code> attribute value through qutoe item. Source: <code>vendor\magento\module-quote\Model\ResourceModel\Quote\Item\Collection.php::_assignProducts</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">$productCollection = $this-&gt;_productCollectionFactory-&gt;create()-&gt;setStoreId(</span><br><span class="line">            $this-&gt;getStoreId()</span><br><span class="line">        )-&gt;addIdFilter(</span><br><span class="line">            $this-&gt;_productIds</span><br><span class="line">        )-&gt;addAttributeToSelect(</span><br><span class="line">            $this-&gt;_quoteConfig-&gt;getProductAttributes()</span><br><span class="line">        );</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><code>$this-&gt;_quoteConfig</code> is an instance of <code>Magento\Quote\Model\Quote\Config</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * Copyright © Magento, Inc. All rights reserved.</span><br><span class="line"> * See COPYING.txt for license details.</span><br><span class="line"> */</span><br><span class="line">namespace Magento\Quote\Model\Quote;</span><br><span class="line"></span><br><span class="line">class Config</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * @var \Magento\Catalog\Model\Attribute\Config</span><br><span class="line">     */</span><br><span class="line">    private $_attributeConfig;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param \Magento\Catalog\Model\Attribute\Config $attributeConfig</span><br><span class="line">     */</span><br><span class="line">    public function __construct(\Magento\Catalog\Model\Attribute\Config $attributeConfig)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_attributeConfig = $attributeConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @return array</span><br><span class="line">     */</span><br><span class="line">    public function getProductAttributes()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;_attributeConfig-&gt;getAttributeNames(&#x27;quote_item&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Default Groups： quote_item wishlist_item catalog_product catalog_category unassignable used_in_autogeneration</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="https://www.atwix.com/magento-2/how-to-access-custom-catalog-attributes/">How to access custom catalog attributes in Magento 2</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/how-eav-load/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/how-eav-load/" class="post-title-link" itemprop="url">how eav load</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-06 14:03:15" itemprop="dateCreated datePublished" datetime="2019-06-06T14:03:15+08:00">2019-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><a href="#experiments"></a>Experiments</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\ResourceModel;</span><br><span class="line"></span><br><span class="line">class CustomEav extends \Magento\Eav\Model\Entity\AbstractEntity</span><br><span class="line">&#123;</span><br><span class="line">    public function getEntityType() &#123;</span><br><span class="line">        if(empty($this-&gt;_type)) &#123;</span><br><span class="line">            $this-&gt;setType(\Magento\Catalog\Model\Product::ENTITY);</span><br><span class="line">        &#125;</span><br><span class="line">        return parent::getEntityType();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    $res = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\ResourceModel\CustomEav&#x27;);</span><br><span class="line">    $product = $this-&gt;_objectManager-&gt;get(&#x27;Magento\Catalog\Model\Product&#x27;);</span><br><span class="line">    $res-&gt;load($product, 1);</span><br><span class="line"></span><br><span class="line">    var_dump($product-&gt;getData());</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Now we get the proudct’s eav attributes.</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a><a href="#notes"></a>Notes</h2><p>Source: <code>Magento\Eav\Model\Entity\AbstractEntity</code> See <code>_loadModelAttributes()</code> in the above fle for details about the loading process. Magento creates a UNION select to load attributes from each of the entity type tables to locate the applicable attribute values. See <code>_collectSaveData()</code> in the above fle for how the saving process works. EAV collections oﬀer other methods such as addAttributeToSelect (note that the feld methods, such as addFieldToFilter have been mapped to their attribute counterparts). Simple resource model extens <code>Magento\Framework\Model\ResourceModel\Db\AbstractDb</code></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="http://techjeffyu.com/blog/magento-2-creating-new-eav-entity-and-model">Magento 2: Creating New Eav Entity and Model (Updated for Data Installation)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/attribute-sets-and-attribute-groups/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/attribute-sets-and-attribute-groups/" class="post-title-link" itemprop="url">attribute sets and attribute groups</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-05 15:39:14" itemprop="dateCreated datePublished" datetime="2019-06-05T15:39:14+08:00">2019-06-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/wp-content/uploads/2019/06/eav_entity_type.png"> Every entity type have some attributes. Attribute set is used to classify attributes. For example, when you create a new product, you can choose using which attribute set. Theoretically, every entity type can have multiple attribute sets, but, generally, only catalog_product has multiple attribute sets. Attribute group is used to group attributes on an edit page under an accordian to make attributes easier to fnd. For exmaple: catalog_category has six groups. So we can see six sections. <img src="/wp-content/uploads/2019/06/eav_groups.png"> Table <code>eav_entity_attribute</code> stores the relationship between attribute and attribute group.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/source-model-backend-model-frontend-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/source-model-backend-model-frontend-model/" class="post-title-link" itemprop="url">source_model / backend_model / frontend_model</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-05 09:55:13" itemprop="dateCreated datePublished" datetime="2019-06-05T09:55:13+08:00">2019-06-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/M2-Certified-Professional-Developer/" itemprop="url" rel="index"><span itemprop="name">M2 Certified Professional Developer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Practice-Tests"><a href="#Practice-Tests" class="headerlink" title="Practice Tests"></a><a href="#practice-tests"></a>Practice Tests</h2><p>You are configuring a new entry in etc&#x2F;adminhtml&#x2F;system.xml that is a select &#x2F; dropdown type. What must the class for the source model extend or implement? A. \Magento\Framework\Data\OptionSourceInterface B. \Magento\Backend\Model\AbstractSource C. \Magento\Framework\Source\OptionInterface D. \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource Answer A for example: vendor\magento\module-authorizenet-acceptjs\etc\adminhtml\system.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;field id=&quot;payment_action&quot; translate=&quot;label&quot; type=&quot;select&quot; sortOrder=&quot;20&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;1&quot; showInStore=&quot;0&quot; canRestore=&quot;1&quot;&gt;</span><br><span class="line">    &lt;label&gt;Payment Action&lt;/label&gt;</span><br><span class="line">    &lt;source_model&gt;Magento\AuthorizenetAcceptjs\Model\Adminhtml\Source\PaymentAction&lt;/source_model&gt;</span><br><span class="line">    &lt;config_path&gt;payment/authorizenet_acceptjs/payment_action&lt;/config_path&gt;</span><br><span class="line">&lt;/field&gt;</span><br></pre></td></tr></table></figure>
+
+<p>class PaymentAction implements \Magento\Framework\Data\OptionSourceInterface</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">interface OptionSourceInterface</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Return array of options as value-label pairs</span><br><span class="line">     *</span><br><span class="line">     * @return array Format: array(array(&#x27;value&#x27; =&gt; &#x27;&lt;value&gt;&#x27;, &#x27;label&#x27; =&gt; &#x27;&lt;label&gt;&#x27;), ...)</span><br><span class="line">     */</span><br><span class="line">    public function toOptionArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p>Shortly speaking, the Source Model is a model of data that we can use for configuration. <a target="_blank" rel="noopener" href="https://magently.com/blog/magento-2-backend-configuration-source-model/">Magento 2 Backend Configuration: Source Model (part 1&#x2F;3)</a> Managing actions before and after saving <a target="_blank" rel="noopener" href="https://magently.com/blog/magento-2-backend-configuration-backend-model-part-23/">Magento 2 Backend Configuration: Backend Model (part 2&#x2F;3)</a> The Frontend Model responsible for our fields view. We don’t mean changing the height&#x2F;width of the input, but a non-standard fields for our non-standard configuration. <a target="_blank" rel="noopener" href="https://magently.com/blog/magento-2-backend-configuration-frontend-model-part-33/">Magento 2 Backend Configuration: Frontend Model (part 3&#x2F;3)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

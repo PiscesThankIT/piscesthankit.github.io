@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="博主认为，最好的教程一定是官方文档。而要快速建立关于某个语言或框架的知识结构，一定是直接上手做一个小项目。 Laravel 5.5 于今年 8 月份发布，是下一个 LTS 版本，从这个版本发布开始会停止对 Laravel 5.1 的 bug 修复，而对 5.1 的安全修复直到 2018 年 7 月份。 LTS 是指长期支持版本，是 Laravel 能提供的最长时间维护的版本，一般发行版只提供 6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel 5.5 Beginner Task List">
+<meta property="og:url" content="http://example.com/laravel-5-5-beginner-task-list/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="博主认为，最好的教程一定是官方文档。而要快速建立关于某个语言或框架的知识结构，一定是直接上手做一个小项目。 Laravel 5.5 于今年 8 月份发布，是下一个 LTS 版本，从这个版本发布开始会停止对 Laravel 5.1 的 bug 修复，而对 5.1 的安全修复直到 2018 年 7 月份。 LTS 是指长期支持版本，是 Laravel 能提供的最长时间维护的版本，一般发行版只提供 6">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/laravel5.1-install-successfully.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/laravel5.5-install-somethingwrong.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/laravel5.5-install-successfully.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/tasks.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/laravel5.5-layout-blade.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/laravel5.5-error-reminder.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/laravel5.5-tasks-list.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/11/todolist.gif">
+<meta property="article:published_time" content="2017-11-09T04:34:30.000Z">
+<meta property="article:modified_time" content="2022-05-02T05:56:16.614Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="Laravel">
+<meta property="article:tag" content="Laravel Task List">
+<meta property="article:tag" content="Laravel 入门">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/11/laravel5.1-install-successfully.png">
+
+<link rel="canonical" href="http://example.com/laravel-5-5-beginner-task-list/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Laravel 5.5 Beginner Task List | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/laravel-5-5-beginner-task-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Laravel 5.5 Beginner Task List
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-11-09 12:34:30" itemprop="dateCreated datePublished" datetime="2017-11-09T12:34:30+08:00">2017-11-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Laravel/" itemprop="url" rel="index"><span itemprop="name">Laravel</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>博主认为，最好的教程一定是官方文档。而要快速建立关于某个语言或框架的知识结构，一定是直接上手做一个小项目。 Laravel 5.5 于今年 8 月份发布，是下一个 LTS 版本，从这个版本发布开始会停止对 Laravel 5.1 的 bug 修复，而对 5.1 的安全修复直到 2018 年 7 月份。 LTS 是指长期支持版本，是 Laravel 能提供的最长时间维护的版本，一般发行版只提供 6 个月的 Bug 修复支持，一年的安全修复支持。所以商业用途最好使用 LTS 版本。 关于 LTS 可参考 <a target="_blank" rel="noopener" href="https://laravel-china.org/articles/2594/laravel-release-roadmap">Laravel 的发布路线图</a> 网上关于 Laravel 的教程很多，但是教程的基本内容无非是了解 laravel 的 MVC ，然后做数据的增删改查。 官方文档其实就很好，该 tutorials 中包括两个部分，一个是 Beginner Task List 另一个是 Intermediate Task List 。可惜的是 5.5 目前还没有这部分的内容。 但是差异也不是很大，原文地址 <a target="_blank" rel="noopener" href="https://laravel.com/docs/5.1/quickstart">Beginner Task List</a> 本文是以上面的 5.1 文档为参考，以 5.5 为开发框架，进行了实践后，记录下来的。 本文中使用的环境是 ubuntu + apache + mysql + php ，使用的 hyper-v 虚拟机，关于这部分，对读者可能没有价值，可跳过。但对博主个人有记录以备后查的作用，所以会写下来。</p>
+<h2 id="安装-Laravel"><a href="#安装-Laravel" class="headerlink" title="安装 Laravel"></a><a href="#%E5%AE%89%E8%A3%85-laravel"></a>安装 Laravel</h2><p>我同时安装了 Laravel 5.1 和 Laravel 5.5 ，一个给到 51 端口，一个给到 55 端口。</p>
+<h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a><a href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"></a>环境要求</h3><p>Laravel 5.5 系统要求</p>
+<p>Laravel 5.1 系统要求</p>
+<p>PHP &gt;&#x3D; 7.0.0 OpenSSL PHP Extension PDO PHP Extension Mbstring PHP Extension Tokenizer PHP Extension XML PHP Extension</p>
+<p>PHP &gt;&#x3D; 5.5.9 OpenSSL PHP Extension PDO PHP Extension Mbstring PHP Extension Tokenizer PHP Extension</p>
+<h3 id="通过-Laravel-installer-安装-5-5-最新的"><a href="#通过-Laravel-installer-安装-5-5-最新的" class="headerlink" title="通过 Laravel installer 安装 5.5 (最新的)"></a><a href="#%E9%80%9A%E8%BF%87-laravel-installer-%E5%AE%89%E8%A3%85-5.5-(%E6%9C%80%E6%96%B0%E7%9A%84)"></a>通过 Laravel installer 安装 5.5 (最新的)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer global require &quot;laravel/installer&quot;</span><br></pre></td></tr></table></figure>
+
+<p>如果此时输入 <code>laravel</code> 一定会提示 <code>laravel: command not found</code> 这是因为该命令不在环境变量中 查看环境变量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo $PATH</span><br><span class="line">/home/thankit/bin:/home/thankit/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
+
+<p>一般情况下的 composer vendor bin 目录在：</p>
+<ul>
+<li>MacOS: $HOME&#x2F;.composer&#x2F;vendor&#x2F;bin</li>
+<li>GNU &#x2F; Linux Distributions: $HOME&#x2F;.config&#x2F;composer&#x2F;vendor&#x2F;bin</li>
+</ul>
+<p>下面我们要将该变量添加到 $PATH 中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;~/.config/composer/vendor/bin:$PATH&quot;</span><br></pre></td></tr></table></figure>
+
+<p>下面可以用 <code>laravel</code> 命令了。 切换到工作目录下，比如 <code>todo55</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new</span><br></pre></td></tr></table></figure>
+
+<p>这样就会在当前目录下安装 laravel 下面我们查看下 laravel 的版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan --version</span><br><span class="line">Laravel Framework 5.5.20</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-composer-安装-5-1"><a href="#通过-composer-安装-5-1" class="headerlink" title="通过 composer 安装 5.1"></a><a href="#%E9%80%9A%E8%BF%87-composer-%E5%AE%89%E8%A3%85-5.1"></a>通过 composer 安装 5.1</h3><p>将 5.1 版本的放在目录 <code>todo51</code> 下 在 <code>todo51</code> 目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project laravel/laravel  ./ &quot;5.1.*&quot;</span><br></pre></td></tr></table></figure>
+
+<p>同样看下版本号：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan --version</span><br><span class="line">Laravel Framework version 5.1.46 (LTS)</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a><a href="#%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"></a>设置权限</h3><p><code>storage</code> 和 <code>bootstrap/cache</code> 目录， web 服务器必须具有可写权限。 对我来说，我需要给组 www-data 写权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod g+w -R storage bootstrap/cache</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置虚拟目录-（可跳过）"><a href="#设置虚拟目录-（可跳过）" class="headerlink" title="设置虚拟目录 （可跳过）"></a><a href="#%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95-%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"></a>设置虚拟目录 （可跳过）</h3><p>确保 <code>mod_rewrite</code> 开启了，这样 <code>public/.htaccess</code> 就有作用了。 以下是针对 Apache 的 启用 Apache rewrite 模块 <code>a2enmod rewrite</code> 我将让 <code>todo51</code> 监听 51 端口，而 <code>todo55</code> 监听 55 端口 首先将 varnish 监听端口从 80 上改到 6082 其次修改 <code>/etc/apache2/ports.conf</code> 增加监听的端口 然后修改 <code>/etc/apache2/sites-available/000-default.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:51&gt;</span><br><span class="line"></span><br><span class="line">        DocumentRoot /home/thankit/www/laravel/todo51/public</span><br><span class="line">        &lt;Directory /home/thankit/www/laravel/todo51/public&gt;</span><br><span class="line">                AllowOverride all</span><br><span class="line">        #       Options +FollowSymLinks</span><br><span class="line">        #       RewriteEngine On</span><br><span class="line">        #       RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line">        #       RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">        #       RewriteRule ^ index.php [L]</span><br><span class="line">        &lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line">&lt;VirtualHost *:55&gt;</span><br><span class="line"></span><br><span class="line">        DocumentRoot /home/thankit/www/laravel/todo55/public</span><br><span class="line">        &lt;Directory /home/thankit/www/laravel/todo55/public&gt;</span><br><span class="line">                AllowOverride all</span><br><span class="line">        #       Options +FollowSymLinks</span><br><span class="line">        #       RewriteEngine On</span><br><span class="line">        #       RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</span><br><span class="line">        #       RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</span><br><span class="line">        #       RewriteRule ^ index.php [L]</span><br><span class="line">        &lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>看看是否监听了端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -lntp</span><br></pre></td></tr></table></figure>
+
+<p>一切正常， 将通过 <code>http://192.168.0.251:51/</code> 访问 5.1 的 todo <img src="/wp-content/uploads/2017/11/laravel5.1-install-successfully.png" alt="laravel 5.1 安装成功"> 将通过 <code>http://192.168.0.251:55/</code> 访问 5.5 的 todo <img src="/wp-content/uploads/2017/11/laravel5.5-install-somethingwrong.png" alt="laravel 5.5 安装报错"> 下面我们得看看 5.5 为什么报错了。 我们进入 todo5.5 的目录，修改 <code>config/app.php</code> 将 debug 打开</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;debug&#x27;  =&gt; env(&#x27;APP_DEBUG&#x27;, true),</span><br></pre></td></tr></table></figure>
+
+<p>下面我们再刷新，看看错误是什么</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RuntimeException</span><br><span class="line">No application encryption key has been specified.</span><br></pre></td></tr></table></figure>
+
+<p>下面直接将 <code>.env.example</code> 拷贝一份重命名为 <code>.env</code> 然后运行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5$ php artisan key:generate</span><br><span class="line">Application key [base64:aJqES8WcAQJJ0jjoMKeQojV0TWnae5ALs8JQnm/uW5w=] set successfully.</span><br></pre></td></tr></table></figure>
+
+<p>下面再打开网站看看，这次正常了： <img src="/wp-content/uploads/2017/11/laravel5.5-install-successfully.png"></p>
+<h2 id="Task-List-创建"><a href="#Task-List-创建" class="headerlink" title="Task List 创建"></a><a href="#task-list-%E5%88%9B%E5%BB%BA"></a>Task List 创建</h2><h3 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB"></a>数据库迁移</h3><p>首先对数据库帐密进行设置，有两处 <code>config\database.php</code> 和 <code>.env</code> <code>.env</code> 是主配置文件，会覆盖 <code>database.php</code> 中的参数 我们设置好 <code>.env</code> 中关于 db 的部分 执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:migration create_tasks_table --create=tasks</span><br></pre></td></tr></table></figure>
+
+<p>他将在 <code>database/migrations/</code> 目录下创建类似 <code>YYYY_M_DD_HHMMSS_create_tableName_table.php</code> 的文件，就像<code>2017_11_08_064436_create_tasks_table.php</code> 其中的内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Support\Facades\Schema;</span><br><span class="line">use Illuminate\Database\Schema\Blueprint;</span><br><span class="line">use Illuminate\Database\Migrations\Migration;</span><br><span class="line"></span><br><span class="line">class CreateTasksTable extends Migration</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the migrations.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function up()</span><br><span class="line">    &#123;</span><br><span class="line">        Schema::create(&#x27;tasks&#x27;, function (Blueprint $table) &#123;</span><br><span class="line">            $table-&gt;increments(&#x27;id&#x27;);</span><br><span class="line">            $table-&gt;timestamps();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Reverse the migrations.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function down()</span><br><span class="line">    &#123;</span><br><span class="line">        Schema::dropIfExists(&#x27;tasks&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该类包含了两个方法，<code>up()</code> （执行迁移命令时创建表结构）和 <code>down()</code> （执行回滚时删除表结构） <em>更多的参考 <a target="_blank" rel="noopener" href="https://laravel.com/docs/5.5/migrations#creating-tables">Database: Migrations</a></em> 下面我们给他添加一个字段 name</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public function up()</span><br><span class="line">&#123;</span><br><span class="line">    Schema::create(&#x27;tasks&#x27;, function (Blueprint $table) &#123;</span><br><span class="line">        $table-&gt;increments(&#x27;id&#x27;);</span><br><span class="line">        $table-&gt;string(&#x27;name&#x27;);</span><br><span class="line">        $table-&gt;timestamps();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面执行数据迁移：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure>
+
+<p>然后我们进入数据库中看看，<code>tasks</code> 表被创建出来了 下面试一下回滚：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan migrate:rollback</span><br></pre></td></tr></table></figure>
+
+<p>在看看数据库中的表都被删除了。 <code>php artisan migrate:refresh</code> 全部回滚重建</p>
+<h3 id="数据库填充"><a href="#数据库填充" class="headerlink" title="数据库填充"></a><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A1%AB%E5%85%85"></a>数据库填充</h3><p>我们将创建一个 Task model 对应我们的表 tasks 默认规则是模型类名的复数作为与其对应的表名，除非在模型类中明确指定了其它名称。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:model Task</span><br></pre></td></tr></table></figure>
+
+<p>他在 app 目录下创建了 <code>Task.php</code> 内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace App;</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Eloquent\Model;</span><br><span class="line"></span><br><span class="line">class Task extends Model</span><br><span class="line">&#123;</span><br><span class="line">    //</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面我们创建自动填充文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:seeder TasksTableSeeder</span><br></pre></td></tr></table></figure>
+
+<p>他将在 <code>database/seeds</code> 目录下创建 <code>TasksTableSeeder.php</code> ，这个文件就是数据库填充文件了，他的命名规则是数据库表名加上 TableSeeder 并且首字母大写，表名一般是复数，所以我们有了 TasksTableSeeder</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#File: database/seeds/TasksTableSeeder.php</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use App\Task;</span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line"></span><br><span class="line">class TasksTableSeeder extends Seeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        DB::table(&#x27;tasks&#x27;)-&gt;insert([&#x27;name&#x27; =&gt; str_random(10)]);</span><br><span class="line">        Task::create([&#x27;name&#x27; =&gt; &#x27;thankit&#x27;]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后将 DatabaseSeeder.php 添加内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line"></span><br><span class="line">class DatabaseSeeder extends Seeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        // $this-&gt;call(UsersTableSeeder::class);</span><br><span class="line">        $this-&gt;call(TasksTableSeeder::class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后我们来运行命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan db:seed</span><br></pre></td></tr></table></figure>
+
+<p>之后我们就可以在数据库中看看表中数据了： <img src="/wp-content/uploads/2017/11/tasks.png"></p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a><a href="#%E8%B7%AF%E7%94%B1"></a>路由</h3><p><code>routes/web.php</code> 文件用于定义 web 界面的路由。这里面的路由都会被分配给 web 中间件组，它提供了会话状态和 CSRF 保护等功能。定义在 <code>routes/api.php</code> 中的路由都是无状态的，并且被分配了 api 中间件组。 所以我们在 web.php 中添加以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">use Illuminate\Http\Request;</span><br><span class="line">Route::get(&#x27;/&#x27;, function () &#123;</span><br><span class="line">    return view(&#x27;tasks&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Add A New Task</span><br><span class="line"> */</span><br><span class="line">Route::post(&#x27;/task&#x27;, function (Request $request) &#123;</span><br><span class="line">    //</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Delete An Existing Task</span><br><span class="line"> */</span><br><span class="line">Route::delete(&#x27;/task/&#123;id&#125;&#x27;, function ($id) &#123;</span><br><span class="line">    //</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建父-blade-模版"><a href="#创建父-blade-模版" class="headerlink" title="创建父 blade 模版"></a><a href="#%E5%88%9B%E5%BB%BA%E7%88%B6-blade-%E6%A8%A1%E7%89%88"></a>创建父 blade 模版</h3><p>File:resources&#x2F;views&#x2F;layouts&#x2F;app.blade.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;Laravel Quickstart - Basic&lt;/title&gt;</span><br><span class="line">        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css&quot; crossorigin=&quot;anonymous&quot;&gt;</span><br><span class="line">        &lt;!-- CSS And JavaScript --&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">            &lt;nav class=&quot;navbar navbar-default&quot;&gt;</span><br><span class="line">                &lt;!-- Navbar Contents --&gt;</span><br><span class="line">            &lt;/nav&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        @yield(&#x27;content&#x27;)</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="子-blade-模版"><a href="#子-blade-模版" class="headerlink" title="子 blade 模版"></a><a href="#%E5%AD%90-blade-%E6%A8%A1%E7%89%88"></a>子 blade 模版</h3><p>File：resources&#x2F;views&#x2F;tasks.blade.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@extends(&#x27;layouts.app&#x27;)</span><br><span class="line"></span><br><span class="line">@section(&#x27;content&#x27;)</span><br><span class="line"></span><br><span class="line">    &lt;!-- Bootstrap Boilerplate... --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">        &lt;!-- Display Validation Errors --&gt;</span><br><span class="line">        &lt;?php // @include(&#x27;common.errors&#x27;) ;?&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- New Task Form --&gt;</span><br><span class="line">        &lt;form action=&quot;/task&quot; method=&quot;POST&quot; class=&quot;form-horizontal&quot;&gt;</span><br><span class="line">            &amp;#123;&amp;#123; csrf_field() &amp;#125;&amp;#125;</span><br><span class="line"></span><br><span class="line">            &lt;!-- Task Name --&gt;</span><br><span class="line">            &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                &lt;label for=&quot;task&quot; class=&quot;col-sm-3 control-label&quot;&gt;Task&lt;/label&gt;</span><br><span class="line"></span><br><span class="line">                &lt;div class=&quot;col-sm-6&quot;&gt;</span><br><span class="line">                    &lt;input type=&quot;text&quot; name=&quot;name&quot; id=&quot;task-name&quot; class=&quot;form-control&quot;&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!-- Add Task Button --&gt;</span><br><span class="line">            &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;col-sm-offset-3 col-sm-6&quot;&gt;</span><br><span class="line">                    &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;</span><br><span class="line">                        &lt;i class=&quot;fa fa-plus&quot;&gt;&lt;/i&gt; Add Task</span><br><span class="line">                    &lt;/button&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- TODO: Current Tasks --&gt;</span><br><span class="line">@endsection</span><br></pre></td></tr></table></figure>
+
+<p>解释，还是英文的说的好理解，所以附上： the <code>@extends</code> directive informs Blade that we are using the layout we defined at <code>resources/views/layouts/app.blade.php</code>. All of the content between <code>@section(&#39;content&#39;)</code> and <code>@endsection</code> will be injected into the location of the <code>@yield(&#39;content&#39;)</code> directive within the <code>app.blade.php</code> layout 起码看起来有点样子了 <img src="/wp-content/uploads/2017/11/laravel5.5-layout-blade.png" alt="Laravel 5.5"></p>
+<h3 id="验证输入并增加-tasks"><a href="#验证输入并增加-tasks" class="headerlink" title="验证输入并增加 tasks"></a><a href="#%E9%AA%8C%E8%AF%81%E8%BE%93%E5%85%A5%E5%B9%B6%E5%A2%9E%E5%8A%A0-tasks"></a>验证输入并增加 tasks</h3><p>修改 <code>web.php</code> 中的路由：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 这里不能少</span><br><span class="line">use Illuminate\Http\Request;</span><br><span class="line"></span><br><span class="line">Route::post(&#x27;/task&#x27;, function (Request $request) &#123;</span><br><span class="line"></span><br><span class="line">    $validator = Validator::make($request-&gt;all(), [</span><br><span class="line">        &#x27;name&#x27; =&gt; &#x27;requiredmax:255&#x27;,</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    if ($validator-&gt;fails()) &#123;</span><br><span class="line">        return redirect(&#x27;/&#x27;)</span><br><span class="line">            -&gt;withInput()</span><br><span class="line">            -&gt;withErrors($validator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Create The Task...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样去掉 resources&#x2F;views&#x2F;tasks.blade.php 中的注释</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@include(&#x27;common.errors&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>补上模版： resources&#x2F;views&#x2F;common&#x2F;errors.blade.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@if (count($errors) &gt; 0)</span><br><span class="line">    &lt;!-- Form Error List --&gt;</span><br><span class="line">    &lt;div class=&quot;alert alert-danger&quot;&gt;</span><br><span class="line">        &lt;strong&gt;Whoops! Something went wrong!&lt;/strong&gt;</span><br><span class="line"></span><br><span class="line">        &lt;br&gt;&lt;br&gt;</span><br><span class="line"></span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            @foreach ($errors-&gt;all() as $error)</span><br><span class="line">                &lt;li&gt;&amp;#123;&amp;#123; $error &amp;#125;&amp;#125;&lt;/li&gt;</span><br><span class="line">            @endforeach</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">@endif</span><br></pre></td></tr></table></figure>
+
+<p>现在如果我们提交空值，就会有错误提示了。 <img src="/wp-content/uploads/2017/11/laravel5.5-error-reminder.png" alt="Laravel 5.5"> 下面我们要增加 tasks 所以修改 <code>web.php</code> 的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">use App\Task;</span><br><span class="line">use Illuminate\Http\Request;</span><br><span class="line">/**</span><br><span class="line"> * Display All Tasks</span><br><span class="line"> */</span><br><span class="line">Route::get(&#x27;/&#x27;, function () &#123;</span><br><span class="line">    return view(&#x27;tasks&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Add A New Task</span><br><span class="line"> */</span><br><span class="line">Route::post(&#x27;/task&#x27;, function (Request $request) &#123;</span><br><span class="line"></span><br><span class="line">    $validator = Validator::make($request-&gt;all(), [</span><br><span class="line">        &#x27;name&#x27; =&gt; &#x27;requiredmax:255&#x27;,</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    if ($validator-&gt;fails()) &#123;</span><br><span class="line">        return redirect(&#x27;/&#x27;)</span><br><span class="line">            -&gt;withInput([&#x27;name&#x27; =&gt; &#x27;reminder&#x27;])</span><br><span class="line">            -&gt;withErrors($validator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Create The Task...</span><br><span class="line">    $task       = new Task;</span><br><span class="line">    $task-&gt;name = $request-&gt;name;</span><br><span class="line">    $task-&gt;save();</span><br><span class="line"></span><br><span class="line">    return redirect(&#x27;/&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>所以接下来我们测试提交一个 task ，发现已经添加到数据库表中了。</p>
+<h3 id="展示已经有的-tasks"><a href="#展示已经有的-tasks" class="headerlink" title="展示已经有的 tasks"></a><a href="#%E5%B1%95%E7%A4%BA%E5%B7%B2%E7%BB%8F%E6%9C%89%E7%9A%84-tasks"></a>展示已经有的 tasks</h3><p>File:routes&#x2F;web.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Route::get(&#x27;/&#x27;, function () &#123;</span><br><span class="line">    $tasks = Task::orderBy(&#x27;created_at&#x27;, &#x27;asc&#x27;)-&gt;get();</span><br><span class="line">    return view(&#x27;tasks&#x27;, [</span><br><span class="line">        &#x27;tasks&#x27; =&gt; $tasks,</span><br><span class="line">    ]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>File:resoures&#x2F;views&#x2F;tasks.blade.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@extends(&#x27;layouts.app&#x27;)</span><br><span class="line"></span><br><span class="line">@section(&#x27;content&#x27;)</span><br><span class="line">    &lt;!-- Create Task Form...这里有省略 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- Current Tasks --&gt;</span><br><span class="line">    @if (count($tasks) &gt; 0)</span><br><span class="line">        &lt;div class=&quot;panel panel-default&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;panel-heading&quot;&gt;</span><br><span class="line">                Current Tasks</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">            &lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">                &lt;table class=&quot;table table-striped task-table&quot;&gt;</span><br><span class="line"></span><br><span class="line">                    &lt;!-- Table Headings --&gt;</span><br><span class="line">                    &lt;thead&gt;</span><br><span class="line">                        &lt;th&gt;Task&lt;/th&gt;</span><br><span class="line">                        &lt;th&gt;&amp;nbsp;&lt;/th&gt;</span><br><span class="line">                    &lt;/thead&gt;</span><br><span class="line"></span><br><span class="line">                    &lt;!-- Table Body --&gt;</span><br><span class="line">                    &lt;tbody&gt;</span><br><span class="line">                        @foreach ($tasks as $task)</span><br><span class="line">                            &lt;tr&gt;</span><br><span class="line">                                &lt;!-- Task Name --&gt;</span><br><span class="line">                                &lt;td class=&quot;table-text&quot;&gt;</span><br><span class="line">                                    &lt;div&gt;&amp;#123;&amp;#123; $task-&gt;name &amp;#125;&amp;#125;&lt;/div&gt;</span><br><span class="line">                                &lt;/td&gt;</span><br><span class="line"></span><br><span class="line">                                &lt;td&gt;</span><br><span class="line">                                    &lt;!-- TODO: Delete Button --&gt;</span><br><span class="line">                                &lt;/td&gt;</span><br><span class="line">                            &lt;/tr&gt;</span><br><span class="line">                        @endforeach</span><br><span class="line">                    &lt;/tbody&gt;</span><br><span class="line">                &lt;/table&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    @endif</span><br><span class="line">@endsection</span><br></pre></td></tr></table></figure>
+
+<p>效果如下： <img src="/wp-content/uploads/2017/11/laravel5.5-tasks-list.png" alt="Laravel 5.5"></p>
+<h3 id="删除-tasks"><a href="#删除-tasks" class="headerlink" title="删除 tasks"></a><a href="#%E5%88%A0%E9%99%A4-tasks"></a>删除 tasks</h3><p>上面的文件中我们留了一个删除按钮没有写 下面补上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr&gt;</span><br><span class="line">    &lt;!-- Task Name --&gt;</span><br><span class="line">    &lt;td class=&quot;table-text&quot;&gt;</span><br><span class="line">        &lt;div&gt;&amp;#123;&amp;#123; $task-&gt;name &amp;#125;&amp;#125;&lt;/div&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line"></span><br><span class="line">    &lt;td&gt;</span><br><span class="line">        &lt;form action=&quot;/task/&amp;#123;&amp;#123; $task-&gt;id &amp;#125;&amp;#125;&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">            &amp;#123;&amp;#123; csrf_field() &amp;#125;&amp;#125;</span><br><span class="line">            &amp;#123;&amp;#123; method_field(&#x27;DELETE&#x27;) &amp;#125;&amp;#125;</span><br><span class="line"></span><br><span class="line">            &lt;button type=&quot;submit&quot; class=&quot;btn btn-danger&quot;&gt;Delete Task&lt;/button&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的 <code>&amp;#123;&amp;#123; method_field(&#39;DELETE&#39;) &amp;#125;&amp;#125;</code> 等同于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;DELETE&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>File:routes&#x2F;web.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Route::delete(&#x27;/task/&#123;id&#125;&#x27;, function ($id) &#123;</span><br><span class="line">    Task::findOrFail($id)-&gt;delete();</span><br><span class="line">    return redirect(&#x27;/&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>最后的效果如下： <img src="/wp-content/uploads/2017/11/todolist.gif" alt="Task List 最终效果"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Laravel/" rel="tag"># Laravel</a>
+              <a href="/tags/Laravel-Task-List/" rel="tag"># Laravel Task List</a>
+              <a href="/tags/Laravel-%E5%85%A5%E9%97%A8/" rel="tag"># Laravel 入门</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E7%A7%BB%E9%99%A4-wordpress-%E7%89%88%E6%9C%AC%E5%8F%B7/" rel="prev" title="移除 wordpress 版本号">
+      <i class="fa fa-chevron-left"></i> 移除 wordpress 版本号
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/shell-%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B%E5%B0%8F%E8%AE%B0/" rel="next" title="shell 脚本编程小记">
+      shell 脚本编程小记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Laravel"><span class="nav-number">1.</span> <span class="nav-text">安装 Laravel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-Laravel-installer-%E5%AE%89%E8%A3%85-5-5-%E6%9C%80%E6%96%B0%E7%9A%84"><span class="nav-number">1.2.</span> <span class="nav-text">通过 Laravel installer 安装 5.5 (最新的)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-composer-%E5%AE%89%E8%A3%85-5-1"><span class="nav-number">1.3.</span> <span class="nav-text">通过 composer 安装 5.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90"><span class="nav-number">1.4.</span> <span class="nav-text">设置权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95-%EF%BC%88%E5%8F%AF%E8%B7%B3%E8%BF%87%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">设置虚拟目录 （可跳过）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task-List-%E5%88%9B%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">Task List 创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB"><span class="nav-number">2.1.</span> <span class="nav-text">数据库迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A1%AB%E5%85%85"><span class="nav-number">2.2.</span> <span class="nav-text">数据库填充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1"><span class="nav-number">2.3.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%88%B6-blade-%E6%A8%A1%E7%89%88"><span class="nav-number">2.4.</span> <span class="nav-text">创建父 blade 模版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90-blade-%E6%A8%A1%E7%89%88"><span class="nav-number">2.5.</span> <span class="nav-text">子 blade 模版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E8%BE%93%E5%85%A5%E5%B9%B6%E5%A2%9E%E5%8A%A0-tasks"><span class="nav-number">2.6.</span> <span class="nav-text">验证输入并增加 tasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%95%E7%A4%BA%E5%B7%B2%E7%BB%8F%E6%9C%89%E7%9A%84-tasks"><span class="nav-number">2.7.</span> <span class="nav-text">展示已经有的 tasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-tasks"><span class="nav-number">2.8.</span> <span class="nav-text">删除 tasks</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

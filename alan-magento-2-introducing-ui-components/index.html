@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 原作发布于 2016年7月10日 UI 组件是 Magento 2 中构建用户界面元素的新方法，管理后台很多地方都是基于它的。 今天我们的教程将带领大家，站在比较高的角度理解 UI 组件的目标是什么，并在尽可能高的层面介绍他的实现细节。最后我们创建一个 网格&#x2F;列表 UI 组件做总结。 The Positive Spin （积极的一面）要了解 UI 组件的目标，最简单的方法的是从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 的 UI Components 介绍（翻译）">
+<meta property="og:url" content="http://example.com/alan-magento-2-introducing-ui-components/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 原作发布于 2016年7月10日 UI 组件是 Magento 2 中构建用户界面元素的新方法，管理后台很多地方都是基于它的。 今天我们的教程将带领大家，站在比较高的角度理解 UI 组件的目标是什么，并在尽可能高的层面介绍他的实现细节。最后我们创建一个 网格&#x2F;列表 UI 组件做总结。 The Positive Spin （积极的一面）要了解 UI 组件的目标，最简单的方法的是从">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-04-05T03:01:02.000Z">
+<meta property="article:modified_time" content="2022-05-02T05:56:16.587Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/alan-magento-2-introducing-ui-components/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 的 UI Components 介绍（翻译） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-2-introducing-ui-components/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 的 UI Components 介绍（翻译）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-04-05 11:01:02" itemprop="dateCreated datePublished" datetime="2017-04-05T11:01:02+08:00">2017-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_introducing_ui_components/">原文地址</a></em> 原作发布于 2016年7月10日 UI 组件是 Magento 2 中构建用户界面元素的新方法，管理后台很多地方都是基于它的。 今天我们的教程将带领大家，站在比较高的角度理解 UI 组件的目标是什么，并在尽可能高的层面介绍他的实现细节。最后我们创建一个 网格&#x2F;列表 UI 组件做总结。</p>
+<h2 id="The-Positive-Spin-（积极的一面）"><a href="#The-Positive-Spin-（积极的一面）" class="headerlink" title="The Positive Spin （积极的一面）"></a><a href="#the-positive-spin-%EF%BC%88%E7%A7%AF%E6%9E%81%E7%9A%84%E4%B8%80%E9%9D%A2%EF%BC%89"></a>The Positive Spin （积极的一面）</h2><p>要了解 UI 组件的目标，最简单的方法的是从 Magento 1 的生成后台用户界面的代码说起。下面是 Magento 1 layout update XML 一部分代码，我们以他为例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- #File: app/design/adminhtml/default/default/layout/catalog.xml --&gt;</span><br><span class="line">&lt;adminhtml_catalog_product_new&gt;</span><br><span class="line">&lt;update handle=&quot;editor&quot;/&gt;</span><br><span class="line">&lt;reference name=&quot;content&quot;&gt;</span><br><span class="line">&lt;block type=&quot;adminhtml/catalog_product_edit&quot; name=&quot;product_edit&quot;&gt;&lt;/block&gt;</span><br><span class="line">&lt;/reference&gt;</span><br><span class="line">&lt;reference name=&quot;left&quot;&gt;</span><br><span class="line">&lt;block type=&quot;adminhtml/catalog_product_edit_tabs&quot; name=&quot;product_tabs&quot;&gt;&lt;/block&gt;</span><br><span class="line">&lt;/reference&gt;</span><br><span class="line">&lt;reference name=&quot;js&quot;&gt;</span><br><span class="line">&lt;block type=&quot;adminhtml/catalog_product_edit_js&quot; template=&quot;catalog/product/js.phtml&quot; name=&quot;catalog_product_js&quot;&gt;&lt;/block&gt;</span><br><span class="line">&lt;block type=&quot;core/template&quot; template=&quot;catalog/wysiwyg/js.phtml&quot;/&gt;</span><br><span class="line">&lt;/reference&gt;</span><br><span class="line">&lt;/adminhtml_catalog_product_new&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这四个 layout 添加了一个产品编辑表， 考虑到 <code>&lt;update handle=&quot;editor&quot;/&gt;</code> 部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- #File: app/design/adminhtml/default/default/layout/main.xml --&gt;</span><br><span class="line">&lt;editor&gt;</span><br><span class="line">&lt;reference name=&quot;head&quot;&gt;</span><br><span class="line">&lt;action method=&quot;setCanLoadExtJs&quot;&gt;&lt;flag&gt;1&lt;/flag&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addJs&quot;&gt;&lt;script&gt;mage/adminhtml/variables.js&lt;/script&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addJs&quot;&gt;&lt;script&gt;mage/adminhtml/wysiwyg/widget.js&lt;/script&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addJs&quot;&gt;&lt;script&gt;lib/flex.js&lt;/script&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addJs&quot;&gt;&lt;script&gt;lib/FABridge.js&lt;/script&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addJs&quot;&gt;&lt;script&gt;mage/adminhtml/flexuploader.js&lt;/script&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addJs&quot;&gt;&lt;script&gt;mage/adminhtml/browser.js&lt;/script&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addJs&quot;&gt;&lt;script&gt;prototype/window.js&lt;/script&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addItem&quot;&gt;&lt;type&gt;js_css&lt;/type&gt;&lt;name&gt;prototype/windows/themes/default.css&lt;/name&gt;&lt;/action&gt;</span><br><span class="line">&lt;action method=&quot;addCss&quot;&gt;&lt;name&gt;lib/prototype/windows/themes/magento.css&lt;/name&gt;&lt;/action&gt;</span><br><span class="line">&lt;/reference&gt;</span><br><span class="line">&lt;/editor&gt;</span><br></pre></td></tr></table></figure>
+
+<p>你会发现给页面添加一个编辑表单是很复杂的事情。 UI 组件的意图是隐藏这种复杂性。Magento 在 layout handle xml 文件中引入了新的<code>&lt;uiComponent/&gt;</code>标签。(Magento 2 handle XML files 类似 Magento 1 的 layout update XML files)在 Magento 2 中，你可以通过下面的代码给页面添加一个产品编辑表单。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uiComponent name=&quot;product_form&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过引入<code>&lt;uiComponent/&gt;</code>，Magento 2 让开发者更容易在不同位置重用不同的组件。While It was possible to drop different Magento 1 UI forms and grids in different areas, you needed to know which blocks and javascript files made up a particular component. Magento 1’s approach made it easy to accidentally setup a grid listing or a form so the component almost worked. Magento 2 的 UI 组件正是用来解决这一问题的，它也极大地简化了每个人的 layout handle xml 文件。</p>
+<h2 id="The-Actual-Spin-（实际情况）"><a href="#The-Actual-Spin-（实际情况）" class="headerlink" title="The Actual Spin （实际情况）"></a><a href="#the-actual-spin-%EF%BC%88%E5%AE%9E%E9%99%85%E6%83%85%E5%86%B5%EF%BC%89"></a>The Actual Spin （实际情况）</h2><p>我们刚刚所说的的确是真的，不过 UI 组件系统比美丽的构想更模糊。这是因为 UI 组件还有很多其他目标，这些目标带来了相当的复杂性。 就我所知，UI 组件系统：</p>
+<ul>
+<li>简化了 Layout Handle XML 文件</li>
+<li>使得后台用户界面元素的构建从 HTML+Javascript 变成了纯 js 的自定义小部件系统。</li>
+<li>可以由较小的组件构造出更复杂的 UI 组件。</li>
+<li>Pre-renders data for UI components as JSON, binding closely to Magento backend data objects</li>
+<li>使用 ajax 来更新组件的数据</li>
+<li>Introduce a new DSL for creating all of the above</li>
+</ul>
+<p>UI 组件系统是雄心勃勃的一个系统，和 Magento 2中的许多东西一样，它还没有完全出炉（没有稳定）。一方面你可能想要远离还不太完美的系统，另一方面大多数的网格和表单使用 UI 组件系统来构建界面，还有一些使用传统的 block 渲染加 js 文件。如果你想构建一个全功能的模块，你需要使用 UI 组件系统。 下文代表着我（Alan）对当前的（Magento 2.1）UI组件的理解.其中的细节将来很可能会有变化，但是希望核心的概念保持不变。 没有为想要开发后台 UI 界面的开发人员准备的标准实践课程——像往常一样，最好的做法是看看核心团队对他们自己的组件做了什么，模仿他们，并且在 Magento 版本更新的时候，密切注意自己的模块&#x2F;扩展代码。 如果你对复杂的实现细节没有兴趣，你可以跳到文章末尾，使用 Pestle 创建 UI 组件部分。</p>
+<h2 id="Pure-Javascript-（纯-JS）"><a href="#Pure-Javascript-（纯-JS）" class="headerlink" title="Pure Javascript （纯 JS）"></a><a href="#pure-javascript-%EF%BC%88%E7%BA%AF-js%EF%BC%89js"></a>Pure Javascript （纯 JS）</h2><p>如果你后台进入 <strong>Content -&gt; Block</strong>，你会看到你 Magento 系统中的所有 CMS Blocks 列在一张表格中。如果你对 Blocks 不是很了解，他们是创建可重用的 HTML 代码块的一种方式。Block information is stored in Magento’s backend using <a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_crud_models_for_database_access/">CRUD Models</a>。 你看到的列表就是一个 UI 组件，是通过以下 layout handle xml 配置的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: vendor/magento/module-cms/view/adminhtml/layout/cms_block_index.xml --&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;referenceContainer name=&quot;content&quot;&gt;</span><br><span class="line">&lt;uiComponent name=&quot;cms_block_listing&quot;/&gt;</span><br><span class="line">&lt;/referenceContainer&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你对 layout xml 完全陌生，上面的代码解释一下就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">获得名为 content 的 container 的引用，把 cms_block_listing UI 组件加进去。</span><br></pre></td></tr></table></figure>
+
+<p>如果你查看 HTML 源代码，你会发现<code>&lt;uiComponent/&gt;</code>标签渲染出了如下 HTML 代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;admin__data-grid-outer-wrap&quot; data-bind=&quot;scope: &#x27;cms_block_listing.cms_block_listing&#x27;&quot;&gt;</span><br><span class="line">&lt;div data-role=&quot;spinner&quot; data-component=&quot;cms_block_listing.cms_block_listing.cms_block_columns&quot; class=&quot;admin__data-grid-loading-mask&quot;&gt;</span><br><span class="line">&lt;div class=&quot;spinner&quot;&gt;</span><br><span class="line">&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- ko template: getTemplate() --&gt;&lt;!-- /ko --&gt;</span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">&#123;&quot;*&quot;: &#123;&quot;Magento_Ui/js/core/app&quot;: &#123;...very large js object...&amp;#125;&amp;#125;&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你阅读过 Magento 2 高级 js 系列的文章，尤其是<a href="/alan-magento-2-javascript-init-scripts/">Magento 2 Javascript Init Scripts</a>，你就知道 <code>x-magento-init</code> 标签将会调用 <code>Magento_Ui/js/core/app</code> RequireJS 模块，并将<code>large js object</code>作为参数传递给他。 不涉及更深入的实现细节（实现细节 some of which you can read about in <a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/120447/how-does-magento-2-apply-knockoutjs-bindings/120730#120730">these</a> Stack Exchange <a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/120221/magento-2-how-where-is-the-gettemplate-knockout-function-bound/120508#120508">answers</a>），this javascript code ends up creating a series of javascript constructor objects that Magento will use as KnockoutJS view models（创建了一个用于 view model 的对象） 浏览器中界面元素的实际呈现由 KnockoutJS 处理。外面的 div 框架使用了<a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/120447/how-does-magento-2-apply-knockoutjs-bindings/120730">Magento’s custom KnockoutJS scope binding</a>，绑定由<code>text/x-magento-init</code>创建的view model。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ... data-bind=&quot;scope: &#x27;cms_block_listing.cms_block_listing&#x27;&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后渲染 UI 组件通过 KnockoutJS 的 “tag-less” template binding 完成。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- ko template: getTemplate() --&gt;&lt;!-- /ko --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对<code>getTemplate</code>的调用实际上启动了一系列嵌套的模板渲染——从一个名为<code>collection.html</code>的文件开始。你可以通过浏览器的 XHR 调试窗口查找所有<code>.html</code>的模板文件。如果你这里有较多疑惑，你可以参阅<a href="/alan_magento_2_knockoutjs_integration/">Magento 2 KnockoutJS 集成</a>。另外，记住Magento 的核心团队<a target="_blank" rel="noopener" href="http://magento-quickies.alanstorm.com/post/147052601955/magentos-knockoutjs-templates-arent-knockoutjs">使用了一些自定义的标签和属性来增强KnockoutJS的模板</a>，这可能会带给你一些迷惑。 总的来说，Magento 1 用 HTML 来渲染，用 js 增强用户界面的功能。Magento 2 依然会使用一些 HTML 搭建结构，但是用户界面元素的大部分渲染工作转由 RequireJS 模块和 KnockoutJS 模板来做。</p>
+<h2 id="Sub-Components-（子组件）"><a href="#Sub-Components-（子组件）" class="headerlink" title="Sub Components （子组件）"></a><a href="#sub-components-%EF%BC%88%E5%AD%90%E7%BB%84%E4%BB%B6%EF%BC%89"></a>Sub Components （子组件）</h2><p>如果仔细审视一下<code>x-magento-init</code>的 JSON 对象，你会发现他有很多嵌套的子对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;*&quot;: &#123;</span><br><span class="line">&quot;Magento_Ui/js/core/app&quot;: &#123;</span><br><span class="line">&quot;types&quot;: /*...*/</span><br><span class="line">&quot;components&quot;: &#123;</span><br><span class="line">&quot;cms_block_listing&quot;: &#123;</span><br><span class="line">&quot;children&quot;: &#123;</span><br><span class="line">&quot;cms_block_listing&quot;: &#123;</span><br><span class="line">/*...*/</span><br><span class="line">&quot;children&quot;: &#123;</span><br><span class="line">&quot;listing_top&quot;: &#123;</span><br><span class="line">&quot;type&quot;: &quot;container&quot;,</span><br><span class="line">&quot;name&quot;: &quot;listing_top&quot;,</span><br><span class="line">&quot;children&quot;: &#123;</span><br><span class="line">&quot;bookmarks&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;columns_controls&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;fulltext&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;listing_filters&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;listing_massaction&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;listing_paging&quot;: &#123;/*...*/&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>Older developers will be bemused to note the return of nodes named <code>children</code> — a practice we thought was left behind in Magento 1. These child element are each, themselves, fully featured UI Components. <code>cms_block_listing</code> 是由 <code>listing_top</code>, <code>bookmarks</code>, 等组件构成的。 前文我们提到，<code>getTemplate</code>的调用以渲染许多子组件告终。<code>collection.html</code>作为第一个 KnockoutJS 模板，他的命名也体现了这是由许多 UI 组件构成的<code>collection</code>。很遗憾，今天的教程没有时间完整梳理这个渲染流程。 今天我们要讲的是 PHP 开发者如何控制渲染的 js tree。我们回到<code>&lt;uiComponent/&gt;</code>标签。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- #File: vendor/magento/module-cms/view/adminhtml/layout/cms_block_index.xml --&gt;</span><br><span class="line">&lt;uiComponent name=&quot;cms_block_listing&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 使用<code>uiComponent</code>的<code>name</code>查找名为<code>cms_block_listing.xml</code>的 XML 文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento//module-cms/view/adminhtml/ui_component/cms_block_listing.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">/**</span><br><span class="line">* Copyright © 2016 Magento. All rights reserved.</span><br><span class="line">* See COPYING.txt for license details.</span><br><span class="line">*/</span><br><span class="line">--&gt;</span><br><span class="line">&lt;listing xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;js_config&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;provider&quot; xsi:type=&quot;string&quot;&gt;cms_block_listing.cms_block_listing_data_source&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;deps&quot; xsi:type=&quot;string&quot;&gt;cms_block_listing.cms_block_listing_data_source&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;spinner&quot; xsi:type=&quot;string&quot;&gt;cms_block_columns&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;buttons&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;add&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;name&quot; xsi:type=&quot;string&quot;&gt;add&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;label&quot; xsi:type=&quot;string&quot; translate=&quot;true&quot;&gt;Add New Block&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;class&quot; xsi:type=&quot;string&quot;&gt;primary&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;url&quot; xsi:type=&quot;string&quot;&gt;*/*/new&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/argument&gt;</span><br><span class="line">&lt;!-- ... we&#x27;ll get to this in a second ... --&gt;</span><br><span class="line">&lt;/listing&gt;</span><br></pre></td></tr></table></figure>
+
+<p>These UI Component XML files are a new <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Domain-specific_language">domain specific language (DSL)</a>。上面的指令告诉 Magento</p>
+<ol>
+<li>Look up a PHP class name and default arguments for the root level <code>listing</code> node</li>
+<li>Instantiate that class, using the <code>argument</code> node as constructor arguments.</li>
+</ol>
+<p>Magento 将会从下面的文件中查找 PHP 类名和默认的参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/ui_component/etc/definition.xml</span><br><span class="line">&lt;components xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_definition.xsd&quot;&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;listing sorting=&quot;true&quot; class=&quot;Magento\Ui\Component\Listing&quot;&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;template&quot; xsi:type=&quot;string&quot;&gt;templates/listing/default&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;save_parameters_in_session&quot; xsi:type=&quot;string&quot;&gt;1&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;client_root&quot; xsi:type=&quot;string&quot;&gt;mui/index/render&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;config&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;component&quot; xsi:type=&quot;string&quot;&gt;uiComponent&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/argument&gt;</span><br><span class="line">&lt;/listing&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;/components&gt;</span><br></pre></td></tr></table></figure>
+
+<p>所以，当 Magento 渲染 时，他就像下面这样开始运行（简化后的样子），</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$uiComponent = new Magento\Ui\Component\Listing(</span><br><span class="line">$context, $components, [</span><br><span class="line">&#x27;template&#x27;=&gt;&#x27;templates/listing/default&#x27;,</span><br><span class="line">&#x27;save_parameters_in_session&#x27;=&gt;&#x27;1&#x27;,</span><br><span class="line">&#x27;client_root&#x27;=&gt;&#x27;mui/index/render&#x27;,</span><br><span class="line">&#x27;config&#x27;=&gt;[</span><br><span class="line">&#x27;component&#x27;=&gt;&#x27;uiComponent&#x27;</span><br><span class="line">],</span><br><span class="line">&#x27;js_config&#x27;=&gt;[</span><br><span class="line">&#x27;provider&#x27;=&gt;&#x27;&#x27;,</span><br><span class="line">&#x27;deps&#x27;=&gt;&#x27;&#x27;</span><br><span class="line">],</span><br><span class="line">&#x27;spinner&#x27;=&gt;&#x27;cms_block_columns&#x27;,</span><br><span class="line">&#x27;buttons&#x27;=&gt;[</span><br><span class="line">&#x27;add&#x27;=&gt;[</span><br><span class="line">&#x27;name&#x27;=&gt;&#x27;add&#x27;,</span><br><span class="line">&#x27;label&#x27;=&gt;&#x27;Add New Block&#x27;,</span><br><span class="line">&#x27;class&#x27;=&gt;&#x27;primary&#x27;,</span><br><span class="line">&#x27;url&#x27;=&gt;&#x27;*/*/new&#x27;</span><br><span class="line">]</span><br><span class="line">],</span><br><span class="line">]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>参数的数据来自于<code>&lt;argument/&gt;</code>节点的合并。每个参数都有不同的作用——不过我们感兴趣的是<code>templates/listing/default</code>参数。他指定了该组件渲染的 <strong>XHTML template</strong>。<code>templates/listing/default</code>字符串对应下面的模板。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento//module-ui/view/base/ui_component/templates/listing/default.xhtml</span><br><span class="line">&lt;div</span><br><span class="line">class=&quot;admin__data-grid-outer-wrap&quot;</span><br><span class="line">data-bind=&quot;scope: &#x27;&amp;#123;&amp;#123;getName()&amp;#125;&amp;#125;.&amp;#123;&amp;#123;getName()&amp;#125;&amp;#125;&#x27;&quot;</span><br><span class="line">xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">xsi:noNamespaceSchemaLocation=&quot;../../../../../../Ui/etc/ui_template.xsd&quot;&gt;</span><br><span class="line">&lt;div data-role=&quot;spinner&quot; data-component=&quot;&amp;#123;&amp;#123;getName()&amp;#125;&amp;#125;.&amp;#123;&amp;#123;getName()&amp;#125;&amp;#125;.&amp;#123;&amp;#123;spinner&amp;#125;&amp;#125;&quot; class=&quot;admin__data-grid-loading-mask&quot;&gt;</span><br><span class="line">&lt;div class=&quot;spinner&quot;&gt;</span><br><span class="line">&lt;span/&gt;&lt;span/&gt;&lt;span/&gt;&lt;span/&gt;&lt;span/&gt;&lt;span/&gt;&lt;span/&gt;&lt;span/&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- ko template: getTemplate() --&gt;&lt;!-- /ko --&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个 XHTML 模版是由完全不同于 Magento 中标准的 phtml 模版渲染引擎所渲染。 Magento 通过调用 UI 组件对象中方法（<code>getName()</code>）替换<code>&amp;#123;&amp;#123;...&amp;#125;&amp;#125;</code>文本，或者 directly accessing a data property of the same object (<code>&amp;#123;&amp;#123;spinner&amp;#125;&amp;#125;</code>). 可能有人已经注意到模板中没有<code>x-magento-init</code>。加入<code>x-magento-init</code>部分也是由 XHTML rendering engine 完成的——更确切的说，在<code>appendLayoutConfiguration</code>方法中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/TemplateEngine/Xhtml/Result.php</span><br><span class="line">public function __toString()</span><br><span class="line">&#123;</span><br><span class="line">try &#123;</span><br><span class="line">//...</span><br><span class="line">$this-&gt;appendLayoutConfiguration();</span><br><span class="line">$result = $this-&gt;compiler-&gt;postprocessing($this-&gt;template-&gt;__toString());</span><br><span class="line">&#125; catch (\Exception $e) &#123;</span><br><span class="line">$this-&gt;logger-&gt;critical($e-&gt;getMessage());</span><br><span class="line">$result = $e-&gt;getMessage();</span><br><span class="line">&#125;</span><br><span class="line">return $result;</span><br><span class="line">&#125;</span><br><span class="line">//...</span><br><span class="line">public function appendLayoutConfiguration()</span><br><span class="line">&#123;</span><br><span class="line">$layoutConfiguration = $this-&gt;wrapContent(</span><br><span class="line">json_encode(</span><br><span class="line">$this-&gt;structure-&gt;generate($this-&gt;component)</span><br><span class="line">)</span><br><span class="line">);</span><br><span class="line">$this-&gt;template-&gt;append($layoutConfiguration);</span><br><span class="line">&#125;</span><br><span class="line">//...</span><br><span class="line">protected function wrapContent($content)</span><br><span class="line">&#123;</span><br><span class="line">return &#x27;&lt;script type=&quot;text/x-magento-init&quot;&gt;&lt;![CDATA[&#x27;</span><br><span class="line">. &#x27;&#123;&quot;*&quot;: &#123;&quot;Magento_Ui/js/core/app&quot;: &#x27; . str_replace([&#x27;&lt;![CDATA[&#x27;, &#x27;]]&gt;&#x27;], &#x27;&#x27;, $content) . &#x27;&amp;#125;&amp;#125;&#x27;</span><br><span class="line">. &#x27;]]&gt;&lt;/script&gt;&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 将会以 JSON 字符串的方式渲染 UI 组件对象的结构，然后将字符串添加到模版中。 你问 UI 组件的结构是什么？ Remember the we’ll get to the rest in a second hand waving we did here?</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento//module-cms/view/adminhtml/ui_component/cms_block_listing.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">/**</span><br><span class="line">* Copyright © 2016 Magento. All rights reserved.</span><br><span class="line">* See COPYING.txt for license details.</span><br><span class="line">*/</span><br><span class="line">--&gt;</span><br><span class="line">&lt;listing xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;js_config&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;provider&quot; xsi:type=&quot;string&quot;&gt;cms_block_listing.cms_block_listing_data_source&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;deps&quot; xsi:type=&quot;string&quot;&gt;cms_block_listing.cms_block_listing_data_source&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;spinner&quot; xsi:type=&quot;string&quot;&gt;cms_block_columns&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;buttons&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;add&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;name&quot; xsi:type=&quot;string&quot;&gt;add&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;label&quot; xsi:type=&quot;string&quot; translate=&quot;true&quot;&gt;Add New Block&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;class&quot; xsi:type=&quot;string&quot;&gt;primary&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;url&quot; xsi:type=&quot;string&quot;&gt;*/*/new&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/argument&gt;</span><br><span class="line">&lt;!-- ... we&#x27;ll get to this in a second ... --&gt;</span><br><span class="line">&lt;/listing&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们看一看上面的节点内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento//module-cms/view/adminhtml/ui_component/cms_block_listing.xml</span><br><span class="line"></span><br><span class="line">&lt;listingToolbar name=&quot;listing_top&quot;&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;/argument&gt;</span><br><span class="line">&lt;/listingToolbar&gt;</span><br><span class="line">&lt;columns name=&quot;cms_block_columns&quot;&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;/argument&gt;</span><br><span class="line">&lt;/columns&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们会发现更多配置的 UI 组件。所有名称不是 <code>argument</code> 的 UI 组件的子节点，都是父对象的子节点。Magneto 渲染 <code>listing</code> 对象的时候，它还会在 <code>definitions.xml</code> 中查找 <code>listingToolbar</code>, <code>columns</code> 等组件的类和参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/ui_component/etc/definition.xml</span><br><span class="line">&lt;components xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_definition.xsd&quot;&gt;</span><br><span class="line">&lt;listingToolbar class=&quot;Magento\Ui\Component\Container&quot;&gt;&lt;!--...--&gt;&lt;/listingToolbar&gt;</span><br><span class="line">&lt;columns class=&quot;Magento\Ui\Component\Listing\Columns&quot;&gt;&lt;!--...--&gt;&lt;/columns&gt;</span><br><span class="line">&lt;/components&gt;</span><br></pre></td></tr></table></figure>
+
+<p>之前我们用的伪代码实际上更像下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$uiComponent = new Magento\Ui\Component\Listing(...);</span><br><span class="line"></span><br><span class="line">$listingToolbar = new Magento\Ui\Component\Container(...);</span><br><span class="line">$columns = new Magento\Ui\Component\Listing\Columns(...);</span><br><span class="line"></span><br><span class="line">$uiComponent-&gt;addComponent($listingToolbar);</span><br><span class="line">$uiComponent-&gt;addComponent($columns);</span><br></pre></td></tr></table></figure>
+
+<p>注意，这些子组件是通过 RequireJS 模块名称来进行配置的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/ui_component/etc/definition.xml</span><br><span class="line">&lt;columns class=&quot;Magento\Ui\Component\Listing\Columns&quot;&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;config&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;component&quot; xsi:type=&quot;string&quot;&gt;Magento_Ui/js/grid/listing&lt;/item&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/argument&gt;</span><br><span class="line">&lt;/columns&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这些就是 Magento 转化为 KnockoutJS view model 的 RequireJS 模块。如果你查看 KnockoutJS view models 的代码，你将发现通常 view model constructor 中配置了其 template 模版。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento//module-ui/view/base/web/js/grid/listing.js</span><br><span class="line">define([</span><br><span class="line">&#x27;ko&#x27;,</span><br><span class="line">&#x27;underscore&#x27;,</span><br><span class="line">&#x27;Magento_Ui/js/lib/spinner&#x27;,</span><br><span class="line">&#x27;uiLayout&#x27;,</span><br><span class="line">&#x27;uiCollection&#x27;</span><br><span class="line">], function (ko, _, loader, layout, Collection) &#123;</span><br><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">return Collection.extend(&#123;</span><br><span class="line">defaults: &#123;</span><br><span class="line">template: &#x27;ui/grid/listing&#x27;,</span><br><span class="line">&#125;</span><br><span class="line">//...</span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Data-Source-Nodes-（数据源节点）"><a href="#Data-Source-Nodes-（数据源节点）" class="headerlink" title="Data Source Nodes （数据源节点）"></a><a href="#data-source-nodes-%EF%BC%88%E6%95%B0%E6%8D%AE%E6%BA%90%E8%8A%82%E7%82%B9%EF%BC%89"></a>Data Source Nodes （数据源节点）</h2><p>最后，有一个特别的 UI 组件子节点，就是<code>&lt;dataSource/&gt;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento//module-cms/view/adminhtml/ui_component/cms_block_listing.xml</span><br><span class="line">&lt;listing xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;js_config&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;provider&quot; xsi:type=&quot;string&quot;&gt;cms_block_listing.cms_block_listing_data_source&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;deps&quot; xsi:type=&quot;string&quot;&gt;cms_block_listing.cms_block_listing_data_source&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;spinner&quot; xsi:type=&quot;string&quot;&gt;cms_block_columns&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;buttons&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;add&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">&lt;item name=&quot;name&quot; xsi:type=&quot;string&quot;&gt;add&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;label&quot; xsi:type=&quot;string&quot; translate=&quot;true&quot;&gt;Add New Block&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;class&quot; xsi:type=&quot;string&quot;&gt;primary&lt;/item&gt;</span><br><span class="line">&lt;item name=&quot;url&quot; xsi:type=&quot;string&quot;&gt;*/*/new&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/item&gt;</span><br><span class="line">&lt;/argument&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;dataSource name=&quot;cms_block_listing_data_source&quot;&gt;</span><br><span class="line">&lt;!-- ... --&gt;</span><br><span class="line">&lt;/dataSource&gt;</span><br><span class="line">&lt;/listing&gt;</span><br></pre></td></tr></table></figure>
+
+<p>名为 <code>dataSource</code> 的节点仍然是 UI 组件，不过他们有“特殊待遇”。当 Magento 从 UI 组件中渲染 JSON 的时候，dataSource 节点被从 <code>children</code> 结构中拉出来，Magento 在主要的顶层组件之后就渲染他们（在组件名后加 <code>_data_source</code> 作为对象的键值） （译者注，还记得上面的子组件 <code>listing_top</code> 吧，他的层级和 <code>dataSource</code> 节点是一样的，按照道理他应该在 <code>children</code> 下和 <code>listing_top</code> 并列在一个层级，但是现在上升了一个层级，和 <code>cms_block_listing</code> 并列了。）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;*&quot;: &#123;</span><br><span class="line">&quot;Magento_Ui/js/core/app&quot;: &#123;</span><br><span class="line">&quot;types&quot;: /*...*/</span><br><span class="line">&quot;components&quot;: &#123;</span><br><span class="line">&quot;cms_block_listing&quot;: &#123;</span><br><span class="line">&quot;children&quot;: &#123;</span><br><span class="line">&quot;cms_block_listing&quot;: &#123;</span><br><span class="line">/*...*/</span><br><span class="line">&quot;children&quot;: &#123;</span><br><span class="line">&quot;listing_top&quot;: &#123;</span><br><span class="line">&quot;type&quot;: &quot;container&quot;,</span><br><span class="line">&quot;name&quot;: &quot;listing_top&quot;,</span><br><span class="line">&quot;children&quot;: &#123;</span><br><span class="line">&quot;bookmarks&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;columns_controls&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;fulltext&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;listing_filters&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;listing_massaction&quot;: &#123;/*...*/&#125;,</span><br><span class="line">&quot;listing_paging&quot;: &#123;/*...*/&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p><code>dataSource</code> 组件就是 Magento 寻找 UI 组件真实数据的地方。UI 组件中的数据由 <code>dataSource</code> 组件提供。</p>
+<h2 id="Summary-of-the-UI-Component-Rendering-DSL-（总结）"><a href="#Summary-of-the-UI-Component-Rendering-DSL-（总结）" class="headerlink" title="Summary of the UI Component Rendering DSL （总结）"></a><a href="#summary-of-the-ui-component-rendering-dsl-%EF%BC%88%E6%80%BB%E7%BB%93%EF%BC%89"></a>Summary of the UI Component Rendering DSL （总结）</h2><p>OK — that was a bananas-pants amount of information. I just finished writing it and I’m not sure even I followed all of it, so don’t worry if your head is spinning. 下面是比较高层面的总结。</p>
+<ol>
+<li>UI 组件通过 <code>x-magento-init</code> 脚本注入全局注册的 KnockoutJS view models （原文：UI Components render an x-magento-init script that populates a global registry of KnockoutJS view models）</li>
+<li>UI 组件也加载 HTML 骨架，然后使用 KnockoutJS 和自定义的 <code>scope</code> 绑定来渲染 DOM 节点租成组件。</li>
+<li><code>ui_component</code> XML 文件是一种领域特定语言（domain specific language），用来示例嵌套的层级 UI 组件对象。Magento 会使用它来为 <code>x-magento-init</code> 脚本加载 JSON</li>
+<li><code>ui_component</code> XML 节点的名称用来查找 php 类进行实例化</li>
+<li>Magento 使用子节点 <code>&lt;argument/&gt;</code> 作为该类的构造参数</li>
+<li>Magento 使用 <code>&lt;dataSource /&gt;</code> 中的数据作为 UI 组件的数据源。（例如表格列表中的信息）</li>
+<li>子节点将会作为子组件进行渲染——这些子组件遵循和父组件一样的规则</li>
+<li>最顶层的 UI 组件配置的 XHTML 模版，Magento 通过 PHP 进行渲染</li>
+<li>UI 组件节点配置 RequireJS 模块，而 Magento 使用他们作为 KnockoutJS view model constructors</li>
+</ol>
+<p>正如你所看到的，一方面 uiComponent 极大地简化了 Magento 2 中 layout handle XML 文件，隐藏了包括前后台在内的更为复杂的 UI 渲染系统，另一方面这对开发者来说，也要求你理解 Magento 对 RequireJS 和 KnockoutJS 做出的自定义。</p>
+<h2 id="Creating-a-Grid-Listing-with-Pestle-（创建一个列表）"><a href="#Creating-a-Grid-Listing-with-Pestle-（创建一个列表）" class="headerlink" title="Creating a Grid Listing with Pestle （创建一个列表）"></a><a href="#creating-a-grid-listing-with-pestle-%EF%BC%88%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%EF%BC%89"></a>Creating a Grid Listing with Pestle （创建一个列表）</h2><p>从上文可以了解到，UI 组件系统，为了降低 Magento 1 的 layout update XML 系统的复杂度，提供更明确的使用指导。换句话说，对 Magento 2 开发者来说，这正是代码生成工具（例如 <a target="_blank" rel="noopener" href="https://github.com/astorm/pestle">pestle</a> ，这是 Alan Storm 的一个项目）的用武之地。</p>
+<p><em>译者注：由于这一段操作有较多的前提条件，而且使用代码自动生成工具，对我们理解如何创建一个列表的帮助可能不太大，所以此处不再继续翻译，有兴趣的请阅读原文。而关于如何用 uiComponent 创建列表，下次再补上其他的文章。</em></p>
+<p>参考 <a href="/how-to-create-admin-grid-in-magento-2">How to Create Admin Grid in Magento 2</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/ubuntu-polipo-shadowsocks-http/" rel="prev" title="Ubuntu 环境 polipo 把 shadowsocks 转为 http 代理">
+      <i class="fa fa-chevron-left"></i> Ubuntu 环境 polipo 把 shadowsocks 转为 http 代理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/settings-basic-product-details/" rel="next" title="商品详情（Product Details）">
+      商品详情（Product Details） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Positive-Spin-%EF%BC%88%E7%A7%AF%E6%9E%81%E7%9A%84%E4%B8%80%E9%9D%A2%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">The Positive Spin （积极的一面）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Actual-Spin-%EF%BC%88%E5%AE%9E%E9%99%85%E6%83%85%E5%86%B5%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">The Actual Spin （实际情况）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pure-Javascript-%EF%BC%88%E7%BA%AF-JS%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">Pure Javascript （纯 JS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sub-Components-%EF%BC%88%E5%AD%90%E7%BB%84%E4%BB%B6%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">Sub Components （子组件）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Source-Nodes-%EF%BC%88%E6%95%B0%E6%8D%AE%E6%BA%90%E8%8A%82%E7%82%B9%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">Data Source Nodes （数据源节点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary-of-the-UI-Component-Rendering-DSL-%EF%BC%88%E6%80%BB%E7%BB%93%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">Summary of the UI Component Rendering DSL （总结）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-a-Grid-Listing-with-Pestle-%EF%BC%88%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">Creating a Grid Listing with Pestle （创建一个列表）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

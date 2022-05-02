@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="架构及安全 建立在现代的技术栈上，使用了流行的框架，支持行业标准 可以进行细粒度的自定义，模块化的代码库，很容易添加和移除功能 业务逻辑使用稳定 service contract interfaces ，以确保站点更容易升级和自定义 可以使用高效的 web Api （SOAP 和 REST）与第三方应用集成 通过 plug-ins 和依赖注入的软件设计模式，更顺利的管理扩展之间的交互 加快上线速度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 基本功能列表（翻译三）">
+<meta property="og:url" content="http://example.com/magento-feature-list-chinese-3/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="架构及安全 建立在现代的技术栈上，使用了流行的框架，支持行业标准 可以进行细粒度的自定义，模块化的代码库，很容易添加和移除功能 业务逻辑使用稳定 service contract interfaces ，以确保站点更容易升级和自定义 可以使用高效的 web Api （SOAP 和 REST）与第三方应用集成 通过 plug-ins 和依赖注入的软件设计模式，更顺利的管理扩展之间的交互 加快上线速度">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-12-14T08:20:08.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.188Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/magento-feature-list-chinese-3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 基本功能列表（翻译三） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 基本功能列表（翻译三）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 16:20:08" itemprop="dateCreated datePublished" datetime="2016-12-14T16:20:08+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="架构及安全"><a href="#架构及安全" class="headerlink" title="架构及安全"></a><a href="#%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%AE%89%E5%85%A8"></a>架构及安全</h2><ul>
+<li>建立在现代的技术栈上，使用了流行的框架，支持行业标准</li>
+<li>可以进行细粒度的自定义，模块化的代码库，很容易添加和移除功能</li>
+<li>业务逻辑使用稳定 service contract interfaces ，以确保站点更容易升级和自定义</li>
+<li>可以使用高效的 web Api （SOAP 和 REST）与第三方应用集成</li>
+<li>通过 plug-ins 和依赖注入的软件设计模式，更顺利的管理扩展之间的交互</li>
+<li>加快上线速度，通过完全自动化的测试框架提高代码质量</li>
+<li>Update code with a standalone installer that checks for prerequisites before starting the installation process</li>
+<li>通过命令行接口自动化某些开发和生产任务</li>
+<li>定期的扫描、外部渗透测试，bug 赏金程序，促进平台核心的安全</li>
+<li>Magento 安全中心和安全警报邮件列表，会通知你安全问题</li>
+</ul>
+<h2 id="布局和主题"><a href="#布局和主题" class="headerlink" title="布局和主题"></a><a href="#%E5%B8%83%E5%B1%80%E5%92%8C%E4%B8%BB%E9%A2%98"></a>布局和主题</h2><ul>
+<li>自定义 blank 主题 或 luuma 主题，以加快上线速度</li>
+<li>通过主题集成，更容易地位不同的国家、品牌或季节促销活动创建站点</li>
+<li>通过 Magento UI 和 模式库，使得主题开发更快速和更一致</li>
+<li>使用 Less 预处理节省时间，通过代码复用和全局变量的更改，更易于站点维护</li>
+<li>通过分离表现层和业务逻辑，降低前段编码的复杂性</li>
+</ul>
+<h2 id="性能和可扩展性"><a href="#性能和可扩展性" class="headerlink" title="性能和可扩展性"></a><a href="#%E6%80%A7%E8%83%BD%E5%92%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"></a>性能和可扩展性</h2><ul>
+<li>使用预先集成在 Apache 中的 Varnish 缓存页面内容，获得更好的性能</li>
+<li>Implement hole punching and Edge Side Includes (ESI) to handle page elements that can’t be cached</li>
+<li>收益于更快的索引，以及增量索引，以更新站点内容和更好的性能</li>
+<li>Minify JavaScript, CSS 和 HTML ，压缩图像，以减少文件大小，加快加载速度</li>
+<li>将 JavaScript 和他们的依赖打包，加快浏览器加载速度</li>
+<li>访问的第一个页面缓存所有 Js 和 CSS ，以尽量减少后续页面必须加载的内容</li>
+<li>使用 Magento 内置的性能工具包，测量和优化站点的性能</li>
+<li>允许大型团队（许多管理用户）管理订单，按计划更新产品</li>
+</ul>
+<h2 id="相关文档下载"><a href="#相关文档下载" class="headerlink" title="相关文档下载"></a><a href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD"></a>相关文档下载</h2><p>本系列翻译的是第三个文档中 Magento General Feature List (Features found in all Magento projects) 部分</p>
+<p><a href="/wp-content/uploads/2016/12/Magento%20Full%20Features%20List%20052714.pdf">Magento Full Features List 052714.pdf</a><br><a href="/wp-content/uploads/2016/12/Magento_Enterprise_Edition_2.1_Feature_List_06.15.16.pdf">Magento_Enterprise_Edition_2.1_Feature_List_06.15.16.pdf</a><br><a href="/wp-content/uploads/2016/12/Magento-Feature-List-11.16.2015.pdf">Magento-Feature-List-11.16.2015.pdf</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-feature-list-chinese-2/" rel="prev" title="Magento 基本功能列表（翻译二）">
+      <i class="fa fa-chevron-left"></i> Magento 基本功能列表（翻译二）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/white-paper-magento-2-0-performance-and-scalability/" rel="next" title="Magento 2.0 性能优化配置建议及 benchmark 测试结果(官方白皮书翻译)">
+      Magento 2.0 性能优化配置建议及 benchmark 测试结果(官方白皮书翻译) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%AE%89%E5%85%A8"><span class="nav-number">1.</span> <span class="nav-text">架构及安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%83%E5%B1%80%E5%92%8C%E4%B8%BB%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">布局和主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%92%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">性能和可扩展性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD"><span class="nav-number">4.</span> <span class="nav-text">相关文档下载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言：很多对 Magento 1有所了解的人，非常想知道 Magento 2 有哪些改变。博主认为要尽量全面的描述这种改变是一个很大的挑战，可选择的角度也很多，有的是从营销的角度，有的是技术的角度，有的宏观，有的比较详细，有的来自社区，有的来自官方。那么如何将他们总结出来，方便读者更快地抓住重点呢？博主经验有限，于是决定从翻译一些比较权威的文章开始，或许翻译的过程中可以理清思路呢。有翻译错误的，不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="商业创新的新时代(翻译)">
+<meta property="og:url" content="http://example.com/new-era-commerce-innovation/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="前言：很多对 Magento 1有所了解的人，非常想知道 Magento 2 有哪些改变。博主认为要尽量全面的描述这种改变是一个很大的挑战，可选择的角度也很多，有的是从营销的角度，有的是技术的角度，有的宏观，有的比较详细，有的来自社区，有的来自官方。那么如何将他们总结出来，方便读者更快地抓住重点呢？博主经验有限，于是决定从翻译一些比较权威的文章开始，或许翻译的过程中可以理清思路呢。有翻译错误的，不">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-30T13:32:05.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.068Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/new-era-commerce-innovation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>商业创新的新时代(翻译) | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/new-era-commerce-innovation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          商业创新的新时代(翻译)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-30 21:32:05" itemprop="dateCreated datePublished" datetime="2016-09-30T21:32:05+08:00">2016-09-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>前言：很多对 Magento 1有所了解的人，非常想知道 Magento 2 有哪些改变。博主认为要尽量全面的描述这种改变是一个很大的挑战，可选择的角度也很多，有的是从营销的角度，有的是技术的角度，有的宏观，有的比较详细，有的来自社区，有的来自官方。那么如何将他们总结出来，方便读者更快地抓住重点呢？博主经验有限，于是决定从翻译一些比较权威的文章开始，或许翻译的过程中可以理清思路呢。有翻译错误的，不到位的请指正，谢谢！</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是 MAGENTO 的营销团队于2015年11月17日发布在官方博客的文章，是 Magento 2.0 全面上市的一个通告。我们可以从这里了解下官方所认为的营销亮点。</span><br></pre></td></tr></table></figure>
+
+<p><em>原文地址<a target="_blank" rel="noopener" href="https://magento.com/blog/magento-news/new-era-commerce-innovation">A NEW ERA OF COMMERCE INNOVATION</a></em></p>
+<p>今天，我们宣布下一代开源电子商城平台 —— Magento 2.0 全面上市了！新的平台让品牌商、零售商及 B2B、 B2C 行业的各类企业能够快速地、经济高效地，交付引人入胜的全方位渠道购物体验。Magento 2.0 提供了更好的性能和可扩展性，还提供了新的特性以提高转化率、业务灵活性和生产率。新平台还建立在我们的开源传统上，为全球的合作伙伴和开发者提供无与伦比的灵活性和创新机会。</p>
+<p>基于这个强大平台的新产品：Magento 2.0 企业版和社区版今天开始可供下载。</p>
+<h2 id="开放，灵活的架构"><a href="#开放，灵活的架构" class="headerlink" title="开放，灵活的架构"></a><a href="#%E5%BC%80%E6%94%BE%EF%BC%8C%E7%81%B5%E6%B4%BB%E7%9A%84%E6%9E%B6%E6%9E%84"></a>开放，灵活的架构</h2><p>支撑这些新版本的是下一代架构，该架构提供了无与伦比的灵活性，他将实现您的商务愿景。它的代码是模块化的，可以更容易地定制，更快发布到市场上，更灵活地部署到公有的或私有的云环境中。更多，更有效的 APIs 让您比以往更容易地连接第三方解决方案，操作为新产品线或地区制作的主题。种类繁多的扩展也让您的站点能够更快地、更省钱地得到增强。</p>
+<h2 id="有吸引力的购物体验"><a href="#有吸引力的购物体验" class="headerlink" title="有吸引力的购物体验"></a><a href="#%E6%9C%89%E5%90%B8%E5%BC%95%E5%8A%9B%E7%9A%84%E8%B4%AD%E7%89%A9%E4%BD%93%E9%AA%8C"></a>有吸引力的购物体验</h2><p>创建有吸引力的、无缝跨越任何设备的、个性化的客户体验是 Magento 2.0 平台的核心。新的响应式设计的默认主题让您可以快速搭建一个没有时间地区限制的网站。您还可以通过视频展示您的产品。新的结算页更容易定制化，他更少的结算步骤和更少的必要信息填写，进一步提高了转化率。您还可以提供更方便的一键创建账户，以保存客户信息供后续购物用。</p>
+<h2 id="增强的业务敏捷性和生产力"><a href="#增强的业务敏捷性和生产力" class="headerlink" title="增强的业务敏捷性和生产力"></a><a href="#%E5%A2%9E%E5%BC%BA%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%8F%E6%8D%B7%E6%80%A7%E5%92%8C%E7%94%9F%E4%BA%A7%E5%8A%9B"></a>增强的业务敏捷性和生产力</h2><p>Magento 平台也正在革新商家的经验，让您能够更有效地运作和处理快速增长，而不用扩大您的团队。新的管理员面板设计提供了一个精简的、像消费者那样的界面，这将帮助您节约日常管理事务的时间，而且对新的团队成员更直观，更容易学习。它还是触屏友好的，所以您可以在您的触屏设备上更新或者追踪销售什么的。</p>
+<p>改进的业务工具使您可以不断地优化您的操作来促进业务增长。现在，您可以毫不费力地在管理面板中自定义和保存视图，以便快速访问关键业务信息。通过一步一步引导的产品创建工具，及比以前快4倍的产品导入功能，让设置新产品也更快了。</p>
+<h2 id="企业级的可扩展性和性能"><a href="#企业级的可扩展性和性能" class="headerlink" title="企业级的可扩展性和性能"></a><a href="#%E4%BC%81%E4%B8%9A%E7%BA%A7%E7%9A%84%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E5%92%8C%E6%80%A7%E8%83%BD"></a>企业级的可扩展性和性能</h2><p>Magento 的平台已经努力提供许多目录和结账页面50%以上的更快的页面加载时间，以帮助您取悦客户和提高转化率。它预先集成 Varnish 来缓存页面内容，以提供更好的性能，优化代码和图像以更快加载他们。您的团队也会很高兴，因为改进的 Admin 管理性能和更多的并发更新支持。Magento 2.0 企业版还提供了企业级的可扩展性和高可用性，支持数据库集群。</p>
+<h2 id="安全支付"><a href="#安全支付" class="headerlink" title="安全支付"></a><a href="#%E5%AE%89%E5%85%A8%E6%94%AF%E4%BB%98"></a>安全支付</h2><p>此外，Magento 平台自带PayPal, Braintree, 和 Authorize.net 的支付集成。Magento 2.0 企业版还集成了 WorldPay（苏格兰皇家银行）和 CyberSource。所有版本都提高了安全性，提供了根据所选付款方法，追求符合PCI法规最简单的级别的能力。</p>
+<h2 id="更容易升级和维护"><a href="#更容易升级和维护" class="headerlink" title="更容易升级和维护"></a><a href="#%E6%9B%B4%E5%AE%B9%E6%98%93%E5%8D%87%E7%BA%A7%E5%92%8C%E7%BB%B4%E6%8A%A4"></a>更容易升级和维护</h2><p>最后，这种现代的、模块化的架构减少了复杂性和维护成本，他通过简化升级将在未来证明您的投资是正确的。这意味着，每季 Magento 发布新版时，您都可以轻易地融入创新功能，以推动更多的销售和更高的效率。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/about-psr/" rel="prev" title="关于 PSR">
+      <i class="fa fa-chevron-left"></i> 关于 PSR
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/config-cron/" rel="next" title="如何设置 Magento2 的 cron job">
+      如何设置 Magento2 的 cron job <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%94%BE%EF%BC%8C%E7%81%B5%E6%B4%BB%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">开放，灵活的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%90%B8%E5%BC%95%E5%8A%9B%E7%9A%84%E8%B4%AD%E7%89%A9%E4%BD%93%E9%AA%8C"><span class="nav-number">2.</span> <span class="nav-text">有吸引力的购物体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BA%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%8F%E6%8D%B7%E6%80%A7%E5%92%8C%E7%94%9F%E4%BA%A7%E5%8A%9B"><span class="nav-number">3.</span> <span class="nav-text">增强的业务敏捷性和生产力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E7%BA%A7%E7%9A%84%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E5%92%8C%E6%80%A7%E8%83%BD"><span class="nav-number">4.</span> <span class="nav-text">企业级的可扩展性和性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%94%AF%E4%BB%98"><span class="nav-number">5.</span> <span class="nav-text">安全支付</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E5%AE%B9%E6%98%93%E5%8D%87%E7%BA%A7%E5%92%8C%E7%BB%B4%E6%8A%A4"><span class="nav-number">6.</span> <span class="nav-text">更容易升级和维护</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

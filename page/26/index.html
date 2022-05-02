@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/26/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/26/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-goals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-goals/" class="post-title-link" itemprop="url">Magento 2 Goals （翻译）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-10 17:35:25" itemprop="dateCreated datePublished" datetime="2016-10-10T17:35:25+08:00">2016-10-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>前言：本篇是 Alan Kent 关于 Magento 2 的目标的个人看法，原文地址：<a target="_blank" rel="noopener" href="https://alankent.me/2014/05/17/magento-2-goals/">https://alankent.me/2014/05/17/magento-2-goals/</a>。Alen Kent 是 Magento 的架构副总裁（ VP of Architecture 不知道这么翻译对不对额）。希望有助于多一点了解 Magento 2 。原文发布时间为2014年5月17日</em></p>
+<p>Magento 2 像所有的重大项目一样，有一套自己的目标。这些已经在最近的 Magento Imagine 2014 研讨会上讨论过了。在这里，我结合自己的看法，做一个总结，以供有兴趣的人继续探讨。</p>
+<p>声明：本篇仅代表个人观点，不代表 eBay 公司的观点。</p>
+<h2 id="全新的技术栈"><a href="#全新的技术栈" class="headerlink" title="全新的技术栈"></a><a href="#%E5%85%A8%E6%96%B0%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88"></a>全新的技术栈</h2><p>Magento 2 对技术栈的最低版本要求提高了。Magneto 2 被设计成为一个强大稳定的平台，所以选择了相对成熟的技术，而不是停留在过去。不依赖太多不同的技术，但努力做到允许社区在平台的基础上选择他们喜欢的技术，也是其中的一个目标。But I expect this is an area you just have to expect to not satisfy somebody （不知道怎么翻译。。囧）</p>
+<p>需要升级的技术有：</p>
+<ul>
+<li>php 5.4 版本支持的最低版本</li>
+<li>现在用上 jQuery 了。要注意升级技术栈并不是说就要用最前沿的技术。</li>
+<li>Html5 和 CSS 3</li>
+<li>RequireJS</li>
+<li>PSR-0, PSR-1,PSR-2 （PHP 编码规范）</li>
+<li>LESS</li>
+</ul>
+<h2 id="改进的性能和可扩展性"><a href="#改进的性能和可扩展性" class="headerlink" title="改进的性能和可扩展性"></a><a href="#%E6%94%B9%E8%BF%9B%E7%9A%84%E6%80%A7%E8%83%BD%E5%92%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"></a>改进的性能和可扩展性</h2><p>提高性能（更快处理请求）和可扩展性（使他可以通过加硬件来支持更高的负载）是 Magento 2 的重要目标。正在进行基准测试工作，不过这块还有更多的工作计划。优化代码要反工是非常没有成效的事，所以这部分到目前为止不是 Magento 2 的重点。这一点将会改变。</p>
+<h2 id="简化的自定义工作"><a href="#简化的自定义工作" class="headerlink" title="简化的自定义工作"></a><a href="#%E7%AE%80%E5%8C%96%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E4%BD%9C"></a>简化的自定义工作</h2><p>大量的精力已投入到简化 Magneto 2 自定义工作中来。Magneto 的核心好处之一就是可以很大程度上进行自定义另外满足特定的需求。Magneto 并不是个仅有一些模板通用系统。新颖的功能可以被整合进去，以支持他们的品牌或是让商家走在前列。相关的例子有：</p>
+<ul>
+<li>解决许多痛点：添加新的模块却不能自定义想要的功能(不得不对他依赖的底层的代码进行改造)；有些模块会发生冲突。这里的技术升级包括改进布局文件的继承，新的依赖注入，支持拦截，模块化使其易于被移除或替换，等等。Magento 的基础代码量挺大的，因此第一阶段先介绍采用了哪些新技术，第二阶段渐进式地重构代码，以发挥新技术的力量。</li>
+<li>目录结构被重组了，所以关于某 module 的所有文件会在同一个目录下。</li>
+<li>将业务逻辑和模板文件分离出来，这样可以减少自定义模板时的重复。</li>
+</ul>
+<p>许多倍用来减少扩展的冲突的技术，结果带来了额外的好处，就是让自定义所需编写的代码量减少了。这可能导致相比较 Magento 1，Magento 2上手更困难些，但是最终的结果是由于需要编写和维护的代码量减少了，完成自定义项目所需的时间会更少。更少的冲突，更好的封装会让升级变得更容易和更可靠。</p>
+<p>2014年5月18日增加内容：当然有些人要抠字眼，“可能导致 Magento 2 上手更困难”，可能作何解释？展开来说，减少扩展冲突的方法一部分是通过阻止某些做法。这里用到了现代软件工程的实践。产品文档更加强调如何更好地解释这些概念。最终的结果可能是Magento 2 更容易开发，但是还是要看社区的反应才能知道是不是更容易开发了，在这个阶段文档还没有完成，所以现在说还是言之过早。我当然相信整体上一定会更好。如果开发者遵守新的规则，扩展之间的冲突应该会大大减少。</p>
+<h2 id="简化外部的集成"><a href="#简化外部的集成" class="headerlink" title="简化外部的集成"></a><a href="#%E7%AE%80%E5%8C%96%E5%A4%96%E9%83%A8%E7%9A%84%E9%9B%86%E6%88%90"></a>简化外部的集成</h2><p>Magneto 2 很酷的一项技术就是新增了服务层。虽然它只是一个不错的设计，定义模块的接口，相对较小的API，其他模块(还有表示层的布局和块)可以依赖这些接口或者API。我认为非常酷的一点是，用一个简单的 XML 配置文件，PHP API 自动作为 REST 和 SOAP 的 endpoint (自动生成的 WSDL 文件)。不需要多写什么。因此，如果你想为其他系统提供 API 接入，你可以创建一个新的模块，申明一个简短的 XML 文件，这就OK了。我认为这带来了一系列有趣的新方法（这些方法以前实现起来太费力气太贵了），可能会对 Magento 的后端集成产生很大影响。</p>
+<p>将业务逻辑与模板分离，位于服务层下，带来另一个好处，这样更容易保证 APIs 的行为和用户在站点上交互保持一致效果。（Magento 1 的 APIs 和web 交互可能会有偏差）</p>
+<h2 id="更容易安装和升级"><a href="#更容易安装和升级" class="headerlink" title="更容易安装和升级"></a><a href="#%E6%9B%B4%E5%AE%B9%E6%98%93%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7"></a>更容易安装和升级</h2><p>Magento 的安装过程正在被革新。大量简化自定义工作的努力也让升级变得更简单了。自动化测试（下文会提到）也有助于平滑升级。这是一个刚刚开始的工作领域。Composer 也是你安装第三方插件时，帮助你更容易安装的技术之一。</p>
+<h2 id="高质量的代码和测试"><a href="#高质量的代码和测试" class="headerlink" title="高质量的代码和测试"></a><a href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84%E4%BB%A3%E7%A0%81%E5%92%8C%E6%B5%8B%E8%AF%95"></a>高质量的代码和测试</h2><p>Magento 2 采用现代的自动测试策略。目标是减少手动测试，发布自动测试套件，让所有开发者和商家都可以了解到模块的测试覆盖率，希望有助于建立更多的测试用例来提高代码质量。测试类包括：</p>
+<ul>
+<li>单元测试</li>
+<li>继承测试</li>
+<li>JavaScript 测试</li>
+<li>性能测试</li>
+<li>静态代码分析</li>
+<li>完整性测试</li>
+<li>功能测试</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a href="#%E6%80%BB%E7%BB%93"></a>总结</h2><p>在某些方面，Magneto 2 的一些改变并不很激进——只是应用了更好的软件设计原则。不过我相信这类平台级别的变化可能会有意想不到的间接好处，这种好处有时候很难解释清楚。很难想商家解释为什么依赖注入（这也正好简化自动测试）是那么叫人兴奋。对他们来说这可不叫人激动。令人激动的是他会减少开发新站点、进行自定义、之后升级的工作量，当然会减少成本了。这带来了加速创新的巨大潜能。商家可能会对升级抱有更大的信心，更愿意频繁升级。你什么时候愿意升级手机上的APP呢？这会让商家更快接受新的趋势。</p>
+<p>我认为 Magento 2 的潜在好处就是他的加速效果。只有时间可以证明我的预言是否应验！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/mta-mda-mua-relationship/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/mta-mda-mua-relationship/" class="post-title-link" itemprop="url">关于邮件服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-09 17:02:43" itemprop="dateCreated datePublished" datetime="2016-10-09T17:02:43+08:00">2016-10-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Linux 邮件服务器通常使用 Sendmail ，不过看起来 sendmail 的配置比较复杂，所以很多人用 Postfix 。本篇主要是概念篇。</p>
+<p><img src="/wp-content/uploads/2016/10/MTA-MDA-MUA_relationship.png"></p>
+<p>MTA: Mail Transfer Agent 邮件传输代理，Sendmail 和 Postfix 就是此类。<br>MUA: Mail User Agent 邮件用户代理，像Outlook， Foxmail<br>MDA：Mail Delivery Agent 邮件投递代理，提供邮箱，存放邮件的地方。</p>
+<p>MUA 到 MTA，以及 MTA 到 MTA 之间使用的协议就是 SMTP 协议，就是发邮件的过程是 SMTP 协议。<br>MDA 到 MUA 之间常用的协议是 POP3 或 IMAP</p>
+<p>专业邮件服务商都有大量的机器来为用户服务，所以通常 MTA 和 MDA 并不是同一台服务器，因此，在Outlook等软件里，我们需要分别填写 SMTP 发送服务器的地址和 POP3 接收服务器的地址。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/windows-php-mail-sendmail/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/windows-php-mail-sendmail/" class="post-title-link" itemprop="url">Windows 下配置用 mail()发送邮件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-08 21:24:31" itemprop="dateCreated datePublished" datetime="2016-10-08T21:24:31+08:00">2016-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>前言：本篇是探索如何配置 Magento 2 的邮件服务器的分支</em></p>
+<p>我的本地环境是 win10 + wamp，我想用 php 的 mail()函数通过腾讯企业邮箱发送邮件。<br>使用腾讯企业邮箱请参考<a href="/use-exmail-qq/">免费域名邮箱 —— 使用腾讯企业邮箱</a></p>
+<h2 id="下载-sendmail"><a href="#下载-sendmail" class="headerlink" title="下载 sendmail"></a><a href="#%E4%B8%8B%E8%BD%BD-sendmail"></a>下载 sendmail</h2><p>Wamp 本身并没有带邮件服务器，所以我们要先去下载一个，windows 环境下，请去<a target="_blank" rel="noopener" href="http://glob.com.au/sendmail/">fake sendmail for windows</a>下载。然后解压后将<code>sendmail.exe</code>和<code>sendmail.ini</code>拷贝到 wamp 的安装目录下，比如我的安装目录是:<code>D:\wamp64</code>，所以我将它们两个放在<code>D:\wamp64\sendmail</code>目录下。</p>
+<h2 id="企业邮箱服务器地址"><a href="#企业邮箱服务器地址" class="headerlink" title="企业邮箱服务器地址"></a><a href="#%E4%BC%81%E4%B8%9A%E9%82%AE%E7%AE%B1%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80"></a>企业邮箱服务器地址</h2><p>登录你的腾讯企业邮箱，在设置 &gt; 客户端设置 中，可以看到：<br><img src="/wp-content/uploads/2016/10/exmail-qq-SMTP-service.png"><br>服务默认是开启的，服务器地址也给你了。</p>
+<h2 id="配置-php-ini"><a href="#配置-php-ini" class="headerlink" title="配置 php.ini"></a><a href="#%E9%85%8D%E7%BD%AE-php.ini"></a>配置 php.ini</h2><p>现在我们来设置 php.ini，通过设置 php.ini 配置文件，mail()函数就可以使用邮件服务器了。注意，php.ini 是有两个的，一个配置命令行，一个配置服务器。两个都要修改。<br>修改的内容如下（以博主自己的为例）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SMTP = smtp.exmail.qq.com</span><br><span class="line">smtp_port = 25</span><br><span class="line">sendmail_from = &quot;owner@mail.hellomagento2.com&quot;</span><br><span class="line">sendmail_path = &quot;D:\wamp64\sendmail\sendmail.exe -t&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置-sendmail-ini"><a href="#配置-sendmail-ini" class="headerlink" title="配置 sendmail.ini"></a><a href="#%E9%85%8D%E7%BD%AE-sendmail.ini"></a>配置 sendmail.ini</h2><p>然后打开刚刚复制到 wamp 安装目录下的 sendmail.ini， 做如下修改（以博主自己的为例）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">smtp_server = smtp.exmail.qq.com</span><br><span class="line">smtp_port = 25</span><br><span class="line">auth_username = &quot;owner@mail.hellomagento2.com&quot;</span><br><span class="line">auth_password = &quot;yourpassword&quot;</span><br><span class="line">force_sender = &quot;owner@mail.hellomagento2.com&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-mail-发邮件"><a href="#使用-mail-发邮件" class="headerlink" title="使用 mail() 发邮件"></a><a href="#%E4%BD%BF%E7%94%A8-mail()-%E5%8F%91%E9%82%AE%E4%BB%B6"></a>使用 mail() 发邮件</h2><p>好了重新启动一下 wamp，然后我们来创建一个 php 文件测试下是否可以发邮件了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$txt = &quot;First line of text\nSecond line of text&quot;;</span><br><span class="line">// 如果一行大于 70 个字符，请使用 wordwrap()。</span><br><span class="line">$txt = wordwrap($txt,70);</span><br><span class="line">// 发送邮件</span><br><span class="line">if(mail(&quot;1518525862@qq.com&quot;,&quot;My subject&quot;, $txt)) &#123;</span><br><span class="line">    echo &#x27;success&#x27;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;fail&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中请求下该文件，应该就会显示”success” 了，表明邮件发送成功了。</p>
+<p><img src="/wp-content/uploads/2016/10/mail-result.png"></p>
+<p>美中不足的是，会显示是由XXX代发的，这样感觉不好，以后我们再想办法去掉它。</p>
+<hr>
+<p>更新：显示由XX代发是因为没有设置发送者，或者发送者和 php.ini 中不一致导致的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$txt = &quot;First line of text\nSecond line of text&quot;;</span><br><span class="line">// 如果一行大于 70 个字符，请使用 wordwrap()。</span><br><span class="line">$txt = wordwrap($txt,70);</span><br><span class="line">$headers = &#x27;From: sales@mail.hellomagento2.com&#x27;;</span><br><span class="line">// 发送邮件</span><br><span class="line">// mail(&quot;1518525862@qq.com&quot;,&quot;My subject&quot;, $txt)</span><br><span class="line">if(mail(&quot;1518525862@qq.com&quot;,&quot;My subject&quot;, $txt, $headers)) &#123;</span><br><span class="line">    echo &#x27;success&#x27;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;fail&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这一段设置发送者为<code>sales@mail.hellomagento2.com</code> 和 php.ini 中的<code>owner@mail.hellomagento2.com</code> 不一致，所以会如下显示：<br><img src="/wp-content/uploads/2016/10/mail-result-daifa.png"></p>
+<p>如果我们将<code>$headers = &#39;From: sales@mail.hellomagento2.com&#39;;</code>改成<code>$headers = &#39;From: owner@mail.hellomagento2.com&#39;;</code> 就不会有代发字样了，如下：<br><img src="/wp-content/uploads/2016/10/mail-result-nodaifa.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/use-exmail-qq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/use-exmail-qq/" class="post-title-link" itemprop="url">免费域名邮箱 —— 使用腾讯企业邮箱</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-08 16:23:06" itemprop="dateCreated datePublished" datetime="2016-10-08T16:23:06+08:00">2016-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>博主已经有 hellomagento2.com 的域名了，现在想要一个自己域名的邮箱，就像 <a href="mailto:&#116;&#x68;&#97;&#x6e;&#107;&#105;&#x74;&#x40;&#x68;&#x65;&#x6c;&#108;&#111;&#109;&#x61;&#103;&#x65;&#x6e;&#116;&#x6f;&#50;&#x2e;&#x63;&#111;&#109;">&#116;&#x68;&#97;&#x6e;&#107;&#105;&#x74;&#x40;&#x68;&#x65;&#x6c;&#108;&#111;&#109;&#x61;&#103;&#x65;&#x6e;&#116;&#x6f;&#50;&#x2e;&#x63;&#111;&#109;</a> 这样的，还得是免费的。该怎么做呢？本篇就将介绍如何使用腾讯的企业邮箱服务来配置自己的域名邮箱。</p>
+<p>首先去<a target="_blank" rel="noopener" href="http://exmail.qq.com/onlinesell/intro">腾讯企业邮箱的官网</a>开通一个免费版的。</p>
+<p>按照提示一步步操作即可，如果不太清楚，可以参考<a target="_blank" rel="noopener" href="http://service.exmail.qq.com/cgi-bin/help?subtype=1&&no=1001214&&id=20012">官方帮助文档</a>。</p>
+<p>注册管理员账号，添加域名，添加成员等步骤省略不讲。</p>
+<p>下面我们配图如何设置 MX 记录，参照上面的官方文档应该很容易理解的。</p>
+<p><img src="/wp-content/uploads/2016/10/aliyun-mx.png"></p>
+<p>博主这个配置的是 <a href="mailto:&#x73;&#x6f;&#x6d;&#101;&#x6f;&#x6e;&#101;&#64;&#109;&#x61;&#x69;&#x6c;&#x2e;&#104;&#101;&#108;&#108;&#x6f;&#x6d;&#x61;&#x67;&#101;&#x6e;&#x74;&#111;&#x32;&#x2e;&#x63;&#x6f;&#x6d;">&#x73;&#x6f;&#x6d;&#101;&#x6f;&#x6e;&#101;&#64;&#109;&#x61;&#x69;&#x6c;&#x2e;&#104;&#101;&#108;&#108;&#x6f;&#x6d;&#x61;&#x67;&#101;&#x6e;&#x74;&#111;&#x32;&#x2e;&#x63;&#x6f;&#x6d;</a> 这种哈。现在登录腾讯企业邮箱给自己发邮件，别人收到的就是自己域名的邮件啦！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/php-time-timezone-strtotime/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/php-time-timezone-strtotime/" class="post-title-link" itemprop="url">php 的时间和时区</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-08 11:26:42" itemprop="dateCreated datePublished" datetime="2016-10-08T11:26:42+08:00">2016-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>time</code>返回自从 Unix 纪元（格林威治时间 1970 年 1 月 1 日 00:00:00）到当前时间的秒数。不受时区设置的影响。</p>
+<p><code>date</code>格式化一个本地时间。跟时区设置有关系。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$timezone = &quot;Asia/Shanghai&quot;;</span><br><span class="line">$currentTimezone = &quot;UTC&quot;;</span><br><span class="line">@date_default_timezone_set($timezone);</span><br><span class="line">echo $date = date(&#x27;Y-m-d H:i:s&#x27;);</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">echo  time();</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">@date_default_timezone_set($currentTimezone);</span><br><span class="line">echo date(&#x27;Y-m-d H:i:s&#x27;);</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">echo time();</span><br><span class="line">---------------------------------</span><br><span class="line">2016-10-08 11:24:43</span><br><span class="line">1475897083</span><br><span class="line">2016-10-08 03:24:43</span><br><span class="line">1475897083</span><br></pre></td></tr></table></figure>
+
+<p><code>strtotime</code>受时区设置的影响，将日期时间描述解析为 Unix 时间戳。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$timezone = &quot;Asia/Shanghai&quot;;</span><br><span class="line">$currentTimezone = &quot;UTC&quot;;</span><br><span class="line">@date_default_timezone_set($timezone);</span><br><span class="line">echo $date = date(&#x27;Y-m-d H:i:s&#x27;);</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">echo time();</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">@date_default_timezone_set($currentTimezone);</span><br><span class="line">echo date(&#x27;Y-m-d H:i:s&#x27;);</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">// 这个时间戳是不正确的，不符合实际的</span><br><span class="line">echo $time = strtotime($date);</span><br><span class="line">------------------------------</span><br><span class="line">2016-10-08 11:22:06</span><br><span class="line">1475896926</span><br><span class="line">2016-10-08 03:22:06</span><br><span class="line">1475925726</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/config-cron/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/config-cron/" class="post-title-link" itemprop="url">如何设置 Magento2 的 cron job</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-07 11:27:15" itemprop="dateCreated datePublished" datetime="2016-10-07T11:27:15+08:00">2016-10-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>参考文档：<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/config-guide/cli/config-cli-subcommands-cron.html">Configure and run cron</a></em></p>
+<h2 id="cron-job-是什么"><a href="#cron-job-是什么" class="headerlink" title="cron job 是什么"></a><a href="#cron-job-%E6%98%AF%E4%BB%80%E4%B9%88"></a>cron job 是什么</h2><p>Magento 的一些功能要正常运行就必须要用到 cron job，它是一系列的定时任务，这些任务包括：</p>
+<ul>
+<li>Catalog price rules</li>
+<li>Newsletters</li>
+<li>Generating Google sitemaps</li>
+<li>Customer Alerts&#x2F;Notifications (product price change, product back in stock)</li>
+<li>Reindexing</li>
+<li>Private sales (Magento EE only)</li>
+<li>Automatic updating of currency rates</li>
+<li>All Magento e-mails (including order confirmation and transactional)</li>
+</ul>
+<p>官方建议以 Magento 文件所有者的身份运行 cron ，不要用root ，也不要用web server user （一般指 www-data）</p>
+<p>UNIX 系统的计划任务是由<code>crontab</code>来执行的，通过他可以在固定的时间间隔执行指定的系统指令或shell script，当然包括 php 脚本。crontab 是一个记录某时刻执行某命令的文件。每个系统用户都有他自己的 crontab，crontab 会以他自己的所有者的身份运行命令。所以官方推荐你用 magento 文件所有者的身份运行cron，就是因为需要以该身份运行 magento 命令。</p>
+<p>cron job 是依赖 crontab 去完成功能的，cron job 是 magento 2的提供的定时任务，crontab 是系统的功能，强烈建议不要用 windows 系统作为生产环境，不然这一块会很麻烦的。</p>
+<h2 id="如何配置-cron-job"><a href="#如何配置-cron-job" class="headerlink" title="如何配置 cron job"></a><a href="#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE-cron-job"></a>如何配置 cron job</h2><ol>
+<li><p>找到 php 的目录查看php 的目录，如下命令即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which php</span><br></pre></td></tr></table></figure>
+
+<p>返回结果例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/php</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 cron job我们先以 magento 文件所有者的身份登陆进去，博主是 ThankIT</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<p>第一次要你选择编辑器，照着指示做就成。然后我们会编辑一个文件，添加如下类似的代码在文件末尾，最后保存一下退出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* * * * * &lt;path to php binary&gt; &lt;magento install dir&gt;/bin/magento cron:run  grep -v &quot;Ran jobs by schedule&quot; &gt;&gt; &lt;magento install dir&gt;/var/log/magento.cron.log</span><br><span class="line">* * * * * &lt;path to php binary&gt; &lt;magento install dir&gt;/update/cron.php &gt;&gt; &lt;magento install dir&gt;/var/log/update.cron.log</span><br><span class="line">* * * * * &lt;path to php binary&gt; &lt;magento install dir&gt;/bin/magento setup:cron:run &gt;&gt; &lt;magento install dir&gt;/var/log/setup.cron.log</span><br></pre></td></tr></table></figure>
+
+<p><code>grep -v &quot;Ran jobs by schedule&quot;</code>用来从日志中筛选出相关记录，方便查看。<br><code>* * * * *</code> 表示每分钟，官方推荐时间间隔。<br>第一条命令(<code>magento cron:run</code>)负责重建索引，自动发邮件，生成sitemap 等日常工作，剩下两个是Component Manager 和系统升级使用的。<br>博主的crontab 是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /usr/bin/php /home/ThankIT/www/demo/M210/bin/magento cron:run  grep -v &quot;Ran jobs by schedule&quot; &gt;&gt; /home/ThankIT/www/demo/M210/var/log/magento.cron.log</span><br><span class="line">* * * * * /usr/bin/php /home/ThankIT/www/demo/M210/update/cron.php &gt;&gt; /home/ThankIT/www/demo/M210/var/log/update.cron.log</span><br><span class="line">* * * * * /usr/bin/php /home/ThankIT/www/demo/M210/bin/magento setup:cron:run &gt;&gt; /var/www/magento2/var/log/setup.cron.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>怎么判断 cron job 成功运行了<br>判断方法应该有很多吧，其中博主认为比较简单的是去查看一下数据库的<code>cron_schedule</code>表，如果有记录说明成功了。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/new-era-commerce-innovation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/new-era-commerce-innovation/" class="post-title-link" itemprop="url">商业创新的新时代(翻译)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-30 21:32:05" itemprop="dateCreated datePublished" datetime="2016-09-30T21:32:05+08:00">2016-09-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>前言：很多对 Magento 1有所了解的人，非常想知道 Magento 2 有哪些改变。博主认为要尽量全面的描述这种改变是一个很大的挑战，可选择的角度也很多，有的是从营销的角度，有的是技术的角度，有的宏观，有的比较详细，有的来自社区，有的来自官方。那么如何将他们总结出来，方便读者更快地抓住重点呢？博主经验有限，于是决定从翻译一些比较权威的文章开始，或许翻译的过程中可以理清思路呢。有翻译错误的，不到位的请指正，谢谢！</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是 MAGENTO 的营销团队于2015年11月17日发布在官方博客的文章，是 Magento 2.0 全面上市的一个通告。我们可以从这里了解下官方所认为的营销亮点。</span><br></pre></td></tr></table></figure>
+
+<p><em>原文地址<a target="_blank" rel="noopener" href="https://magento.com/blog/magento-news/new-era-commerce-innovation">A NEW ERA OF COMMERCE INNOVATION</a></em></p>
+<p>今天，我们宣布下一代开源电子商城平台 —— Magento 2.0 全面上市了！新的平台让品牌商、零售商及 B2B、 B2C 行业的各类企业能够快速地、经济高效地，交付引人入胜的全方位渠道购物体验。Magento 2.0 提供了更好的性能和可扩展性，还提供了新的特性以提高转化率、业务灵活性和生产率。新平台还建立在我们的开源传统上，为全球的合作伙伴和开发者提供无与伦比的灵活性和创新机会。</p>
+<p>基于这个强大平台的新产品：Magento 2.0 企业版和社区版今天开始可供下载。</p>
+<h2 id="开放，灵活的架构"><a href="#开放，灵活的架构" class="headerlink" title="开放，灵活的架构"></a><a href="#%E5%BC%80%E6%94%BE%EF%BC%8C%E7%81%B5%E6%B4%BB%E7%9A%84%E6%9E%B6%E6%9E%84"></a>开放，灵活的架构</h2><p>支撑这些新版本的是下一代架构，该架构提供了无与伦比的灵活性，他将实现您的商务愿景。它的代码是模块化的，可以更容易地定制，更快发布到市场上，更灵活地部署到公有的或私有的云环境中。更多，更有效的 APIs 让您比以往更容易地连接第三方解决方案，操作为新产品线或地区制作的主题。种类繁多的扩展也让您的站点能够更快地、更省钱地得到增强。</p>
+<h2 id="有吸引力的购物体验"><a href="#有吸引力的购物体验" class="headerlink" title="有吸引力的购物体验"></a><a href="#%E6%9C%89%E5%90%B8%E5%BC%95%E5%8A%9B%E7%9A%84%E8%B4%AD%E7%89%A9%E4%BD%93%E9%AA%8C"></a>有吸引力的购物体验</h2><p>创建有吸引力的、无缝跨越任何设备的、个性化的客户体验是 Magento 2.0 平台的核心。新的响应式设计的默认主题让您可以快速搭建一个没有时间地区限制的网站。您还可以通过视频展示您的产品。新的结算页更容易定制化，他更少的结算步骤和更少的必要信息填写，进一步提高了转化率。您还可以提供更方便的一键创建账户，以保存客户信息供后续购物用。</p>
+<h2 id="增强的业务敏捷性和生产力"><a href="#增强的业务敏捷性和生产力" class="headerlink" title="增强的业务敏捷性和生产力"></a><a href="#%E5%A2%9E%E5%BC%BA%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%95%8F%E6%8D%B7%E6%80%A7%E5%92%8C%E7%94%9F%E4%BA%A7%E5%8A%9B"></a>增强的业务敏捷性和生产力</h2><p>Magento 平台也正在革新商家的经验，让您能够更有效地运作和处理快速增长，而不用扩大您的团队。新的管理员面板设计提供了一个精简的、像消费者那样的界面，这将帮助您节约日常管理事务的时间，而且对新的团队成员更直观，更容易学习。它还是触屏友好的，所以您可以在您的触屏设备上更新或者追踪销售什么的。</p>
+<p>改进的业务工具使您可以不断地优化您的操作来促进业务增长。现在，您可以毫不费力地在管理面板中自定义和保存视图，以便快速访问关键业务信息。通过一步一步引导的产品创建工具，及比以前快4倍的产品导入功能，让设置新产品也更快了。</p>
+<h2 id="企业级的可扩展性和性能"><a href="#企业级的可扩展性和性能" class="headerlink" title="企业级的可扩展性和性能"></a><a href="#%E4%BC%81%E4%B8%9A%E7%BA%A7%E7%9A%84%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E5%92%8C%E6%80%A7%E8%83%BD"></a>企业级的可扩展性和性能</h2><p>Magento 的平台已经努力提供许多目录和结账页面50%以上的更快的页面加载时间，以帮助您取悦客户和提高转化率。它预先集成 Varnish 来缓存页面内容，以提供更好的性能，优化代码和图像以更快加载他们。您的团队也会很高兴，因为改进的 Admin 管理性能和更多的并发更新支持。Magento 2.0 企业版还提供了企业级的可扩展性和高可用性，支持数据库集群。</p>
+<h2 id="安全支付"><a href="#安全支付" class="headerlink" title="安全支付"></a><a href="#%E5%AE%89%E5%85%A8%E6%94%AF%E4%BB%98"></a>安全支付</h2><p>此外，Magento 平台自带PayPal, Braintree, 和 Authorize.net 的支付集成。Magento 2.0 企业版还集成了 WorldPay（苏格兰皇家银行）和 CyberSource。所有版本都提高了安全性，提供了根据所选付款方法，追求符合PCI法规最简单的级别的能力。</p>
+<h2 id="更容易升级和维护"><a href="#更容易升级和维护" class="headerlink" title="更容易升级和维护"></a><a href="#%E6%9B%B4%E5%AE%B9%E6%98%93%E5%8D%87%E7%BA%A7%E5%92%8C%E7%BB%B4%E6%8A%A4"></a>更容易升级和维护</h2><p>最后，这种现代的、模块化的架构减少了复杂性和维护成本，他通过简化升级将在未来证明您的投资是正确的。这意味着，每季 Magento 发布新版时，您都可以轻易地融入创新功能，以推动更多的销售和更高的效率。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/about-psr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/about-psr/" class="post-title-link" itemprop="url">关于 PSR</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-29 11:51:45" itemprop="dateCreated datePublished" datetime="2016-09-29T11:51:45+08:00">2016-09-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>前言：勿在浮沙筑高楼。在本站 PHP 的分类目录下，博主将尽可能地收集、整理和分享 PHP 相关的知识，希望能够帮助自己夯实基础，同时也能给一些朋友帮助。</em></p>
+<p>PSR 的全称是 PHP Framework Recommendations ，他是由 PHP FIG 组织制定的 PHP 规范， 是 PHP 开发的实践标准之一。</p>
+<p>项目的目的在于：通过框架作者或者框架的代表之间的讨论，以最低程度的限制，制定一个协作标准，各个框架遵循统一的编码规范，避免各家自行发展的风格阻碍了 PHP 的发展，解决程序设计师由来已久的困扰。</p>
+<p>以上摘自<a target="_blank" rel="noopener" href="https://psr.phphub.org/">PHP 标准规范中文版</a><br>该站主要针对<strong>已通过</strong> 的 PSR 进行翻译，内容比较全面，排版也很舒服，给他们点个赞！</p>
+<p>PSR 的官方网址：<a target="_blank" rel="noopener" href="http://www.php-fig.org/psr/">http://www.php-fig.org/psr/</a></p>
+<h2 id="已经通过的规范索引"><a href="#已经通过的规范索引" class="headerlink" title="已经通过的规范索引"></a><a href="#%E5%B7%B2%E7%BB%8F%E9%80%9A%E8%BF%87%E7%9A%84%E8%A7%84%E8%8C%83%E7%B4%A2%E5%BC%95"></a>已经通过的规范索引</h2><p>PSR-1 基础编码规范 Basic Coding Standard<br>PSR-2 编码风格规范 Coding Style Guide<br>PSR-3 日志接口规范 Logger Interface<br>PSR-4 自动加载规范 Autoloading Standard<br>PSR-6 缓存接口规范 Caching Interface<br>PSR-7 HTTP 消息接口规范 HTTP Message Interface</p>
+<p>PSR-0 Autoloading Standard 这个已经在 2014-10-21 日被标记为废除，由 PSR-4 替代。</p>
+<h2 id="Magento-遵循的规范"><a href="#Magento-遵循的规范" class="headerlink" title="Magento 遵循的规范"></a><a href="#magento-%E9%81%B5%E5%BE%AA%E7%9A%84%E8%A7%84%E8%8C%83"></a>Magento 遵循的规范</h2><p>Magento 的核心开发团队使用 PSR-1 和 PSR-2 规范，推荐 Magento 的开发者也使用相同规范。参考：<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/coding-standards/code-standard-php.html">PHP coding standard</a></p>
+<p>可以用 <a target="_blank" rel="noopener" href="https://github.com/squizlabs/PHP_CodeSniffer">PHP_CodeSniffer</a> 去进行检查是否符合某个规范。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/download-magento1-extension-directly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/download-magento1-extension-directly/" class="post-title-link" itemprop="url">直接下载 Magento 1 的插件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-28 16:53:48" itemprop="dateCreated datePublished" datetime="2016-09-28T16:53:48+08:00">2016-09-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一般情况下，最好是用 Magento Connect 直接安装插件。不过对开发者来说，可能只需要看一下插件的业务逻辑或者实现什么的，所以直接下载的方式更方便些。</p>
+<p>工具：</p>
+<p><a target="_blank" rel="noopener" href="http://freegento.com/ddl-magento-extension.php">http://freegento.com/ddl-magento-extension.php</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-extension-submit-to-marketplace/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-extension-submit-to-marketplace/" class="post-title-link" itemprop="url">Magento 2 插件提交 MarketPlace 小记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-19 18:03:50" itemprop="dateCreated datePublished" datetime="2016-09-19T18:03:50+08:00">2016-09-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Magento MarketPlace 是类似 APPStore 这样的官方应用市场，您可以从 MarketPlace 购买下载插件，然后安装到自己的店铺中，实现所需要的功能。<br>Magento Connect 负责 Magento 1 的插件， Magneto MarketPlace 则负责 Magento 2 的插件。</p>
+<p>ThankIT 的支付宝和微信插件既然开发好了，何不提交官方市场呢？于是博主开始了暴躁的提交历程。现记述下来，一是不吐不快，二是或可供后来者参考。</p>
+<p>博主翻阅工作日志后，发现 ThankIT 插件从今年8月1日就开始提交 MarketPlace，至今仍然卡在 Market Review 部分，算起来已经有50天了！天，想到这个博主就很暴躁。虽然整个过程中也有忙其他事情，但是等待真的是让人心碎的！</p>
+<p>博主总结一下慢的大原因：<br>一是语言障碍，虽然每个字都看得懂，但是就是没明白啥意思，囧！<br>二是时间差，发邮件询问问题，今天问，最快明天才能看到回答。</p>
+<p>具体原因我们细细说：<br>Magento MarketPlace 的提交流程大致是这样的，先要告诉他们该插件解决了什么问题，然后你插件独特在哪里，通过初步的审核后，可以上传插件进行 Techincal Review 了，这一步会对代码进行检查，如果有 Error 就不能通过，这一步很严格，比如不允许用 echo 直接输出，可以参考如下资料：<br><a target="_blank" rel="noopener" href="http://docs.magento.com/marketplace/user_guide/extensions/review-code-validation.html">Code Validation</a><br><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/111085/how-to-fix-warnings-errors-raised-by-the-magento-marketplace-technical-review/111086">How to fix warnings &#x2F; errors raised by the Magento Marketplace technical review report</a></p>
+<p>这一步博主遇到官方提交的一个坑，就是明明我的描述没有超过规定的字数，鬼知道什么时候他给我的描述加了<code>&lt;p&gt;</code>标签，于是报错不能提交，这时候既无法上传插件又无法修改描述，天，博主的内心是崩溃的！<br>而且位置什么的全错位了。根本没有办法进入下一步。就像这样(这是微信支付插件依赖的一个Package，微信插件已经通过 Technical Review 了)：</p>
+<p><img src="/wp-content/uploads/2016/09/marketplace.png"></p>
+<p>第一次遇到这个问题（ThankIT&#x2F;MobileDetect），我发邮件过去询问没有得到回答，想想算了改个名字（改成了ThankIT&#x2F;DeviceDetect）重新上传一下吧，于是不了了之了。尼玛，这次又遇到了，这次要改名字，有点麻烦了！于是只好再试试看问官方吧，目前还没有得到回复。。</p>
+<p>支付宝的插件已经通过 Technical Review 进入 Market Review 阶段，这个阶段遇到的问题有：介绍自己的文字和图像不过关，我也不晓得有什么区别。。为什么不让过。自己的域名不能包含“magento”二字，博主只好特意又申请一个域名。。标题必须得是英文的（我有中英文啊。。），还有介绍内容得让别人知道 Alipay 是什么等等…最后终于提交 Market Review 博主默默地等了六天，还是没有动静。于是博主问官方，到底要多久啊？对面说，一般非支付插件，5至7个工作日，支付插件要更久一些。。好吧，博主默默等待了小半个月，突然醒悟可能是有文件没签。。就是下面提到的这个：</p>
+<p>支付插件是个特殊的存在，原文如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Hello all,</span><br><span class="line"></span><br><span class="line">We thank you for your patience as we have diligently been working on a process to curate payments extensions.</span><br><span class="line"></span><br><span class="line">As you know, Magento has moved to a highly curated model for the Magento Marketplace and we are requiring that select third-party payment providers approve all payment extensions that are listed in the Marketplace.  This ensures that each payment extension has been evaluated and tested by the payment provider before an extension can be submitted to Magento for review and listing on the Magento Marketplace.  This process will ensure high quality payment capabilities within the Magento platform.</span><br><span class="line"></span><br><span class="line">As we continue to work on the approval process with the payment providers for their “official” payment extension(s), we want to inform merchants that your Magento 2 compatible extensions are already available.  To achieve this, Magento will agree to list your payment extension in the Magento Marketplace on a temporary evaluation basis for  6 months.  If the payment provider does not select your extension as its “official” extension(s), at the conclusion of the 6 month period, your extension will be removed from the Magento Marketplace.</span><br><span class="line"></span><br><span class="line">For those paid extension(s) that have a cost associated with the purchase, the standard Magento Marketplace revenue share terms will apply at the time of listing on the Magento Marketplace, and Magento will remit to you an amount equal to 70% of the Net Revenue from the sale, per the terms of the Developer Agreement.</span><br><span class="line"></span><br><span class="line">To be admitted into the Marketplace, please sign and return a scanned copy of the attached Magento Developer Agreement and Appendix A to marketplace@magento.com.</span><br></pre></td></tr></table></figure>
+
+<p>好吧，还要填表，那就填吧！还要上交“30%”，好吧。。六个月的考核期，也没看明白到底怎么考核的，然后发邮件问，还是没有弄明白，博主已经快要耐心耗尽了，所以管他什么考核，以后再说吧。于是博主填了表发过去。</p>
+<p>后来博主又要填表了，这次好像是关于税的，于是又填了表发过去。</p>
+<p>总结一下：<br>支付宝插件进入 Market Reviw 阶段，希望不要又因为什么被拒绝了。<br>微信插件目前是 Ready for Market Reviw 阶段，但是他依赖的 QRcode 包因为提交 Bug 无法前进了，正在等待官方回复。</p>
+<hr>
+<p>2016年9月20日</p>
+<p>气死本宝宝了，支付宝的插件又被打回来了，现在的状态是 MarketIssue。其中有两个问题是老问题。<br>一是 Developer Avata，要求：<br>Add a Developer Avatar to your profile (company or personal).<br>It must look professional; however, it does not necessarily need to be a picture of you.<br>It should be 255 x 255 px, jpg, gif or png.<br>宝宝的头像是255*255 的png，难道是说我不够正式？我就一个logo 加一个名字而已（ThankIT），MarketPlace 中就有这样的，凭啥说俺们的不正式？</p>
+<p>二是Developer Profile 要求是: Add a short bio to your profile to help merchants better understand you or your company.<br>宝宝的介绍是简短了点，可也是照着MakertPlace 中其他家的写的，到底少什么？</p>
+<p>第三个说是Screen Name 问题，上次倒没有说过，要求是Update your Screen Name to represent you or your company.The Screen Name cannot infer that Magento is affiliated with your company or extension.<br>宝宝的Screen Name 是PiscesThankIT，怎么不满足要求了？哭啊~</p>
+<p>其他问题，如自己的域名不能带 magento ，尼玛，这个问题很麻烦啊！如语法错误，怪我。。说我的详细介绍说得不清楚，得，怪我！<br>可是我真的很怀疑，就算写得很详细歪果仁能搞懂支付宝到底干嘛使的吗，再看看Paypal 的支付插件，寥寥数语，根本没解释Paypal 到底干啥的好吧，严重怀疑，MarketPlace 你是***局啊，管那么宽？<br>花在乱七八糟的文案上的时间都要超过花在技术上的了。虽然 MarketPlace  的本意是为商户着想，<br>但为了兼顾不同语言，要求必须以英文介绍为主，可以加入其他语言，这给开发者增加了提交难度啊。原来1可没有这么严格。。</p>
+<p>关键是我都不知道为什么不符合要求啊。前三个问题宝宝真的是一脸的懵比</p>
+<p>抱怨归抱怨，宝宝还是带着埋怨之意打破沙锅问到底，发邮件去询问官方市场到底错在哪里了，可恶的是，发过去连个自动回复也没有，石沉大海一般。。</p>
+<p>本宝宝，是绝不会轻易放弃的，奶奶的熊！</p>
+<hr>
+<p>9月26日</p>
+<p>9月20日的更新，满满的都是怨气啊，博主应该深刻反省一下。虽然有些事情很容易让人暴躁，可是我们应该学着控制自己的情绪才是。<br>而且今天看到有同学给我加油打气，觉得挺受鼓舞的，谢谢你！</p>
+<p>最近忙着其他事情，所以跟 MarketPlace 的事情慢了。</p>
+<p>上面提到的上传 bug , 官方有回应了，询问了我的产品ID，是否有建议等。不过最近的一封邮件表明他还是没有明白我的意思。<br>他告诉我说我的 Code 中有 Warning，我需要重新上传以通过审核。但是我的问题是，我根本无法重新上传啊，一上传就说我描述信息超过150个字符。博主这次截了图，继续说明问题，虽然上次也截了图的，不过希望这次他可以明白我的意思吧。</p>
+<p>至于最近提到的头像名字错误什么的，博主的询问果然石沉大海一般没有回应了，博主会继续发邮件问的，然后试着按自己的理解修改后提交，试试看能不能过呗。</p>
+<p>博主最近有个感悟，希望在此分享一下。:)</p>
+<p>如果我们理解并接受这个世界上有许多无法掌控的事情，我们会更好地适应环境。减少内心的损耗，也是提高效率的一种方法呢。</p>
+<hr>
+<p>10月5日</p>
+<p>MarketPlace Package 的文件无法上传的问题终于奇迹般的好了，官方并没有回应说是什么问题，只是很意外得收到邮件说QRcode 的 package 被拒绝了。然后我一检查发现 ok 了。不管是为什么，这下终于可以继续推进了。</p>
+<p>中间过程略有曲折，官方说看起来像是禁用了Js，本来应该是富文本的，我却是纯文本的样子，还截了图给我看。宝宝经提醒发现，我的所有package 都是纯文本，而且确实没有禁用Js，检查了加载也没有发现问题，于是截图并附加了文本说明回复。大概是这种方式说得比较明白了，所以终于解决了，哈哈。图的表现力确实会比文字强不少呢！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

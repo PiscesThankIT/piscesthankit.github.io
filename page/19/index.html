@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/19/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/19/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-feature-list-chinese-2/" class="post-title-link" itemprop="url">Magento 基本功能列表（翻译二）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 15:22:13" itemprop="dateCreated datePublished" datetime="2016-12-14T15:22:13+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="结账，付款和发货"><a href="#结账，付款和发货" class="headerlink" title="结账，付款和发货"></a><a href="#%E7%BB%93%E8%B4%A6%EF%BC%8C%E4%BB%98%E6%AC%BE%E5%92%8C%E5%8F%91%E8%B4%A7"></a>结账，付款和发货</h2><ul>
+<li>简化结账流程，减少数据输入来促进购买</li>
+<li>根据发货地址自动显示物流选项</li>
+<li>结账显示带有商品图片的订单汇总</li>
+<li>购物车显示估计的税费和运费</li>
+<li>提供注册用户和 Guest 用户结账（就是不注册马上结账）注册用户输入邮箱地址，结账时会自动识别出该客户</li>
+<li>在购物结束（checkout thank you page）页面，客户可一键创建账户</li>
+<li>前台后台都可以使用 HTTPS</li>
+<li>允许客户保存购物车，稍后再购买</li>
+<li>每个订单的每件物品都接受赠礼留言</li>
+<li>发货后或是结账时验证信用卡和信用卡扣款（Authorize and charge credit cards upon shipment or checkout）</li>
+<li>整合了 Paypal 的多个支付网关，以及 Braintree 和 Authorize.net</li>
+<li>通过 Magneto 市场获得更多支付插件</li>
+<li>客户浏览器直接安全地发送信用卡信息到支付网关，不经过 Magento 应用</li>
+<li>根据不同支付方法，遵守 PCI 规范（Qualify for the easiest level of PCI compliance (SAQ-A or SAQ A-EP), depending on payment methods used）</li>
+<li>提供 Paypal 信用卡选项</li>
+<li>接受支票和汇票</li>
+<li>接受采购订单</li>
+<li>接受银行转账和货到付款</li>
+<li>接受如下公司的实时运费： UPS, UPS XML (account rates), FedEx (account rates), USPS, and DHL</li>
+<li>根据发货方式的不同，指定允许的目的地国家</li>
+<li>为每个订单或每件物品设置固定运费</li>
+<li>根据重量、价格、目的地以及物品数量，设置表费率</li>
+<li>可免费送货</li>
+<li>对所有主要的承运公司，集成 shipping label 打印功能</li>
+<li>客户账户可实时追踪物流情况</li>
+</ul>
+<h2 id="订单管理和客户服务"><a href="#订单管理和客户服务" class="headerlink" title="订单管理和客户服务"></a><a href="#%E8%AE%A2%E5%8D%95%E7%AE%A1%E7%90%86%E5%92%8C%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1"></a>订单管理和客户服务</h2><ul>
+<li>可在管理后台查看、编辑、创建和完成订单，并&#x2F;或开票</li>
+<li>对每笔订单，可创建多个发票、多次发货、多个贷项通知单（credit memo），以便分开履约</li>
+<li>打印发票、装箱单(packing slips) 和 快递单（shipping labels）</li>
+<li>创建自定义的订单状态标签，以跟踪进度</li>
+<li>允许客户服务代表创建订单及客户账户</li>
+<li>允许更改客户购物车和愿望清单中的商品及优惠券</li>
+<li>通过电子邮件通知和 RSS 订阅发送订单状态</li>
+<li>账户更改，密码重置等，可自定义电子邮件</li>
+<li>通过创建资讯订阅，发布内容，建立与客户的联系</li>
+<li>通过联系我们表单，连接客户</li>
+</ul>
+<h2 id="客户账户"><a href="#客户账户" class="headerlink" title="客户账户"></a><a href="#%E5%AE%A2%E6%88%B7%E8%B4%A6%E6%88%B7"></a>客户账户</h2><ul>
+<li>查看综合账户面板</li>
+<li>选择默认的 billing 和发货地址</li>
+<li>可在地址簿中保存无限个地址</li>
+<li>查看订单状态和历史纪录</li>
+<li>允许客户在账户中再次购买</li>
+<li>查看最近购买的商品</li>
+<li>创建可分享的愿望清单</li>
+<li>管理资讯订阅</li>
+<li>查看提交的商品评价</li>
+<li>访问可下载的&#x2F;电子产品</li>
+</ul>
+<h2 id="支持全球网站"><a href="#支持全球网站" class="headerlink" title="支持全球网站"></a><a href="#%E6%94%AF%E6%8C%81%E5%85%A8%E7%90%83%E7%BD%91%E7%AB%99"></a>支持全球网站</h2><ul>
+<li>在同一个店铺或环境中管理面向多个国家的站点</li>
+<li>支持本地化，多货币及地区税率</li>
+<li>适用任何语言</li>
+<li>使用重音字符（accented characters）和从右向左的排版</li>
+<li>配置站点注册、发货、开票允许的国家列表</li>
+<li>支持固定产品税，例如欧盟的 WEEE&#x2F;DEEE</li>
+<li>Automatically calculate tax for transactions in the EU with VAT-ID validation2</li>
+<li>Use EU cookie notification to simplify EU Privacy and Electronic Communications Directive compliance</li>
+</ul>
+<h2 id="移动电子商务"><a href="#移动电子商务" class="headerlink" title="移动电子商务"></a><a href="#%E7%A7%BB%E5%8A%A8%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1"></a>移动电子商务</h2><p>响应式设计</p>
+<ul>
+<li>通过内置的响应式基本参考主题，快速创建可供任何设备访问的网站。响应式主题：<ul>
+<li>可以很容易地进行自定义，更快上线</li>
+<li>包含主要流程，商品类型和功能</li>
+<li>减少长期的维护费用，使站点更新更容易</li>
+<li>通过使用 Google 青睐的方法优化移动站点，提供了 SEO 好处</li>
+<li>让客户可以通过手机阅读响应式的电子邮件，包括：订阅的资讯，通知，以及促销邮件等</li>
+</ul>
+</li>
+</ul>
+<h2 id="分析和报告"><a href="#分析和报告" class="headerlink" title="分析和报告"></a><a href="#%E5%88%86%E6%9E%90%E5%92%8C%E6%8A%A5%E5%91%8A"></a>分析和报告</h2><ul>
+<li>通过 Google Universal Analytics 获得分析报告</li>
+<li>通过后台面板获得下列报告：<ul>
+<li>销售报告</li>
+<li>税务报告</li>
+<li>被丢弃的购物车情况报告</li>
+<li>浏览最多的商品报告</li>
+<li>购买最多的商品报告</li>
+<li>低库存报告</li>
+<li>搜索词报告</li>
+<li>产品评价报告</li>
+<li>优惠券使用报告</li>
+<li>总销售开票报告</li>
+<li>总销售退款报告</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/learn-magento-before-use-archive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/learn-magento-before-use-archive/" class="post-title-link" itemprop="url">了解 Magento</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 11:22:53" itemprop="dateCreated datePublished" datetime="2016-12-14T11:22:53+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>您可能希望在使用 Magento 之前，先了解下 Magento 怎么样？他有哪些功能，和其他系统相比如何？</p>
+<p>下面的文章可能会帮助你更了解 Magento，文章或是翻译，或是博主自己的看法，请各位自行判断。欢迎留言。</p>
+<p><a href="/bibi-ecommerce-platform/">漫谈网上商城系统——从技术角度进行比较</a></p>
+<p><a href="/magento_in_my_eyes/">Magento 之我见</a></p>
+<p><a href="/new-era-commerce-innovation/">商业创新的新时代(翻译)</a></p>
+<p><a href="/magento-2-goals/">Magento 2 Goals （翻译）</a></p>
+<p><a href="/magento-feature-list-chinese-1/">Magento 基本功能列表（翻译一）</a></p>
+<p><a href="/magento-feature-list-chinese-2/">Magento 基本功能列表（翻译二）</a></p>
+<p><a href="/magento-feature-list-chinese-3/">Magento 基本功能列表（翻译三）</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-feature-list-chinese-1/" class="post-title-link" itemprop="url">Magento 基本功能列表（翻译一）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 11:01:38" itemprop="dateCreated datePublished" datetime="2016-12-14T11:01:38+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本系列将概述 Magento 所有版本都具有的基本功能。</p>
+<p>查看完整的原始英文文档，请<a href="/wp-content/uploads/2016/12/Magento-Feature-List-11.16.2015.pdf">点击这里下载</a>（文档还包含 Magento 企业版本的功能列表）</p>
+<h2 id="促销和定价"><a href="#促销和定价" class="headerlink" title="促销和定价"></a><a href="#%E4%BF%83%E9%94%80%E5%92%8C%E5%AE%9A%E4%BB%B7"></a>促销和定价</h2><ul>
+<li>为特定的店铺、商品类别、客户组或者商品，设置促销价格</li>
+<li>为特定的店铺、客户组、时间段、商品、商品类别，创建灵活多样的优惠券</li>
+<li>为线下销售、电子邮件营销、资讯订阅等生成优惠券代码</li>
+<li>跟踪和报告优惠券的使用情况</li>
+<li>提供各种折扣方式：免邮、按百分比的、按固定数量的、买 X 免费送 Y</li>
+<li>根据购买量的不同，设置多级价格策略</li>
+<li>支持最低广告价格</li>
+</ul>
+<h2 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a><a href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96"></a>搜索引擎优化</h2><ul>
+<li>自动生成 Google 站点地图</li>
+<li>创建搜索引擎友好的 URL</li>
+<li>通过 URL 重写完全控制 URL</li>
+<li>为商品，类别，内容页创建元数据</li>
+</ul>
+<h2 id="网站管理"><a href="#网站管理" class="headerlink" title="网站管理"></a><a href="#%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86"></a>网站管理</h2><ul>
+<li>通过同一个后台管理多个网站和店铺。</li>
+<li>通过现代、友好的管理面板，快速学会如何管理和监控店铺的情况</li>
+<li>通过自定义管理面板，保存为不同的视图，帮助你更高效地管理商品、客户及订单</li>
+<li>定义角色和权限，控制各项管理功能的访问</li>
+<li>使用内容管理系统来创建和轻松编辑页面和内容块</li>
+<li>通过 100% 可定制的响应式参考主题，打造独一无二的站点</li>
+<li>根据地理位置、产品类型、客户组（例如，零售 vs 批发），设置税率</li>
+<li>添加验证码功能，防止自动化软件尝试登录</li>
+</ul>
+<h2 id="（商品）目录管理"><a href="#（商品）目录管理" class="headerlink" title="（商品）目录管理"></a><a href="#%EF%BC%88%E5%95%86%E5%93%81%EF%BC%89%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86"></a>（商品）目录管理</h2><ul>
+<li>可创建简单商品、可配置商品（例如，选择尺寸、颜色等）、捆绑商品（例如，同样型号的电脑，可以选配不同的 CPU）、组合商品（例如，沙发套件，可以单独出售，更多的是为了方便客户的）</li>
+<li>虚拟商品</li>
+<li>包括可下载的&#x2F;电子产品，可提供样本</li>
+<li>允许客户自定义的产品（例如，客户可以上传图片、设置文本，制作文化衫）</li>
+<li>通过在线引导过程创建新的产品</li>
+<li>可定义无限的产品属性</li>
+<li>通过创建预定义的产品模板，来快速设置新产品的特定属性集</li>
+<li>高效地批量导入导出目录信息</li>
+<li>轻松管理库存，支持延期交货（with support for back ordered items）</li>
+<li>需要补充库存时，会收到通知</li>
+<li>选择缺货时的通知和显示选项</li>
+<li>定义可以加入购物车的商品最少和最多数量</li>
+<li>批量更新商品，例如，为多个商品设置某个值</li>
+<li>自动调整图片大小，包括加水印</li>
+<li>如果客户搜索无结果，可以改写和重定向搜索结果</li>
+<li>设置搜索目录属性权重和搜索同义词，来管理站点的搜索转换</li>
+<li>适当的评价和产品标签</li>
+</ul>
+<h2 id="目录浏览"><a href="#目录浏览" class="headerlink" title="目录浏览"></a><a href="#%E7%9B%AE%E5%BD%95%E6%B5%8F%E8%A7%88"></a>目录浏览</h2><ul>
+<li>通过层级导航，根据价格范围，品牌，颜色及其他属性，筛选目录和搜索结果中的商品</li>
+<li>商品目录的呈现可以是表格或列表方式</li>
+<li>自定义商品目录页面的外观和感觉</li>
+<li>显示商品比较的历史</li>
+<li>显示最近浏览过的商品</li>
+<li>添加面包屑导航</li>
+</ul>
+<h2 id="商品浏览"><a href="#商品浏览" class="headerlink" title="商品浏览"></a><a href="#%E5%95%86%E5%93%81%E6%B5%8F%E8%A7%88"></a>商品浏览</h2><ul>
+<li>每个商品可显示多张图片</li>
+<li>商品图片可以放大查看</li>
+<li>可以播放 YouTube 或 Vimeo 上的商品视频</li>
+<li>包括显示颜色、面料或其他的面板（swatches）</li>
+<li>包括组合商品的视图</li>
+<li>设置相关商品、up-sell（同一需求的更高级商品）、cross-sell（追加销售，客户的其他需求）</li>
+<li>表明库存情况</li>
+<li>显示分级价格</li>
+<li>显示商品的评价和评分</li>
+<li>可添加商品到愿望清单</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/how-to-update-csv-using-older-csv-file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/how-to-update-csv-using-older-csv-file/" class="post-title-link" itemprop="url">关于中文包的更新方法问题 （原创）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-13 09:59:29" itemprop="dateCreated datePublished" datetime="2016-12-13T09:59:29+08:00">2016-12-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="如何提取翻译短语"><a href="#如何提取翻译短语" class="headerlink" title="如何提取翻译短语"></a><a href="#%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96%E7%BF%BB%E8%AF%91%E7%9F%AD%E8%AF%AD"></a>如何提取翻译短语</h2><p>先从制作说起，如果我们要提取某个模块的翻译短语，可以使用下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magento i18n:collect-phrases [-o--output=&quot;&lt;csv file path and name&gt;&quot;] [-m--magento] &lt;path to directory to translate&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i18n:collect-phrases -o &quot;zh_Hans_CN.csv&quot; E:\www\M204BSD\vendor\magento\module-backup</span><br></pre></td></tr></table></figure>
+
+<p>这个例子是提取 <code>E:\www\M204BSD\vendor\magento\module-backup</code> 的翻译短语到根目录 <code>zh_Hans_CN.csv</code> 文件中。</p>
+<p>如果要提取全部的，那么使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i18n:collect-phrases -o &quot;zh_Hans_CN.csv&quot; -m</span><br></pre></td></tr></table></figure>
+
+<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>因为 Magento 2 的版本在不断更迭，所以短语会有一些变化。如果我们要用最新版本的语言包，必须要自己制作。在<a href="/magento-2-zh-hans-cn-csv/">Magento 2 中文化问题（原创）</a>中，博主提到官方中文包存在的问题，其中之一就是他跟不上节奏。</p>
+<p>现在的问题是，如何才能在每次版本升级后，快速地制作出最新的语言包？也就是说，两个版本的语言包大部分是重叠的，仅有少部分的更改，如何将旧版本的翻译短语直接用到新提取的 csv 文件中。</p>
+<p>最笨的肯定是人工，人工还是不要想了，工作量很大而且枯燥乏味，容易出错，最费事。迭代过程肯定不能使用人工来完成，但是第一遍的校正真的是非人工不可。。博主测试，速度大概是每半小时100行，总共有接近 8000 条翻译短语（有重复的），这样算起来大概要5个工作日，每天8小时计算。但是这样真的会死人的。。所以还是每天抽空翻译一点好了。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a><a href="#%E6%96%B9%E6%B3%95"></a>方法</h2><p>下面是基于第一遍校正已经完成后的假设，如何使用手头已经校正好的 csv 文件替换新提取的 csv 中相同的短语。</p>
+<p>博主尝试写 php 代码，逐行判断，看起来不是难事，But，csv 中包含了特殊字符，做等于判断直接报错，想想要处理特殊字符绝对麻烦的事情，所以博主就放弃这个念头了。</p>
+<p>下面要说重点了，何不利用数据库的连接查询？哈哈，快来夸我。。</p>
+<p>csv 导入数据库是很简单的，我们把新提取的 csv 导入后命名为 target，把已经矫正过的 csv 导入后命名为 para ，结果表就叫 result。</p>
+<p>首先我们只需要 para 的两列，并且是不重复的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into para2 (SELECT DISTINCT col1 , col2 FROM `para` )</span><br></pre></td></tr></table></figure>
+
+<p>这样我们取得的是 col1, col2 两列都不重复的记录放入 para2 表。</p>
+<p>对于 target，我们要先去掉四列都相同的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into target2 (SELECT DISTINCT col1 , col2, col3, col4 FROM `target` )</span><br></pre></td></tr></table></figure>
+
+<p>然后对 target2 根据第三列和第一列进行合并第四列，（这个步骤也可以省略）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into target3 (SELECT col1,col2,col3,GROUP_CONCAT(col4) as col4 from target2 GROUP by col3,col1)</span><br></pre></td></tr></table></figure>
+
+<p>最后就是用 target3 和 para2 进行左连接了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into result SELECT a.col1, b.col2, a.col3,a.col4 from target3 a left JOIN para2 b on a.col1=b.col1</span><br></pre></td></tr></table></figure>
+
+<p>这样我们得到的 result 就是充分使用了原有短语的表，我们可以将他导出为 csv ，然后手工补上没有找到的短语（没有找到的为 NULL）</p>
+<p>理论上这是 OK 的，但是实验尚未完成，因为博主卡在第一遍的手工校正上了。先记录下来，以备后续补充更正。</p>
+<p>另外发现 Magento 提取的短语有换行和空行，博主做了一些测试，可能是 bug ，已经提交 github，戳这里了解更多：<a target="_blank" rel="noopener" href="https://github.com/magento/magento2/issues/7767">https://github.com/magento/magento2/issues/7767</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-https/" class="post-title-link" itemprop="url">Magento 2 Https</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-12 15:05:57" itemprop="dateCreated datePublished" datetime="2016-12-12T15:05:57+08:00">2016-12-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本篇我们来谈一谈 Magento 2 如何使用 Https</p>
+<h2 id="Https-是什么"><a href="#Https-是什么" class="headerlink" title="Https 是什么"></a><a href="#https-%E6%98%AF%E4%BB%80%E4%B9%88"></a>Https 是什么</h2><p>超文本传输安全协议（Hypertext Transfer Protocol Secure 缩写：HTTPS，也被称为HTTP over TLS，HTTP over SSL 或 HTTP Secure）他是一种网络安全传输协议。</p>
+<p>HTTPS 使用 HTTP 进行通信，但利用 SSL&#x2F;TLS 来对数据包进行加密。HTTPS 开发的主要目的，是提供对网络服务器的身份认证，保护交换数据的隐私与完整性。</p>
+<p>简单说来，使用 HTTPS 通信，信息是加密的，而使用 HTTP 传输，信息是明文。所以 HTTPS 更加安全。</p>
+<p>Google 是鼓励使用 HTTPS 的， HTTPS 的站点会获得更好的排名。百度 2014 年也已经从 HTTP 转向了 HTTPS 。所以使用 HTTPS 实在是大势所趋。</p>
+<h2 id="阿里云免费证书"><a href="#阿里云免费证书" class="headerlink" title="阿里云免费证书"></a><a href="#%E9%98%BF%E9%87%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6"></a>阿里云免费证书</h2><p>博主的 Magento 2 搭建在阿里云上，所以以阿里云为例，申请一个免费的证书配置到 Magento 2上。</p>
+<p>登录阿里云后，在产品与服务中，找到证书服务 &gt; 购买证书，然后按照提示申请好就行了。博主使用的域名验证类型是 DNS ，所以还要去域名解析中做好配置。然后下载该证书。</p>
+<p>请根据你的服务器类型下载证书，就像下面这样：</p>
+<p><img src="/wp-content/uploads/2016/12/magento2-https.png"></p>
+<p>你看，他都告诉你怎么安装证书了。不过这个是 Centos 上的 Apache 配置方式。博主是 Ubuntu，所以下面的内容针对的是 Ubuntu 下 Apache 的证书配置。</p>
+<h2 id="Ubuntu-Apache-配置证书"><a href="#Ubuntu-Apache-配置证书" class="headerlink" title="Ubuntu Apache 配置证书"></a><a href="#ubuntu-apache-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6"></a>Ubuntu Apache 配置证书</h2><p>首先，确保 SSL 模块加载进 Apache 了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a2enmod ssl</span><br><span class="line">...</span><br><span class="line">Module ssl already enabled</span><br></pre></td></tr></table></figure>
+
+<p>如果你看到上面类似的信息，说明你已经 ok 了。如果看到 “Enabling module ssl” ，你还需要重启下 Apache</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+
+<p>下面我们将下载的证书上传到服务器上并放到安全的位置。在配置文件中进行配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">        DocumentRoot /www/html/yoursite</span><br><span class="line">        ServerName www.example.com</span><br><span class="line">        ServerAlias example.com</span><br><span class="line">        Options +FollowSymLinks</span><br><span class="line">        rewriteEngine on</span><br><span class="line">        rewriteCond %&#123;http_host&#125; ^example.com [NC]</span><br><span class="line">        rewriteRule ^(.*)$ https://www.example.com$1 [R=301,L]</span><br><span class="line"></span><br><span class="line">        ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</span><br><span class="line">        CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined</span><br><span class="line">        SSLEngine on</span><br><span class="line">        SSLCertificateFile /etc/apache2/ssl/yourdomainname.pem</span><br><span class="line">        SSLCertificateKeyFile /etc/apache2/ssl/yourdomainname.key</span><br><span class="line">        SSLCACertificateFile  /etc/apache2/ssl/yourdomainname.pem</span><br><span class="line">        &lt;Directory &quot;/www/html/yoursite&quot;&gt;</span><br><span class="line">           Options Indexes FollowSymLinks MultiViews</span><br><span class="line">           AllowOverride all</span><br><span class="line">           Order allow,deny</span><br><span class="line">           Allow from all</span><br><span class="line">        &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>保存后重启。下面我们要去 Magento 2 后台进行配置了</p>
+<h2 id="Magento-2-后台配置-Https"><a href="#Magento-2-后台配置-Https" class="headerlink" title="Magento 2 后台配置 Https"></a><a href="#magento-2-%E5%90%8E%E5%8F%B0%E9%85%8D%E7%BD%AE-https"></a>Magento 2 后台配置 Https</h2><p>Stores &gt; Configuration &gt; General &gt; Web &gt; Base URLs (Secure)</p>
+<p>配置好后刷新缓存（资料太多不详细说了），我相信你的网站就可以用 https 了。</p>
+<p>如果你希望 80 端口重定向到 443 端口，可以用下面的配置(当然是80端口的配置中)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on</span><br><span class="line">RewriteCond %&#123;SERVER_port&#125; 80</span><br><span class="line">RewriteRule ^(.*)$ https://www.example.com$1 [R=301,L]</span><br></pre></td></tr></table></figure>
+
+<p>不管是80 还是 443 端口的配置，请一定要不要少了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /www/html/yoursite&gt;</span><br><span class="line">    Options Indexes FollowSymLinks MultiViews</span><br><span class="line">    AllowOverride all</span><br><span class="line">    Order allow,deny</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+
+<p>另外，需要注意浏览器的缓存，建议使用隐私窗口进行测试，排除浏览器缓存的影响。</p>
+<p>诸位，Good Luck!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento2-product-image-zoom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento2-product-image-zoom/" class="post-title-link" itemprop="url">Magento2 产品放大镜效果的实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-07 15:52:13" itemprop="dateCreated datePublished" datetime="2016-12-07T15:52:13+08:00">2016-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">Magento 2 主题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>产品放大镜效果指的是类似下图这样的功能：</p>
+<p><img src="/wp-content/uploads/2016/12/product-zoom-case.jpg"></p>
+<p>Magento 2 安装好后一般是没有看到这个功能的。注意，我说的是没有看到，因为实际上他是有的。</p>
+<p>当然如果你使用了非内置的主题（blank 或者 luma 之外的），那么你很可能会发现有这个功能，而且有的还可以进行效果配置呢。</p>
+<p>这篇文章想要讨论的是放大镜功能实现层面的事情，对于主题开发者来说，可能更有用，对于纯使用者来说，可能就没有必要了解了。</p>
+<p>首先，要实现这样的功能一定是涉及到 js 的，为了让 js 工作，需要相应的模板文件（就是 html 代码片段）。Magento 2 自带了实现该功能的 js 和 模板文件，所以你只需要配置，就可以启用这个功能了。</p>
+<p>假设你已经会创建前端主题了，如果你不清楚的话，请参考<a href="/how-to-create-magento-2-frontend-theme/">如何创建 Magneto 2 前端主题</a></p>
+<p>然后我们也介绍过 view.xml 的，如果不清楚，请参考<a href="/about-view-xml/">关于 view.xml</a></p>
+<p>关于 view.xml 的 part-2 说的就是产品图片的放大镜效果，只是当时没有具体说。</p>
+<p>Luma 主题 magnifier 部分在 view.xml 中是这样配置的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;var name=&quot;magnifier&quot;&gt;</span><br><span class="line">            &lt;var name=&quot;fullscreenzoom&quot;&gt;20&lt;/var&gt;  &lt;!-- Zoom for fullscreen (integer)--&gt;</span><br><span class="line">            &lt;var name=&quot;top&quot;&gt;&lt;/var&gt; &lt;!-- Top position of magnifier --&gt;</span><br><span class="line">            &lt;var name=&quot;left&quot;&gt;&lt;/var&gt; &lt;!-- Left position of magnifier --&gt;</span><br><span class="line">            &lt;var name=&quot;width&quot;&gt;&lt;/var&gt; &lt;!-- Width of magnifier block --&gt;</span><br><span class="line">            &lt;var name=&quot;height&quot;&gt;&lt;/var&gt; &lt;!-- Height of magnifier block --&gt;</span><br><span class="line">            &lt;var name=&quot;eventType&quot;&gt;hover&lt;/var&gt; &lt;!-- Action that atcivates zoom (hover/click) --&gt;</span><br><span class="line">            &lt;var name=&quot;enabled&quot;&gt;false&lt;/var&gt; &lt;!-- Turn on/off magnifier (true/false) --&gt;</span><br><span class="line">        &lt;/var&gt;</span><br></pre></td></tr></table></figure>
+
+<p>看到了吗？ <code>enabled</code> 是 <code>false</code>，所以自然看不到效果啦~</p>
+<p>下面请自行创建子主题，继承 blank 或者 luma ，然后将 luma 的 &#x2F;etc&#x2F;view.xml 拷贝到你的主题下，修改相应的内容为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;var name=&quot;magnifier&quot;&gt;</span><br><span class="line">            &lt;var name=&quot;fullscreenzoom&quot;&gt;20&lt;/var&gt;  &lt;!-- Zoom for fullscreen (integer)--&gt;</span><br><span class="line">            &lt;var name=&quot;top&quot;&gt;&lt;/var&gt; &lt;!-- Top position of magnifier --&gt;</span><br><span class="line">            &lt;var name=&quot;left&quot;&gt;&lt;/var&gt; &lt;!-- Left position of magnifier --&gt;</span><br><span class="line">            &lt;var name=&quot;width&quot;&gt;500&lt;/var&gt; &lt;!-- Width of magnifier block --&gt;</span><br><span class="line">            &lt;var name=&quot;height&quot;&gt;500&lt;/var&gt; &lt;!-- Height of magnifier block --&gt;</span><br><span class="line">            &lt;var name=&quot;eventType&quot;&gt;hover&lt;/var&gt; &lt;!-- Action that atcivates zoom (hover/click) --&gt;</span><br><span class="line">            &lt;var name=&quot;enabled&quot;&gt;true&lt;/var&gt; &lt;!-- Turn on/off magnifier (true/false) --&gt;</span><br><span class="line">        &lt;/var&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后启用你的主题，一定会发现已经有产品图片的放大镜效果了。<br>就像下面这样：</p>
+<p><img src="/wp-content/uploads/2016/12/magnifier.png"></p>
+<p>博主刚开始并不知道 Magento 2 自带这样的功能，所以到处找插件，当然找着一个免费的当然有点粗糙，不过核心已经完整了，博主已上传到 github 上，地址：<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/ktree-zoom">https://github.com/PiscesThankIT/ktree-zoom</a></p>
+<p>原文的参考地址：<a target="_blank" rel="noopener" href="https://ktree.com/blog/Zoom-Extension-for-Magento2.html">https://ktree.com/blog/Zoom-Extension-for-Magento2.html</a></p>
+<p>感兴趣的可以自行研究。他使用的 js 插件是 elevateZoom 。博主粗略的看了下，大多数实现产品放大镜效果的插件都是使用的该插件，而且他的功能还是很全面的，也比较健壮。官网：<a target="_blank" rel="noopener" href="http://www.elevateweb.co.uk/image-zoom/examples">http://www.elevateweb.co.uk/image-zoom/examples</a></p>
+<p>如果你对配置 Magento 2 自带的放大镜功能感兴趣，可以去看看这个 issue，地址： <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/issues/4977">https://github.com/magento/magento2/issues/4977</a> ，问题中指出了他基于哪个插件。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/centos-7-lamp-magento-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/centos-7-lamp-magento-2/" class="post-title-link" itemprop="url">CentOS 7 搭建 LAMP 环境安装 Magento 2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-06 16:34:18" itemprop="dateCreated datePublished" datetime="2016-12-06T16:34:18+08:00">2016-12-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装-Apache"><a href="#安装-Apache" class="headerlink" title="安装 Apache"></a><a href="#%E5%AE%89%E8%A3%85-apache"></a>安装 Apache</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd</span><br></pre></td></tr></table></figure>
+
+<p>验证安装是否成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -v</span><br></pre></td></tr></table></figure>
+
+<p>如果出现类似下面的信息就是安装好了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Server version: Apache/2.4.6 (CentOS)</span><br><span class="line">Server built: Jul 18 2016 15:30:14</span><br></pre></td></tr></table></figure>
+
+<p>启动 apache</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart httpd.service</span><br></pre></td></tr></table></figure>
+
+<p>访问网站可以看到 Apache HTTP Server 测试页面 <code>Testing 123...</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf/httpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>更改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /var/www/html&gt;</span><br><span class="line">AllowOverride All</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-php-7"><a href="#安装-php-7" class="headerlink" title="安装 php 7"></a><a href="#%E5%AE%89%E8%A3%85-php-7"></a>安装 php 7</h2><p>CentOS 7</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y http://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/ius-release-1.0-14.ius.centos7.noarch.rpm</span><br><span class="line">yum -y update</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php70u php70u-pdo php70u-mysqlnd php70u-opcache php70u-xml php70u-mcrypt php70u-gd php70u-devel php70u-mysql php70u-intl php70u-mbstring php70u-bcmath php70u-json php70u-iconv</span><br></pre></td></tr></table></figure>
+
+<p>重启 Apache</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart httpd.service</span><br></pre></td></tr></table></figure>
+
+<p>验证安装是否成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
+
+<p>如果看到类似下面的信息就是安装成功了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PHP 7.0.13 (cli) (built: Nov 10 2016 08:44:18) ( NTS )</span><br><span class="line">Copyright (c) 1997-2016 The PHP Group</span><br><span class="line">Zend Engine v3.0.0, Copyright (c) 1998-2016 Zend Technologies</span><br><span class="line">with Zend OPcache v7.0.13, Copyright (c) 1999-2016, by Zend Technologies</span><br></pre></td></tr></table></figure>
+
+<p>修改 php.ini</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/php.ini</span><br></pre></td></tr></table></figure>
+
+<p>修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">date.timezone = &quot;Asia/Shanghai&quot;</span><br><span class="line">memory_limit = 1024M</span><br></pre></td></tr></table></figure>
+
+<p>看起来就只有这一个 php.ini</p>
+<h2 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a><a href="#%E5%AE%89%E8%A3%85-mysql"></a>安装 MySQL</h2><p>CentOS 7 安装 MySQL 5.7</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm</span><br><span class="line">yum -y localinstall mysql57-community-release-el7-7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mysql-community-server</span><br><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>验证是否安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql --version</span><br></pre></td></tr></table></figure>
+
+<p>如果出现类似下面的信息即安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql Ver 14.14 Distrib 5.7.16, for Linux (x86_64) using EditLine wrapper</span><br></pre></td></tr></table></figure>
+
+<p>取得 root 用户的临时密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p>secure the installation</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<p>然后根据提示设置新的密码和配置</p>
+<p>登录 MySQL 并创建一个数据库，授权给用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database dbname</span><br><span class="line">GRANT ALL ON dbname.* TO user@localhost IDENTIFIED BY &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a><a href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"></a>添加用户</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -r -m -s /bin/bash newuser</span><br><span class="line">passwd newuser</span><br></pre></td></tr></table></figure>
+
+<p>查看 apache 所属的用户组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">egrep -i &#x27;^user^group&#x27; /etc/httpd/conf/httpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>一般他的用户和组都是 <code>apache</code></p>
+<p>把刚刚创建的用户分配给 <code>apache</code> 组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -g apache newuser</span><br></pre></td></tr></table></figure>
+
+<p>验证下是否分配成功了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groups newuser</span><br></pre></td></tr></table></figure>
+
+<p>如果是下面这样，就是成功了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newuser : apache</span><br></pre></td></tr></table></figure>
+
+<p>重启一下 Apache</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart httpd.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="搭建-ftp-并上传"><a href="#搭建-ftp-并上传" class="headerlink" title="搭建 ftp 并上传"></a><a href="#%E6%90%AD%E5%BB%BA-ftp-%E5%B9%B6%E4%B8%8A%E4%BC%A0"></a>搭建 ftp 并上传</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install vsftpd</span><br></pre></td></tr></table></figure>
+
+<p>修改配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/vsftpd/vsftpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>确保下面可用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">write_enable=YES</span><br><span class="line">local_umask=002</span><br></pre></td></tr></table></figure>
+
+<p>上传 Magento 2 的文件</p>
+<h2 id="安装解压缩软件"><a href="#安装解压缩软件" class="headerlink" title="安装解压缩软件"></a><a href="#%E5%AE%89%E8%A3%85%E8%A7%A3%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6"></a>安装解压缩软件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install unzip</span><br></pre></td></tr></table></figure>
+
+<p>以 newuser 的身份解压文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su newuser</span><br><span class="line">unzip -d dirname Magentoce2.1.2.zip</span><br></pre></td></tr></table></figure>
+
+<p>我将网站的默认根目录改到 newuser 的 home 目录下，这样我可以通过 FTP 直接更改 newuser 的 home 目录，你也可以不这么做。</p>
+<h2 id="配置虚拟主机及权限"><a href="#配置虚拟主机及权限" class="headerlink" title="配置虚拟主机及权限"></a><a href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%8F%8A%E6%9D%83%E9%99%90"></a>配置虚拟主机及权限</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf.d/virtual.conf</span><br></pre></td></tr></table></figure>
+
+<p>然后贴入代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtlHost *:80&gt;</span><br><span class="line">DocumentRoot /home/newuser/www/html</span><br><span class="line">ServerName xxx.com</span><br><span class="line">&lt;Directory &quot;/home/newuser/www/html&quot;&gt;</span><br><span class="line">Options Indexes FollowSymLinks MultiViews</span><br><span class="line">AllowOverride All</span><br><span class="line">Order allow,deny</span><br><span class="line">allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你遇到 403 一定要检查 &#x2F;home&#x2F;newuser 及其子目录的的权限，确保用户组有足够的权限。</p>
+<p>最后更改其他权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;your Magento install dir&gt;</span><br><span class="line">find var vendor pub/static pub/media app/etc -type f -exec chmod g+w &#123;&#125; \;</span><br><span class="line">find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws &#123;&#125; \;</span><br><span class="line">chown -R :&lt;web server group&gt; .</span><br><span class="line">chmod u+x bin/magento</span><br></pre></td></tr></table></figure>
+
+<p>连续命令的方式（功能同上）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/newuser/www/html &amp;&amp; sudo find var vendor pub/static pub/media app/etc -type f -exec chmod g+w &#123;&#125; \; &amp;&amp; sudo find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws &#123;&#125; \; &amp;&amp; sudo chown -R :apache . &amp;&amp; sudo chmod u+x bin/magento</span><br></pre></td></tr></table></figure>
+
+<p>打开网站，下一步下一步就 OK 了。</p>
+<h2 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a><a href="#%E5%8F%82%E8%80%83%E5%9C%B0%E5%9D%80"></a>参考地址</h2><p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/install-gde/prereq/prereq-overview.html">Prerequisites</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-zh-hans-cn-csv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-zh-hans-cn-csv/" class="post-title-link" itemprop="url">Magento 2 中文化问题（原创）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-02 13:33:15" itemprop="dateCreated datePublished" datetime="2016-12-02T13:33:15+08:00">2016-12-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>转载请注明出处</em> Magento 作为多语言的电商系统，提供了很全面的多语言支持，下面我将总结一下目前我所了解的 Magento 中文化的知识，欢迎补充！谢绝转载。以下中文化指的的简体中文。</p>
+<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a><a href="#%E8%AE%BE%E7%BD%AE"></a>设置</h2><p>首先我们从简单的使用谈起。 如果你希望你的前台是中文，那么请在后台 <strong>Stores</strong> &gt; <strong>Configuration</strong> &gt; <strong>General</strong> &gt; <strong>Local</strong> 中设置 <strong>Local</strong> 为 Chinese（China） 我们知道 <strong>*Stores</strong> &gt; <strong>Configuration</strong> 的设置是有作用域的，在左上角如下图， <img src="/wp-content/uploads/2016/12/about-zh-hans-cn-csv-1.png" alt="Magento 2 后台设置"> 你的设置会应用到选定的 Store view 上，这样就实现了不同的 store view 或 website store 可以使用不同的语言。 如果你希望你的账户后台是中文，那么请在后台你的账户 <strong>Account Setting</strong> &gt; <strong>Interface Local</strong> 中设置 <strong>Interface Local</strong> 为 Chinese（China） 既然是账户中的设置，那么不同的账户当然可以设置为不同的语言，这样也是非常体贴到位的。</p>
+<h2 id="中文包"><a href="#中文包" class="headerlink" title="中文包"></a><a href="#%E4%B8%AD%E6%96%87%E5%8C%85"></a>中文包</h2><p>上面的设置都到位了以后，你会发现毛线变化也没有，这很正常，因为你还缺少中文包。Magento 2 官方的语言包地址是 <a target="_blank" rel="noopener" href="https://crowdin.com/project/magento-2">https://crowdin.com/project/magento-2</a> 从这里下载的语言包，打开后会发现他是由许多个文件夹组成的，并非单个的包。你从其他地方下载的语言包大多数都是这里来的，有的添加了使用说明，告诉你把他们复制到你的目录下。这个说法<strong>不完全正确</strong>。 首先这个语言包是按照 github 上的目录结构组织的，如果你不是通过 composer 或者 git 安装的 Magento 2 ，我的意思是 Magento 的模块都在 vendor 目录下，那么很明显，这个包不适合你。复制不能让语言文件到达相应的目录。另一个问题是，如果你使用的是简体中文，那么简体中文的翻译文件必须是 <code>zh_Hans_CN.csv</code> ，但是这个包的翻译文件是 <code>zh_CN.csv</code>，所以即使你的目录结构是正确的，还是没有效果。 如果你仔细看上面的官方地址，你会看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">To build and download translations go to http://107.170.242.99/.</span><br></pre></td></tr></table></figure>
+
+<p>那就戳进去看看咯，这个地址提供了单个的包，找到 <code>zh_CN</code> 然后下载后改名为 <code>zh_Hans_CN.csv</code> 然后丢到相应的位置就可以了。</p>
+<h2 id="中文包的位置"><a href="#中文包的位置" class="headerlink" title="中文包的位置"></a><a href="#%E4%B8%AD%E6%96%87%E5%8C%85%E7%9A%84%E4%BD%8D%E7%BD%AE"></a>中文包的位置</h2><p>接下来我们来说位置。Magento 2 的 Component 主要有三种：module、theme、lanaguage package。在 module 和 theme 中 都有 <code>i18n</code> 这个文件夹（如果没有可以自己建），这个文件夹负责放翻译文件。 经过测试，博主发现，module 中 <code>i18n</code> 下的翻译文件会被应用到前台和后台（假设你前后台都是简体中文的话），但是 theme 中的翻译只会被应用到前台。所以理论上讲，你下载了上面的包改名后丢到任意的 module 中，都是可以的。 至于 language package ，他当然前后台都得负责了，关于 language package 的继承问题，还是以后用到的时候再探索吧。 博主的建议是把整站的中文包丢到 language package 里面比较好。就是说 Magento 自带模块的中文翻译放到 language package 中，你购买的主题，插件什么的中文包放在自己对应的目录下，这样会清晰很多。 Magento 拥有中文的 language package，请各位寻找下，如果包都在 vendor 下，那么在该目录下找名字叫 <code>language-zh_hans_cn</code> 的，如果你是 git 上那种目录结构，那么在 <code>app/i18n/Magento/zh_Hans_CN</code> 下 好了，把你的包丢进去，刷新缓存，有效果了吧？</p>
+<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>官方的语言包托管在 Crowdin 上，如果你注册一下，也可以参与翻译，反正就是给有兴趣锻炼翻译的人准备的，而且会有机器翻译提示，质量不是很好。博主查看了语言包的内容，有些实在是风马牛不相及，当然不相关的还是很少的。 另一个问题是 Magento 2 每次有新版本，那么需要翻译的字段都会有一些差异或者是增减。很明显，如果等待官方的更新的话，估计是不太可能了。 然后就是翻译的结构问题。打个比方来说，英文中使用 <code>127 records found</code> 这里的 127 不在翻译短语中，翻译短语是<code>records found</code>，翻成中文就是 <code>找到的记录</code> ，连起来变成 <code>127 找到的记录</code>， 是不是很别扭？因为中英文的句子结构不同。看起来这种事情也没有更好的解决办法了。 最后一个问题就是翻译的情境问题，在 csv 里面你可不知道这个短语在什么情境下面，所以翻译可能不是很贴切，有一些词汇还和业务逻辑有关，如果不是很了解业务逻辑，还真是不可能找到合适的词汇。 好吧，说了这么多，其实总结起来就是中文化是要长期迭代的过程。需要大家的共同努力。 <strong>博主根据上面的官方翻译文件进行了部分校正，发布在 github ，大家可以去下载</strong> 地址是：<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/zh_Hans_CN">https://github.com/PiscesThankIT/zh_Hans_CN</a> 我的想法是，既然我们有了一个还不错的基础包，<strong>请下载使用的人，在发现有需要改进的词汇或者问题时，在我的 github 下给我提评论，或者在我的博客上评论，或者将你更改后的文件发给我（<a href="mailto:&#x31;&#x35;&#49;&#x38;&#53;&#x32;&#53;&#x38;&#54;&#x32;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;">&#x31;&#x35;&#49;&#x38;&#53;&#x32;&#53;&#x38;&#54;&#x32;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;</a>），我更正后更新到 github 上，这样我们就有一个正向的循环，大家都能受益。</strong></p>
+<h2 id="如何更正中文包"><a href="#如何更正中文包" class="headerlink" title="如何更正中文包"></a><a href="#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%AD%A3%E4%B8%AD%E6%96%87%E5%8C%85"></a>如何更正中文包</h2><p>很多朋友不知道如何修改 csv 文件。csv 文件就是纯文本文件，只是用逗号分隔符来分割字段。你完全可以用记事本打开，不过记事本打开实在是很不好查看。默认情况下，你的电脑一定会替你用 EXCEL 打开， 用它打开有中文是会乱码的，要想不乱码，方法有点复杂，修改又有麻烦，所以博主还是放弃了这个念头。 你可以用任何编辑器打开，比如 notepad sublime 之类。博主觉得 notepad 编辑 csv 比较好。他的文件搜索在搜模板文件的时候真的很好用（题外话）。 有朋友推荐使用 csv 的编辑器，当然针对 csv 的编辑器，那查看起来真是很舒服的，but，大部分 csv 编辑器中文依然会乱码，因为不支持 unicode 编码的方式吧。博主找到一个很好用的，可惜免费版不能进行修改，破解版刚下载就提示有毒，吓得宝宝还是不要用了。这个编辑器的名字叫 Ron’s Editor ，不差钱的朋友可以支持下开发者哈。 回到正题，我们现在已经有合适的编辑器来编辑 csv 文件了。打开它，会发现至少有两栏。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Report Bugs&quot;,报告错误,module,Magento_Backend</span><br></pre></td></tr></table></figure>
+
+<p>相信不用说你也知道了，就是第一栏翻译成第二栏呗。后面两个栏，博主还没有搞清楚具体的作用。官方文档说是 lanaguage package 要有四栏，不过博主用两栏测试，效果也没有什么差别。这个再说再说。。 好了，把翻译不到位的改成你要的短语，然后清缓存，就可以看到效果了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/switch-magento-2-system-modes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/switch-magento-2-system-modes/" class="post-title-link" itemprop="url">magento 2 modes - 每种模式的特点及如何切换（翻译）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-25 12:03:32" itemprop="dateCreated datePublished" datetime="2016-11-25T12:03:32+08:00">2016-11-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="http://rebeccatroth.co.uk/switch-magento-2-system-modes/">原文地址</a></p>
+<p>在开始 Magento 2 使用之前，需要了解一些基本的东西，其中之一就是系统可用的模式。</p>
+<ul>
+<li>每种模式的主要特点</li>
+<li>如何切换模式</li>
+<li>如何显示当前的模式</li>
+</ul>
+<p>Magento 2 总共有三种主要模式：developer(开发者模式), production(生产模式), default(默认模式)</p>
+<p>还有一个 maintenance （维护）模式，该模式运行方式很特别，他将完全阻止对系统的访问。</p>
+<h2 id="Magento-2-系统模式的主要特点"><a href="#Magento-2-系统模式的主要特点" class="headerlink" title="Magento 2 系统模式的主要特点"></a><a href="#magento-2-%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"></a>Magento 2 系统模式的主要特点</h2><p>Developer Mode</p>
+<p>Production Mode</p>
+<p>Default Mode</p>
+<p>Static File Caching(缓存静态文件)</p>
+<p>✓</p>
+<p>Exceptions Displayed(显示异常)</p>
+<p>✓</p>
+<p>Exceptions Logged(异常记录日志)</p>
+<p>✓</p>
+<p>✓</p>
+<p>Negative Performance Impact(负面的性能影响)</p>
+<p>✓</p>
+<p>✓</p>
+<h3 id="Developer-Mode"><a href="#Developer-Mode" class="headerlink" title="Developer Mode"></a><a href="#developer-mode"></a>Developer Mode</h3><p>当你正在开发代码的时候，你应该选择开发者模式，为什么呢？</p>
+<ul>
+<li>可以看到错误信息</li>
+<li>每次请求都会生成静态文件(static view files)</li>
+<li>没有使用缓存</li>
+<li>立刻可以看到变化</li>
+<li>会在浏览器中显示未捕获的异常</li>
+<li>在错误处理程序中抛出异常</li>
+<li>Exceptions are thrown whenever an event subscriber cannot be invoked（每当事件订阅服务器不能调用时，则将引发异常）</li>
+<li>该模式下 var&#x2F;report 中的系统日志非常详细</li>
+<li>显示自定义的 X-Magento-* HTTP 请求和响应标头</li>
+</ul>
+<p>该模式会降低性能，所以在生产环境中不该使用它。</p>
+<h3 id="Production-Mode"><a href="#Production-Mode" class="headerlink" title="Production Mode"></a><a href="#production-mode"></a>Production Mode</h3><p>部署到生产环境中后，你就应该使用生产模式，他是面向客户的，为什么呢？</p>
+<ul>
+<li>性能最好</li>
+<li>错误会记录到文件系统中，绝对不向客户展示错误。</li>
+<li>Static view file materialisation is disabled<ul>
+<li>这意味着 static view file 不会在每次需要时重新生成，他们已经通过 CLI 命令部署到 pub&#x2F;static 文件夹下</li>
+<li>对 view files 的任何更改都要通过 CLI deploy 才会有效果</li>
+<li>view files 已经被部署到 pub&#x2F;static ，这个文件夹下只需要 read-only 权限，这样更安全</li>
+</ul>
+</li>
+<li>Magento docroot 只有 read-only 权限</li>
+</ul>
+<p>developer 模式不应该用在生产环境中。 So, when you need to make changes, you should instead generate static content in development and then use the deployer.php tool to push changes to production</p>
+<h3 id="Default-Mode"><a href="#Default-Mode" class="headerlink" title="Default Mode"></a><a href="#default-mode"></a>Default Mode</h3><p>这是一个 fallback 模式，如果没有指定其他模式，就会使用默认模式。</p>
+<ul>
+<li>错误被记录到 var&#x2F;reports 中，但不会展示给用户</li>
+<li>Static view files are materialized and then cached<ul>
+<li>view files 的变化不会有效直到原来生成的 static view files 被清除了</li>
+</ul>
+</li>
+<li>隐藏自定义的 X-Magento-* HTTP 请求和响应标头</li>
+<li>这种模式没有为生产做最好的优化</li>
+</ul>
+<h3 id="Maintenance-Mode"><a href="#Maintenance-Mode" class="headerlink" title="Maintenance Mode"></a><a href="#maintenance-mode"></a>Maintenance Mode</h3><p>这是 Magento 2 预置的一个功能。当你在给系统升级或做其他改变的时候，你不想让用户使用网站，这时候会返回给用户 503 提示。</p>
+<p>Bootstrap::assertMaintenance() 方法控制该模式，你可以通过创建一个标识文件（var&#x2F;.maintenance.flag）来启用该模式。</p>
+<p>You can specify a group of people to have access to the site while this mode is employed by placing the associated IPs in var&#x2F;.maintenance.ip.</p>
+<h2 id="如何切换模式"><a href="#如何切换模式" class="headerlink" title="如何切换模式"></a><a href="#%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E6%A8%A1%E5%BC%8F"></a>如何切换模式</h2><h3 id="CLI-命令"><a href="#CLI-命令" class="headerlink" title="CLI 命令"></a><a href="#cli-%E5%91%BD%E4%BB%A4"></a>CLI 命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magento deploy:mode:set [mode] [-s--skip-compilation]</span><br></pre></td></tr></table></figure>
+
+<p>[mode] 不可少，可以是<code>developer</code> 或者 <code>production</code><br><code>--skip-compilation</code> 是可选的，如果你想在 <code>production</code> 模式的时候跳过 code compilation</p>
+<h3 id="Web-Server-Environment"><a href="#Web-Server-Environment" class="headerlink" title="Web Server Environment"></a><a href="#web-server-environment"></a>Web Server Environment</h3><p>（这种方式博主没有试过，暂时不翻译，以后试验过理解了再补上）<br>Apache web servers with mod_php support this method. The environment variables can be set in the main apache configuration or in the .htaccess.</p>
+<p>If you are using an Apache system you can do the following:</p>
+<ul>
+<li>Open Apache</li>
+<li>Open the .htaccess file</li>
+<li>Use the MAGE_MODE system environment variable to specify the mode as follows:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SetEnv MAGE_MODE [mode]</span><br></pre></td></tr></table></figure>
+
+<p>[mode] is required; it can be either default, developer or production</p>
+<p>After setting the mode you will need to restart the web server for it to take effect.</p>
+<h4 id="php-fpm-Environment"><a href="#php-fpm-Environment" class="headerlink" title="php-fpm Environment"></a><a href="#php-fpm-environment"></a>php-fpm Environment</h4><p>You can specify the mode in the php-fpm config or in the system environment in which the php-fpm is started.</p>
+<p>In the php-fpm config file, the value can be set as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env[MAGE_MODE]=[mode]</span><br></pre></td></tr></table></figure>
+
+<p>[mode] is required; it can be either default, developer or production</p>
+<h2 id="显示当前模式"><a href="#显示当前模式" class="headerlink" title="显示当前模式"></a><a href="#%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%A8%A1%E5%BC%8F"></a>显示当前模式</h2><p>CLI 命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magento deploy:mode:show</span><br></pre></td></tr></table></figure>
+
+<p>然后你会看到如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Current application mode: [mode].</span><br></pre></td></tr></table></figure>
+
+<h2 id="补充：Magento-的命令怎么用"><a href="#补充：Magento-的命令怎么用" class="headerlink" title="补充：Magento 的命令怎么用"></a><a href="#%E8%A1%A5%E5%85%85%EF%BC%9Amagento-%E7%9A%84%E5%91%BD%E4%BB%A4%E6%80%8E%E4%B9%88%E7%94%A8"></a>补充：Magento 的命令怎么用</h2><p>以 windows 下的 wamp 环境为例，请打开 CMD (命令提示符)<br>然后切换到 Magento 的根目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e:</span><br><span class="line">cd www\hellomagento2</span><br></pre></td></tr></table></figure>
+
+<p>这样我现在的位置在 <code>E:\www\hellomagento2</code> 下，这是我的 Magento 2 的根目录。这个目录下有 <code>app</code>,<code>bin</code> 等等文件。下面回到 CMD 输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin\magento list</span><br></pre></td></tr></table></figure>
+
+<p>就像下面这样，<br><img src="/wp-content/uploads/2016/11/magento2-modes.png" alt="magento 2 cmd"><br>好了，上面的命令告诉你 Magento 系统中所有可用的命令。同理，上面要显示当前的模式，命令是 <code>php bin\magento deploy:mode:show</code></p>
+<p>如果你出现错误提示<a href="/php-path/">php 不是内部或外部命令，也不是可运行的程序或批处理文件</a>，可以去这里看看。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-download/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-download/" class="post-title-link" itemprop="url">Magento 2 最新源文件下载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-23 08:53:52" itemprop="dateCreated datePublished" datetime="2016-11-23T08:53:52+08:00">2016-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Magento 源文件去官方下载速度比较慢，要登录，有点麻烦。这里给大家提供我下载的源文件，放在百度运盘中了。我会尽快把最新的版本放到盘里。</p>
+<p>这里提供的是 <a target="_blank" rel="noopener" href="https://magento.com/tech-resources/download">Magento 2 官方下载网址</a> 下载的源文件。</p>
+<p>地址：<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1skJVqiD">http://pan.baidu.com/s/1skJVqiD</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/18/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/20/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

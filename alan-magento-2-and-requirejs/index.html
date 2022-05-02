@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 既然我们已经探讨过向 Magento 2 中引入 javaScript 和 CSS 的基本知识了，现在我们要开始探索 Magento 引入的现代前端工具和库了。 Magento 引入现代前端科技处于有点 tricky 的位置。Magento 是一个软件平台，其次才是在该平台上的电子商务系统。有些机构的市场营销项目在启用6个月后就会被抛弃，有些原型工作在产品发布一年后就会贬值，Magent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 and RequireJS (翻译)">
+<meta property="og:url" content="http://example.com/alan-magento-2-and-requirejs/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 既然我们已经探讨过向 Magento 2 中引入 javaScript 和 CSS 的基本知识了，现在我们要开始探索 Magento 引入的现代前端工具和库了。 Magento 引入现代前端科技处于有点 tricky 的位置。Magento 是一个软件平台，其次才是在该平台上的电子商务系统。有些机构的市场营销项目在启用6个月后就会被抛弃，有些原型工作在产品发布一年后就会贬值，Magent">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-30T13:31:11.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.120Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/alan-magento-2-and-requirejs/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 and RequireJS (翻译) | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-2-and-requirejs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 and RequireJS (翻译)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-30 21:31:11" itemprop="dateCreated datePublished" datetime="2016-10-30T21:31:11+08:00">2016-10-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_and_requirejs/">原文地址</a></em></p>
+<p>既然我们已经探讨过向 Magento 2 中引入 javaScript 和 CSS 的基本知识了，现在我们要开始探索 Magento 引入的现代前端工具和库了。</p>
+<p>Magento 引入现代前端科技处于有点 tricky 的位置。Magento 是一个软件平台，其次才是在该平台上的电子商务系统。有些机构的市场营销项目在启用6个月后就会被抛弃，有些原型工作在产品发布一年后就会贬值，Magento 和他们不同，作为电商平台需要专注于稳定、成熟的技术，要接受时间的考验。</p>
+<p>今天，我们将探讨<a target="_blank" rel="noopener" href="http://requirejs.org/">RequireJS</a>—— 他是 Magento 2 系统中几乎所有 javaScript 的基础。</p>
+<p>在我们说到 Magento 2 的 RequireJS 实现之前，我们先要快速地了解下 RequireJS 是做什么的。</p>
+<h2 id="RequireJS"><a href="#RequireJS" class="headerlink" title="RequireJS"></a><a href="#requirejs"></a>RequireJS</h2><p>RequireJS 是一个 javaScript 模块系统。他实现的是 AMD 标准（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Asynchronous_module_definition">Asynchronous module definition</a>）（相关的另一个标准叫 CMD）</p>
+<p>AMD 标准中，javaScript 模块提供做以下事情的方法：</p>
+<ol>
+<li>运行 javaScript 程序默认不会用全局命名空间。</li>
+<li>模块间共享代码和数据（Share javascript code and data between named modules and programs）</li>
+</ol>
+<p>这就是 RequireJS 的全部职责。你可能会使用 RequireJS 的模块实现某个功能，但是这个功能不是 RequireJS 本身提供的。 RequireJS 只是确保你获得那个功能的工具。</p>
+<p><a target="_blank" rel="noopener" href="http://requirejs.org/docs/start.html">RequireJS 的 start page</a>就有不错的例子解释 RequireJS 是怎么工作的。我们直接扣过来，再加点说明。</p>
+<p>首先，下载 <a target="_blank" rel="noopener" href="http://requirejs.org/docs/download.html#requirejs">RequireJS 的源文件</a>把它保存到一个名为<code>scripts</code>的文件夹下。</p>
+<p>然后，创建如下文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: require-example.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;My Sample Project&lt;/title&gt;</span><br><span class="line">        &lt;!-- data-main attribute tells require.js to load</span><br><span class="line">             scripts/main.js after require.js loads. --&gt;</span><br><span class="line">        &lt;script data-main=&quot;scripts/main&quot; src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;h1&gt;My Sample Project&lt;/h1&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面的代码让这个页面加载 RequireJS</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: require-example.html --&gt;</span><br><span class="line">&lt;script data-main=&quot;scripts/main&quot; src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>src</code>用法我们是熟悉的，除了它，还有另一个custom <code>data-main</code>属性。这个属性告诉 RequireJS 使用<code>scripts/main</code>模块作为程序的入口。这个<code>scripts/main</code>对应文件<code>scripts/main.js</code></p>
+<p>创建这么个文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//File: scripts/main.js</span><br><span class="line">requirejs([], function() &#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这个文件创建好后，重新载入你的页面，这时候你应该看到弹出框弹出“Hello World”。恭喜你，你已经创建了第一个 RequireJS 程序。</p>
+<p>用jQuery 的<code>document ready</code>也可以做到，RequireJS 没有比它多做什么。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jQuery(function()&#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>RequireJS 特别在他的模块化。举个例子，假设我们想要用一个叫<code>helper/world</code>的模块，那么修改我们的<code>main.js</code>文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;helper/world&#x27;], function(helper_world) &#123;</span><br><span class="line">    var message = helper_world.getMessage();</span><br><span class="line">    alert(message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里，我们将要载入的模块组织成一个数组，并将该数组作为第一个参数传递给<code>requirejs</code>方法。然后，RequireJS 将<code>helper/world</code>的输出作为<code>helper_world</code>参数传递给 function。</p>
+<p>当然，如果你现在运行的话会得到一个 javascript 错误。这是因为我们还没有定义<code>helper/world</code>模块。要定义这个模块，将模块的名字转化为文件的路径，并创建如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//File: scripts/helper/world.js</span><br><span class="line">define([], function()&#123;</span><br><span class="line">    var o = &#123;&#125;;</span><br><span class="line">    o.getMessage = function()</span><br><span class="line">    &#123;</span><br><span class="line">        return &#x27;Hello Module World&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    return o;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>模块定义和我们之前的主程序定义差不多，差别在于这里使用的是<code>define</code>而不是<code>requirejs</code>。<code>define</code>的第一个参数是你模块需要使用的 RequireJS 模块数组。（我们的例子里，这里是空的）第二个参数是javaScript 的函数&#x2F;闭包，定义你模块的返回值。</p>
+<p>RequireJS 不规定模块应该返回或者输出什么。模块可以返回字符串，可以返回仅有一个方法的 javaScrinpt 对象（上面这个例子就是）。他还可以载入一个 javaScript 库（比如PrototypeJS）然后返回一个PrototypeJS 对象。RequireJS 只提供通过模块共享代码的系统，剩下的取决于项目开发者。</p>
+<p>在我们开始 Magento 的 RequireJS 实现之前，有两个主题需要先谈谈：Require JS file loading 和 RequireJS module naming</p>
+<h2 id="RequireJS-File-Loading"><a href="#RequireJS-File-Loading" class="headerlink" title="RequireJS File Loading"></a><a href="#requirejs-file-loading"></a>RequireJS File Loading</h2><p>默认情况下，RequireJS 会将模块名转换成 HTTP(S)路径。比如<code>helper/world</code>转化成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/scripts/helper/world.js</span><br><span class="line">https://example.com/scripts/helper/world.js</span><br><span class="line">//example.com/helper/scripts/world.js</span><br></pre></td></tr></table></figure>
+
+<p>模块名被转化为以<code>.js</code>结尾的文件路径。默认情况下，RequireJS 会使用<code>require.js</code>脚本所在的文件夹作为基础路径。（上面的例子中就是<code>/script</code>）</p>
+<p>但是，RequireJS 允许你设置不同的基础路径。在 RequireJS 程序开始前，添加以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require.config(&#123;</span><br><span class="line">    baseUrl: &#x27;/my-javascript-code&#x27;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>添加这段代码后，RequireJS 要加载<code>helper/world</code>模块的时候，就会从下面的路径去找：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/my-javascript-code/helper/world.js</span><br><span class="line">https://example.com/my-javascript-code/helper/world.js</span><br><span class="line">//example.com/my-javascript-code/helper/world.js</span><br></pre></td></tr></table></figure>
+
+<p>这个功能让你爱把 js 脚本放哪里就放哪里。</p>
+<h2 id="RequireJS-Module-Naming"><a href="#RequireJS-Module-Naming" class="headerlink" title="RequireJS:Module Naming"></a><a href="module-naming"></a>RequireJS:Module Naming</h2><p>到目前为止，我们的例子中，RequireJS 模块名和他的物理路径是绑定的。换句话说，<code>helper/world</code>模块始终对应路径<code>helper/world.js</code></p>
+<p>RequireJS 允许你通过配置来做点变化。例如，假如你希望你的<code>helper/world</code>模块被称为<code>hello</code>，只要在程序开始前添加如下配置代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require.config(&#123;</span><br><span class="line">    paths: &#123;</span><br><span class="line">        &quot;hello&quot;: &quot;helper/world&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>path</code>给你的模块重命名或者说是给他一个别名。<code>paths</code>对象的键代表着你想要的别名（hello），键对应的值表示模块的实际名称(helper&#x2F;world)</p>
+<p>上面的代码放好后，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;hello&#x27;], function(hello) &#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这段代码就会从<code>helper/world.js</code>路径来加载<code>hello</code>模块。</p>
+<p>还有很多其他的配置指令来控制 RequireJS 从哪里加载模块，不过这超出本篇的范围了，了解更多，请参考<a target="_blank" rel="noopener" href="http://requirejs.org/docs/api.html#jsfiles">“Load Javascript Files”</a></p>
+<p>对日常的 javaScript 开发来说，你本不需要关注模块是如何通过 HTPP 加载的。你只需要在用到某模块时，就能得到那个模块，这就够了。当你需要添加新模块，添加某些不兼容的代码，或者查找某个模块的源代码（为了弄清他做什么的）时，就要关注 RequireJS 是怎么加载文件的了。</p>
+<h2 id="Magento-2-and-RequireJS"><a href="#Magento-2-and-RequireJS" class="headerlink" title="Magento 2 and RequireJS"></a><a href="#magento-2-and-requirejs"></a>Magento 2 and RequireJS</h2><p>Magento 自带了 RequireJS 库，引入了一些配置，并且提供了让你添加自己的配置的机制。</p>
+<p>Magento 2 使用了上面提到的 <code>baseUrl</code>。如果你查看 Magento 的页面源文件，你会看到如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    require.config(</span><br><span class="line">        &#123;&quot;baseUrl&quot;:&quot;http://magento.example.com/static/adminhtml/Magento/backend/en_US&quot;&#125;</span><br><span class="line">    );</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这意味着，遇到<code>helper/world</code>模块的时候，他将会从类似下面的URL找文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/static/adminhtml/Magento/backend/en_US/helper/world.js</span><br></pre></td></tr></table></figure>
+
+<p>如果你阅读过 Alan 这个系列的前几篇文章，你可能认出这个URL是从模块加载前端静态的文件的URL了。这意味着你可以在你的模块中放一个RequireJS模块定义文件，例如在下面这个位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/code/Package/Module/view/base/web/my_module.js</span><br></pre></td></tr></table></figure>
+
+<p>这样你就有了一个名为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Package_Module/my_module</span><br></pre></td></tr></table></figure>
+
+<p>的RequireJS 模块。<br>可以从以下URL加载他：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/static/adminhtml/Magento/backend/en_US/Package_Module/my_module.js</span><br></pre></td></tr></table></figure>
+
+<p>这意味着你可以立刻开始在<code>phtml</code>模板中使用该模块了，就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    requirejs(&#x27;Package_Module/my_module&#x27;, function(my_module)&#123;</span><br><span class="line">        //...program here...</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者使用单独的javaScript 文件来使用它。</p>
+<h2 id="Congiguring-RequireJS-via-Modules"><a href="#Congiguring-RequireJS-via-Modules" class="headerlink" title="Congiguring RequireJS via Modules"></a><a href="#congiguring-requirejs-via-modules"></a>Congiguring RequireJS via Modules</h2><p>前面，我们说过RequireJS 的两个配置指令——<code>baseUrl</code>和<code>path</code>。随着你步入高级开发阶段，你将接触并使用到许多 RequireJS 的其他配置指令。</p>
+<p>每个 Magento 模块都可以通过一个名为<code>requirejs-config.js</code>的文件来添加 RequireJS 配置指令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app/code/Package/Module/view/base/requirejs-config.js</span><br><span class="line">app/code/Package/Module/view/frontend/requirejs-config.js</span><br><span class="line">app/code/Package/Module/view/adminhtml/requirejs-config.js</span><br></pre></td></tr></table></figure>
+
+<p>This is a special javascript file that Magento will automatically load on every page load using the area hierarchy. 让我们来试试看。首先我们要创建一个名为<code>Pulsestorm_RequireJsTutorial</code>的Magento 模块。<br>创建好后启用该模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_RequireJsTutorial</span><br><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+
+<p>如果你不会创建Magento 模块的话，请参考<a href="/alan-magento-2-mvvm-mvc/">Magento 2 简介 —— 不再是 MVC</a></p>
+<p>模块创建好后，请增加如下文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/RequireJsTutorial/view/base/requirejs-config.js</span><br><span class="line">alert(&quot;Hello&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>清空缓存，载入 Magento 系统的任意页面（包括后台），你应该会看到<code>alert</code>被调用的弹出框了。恭喜你，你已经成功得给模块增加了一个<code>requirejs-config.js</code>文件。</p>
+<h2 id="The-Purpose-of-requirejs-config-js"><a href="#The-Purpose-of-requirejs-config-js" class="headerlink" title="The Purpose of requirejs-config.js"></a><a href="#the-purpose-of-requirejs-config.js"></a>The Purpose of requirejs-config.js</h2><p>虽然你可以使用<code>requirejs-config.js</code>运行任意的js，但是他的主要任务是：</p>
+<ol>
+<li>让 end-user-programmers 向 Magento 的 RequireJS 系统中增加<code>require.config</code>选项。</li>
+<li>让 end-user-programmers 对自己的 js 代码进行配置或初始化。</li>
+</ol>
+<p>要了解 RequireJS 是怎么做的，我们需要看看 Magento 实际上是怎么处理这些<code>requirejs-config.js</code>文件的。如果你查看 Magento 的任意页面的源代码，你会看到类似下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script  type=&quot;text/javascript&quot;  src=&quot;http://magento.example.com/static/_requirejs/adminhtml/Magento/backend/en_US/requirejs-config.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是在<code>setup:di:compile</code>（production 模式）过程中，或者运行时（developer 和 default模式）生成的一个特殊的 javaScript 文件。如果你不太了解 Magento 的模式对前端文件加载的影响，你可以查看 Alan 的文章<a target="_blank" rel="noopener" href="http://alanstorm.com/magento-2-frontend-files-serving/">Magento 2: Serving Frontend Files</a>。在接下来的文章中，我们都假设你是<code>developer</code>模式的。</p>
+<p>如果你在浏览器中查看下<code>requirejs-config.js</code>文件，你会看到你的<code>alert</code>表达式出现在像下面的代码中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">    require.config(config);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>虽然它不是100%明显，Magento 2 通过从<code>requirejs-config.js</code>生成上述代码块来让我们给系统添加额外的 RequireJS 初始化。</p>
+<p>我们通过一个具体的例子来进一步了解上面的意思。让我们修改<code>requirejs-config.js</code>变成下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">alert(&quot;Done&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们定义了一个<code>config</code>变量，并且修改了<code>alert</code>的值。现在你再一次载入页面，看看<code>requirejs-config.js</code>文件，你应该就知道 Magento 到底干了什么。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">alert(&quot;Done&quot;);</span><br><span class="line">require.config(config);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>对每个<code>requirejs-config.js</code>文件，Magento 都创建了一个类似下面的代码块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    //CONTENTS HERE</span><br><span class="line">    require.config(config);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p><code>requirejs-config.js</code>的内容替换了<code>//CONTENTS HERE</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">alert(&quot;Done&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>这意味着，如果我们在<code>requirejs-config.js</code>文件中定义一个<code>config</code>变量，Magento 最终会将该变量传递给<code>require.config</code>。这将使得 Magento 的模块开发者可以使用 <code>RequireJS</code>的一些特性，比如：<code>shim</code>,<code>paths</code>,<code>baseUrl</code>,<code>map</code>以及其他<a target="_blank" rel="noopener" href="http://requirejs.org/docs/api.html#config">RequireJS’s configuration directives</a></p>
+<h2 id="Understanding-Lazy-Loading"><a href="#Understanding-Lazy-Loading" class="headerlink" title="Understanding Lazy Loading"></a><a href="#understanding-lazy-loading"></a>Understanding Lazy Loading</h2><p>另一个要理解的重点是RequireJS 的模块是延迟加载的（lazy load）。</p>
+<p>换句话说，加入我们使用了下面的配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，Magento 是不会加载<code>Package_Module/my_module.js</code>文件的。Magento 只会在你要用它的时候加载他。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;my_module&#x27;], function(my_module)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">requirejs([&#x27;Package_Module/my_module&#x27;], function(my_module)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">define([&#x27;Package_Module/my_module&#x27;], function(my_module)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>记住，RequireJS 的日常开发时是不需要考虑如何请求源文件的细节的。延迟加载帮助用户节约了带宽，有时候某些页面用不着某些js 文件，这样就不用下载他们了。</p>
+<p>但是，在不那么理想的情况下，延迟加载的行为可能和一些比较早的 js 框架或是库配合不好。下面我们在讲到一些<code>jQuery gotchas</code>时，我们会探讨一个例子。</p>
+<h2 id="Global-jQuery-Object"><a href="#Global-jQuery-Object" class="headerlink" title="Global jQuery Object"></a><a href="#global-jquery-object"></a>Global jQuery Object</h2><p>即使你决定不用 RequireJS，你坚持用 plain old jQuery。你还是需要知道 RequireJS 是怎样与 AMD 标准前的 js 库交互的。</p>
+<p>在 Magento 2 中，jQuery 以 RequireJS 模块的方式被加载进来。这意味着，如果你尝试使用如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    jQuery(function()&#123;</span><br><span class="line">        //your code here</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>你的浏览器会报错说<code>jQuery</code> is undefined。这是因为jQuery 全局对象并不存在，你得以 RequireJS 模块的方式使用jQuery。如果你习惯写上面这种类型的代码，你得这样做：</p>
+<ol>
+<li>Replace it with code that kicks off execution of a RequireJS program</li>
+<li>Configure that program to use the jquery module as a dependency</li>
+</ol>
+<p>换句话说，像下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;jquery&#x27;], function(jQuery)&#123;</span><br><span class="line">    jQuery(function()&#123;</span><br><span class="line">        //your code here</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>requirejs</code>函数调用开始，传递给他所依赖的模块的数组，并且以匿名函数作为程序的main entry point。</p>
+<p><code>requirejs</code>的第一个参数是他所依赖的模块的数组列表。举例来说，下面的代码相当于告诉 RequireJS “我的程序是依赖jQuery模块的”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;jquery&#x27;],</span><br></pre></td></tr></table></figure>
+
+<p><code>requirejs</code>的第二个参数是一个匿名函数，RequireJS 会加载你声明的依赖模块，并将他的返回值传递给匿名函数并调用它。</p>
+<p>jQuery 的新版本会检测自己是否被包含在 RequireJS&#x2F;AMD 的环境中，如果是就会定义一个模块，并且返回全局的 jQuery 对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/ File: http://code.jquery.com/jquery-1.12.0.js</span><br><span class="line">// Register as a named AMD module, since jQuery can be concatenated with other</span><br><span class="line">// files that may use define, but not via a proper concatenation script that</span><br><span class="line">// understands anonymous AMD modules. A named AMD is safest and most robust</span><br><span class="line">// way to register. Lowercase jquery is used because AMD module names are</span><br><span class="line">// derived from file names, and jQuery is normally delivered in a lowercase</span><br><span class="line">// file name. Do this after creating the global so that if an AMD module wants</span><br><span class="line">// to call noConflict to hide this version of jQuery, it will work.</span><br><span class="line"></span><br><span class="line">// Note that for maximum portability, libraries that are not jQuery should</span><br><span class="line">// declare themselves as anonymous modules, and avoid setting a global if an</span><br><span class="line">// AMD loader is present. jQuery is a special case. For more information, see</span><br><span class="line">// https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon</span><br><span class="line"></span><br><span class="line">if ( typeof define === &quot;function&quot; &amp;&amp; define.amd ) &#123;</span><br><span class="line">    define( &quot;jquery&quot;, [], function() &#123;</span><br><span class="line">        return jQuery;</span><br><span class="line">    &#125; );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="RequireJS-and-jQuery-Plugins"><a href="#RequireJS-and-jQuery-Plugins" class="headerlink" title="RequireJS and jQuery Plugins"></a><a href="#requirejs-and-jquery-plugins"></a>RequireJS and jQuery Plugins</h2><p>There’s another gotcha to using jQuery and RequireJS together. jQuery 库早于 RequireJS 和 AMD 标准好多年，他形成了自己的庞大的插件系统。那时候还没有模块化，js 默认用的全局变量，这个插件系统也配合得蛮好的，插件开发者通过修改全局的 jQuery 对象来创建他们的插件。</p>
+<p>对 RequireJS 来说这样就带来一个问题 —— 就像之前我们提到的，全局的 <code>jQuery</code> 对象是不存在的，你得在<code>requirejs</code>匿名函数中使用<code>jQuery</code>模块。这意味着以前下面这种引入 jQuery 插件的方式会在用到<code>jQuery</code>或者<code>$</code>别名时会出错。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://magento.example.com/js/path/to/jquery/plugin/jquery.cookie.js&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//File: http://magento.example.com/js/path/to/jquery/plugin/jquery.cookie.js</span><br><span class="line">var config = $.cookie = function (key, value, options) &#123;</span><br></pre></td></tr></table></figure>
+
+<p>如果你想在 Magento 2 的系统中使用 jQuery 插件，你得通过 RequrieJS。幸运的是，过程还是相对直接的。</p>
+<p>首先，你得通过<code>path</code>给该插件一个别名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;jquery.cookie&quot;:&quot;Package_Module/path/to/jquery.cookie.min&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码创建了一个名为<code>jquery.cookie</code>的模块，该模块的位于<code>Package_Module</code>模块，是一个jQuery cookie 插件。</p>
+<p>现在，你可能认为我们可以用下面的代码来使用它了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;jquery&#x27;,&#x27;jquery.cookie&#x27;], function(jQuery, jQueryCookie)&#123;</span><br><span class="line">    //my code here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>毕竟，我们列出的依赖模块有<code>jQuery</code>和<code>jquery.cookie</code>，这应该会触发对他们的加载。</p>
+<p>你是对的——<strong>但只是有时候</strong>。RequireJS 是异步加载模块源文件的，但它可不保证加载的顺序。这意味着它可能会先加载jQuery 库，但是，有时候页面上的其他脚本或者网络情况可能会导致jQuery cookie 插件反而先被加载了。如果jQuery cookie 先被加载了，他就会因为找不到 jQuery 对象而出错。</p>
+<p>这样看来，RequireJS 的设计可不太好。但是你得知道 RequireJS 和 AMD 标准是用来避免全局变量的污染的。RequireJS 和 jQuery 这样的库不能无缝对接，这一点都不奇怪。 Even though jQuery is responsible about its use of global state (one global jQuery object), it still uses global state, and RequireJS isn’t going to get in the business of deciding who does and doesn’t use global state responsibly.</p>
+<p>关于加载顺序，RequireJS 提供了<code>shim</code>配置指令来让我们指定依赖模块的加载顺序。<br>你可以告诉 RequireJS :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hey RequireJS，当你加载jquery.cookie的时候，请你确保jquery 模块已经完全加载了。</span><br></pre></td></tr></table></figure>
+
+<p>配置就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;jquery.cookie&quot;:&quot;Package_Module/path/to/jquery.cookie.min&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    shim:&#123;</span><br><span class="line">        &#x27;jquery.cookie&#x27;:&#123;</span><br><span class="line">            &#x27;deps&#x27;:[&#x27;jquery&#x27;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>我们定义了一个名为<code>shim</code>的配置属性，这个属性是一个键值对js对象。键表示模块的名字，值是js另一个对象，他定义该模块的<code>shim</code>配置。</p>
+<p><code>shim</code>还有很多其他配置选项。上面我们用的<code>deps</code>确保 RequireJS 在加载jquery.cookie 前先加载数组中的模块([jquery])。</p>
+<p><code>dep</code>配置选项只显示了<code>shim</code>能够做的一小部分，想了解更多细节，请参阅<a target="_blank" rel="noopener" href="http://requirejs.org/docs/api.html#config-shim">the shim documentation</a></p>
+<p>有了上面的配置，你现在可以安全地创建依赖 jquery cookie 插件的 RequireJS 程序了。</p>
+<h2 id="Require-vs-RequireJS"><a href="#Require-vs-RequireJS" class="headerlink" title="Require vs RequireJS"></a><a href="#require-vs-requirejs"></a>Require vs RequireJS</h2><p>在总结前还有一件事要注意。整个 RequireJS 的文档，你可以看到两个函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require()</span><br><span class="line">requirejs();</span><br></pre></td></tr></table></figure>
+
+<p>这两个函数有什么不同吗？哦，他们没有什么不同，他们是同一个函数。</p>
+<p>AMD 标准命名为 require，但是，RequireJS 意识到一些在用的代码已经定义了 require 函数，为了保证 RequirejS 可以同那些定义了 require 函数的代码一起使用，所以提供了一个 别名叫 requirejs</p>
+<h2 id="Wrap-Up"><a href="#Wrap-Up" class="headerlink" title="Wrap Up"></a><a href="#wrap-up"></a>Wrap Up</h2><p>本篇已经带你初步了解了 Magento 对 javaScript 以及现代前端库的使用。但是，所有这些都有赖于 RequireJS 。If you start there, you should be able to track back any javascript based feature to its inclusion via RequireJS, and through that figure out what’s going on. As always, knowing what a specific library does is always useful — but knowing how the framework your code lives in works is the key to becoming a more productive and rational programmer.</p>
+<h2 id="相关源文件下载"><a href="#相关源文件下载" class="headerlink" title="相关源文件下载"></a><a href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"></a>相关源文件下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/RequireJS-tutorial">https://github.com/PiscesThankIT/RequireJS-tutorial</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/RequireJsTutorial">https://github.com/PiscesThankIT/RequireJsTutorial</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-2-include-css/" rel="prev" title="Magento 2 如何引入 CSS">
+      <i class="fa fa-chevron-left"></i> Magento 2 如何引入 CSS
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/alan-magento-2-javascript-init-scripts/" rel="next" title="Magento 2 Javascript Init Scripts（翻译）">
+      Magento 2 Javascript Init Scripts（翻译） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RequireJS"><span class="nav-number">1.</span> <span class="nav-text">RequireJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequireJS-File-Loading"><span class="nav-number">2.</span> <span class="nav-text">RequireJS File Loading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequireJS-Module-Naming"><span class="nav-number">3.</span> <span class="nav-text">RequireJS:Module Naming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento-2-and-RequireJS"><span class="nav-number">4.</span> <span class="nav-text">Magento 2 and RequireJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Congiguring-RequireJS-via-Modules"><span class="nav-number">5.</span> <span class="nav-text">Congiguring RequireJS via Modules</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Purpose-of-requirejs-config-js"><span class="nav-number">6.</span> <span class="nav-text">The Purpose of requirejs-config.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Understanding-Lazy-Loading"><span class="nav-number">7.</span> <span class="nav-text">Understanding Lazy Loading</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global-jQuery-Object"><span class="nav-number">8.</span> <span class="nav-text">Global jQuery Object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequireJS-and-jQuery-Plugins"><span class="nav-number">9.</span> <span class="nav-text">RequireJS and jQuery Plugins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Require-vs-RequireJS"><span class="nav-number">10.</span> <span class="nav-text">Require vs RequireJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrap-Up"><span class="nav-number">11.</span> <span class="nav-text">Wrap Up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-number">12.</span> <span class="nav-text">相关源文件下载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

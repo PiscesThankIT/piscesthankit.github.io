@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/22/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/22/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/variables-custom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/variables-custom/" class="post-title-link" itemprop="url">添加自定义变量(Adding Custom Variables)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-13 13:40:07" itemprop="dateCreated datePublished" datetime="2016-11-13T13:40:07+08:00">2016-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/marketing/variables-custom.html">原文地址</a></em></p>
+<p>如果你懂一点 HTML 的话，你可以用 markup tag 把自定义的变量嵌入到页面，blocks,banners 和电子邮件模板中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;CustomVar code= &quot;my_custom_variable&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wp-content/uploads/2016/11/variables-custom.png" alt="Custom Variables"></p>
+<h2 id="创建自定义的变量"><a href="#创建自定义的变量" class="headerlink" title="创建自定义的变量"></a><a href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F"></a>创建自定义的变量</h2><ol>
+<li>后台侧边栏，点击<strong>System</strong>，在<strong>Other Settings</strong>下，选择<strong>Custom Variables</strong></li>
+<li>点击<strong>Add New Varible</strong></li>
+<li>在<strong>Variable Code</strong>中输入一个唯一识别代号（identifier），全部用小写字母，不要用空格。</li>
+<li>输入一个<strong>Variable Name</strong>，变量名用来内部引用。然后，做下面的任意一件事：<ul>
+<li>在<strong>Variable HTML Value</strong>中，输入你想包含的任意内容，可以用基本的 HTML 标签。</li>
+<li>在<strong>Variable Plain Value</strong>中，输入单纯的变量值。<br><em>你可以拖动文本框的右下角来让他变大</em></li>
+</ul>
+</li>
+<li>完成后，点击<strong>Save</strong>保存。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/variables-predefined/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/variables-predefined/" class="post-title-link" itemprop="url">添加预定义的变量(Adding Predefined Variables)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-13 12:49:45" itemprop="dateCreated datePublished" datetime="2016-11-13T12:49:45+08:00">2016-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/marketing/variables-predefined.html">原文地址</a></em></p>
+<p>预定义的变量很容易被添加到 email 模板和内容页中，来个性化通信。可用变量的选择取决于模板。</p>
+<p><img src="/wp-content/uploads/2016/11/variable-insert-contact-email.png" alt="Variables for Contact Form Template"></p>
+<h2 id="向电子邮件模板中添加变量"><a href="#向电子邮件模板中添加变量" class="headerlink" title="向电子邮件模板中添加变量"></a><a href="#%E5%90%91%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A8%A1%E6%9D%BF%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%8F%98%E9%87%8F"></a>向电子邮件模板中添加变量</h2><ol>
+<li>在后台侧边栏，点击 <strong>Marketing</strong>，然后在 <strong>Communications</strong> 下选择 <strong>Email Templates</strong></li>
+<li>做以下事情中的任意一件：<ul>
+<li>载入一个已经存在的模板</li>
+<li>添加新的模板</li>
+</ul>
+</li>
+<li>在 <strong>Template Content</strong>中，在你要插入变量的地方，点击<strong>Insert Variable</strong></li>
+<li>在可用的变量列表中，选择你想要插入的变量。</li>
+<li>点击<strong>Preview Template</strong> 可以进行预览。</li>
+<li>完成后，点击<strong>Save Template</strong></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/markup-tags-links/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/markup-tags-links/" class="post-title-link" itemprop="url">在链接中使用 Markup Tags(Using Markup Tags in Links)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-12 17:21:51" itemprop="dateCreated datePublished" datetime="2016-11-12T17:21:51+08:00">2016-11-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/marketing/markup-tags-links.html">Using Markup Tags in Links</a></em></p>
+<p>你可以在 HTML <code>&lt;a&gt;</code> 标签中使用 markup tags，这样可以让链接指向您网站上的任何页面。链接可以放置在内容页面，blocks，banners，email 和 newsletter 模板中。您还可以用它让图片指向特定的页面。</p>
+<h2 id="第一步：确定目标-URL"><a href="#第一步：确定目标-URL" class="headerlink" title="第一步：确定目标 URL"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E7%A1%AE%E5%AE%9A%E7%9B%AE%E6%A0%87-url"></a>第一步：确定目标 URL</h2><p>你可以在浏览器地址栏中整个复制目标 URL 的地址，我们需要的是你域名后的部分。或者可以查看 CMS 页面的的 URL Key</p>
+<p>Full URL to Category Page</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://mystore.com/apparel/shoes/womens</span><br><span class="line">http://mystore.com/apparel/shoes/womens.html</span><br></pre></td></tr></table></figure>
+
+<p>Full URL to Product Page</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://mystore.com/apparel/shoes/womens/nine-west-pump</span><br><span class="line">http://mystore.com/apparel/shoes/womens/nine-west-pump.html</span><br></pre></td></tr></table></figure>
+
+<p>Full URL to CMS Page</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://mystore.com/about-us</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二步：Add-the-Markup-to-the-URL"><a href="#第二步：Add-the-Markup-to-the-URL" class="headerlink" title="第二步：Add the Markup to the URL"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9Aadd-the-markup-to-the-url"></a>第二步：Add the Markup to the URL</h2><p>store URL markup tag 代表的是 Base url 部分，就像这样：<code>http://mystore.com/</code>。有两种用法：</p>
+<p><code>store direct_url</code> ：Base url<br><code>store url</code>: 可以加参数的</p>
+<p>好了，如果我想要一个<code>http://mystore.com/apparel/shoes/womens</code>，应该怎么用呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;store url=&#x27;apparel/shoes/womens&#x27;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样应该就懂了。</p>
+<h2 id="第三步：Complete-the-Anchor-Tag"><a href="#第三步：Complete-the-Anchor-Tag" class="headerlink" title="第三步：Complete the Anchor Tag"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9Acomplete-the-anchor-tag"></a>第三步：Complete the Anchor Tag</h2><p>要把上面的地址放到<code>&lt;a&gt;</code>中，就像下面这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&amp;#123;&amp;#123;markup tag goes here&amp;#125;&amp;#125;&quot;&gt;Link Text&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&amp;#123;&amp;#123;store url=&#x27;apparel/shoes&#x27;&amp;#125;&amp;#125;&quot;&gt;Shoe Sale&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意引号的用法。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/markup-tags/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/markup-tags/" class="post-title-link" itemprop="url">Markup Tags</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-12 16:09:53" itemprop="dateCreated datePublished" datetime="2016-11-12T16:09:53+08:00">2016-11-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/marketing/markup-tags.html">原文地址</a></em></p>
+<p>Markup tag (标记) 是一段包含对某个对象的引用的代码，这个对象可以是变量，URL，图片或者 block。Markup tag 可以嵌入到 pages,blocks,email templates,newsletters 等 HTML 片段中。</p>
+<p>Markup tag 被包含在<code>&amp;#123;&amp;#123;&amp;#125;&amp;#125;</code>中，注意他是闭合的。而且他可以由 widget tool 生成，可以直接卸载 HTML 内容里。举例来说，你可以使用 markup tag 来表示店铺的 URL，而不是把完整的路径硬编进 page 中。看下面的例子：</p>
+<h2 id="Custom-Variable"><a href="#Custom-Variable" class="headerlink" title="Custom Variable"></a><a href="#custom-variable"></a>Custom Variable</h2><p>变量的 markup tag 可以用来（向 email 模板，blocks,newsletters,content pages 中）插入自定义的变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;CustomVar code= &quot;my_custom_variable&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Store-URL"><a href="#Store-URL" class="headerlink" title="Store URL"></a><a href="#store-url"></a>Store URL</h2><p>店铺 url markup tag 代表着网站的 base URL，他被当作完整 URL 的第一部分用，就是网站的域名。有两种：<code>store direct_url</code>指向 Base url,<code>store url</code>可以添加参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;store url=&#x27;apparel/shoes/womens&#x27;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设你的 base url 是<code>http://example.com</code>，那么该 markup tag 代表的就是<code>http://example.com/apparel/shoes/womens/</code></p>
+<h2 id="Media-URL"><a href="#Media-URL" class="headerlink" title="Media URL"></a><a href="#media-url"></a>Media URL</h2><p>动态的媒体 URL markup tag 代表存储在 CDN 上的媒体路径。（译者注：这句不太正确，媒体可以存储在本地，也可以在CDN，都可以使用 media url，他代表着媒体文件的相对位置）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;media url=&#x27;shoe-sale.jpg&#x27;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设我都是默认配置，媒体文件存储在本地，那么上面的 markup tag 代表的文件是<code>&lt;root&gt;/pub/media/shoe-sale.jpg</code></p>
+<h2 id="Block-ID"><a href="#Block-ID" class="headerlink" title="Block ID"></a><a href="#block-id"></a>Block ID</h2><p>Block ID markup tag 是最容易使用的一种，可以用来在 CMS page 中插入一个 block，甚至可以在 block 中内嵌一个 block。你可以用它为不同的促销或者语言而修改 block 。他是通过 <code>id</code> 引用的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;block id=&#x27;block-id&#x27;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Template-Tag"><a href="#Template-Tag" class="headerlink" title="Template Tag"></a><a href="#template-tag"></a>Template Tag</h2><p>template tag 引用 phtml 模板文件。可以用它在 CMS page 或者 static block 中加载 block 。下面的例子展示了如何向 page 或者 block 中插入 Contact US 表单。</p>
+<p>“Contact Us” Template Tag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;block type=&quot;core/template&quot; name=&quot;contactForm&quot; template=&quot;contacts/form.phtml&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面的例子展示的是如何按照 category ID 来显示产品列表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;block type=&quot;catalog/product_list&quot; category_id=&quot;22&quot; template=&quot;catalog/product/list.phtml&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>译者注：官方 User guide 还没有更正，Magento 2 中上面的写法不起作用，应该是下面的格式。注意原来是 type 现在是 class，译者就在这里白白浪费了一个小时，桑心~~</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;block class=&quot;Magento\Framework\View\Element\Template&quot; name=&quot;contactFormwq&quot; template=&quot;Magento_Contact::form.phtml&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Widget-Code"><a href="#Widget-Code" class="headerlink" title="Widget Code"></a><a href="#widget-code"></a>Widget Code</h2><p>Widget 可以用来展示产品列表，插入复杂的链接，比如基于产品ID的特定产品页。The code that is generated includes the block reference, location of the code module, and corresponding PHTML template. After the code is generated, you can copy and paste it from one place to another.</p>
+<p>下面的代码可以用来展示新产品列表</p>
+<p>“New Products Grid” Code</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;widget type=&quot;catalog/product_widget_new&quot; display_type=&quot;new_products&quot; products_count=&quot;10&quot; template=&quot;catalog/product/widget/new/content/new_grid.phtml&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面的代码可以用来展示一个链接到特定产品页（根据产品ID）的链接。<br>“Link to Product” Code</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;widget type=&quot;catalog/product_widget_link&quot; anchor_text=&quot;My Product Link&quot;  title=&quot;My Product Link&quot; template=&quot;catalog/product/widget/link/link_block.phtml&quot; id_path=&quot;product/31&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>译者注：上面的写法在 Magento 2.1.2 中测试不起作用，译者用 Magento 自带的 <code>Insert Widget</code> 插入第一个例子的 Widget，生成的代码是这样的，各位可以参考下，看看变化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;widget type=&quot;Magento\Catalog\Block\Product\Widget\NewWidget&quot; display_type=&quot;new_products&quot; products_count=&quot;10&quot; template=&quot;product/widget/new/content/new_grid.phtml&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-less-extend-and-override/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-less-extend-and-override/" class="post-title-link" itemprop="url">Magento 2 Less extend and override</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-11 10:17:17" itemprop="dateCreated datePublished" datetime="2016-11-11T10:17:17+08:00">2016-11-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">Magento 2 主题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Less-fallback"><a href="#Less-fallback" class="headerlink" title="Less fallback"></a><a href="#less-fallback"></a>Less fallback</h2><p>在 <a href="/magento-2-include-css/">Magento 2 如何引入 CSS</a> 文章中说到 Magento 的 CSS 是如何组织的。在 blank 主题中，通过观察其<code>default_head_blocks.xml</code>文件，可以发现两个重要的 CSS 引入。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;css src=&quot;css/styles-m.css&quot; /&gt;</span><br><span class="line">&lt;css src=&quot;css/styles-l.css&quot; media=&quot;screen and (min-width: 768px)&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>根据 CSS 的预处理机制，我们可以知道这两个 CSS 是由<code>&lt;theme-frontend-blank&gt;/web/css</code>下的<code>style-l.less</code>和<code>style-m.less</code>解析得到的。</p>
+<p>以<code>style-m</code>为例，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  Blank theme mobile styles</span><br><span class="line">//  _____________________________________________</span><br><span class="line"></span><br><span class="line">//  These mobile styles are mandatory and will be used as basis according to the mobile first design</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line">//  Global lib + theme styles + theme extends</span><br><span class="line">//  ---------------------------------------------</span><br><span class="line"></span><br><span class="line">@import &#x27;source/_reset.less&#x27;;</span><br><span class="line">@import &#x27;_styles.less&#x27;;</span><br><span class="line">@import (reference) &#x27;source/_extends.less&#x27;;</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line">//  Magento Import instructions</span><br><span class="line">//  ---------------------------------------------</span><br><span class="line"></span><br><span class="line">//@magento_import &#x27;source/_module.less&#x27;; // Theme modules</span><br><span class="line">//@magento_import &#x27;source/_widgets.less&#x27;; // Theme widgets</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line">//  Media queries collector</span><br><span class="line">//  ---------------------------------------------</span><br><span class="line"></span><br><span class="line">@import &#x27;source/lib/_responsive.less&#x27;;</span><br><span class="line"></span><br><span class="line">@media-target: &#x27;mobile&#x27;; // Sets target device for this file</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line">//  Global variables override</span><br><span class="line">//  ---------------------------------------------</span><br><span class="line"></span><br><span class="line">@import &#x27;source/_theme.less&#x27;;</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line">//  Extend for minor customisation</span><br><span class="line">//  ---------------------------------------------</span><br><span class="line"></span><br><span class="line">//@magento_import &#x27;source/_extend.less&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><code>@import</code> 指令引入了更多的 Less 文件。这些 Less 文件大部分位于当前文件目录的<code>source</code>子目录下，但是<code>@import &#39;source/lib/_responsive.less&#39;;</code> 中<code>source/lib/_responsive.less</code> 在当前文件目录下可找不到。这是因为 Magento 使用了 theme fallback 机制，当他在当前主题中找不到某个文件时，就会一直向上搜寻父主题的目录继续找，Less 这里最终 fallback 到了<code>&lt;magento-root&gt;/lib/web/css/</code>。</p>
+<p>该文件中出现了一个特别的指令<code>//@magento_import</code>，他其实并不是被注释掉了，这是 Magento 自己的一个指令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//@magento_import &#x27;source/_module.less&#x27;; // Theme modules</span><br><span class="line">//@magento_import &#x27;source/_widgets.less&#x27;; // Theme widgets</span><br></pre></td></tr></table></figure>
+
+<p>这段指令告诉 Magento 包含如下的 Less 文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&lt;theme-dir&gt;/Magento_Catalog/web/css/source/_widgets.less&#x27;;</span><br><span class="line">&#x27;&lt;theme-dir&gt;/Magento_Catalog/web/css/source/_module.less&#x27;;</span><br><span class="line"></span><br><span class="line">&#x27;&lt;theme-dir&gt;/Magento_Cms/web/css/source/_widgets.less&#x27;;</span><br><span class="line">&#x27;&lt;theme-dir&gt;/Magento_Cms/web/css/source/_module.less&#x27;;</span><br><span class="line"></span><br><span class="line">&#x27;&lt;theme-dir&gt;/Magento_Reports/web/css/source/_widgets.less&#x27;;</span><br><span class="line">&#x27;&lt;theme-dir&gt;/Magento_Reports/web/css/source/_module.less&#x27;;</span><br><span class="line">...and so on</span><br></pre></td></tr></table></figure>
+
+<p>可以查看参考文档第一条，获得更详细的官方解释。</p>
+<p>上面说到 theme fallback 机制，这里讲讲博主自己的理解，不一定是正确的，如果你发现有误，欢迎批评指正。</p>
+<p>Less 的 fallback 就是按照当前主题，父主题，<code>&lt;magento-root&gt;/lib/web/css/</code> 的顺序，查找第一个符合位置名称的文件。举个例子，假设当前主题有<code>web/css/styles-m.less</code>，父主题也有<code>web/css/styles-m.less</code>，那么使用的就是当前主题文件，也就是当前主题 override 了父主题的文件。</p>
+<h2 id="如何-override-和-extend-Magento-UI"><a href="#如何-override-和-extend-Magento-UI" class="headerlink" title="如何 override 和 extend Magento UI"></a><a href="#%E5%A6%82%E4%BD%95-override-%E5%92%8C-extend-magento-ui"></a>如何 override 和 extend Magento UI</h2><h3 id="override"><a href="#override" class="headerlink" title="override"></a><a href="#override"></a>override</h3><p>在自定义主题下新建<code>web/css/source/_theme.less</code><br>注意，他将会覆盖父主题的<code>web/css/source/_theme.less</code>，所以如果你想保留父主题的一些样式，请拷贝过来。在<code>_theme.less</code>中可以重新定义<code>variables</code>。</p>
+<h3 id="extend"><a href="#extend" class="headerlink" title="extend"></a><a href="#extend"></a>extend</h3><p>在自定义主题下新建<code>web/css/source/_extend.less</code>。同上，子主题会覆盖父主题。</p>
+<p>用哪个文件只是一种约定，并非技术上的强制要求。不过大家都遵守约定，会让我们工作更高效对不？<br>当然你可以在<code>_extend.less</code> import 更多 Less 文件，比如<code>@import &#39;_buttons_extend.less&#39;; @import &#39;_navigation_extend.less&#39;;</code>，这样的结构化命名会更清楚。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css-preprocess.html">CSS preprocessing</a><br><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-guide/css_quick_guide_approach.html">Simple ways to customize a theme’s styles</a><br><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/110164/how-do-you-override-less-in-a-custom-theme">How do you override LESS in a custom theme?</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/debug-tool-how-to-get-all-xml-layout/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/debug-tool-how-to-get-all-xml-layout/" class="post-title-link" itemprop="url">调试工具：如何得到页面的布局文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-07 17:03:38" itemprop="dateCreated datePublished" datetime="2016-11-07T17:03:38+08:00">2016-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E9%AB%98%E7%BA%A7/" itemprop="url" rel="index"><span itemprop="name">Magento 2 高级</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>本篇将创建一个调试工具模块，用来得到 all loaded xml layout，但是博主现在并不十分清楚 magento 2 的layout 是如何工作的，因此本篇仅是一个记录，以备后续的研究用。本篇也可以看做是 Magento 2 中如何使用 event 和 observer 的一个入门教程。</em></p>
+<h2 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a><a href="#%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9D%97"></a>创建模块</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># File: ThankIT/DevTool/registration.php</span><br><span class="line">&lt;?php</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::MODULE,</span><br><span class="line">    &#x27;ThankIT_DevTool&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># File: ThankIT/DevTool/etc/module.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;module.xsd&quot;&gt;</span><br><span class="line">    &lt;module name=&quot;ThankIT_DevTool&quot; setup_version=&quot;1.0.0&quot; schema_version=&quot;1.0.0&quot; release_version=&quot;1.0.1&quot;&gt;</span><br><span class="line">    &lt;/module&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>有了上面两个文件，现在该模块就可以被 Mgento 系统找到了。</p>
+<p>下面这个文件告诉 Magento 我们要监听<code>layout_generate_blocks_after</code>事件，注意是<code>events.xml</code>，<code>s</code>不要少。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># File: ThankIT/DevTool/etc/frontend/events.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Event/etc/events.xsd&quot;&gt;</span><br><span class="line">    &lt;event name=&quot;layout_generate_blocks_after&quot;&gt;</span><br><span class="line">        &lt;observer name=&quot;thankit_layout_generate_blocks_after&quot; instance=&quot;ThankIT\DevTool\Observer\Layout&quot; /&gt;</span><br><span class="line">    &lt;/event&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>创建<code>ThankIT\DevTool\Observer\Layout.php</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># File:ThankIT\DevTool\Observer\Layout.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\DevTool\Observer;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\Event\ObserverInterface;</span><br><span class="line"></span><br><span class="line">class Layout  implements ObserverInterface</span><br><span class="line">&#123;</span><br><span class="line">    protected $_logger;</span><br><span class="line">    public function __construct(\Psr\Log\LoggerInterface $logger)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_logger = $logger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function execute(\Magento\Framework\Event\Observer $observer)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        $xml = $observer-&gt;getEvent()-&gt;getLayout()-&gt;getXmlString();</span><br><span class="line">        // $this-&gt;_logger-&gt;debug($xml);   // If you use it, check ouput string xml in var/log/debug.log</span><br><span class="line">        $writer = new \Zend\Log\Writer\Stream(BP . &#x27;/var/log/layout_block.xml&#x27;);</span><br><span class="line">        $logger = new \Zend\Log\Logger();</span><br><span class="line">        $logger-&gt;addWriter($writer);</span><br><span class="line">        $logger-&gt;info($xml);</span><br><span class="line">        return $this;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后启用该模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento module:enable ThankIT_DevTool</span><br><span class="line">php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+
+<p>刷新你想查看布局的页面，然后查看<code>var/log/layout_block.xml</code>就可以看到 all loaded xml layout 了。</p>
+<p>最好用文本编辑工具美化一下，这样就看得很舒服了。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/97343/how-can-i-debug-layout-file-processing-in-magento-2">How can I debug layout file processing in Magento 2?</a></p>
+<p>大体上是正确的，但是有一点变化，Magento 2 升级导致 observer 必须放在模块的 observer 文件夹下。请参考如下文档。</p>
+<p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/extension-dev-guide/events-and-observers.html#events">Events and observers</a></p>
+<p>关于 events 的其他文档：</p>
+<p><a target="_blank" rel="noopener" href="https://www.atwix.com/magento-2/choose-your-perfect-event/">CHOOSE YOUR PERFECT EVENT IN MAGENTO 2</a></p>
+<p><a target="_blank" rel="noopener" href="https://cyrillschumacher.com/magento-2.1-list-of-all-dispatched-events/">Magento 2.1 – List of all dispatched events</a></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a><a href="#%E4%B8%8B%E8%BD%BD"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/debug-layout-file">下载地址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-layout-types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-2-layout-types/" class="post-title-link" itemprop="url">Magento 2 layout 文件类型</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-07 11:28:46" itemprop="dateCreated datePublished" datetime="2016-11-07T11:28:46+08:00">2016-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E9%AB%98%E7%BA%A7/" itemprop="url" rel="index"><span itemprop="name">Magento 2 高级</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>page 页面的布局由两种主要的布局组件决定：page layout file 和 page configuration file。</p>
+<p>page layout file 决定页面的线框，比如一列的布局。技术上来讲，page layout 是 xml 文件，决定 HTML 页面中 <code>&lt;body&gt;</code> 里面的结构。Page layouts feature only containers。page layout 需要声明然后才能使用。</p>
+<p>page configuration 也是 xml 文件。它决定更详细的结构（header,footer 等等，也就是 body 中的其他 html 标签），页面内容，页面的 meta 信息。他引用 page layout 文件。Page configuration features both main elements, blocks of particular classes and containers.</p>
+<p>第三种布局文件是 generic layout。他们也是 xml 文件，定义 html 页面中<code>&lt;body&gt;</code>部分的内容和详细结构，跟 page configuration 基本一样，但是他们用在比较特殊的情况下，比如 AJAX 请求返回页面，emails，HTML 片段等。</p>
+<h2 id="Page-layout"><a href="#Page-layout" class="headerlink" title="Page layout"></a><a href="#page-layout"></a>Page layout</h2><p>page layout 决定页面中<code>&lt;body&gt;</code>中的线框结构（wireframe），比如一列布局或者两列布局。</p>
+<p>允许的指令：</p>
+<ul>
+<li><code>&lt;container&gt;</code></li>
+<li><code>&lt;referenceContainer&gt;</code></li>
+<li><code>&lt;move&gt;</code></li>
+<li><code>&lt;update&gt;</code></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/layouts/xml-instructions.html#fedg_layout_xml-instruc_ex_cont">指令参考文档</a></p>
+<p>page layout 例子<br><code>&lt;Magento_Theme_module_dir&gt;/view/frontend/page_layout/1column.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;layout xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_layout.xsd&quot;&gt;</span><br><span class="line">    &lt;update handle=&quot;empty&quot;/&gt;</span><br><span class="line">    &lt;referenceContainer name=&quot;page.wrapper&quot;&gt;</span><br><span class="line">        &lt;container name=&quot;header.container&quot; as=&quot;header_container&quot; label=&quot;Page Header Container&quot; htmlTag=&quot;header&quot; htmlClass=&quot;page-header&quot; before=&quot;main.content&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;page.top&quot; as=&quot;page_top&quot; label=&quot;After Page Header&quot; after=&quot;header.container&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;footer-container&quot; as=&quot;footer&quot; before=&quot;before.body.end&quot; label=&quot;Page Footer Container&quot; htmlTag=&quot;footer&quot; htmlClass=&quot;page-footer&quot;/&gt;</span><br><span class="line">    &lt;/referenceContainer&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你打开 Magento 首页（默认的主题），用浏览器工具查看源代码，可以看到如下类似的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;div class=&quot;page-wrapper&quot;&gt;</span><br><span class="line">    &lt;header class=&quot;page-header&quot;&gt;&lt;/header&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;footer class=&quot;page-footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样应该有助于理解为什么说 page layout 决定了页面的线框。</p>
+<h3 id="page-layout-文件一般位置"><a href="#page-layout-文件一般位置" class="headerlink" title="page layout 文件一般位置"></a><a href="#page-layout-%E6%96%87%E4%BB%B6%E4%B8%80%E8%88%AC%E4%BD%8D%E7%BD%AE"></a>page layout 文件一般位置</h3><ul>
+<li>Module page layouts: <code>&lt;module_dir&gt;/view/frontend/page_layout</code></li>
+<li>Theme page layouts:<code>&lt;theme_dir&gt;/&lt;Namespace&gt;_&lt;Module&gt;/page_layout</code></li>
+</ul>
+<h3 id="page-layout-声明文件-layouts-xml"><a href="#page-layout-声明文件-layouts-xml" class="headerlink" title="page layout 声明文件 layouts.xml"></a><a href="#page-layout-%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6-layouts.xml"></a>page layout 声明文件 layouts.xml</h3><p>需要使用<code>layout.xml</code>文件来声明 page layout<br>位置：</p>
+<ul>
+<li>Module layout declarations: <code>&lt;module_dir&gt;/view/frontend/layouts.xml</code></li>
+<li>Theme layout declaration: <code>&lt;theme_dir&gt;/&lt;Namespace&gt;_&lt;Module&gt;/layouts.xml</code></li>
+</ul>
+<h3 id="创建自定义的-page-layout"><a href="#创建自定义的-page-layout" class="headerlink" title="创建自定义的 page layout"></a><a href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-page-layout"></a>创建自定义的 page layout</h3><p>我们以<a href="/how-to-create-magento-2-frontend-theme/">如何创建 Magneto 2 前端主题</a>创建好的主题<code>ThankIT/Pisces</code>为基础，创建一个自定义的 page layout</p>
+<p>我们在<code>app\design\frontend\ThankIT\Pisces</code> 文件夹下创建 <code>Magento_Theme</code>文件夹，这样我的主题就会对该模块进行一些自定义。在该文件夹下创建<code>layouts.xml</code>文件，内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># File: app\design\frontend\ThankIT\Pisces\Magento_Theme\layouts.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;page_layouts xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/PageLayout/etc/layouts.xsd&quot;&gt;</span><br><span class="line">    &lt;layout id=&quot;custom-home&quot;&gt;</span><br><span class="line">        &lt;label translate=&quot;true&quot;&gt;Custom Home&lt;/label&gt;</span><br><span class="line">    &lt;/layout&gt;</span><br><span class="line">&lt;/page_layouts&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个page layout 声明文件，<code>id</code>是他的名称，<code>label</code>是我们后台可以看到的标签。</p>
+<p>下面创建<code>custom-home.xml</code>文件，我直接拷贝了1column.xml的内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># File: app\design\frontend\ThankIT\Pisces\Magento_Theme\page_layout\custom-home.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;layout xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">        xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_layout.xsd&quot;&gt;</span><br><span class="line">    &lt;update handle=&quot;empty&quot;/&gt;</span><br><span class="line">    &lt;referenceContainer name=&quot;page.wrapper&quot;&gt;</span><br><span class="line">        &lt;container name=&quot;header.container&quot; as=&quot;header_container&quot; label=&quot;Page Header Container&quot;  htmlTag=&quot;header&quot; htmlClass=&quot;page-header&quot; before=&quot;main.content&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;page.top&quot; as=&quot;page_top&quot; label=&quot;After Page Header&quot; after=&quot;header.container&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;footer-container&quot; as=&quot;footer&quot; before=&quot;before.body.end&quot; label=&quot;Page Footer Container&quot; htmlTag=&quot;footer&quot; htmlClass=&quot;page-footer&quot; /&gt;</span><br><span class="line">    &lt;/referenceContainer&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这两个都到位后，我们进入后台，<strong>Content -&gt; Pages</strong> 找到 Home page，进入编辑，<strong>Design &gt; Page Layout &gt; Layout</strong> 就可以看到我们已经声明的<code>Custom Home</code> page layout 可以用了。</p>
+<p><img src="/wp-content/uploads/2016/11/layout-file-types-1.png"></p>
+<p>如果我们对首页应用该布局，并且当前店铺的主题是<code>ThankIT\Pisces</code>，也就是我们刚刚创建的主题，这时候去首页看下他的源代码，注意下图红框中的<code>page-layout-custom-home</code>。（如果当前主题不是刚刚创建的主题，那么首页会是空白页面，博主也不清楚为什么。）</p>
+<p><img src="/wp-content/uploads/2016/11/layout-file-types-2.png"></p>
+<p>（上面两张图仅供参考，并不是<code>Pisces</code>主题的真实截图，图方便拿了别人的图来示意一下。）</p>
+<h2 id="Page-configuration"><a href="#Page-configuration" class="headerlink" title="Page configuration"></a><a href="#page-configuration"></a>Page configuration</h2><p>page configuration 往 page layout 文件规定的线框结构中填充内容。它还包含 meta 信息，还有<code>&lt;head&gt;</code>部分的内容。</p>
+<p>他的一般位置在：</p>
+<ul>
+<li>Module page configurations: <code>&lt;module_dir&gt;/view/frontend/layout</code></li>
+<li>Theme page configurations: <code>&lt;theme_dir&gt;/&lt;Namespace&gt;_&lt;Module&gt;/layout</code></li>
+</ul>
+<p>page configuration 中允许的指令请查看参考文档第一条。</p>
+<p>我们说 page configuration 引用 page layout 文件，我们来看看他是怎么引用的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># File: module-theme/view/frontend/layout/default.xml</span><br><span class="line">&lt;page layout=&quot;3columns&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;update handle=&quot;default_head_blocks&quot;/&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">    ......</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+
+<p>看<code>&lt;page/&gt;</code>节点中的<code>layout=&quot;3columns&quot;</code>，这就是说，我用的是<code>3columns</code>这个 page layout。<br><code>&lt;update handle=&quot;default_head_blocks&quot;/&gt;</code> 指令的意思是包含<code>default_head_block.xml</code>，这个文件和<code>default.xml</code>文件同一目录，用来规定 html 页面<code>&lt;head&gt;</code>中的内容，我们之前讨论引入 css 文件，也提到过他。</p>
+<ul>
+<li><code>&lt;Magento_Theme_module_dir&gt;/view/frontend/layout/default.xml</code>: defines the page layout.</li>
+<li><code>&lt;Magento_Theme_module_dir&gt;/view/frontend/layout/default_head_blocks.xml</code>: defines the scripts, images, and meta data included in pages’ <code>&lt;head&gt;</code> section.</li>
+</ul>
+<p>这两个布局文件就是 Magento 前端页面的基本布局。</p>
+<h2 id="Generic-layout"><a href="#Generic-layout" class="headerlink" title="Generic layout"></a><a href="#generic-layout"></a>Generic layout</h2><p>和 page configuration 基本一致，请查看参考文档第一条了解详细信息。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/layouts/layout-types.html">Layout file types</a></p>
+<p><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/118278/creating-a-custom-homepage-template-in-magento2">Creating a custom homepage template in Magento2</a> 第一个答案。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/pictures-in-magento-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/pictures-in-magento-2/" class="post-title-link" itemprop="url">Magento 2中的图片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-04 13:53:18" itemprop="dateCreated datePublished" datetime="2016-11-04T13:53:18+08:00">2016-11-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">Magento 2 主题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本篇主要总结 Magento 2 中的产品图片和素材图片。</p>
+<p>产品图片的存储位置在<code>pub/media/catalog/product</code>位置下，该目录下的原始图片按照一定的目录索引存储，子目录<code>cache</code>存放各种调整过大小的图片。</p>
+<p>素材图片存储位置在<code>pub/media/wysiwyg</code>，<code>Luma</code>主题首页的一些展示图片就在该目录下，<a href="/media-storage/">Media Storage</a>指的也是它。</p>
+<p>产品图片有角色（Image Roles）</p>
+<p>Role</p>
+<p>Descriptions</p>
+<p>Swatch Image</p>
+<p>A swatch image can illustrate a color, texture, finish, or pattern. Swatch images that are specific to the product can be uploaded to the image gallery.</p>
+<p>Base Image</p>
+<p>The base image is the main image on the product detail page. Image zoom is activated if you upload an image that is larger image than the image container. Example sizes:<br>470 x 470 pixels (without Zoom)<br>1100 x 1100 pixels (with Zoom)</p>
+<p>Small Image</p>
+<p>The small image is used for the product images in listings on category and search results pages, and to display the product images needed for sections such as for Up-sells, Cross-sells, and the New Products List. Example size:<br>470 x 470 pixels</p>
+<p>Thumbnail</p>
+<p>Thumbnail images appear in the thumbnail gallery, shopping cart, and in some blocks such as Related Items. Example size:<br>50 x 50 pixels</p>
+<p>为什么图片要有角色呢？<br>不同的页面对图片的尺寸要求不一样。比如列表页面，这个页面就是一个概览，小图片就可以满足要求了，而且图片小一点加载更快。但是他没有解决多终端的图片加载问题。多终端下按需加载会是最好的方案。</p>
+<p>在创建自定义主题中，提到用<code>view.xml</code>来配置图片的属性。但是这样的结构看起来完全没有考虑到按需加载。所谓按需加载，指的是根据不同的终端提供不同尺寸的图片。因为我们不会希望在手机端加载一张大图，然后只是在前端缩小他的尺寸，实现视觉上的变小。以 luma 主题为例，我们用调试工具就会发现，尽管是响应式，但他只是样式上变小，而不是按需加载。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://www.magestore.com/magento-2-tutorial/how-to-manage-product-images-in-magento-2-addremove/">How to Manage Product Images in Magento 2? (Add&#x2F;Remove)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/about-view-xml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/about-view-xml/" class="post-title-link" itemprop="url">关于 view.xml</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-04 11:52:25" itemprop="dateCreated datePublished" datetime="2016-11-04T11:52:25+08:00">2016-11-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">Magento 2 主题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在<a href="/how-to-create-magento-2-frontend-theme/">如何创建 Magneto 2 前端主题</a>中提到用<code>view.xml</code>来配置前端产品图片的属性（高度宽度什么的）。本篇主要归纳总结<code>view.xml</code>相关的内容。</p>
+<p>文件位置<code>&lt;theme_dir&gt;/etc/view.xml</code>。<br>我们来看<code>Blank</code>主题的<code>view.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;media&gt;</span><br><span class="line">    // Part-1</span><br><span class="line">    &lt;images module=&quot;Magento_Catalog&quot;&gt;</span><br><span class="line">        &lt;image id=&quot;bundled_product_customization_page&quot; type=&quot;thumbnail&quot;&gt;</span><br><span class="line">            &lt;width&gt;140&lt;/width&gt;</span><br><span class="line">            &lt;height&gt;140&lt;/height&gt;</span><br><span class="line">        &lt;/image&gt;</span><br><span class="line">        ......</span><br><span class="line">    &lt;/images&gt;</span><br><span class="line">&lt;/media&gt;</span><br><span class="line">// Part-2</span><br><span class="line">&lt;vars module=&quot;Magento_Catalog&quot;&gt;</span><br><span class="line">    &lt;!-- Gallery and magnifier theme settings. Start --&gt;</span><br><span class="line">    &lt;var name=&quot;gallery&quot;&gt;</span><br><span class="line">        &lt;var name=&quot;nav&quot;&gt;thumbs&lt;/var&gt; &lt;!-- Gallery navigation style (false/thumbs/dots) --&gt;</span><br><span class="line">        .....</span><br><span class="line">    &lt;/var&gt;</span><br><span class="line">    &lt;var name=&quot;magnifier&quot;&gt;</span><br><span class="line">        ......</span><br><span class="line">    &lt;/var&gt;</span><br><span class="line">    &lt;var name=&quot;breakpoints&quot;&gt;</span><br><span class="line">        ......</span><br><span class="line">    &lt;/var&gt;</span><br><span class="line">    ......</span><br><span class="line">&lt;/vars&gt;</span><br><span class="line">......</span><br><span class="line">// Part-3</span><br><span class="line">&lt;exclude&gt;</span><br><span class="line">    &lt;item type=&quot;file&quot;&gt;Lib::jquery/jquery.min.js&lt;/item&gt;</span><br><span class="line">    &lt;item type=&quot;file&quot;&gt;Lib::jquery/jquery-ui-1.9.2.js&lt;/item&gt;</span><br><span class="line">    &lt;item type=&quot;file&quot;&gt;Lib::jquery/jquery.ba-hashchange.min.js&lt;/item&gt;</span><br><span class="line">    ......</span><br><span class="line">&lt;/exclude&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Part-1"><a href="#Part-1" class="headerlink" title="Part-1"></a><a href="#part-1"></a>Part-1</h2><p>举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;image id=&quot;related_products_list&quot; type=&quot;small_image&quot;&gt;</span><br><span class="line">    &lt;width&gt;152&lt;/width&gt;</span><br><span class="line">    &lt;height&gt;190&lt;/height&gt;</span><br><span class="line">&lt;/image&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里的<code>id</code>用在了<code>vendor/magento/module-catalog/view/frontend/templates/product/list/items.phtml</code>模板中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">case &#x27;related&#x27;:</span><br><span class="line">    /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */</span><br><span class="line">    if ($exist = $block-&gt;getItems()-&gt;getSize()) &#123;</span><br><span class="line">        $type = &#x27;related&#x27;;</span><br><span class="line">        $class = $type;</span><br><span class="line"></span><br><span class="line">        $image = &#x27;related_products_list&#x27;;</span><br><span class="line">        $title = __(&#x27;Related Products&#x27;);</span><br><span class="line">        $items = $block-&gt;getItems();</span><br><span class="line">        $limit = 0;</span><br><span class="line">        $shuffle = 0;</span><br><span class="line">        $canItemsAddToCart = $block-&gt;canItemsAddToCart();</span><br><span class="line"></span><br><span class="line">        $showWishlist = true;</span><br><span class="line">        $showCompare = true;</span><br><span class="line">        $showCart = false;</span><br><span class="line">        $templateType = null;</span><br><span class="line">        $description = false;</span><br><span class="line">    &#125;</span><br><span class="line">break;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中的<code>$image</code>的值和上面的<code>id</code>是一致的，通过该<code>id</code>获得图片的配置尺寸。图片的输出是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo $block-&gt;getImage($_item, $image)-&gt;toHtml(); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果主题没有<code>view.xml</code>那么就会使用<code>fallback theme</code>（一直向上找他的父主题）。</p>
+<p>当你要做一些修改的时候，一般会完整拷贝一个<code>view.xml</code>文件过去，然后在他的基础上进行修改，因为<code>view.xml</code>的节点并不会合并。就是说，如果你的主题中有<code>view.xml</code>，那么就会使用它，如果你里面缺少一些节点，是不会向上查找父主题，并进行合并节点的。</p>
+<p>修改后需要运行如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento catalog:images:resize</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会重新生成新的尺寸的图片。</p>
+<h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part-2"></a><a href="#part-2"></a>Part-2</h2><p>这部分是负责配置 <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/javascript-dev-guide/widgets/widget_gallery.html#configure-gallery-options-in-viewxml">Gallery widget</a>。就是产品页大图片放大镜那里。</p>
+<p>这一部分可以参考<a href="/alan-magento-2-javascript-init-scripts/">Magento 2 Javascript Init Scripts</a></p>
+<h2 id="Part-3"><a href="#Part-3" class="headerlink" title="Part-3"></a><a href="#part-3"></a>Part-3</h2><p>直接看参考文档的最后一个。看起来<code>exclude</code>节点中的文件不会被合并，每次都会单独加载。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/themes/theme-images.html">Configure images properties for a theme</a><br><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/122569/magento-2-change-default-product-images-sizes">Magento 2 &gt; Change default product images sizes</a><br><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/96510/what-does-the-exclude-tag-in-magento-2s-view-xml-file-do">What does the “exclude” Tag in Magento 2’s view.xml file do</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-2-knockoutjs-integration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/alan-magento-2-knockoutjs-integration/" class="post-title-link" itemprop="url">Magento 2 KnockoutJS 集成</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-02 22:28:39" itemprop="dateCreated datePublished" datetime="2016-11-02T22:28:39+08:00">2016-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_knockoutjs_integration/">原文地址</a></em></p>
+<p>虽然 KnockoutJS 作为 MVVM 框架（model,view,view model），但是PHP开发人员会发现model部分有点瘦。KnockoutJS 本身没有 data storage 的概念，像许多现代js框架一样，it was designed to work best with a service only backend（设计为和 service only 的后端一起工作）. i.e. <a target="_blank" rel="noopener" href="http://knockoutjs.com/documentation/json-data.html">KnockoutJS’s “Model” is some other framework making AJAX requests</a> to populate view model values.</p>
+<p>另外一件可能会让你意外的事情是，KnockoutJS 并不是一个“full stack”框架（and to its credit, doesn’t bill itself as such）</p>
+<p>KnockoutJS 没有规定你如何在项目中使用它，也没有规定你怎么组织代码。（虽然从文档可以看出KnockoutJS的团队成员是RequireJS的粉丝）。</p>
+<p>这对类似Magento这样的服务器端PHP框架提出了一个有趣的挑战。要使用KnockoutJS,不仅得围绕着它搭建一定程度的js“脚手架”，而且 Magento 2本身可不是一个service only的框架。Magento 2 的全新API在解决后一个问题上取得了进展，但是后端开发人员还是需要建立将业务数据对象注入 KnockoutJS 的脚手架。</p>
+<p>今天我们来深入Magento 2 的 KnockoutJS 集成问题。通过本教程，你将明白 Magento 2 是如何应用 KnockoutJS 绑定的，以及Magento 2 是如何初始化他的自定义绑定的。你还将明白 Magento 是如何修改核心 KnockoutJS 的某些行为的，为什么要这样做，以及这些修改带给你的模块和应用的可能性。</p>
+<p>本篇教程是 Alan 的 Magento 2 高级js概念系列文章中的一篇，如果你在下文遇到不理解的概念，可以翻看一下该文章的前几篇。</p>
+<h2 id="Creating-a-Magento-Module"><a href="#Creating-a-Magento-Module" class="headerlink" title="Creating a Magento Module"></a><a href="#creating-a-magento-module"></a>Creating a Magento Module</h2><p>我们得创建一个<code>Pulsestorm KnockoutTutorial</code>模块，并且可以通过<code>http://magento.example.com/pulsestorm_knockouttutorial/</code>链接看到<code>app/code/Pulsestorm/KnockoutTutorial/view/frontend/templates/content.phtml</code>模板的渲染效果。</p>
+<p>Alan 没有提供示例代码，你可以自己创建，也可以去博主的 github 仓库下载。<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/Magento-2-KnockoutJS-Integration">示例代码下载地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_KnockoutTutorial</span><br><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+
+<h2 id="RequireJS-Initialization"><a href="#RequireJS-Initialization" class="headerlink" title="RequireJS Initialization"></a><a href="#requirejs-initialization"></a>RequireJS Initialization</h2><p>在我们之前的文章以及KnockoutJS官方教程中，KnockoutJS的初始化时很简单的事情。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">object = SomeViewModelConstructor();</span><br><span class="line">ko.applyBindings(object);</span><br></pre></td></tr></table></figure>
+
+<p>上面的做法只是为了教程讲解。然而，如果你将所有的 view model 逻辑，自定义绑定，组件都放在一个代码块中的话，KnockoutJS 将很快变得不好管理了。</p>
+<p>Magento 的核心团队创建了一个<code>Magento_Ui/js/lib/ko/initialize</code> RequireJS 模块。只要将它作为依赖模块，就会执行KnockoutJS的初始化。你可以像下面这样使用它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;Magento_Ui/js/lib/ko/initialize&#x27;], function()&#123;</span><br><span class="line">    //your program here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>要注意的是这个 RequireJS 模块没有返回值，将他作为依赖模块唯一的目的就是进行 KnockoutJS 的初始化。你在实际环境中见到他，可能会感到困惑。举例来说，看下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;./renderer/types&#x27;,</span><br><span class="line">    &#x27;./renderer/layout&#x27;,</span><br><span class="line">    &#x27;Magento_Ui/js/lib/ko/initialize&#x27;</span><br><span class="line">], function (types, layout) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    return function (data) &#123;</span><br><span class="line">        types.set(data.types);</span><br><span class="line">        layout(data.components);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>声明了三个 RequireJS 依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">[</span><br><span class="line">&#x27;./renderer/types&#x27;,</span><br><span class="line">&#x27;./renderer/layout&#x27;,</span><br><span class="line">&#x27;Magento_Ui/js/lib/ko/initialize&#x27;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>但是回调函数中却只有两个参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">function (types, layout) &#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我还不清楚这种做法是否明智，或者是否违反了RequireJS的精神。也许都有。</p>
+<p>不管怎么说，你用这个模块，Magento 就会初始化 KnockoutJS 了。RequireJS 会在第一次加载模块时就缓存他们，所以之后加载的模块不会被重复载入。</p>
+<h2 id="KnockoutJS-Initialization"><a href="#KnockoutJS-Initialization" class="headerlink" title="KnockoutJS Initialization"></a><a href="#knockoutjs-initialization"></a>KnockoutJS Initialization</h2><p>我们来看看<code>Magento_Ui/js/lib/ko/initialize</code>模块的源代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./template/engine&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-repeat&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-fast-foreach&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-es5&#x27;,</span><br><span class="line">    &#x27;./bind/scope&#x27;,</span><br><span class="line">    &#x27;./bind/staticChecked&#x27;,</span><br><span class="line">    &#x27;./bind/datepicker&#x27;,</span><br><span class="line">    &#x27;./bind/outer_click&#x27;,</span><br><span class="line">    &#x27;./bind/keyboard&#x27;,</span><br><span class="line">    &#x27;./bind/optgroup&#x27;,</span><br><span class="line">    &#x27;./bind/fadeVisible&#x27;,</span><br><span class="line">    &#x27;./bind/mage-init&#x27;,</span><br><span class="line">    &#x27;./bind/after-render&#x27;,</span><br><span class="line">    &#x27;./bind/i18n&#x27;,</span><br><span class="line">    &#x27;./bind/collapsible&#x27;,</span><br><span class="line">    &#x27;./bind/autoselect&#x27;,</span><br><span class="line">    &#x27;./extender/observable_array&#x27;,</span><br><span class="line">    &#x27;./extender/bound-nodes&#x27;</span><br><span class="line">], function (ko, templateEngine) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    ko.setTemplateEngine(templateEngine);</span><br><span class="line">    ko.applyBindings();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>我们看到这个模块相对简单，但还是包含了19个其他模块。要说清每个模块做什么，已经超出本篇的范围了。只讲重要的。</p>
+<p><code>ko</code>模块实际上是<code>knockoutjs/knockout</code>模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vendor/magento/module-theme/view/base/requirejs-config.js</span><br><span class="line">11:            &quot;ko&quot;: &quot;knockoutjs/knockout&quot;,</span><br><span class="line">12:            &quot;knockout&quot;: &quot;knockoutjs/knockout&quot;</span><br></pre></td></tr></table></figure>
+
+<p><code>knockoutjs/knockout</code>模块实际上就是 KnockoutJS 库。<code>knockoutjs/knockout-repeat</code>,<code>knockoutjs/knockout-fast-foreach</code>, and<br><code>knockoutjs/knockout-es5</code> 是 KnockoutJS community extras（社区插件）这些都不是正规的 RequireJS 模块。</p>
+<p>从<code>./bind/*</code>开始的模块是 Magento 的 KnockoutJS 自定义绑定。他们是正经的 RequireJS 模块，不过他们实际上没有返回。这些脚本给全局的<code>ko</code>对象添加绑定。我们下面会讨论<code>scope</code> 绑定。如果你对绑定实现的细节感兴趣，可以去<a target="_blank" rel="noopener" href="https://github.com/magento/devdocs/issues/718">这里看看</a>，期待官方文档快点出来。</p>
+<p>这两个<code>extender</code>模块是Magento 对 KnockoutJS 功能扩展的核心模块。</p>
+<p><code>./template/engine</code>模块返回了一个自定义版本的 KnockoutJS 模板引擎。这是我们下面第一个要讨论的。</p>
+<h2 id="Magento-KnockoutJS-Templates"><a href="#Magento-KnockoutJS-Templates" class="headerlink" title="Magento KnockoutJS Templates"></a><a href="#magento-knockoutjs-templates"></a>Magento KnockoutJS Templates</h2><p>KnockoutJS 系统中，模板是一些事先写好的 DOM&#x2F;KnockoutJS 代码，可以通过<code>id</code>来引用他们。这些代码块以下面的形式添加到页面中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/html&quot; id=&quot;my_template&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是个很强大的功能，但是提出了一个问题——对于服务器端的框架来说，如何获取正确的模板并渲染到页面上呢？如何确保不用重复创建模板呢？KnockoutJS 的解决方案是使用组件绑定配合RequireJS，但是这意味着你的模板绑定在特定的view model 对象上。</p>
+<p>Magento 的核心工程师需要一种更好的办法来加载 KnockoutJS 模板。—— 他们使用<code>Magento_Ui/js/lib/ko/template/engine</code>模块的引擎替换掉了 KnockoutJS 原先的模板引擎。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./template/engine&#x27;,</span><br><span class="line">    //...</span><br><span class="line">], function (ko, templateEngine) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line">    //...</span><br><span class="line">    ko.setTemplateEngine(templateEngine);</span><br><span class="line">    //...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果我们看一看<code>Magento_Ui/js/lib/ko/template/engine</code>这个模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/template/engine.js</span><br><span class="line">/**</span><br><span class="line"> * Copyright © 2016 Magento. All rights reserved.</span><br><span class="line"> * See COPYING.txt for license details.</span><br><span class="line"> */</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./observable_source&#x27;,</span><br><span class="line">    &#x27;./renderer&#x27;</span><br><span class="line">], function (ko, Source, Renderer) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    var RemoteTemplateEngine,</span><br><span class="line">        NativeTemplateEngine = ko.nativeTemplateEngine,</span><br><span class="line">        sources = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    //...</span><br><span class="line"></span><br><span class="line">    RemoteTemplateEngine.prototype = new NativeTemplateEngine;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //...</span><br><span class="line">    RemoteTemplateEngine.prototype.makeTemplateSource = function (template)</span><br><span class="line">    &#123;</span><br><span class="line">        //...</span><br><span class="line">    &#125;</span><br><span class="line">    //...</span><br><span class="line"></span><br><span class="line">    return new RemoteTemplateEngine;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Magento 创建了一个新的对象，该对象用原型法继承了 KnockoutJS 的引擎，然后修改了一些方法增加自定的行为。If you’re not up on your javascript internals, this means Magento copies the stock KnockoutJS template system, changes it a bit, and then swaps its new template engine in for the stock one.</p>
+<p>实现的细节超过了本篇的范围，不过最终的结果是KnockoutJS 引擎可以通过 URL 链接从Magento模板中获取模板。</p>
+<p>如果这样说没有让你搞懂，那么来个例子。向<code>content.phtml</code>文件中加入以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/KnockoutTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;div data-bind=&quot;template:&#x27;Pulsestorm_KnockoutTutorial/hello&#x27;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们用了模板绑定，并且把<code>Pulsestorm_KnockoutTutorial/hello</code>字符串传递给他。现在如果你刷新页面的话(记得清空缓存)，你将会在浏览器 console 中看到如下错误信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;Get http://127.0.0.1/pub/static/frontend/Magento/luma/en_US/Pulsestorm_KnockoutTutorial/template/hello.html 404 (Not Found)</span><br></pre></td></tr></table></figure>
+
+<p>Magento 用我们传递给他的字符串（<code>Pulsestorm_KnockoutTutorial/hello</code>）构造一个 URL ，注意看这个构造出的URL和字符串各部分的联系。</p>
+<p>让我们添加如下文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/KnockoutTutorial/view/frontend/web/template/hello.html</span><br><span class="line">&lt;p data-bind=&quot;style:&#123;fontSize:&#x27;24px&#x27;&#125;&quot;&gt;Hello World&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>重新载入页面，你会看到 Magento 已经加载了该模板并且应用了KnockoutJS绑定。</p>
+<p>这项功能使我们不再需要使用<code>&lt;script type=&quot;text/html&quot;&gt;</code>，有助于模板复用。（This feature allows us to avoid littering our HTML page with <code>&lt;script type=&quot;text/html&quot;&gt;</code> tags whenever we need a new template, and encourages template reuse between UI and UX features.）</p>
+<h2 id="No-View-Model"><a href="#No-View-Model" class="headerlink" title="No View Model"></a><a href="#no-view-model"></a>No View Model</h2><p>回到<code>initialize.js</code>模块，Magento 设置好模板引擎之后，调用了 KnockoutJS 的applyBindings 方法。这个调用开始了当前页面的渲染。看下代码，立马发现一件事情。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">ko.setTemplateEngine(templateEngine);</span><br><span class="line">ko.applyBindings();</span><br></pre></td></tr></table></figure>
+
+<p>Magento 调用<code>applyBindings</code>没有传递任何 view model。虽然这是一个有效的 KnockoutJS 调用——让 KnockoutJS 应用绑定，但没有数据或view model 逻辑，这么做看起来一点意义也没有。What is a view without data going to be good for?</p>
+<p>在标准的 KnockoutJS 系统中，这样做确实一点意义也没有。要理解这一步Magento在做什么，我就得回到 KnockoutJS 的初始化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">define([</span><br><span class="line">    //...</span><br><span class="line">    &#x27;./bind/scope&#x27;,</span><br><span class="line">    //...</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<p>Magento 的 KnockoutJS 团队创建了一个名为<code>scope</code>的自定义绑定。下面是一<code>scope</code>绑定应用的例子，代码是 Magento 2 主页中用到的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;li class=&quot;greet welcome&quot; data-bind=&quot;scope: &#x27;customer&#x27;&quot;&gt;</span><br><span class="line">    &lt;span data-bind=&quot;text: customer().fullname ? $t(&#x27;Welcome, %1!&#x27;).replace(&#x27;%1&#x27;, customer().fullname) : &#x27;Default welcome msg!&#x27;&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当你向下面这样调用<code>scope</code>的时候，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-bind=&quot;scope: &#x27;customer&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 将会对该节点及其子节点应用<strong>customer</strong> view model</p>
+<p>你可能会想——见鬼，<strong>customer</strong> view model 是什么玩意儿？</p>
+<p>如果你查看主页的源代码，再往下看一点(源代码在105行)，你应该会看到如下标签。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;*&quot;: &#123;</span><br><span class="line">        &quot;Magento_Ui/js/core/app&quot;: &#123;</span><br><span class="line">            &quot;components&quot;: &#123;</span><br><span class="line">                &quot;customer&quot;: &#123;</span><br><span class="line">                    &quot;component&quot;: &quot;Magento_Customer/js/view/customer&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们本系列的第一篇文章讲过，Magento 遇到<code>text/x-magento-init</code>script 标签，属性为<code>*</code>，它将：</p>
+<ol>
+<li>初始化<code>Magento_Ui/js/core/app</code>RequireJS 模块。</li>
+<li>调用<code>Magento_Ui/js/core/app</code>模块的返回方法，并将后面的数据对象传递给他。</li>
+</ol>
+<p><code>Magento_Ui/js/core/app</code>模块 <strong>instantiates KnockoutJS view models</strong> to use with the scope attribute.（实例化 scope 自定义绑定要用的view model）。这是怎么实现的超出本篇文章的范围了，不过总的来说，Magento will instantiate a new javascript object for each individual RequireJS module configured as a <code>component</code>, and that new object becomes the view model.</p>
+<p>下面我们用<code>x-magento-init</code>举个例子，Magento查找<code>components</code>键，该键对应的是一个键值对。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;customer&quot;: &#123;</span><br><span class="line">    &quot;component&quot;: &quot;Magento_Customer/js/view/customer&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对<code>customer</code>键，Magneto 会执行类似下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//gross over simplification</span><br><span class="line">var ViewModelConstructor = requirejs(&#x27;Magento_Customer/js/view/customer&#x27;);</span><br><span class="line">var viewModel = new ViewModelConstructor;</span><br><span class="line">viewModelRegistry.save(&#x27;customer&#x27;, viewModel);</span><br></pre></td></tr></table></figure>
+
+<p>如果某些组件对象有额外的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;customer&quot;: &#123;</span><br><span class="line">    &quot;component&quot;: &quot;Magento_Customer/js/view/customer&quot;,</span><br><span class="line">    &quot;extra_data&quot;:&quot;something&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 会将这些数据一并放入view model</p>
+<p>一旦上述代码执行完毕，view model registry 就会拥有一个名为<code>customer</code>的view model。Magento 对<code>data-bind=&quot;scope: &#39;customer&#39;&quot;</code>应用的绑定就是这个view model。</p>
+<p>如果我们查看<code>scope</code>自定义绑定的实现代码的话，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/bind/scope.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;uiRegistry&#x27;,</span><br><span class="line">    &#x27;jquery&#x27;,</span><br><span class="line">    &#x27;mage/translate&#x27;</span><br><span class="line">], function (ko, registry, $) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    //...</span><br><span class="line">        update: function (el, valueAccessor, allBindings, viewModel, bindingContext) &#123;</span><br><span class="line">            var component = valueAccessor(),</span><br><span class="line">                apply = applyComponents.bind(this, el, bindingContext);</span><br><span class="line"></span><br><span class="line">            if (typeof component === &#x27;string&#x27;) &#123;</span><br><span class="line">                registry.get(component, apply);</span><br><span class="line">            &#125; else if (typeof component === &#x27;function&#x27;) &#123;</span><br><span class="line">                component(apply);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    //...</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>registry.get(component, apply);</code>行从 view model registry 处获得那个view model，之后的代码实际上是应用该 view model</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/bind/scope.js</span><br><span class="line"></span><br><span class="line">//the component variable is our viewModel</span><br><span class="line">function applyComponents(el, bindingContext, component) &#123;</span><br><span class="line">    component = bindingContext.createChildContext(component);</span><br><span class="line"></span><br><span class="line">    ko.utils.extend(component, &#123;</span><br><span class="line">        $t: i18n</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    ko.utils.arrayForEach(el.childNodes, ko.cleanNode);</span><br><span class="line"></span><br><span class="line">    ko.applyBindingsToDescendants(component, el);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>registry</code>变量来自于<code>uiRegistry</code>模块，该模块实际上是<code>Magento_Ui/js/lib/registry/registry</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vendor/magento/module-ui/view/base/requirejs-config.js</span><br><span class="line">17:            uiRegistry:     &#x27;Magento_Ui/js/lib/registry/registry&#x27;,</span><br></pre></td></tr></table></figure>
+
+<p>如果感觉脑子不够用了，别担心。如果你想看看某个scope绑定中可用的数据，下面的debugging 代码会很有帮助。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;li class=&quot;greet welcome&quot; data-bind=&quot;scope: &#x27;customer&#x27;&quot;&gt;</span><br><span class="line">    &lt;pre data-bind=&quot;text: ko.toJSON($data, null, 2)&quot;&gt;&lt;/pre&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你对 Magento如何创建 view model 的真实实现细节感兴趣的话（上面的简化伪代码不能满足你的好奇心），你可以从<code>Magento_Ui/js/core/app</code>模块下手。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;./renderer/types&#x27;,</span><br><span class="line">    &#x27;./renderer/layout&#x27;,</span><br><span class="line">    &#x27;Magento_Ui/js/lib/ko/initialize&#x27;</span><br><span class="line">], function (types, layout) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    return function (data) &#123;</span><br><span class="line">        types.set(data.types);</span><br><span class="line">        layout(data.components);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这个模块依赖<code>Magento_Ui/js/core/renderer/layout</code>模块，正是这个模块创建了 view model，并将他们添加到view model registry 中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/renderer/layout.js</span><br></pre></td></tr></table></figure>
+
+<p>你可去上面的文件研究 view model 是怎么创建出来的。</p>
+<h2 id="A-component-by-Any-Other-Name"><a href="#A-component-by-Any-Other-Name" class="headerlink" title="A component by Any Other Name"></a><a href="#a-component-by-any-other-name"></a>A component by Any Other Name</h2><p>One sticky wicket in all this is the word <code>component</code>. <code>scope</code>绑定加上<code>x-magento-init</code> is basically a different take on <a target="_blank" rel="noopener" href="http://knockoutjs.com/documentation/component-binding.html">the native KnockoutJS component system</a>.</p>
+<p>Magento 使用了和 KnockoutJS 相同的<code>component</code>这一术语，他们实际上不是一回事情，这下简直开启了一个混乱的新世界。即使是<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/javascript-dev-guide/javascript/js_overview.html">Magento官方文档</a>，看起来也没有说清楚什么是<code>component</code>什么不是。Such is life on a large software team where the left hand doesn’t know what the right hand is doing — and the rest of the body is freaking out about a third hand growing out of its back.(哈哈，翻不出味道，自己领会一下，挺幽默的！)</p>
+<p>当你和同事讨论这些特性或者是在社区提问时，区分 KnockoutJS components 和Magento components 是很重要的哦。</p>
+<h2 id="Changes-in-the-2-1-Release-Candidate"><a href="#Changes-in-the-2-1-Release-Candidate" class="headerlink" title="Changes in the 2.1 Release Candidate"></a><a href="#changes-in-the-2.1-release-candidate"></a>Changes in the 2.1 Release Candidate</h2><p>今天的总结，我们要讨论一下 Magento 2.1 版本的一些改变。从概念上讲，系统仍然是相同的，只是细节有一点变化。</p>
+<p>第一，KnockoutJS 的初始化现在发生在<code>Magento_Ui/js/lib/knockout/bootstrap</code>RequireJS 模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/knockout/bootstrap.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./template/engine&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-es5&#x27;,</span><br><span class="line">    &#x27;./bindings/bootstrap&#x27;,</span><br><span class="line">    &#x27;./extender/observable_array&#x27;,</span><br><span class="line">    &#x27;./extender/bound-nodes&#x27;,</span><br><span class="line">    &#x27;domReady!&#x27;</span><br><span class="line">], function (ko, templateEngine) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    ko.uid = 0;</span><br><span class="line"></span><br><span class="line">    ko.setTemplateEngine(templateEngine);</span><br><span class="line">    ko.applyBindings();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Magento 核心开发团队将所有的 binding loading 移到<code>Magento_Ui/js/lib/knockout/bindings/bootstrap</code>模块，该模块位于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/knockout/bindings/bootstrap.js</span><br></pre></td></tr></table></figure>
+
+<p>最后，the “Magento Javascript Component” returned by <code>Magento_Ui/js/core/app</code> has a changed method signature that includes a merge parameter, and the arguments to the <code>layout</code> function make it clear <code>layout‘s</code> signature has changed as well.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;./renderer/types&#x27;,</span><br><span class="line">    &#x27;./renderer/layout&#x27;,</span><br><span class="line">    &#x27;../lib/knockout/bootstrap&#x27;</span><br><span class="line">], function (types, layout) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    return function (data, merge) &#123;</span><br><span class="line">        types.set(data.types);</span><br><span class="line">        layout(data.components, undefined, true, merge);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>超越实现细节，这些更改揭露出一个事实，Magento 的 js 模块和框架在频繁变动中，不同于PHP代码，Magento 的 RequireJS 模块没有<code>@api</code>标识来表示稳定性。</p>
+<p>Unless you absolutely need to, it’s probably best to steer clear of dynamically changing the behavior of these core modules, and keep your own javascript as separate as possible。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a><a href="#%E4%B8%8B%E8%BD%BD"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/Magento-2-KnockoutJS-Integration">实例代码下载</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

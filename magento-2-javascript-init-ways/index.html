@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="我们在 magento 2 的 phtml 中经常会看到 &lt;script type&#x3D;&quot;text&#x2F;x-magento-init&quot;&gt; 和 data-mage-init ，那么这两个标签是用来做什么的？本篇将给出解释，并说明这样设计的用意。 Magento 2 的自定义设计首先 &lt;script type&#x3D;&quot;text&#x2F;x-magento-init&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&lt;script type&#x3D;\&quot;text&#x2F;x-magento-init\&quot;&gt;">
+<meta property="og:url" content="http://example.com/magento-2-javascript-init-ways/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="我们在 magento 2 的 phtml 中经常会看到 &lt;script type&#x3D;&quot;text&#x2F;x-magento-init&quot;&gt; 和 data-mage-init ，那么这两个标签是用来做什么的？本篇将给出解释，并说明这样设计的用意。 Magento 2 的自定义设计首先 &lt;script type&#x3D;&quot;text&#x2F;x-magento-init&quot;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/jquery-is-not-defined.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/node-config-results.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/console.log_.results.png">
+<meta property="article:published_time" content="2017-09-19T01:02:28.000Z">
+<meta property="article:modified_time" content="2022-05-02T05:56:16.649Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="data-mage-init">
+<meta property="article:tag" content="magneto2">
+<meta property="article:tag" content="requirejs">
+<meta property="article:tag" content="x-magento-init">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/09/jquery-is-not-defined.png">
+
+<link rel="canonical" href="http://example.com/magento-2-javascript-init-ways/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title><script type=\"text/x-magento-init\"> | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-javascript-init-ways/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          <script type=\"text/x-magento-init\">
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-09-19 09:02:28" itemprop="dateCreated datePublished" datetime="2017-09-19T09:02:28+08:00">2017-09-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">插件开发系列教程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我们在 magento 2 的 phtml 中经常会看到 <code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code> 和 <code>data-mage-init</code> ，那么这两个标签是用来做什么的？本篇将给出解释，并说明这样设计的用意。</p>
+<h2 id="Magento-2-的自定义设计"><a href="#Magento-2-的自定义设计" class="headerlink" title="Magento 2 的自定义设计"></a><a href="#magento-2-%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%BE%E8%AE%A1"></a>Magento 2 的自定义设计</h2><p><em>首先 <code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code> 是 Magento 2 的自定义设计。</em> 我们新建一个 html 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;test&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    alert(&#x27;common&#x27;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    alert(&#x27;magento&#x27;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后从浏览器中访问他，我们会看到 <code>common</code> 的 alert 但不会看到 <code>magento</code> 的 alert 。这是因为浏览器不认识 <code>type=&quot;text/x-magento-init&quot;</code> 的这个 <code>&lt;script&gt;</code>，所以会直接忽略它。</p>
+<h2 id="创建一个演示模块"><a href="#创建一个演示模块" class="headerlink" title="创建一个演示模块"></a><a href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%BC%94%E7%A4%BA%E6%A8%A1%E5%9D%97"></a>创建一个演示模块</h2><p>我们还是以 <code>ThankIT_HelloWorld</code> 为基础。</p>
+<h3 id="创建-Controller"><a href="#创建-Controller" class="headerlink" title="创建 Controller"></a><a href="#%E5%88%9B%E5%BB%BA-controller"></a>创建 Controller</h3><p>File:app\code\ThankIT\HelloWorld\Controller\Javascript\Example.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Controller\Javascript;</span><br><span class="line"></span><br><span class="line">class Example extends \Magento\Framework\App\Action\Action</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    protected $resultPageFactory;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Constructor</span><br><span class="line">     *</span><br><span class="line">     * @param \Magento\Framework\App\Action\Context  $context</span><br><span class="line">     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory</span><br><span class="line">     */</span><br><span class="line">    public function __construct(</span><br><span class="line">        \Magento\Framework\App\Action\Context $context,</span><br><span class="line">        \Magento\Framework\View\Result\PageFactory $resultPageFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;resultPageFactory = $resultPageFactory;</span><br><span class="line">        parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute view action</span><br><span class="line">     *</span><br><span class="line">     * @return \Magento\Framework\Controller\ResultInterface</span><br><span class="line">     */</span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;resultPageFactory-&gt;create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-layout"><a href="#创建-layout" class="headerlink" title="创建 layout"></a><a href="#%E5%88%9B%E5%BB%BA-layout"></a>创建 layout</h3><p>File:app\code\ThankIT\HelloWorld\view\frontend\layout\helloworld_javascript_example.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><br><span class="line">&lt;page layout=&quot;1column&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;referenceContainer name=&quot;content&quot;&gt;</span><br><span class="line">            &lt;block class=&quot;ThankIT\HelloWorld\Block\Javascript\Example&quot; name=&quot;Javascript.Example&quot; template=&quot;ThankIT_HelloWorld::javascript/example.phtml&quot;/&gt;</span><br><span class="line">        &lt;/referenceContainer&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-Block"><a href="#创建-Block" class="headerlink" title="创建 Block"></a><a href="#%E5%88%9B%E5%BB%BA-block"></a>创建 Block</h3><p>File:app\code\ThankIT\HelloWorld\Block\Javascript\Example.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Controller\Javascript;</span><br><span class="line"></span><br><span class="line">class Example extends \Magento\Framework\App\Action\Action</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    protected $resultPageFactory;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Constructor</span><br><span class="line">     *</span><br><span class="line">     * @param \Magento\Framework\App\Action\Context  $context</span><br><span class="line">     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory</span><br><span class="line">     */</span><br><span class="line">    public function __construct(</span><br><span class="line">        \Magento\Framework\App\Action\Context $context,</span><br><span class="line">        \Magento\Framework\View\Result\PageFactory $resultPageFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;resultPageFactory = $resultPageFactory;</span><br><span class="line">        parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute view action</span><br><span class="line">     *</span><br><span class="line">     * @return \Magento\Framework\Controller\ResultInterface</span><br><span class="line">     */</span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;resultPageFactory-&gt;create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-template"><a href="#创建-template" class="headerlink" title="创建 template"></a><a href="#%E5%88%9B%E5%BB%BA-template"></a>创建 template</h3><p>File:app\code\ThankIT\HelloWorld\view\frontend\templates\javascript\example.phtml 内容为空 然后刷新缓存，访问 url <code>http://example/helloworld/javascript/example</code> 我们就会看到带 header 和 footer 的页面，内容为空。 这里没有什么稀奇的，只是一个准备工作，预热一下。</p>
+<h2 id="创建一个-requirejs-模块"><a href="#创建一个-requirejs-模块" class="headerlink" title="创建一个 requirejs 模块"></a><a href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-requirejs-%E6%A8%A1%E5%9D%97"></a>创建一个 requirejs 模块</h2><p>我们先关闭掉 fpc (Full page caching)，这样不用每次清缓存看结果。 我们先在 <code>File:app\code\ThankIT\HelloWorld\view\frontend\templates\javascript\example.phtml</code> 中填入以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    console.log(&#x27;hello&#x27;);</span><br><span class="line">    jQuery(function($)&#123;</span><br><span class="line">        alert(&quot;Hello World&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们刷新页面，查看控制台，会发现： <img src="/wp-content/uploads/2017/09/jquery-is-not-defined.png" alt="jQuery is not defined"> 这是因为 Magento 2 使用 RequireJS 做基础，对 JS 进行模块化，默认不会使用全局命名空间，<code>jQuery</code> 也不再暴露到全局空间。我们应该使用 <code>RequireJS</code> 的方式来访问 js 模块。 Magento 2 本身就是集成了 <code>jQuery</code> 的，所以我们可以这样访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    requirejs([&#x27;jquery&#x27;], function($) &#123;</span><br><span class="line">        alert(&quot;Hello World&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>关于 <code>RequireJS</code> 可以参阅 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-and-requirejs/">Magento 2 and RequireJS (翻译)</a> 我们现在创建以下文件： File: app\code\ThankIT\HelloWorld\view\frontend\web\example.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define([], function()&#123;</span><br><span class="line">    alert(&quot;A simple RequireJS module&quot;);</span><br><span class="line">    var mageJsComponent = function()</span><br><span class="line">    &#123;</span><br><span class="line">        alert(&quot;A simple magento component.&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就定义了一个简单的 RequireJS module，这个模块的位置是 <code>app\code\ThankIT\HelloWorld\view\frontend\web\example.js</code>，那么他的模块名，在没有重新命名的情况下，就是 <code>ThankIT_HelloWorld/example</code>。 然后我们来更改 phtml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    requirejs([&#x27;ThankIT_HelloWorld/example&#x27;], function($) &#123;</span><br><span class="line">        alert(&quot;Hello World&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>刷新网页，然后我们会先看到弹出框 A simple RequireJS module，然后是 Hello World。就是我们先加载 <code>ThankIT_HelloWorld/example</code> 然后执行 <code>alert(&quot;Hello World&quot;);</code> 好，这样看来，我们已经会给 Magento 2 加 js module ，并且在 phtml 中使用它了。 要了解更详细的解释，请参阅 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-javascript-init-scripts/">Magento 2 Javascript Init Scripts（翻译）</a></p>
+<h2 id="lt-script-type-quot-text-x-magento-init-quot-gt"><a href="#lt-script-type-quot-text-x-magento-init-quot-gt" class="headerlink" title="&lt;script type=&quot;text/x-magento-init&quot;&gt;"></a><a href="#%60%60"></a><code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code></h2><p>让我们来修改 phtml 为以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;*&quot;: &#123;</span><br><span class="line">            &quot;ThankIT_HelloWorld/example&quot;:&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>example</code> 的内容不变：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define([], function()&#123;</span><br><span class="line">    alert(&quot;A simple RequireJS module&quot;);</span><br><span class="line">    var mageJsComponent = function()</span><br><span class="line">    &#123;</span><br><span class="line">        alert(&quot;A simple magento component.&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这时候刷新页面（有时也需要情况浏览器缓存），我们会发现，这次先弹出 <code>A simple RequireJS module</code> 然后弹出 <code>A simple magento component.</code> 上面我们用 <code>requirejs</code> 的方法，并没有弹出 <code>A simple magento component.</code> 也就是说，<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code> 方式不仅会使用 <code>requirejs</code> 的方式加载该模块，而且还湖调用它。</p>
+<h2 id="传参"><a href="#传参" class="headerlink" title="传参"></a><a href="#%E4%BC%A0%E5%8F%82"></a>传参</h2><p>phtml 改成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;text&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;#text&quot;: &#123;</span><br><span class="line">            &quot;ThankIT_HelloWorld/example&quot;:&#123;&quot;config&quot;:&#123;&quot;text&quot;:&quot;Hello Magento 2, Hello ThankIT ...&quot;&amp;#125;&amp;#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>example</code> 改成:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define([&#x27;jquery&#x27;], function($)&#123;</span><br><span class="line">    var setText = function(config, node) &#123;</span><br><span class="line">        console.log(config);</span><br><span class="line">        console.log(node);</span><br><span class="line">        $(node).html(config.config.text);</span><br><span class="line">    &#125;</span><br><span class="line">    return setText;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>清空浏览器缓存，刷新页面，这时候，我们的页面会是这样的： <img src="/wp-content/uploads/2017/09/node-config-results.png" alt="magento 2 x-magento-init"> <img src="/wp-content/uploads/2017/09/console.log_.results.png" alt="magento 2 x-magento-init console log"> 不过这里<code>console.log</code> 出的结果有点奇怪，按照我的理解，输出的 node 不应该含有 <code>Hello Magento 2, Hello ThankIT ...</code> 内容。。。有清楚的朋友请给我留个言吧，感谢！ <em>通过上面这个例子，我们知道 ** <code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code> 方式可以传递要作用的节点，可以传递配置参数，并且之后被调用执行。**通过这样的设计，Magento 鼓励开发者避免在 RequireJS 模块中硬编码 DOM 节点。传递的配置参数可以由服务器端生成。这进一步分离的会让代码更清晰。</em></p>
+<h2 id="data-mage-init"><a href="#data-mage-init" class="headerlink" title="data-mage-init"></a><a href="#data-mage-init"></a>data-mage-init</h2><p>这个方式实际上和 <code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code> 是一样的。 我们把 phtml 改成下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div data-mage-init=&#x27;&#123;&quot;ThankIT_HelloWorld/example&quot;: &#123;&quot;config&quot;:&#123;&quot;text&quot;:&quot;Hello Magento 2, Hello ThankIT ... use data-mage-init ...&quot;&amp;#125;&amp;#125;&#125;&#x27;&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>刷新页面，是不是先看到 <code>A single div</code> ，随后被替换成了 <code>Hello Magento 2, Hello ThankIT ... use data-mage-init ...</code> <em>注意，我们的属性中使用的是单引号</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div data-mage-init=&#x27;...&#x27;&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是必要的，<code>data-mage-init</code> 属性会严格按照 JSON 格式解析，就是说 JSON 对象必须使用双引号，所以我们的属性就只能用单引号了。</p>
+<h2 id="关于如何实现的-type-x3D-”text-x2F-x-magento-init”"><a href="#关于如何实现的-type-x3D-”text-x2F-x-magento-init”" class="headerlink" title="关于如何实现的 type&#x3D;”text&#x2F;x-magento-init”"></a><a href="#%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84-type="></a>关于如何实现的 type&#x3D;”text&#x2F;x-magento-init”</h2><p>The code that uses them is located in <code>lib/web/mage/apply/scripts.js</code> 参考 <a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/89187/in-magento2-what-is-script-type-text-x-magento-init">In Magento2 what is<code>&lt;script type=“text/x-magento-init”&gt;</code>?</a></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-and-requirejs/">Magento 2 and RequireJS (翻译)</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-javascript-init-scripts/">Magento 2 Javascript Init Scripts（翻译）</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/data-mage-init/" rel="tag"># data-mage-init</a>
+              <a href="/tags/magneto2/" rel="tag"># magneto2</a>
+              <a href="/tags/requirejs/" rel="tag"># requirejs</a>
+              <a href="/tags/x-magento-init/" rel="tag"># x-magento-init</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-layout/" rel="prev" title="Magento Layout">
+      <i class="fa fa-chevron-left"></i> Magento Layout
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/json/" rel="next" title="JSON">
+      JSON <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento-2-%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">Magento 2 的自定义设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%BC%94%E7%A4%BA%E6%A8%A1%E5%9D%97"><span class="nav-number">2.</span> <span class="nav-text">创建一个演示模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-Controller"><span class="nav-number">2.1.</span> <span class="nav-text">创建 Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-layout"><span class="nav-number">2.2.</span> <span class="nav-text">创建 layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-Block"><span class="nav-number">2.3.</span> <span class="nav-text">创建 Block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-template"><span class="nav-number">2.4.</span> <span class="nav-text">创建 template</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-requirejs-%E6%A8%A1%E5%9D%97"><span class="nav-number">3.</span> <span class="nav-text">创建一个 requirejs 模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-script-type-quot-text-x-magento-init-quot-gt"><span class="nav-number">4.</span> <span class="nav-text">&lt;script type&#x3D;&quot;text&#x2F;x-magento-init&quot;&gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E5%8F%82"><span class="nav-number">5.</span> <span class="nav-text">传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-mage-init"><span class="nav-number">6.</span> <span class="nav-text">data-mage-init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84-type-x3D-%E2%80%9Dtext-x2F-x-magento-init%E2%80%9D"><span class="nav-number">7.</span> <span class="nav-text">关于如何实现的 type&#x3D;”text&#x2F;x-magento-init”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">8.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

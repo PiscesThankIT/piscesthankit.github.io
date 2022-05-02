@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 在开始 Magento 2 使用之前，需要了解一些基本的东西，其中之一就是系统可用的模式。  每种模式的主要特点 如何切换模式 如何显示当前的模式  Magento 2 总共有三种主要模式：developer(开发者模式), production(生产模式), default(默认模式) 还有一个 maintenance （维护）模式，该模式运行方式很特别，他将完全阻止对系统的访问。 M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="magento 2 modes - 每种模式的特点及如何切换（翻译）">
+<meta property="og:url" content="http://example.com/switch-magento-2-system-modes/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 在开始 Magento 2 使用之前，需要了解一些基本的东西，其中之一就是系统可用的模式。  每种模式的主要特点 如何切换模式 如何显示当前的模式  Magento 2 总共有三种主要模式：developer(开发者模式), production(生产模式), default(默认模式) 还有一个 maintenance （维护）模式，该模式运行方式很特别，他将完全阻止对系统的访问。 M">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/magento2-modes.png">
+<meta property="article:published_time" content="2016-11-25T04:03:32.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.176Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/11/magento2-modes.png">
+
+<link rel="canonical" href="http://example.com/switch-magento-2-system-modes/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>magento 2 modes - 每种模式的特点及如何切换（翻译） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/switch-magento-2-system-modes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          magento 2 modes - 每种模式的特点及如何切换（翻译）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-25 12:03:32" itemprop="dateCreated datePublished" datetime="2016-11-25T12:03:32+08:00">2016-11-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="http://rebeccatroth.co.uk/switch-magento-2-system-modes/">原文地址</a></p>
+<p>在开始 Magento 2 使用之前，需要了解一些基本的东西，其中之一就是系统可用的模式。</p>
+<ul>
+<li>每种模式的主要特点</li>
+<li>如何切换模式</li>
+<li>如何显示当前的模式</li>
+</ul>
+<p>Magento 2 总共有三种主要模式：developer(开发者模式), production(生产模式), default(默认模式)</p>
+<p>还有一个 maintenance （维护）模式，该模式运行方式很特别，他将完全阻止对系统的访问。</p>
+<h2 id="Magento-2-系统模式的主要特点"><a href="#Magento-2-系统模式的主要特点" class="headerlink" title="Magento 2 系统模式的主要特点"></a><a href="#magento-2-%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"></a>Magento 2 系统模式的主要特点</h2><p>Developer Mode</p>
+<p>Production Mode</p>
+<p>Default Mode</p>
+<p>Static File Caching(缓存静态文件)</p>
+<p>✓</p>
+<p>Exceptions Displayed(显示异常)</p>
+<p>✓</p>
+<p>Exceptions Logged(异常记录日志)</p>
+<p>✓</p>
+<p>✓</p>
+<p>Negative Performance Impact(负面的性能影响)</p>
+<p>✓</p>
+<p>✓</p>
+<h3 id="Developer-Mode"><a href="#Developer-Mode" class="headerlink" title="Developer Mode"></a><a href="#developer-mode"></a>Developer Mode</h3><p>当你正在开发代码的时候，你应该选择开发者模式，为什么呢？</p>
+<ul>
+<li>可以看到错误信息</li>
+<li>每次请求都会生成静态文件(static view files)</li>
+<li>没有使用缓存</li>
+<li>立刻可以看到变化</li>
+<li>会在浏览器中显示未捕获的异常</li>
+<li>在错误处理程序中抛出异常</li>
+<li>Exceptions are thrown whenever an event subscriber cannot be invoked（每当事件订阅服务器不能调用时，则将引发异常）</li>
+<li>该模式下 var&#x2F;report 中的系统日志非常详细</li>
+<li>显示自定义的 X-Magento-* HTTP 请求和响应标头</li>
+</ul>
+<p>该模式会降低性能，所以在生产环境中不该使用它。</p>
+<h3 id="Production-Mode"><a href="#Production-Mode" class="headerlink" title="Production Mode"></a><a href="#production-mode"></a>Production Mode</h3><p>部署到生产环境中后，你就应该使用生产模式，他是面向客户的，为什么呢？</p>
+<ul>
+<li>性能最好</li>
+<li>错误会记录到文件系统中，绝对不向客户展示错误。</li>
+<li>Static view file materialisation is disabled<ul>
+<li>这意味着 static view file 不会在每次需要时重新生成，他们已经通过 CLI 命令部署到 pub&#x2F;static 文件夹下</li>
+<li>对 view files 的任何更改都要通过 CLI deploy 才会有效果</li>
+<li>view files 已经被部署到 pub&#x2F;static ，这个文件夹下只需要 read-only 权限，这样更安全</li>
+</ul>
+</li>
+<li>Magento docroot 只有 read-only 权限</li>
+</ul>
+<p>developer 模式不应该用在生产环境中。 So, when you need to make changes, you should instead generate static content in development and then use the deployer.php tool to push changes to production</p>
+<h3 id="Default-Mode"><a href="#Default-Mode" class="headerlink" title="Default Mode"></a><a href="#default-mode"></a>Default Mode</h3><p>这是一个 fallback 模式，如果没有指定其他模式，就会使用默认模式。</p>
+<ul>
+<li>错误被记录到 var&#x2F;reports 中，但不会展示给用户</li>
+<li>Static view files are materialized and then cached<ul>
+<li>view files 的变化不会有效直到原来生成的 static view files 被清除了</li>
+</ul>
+</li>
+<li>隐藏自定义的 X-Magento-* HTTP 请求和响应标头</li>
+<li>这种模式没有为生产做最好的优化</li>
+</ul>
+<h3 id="Maintenance-Mode"><a href="#Maintenance-Mode" class="headerlink" title="Maintenance Mode"></a><a href="#maintenance-mode"></a>Maintenance Mode</h3><p>这是 Magento 2 预置的一个功能。当你在给系统升级或做其他改变的时候，你不想让用户使用网站，这时候会返回给用户 503 提示。</p>
+<p>Bootstrap::assertMaintenance() 方法控制该模式，你可以通过创建一个标识文件（var&#x2F;.maintenance.flag）来启用该模式。</p>
+<p>You can specify a group of people to have access to the site while this mode is employed by placing the associated IPs in var&#x2F;.maintenance.ip.</p>
+<h2 id="如何切换模式"><a href="#如何切换模式" class="headerlink" title="如何切换模式"></a><a href="#%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E6%A8%A1%E5%BC%8F"></a>如何切换模式</h2><h3 id="CLI-命令"><a href="#CLI-命令" class="headerlink" title="CLI 命令"></a><a href="#cli-%E5%91%BD%E4%BB%A4"></a>CLI 命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magento deploy:mode:set [mode] [-s--skip-compilation]</span><br></pre></td></tr></table></figure>
+
+<p>[mode] 不可少，可以是<code>developer</code> 或者 <code>production</code><br><code>--skip-compilation</code> 是可选的，如果你想在 <code>production</code> 模式的时候跳过 code compilation</p>
+<h3 id="Web-Server-Environment"><a href="#Web-Server-Environment" class="headerlink" title="Web Server Environment"></a><a href="#web-server-environment"></a>Web Server Environment</h3><p>（这种方式博主没有试过，暂时不翻译，以后试验过理解了再补上）<br>Apache web servers with mod_php support this method. The environment variables can be set in the main apache configuration or in the .htaccess.</p>
+<p>If you are using an Apache system you can do the following:</p>
+<ul>
+<li>Open Apache</li>
+<li>Open the .htaccess file</li>
+<li>Use the MAGE_MODE system environment variable to specify the mode as follows:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SetEnv MAGE_MODE [mode]</span><br></pre></td></tr></table></figure>
+
+<p>[mode] is required; it can be either default, developer or production</p>
+<p>After setting the mode you will need to restart the web server for it to take effect.</p>
+<h4 id="php-fpm-Environment"><a href="#php-fpm-Environment" class="headerlink" title="php-fpm Environment"></a><a href="#php-fpm-environment"></a>php-fpm Environment</h4><p>You can specify the mode in the php-fpm config or in the system environment in which the php-fpm is started.</p>
+<p>In the php-fpm config file, the value can be set as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env[MAGE_MODE]=[mode]</span><br></pre></td></tr></table></figure>
+
+<p>[mode] is required; it can be either default, developer or production</p>
+<h2 id="显示当前模式"><a href="#显示当前模式" class="headerlink" title="显示当前模式"></a><a href="#%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%A8%A1%E5%BC%8F"></a>显示当前模式</h2><p>CLI 命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magento deploy:mode:show</span><br></pre></td></tr></table></figure>
+
+<p>然后你会看到如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Current application mode: [mode].</span><br></pre></td></tr></table></figure>
+
+<h2 id="补充：Magento-的命令怎么用"><a href="#补充：Magento-的命令怎么用" class="headerlink" title="补充：Magento 的命令怎么用"></a><a href="#%E8%A1%A5%E5%85%85%EF%BC%9Amagento-%E7%9A%84%E5%91%BD%E4%BB%A4%E6%80%8E%E4%B9%88%E7%94%A8"></a>补充：Magento 的命令怎么用</h2><p>以 windows 下的 wamp 环境为例，请打开 CMD (命令提示符)<br>然后切换到 Magento 的根目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e:</span><br><span class="line">cd www\hellomagento2</span><br></pre></td></tr></table></figure>
+
+<p>这样我现在的位置在 <code>E:\www\hellomagento2</code> 下，这是我的 Magento 2 的根目录。这个目录下有 <code>app</code>,<code>bin</code> 等等文件。下面回到 CMD 输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin\magento list</span><br></pre></td></tr></table></figure>
+
+<p>就像下面这样，<br><img src="/wp-content/uploads/2016/11/magento2-modes.png" alt="magento 2 cmd"><br>好了，上面的命令告诉你 Magento 系统中所有可用的命令。同理，上面要显示当前的模式，命令是 <code>php bin\magento deploy:mode:show</code></p>
+<p>如果你出现错误提示<a href="/php-path/">php 不是内部或外部命令，也不是可运行的程序或批处理文件</a>，可以去这里看看。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-2-download/" rel="prev" title="Magento 2 最新源文件下载">
+      <i class="fa fa-chevron-left"></i> Magento 2 最新源文件下载
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/magento-2-zh-hans-cn-csv/" rel="next" title="Magento 2 中文化问题（原创）">
+      Magento 2 中文化问题（原创） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento-2-%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">Magento 2 系统模式的主要特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Developer-Mode"><span class="nav-number">1.1.</span> <span class="nav-text">Developer Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Production-Mode"><span class="nav-number">1.2.</span> <span class="nav-text">Production Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Default-Mode"><span class="nav-number">1.3.</span> <span class="nav-text">Default Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maintenance-Mode"><span class="nav-number">1.4.</span> <span class="nav-text">Maintenance Mode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">如何切换模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CLI-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">CLI 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Server-Environment"><span class="nav-number">2.2.</span> <span class="nav-text">Web Server Environment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#php-fpm-Environment"><span class="nav-number">2.2.1.</span> <span class="nav-text">php-fpm Environment</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">显示当前模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9AMagento-%E7%9A%84%E5%91%BD%E4%BB%A4%E6%80%8E%E4%B9%88%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">补充：Magento 的命令怎么用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

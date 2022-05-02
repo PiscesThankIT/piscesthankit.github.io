@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="结账，付款和发货 简化结账流程，减少数据输入来促进购买 根据发货地址自动显示物流选项 结账显示带有商品图片的订单汇总 购物车显示估计的税费和运费 提供注册用户和 Guest 用户结账（就是不注册马上结账）注册用户输入邮箱地址，结账时会自动识别出该客户 在购物结束（checkout thank you page）页面，客户可一键创建账户 前台后台都可以使用 HTTPS 允许客户保存购物车，稍后再购买">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 基本功能列表（翻译二）">
+<meta property="og:url" content="http://example.com/magento-feature-list-chinese-2/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="结账，付款和发货 简化结账流程，减少数据输入来促进购买 根据发货地址自动显示物流选项 结账显示带有商品图片的订单汇总 购物车显示估计的税费和运费 提供注册用户和 Guest 用户结账（就是不注册马上结账）注册用户输入邮箱地址，结账时会自动识别出该客户 在购物结束（checkout thank you page）页面，客户可一键创建账户 前台后台都可以使用 HTTPS 允许客户保存购物车，稍后再购买">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-12-14T07:22:13.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.187Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/magento-feature-list-chinese-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 基本功能列表（翻译二） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 基本功能列表（翻译二）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 15:22:13" itemprop="dateCreated datePublished" datetime="2016-12-14T15:22:13+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="结账，付款和发货"><a href="#结账，付款和发货" class="headerlink" title="结账，付款和发货"></a><a href="#%E7%BB%93%E8%B4%A6%EF%BC%8C%E4%BB%98%E6%AC%BE%E5%92%8C%E5%8F%91%E8%B4%A7"></a>结账，付款和发货</h2><ul>
+<li>简化结账流程，减少数据输入来促进购买</li>
+<li>根据发货地址自动显示物流选项</li>
+<li>结账显示带有商品图片的订单汇总</li>
+<li>购物车显示估计的税费和运费</li>
+<li>提供注册用户和 Guest 用户结账（就是不注册马上结账）注册用户输入邮箱地址，结账时会自动识别出该客户</li>
+<li>在购物结束（checkout thank you page）页面，客户可一键创建账户</li>
+<li>前台后台都可以使用 HTTPS</li>
+<li>允许客户保存购物车，稍后再购买</li>
+<li>每个订单的每件物品都接受赠礼留言</li>
+<li>发货后或是结账时验证信用卡和信用卡扣款（Authorize and charge credit cards upon shipment or checkout）</li>
+<li>整合了 Paypal 的多个支付网关，以及 Braintree 和 Authorize.net</li>
+<li>通过 Magneto 市场获得更多支付插件</li>
+<li>客户浏览器直接安全地发送信用卡信息到支付网关，不经过 Magento 应用</li>
+<li>根据不同支付方法，遵守 PCI 规范（Qualify for the easiest level of PCI compliance (SAQ-A or SAQ A-EP), depending on payment methods used）</li>
+<li>提供 Paypal 信用卡选项</li>
+<li>接受支票和汇票</li>
+<li>接受采购订单</li>
+<li>接受银行转账和货到付款</li>
+<li>接受如下公司的实时运费： UPS, UPS XML (account rates), FedEx (account rates), USPS, and DHL</li>
+<li>根据发货方式的不同，指定允许的目的地国家</li>
+<li>为每个订单或每件物品设置固定运费</li>
+<li>根据重量、价格、目的地以及物品数量，设置表费率</li>
+<li>可免费送货</li>
+<li>对所有主要的承运公司，集成 shipping label 打印功能</li>
+<li>客户账户可实时追踪物流情况</li>
+</ul>
+<h2 id="订单管理和客户服务"><a href="#订单管理和客户服务" class="headerlink" title="订单管理和客户服务"></a><a href="#%E8%AE%A2%E5%8D%95%E7%AE%A1%E7%90%86%E5%92%8C%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1"></a>订单管理和客户服务</h2><ul>
+<li>可在管理后台查看、编辑、创建和完成订单，并&#x2F;或开票</li>
+<li>对每笔订单，可创建多个发票、多次发货、多个贷项通知单（credit memo），以便分开履约</li>
+<li>打印发票、装箱单(packing slips) 和 快递单（shipping labels）</li>
+<li>创建自定义的订单状态标签，以跟踪进度</li>
+<li>允许客户服务代表创建订单及客户账户</li>
+<li>允许更改客户购物车和愿望清单中的商品及优惠券</li>
+<li>通过电子邮件通知和 RSS 订阅发送订单状态</li>
+<li>账户更改，密码重置等，可自定义电子邮件</li>
+<li>通过创建资讯订阅，发布内容，建立与客户的联系</li>
+<li>通过联系我们表单，连接客户</li>
+</ul>
+<h2 id="客户账户"><a href="#客户账户" class="headerlink" title="客户账户"></a><a href="#%E5%AE%A2%E6%88%B7%E8%B4%A6%E6%88%B7"></a>客户账户</h2><ul>
+<li>查看综合账户面板</li>
+<li>选择默认的 billing 和发货地址</li>
+<li>可在地址簿中保存无限个地址</li>
+<li>查看订单状态和历史纪录</li>
+<li>允许客户在账户中再次购买</li>
+<li>查看最近购买的商品</li>
+<li>创建可分享的愿望清单</li>
+<li>管理资讯订阅</li>
+<li>查看提交的商品评价</li>
+<li>访问可下载的&#x2F;电子产品</li>
+</ul>
+<h2 id="支持全球网站"><a href="#支持全球网站" class="headerlink" title="支持全球网站"></a><a href="#%E6%94%AF%E6%8C%81%E5%85%A8%E7%90%83%E7%BD%91%E7%AB%99"></a>支持全球网站</h2><ul>
+<li>在同一个店铺或环境中管理面向多个国家的站点</li>
+<li>支持本地化，多货币及地区税率</li>
+<li>适用任何语言</li>
+<li>使用重音字符（accented characters）和从右向左的排版</li>
+<li>配置站点注册、发货、开票允许的国家列表</li>
+<li>支持固定产品税，例如欧盟的 WEEE&#x2F;DEEE</li>
+<li>Automatically calculate tax for transactions in the EU with VAT-ID validation2</li>
+<li>Use EU cookie notification to simplify EU Privacy and Electronic Communications Directive compliance</li>
+</ul>
+<h2 id="移动电子商务"><a href="#移动电子商务" class="headerlink" title="移动电子商务"></a><a href="#%E7%A7%BB%E5%8A%A8%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1"></a>移动电子商务</h2><p>响应式设计</p>
+<ul>
+<li>通过内置的响应式基本参考主题，快速创建可供任何设备访问的网站。响应式主题：<ul>
+<li>可以很容易地进行自定义，更快上线</li>
+<li>包含主要流程，商品类型和功能</li>
+<li>减少长期的维护费用，使站点更新更容易</li>
+<li>通过使用 Google 青睐的方法优化移动站点，提供了 SEO 好处</li>
+<li>让客户可以通过手机阅读响应式的电子邮件，包括：订阅的资讯，通知，以及促销邮件等</li>
+</ul>
+</li>
+</ul>
+<h2 id="分析和报告"><a href="#分析和报告" class="headerlink" title="分析和报告"></a><a href="#%E5%88%86%E6%9E%90%E5%92%8C%E6%8A%A5%E5%91%8A"></a>分析和报告</h2><ul>
+<li>通过 Google Universal Analytics 获得分析报告</li>
+<li>通过后台面板获得下列报告：<ul>
+<li>销售报告</li>
+<li>税务报告</li>
+<li>被丢弃的购物车情况报告</li>
+<li>浏览最多的商品报告</li>
+<li>购买最多的商品报告</li>
+<li>低库存报告</li>
+<li>搜索词报告</li>
+<li>产品评价报告</li>
+<li>优惠券使用报告</li>
+<li>总销售开票报告</li>
+<li>总销售退款报告</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/learn-magento-before-use-archive/" rel="prev" title="了解 Magento">
+      <i class="fa fa-chevron-left"></i> 了解 Magento
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/magento-feature-list-chinese-3/" rel="next" title="Magento 基本功能列表（翻译三）">
+      Magento 基本功能列表（翻译三） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%B4%A6%EF%BC%8C%E4%BB%98%E6%AC%BE%E5%92%8C%E5%8F%91%E8%B4%A7"><span class="nav-number">1.</span> <span class="nav-text">结账，付款和发货</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A2%E5%8D%95%E7%AE%A1%E7%90%86%E5%92%8C%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">订单管理和客户服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E8%B4%A6%E6%88%B7"><span class="nav-number">3.</span> <span class="nav-text">客户账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%85%A8%E7%90%83%E7%BD%91%E7%AB%99"><span class="nav-number">4.</span> <span class="nav-text">支持全球网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1"><span class="nav-number">5.</span> <span class="nav-text">移动电子商务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%92%8C%E6%8A%A5%E5%91%8A"><span class="nav-number">6.</span> <span class="nav-text">分析和报告</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

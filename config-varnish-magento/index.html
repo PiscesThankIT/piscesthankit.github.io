@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Varnish 是一款高性能的开源 HTTP 加速器，反向代理缓存，挪威最大的在线报纸 Verdens Gang 使用 3 台 Varnish 代替了原来的 12 台 Squid，性能比以前更好。 安装以 ubuntu 为例 1sudo apt-get install varnish  启动 1service varnish start  访问网站：以我安装 varnish 的虚拟机为例，访问 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Varnish 初体验">
+<meta property="og:url" content="http://example.com/config-varnish-magento/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="Varnish 是一款高性能的开源 HTTP 加速器，反向代理缓存，挪威最大的在线报纸 Verdens Gang 使用 3 台 Varnish 代替了原来的 12 台 Squid，性能比以前更好。 安装以 ubuntu 为例 1sudo apt-get install varnish  启动 1service varnish start  访问网站：以我安装 varnish 的虚拟机为例，访问 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/10/varnish6081.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/10/6081response-header.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/10/80responseheader.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/10/magento2varnish-configuration.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/10/homepagetime.png">
+<meta property="article:published_time" content="2017-10-28T09:16:34.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.287Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="magento2">
+<meta property="article:tag" content="varnish 安装和配置">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/10/varnish6081.png">
+
+<link rel="canonical" href="http://example.com/config-varnish-magento/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Varnish 初体验 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/config-varnish-magento/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Varnish 初体验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-28 17:16:34" itemprop="dateCreated datePublished" datetime="2017-10-28T17:16:34+08:00">2017-10-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://varnish-cache.org/index.html">Varnish</a> 是一款高性能的开源 HTTP 加速器，反向代理缓存，挪威最大的在线报纸 Verdens Gang 使用 3 台 Varnish 代替了原来的 12 台 Squid，性能比以前更好。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><a href="#%E5%AE%89%E8%A3%85"></a>安装</h2><p>以 ubuntu 为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install varnish</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish start</span><br></pre></td></tr></table></figure>
+
+<p>访问网站：以我安装 varnish 的虚拟机为例，访问 <code>192.168.0.215:6081</code> 出现如下提示： <img src="/wp-content/uploads/2017/10/varnish6081.png"> 默认情况下 varnish 会请求他所在服务器的 8080 端口。 而我虚拟机上实际用的是 80 端口。所以 503 错误。 修改配置 <code>etc/varnish/default.vcl</code> 打开该文件会看到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line">backend default &#123;</span><br><span class="line">    .host = &quot;127.0.0.1&quot;;</span><br><span class="line">    .port = &quot;8080&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我将端口改为 80 后保存，然后 <code>service varnish reload</code> 然后再刷新这下就正常了。跟访问 80 端口一样。</p>
+<h2 id="初步试验"><a href="#初步试验" class="headerlink" title="初步试验"></a><a href="#%E5%88%9D%E6%AD%A5%E8%AF%95%E9%AA%8C"></a>初步试验</h2><p>在安装 varnish 之前，我已经建好了 Magento 2 的一个站点，80 访问正常。 下面用 6081 端口访问，看看有什么问题，记录下来，可能对后面有参照作用。 以下是我发现的问题： 首页正常，但页面中所有的链接仍然会被跳转回 80 端口。就是说尽管我请求的页面是 6081 但是页面中的其他链接仍然是 80 端口的请求。 6081 地址的后台是 404 woff, woff2,ttf 字体文件状态是 canceled 对比请求的头部信息变化： 6081 请求 <img src="/wp-content/uploads/2017/10/6081response-header.png" alt="6081"> 80 请求 <img src="/wp-content/uploads/2017/10/80responseheader.png" alt="80"> 至少可以发现请求头中出现了 <code>X-Varnish</code></p>
+<h2 id="让-Varnish-使用-80"><a href="#让-Varnish-使用-80" class="headerlink" title="让 Varnish 使用 80"></a><a href="#%E8%AE%A9-varnish-%E4%BD%BF%E7%94%A8-80"></a>让 Varnish 使用 80</h2><p>先让 varnish 停下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish stop</span><br></pre></td></tr></table></figure>
+
+<p>我虚拟机是 ubuntu 16.04 （检查版本：lsb_release -a） 其他版本的文件位置可能有变化，请参考文尾的参考链接。 修改 <code>/etc/default/varnish</code> 然后修改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DAEMON_OPTS=&quot;-a :6081 \</span><br><span class="line">             -T localhost:6082 \</span><br><span class="line">             -f /etc/varnish/default.vcl \</span><br><span class="line">             -S /etc/varnish/secret \</span><br><span class="line">             -s malloc,256m&quot;</span><br></pre></td></tr></table></figure>
+
+<p>为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DAEMON_OPTS=&quot;-a :80 \</span><br><span class="line">             -T localhost:6082 \</span><br><span class="line">             -f /etc/varnish/default.vcl \</span><br><span class="line">             -S /etc/varnish/secret \</span><br><span class="line">             -s malloc,256m&quot;</span><br></pre></td></tr></table></figure>
+
+<p>完成后启动 varnish</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish start</span><br></pre></td></tr></table></figure>
+
+<p>现在我们更改 <code>/etc/varnish/default.vcl</code> 让他后端去找 8080 端口，所以将</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line">backend default &#123;</span><br><span class="line">    .host = &quot;127.0.0.1&quot;;</span><br><span class="line">    .port = &quot;80&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改回：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line">backend default &#123;</span><br><span class="line">    .host = &quot;127.0.0.1&quot;;</span><br><span class="line">    .port = &quot;8080&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重新载入配置文件 <code>service varnish reload</code> 下面让 Apache 把 80 端口让出来，使用 8080 端口。 首先是 <code>/etc/apache2/ports.conf</code> 将<code>Listen 80</code> 改为 <code>Listen 8080</code> 然后虚拟目录的配置 <code>/etc/apache2/sites-available/000-default.conf</code> <code>&lt;VirtualHost *:80&gt;</code> 80 改为 * 或者 8080 重启 Apache</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+
+<p>然后发现访问 80 的时候提示错误 <code>ERR_CONNECTION_REFUSED</code> 查看端口情况 <code>netstat -lntp</code> 发现真的没有监听 80 端口 然后使用命令:<code>service varnish status</code> 发现他的配置文件是 <code>/lib/systemd/system/varnish.service</code> 下面打开该文件改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/sbin/varnishd -a :80 -T localhost:6082 -f /etc/varnish/default.vcl -S /etc/varnish/secret -s malloc,256m</span><br></pre></td></tr></table></figure>
+
+<p>保存后 <code>systemctl daemon-reload</code> 然后重新启动下 varnish 这下终于可以愉快的玩耍了。</p>
+<h2 id="配置-Magneto"><a href="#配置-Magneto" class="headerlink" title="配置 Magneto"></a><a href="#%E9%85%8D%E7%BD%AE-magneto"></a>配置 Magneto</h2><p>可以通过命令行或者进入后台进行配置，参考文尾的参考链接。 登录管理后台后，进入 <strong>STORES &gt; Configuration &gt; ADVANCED &gt; System &gt; Full Page Cache.</strong> 然后看图： <img src="/wp-content/uploads/2017/10/magento2varnish-configuration.png" alt="Configure Magento to use Varnish"> 刷新缓存，体验飞起来的速度。 φ(゜▽゜*) 首页加载时间如下图，留着以后参考： <img src="/wp-content/uploads/2017/10/homepagetime.png"></p>
+<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p>如果遇到问题，可以参考以下文档，顺藤摸瓜。 <a target="_blank" rel="noopener" href="https://varnish-cache.org/docs/5.0/tutorial/putting_varnish_on_port_80.html">Put Varnish on port 80</a> <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/config-guide/varnish/config-varnish-magento.html">Configure Magento to use Varnish</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/magento2/" rel="tag"># magento2</a>
+              <a href="/tags/varnish-%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" rel="tag"># varnish 安装和配置</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-2-helper/" rel="prev" title="magento 2 helper">
+      <i class="fa fa-chevron-left"></i> magento 2 helper
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%9E%84%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD-web-%E7%AB%99%E7%82%B9%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="构建高性能 web 站点笔记（一）">
+      构建高性能 web 站点笔记（一） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E6%AD%A5%E8%AF%95%E9%AA%8C"><span class="nav-number">2.</span> <span class="nav-text">初步试验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A9-Varnish-%E4%BD%BF%E7%94%A8-80"><span class="nav-number">3.</span> <span class="nav-text">让 Varnish 使用 80</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-Magneto"><span class="nav-number">4.</span> <span class="nav-text">配置 Magneto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"><span class="nav-number">5.</span> <span class="nav-text">参考网址</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 虽然 KnockoutJS 作为 MVVM 框架（model,view,view model），但是PHP开发人员会发现model部分有点瘦。KnockoutJS 本身没有 data storage 的概念，像许多现代js框架一样，it was designed to work best with a service only backend（设计为和 service only 的后端一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 KnockoutJS 集成">
+<meta property="og:url" content="http://example.com/alan-magento-2-knockoutjs-integration/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 虽然 KnockoutJS 作为 MVVM 框架（model,view,view model），但是PHP开发人员会发现model部分有点瘦。KnockoutJS 本身没有 data storage 的概念，像许多现代js框架一样，it was designed to work best with a service only backend（设计为和 service only 的后端一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-11-02T14:28:39.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.125Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/alan-magento-2-knockoutjs-integration/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 KnockoutJS 集成 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-2-knockoutjs-integration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 KnockoutJS 集成
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-02 22:28:39" itemprop="dateCreated datePublished" datetime="2016-11-02T22:28:39+08:00">2016-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_knockoutjs_integration/">原文地址</a></em></p>
+<p>虽然 KnockoutJS 作为 MVVM 框架（model,view,view model），但是PHP开发人员会发现model部分有点瘦。KnockoutJS 本身没有 data storage 的概念，像许多现代js框架一样，it was designed to work best with a service only backend（设计为和 service only 的后端一起工作）. i.e. <a target="_blank" rel="noopener" href="http://knockoutjs.com/documentation/json-data.html">KnockoutJS’s “Model” is some other framework making AJAX requests</a> to populate view model values.</p>
+<p>另外一件可能会让你意外的事情是，KnockoutJS 并不是一个“full stack”框架（and to its credit, doesn’t bill itself as such）</p>
+<p>KnockoutJS 没有规定你如何在项目中使用它，也没有规定你怎么组织代码。（虽然从文档可以看出KnockoutJS的团队成员是RequireJS的粉丝）。</p>
+<p>这对类似Magento这样的服务器端PHP框架提出了一个有趣的挑战。要使用KnockoutJS,不仅得围绕着它搭建一定程度的js“脚手架”，而且 Magento 2本身可不是一个service only的框架。Magento 2 的全新API在解决后一个问题上取得了进展，但是后端开发人员还是需要建立将业务数据对象注入 KnockoutJS 的脚手架。</p>
+<p>今天我们来深入Magento 2 的 KnockoutJS 集成问题。通过本教程，你将明白 Magento 2 是如何应用 KnockoutJS 绑定的，以及Magento 2 是如何初始化他的自定义绑定的。你还将明白 Magento 是如何修改核心 KnockoutJS 的某些行为的，为什么要这样做，以及这些修改带给你的模块和应用的可能性。</p>
+<p>本篇教程是 Alan 的 Magento 2 高级js概念系列文章中的一篇，如果你在下文遇到不理解的概念，可以翻看一下该文章的前几篇。</p>
+<h2 id="Creating-a-Magento-Module"><a href="#Creating-a-Magento-Module" class="headerlink" title="Creating a Magento Module"></a><a href="#creating-a-magento-module"></a>Creating a Magento Module</h2><p>我们得创建一个<code>Pulsestorm KnockoutTutorial</code>模块，并且可以通过<code>http://magento.example.com/pulsestorm_knockouttutorial/</code>链接看到<code>app/code/Pulsestorm/KnockoutTutorial/view/frontend/templates/content.phtml</code>模板的渲染效果。</p>
+<p>Alan 没有提供示例代码，你可以自己创建，也可以去博主的 github 仓库下载。<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/Magento-2-KnockoutJS-Integration">示例代码下载地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_KnockoutTutorial</span><br><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+
+<h2 id="RequireJS-Initialization"><a href="#RequireJS-Initialization" class="headerlink" title="RequireJS Initialization"></a><a href="#requirejs-initialization"></a>RequireJS Initialization</h2><p>在我们之前的文章以及KnockoutJS官方教程中，KnockoutJS的初始化时很简单的事情。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">object = SomeViewModelConstructor();</span><br><span class="line">ko.applyBindings(object);</span><br></pre></td></tr></table></figure>
+
+<p>上面的做法只是为了教程讲解。然而，如果你将所有的 view model 逻辑，自定义绑定，组件都放在一个代码块中的话，KnockoutJS 将很快变得不好管理了。</p>
+<p>Magento 的核心团队创建了一个<code>Magento_Ui/js/lib/ko/initialize</code> RequireJS 模块。只要将它作为依赖模块，就会执行KnockoutJS的初始化。你可以像下面这样使用它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;Magento_Ui/js/lib/ko/initialize&#x27;], function()&#123;</span><br><span class="line">    //your program here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>要注意的是这个 RequireJS 模块没有返回值，将他作为依赖模块唯一的目的就是进行 KnockoutJS 的初始化。你在实际环境中见到他，可能会感到困惑。举例来说，看下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;./renderer/types&#x27;,</span><br><span class="line">    &#x27;./renderer/layout&#x27;,</span><br><span class="line">    &#x27;Magento_Ui/js/lib/ko/initialize&#x27;</span><br><span class="line">], function (types, layout) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    return function (data) &#123;</span><br><span class="line">        types.set(data.types);</span><br><span class="line">        layout(data.components);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>声明了三个 RequireJS 依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">[</span><br><span class="line">&#x27;./renderer/types&#x27;,</span><br><span class="line">&#x27;./renderer/layout&#x27;,</span><br><span class="line">&#x27;Magento_Ui/js/lib/ko/initialize&#x27;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>但是回调函数中却只有两个参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">function (types, layout) &#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我还不清楚这种做法是否明智，或者是否违反了RequireJS的精神。也许都有。</p>
+<p>不管怎么说，你用这个模块，Magento 就会初始化 KnockoutJS 了。RequireJS 会在第一次加载模块时就缓存他们，所以之后加载的模块不会被重复载入。</p>
+<h2 id="KnockoutJS-Initialization"><a href="#KnockoutJS-Initialization" class="headerlink" title="KnockoutJS Initialization"></a><a href="#knockoutjs-initialization"></a>KnockoutJS Initialization</h2><p>我们来看看<code>Magento_Ui/js/lib/ko/initialize</code>模块的源代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./template/engine&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-repeat&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-fast-foreach&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-es5&#x27;,</span><br><span class="line">    &#x27;./bind/scope&#x27;,</span><br><span class="line">    &#x27;./bind/staticChecked&#x27;,</span><br><span class="line">    &#x27;./bind/datepicker&#x27;,</span><br><span class="line">    &#x27;./bind/outer_click&#x27;,</span><br><span class="line">    &#x27;./bind/keyboard&#x27;,</span><br><span class="line">    &#x27;./bind/optgroup&#x27;,</span><br><span class="line">    &#x27;./bind/fadeVisible&#x27;,</span><br><span class="line">    &#x27;./bind/mage-init&#x27;,</span><br><span class="line">    &#x27;./bind/after-render&#x27;,</span><br><span class="line">    &#x27;./bind/i18n&#x27;,</span><br><span class="line">    &#x27;./bind/collapsible&#x27;,</span><br><span class="line">    &#x27;./bind/autoselect&#x27;,</span><br><span class="line">    &#x27;./extender/observable_array&#x27;,</span><br><span class="line">    &#x27;./extender/bound-nodes&#x27;</span><br><span class="line">], function (ko, templateEngine) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    ko.setTemplateEngine(templateEngine);</span><br><span class="line">    ko.applyBindings();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>我们看到这个模块相对简单，但还是包含了19个其他模块。要说清每个模块做什么，已经超出本篇的范围了。只讲重要的。</p>
+<p><code>ko</code>模块实际上是<code>knockoutjs/knockout</code>模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vendor/magento/module-theme/view/base/requirejs-config.js</span><br><span class="line">11:            &quot;ko&quot;: &quot;knockoutjs/knockout&quot;,</span><br><span class="line">12:            &quot;knockout&quot;: &quot;knockoutjs/knockout&quot;</span><br></pre></td></tr></table></figure>
+
+<p><code>knockoutjs/knockout</code>模块实际上就是 KnockoutJS 库。<code>knockoutjs/knockout-repeat</code>,<code>knockoutjs/knockout-fast-foreach</code>, and<br><code>knockoutjs/knockout-es5</code> 是 KnockoutJS community extras（社区插件）这些都不是正规的 RequireJS 模块。</p>
+<p>从<code>./bind/*</code>开始的模块是 Magento 的 KnockoutJS 自定义绑定。他们是正经的 RequireJS 模块，不过他们实际上没有返回。这些脚本给全局的<code>ko</code>对象添加绑定。我们下面会讨论<code>scope</code> 绑定。如果你对绑定实现的细节感兴趣，可以去<a target="_blank" rel="noopener" href="https://github.com/magento/devdocs/issues/718">这里看看</a>，期待官方文档快点出来。</p>
+<p>这两个<code>extender</code>模块是Magento 对 KnockoutJS 功能扩展的核心模块。</p>
+<p><code>./template/engine</code>模块返回了一个自定义版本的 KnockoutJS 模板引擎。这是我们下面第一个要讨论的。</p>
+<h2 id="Magento-KnockoutJS-Templates"><a href="#Magento-KnockoutJS-Templates" class="headerlink" title="Magento KnockoutJS Templates"></a><a href="#magento-knockoutjs-templates"></a>Magento KnockoutJS Templates</h2><p>KnockoutJS 系统中，模板是一些事先写好的 DOM&#x2F;KnockoutJS 代码，可以通过<code>id</code>来引用他们。这些代码块以下面的形式添加到页面中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/html&quot; id=&quot;my_template&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是个很强大的功能，但是提出了一个问题——对于服务器端的框架来说，如何获取正确的模板并渲染到页面上呢？如何确保不用重复创建模板呢？KnockoutJS 的解决方案是使用组件绑定配合RequireJS，但是这意味着你的模板绑定在特定的view model 对象上。</p>
+<p>Magento 的核心工程师需要一种更好的办法来加载 KnockoutJS 模板。—— 他们使用<code>Magento_Ui/js/lib/ko/template/engine</code>模块的引擎替换掉了 KnockoutJS 原先的模板引擎。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./template/engine&#x27;,</span><br><span class="line">    //...</span><br><span class="line">], function (ko, templateEngine) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line">    //...</span><br><span class="line">    ko.setTemplateEngine(templateEngine);</span><br><span class="line">    //...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果我们看一看<code>Magento_Ui/js/lib/ko/template/engine</code>这个模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/template/engine.js</span><br><span class="line">/**</span><br><span class="line"> * Copyright © 2016 Magento. All rights reserved.</span><br><span class="line"> * See COPYING.txt for license details.</span><br><span class="line"> */</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./observable_source&#x27;,</span><br><span class="line">    &#x27;./renderer&#x27;</span><br><span class="line">], function (ko, Source, Renderer) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    var RemoteTemplateEngine,</span><br><span class="line">        NativeTemplateEngine = ko.nativeTemplateEngine,</span><br><span class="line">        sources = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    //...</span><br><span class="line"></span><br><span class="line">    RemoteTemplateEngine.prototype = new NativeTemplateEngine;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //...</span><br><span class="line">    RemoteTemplateEngine.prototype.makeTemplateSource = function (template)</span><br><span class="line">    &#123;</span><br><span class="line">        //...</span><br><span class="line">    &#125;</span><br><span class="line">    //...</span><br><span class="line"></span><br><span class="line">    return new RemoteTemplateEngine;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Magento 创建了一个新的对象，该对象用原型法继承了 KnockoutJS 的引擎，然后修改了一些方法增加自定的行为。If you’re not up on your javascript internals, this means Magento copies the stock KnockoutJS template system, changes it a bit, and then swaps its new template engine in for the stock one.</p>
+<p>实现的细节超过了本篇的范围，不过最终的结果是KnockoutJS 引擎可以通过 URL 链接从Magento模板中获取模板。</p>
+<p>如果这样说没有让你搞懂，那么来个例子。向<code>content.phtml</code>文件中加入以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/KnockoutTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;div data-bind=&quot;template:&#x27;Pulsestorm_KnockoutTutorial/hello&#x27;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们用了模板绑定，并且把<code>Pulsestorm_KnockoutTutorial/hello</code>字符串传递给他。现在如果你刷新页面的话(记得清空缓存)，你将会在浏览器 console 中看到如下错误信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;Get http://127.0.0.1/pub/static/frontend/Magento/luma/en_US/Pulsestorm_KnockoutTutorial/template/hello.html 404 (Not Found)</span><br></pre></td></tr></table></figure>
+
+<p>Magento 用我们传递给他的字符串（<code>Pulsestorm_KnockoutTutorial/hello</code>）构造一个 URL ，注意看这个构造出的URL和字符串各部分的联系。</p>
+<p>让我们添加如下文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/KnockoutTutorial/view/frontend/web/template/hello.html</span><br><span class="line">&lt;p data-bind=&quot;style:&#123;fontSize:&#x27;24px&#x27;&#125;&quot;&gt;Hello World&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>重新载入页面，你会看到 Magento 已经加载了该模板并且应用了KnockoutJS绑定。</p>
+<p>这项功能使我们不再需要使用<code>&lt;script type=&quot;text/html&quot;&gt;</code>，有助于模板复用。（This feature allows us to avoid littering our HTML page with <code>&lt;script type=&quot;text/html&quot;&gt;</code> tags whenever we need a new template, and encourages template reuse between UI and UX features.）</p>
+<h2 id="No-View-Model"><a href="#No-View-Model" class="headerlink" title="No View Model"></a><a href="#no-view-model"></a>No View Model</h2><p>回到<code>initialize.js</code>模块，Magento 设置好模板引擎之后，调用了 KnockoutJS 的applyBindings 方法。这个调用开始了当前页面的渲染。看下代码，立马发现一件事情。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">ko.setTemplateEngine(templateEngine);</span><br><span class="line">ko.applyBindings();</span><br></pre></td></tr></table></figure>
+
+<p>Magento 调用<code>applyBindings</code>没有传递任何 view model。虽然这是一个有效的 KnockoutJS 调用——让 KnockoutJS 应用绑定，但没有数据或view model 逻辑，这么做看起来一点意义也没有。What is a view without data going to be good for?</p>
+<p>在标准的 KnockoutJS 系统中，这样做确实一点意义也没有。要理解这一步Magento在做什么，我就得回到 KnockoutJS 的初始化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/initialize.js</span><br><span class="line">define([</span><br><span class="line">    //...</span><br><span class="line">    &#x27;./bind/scope&#x27;,</span><br><span class="line">    //...</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<p>Magento 的 KnockoutJS 团队创建了一个名为<code>scope</code>的自定义绑定。下面是一<code>scope</code>绑定应用的例子，代码是 Magento 2 主页中用到的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;li class=&quot;greet welcome&quot; data-bind=&quot;scope: &#x27;customer&#x27;&quot;&gt;</span><br><span class="line">    &lt;span data-bind=&quot;text: customer().fullname ? $t(&#x27;Welcome, %1!&#x27;).replace(&#x27;%1&#x27;, customer().fullname) : &#x27;Default welcome msg!&#x27;&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当你向下面这样调用<code>scope</code>的时候，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-bind=&quot;scope: &#x27;customer&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 将会对该节点及其子节点应用<strong>customer</strong> view model</p>
+<p>你可能会想——见鬼，<strong>customer</strong> view model 是什么玩意儿？</p>
+<p>如果你查看主页的源代码，再往下看一点(源代码在105行)，你应该会看到如下标签。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">&#123;</span><br><span class="line">    &quot;*&quot;: &#123;</span><br><span class="line">        &quot;Magento_Ui/js/core/app&quot;: &#123;</span><br><span class="line">            &quot;components&quot;: &#123;</span><br><span class="line">                &quot;customer&quot;: &#123;</span><br><span class="line">                    &quot;component&quot;: &quot;Magento_Customer/js/view/customer&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们本系列的第一篇文章讲过，Magento 遇到<code>text/x-magento-init</code>script 标签，属性为<code>*</code>，它将：</p>
+<ol>
+<li>初始化<code>Magento_Ui/js/core/app</code>RequireJS 模块。</li>
+<li>调用<code>Magento_Ui/js/core/app</code>模块的返回方法，并将后面的数据对象传递给他。</li>
+</ol>
+<p><code>Magento_Ui/js/core/app</code>模块 <strong>instantiates KnockoutJS view models</strong> to use with the scope attribute.（实例化 scope 自定义绑定要用的view model）。这是怎么实现的超出本篇文章的范围了，不过总的来说，Magento will instantiate a new javascript object for each individual RequireJS module configured as a <code>component</code>, and that new object becomes the view model.</p>
+<p>下面我们用<code>x-magento-init</code>举个例子，Magento查找<code>components</code>键，该键对应的是一个键值对。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;customer&quot;: &#123;</span><br><span class="line">    &quot;component&quot;: &quot;Magento_Customer/js/view/customer&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对<code>customer</code>键，Magneto 会执行类似下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//gross over simplification</span><br><span class="line">var ViewModelConstructor = requirejs(&#x27;Magento_Customer/js/view/customer&#x27;);</span><br><span class="line">var viewModel = new ViewModelConstructor;</span><br><span class="line">viewModelRegistry.save(&#x27;customer&#x27;, viewModel);</span><br></pre></td></tr></table></figure>
+
+<p>如果某些组件对象有额外的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;customer&quot;: &#123;</span><br><span class="line">    &quot;component&quot;: &quot;Magento_Customer/js/view/customer&quot;,</span><br><span class="line">    &quot;extra_data&quot;:&quot;something&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 会将这些数据一并放入view model</p>
+<p>一旦上述代码执行完毕，view model registry 就会拥有一个名为<code>customer</code>的view model。Magento 对<code>data-bind=&quot;scope: &#39;customer&#39;&quot;</code>应用的绑定就是这个view model。</p>
+<p>如果我们查看<code>scope</code>自定义绑定的实现代码的话，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/bind/scope.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;uiRegistry&#x27;,</span><br><span class="line">    &#x27;jquery&#x27;,</span><br><span class="line">    &#x27;mage/translate&#x27;</span><br><span class="line">], function (ko, registry, $) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    //...</span><br><span class="line">        update: function (el, valueAccessor, allBindings, viewModel, bindingContext) &#123;</span><br><span class="line">            var component = valueAccessor(),</span><br><span class="line">                apply = applyComponents.bind(this, el, bindingContext);</span><br><span class="line"></span><br><span class="line">            if (typeof component === &#x27;string&#x27;) &#123;</span><br><span class="line">                registry.get(component, apply);</span><br><span class="line">            &#125; else if (typeof component === &#x27;function&#x27;) &#123;</span><br><span class="line">                component(apply);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    //...</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>registry.get(component, apply);</code>行从 view model registry 处获得那个view model，之后的代码实际上是应用该 view model</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/ko/bind/scope.js</span><br><span class="line"></span><br><span class="line">//the component variable is our viewModel</span><br><span class="line">function applyComponents(el, bindingContext, component) &#123;</span><br><span class="line">    component = bindingContext.createChildContext(component);</span><br><span class="line"></span><br><span class="line">    ko.utils.extend(component, &#123;</span><br><span class="line">        $t: i18n</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    ko.utils.arrayForEach(el.childNodes, ko.cleanNode);</span><br><span class="line"></span><br><span class="line">    ko.applyBindingsToDescendants(component, el);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>registry</code>变量来自于<code>uiRegistry</code>模块，该模块实际上是<code>Magento_Ui/js/lib/registry/registry</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vendor/magento/module-ui/view/base/requirejs-config.js</span><br><span class="line">17:            uiRegistry:     &#x27;Magento_Ui/js/lib/registry/registry&#x27;,</span><br></pre></td></tr></table></figure>
+
+<p>如果感觉脑子不够用了，别担心。如果你想看看某个scope绑定中可用的数据，下面的debugging 代码会很有帮助。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;li class=&quot;greet welcome&quot; data-bind=&quot;scope: &#x27;customer&#x27;&quot;&gt;</span><br><span class="line">    &lt;pre data-bind=&quot;text: ko.toJSON($data, null, 2)&quot;&gt;&lt;/pre&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你对 Magento如何创建 view model 的真实实现细节感兴趣的话（上面的简化伪代码不能满足你的好奇心），你可以从<code>Magento_Ui/js/core/app</code>模块下手。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;./renderer/types&#x27;,</span><br><span class="line">    &#x27;./renderer/layout&#x27;,</span><br><span class="line">    &#x27;Magento_Ui/js/lib/ko/initialize&#x27;</span><br><span class="line">], function (types, layout) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    return function (data) &#123;</span><br><span class="line">        types.set(data.types);</span><br><span class="line">        layout(data.components);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这个模块依赖<code>Magento_Ui/js/core/renderer/layout</code>模块，正是这个模块创建了 view model，并将他们添加到view model registry 中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/renderer/layout.js</span><br></pre></td></tr></table></figure>
+
+<p>你可去上面的文件研究 view model 是怎么创建出来的。</p>
+<h2 id="A-component-by-Any-Other-Name"><a href="#A-component-by-Any-Other-Name" class="headerlink" title="A component by Any Other Name"></a><a href="#a-component-by-any-other-name"></a>A component by Any Other Name</h2><p>One sticky wicket in all this is the word <code>component</code>. <code>scope</code>绑定加上<code>x-magento-init</code> is basically a different take on <a target="_blank" rel="noopener" href="http://knockoutjs.com/documentation/component-binding.html">the native KnockoutJS component system</a>.</p>
+<p>Magento 使用了和 KnockoutJS 相同的<code>component</code>这一术语，他们实际上不是一回事情，这下简直开启了一个混乱的新世界。即使是<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/javascript-dev-guide/javascript/js_overview.html">Magento官方文档</a>，看起来也没有说清楚什么是<code>component</code>什么不是。Such is life on a large software team where the left hand doesn’t know what the right hand is doing — and the rest of the body is freaking out about a third hand growing out of its back.(哈哈，翻不出味道，自己领会一下，挺幽默的！)</p>
+<p>当你和同事讨论这些特性或者是在社区提问时，区分 KnockoutJS components 和Magento components 是很重要的哦。</p>
+<h2 id="Changes-in-the-2-1-Release-Candidate"><a href="#Changes-in-the-2-1-Release-Candidate" class="headerlink" title="Changes in the 2.1 Release Candidate"></a><a href="#changes-in-the-2.1-release-candidate"></a>Changes in the 2.1 Release Candidate</h2><p>今天的总结，我们要讨论一下 Magento 2.1 版本的一些改变。从概念上讲，系统仍然是相同的，只是细节有一点变化。</p>
+<p>第一，KnockoutJS 的初始化现在发生在<code>Magento_Ui/js/lib/knockout/bootstrap</code>RequireJS 模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/knockout/bootstrap.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;ko&#x27;,</span><br><span class="line">    &#x27;./template/engine&#x27;,</span><br><span class="line">    &#x27;knockoutjs/knockout-es5&#x27;,</span><br><span class="line">    &#x27;./bindings/bootstrap&#x27;,</span><br><span class="line">    &#x27;./extender/observable_array&#x27;,</span><br><span class="line">    &#x27;./extender/bound-nodes&#x27;,</span><br><span class="line">    &#x27;domReady!&#x27;</span><br><span class="line">], function (ko, templateEngine) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    ko.uid = 0;</span><br><span class="line"></span><br><span class="line">    ko.setTemplateEngine(templateEngine);</span><br><span class="line">    ko.applyBindings();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Magento 核心开发团队将所有的 binding loading 移到<code>Magento_Ui/js/lib/knockout/bindings/bootstrap</code>模块，该模块位于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/lib/knockout/bindings/bootstrap.js</span><br></pre></td></tr></table></figure>
+
+<p>最后，the “Magento Javascript Component” returned by <code>Magento_Ui/js/core/app</code> has a changed method signature that includes a merge parameter, and the arguments to the <code>layout</code> function make it clear <code>layout‘s</code> signature has changed as well.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#File: vendor/magento/module-ui/view/base/web/js/core/app.js</span><br><span class="line">define([</span><br><span class="line">    &#x27;./renderer/types&#x27;,</span><br><span class="line">    &#x27;./renderer/layout&#x27;,</span><br><span class="line">    &#x27;../lib/knockout/bootstrap&#x27;</span><br><span class="line">], function (types, layout) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    return function (data, merge) &#123;</span><br><span class="line">        types.set(data.types);</span><br><span class="line">        layout(data.components, undefined, true, merge);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>超越实现细节，这些更改揭露出一个事实，Magento 的 js 模块和框架在频繁变动中，不同于PHP代码，Magento 的 RequireJS 模块没有<code>@api</code>标识来表示稳定性。</p>
+<p>Unless you absolutely need to, it’s probably best to steer clear of dynamically changing the behavior of these core modules, and keep your own javascript as separate as possible。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a><a href="#%E4%B8%8B%E8%BD%BD"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/Magento-2-KnockoutJS-Integration">实例代码下载</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/alan-knockoutjs-primer-for-magento-developers/" rel="prev" title="KnockoutJS Primer for Magento Developers （翻译）">
+      <i class="fa fa-chevron-left"></i> KnockoutJS Primer for Magento Developers （翻译）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/about-view-xml/" rel="next" title="关于 view.xml">
+      关于 view.xml <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-a-Magento-Module"><span class="nav-number">1.</span> <span class="nav-text">Creating a Magento Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequireJS-Initialization"><span class="nav-number">2.</span> <span class="nav-text">RequireJS Initialization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KnockoutJS-Initialization"><span class="nav-number">3.</span> <span class="nav-text">KnockoutJS Initialization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Magento-KnockoutJS-Templates"><span class="nav-number">4.</span> <span class="nav-text">Magento KnockoutJS Templates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#No-View-Model"><span class="nav-number">5.</span> <span class="nav-text">No View Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-component-by-Any-Other-Name"><span class="nav-number">6.</span> <span class="nav-text">A component by Any Other Name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Changes-in-the-2-1-Release-Candidate"><span class="nav-number">7.</span> <span class="nav-text">Changes in the 2.1 Release Candidate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">8.</span> <span class="nav-text">下载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

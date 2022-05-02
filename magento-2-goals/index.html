@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言：本篇是 Alan Kent 关于 Magento 2 的目标的个人看法，原文地址：https:&#x2F;&#x2F;alankent.me&#x2F;2014&#x2F;05&#x2F;17&#x2F;magento-2-goals&#x2F;。Alen Kent 是 Magento 的架构副总裁（ VP of Architecture 不知道这么翻译对不对额）。希望有助于多一点了解 Magento 2 。原文发布时间为2014年5月17日 Magento">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 Goals （翻译）">
+<meta property="og:url" content="http://example.com/magento-2-goals/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="前言：本篇是 Alan Kent 关于 Magento 2 的目标的个人看法，原文地址：https:&#x2F;&#x2F;alankent.me&#x2F;2014&#x2F;05&#x2F;17&#x2F;magento-2-goals&#x2F;。Alen Kent 是 Magento 的架构副总裁（ VP of Architecture 不知道这么翻译对不对额）。希望有助于多一点了解 Magento 2 。原文发布时间为2014年5月17日 Magento">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-10T09:35:25.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.076Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/magento-2-goals/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 Goals （翻译） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-goals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 Goals （翻译）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-10 17:35:25" itemprop="dateCreated datePublished" datetime="2016-10-10T17:35:25+08:00">2016-10-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>前言：本篇是 Alan Kent 关于 Magento 2 的目标的个人看法，原文地址：<a target="_blank" rel="noopener" href="https://alankent.me/2014/05/17/magento-2-goals/">https://alankent.me/2014/05/17/magento-2-goals/</a>。Alen Kent 是 Magento 的架构副总裁（ VP of Architecture 不知道这么翻译对不对额）。希望有助于多一点了解 Magento 2 。原文发布时间为2014年5月17日</em></p>
+<p>Magento 2 像所有的重大项目一样，有一套自己的目标。这些已经在最近的 Magento Imagine 2014 研讨会上讨论过了。在这里，我结合自己的看法，做一个总结，以供有兴趣的人继续探讨。</p>
+<p>声明：本篇仅代表个人观点，不代表 eBay 公司的观点。</p>
+<h2 id="全新的技术栈"><a href="#全新的技术栈" class="headerlink" title="全新的技术栈"></a><a href="#%E5%85%A8%E6%96%B0%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88"></a>全新的技术栈</h2><p>Magento 2 对技术栈的最低版本要求提高了。Magneto 2 被设计成为一个强大稳定的平台，所以选择了相对成熟的技术，而不是停留在过去。不依赖太多不同的技术，但努力做到允许社区在平台的基础上选择他们喜欢的技术，也是其中的一个目标。But I expect this is an area you just have to expect to not satisfy somebody （不知道怎么翻译。。囧）</p>
+<p>需要升级的技术有：</p>
+<ul>
+<li>php 5.4 版本支持的最低版本</li>
+<li>现在用上 jQuery 了。要注意升级技术栈并不是说就要用最前沿的技术。</li>
+<li>Html5 和 CSS 3</li>
+<li>RequireJS</li>
+<li>PSR-0, PSR-1,PSR-2 （PHP 编码规范）</li>
+<li>LESS</li>
+</ul>
+<h2 id="改进的性能和可扩展性"><a href="#改进的性能和可扩展性" class="headerlink" title="改进的性能和可扩展性"></a><a href="#%E6%94%B9%E8%BF%9B%E7%9A%84%E6%80%A7%E8%83%BD%E5%92%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"></a>改进的性能和可扩展性</h2><p>提高性能（更快处理请求）和可扩展性（使他可以通过加硬件来支持更高的负载）是 Magento 2 的重要目标。正在进行基准测试工作，不过这块还有更多的工作计划。优化代码要反工是非常没有成效的事，所以这部分到目前为止不是 Magento 2 的重点。这一点将会改变。</p>
+<h2 id="简化的自定义工作"><a href="#简化的自定义工作" class="headerlink" title="简化的自定义工作"></a><a href="#%E7%AE%80%E5%8C%96%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E4%BD%9C"></a>简化的自定义工作</h2><p>大量的精力已投入到简化 Magneto 2 自定义工作中来。Magneto 的核心好处之一就是可以很大程度上进行自定义另外满足特定的需求。Magneto 并不是个仅有一些模板通用系统。新颖的功能可以被整合进去，以支持他们的品牌或是让商家走在前列。相关的例子有：</p>
+<ul>
+<li>解决许多痛点：添加新的模块却不能自定义想要的功能(不得不对他依赖的底层的代码进行改造)；有些模块会发生冲突。这里的技术升级包括改进布局文件的继承，新的依赖注入，支持拦截，模块化使其易于被移除或替换，等等。Magento 的基础代码量挺大的，因此第一阶段先介绍采用了哪些新技术，第二阶段渐进式地重构代码，以发挥新技术的力量。</li>
+<li>目录结构被重组了，所以关于某 module 的所有文件会在同一个目录下。</li>
+<li>将业务逻辑和模板文件分离出来，这样可以减少自定义模板时的重复。</li>
+</ul>
+<p>许多倍用来减少扩展的冲突的技术，结果带来了额外的好处，就是让自定义所需编写的代码量减少了。这可能导致相比较 Magento 1，Magento 2上手更困难些，但是最终的结果是由于需要编写和维护的代码量减少了，完成自定义项目所需的时间会更少。更少的冲突，更好的封装会让升级变得更容易和更可靠。</p>
+<p>2014年5月18日增加内容：当然有些人要抠字眼，“可能导致 Magento 2 上手更困难”，可能作何解释？展开来说，减少扩展冲突的方法一部分是通过阻止某些做法。这里用到了现代软件工程的实践。产品文档更加强调如何更好地解释这些概念。最终的结果可能是Magento 2 更容易开发，但是还是要看社区的反应才能知道是不是更容易开发了，在这个阶段文档还没有完成，所以现在说还是言之过早。我当然相信整体上一定会更好。如果开发者遵守新的规则，扩展之间的冲突应该会大大减少。</p>
+<h2 id="简化外部的集成"><a href="#简化外部的集成" class="headerlink" title="简化外部的集成"></a><a href="#%E7%AE%80%E5%8C%96%E5%A4%96%E9%83%A8%E7%9A%84%E9%9B%86%E6%88%90"></a>简化外部的集成</h2><p>Magneto 2 很酷的一项技术就是新增了服务层。虽然它只是一个不错的设计，定义模块的接口，相对较小的API，其他模块(还有表示层的布局和块)可以依赖这些接口或者API。我认为非常酷的一点是，用一个简单的 XML 配置文件，PHP API 自动作为 REST 和 SOAP 的 endpoint (自动生成的 WSDL 文件)。不需要多写什么。因此，如果你想为其他系统提供 API 接入，你可以创建一个新的模块，申明一个简短的 XML 文件，这就OK了。我认为这带来了一系列有趣的新方法（这些方法以前实现起来太费力气太贵了），可能会对 Magento 的后端集成产生很大影响。</p>
+<p>将业务逻辑与模板分离，位于服务层下，带来另一个好处，这样更容易保证 APIs 的行为和用户在站点上交互保持一致效果。（Magento 1 的 APIs 和web 交互可能会有偏差）</p>
+<h2 id="更容易安装和升级"><a href="#更容易安装和升级" class="headerlink" title="更容易安装和升级"></a><a href="#%E6%9B%B4%E5%AE%B9%E6%98%93%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7"></a>更容易安装和升级</h2><p>Magento 的安装过程正在被革新。大量简化自定义工作的努力也让升级变得更简单了。自动化测试（下文会提到）也有助于平滑升级。这是一个刚刚开始的工作领域。Composer 也是你安装第三方插件时，帮助你更容易安装的技术之一。</p>
+<h2 id="高质量的代码和测试"><a href="#高质量的代码和测试" class="headerlink" title="高质量的代码和测试"></a><a href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84%E4%BB%A3%E7%A0%81%E5%92%8C%E6%B5%8B%E8%AF%95"></a>高质量的代码和测试</h2><p>Magento 2 采用现代的自动测试策略。目标是减少手动测试，发布自动测试套件，让所有开发者和商家都可以了解到模块的测试覆盖率，希望有助于建立更多的测试用例来提高代码质量。测试类包括：</p>
+<ul>
+<li>单元测试</li>
+<li>继承测试</li>
+<li>JavaScript 测试</li>
+<li>性能测试</li>
+<li>静态代码分析</li>
+<li>完整性测试</li>
+<li>功能测试</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a href="#%E6%80%BB%E7%BB%93"></a>总结</h2><p>在某些方面，Magneto 2 的一些改变并不很激进——只是应用了更好的软件设计原则。不过我相信这类平台级别的变化可能会有意想不到的间接好处，这种好处有时候很难解释清楚。很难想商家解释为什么依赖注入（这也正好简化自动测试）是那么叫人兴奋。对他们来说这可不叫人激动。令人激动的是他会减少开发新站点、进行自定义、之后升级的工作量，当然会减少成本了。这带来了加速创新的巨大潜能。商家可能会对升级抱有更大的信心，更愿意频繁升级。你什么时候愿意升级手机上的APP呢？这会让商家更快接受新的趋势。</p>
+<p>我认为 Magento 2 的潜在好处就是他的加速效果。只有时间可以证明我的预言是否应验！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/mta-mda-mua-relationship/" rel="prev" title="关于邮件服务器">
+      <i class="fa fa-chevron-left"></i> 关于邮件服务器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/how-magento-sends-email/" rel="next" title="Magento 是怎么发邮件的">
+      Magento 是怎么发邮件的 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%96%B0%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">1.</span> <span class="nav-text">全新的技术栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B%E7%9A%84%E6%80%A7%E8%83%BD%E5%92%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">改进的性能和可扩展性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">简化的自定义工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E5%A4%96%E9%83%A8%E7%9A%84%E9%9B%86%E6%88%90"><span class="nav-number">4.</span> <span class="nav-text">简化外部的集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E5%AE%B9%E6%98%93%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7"><span class="nav-number">5.</span> <span class="nav-text">更容易安装和升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84%E4%BB%A3%E7%A0%81%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">高质量的代码和测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

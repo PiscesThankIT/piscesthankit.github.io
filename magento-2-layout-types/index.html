@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="page 页面的布局由两种主要的布局组件决定：page layout file 和 page configuration file。 page layout file 决定页面的线框，比如一列的布局。技术上来讲，page layout 是 xml 文件，决定 HTML 页面中 &lt;body&gt; 里面的结构。Page layouts feature only containers。page">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 layout 文件类型">
+<meta property="og:url" content="http://example.com/magento-2-layout-types/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="page 页面的布局由两种主要的布局组件决定：page layout file 和 page configuration file。 page layout file 决定页面的线框，比如一列的布局。技术上来讲，page layout 是 xml 文件，决定 HTML 页面中 &lt;body&gt; 里面的结构。Page layouts feature only containers。page">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/layout-file-types-1.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/layout-file-types-2.png">
+<meta property="article:published_time" content="2016-11-07T03:28:46.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.129Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/11/layout-file-types-1.png">
+
+<link rel="canonical" href="http://example.com/magento-2-layout-types/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 layout 文件类型 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-layout-types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 layout 文件类型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-07 11:28:46" itemprop="dateCreated datePublished" datetime="2016-11-07T11:28:46+08:00">2016-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E9%AB%98%E7%BA%A7/" itemprop="url" rel="index"><span itemprop="name">Magento 2 高级</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>page 页面的布局由两种主要的布局组件决定：page layout file 和 page configuration file。</p>
+<p>page layout file 决定页面的线框，比如一列的布局。技术上来讲，page layout 是 xml 文件，决定 HTML 页面中 <code>&lt;body&gt;</code> 里面的结构。Page layouts feature only containers。page layout 需要声明然后才能使用。</p>
+<p>page configuration 也是 xml 文件。它决定更详细的结构（header,footer 等等，也就是 body 中的其他 html 标签），页面内容，页面的 meta 信息。他引用 page layout 文件。Page configuration features both main elements, blocks of particular classes and containers.</p>
+<p>第三种布局文件是 generic layout。他们也是 xml 文件，定义 html 页面中<code>&lt;body&gt;</code>部分的内容和详细结构，跟 page configuration 基本一样，但是他们用在比较特殊的情况下，比如 AJAX 请求返回页面，emails，HTML 片段等。</p>
+<h2 id="Page-layout"><a href="#Page-layout" class="headerlink" title="Page layout"></a><a href="#page-layout"></a>Page layout</h2><p>page layout 决定页面中<code>&lt;body&gt;</code>中的线框结构（wireframe），比如一列布局或者两列布局。</p>
+<p>允许的指令：</p>
+<ul>
+<li><code>&lt;container&gt;</code></li>
+<li><code>&lt;referenceContainer&gt;</code></li>
+<li><code>&lt;move&gt;</code></li>
+<li><code>&lt;update&gt;</code></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/layouts/xml-instructions.html#fedg_layout_xml-instruc_ex_cont">指令参考文档</a></p>
+<p>page layout 例子<br><code>&lt;Magento_Theme_module_dir&gt;/view/frontend/page_layout/1column.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;layout xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_layout.xsd&quot;&gt;</span><br><span class="line">    &lt;update handle=&quot;empty&quot;/&gt;</span><br><span class="line">    &lt;referenceContainer name=&quot;page.wrapper&quot;&gt;</span><br><span class="line">        &lt;container name=&quot;header.container&quot; as=&quot;header_container&quot; label=&quot;Page Header Container&quot; htmlTag=&quot;header&quot; htmlClass=&quot;page-header&quot; before=&quot;main.content&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;page.top&quot; as=&quot;page_top&quot; label=&quot;After Page Header&quot; after=&quot;header.container&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;footer-container&quot; as=&quot;footer&quot; before=&quot;before.body.end&quot; label=&quot;Page Footer Container&quot; htmlTag=&quot;footer&quot; htmlClass=&quot;page-footer&quot;/&gt;</span><br><span class="line">    &lt;/referenceContainer&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你打开 Magento 首页（默认的主题），用浏览器工具查看源代码，可以看到如下类似的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;div class=&quot;page-wrapper&quot;&gt;</span><br><span class="line">    &lt;header class=&quot;page-header&quot;&gt;&lt;/header&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;footer class=&quot;page-footer&quot;&gt;&lt;/footer&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样应该有助于理解为什么说 page layout 决定了页面的线框。</p>
+<h3 id="page-layout-文件一般位置"><a href="#page-layout-文件一般位置" class="headerlink" title="page layout 文件一般位置"></a><a href="#page-layout-%E6%96%87%E4%BB%B6%E4%B8%80%E8%88%AC%E4%BD%8D%E7%BD%AE"></a>page layout 文件一般位置</h3><ul>
+<li>Module page layouts: <code>&lt;module_dir&gt;/view/frontend/page_layout</code></li>
+<li>Theme page layouts:<code>&lt;theme_dir&gt;/&lt;Namespace&gt;_&lt;Module&gt;/page_layout</code></li>
+</ul>
+<h3 id="page-layout-声明文件-layouts-xml"><a href="#page-layout-声明文件-layouts-xml" class="headerlink" title="page layout 声明文件 layouts.xml"></a><a href="#page-layout-%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6-layouts.xml"></a>page layout 声明文件 layouts.xml</h3><p>需要使用<code>layout.xml</code>文件来声明 page layout<br>位置：</p>
+<ul>
+<li>Module layout declarations: <code>&lt;module_dir&gt;/view/frontend/layouts.xml</code></li>
+<li>Theme layout declaration: <code>&lt;theme_dir&gt;/&lt;Namespace&gt;_&lt;Module&gt;/layouts.xml</code></li>
+</ul>
+<h3 id="创建自定义的-page-layout"><a href="#创建自定义的-page-layout" class="headerlink" title="创建自定义的 page layout"></a><a href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-page-layout"></a>创建自定义的 page layout</h3><p>我们以<a href="/how-to-create-magento-2-frontend-theme/">如何创建 Magneto 2 前端主题</a>创建好的主题<code>ThankIT/Pisces</code>为基础，创建一个自定义的 page layout</p>
+<p>我们在<code>app\design\frontend\ThankIT\Pisces</code> 文件夹下创建 <code>Magento_Theme</code>文件夹，这样我的主题就会对该模块进行一些自定义。在该文件夹下创建<code>layouts.xml</code>文件，内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># File: app\design\frontend\ThankIT\Pisces\Magento_Theme\layouts.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;page_layouts xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/PageLayout/etc/layouts.xsd&quot;&gt;</span><br><span class="line">    &lt;layout id=&quot;custom-home&quot;&gt;</span><br><span class="line">        &lt;label translate=&quot;true&quot;&gt;Custom Home&lt;/label&gt;</span><br><span class="line">    &lt;/layout&gt;</span><br><span class="line">&lt;/page_layouts&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个page layout 声明文件，<code>id</code>是他的名称，<code>label</code>是我们后台可以看到的标签。</p>
+<p>下面创建<code>custom-home.xml</code>文件，我直接拷贝了1column.xml的内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># File: app\design\frontend\ThankIT\Pisces\Magento_Theme\page_layout\custom-home.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;layout xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">        xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_layout.xsd&quot;&gt;</span><br><span class="line">    &lt;update handle=&quot;empty&quot;/&gt;</span><br><span class="line">    &lt;referenceContainer name=&quot;page.wrapper&quot;&gt;</span><br><span class="line">        &lt;container name=&quot;header.container&quot; as=&quot;header_container&quot; label=&quot;Page Header Container&quot;  htmlTag=&quot;header&quot; htmlClass=&quot;page-header&quot; before=&quot;main.content&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;page.top&quot; as=&quot;page_top&quot; label=&quot;After Page Header&quot; after=&quot;header.container&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;footer-container&quot; as=&quot;footer&quot; before=&quot;before.body.end&quot; label=&quot;Page Footer Container&quot; htmlTag=&quot;footer&quot; htmlClass=&quot;page-footer&quot; /&gt;</span><br><span class="line">    &lt;/referenceContainer&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这两个都到位后，我们进入后台，<strong>Content -&gt; Pages</strong> 找到 Home page，进入编辑，<strong>Design &gt; Page Layout &gt; Layout</strong> 就可以看到我们已经声明的<code>Custom Home</code> page layout 可以用了。</p>
+<p><img src="/wp-content/uploads/2016/11/layout-file-types-1.png"></p>
+<p>如果我们对首页应用该布局，并且当前店铺的主题是<code>ThankIT\Pisces</code>，也就是我们刚刚创建的主题，这时候去首页看下他的源代码，注意下图红框中的<code>page-layout-custom-home</code>。（如果当前主题不是刚刚创建的主题，那么首页会是空白页面，博主也不清楚为什么。）</p>
+<p><img src="/wp-content/uploads/2016/11/layout-file-types-2.png"></p>
+<p>（上面两张图仅供参考，并不是<code>Pisces</code>主题的真实截图，图方便拿了别人的图来示意一下。）</p>
+<h2 id="Page-configuration"><a href="#Page-configuration" class="headerlink" title="Page configuration"></a><a href="#page-configuration"></a>Page configuration</h2><p>page configuration 往 page layout 文件规定的线框结构中填充内容。它还包含 meta 信息，还有<code>&lt;head&gt;</code>部分的内容。</p>
+<p>他的一般位置在：</p>
+<ul>
+<li>Module page configurations: <code>&lt;module_dir&gt;/view/frontend/layout</code></li>
+<li>Theme page configurations: <code>&lt;theme_dir&gt;/&lt;Namespace&gt;_&lt;Module&gt;/layout</code></li>
+</ul>
+<p>page configuration 中允许的指令请查看参考文档第一条。</p>
+<p>我们说 page configuration 引用 page layout 文件，我们来看看他是怎么引用的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># File: module-theme/view/frontend/layout/default.xml</span><br><span class="line">&lt;page layout=&quot;3columns&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;update handle=&quot;default_head_blocks&quot;/&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">    ......</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+
+<p>看<code>&lt;page/&gt;</code>节点中的<code>layout=&quot;3columns&quot;</code>，这就是说，我用的是<code>3columns</code>这个 page layout。<br><code>&lt;update handle=&quot;default_head_blocks&quot;/&gt;</code> 指令的意思是包含<code>default_head_block.xml</code>，这个文件和<code>default.xml</code>文件同一目录，用来规定 html 页面<code>&lt;head&gt;</code>中的内容，我们之前讨论引入 css 文件，也提到过他。</p>
+<ul>
+<li><code>&lt;Magento_Theme_module_dir&gt;/view/frontend/layout/default.xml</code>: defines the page layout.</li>
+<li><code>&lt;Magento_Theme_module_dir&gt;/view/frontend/layout/default_head_blocks.xml</code>: defines the scripts, images, and meta data included in pages’ <code>&lt;head&gt;</code> section.</li>
+</ul>
+<p>这两个布局文件就是 Magento 前端页面的基本布局。</p>
+<h2 id="Generic-layout"><a href="#Generic-layout" class="headerlink" title="Generic layout"></a><a href="#generic-layout"></a>Generic layout</h2><p>和 page configuration 基本一致，请查看参考文档第一条了解详细信息。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/layouts/layout-types.html">Layout file types</a></p>
+<p><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/118278/creating-a-custom-homepage-template-in-magento2">Creating a custom homepage template in Magento2</a> 第一个答案。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/pictures-in-magento-2/" rel="prev" title="Magento 2中的图片">
+      <i class="fa fa-chevron-left"></i> Magento 2中的图片
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/debug-tool-how-to-get-all-xml-layout/" rel="next" title="调试工具：如何得到页面的布局文件">
+      调试工具：如何得到页面的布局文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-layout"><span class="nav-number">1.</span> <span class="nav-text">Page layout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#page-layout-%E6%96%87%E4%BB%B6%E4%B8%80%E8%88%AC%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">page layout 文件一般位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#page-layout-%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6-layouts-xml"><span class="nav-number">1.2.</span> <span class="nav-text">page layout 声明文件 layouts.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84-page-layout"><span class="nav-number">1.3.</span> <span class="nav-text">创建自定义的 page layout</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Page-configuration"><span class="nav-number">2.</span> <span class="nav-text">Page configuration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generic-layout"><span class="nav-number">3.</span> <span class="nav-text">Generic layout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">4.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

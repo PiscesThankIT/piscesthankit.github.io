@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 在我们可以继续探索 Magento 的 js 高级特性之前，我们得先补习 KnockoutJSKnockoutJS 是一个 javaScript MVVM 系统，他是 Magento 2 中的主要 DOM 操作框架。 本篇教程旨在帮助 Magento 开发者熟悉 KnockoutJS 的基本概念，重点介绍 Magento 使用的一些 KnockoutJS 功能。如果你打算用 Knocko">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KnockoutJS Primer for Magento Developers （翻译）">
+<meta property="og:url" content="http://example.com/alan-knockoutjs-primer-for-magento-developers/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 在我们可以继续探索 Magento 的 js 高级特性之前，我们得先补习 KnockoutJSKnockoutJS 是一个 javaScript MVVM 系统，他是 Magento 2 中的主要 DOM 操作框架。 本篇教程旨在帮助 Magento 开发者熟悉 KnockoutJS 的基本概念，重点介绍 Magento 使用的一些 KnockoutJS 功能。如果你打算用 Knocko">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-first.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-second.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-third.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png">
+<meta property="article:published_time" content="2016-11-01T07:15:39.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.123Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-first.png">
+
+<link rel="canonical" href="http://example.com/alan-knockoutjs-primer-for-magento-developers/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>KnockoutJS Primer for Magento Developers （翻译） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-knockoutjs-primer-for-magento-developers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          KnockoutJS Primer for Magento Developers （翻译）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-11-01 15:15:39" itemprop="dateCreated datePublished" datetime="2016-11-01T15:15:39+08:00">2016-11-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/knockoutjs_primer_for_magento_developers/">原文地址</a></em></p>
+<p>在我们可以继续探索 Magento 的 js 高级特性之前，我们得先补习 <a target="_blank" rel="noopener" href="http://knockoutjs.com/">KnockoutJS</a>KnockoutJS 是一个 javaScript MVVM 系统，他是 Magento 2 中的主要 DOM 操作框架。</p>
+<p>本篇教程旨在帮助 Magento 开发者熟悉 KnockoutJS 的基本概念，重点介绍 Magento 使用的一些 KnockoutJS 功能。如果你打算用 KnockoutJS 创建东西的话，强烈建议你参阅<a target="_blank" rel="noopener" href="http://learn.knockoutjs.com/">KnockoutJS 官方 tutorials</a></p>
+<h2 id="Hello-Model-View-View-Model"><a href="#Hello-Model-View-View-Model" class="headerlink" title="Hello Model,View,View Model"></a><a href="#hello-model,view,view-model"></a>Hello Model,View,View Model</h2><p>首先，让我们来创建下面的 HTML 页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://code.jquery.com/jquery-3.0.0.min.js&quot; integrity=&quot;sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个页面：</p>
+<ol>
+<li>从 CDN 加载 KnockoutJS 库</li>
+<li>从 CDN 加载 JQuery 库</li>
+<li>设置了一个空的 DOM 结构</li>
+</ol>
+<p>你不需要从 CDN 加载 jQuery 和 KnockoutJS，不过这样做比较容易。</p>
+<p>如果你用浏览器打开这个页面，你会看到一个空白页。因为你得：</p>
+<ol>
+<li>Add the javascript code that creates a view model and applies the KnockoutJS bindings</li>
+<li>Add the view code to the HTML page that reads from the view model</li>
+</ol>
+<p>我们先来做第一个，创建一个名为<code>ko-init.js</code>的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    viewModel = &#123;</span><br><span class="line">        title:&quot;Hello World&quot;,</span><br><span class="line">        content:&quot;So many years of hello world&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后在我们的页面中引入这个js 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.0.0.min.js&quot; integrity=&quot;sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;ko-init.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最后，修改<code>h1</code>和<code>p</code>标签，给他们添加如下的<code>data-bind</code>属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>现在刷新页面，你应该会看到：<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-first.png"><br>恭喜你！你成功创建了第一 KnockoutJS view model 和 view</p>
+<h2 id="What-Just-Happened"><a href="#What-Just-Happened" class="headerlink" title="What Just Happened"></a><a href="#what-just-happened"></a>What Just Happened</h2><p>KnockoutJS 本身是 <strong>MVVM</strong>系统，MVVM 代表着 Model，View,View Model。Really though, KnockoutJS is better billed as a VVM system, since its agnostic about what sort of model code you use to fetch data. view 是指 HTML 页面，view model 是指带数据的 js 对象。</p>
+<p>让我们来看看js 代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    viewModel = &#123;</span><br><span class="line">        title:&quot;Hello World&quot;,</span><br><span class="line">        content:&quot;So many years of hello world&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>jQuery 并非必要的，只不过 KnockoutJS 不能在 DOM 还没有完成加载前进行渲染，jQuery 的 document ready 函数正可以帮助我们达到目的。<code>jQuery();</code>相当于<code>$(document).ready();</code></p>
+<p>这里我们创建了一个带键值对的 view model</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">viewModel = &#123;</span><br><span class="line">    title:&quot;Hello World&quot;,</span><br><span class="line">    content:&quot;So many years of hello world&quot;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们应用了 KnockoutJS 的绑定。换一种说法是我们让 KnockoutJS 用 view model 去渲染 view。再说一遍，view 是整个 HTML 页面。</p>
+<p>我们来看看 view 部分，注意<code>data-bind</code>属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当你调用<code>applyBindings</code>时，KnockoutJS 会扫描整个 HTML 页面寻找<code>data-bind</code>属性。it parses the attribute for the binding name and value, and then invokes a set of rules based on the name of the binding.</p>
+<p>举例来说，上面我们调用的绑定是<code>text</code>，我们传递给<code>text</code>绑定的是<code>title</code>。text 绑定应用的规则是：“从 view model 对象中使用传递过来的值作为键取出对应的值，然后将该值插入到 DOM 中，作为一个 text 节点。”如果用纯 js 来表示的话，就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">value = viewModel[&#x27;title&#x27;];</span><br><span class="line">textNode = document.createTextNode(value);</span><br><span class="line">h1.appendChild(textNode);</span><br></pre></td></tr></table></figure>
+
+<p>KnockoutJS 的第一个招数是他使开发者免于自己使用 js 创建和更新 DOM 节点。开发者通关过书写带有<code>data-bind</code>属性的 HTML 标签来给他赋值。你不仅可以使用键值对，看下面这个更复杂的 view model。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.getTitle = function()</span><br><span class="line">        &#123;</span><br><span class="line">            return &quot;Hello Method World&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">       this.content = &quot;So many years of hello world&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们使用了 js 构造函数创建了一个简单的对象。这个对象有一个<code>getTitle</code>方法。如果我们修改下<code>page.html</code>来调用<code>getTitle</code>方法，你会发现效果和预期的一样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Another way of thinking about binding parameters is they’re a temporary, limited javascript scope to access your view model’s values and methods.</p>
+<h2 id="Other-Bindings"><a href="#Other-Bindings" class="headerlink" title="Other Bindings"></a><a href="#other-bindings"></a>Other Bindings</h2><p>虽然这个例子比较简单，但是从中可以开始了解到，这种简单的构建 block 是如何实现更为复杂的视图逻辑的。（While this example is simple, you can start to see how this basic building block could implement far more complicated view logic）更新DOM的事交给数据绑定来做，更新模型的事情交给non-DOM js 代码来完成。</p>
+<p>再举个例子了解下其他的绑定。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.getTitle = function()</span><br><span class="line">        &#123;</span><br><span class="line">            return &quot;Hello World&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">       this.content = &quot;So many years of hello world&quot;;</span><br><span class="line">       this.theValue = &quot;2&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; data-bind=&quot;value:theValue&quot;/&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>刷新页面，你会看到：</p>
+<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-second.png"></p>
+<p>这里我们使用了一个新的 KnockoutJS 绑定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-bind=&quot;value:theValue&quot;</span><br></pre></td></tr></table></figure>
+
+<p>我们使用<code>value</code>绑定将值赋给表单字段。下面让我们把 input 换成 select 看看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;select data-bind=&quot;value:theValue&quot;&gt;</span><br><span class="line">        &lt;option value=&quot;&quot;&gt;-- Choose --&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1&quot;&gt;First&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;2&quot;&gt;Second&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;3&quot;&gt;Third&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>刷新页面后，你会看到已经设置 select 的值为2了。<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-third.png"></p>
+<p>虽然这个例子很简单，背后的概念可不简单。不需要修改任何 js 程序代码，value binding 就可以让我们更改 UI</p>
+<h2 id="Observables"><a href="#Observables" class="headerlink" title="Observables"></a><a href="#observables"></a>Observables</h2><p>到目前为止，我们看到还只是小招数，已经很强大了。Neat, maybe useful, but it only sets the stage for KnockoutJS’s real “knockout” feature — observables.</p>
+<p>下面，我们还是以例子开始。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:theValue&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;select data-bind=&quot;value:theValue&quot;&gt;</span><br><span class="line">        &lt;option value=&quot;&quot;&gt;-- Choose --&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1&quot;&gt;First&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;2&quot;&gt;Second&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;3&quot;&gt;Third&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; data-bind=&quot;value:theValue&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">    &lt;br/&gt;&lt;br/&gt;</span><br><span class="line">    &lt;button id=&quot;button&quot;&gt;Do It&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">       this.theValue = ko.observable(&quot;1&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    window.viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(window.viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>重新载入页面，你会发现我们给<code>&lt;input/&gt;</code>和<code>&lt;p/&gt;</code>标签绑定了值<code>1</code>。到目前为止我们的页面没什么新变化——这和我们之前做的绑定一样。但是，你注意到在我们的 view model 中，我写了一点不一样的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">this.theValue = ko.observable(&quot;1&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>我们没有给<code>theValue</code>硬编一个值或者是一个custom function，我们给他的是一个 KnockoutJS <code>observable</code><strong>An observable is a special sort of getter and setter.</strong></p>
+<p>打开浏览器 console ，输入<code>viewModel.theValue()</code>，你会发现我们可以像调用函数一样取得 observable 的值。（因为我们定义viewModel为全局对象window 的属性，所以我们可以通过 console 访问到他）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; viewModel.theValue()</span><br><span class="line">&gt; &quot;1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以给 observable 传递参数来设置他的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; viewModel.theValue(&quot;3&quot;)</span><br><span class="line">//...</span><br><span class="line">&gt; viewModel.theValue()</span><br><span class="line">&gt; &quot;3&quot;</span><br></pre></td></tr></table></figure>
+
+<p>However, the real power of an observable is in what happens to the DOM nodes we’ve bound that observable to。试着在console 中改变 observer 的值，注意页面的变化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; viewModel.theValue(&quot;3&quot;);</span><br><span class="line">&gt; viewModel.theValue(&quot;2&quot;);</span><br><span class="line">&gt; viewModel.theValue(&quot;1&quot;);</span><br><span class="line">&gt; viewModel.theValue(&quot;10&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>一旦你修改了 observable 的值，被绑定的 DOM 也立刻有了变化。作为开发者，我们再也不用关心怎么更新 DOM nodes 了。一旦我们给 model 中的值做了改变，他的值会立刻自动反应到用户界面上。</p>
+<p>看下面一个view model 带方法的例子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.theValue = ko.observable(&quot;1&quot;);</span><br><span class="line">        var that = this;</span><br><span class="line">        this.pickRandomValue = function()&#123;</span><br><span class="line">            var val = Math.floor(Math.random() * (3));</span><br><span class="line">            that.theValue(val);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    window.viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(window.viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用 KnockoutJS 的事件绑定（比如<code>click</code>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;button data-bind=&quot;click:pickRandomValue&quot;&gt;Do It&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Template-Binding"><a href="#Template-Binding" class="headerlink" title="Template Binding"></a><a href="#template-binding"></a>Template Binding</h2><p>另一个要重点理解的是 KnockoutJS 的模板绑定。考虑下面的 view model</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.first = &#123;</span><br><span class="line">            theTitle:ko.observable(&quot;Hello World&quot;),</span><br><span class="line">            theContent:ko.observable(&quot;Back to Hello World&quot;)</span><br><span class="line">        &#125;;</span><br><span class="line">        this.second = &#123;</span><br><span class="line">            theTitle:ko.observable(&quot;Goodbye World&quot;),</span><br><span class="line">            theContent:ko.observable(&quot;We&#x27;re sailing west now&quot;)</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们创建了一个标准的view model 但是 data 对象是嵌套的。然后我么修改view</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div id=&quot;two&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:second&#125;&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script type=&quot;text/html&quot; id=&quot;hello-world&quot;&gt;</span><br><span class="line">        &lt;h1 data-bind=&quot;text:theTitle&quot;&gt;&lt;/h1&gt;</span><br><span class="line">        &lt;p data-bind=&quot;text:theContent&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>你将会看到：</p>
+<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png"></p>
+<p>template 绑定接受一个 js 对象作为参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>data 参数是我们要渲染的 view model 的属性。name 是要查找和渲染的模板名称。</p>
+<p>添加模板最基本的做法是添加<code>&lt;script type=&quot;text/html&quot;&gt;</code>并且给他命名。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;script type=&quot;text/html&quot; id=&quot;hello-world&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:theTitle&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:theContent&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>If you’ve never seen this before it may seem weird&#x2F;foreign, but many modern javascript frameworks use non-<code>text/javascript</code> <code>&lt;script/&gt;</code> tags as a way to add non-rendered (but DOM accessible) content to a page.模板是一些带有 KnockoutJS 绑定的 HTML 片段</p>
+<h2 id="Components"><a href="#Components" class="headerlink" title="Components"></a><a href="#components"></a>Components</h2><p>下面是组件绑定。 Components are a way to package together a KnockoutJS template, and a KnockoutJS view file. This means you can have a relatively simple view。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div data-bind=&quot;component:&#x27;component-hello-world&#x27;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>隐藏了注册了的组件的复杂性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.message = &quot;Hello World&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var theTemplate = &quot;&lt;h1 data-bind=\&quot;text:message\&quot;&gt;&lt;/h1&gt;&quot;;</span><br><span class="line"></span><br><span class="line">    ko.components.register(&#x27;component-hello-world&#x27;, &#123;</span><br><span class="line">        viewModel:viewModelConstructor,</span><br><span class="line">        template:theTemplate</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    ko.applyBindings();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>component 对象的<code>register</code>方法第一个参数接受组件的名称，第二个参数接受一个 KnockoutJS component 对象。component 对象是一个有两个属性的 js 对象。<code>viewModel</code>属性接受一个 view model 构造函数，<code>template</code>属性是 KnockoutJS 模板字符串。一旦完成组件注册，你就可以通过传递组件的名称来使用它了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div data-bind=&quot;component:&#x27;component-hello-world&#x27;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你不想用<code>data-bind</code>这样的语法，KnockoutJS 提供了另一种基于组件名称的自定义标签，试试看下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;component-hello-world&gt;&lt;/component-hello-world&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这依然仅仅触及 KnockoutJS 的表面，官方文档对<a target="_blank" rel="noopener" href="http://knockoutjs.com/documentation/component-overview.html">组件绑定</a>讲得不错，可以参阅以下。</p>
+<h2 id="Custom-Binding"><a href="#Custom-Binding" class="headerlink" title="Custom Binding"></a><a href="#custom-binding"></a>Custom Binding</h2><p>KnockoutJS 允许开发者创建自定义绑定。举例来说，下面我们调用了名为<code>pulseStormHelloWorld</code>的绑定，并且将viewModel中的<code>message</code>属性的值传递给他。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div data-bind=&quot;pulseStormHelloWorld:message&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们还没有实现<code>pulseStormHelloWorld</code>绑定，所以现在刷新页面是空白页。因为 KnockoutJS 忽略了它。下面修改<code>ko-init.js</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.message = &quot;Hello World&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ko.bindingHandlers.pulseStormHelloWorld = &#123;</span><br><span class="line">        update: function(element, valueAccessor)&#123;</span><br><span class="line">            jQuery(element).html(&#x27;&lt;h1&gt;&#x27; + valueAccessor() + &#x27;&lt;/h1&gt;&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(new viewModelConstructor);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>创建自定义的KnockoutJS绑定，我只需要给 <code>ko.bindingHandlers</code>对象添加一个属性。这个属性的名称就是我们自定义绑定的名称。The <code>handler</code> is a JS object with an <code>update</code> method.当绑定被唤起时，KnockoutJS 就会调用<code>update</code>方法—— 不管是<code>applyBindings</code>或是通过 observable</p>
+<p>刷新页面，你会看到自定义绑定起作用了。当然，这只是个普通的例子，但是通过自定义绑定你可以让 KnockoutJS 做任何你想得到的事。</p>
+<p>如果想了解更多关于KnockoutJS自定义绑定的，请移步<a target="_blank" rel="noopener" href="http://learn.knockoutjs.com/#/?tutorial=custombindings">官方custom binding tutorial</a></p>
+<h2 id="Wrap-up"><a href="#Wrap-up" class="headerlink" title="Wrap up"></a><a href="#wrap-up"></a>Wrap up</h2><p>KnockoutJS 是一个强大现代的js框架。Its semantics, and disregard for traditional HTML concepts, may make some developers shy away at first, but as a tool of organizing and taming DOM complexity in a modern javascript application KnockoutJS has few peers.我们的教程是不完整的，但是希望足以引发你对KnockoutJS的兴趣，自己探索它的文档和教程。</p>
+<p>KncokoutJS 本身不足以构成一个完整的 JS 应用程序。下周我们会探索 Magento 中与 KnockoutJS 密切相关的框架。这样会让你更了解 Magento 核心系统是如何工作的，还有怎样在你自己的模块和应用中应用 KnockoutJS。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a><a href="#%E4%B8%8B%E8%BD%BD"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/KnockoutJS-Primer-for-Magento-Developers">文中使用的源代码</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/alan-magento-2-javascript-init-scripts/" rel="prev" title="Magento 2 Javascript Init Scripts（翻译）">
+      <i class="fa fa-chevron-left"></i> Magento 2 Javascript Init Scripts（翻译）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/alan-magento-2-knockoutjs-integration/" rel="next" title="Magento 2 KnockoutJS 集成">
+      Magento 2 KnockoutJS 集成 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-Model-View-View-Model"><span class="nav-number">1.</span> <span class="nav-text">Hello Model,View,View Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Just-Happened"><span class="nav-number">2.</span> <span class="nav-text">What Just Happened</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other-Bindings"><span class="nav-number">3.</span> <span class="nav-text">Other Bindings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Observables"><span class="nav-number">4.</span> <span class="nav-text">Observables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Template-Binding"><span class="nav-number">5.</span> <span class="nav-text">Template Binding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Components"><span class="nav-number">6.</span> <span class="nav-text">Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Custom-Binding"><span class="nav-number">7.</span> <span class="nav-text">Custom Binding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrap-up"><span class="nav-number">8.</span> <span class="nav-text">Wrap up</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">9.</span> <span class="nav-text">下载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

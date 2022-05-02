@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本系列将概述 Magento 所有版本都具有的基本功能。 查看完整的原始英文文档，请点击这里下载（文档还包含 Magento 企业版本的功能列表） 促销和定价 为特定的店铺、商品类别、客户组或者商品，设置促销价格 为特定的店铺、客户组、时间段、商品、商品类别，创建灵活多样的优惠券 为线下销售、电子邮件营销、资讯订阅等生成优惠券代码 跟踪和报告优惠券的使用情况 提供各种折扣方式：免邮、按百分比的、按">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 基本功能列表（翻译一）">
+<meta property="og:url" content="http://example.com/magento-feature-list-chinese-1/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="本系列将概述 Magento 所有版本都具有的基本功能。 查看完整的原始英文文档，请点击这里下载（文档还包含 Magento 企业版本的功能列表） 促销和定价 为特定的店铺、商品类别、客户组或者商品，设置促销价格 为特定的店铺、客户组、时间段、商品、商品类别，创建灵活多样的优惠券 为线下销售、电子邮件营销、资讯订阅等生成优惠券代码 跟踪和报告优惠券的使用情况 提供各种折扣方式：免邮、按百分比的、按">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-12-14T03:01:38.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.185Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/magento-feature-list-chinese-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 基本功能列表（翻译一） | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 基本功能列表（翻译一）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 11:01:38" itemprop="dateCreated datePublished" datetime="2016-12-14T11:01:38+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本系列将概述 Magento 所有版本都具有的基本功能。</p>
+<p>查看完整的原始英文文档，请<a href="/wp-content/uploads/2016/12/Magento-Feature-List-11.16.2015.pdf">点击这里下载</a>（文档还包含 Magento 企业版本的功能列表）</p>
+<h2 id="促销和定价"><a href="#促销和定价" class="headerlink" title="促销和定价"></a><a href="#%E4%BF%83%E9%94%80%E5%92%8C%E5%AE%9A%E4%BB%B7"></a>促销和定价</h2><ul>
+<li>为特定的店铺、商品类别、客户组或者商品，设置促销价格</li>
+<li>为特定的店铺、客户组、时间段、商品、商品类别，创建灵活多样的优惠券</li>
+<li>为线下销售、电子邮件营销、资讯订阅等生成优惠券代码</li>
+<li>跟踪和报告优惠券的使用情况</li>
+<li>提供各种折扣方式：免邮、按百分比的、按固定数量的、买 X 免费送 Y</li>
+<li>根据购买量的不同，设置多级价格策略</li>
+<li>支持最低广告价格</li>
+</ul>
+<h2 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a><a href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96"></a>搜索引擎优化</h2><ul>
+<li>自动生成 Google 站点地图</li>
+<li>创建搜索引擎友好的 URL</li>
+<li>通过 URL 重写完全控制 URL</li>
+<li>为商品，类别，内容页创建元数据</li>
+</ul>
+<h2 id="网站管理"><a href="#网站管理" class="headerlink" title="网站管理"></a><a href="#%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86"></a>网站管理</h2><ul>
+<li>通过同一个后台管理多个网站和店铺。</li>
+<li>通过现代、友好的管理面板，快速学会如何管理和监控店铺的情况</li>
+<li>通过自定义管理面板，保存为不同的视图，帮助你更高效地管理商品、客户及订单</li>
+<li>定义角色和权限，控制各项管理功能的访问</li>
+<li>使用内容管理系统来创建和轻松编辑页面和内容块</li>
+<li>通过 100% 可定制的响应式参考主题，打造独一无二的站点</li>
+<li>根据地理位置、产品类型、客户组（例如，零售 vs 批发），设置税率</li>
+<li>添加验证码功能，防止自动化软件尝试登录</li>
+</ul>
+<h2 id="（商品）目录管理"><a href="#（商品）目录管理" class="headerlink" title="（商品）目录管理"></a><a href="#%EF%BC%88%E5%95%86%E5%93%81%EF%BC%89%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86"></a>（商品）目录管理</h2><ul>
+<li>可创建简单商品、可配置商品（例如，选择尺寸、颜色等）、捆绑商品（例如，同样型号的电脑，可以选配不同的 CPU）、组合商品（例如，沙发套件，可以单独出售，更多的是为了方便客户的）</li>
+<li>虚拟商品</li>
+<li>包括可下载的&#x2F;电子产品，可提供样本</li>
+<li>允许客户自定义的产品（例如，客户可以上传图片、设置文本，制作文化衫）</li>
+<li>通过在线引导过程创建新的产品</li>
+<li>可定义无限的产品属性</li>
+<li>通过创建预定义的产品模板，来快速设置新产品的特定属性集</li>
+<li>高效地批量导入导出目录信息</li>
+<li>轻松管理库存，支持延期交货（with support for back ordered items）</li>
+<li>需要补充库存时，会收到通知</li>
+<li>选择缺货时的通知和显示选项</li>
+<li>定义可以加入购物车的商品最少和最多数量</li>
+<li>批量更新商品，例如，为多个商品设置某个值</li>
+<li>自动调整图片大小，包括加水印</li>
+<li>如果客户搜索无结果，可以改写和重定向搜索结果</li>
+<li>设置搜索目录属性权重和搜索同义词，来管理站点的搜索转换</li>
+<li>适当的评价和产品标签</li>
+</ul>
+<h2 id="目录浏览"><a href="#目录浏览" class="headerlink" title="目录浏览"></a><a href="#%E7%9B%AE%E5%BD%95%E6%B5%8F%E8%A7%88"></a>目录浏览</h2><ul>
+<li>通过层级导航，根据价格范围，品牌，颜色及其他属性，筛选目录和搜索结果中的商品</li>
+<li>商品目录的呈现可以是表格或列表方式</li>
+<li>自定义商品目录页面的外观和感觉</li>
+<li>显示商品比较的历史</li>
+<li>显示最近浏览过的商品</li>
+<li>添加面包屑导航</li>
+</ul>
+<h2 id="商品浏览"><a href="#商品浏览" class="headerlink" title="商品浏览"></a><a href="#%E5%95%86%E5%93%81%E6%B5%8F%E8%A7%88"></a>商品浏览</h2><ul>
+<li>每个商品可显示多张图片</li>
+<li>商品图片可以放大查看</li>
+<li>可以播放 YouTube 或 Vimeo 上的商品视频</li>
+<li>包括显示颜色、面料或其他的面板（swatches）</li>
+<li>包括组合商品的视图</li>
+<li>设置相关商品、up-sell（同一需求的更高级商品）、cross-sell（追加销售，客户的其他需求）</li>
+<li>表明库存情况</li>
+<li>显示分级价格</li>
+<li>显示商品的评价和评分</li>
+<li>可添加商品到愿望清单</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/how-to-update-csv-using-older-csv-file/" rel="prev" title="关于中文包的更新方法问题 （原创）">
+      <i class="fa fa-chevron-left"></i> 关于中文包的更新方法问题 （原创）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/learn-magento-before-use-archive/" rel="next" title="了解 Magento">
+      了解 Magento <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%83%E9%94%80%E5%92%8C%E5%AE%9A%E4%BB%B7"><span class="nav-number">1.</span> <span class="nav-text">促销和定价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">搜索引擎优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">网站管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88%E5%95%86%E5%93%81%EF%BC%89%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">（商品）目录管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%B5%8F%E8%A7%88"><span class="nav-number">5.</span> <span class="nav-text">目录浏览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%95%86%E5%93%81%E6%B5%8F%E8%A7%88"><span class="nav-number">6.</span> <span class="nav-text">商品浏览</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 今天我们将深入 Magento 2 的 ui components ，并尝试从头创建一个。现阶段的 Maggento 2 创建一个 ui component ，需要用一些不同寻常的，对生产环境来说不安全的方法，但是要想真正了解一个系统，有时候就是要从“地基”开始。 和这个系列的其他教程一样，请确保 Magento 2 是 developer 模式。为了防止下面的步骤不管用，我们在 git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2: Simplest UI Component">
+<meta property="og:url" content="http://example.com/alan-magento-simplest-ui-component/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 今天我们将深入 Magento 2 的 ui components ，并尝试从头创建一个。现阶段的 Maggento 2 创建一个 ui component ，需要用一些不同寻常的，对生产环境来说不安全的方法，但是要想真正了解一个系统，有时候就是要从“地基”开始。 和这个系列的其他教程一样，请确保 Magento 2 是 developer 模式。为了防止下面的步骤不管用，我们在 git">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2018/05/simple-ui-component-first.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2018/05/simple-ui-component-second.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2018/05/simple-ui-component-second.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2018/05/simple-ui-component-third.png">
+<meta property="article:published_time" content="2018-05-21T09:04:51.000Z">
+<meta property="article:modified_time" content="2022-05-02T05:56:16.656Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="magento 2 ui components">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2018/05/simple-ui-component-first.png">
+
+<link rel="canonical" href="http://example.com/alan-magento-simplest-ui-component/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2: Simplest UI Component | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-simplest-ui-component/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2: Simplest UI Component
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-21 17:04:51" itemprop="dateCreated datePublished" datetime="2018-05-21T17:04:51+08:00">2018-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://alanstorm.com/magento_simplest_ui_component/">原文地址</a> 今天我们将深入 Magento 2 的 ui components ，并尝试从头创建一个。现阶段的 Maggento 2 创建一个 ui component ，需要用一些不同寻常的，对生产环境来说不安全的方法，但是要想真正了解一个系统，有时候就是要从“地基”开始。 和这个系列的其他教程一样，请确保 Magento 2 是 developer 模式。为了防止下面的步骤不管用，我们在 <a target="_blank" rel="noopener" href="https://github.com/astorm/magento2-simple-ui-component">github 上放了完整的模块代码</a>。还有，以下基于 Magento 2.1.1 ，但是文中涉及的概念是适用所有版本的。</p>
+<h2 id="用-Pestle-创建基本的模块"><a href="#用-Pestle-创建基本的模块" class="headerlink" title="用 Pestle 创建基本的模块"></a><a href="#%E7%94%A8-pestle-%E5%88%9B%E5%BB%BA%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%A8%A1%E5%9D%97"></a>用 Pestle 创建基本的模块</h2><p>首先，我们用 <a target="_blank" rel="noopener" href="https://github.com/astorm/pestle">pestle</a>来创建一个带后台 menu 的模块。如果你不清楚下面的命令在干啥，那你可能要看看 <a target="_blank" rel="noopener" href="https://alanstorm.com/category/magento-2/#magento_2_mvc">Magento 2 for PHP MVC Developers</a> 系列文章 首先取得 pestle.phar</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -LO http://pestle.pulsestorm.net/pestle.phar</span><br></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">php pestle.phar generate_module Pulsestorm SimpleUiComponent 0.0.1</span><br><span class="line"></span><br><span class="line">php pestle.phar generate_acl Pulsestorm_SimpleUiComponent Pulsestorm_SimpleUiComponent::top,Pulsestorm_SimpleUiComponent::menu_1</span><br><span class="line"></span><br><span class="line">php pestle.phar generate_menu Pulsestorm_SimpleUiComponent Magento_Backend::system_other_settings Pulsestorm_SimpleUiComponent::a_menu_item Pulsestorm_SimpleUiComponent::menu_1 &quot;Hello Simple Ui Component&quot; pulsestorm_simpleuicomponent/index/index 1</span><br><span class="line"></span><br><span class="line">php pestle.phar generate_route Pulsestorm_SimpleUiComponent adminhtml pulsestorm_simpleuicomponent</span><br><span class="line"></span><br><span class="line">php pestle.phar generate_view Pulsestorm_SimpleUiComponent adminhtml pulsestorm_simpleuicomponent_index_index Main content.phtml 1column</span><br><span class="line"></span><br><span class="line">php bin/magento module:enable Pulsestorm_SimpleUiComponent</span><br><span class="line"></span><br><span class="line">php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+
+<p>运行上述命令后，登陆后台，应该就能通过 <strong>System -&gt; Other Settings -&gt; Hello Simple Ui Component</strong> 进入到刚刚创建的页面中了。</p>
+<h2 id="配置-UI-component"><a href="#配置-UI-component" class="headerlink" title="配置 UI component"></a><a href="#%E9%85%8D%E7%BD%AE-ui-component"></a>配置 UI component</h2><p>点击 <strong>System -&gt; Other Settings -&gt; Hello Simple Ui Component</strong> 进入到刚刚创建的页面，你看到的是这样子的： <img src="/wp-content/uploads/2018/05/simple-ui-component-first.png" alt="simple-ui-component"> 首先我们要做的是给我们的 layout handle xml 文件加 <code>&lt;uiComponent&gt;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/layout/pulsestorm_simpleuicomponent_index_index.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;referenceBlock name=&quot;content&quot;&gt;</span><br><span class="line">        &lt;block template=&quot;content.phtml&quot; class=&quot;Pulsestorm\SimpleUiComponent\Block\Adminhtml\Main&quot; name=&quot;pulsestorm_simpleuicomponent_block_main&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- START: our new ui component --&gt;</span><br><span class="line">        &lt;uiComponent name=&quot;pulsestorm_simple&quot;/&gt;</span><br><span class="line">        &lt;!-- END:   our new ui component --&gt;</span><br><span class="line">    &lt;/referenceBlock&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码，我们告诉 Magento 我们要加一个 <code>pulsestorm_simple</code> UI component 到页面的 content block 中。然后没咱们清空缓存，刷新页面，我们会看到如下的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1 exception(s):</span><br><span class="line">Exception #0 (Magento\Framework\Exception\LocalizedException): Object </span><br><span class="line">DOMDocument should be created.</span><br><span class="line"></span><br><span class="line">Exception #0 (Magento\Framework\Exception\LocalizedException): Object </span><br><span class="line">DOMDocument should be created.</span><br><span class="line">#0 /path/to/magento/</span><br><span class="line">vendor/magento/framework/View/Element/UiComponent/Config/Reader.php(95):</span><br><span class="line">Magento\Framework\View\Element\UiComponent\Config\DomMerger-&gt;getDom()</span><br></pre></td></tr></table></figure>
+
+<p>错误原因是我们配置一个叫 <code>pulsestorm_simple</code> 的 ui component ，但是 Magento 又找不到它的定义文件。<code>Object DOMDocument should be created</code> 错误来自于 php 代码尝试载入一个不存在的 xml object。 任何 ui component 都需要一个 <code>ui_component/[...].xml</code> 定义文件。下面我们修复这个问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/ui_component/pulsestorm_simple.xml --&gt;</span><br><span class="line">&lt;pulsestorm_simple xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line">&lt;/pulsestorm_simple&gt;</span><br></pre></td></tr></table></figure>
+
+<p>ui component 的名字（pulsestorm_simple）和它的 xml 文件名（pulsestorm_simple.xml）需要一致。所有 ui component 的文件都在 <a href="frontend/adminhtml">area</a>&#x2F;view&#x2F;ui_component 目录下。尽管不限制使用 ui component 在 <code>frontend</code> area 中，但是前台不一定会像预期的那样管用，因为 Magento 核心团队大多数情况下（只在？）后台 layout 中使用 ui components 。 清除缓存，刷新页面后，我们会得到一个新的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 exception(s):</span><br><span class="line">Exception #0 (Magento\Framework\Exception\LocalizedException): Element</span><br><span class="line">&#x27;pulsestorm_simple&#x27;: No matching global declaration available for the</span><br><span class="line">validation root.</span><br><span class="line">Line: 1</span><br></pre></td></tr></table></figure>
+
+<p>这里，我们的顶层节点名字叫 <code>pulsestorm_simple</code> 。回顾上篇 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_introducing_ui_components/">Magento 2 的 UI Components 介绍（翻译）</a>， ui component 文件是 domain specific language (DSL)，由它控制嵌套的 php 对象的实例化。<code>ui_component</code> 文件中的每个节点对应着下面这个文件中的节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor/magento/module-ui/view/base/ui_component/etc/definition.xml</span><br></pre></td></tr></table></figure>
+
+<p>所以，问题是我们的节点 <code>pulsestorm_simple</code> 不在 <code>definition.xml</code> 中，Magento 的 UI component DSL 当然也就不知道遇到这个节点的时候，用哪个 php 类去实例化。多亏了 Magento 会合并配置文件再载入，我们就可以通过添加下面的文件来改变合并后的 <code>definition.xml</code> （<strong>必须搁在 <code>base</code> 下面才管用</strong>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/base/ui_component/etc/definition.xml --&gt;</span><br><span class="line">&lt;components xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_definition.xsd&quot;&gt;</span><br><span class="line">    &lt;pulsestorm_simple class=&quot;Pulsestorm\SimpleUiComponent\Component\Simple&quot;/&gt;</span><br><span class="line">&lt;/components&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的配置，我们等于告诉 Magento <em>遇到 <code>pulsestorm_simple</code> ui component 节点，请实例化 <code>Pulsestorm\SimpleUiComponent\Component\Simple</code></em> 命名要注意，因为我们的文件会和核心 <code>definition.xml</code> 进行合并，如果你的命名和核心中的重名了，那么可能就改变系统原来的行为了。推荐加上 vendor namespace 作为前缀（pulsestorm_ ） 清空缓存，刷新页面，我们会得到一个新的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 exception(s):</span><br><span class="line">Exception #0 (Magento\Framework\Exception\LocalizedException): Element</span><br><span class="line">&#x27;pulsestorm_simple&#x27;: This element is not expected. Expected is one of</span><br><span class="line">( range, tab, dataSource, paging, massaction, listing, form, fieldset,</span><br><span class="line">field, filters ).</span><br></pre></td></tr></table></figure>
+
+<p>Magento 正在合并我们的 <code>definition.xml</code>，但必须通过 schema validation 。具体来说，Magento 要求最终的 <code>definition.xml</code> 要符合下面这个文件中定义结构要求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor/magento/module-ui/etc/ui_definition.xsd</span><br></pre></td></tr></table></figure>
+
+<p>很不幸的是，Magento 2 没有提供方法让我们加入规则。如果你知道查看哪里（Magento\Framework\Config\Dom::validateDomDocument），可以使用 object manager 的 preference 来注入一些自定义的行为，这样我们是可以让 Magento 跳过 XSD 验证的。但是，很不幸，这么做可能跟其他也这么做的插件冲突。所以如果你打算发布代码的话，这么做可不太合适。使用 Magento 的 plugin 方式（更安全稳定些）也是不行的，因为 <code>validateDomDocument</code> 虽然是 public 但它是 static 方法，Magento 的 plugin system 不支持 static 方法。 到这里，我们想创建一个全新的、顶层的 ui_component 节点是行不通的。这预示着，Magento 的 UI component 系统是为官方核心开发保留的，也可能说是 UI component 还不是功能齐全的。</p>
+<h2 id="跳过验证"><a href="#跳过验证" class="headerlink" title="跳过验证"></a><a href="#%E8%B7%B3%E8%BF%87%E9%AA%8C%E8%AF%81"></a>跳过验证</h2><p>当然咯，上面我们说行不通，是说，用安全稳定的方法做不到，但是我们还是可以通过可能不那么稳定的 class preference 来做到嘛。 Magento 的开发者通过 calss preference 定义 interfaces 对应的具体类，object manager 遇到这个 interface 的时候，就会去实例化对应的具体类。 Class preference 还可以用来替换具体的类，和 Magento 1 中 class rewrites 有非常相似的功能（缺点也是一样的）。 下面我们将用 class preference 方式来跳过 XML 的 XSD 验证。在生产环境中，或是要发布的系统中，这么做是不合适的，但是这里只是为了让教程继续下去。 创建 di.xml 文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/etc/di.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:ObjectManager/etc/config.xsd&quot;&gt;                                                                --&gt;</span><br><span class="line">    &lt;preference for=&quot;Magento\Framework\App\Arguments\ValidationState&quot; type=&quot;Pulsestorm\SimpleUiComponent\Model\ValidationState&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后添加下面的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/Model/ValidationState.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\SimpleUiComponent\Model;</span><br><span class="line">class ValidationState extends \Magento\Framework\App\Arguments\ValidationState</span><br><span class="line">&#123;</span><br><span class="line">    public function isValidationRequired()</span><br><span class="line">    &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于为什么这么做就可以跳过 XSD 验证，本篇不介绍，有兴趣的读者可以自己研究下，不过<a target="_blank" rel="noopener" href="https://alanstorm.com/magento-2-more-plugin-edge-cases/">这篇</a>可能对你有帮助。 清理缓存后刷新页面，这次看到一个新的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 exception(s):</span><br><span class="line">Exception #0 (ReflectionException): Class</span><br><span class="line">Pulsestorm\SimpleUiComponent\Component\Simple does not exist</span><br></pre></td></tr></table></figure>
+
+<p>XSD 验证跳过了，我们可以继续探索了。 <strong>UPDTE:</strong> Hello, from late 2017! When Magento release version 2.2, they broke this tutorial. If you’re using Magento 2.2, in addition to disabling XSD validation, you’ll also need to add a <a target="_blank" rel="noopener" href="https://github.com/astorm/magento2-simple-ui-component/blob/master/first-pass-unstable/app/code/Pulsestorm/SimpleUiComponent/view/base/ui_component/etc/definition.map.xml">definition.map.xml</a> file with a name&#x3D;”puslestorm_simple” node. Why? We have no idea and Magento haven’t really explained what this file is for. Open source doesn’t always mean open intent. If you’re using Magento 2.2 just copy <a target="_blank" rel="noopener" href="https://github.com/astorm/magento2-simple-ui-component/blob/master/first-pass-unstable/app/code/Pulsestorm/SimpleUiComponent/view/base/ui_component/etc/definition.map.xml">the file from GitHub</a> to your module and you should take take of any errors about undefined <code>children</code> keys.</p>
+<h2 id="UI-Component-Rendering-Class"><a href="#UI-Component-Rendering-Class" class="headerlink" title="UI Component Rendering Class"></a><a href="#ui-component-rendering-class"></a>UI Component Rendering Class</h2><p>在我们遇到 schema validation 的坑之前，我们在 <code>definition.xml</code> 中添加了以下设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/base/ui_component/etc/definition.xml --&gt;</span><br><span class="line">&lt;components xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_definition.xsd&quot;&gt;</span><br><span class="line">    &lt;pulsestorm_simple class=&quot;Pulsestorm\SimpleUiComponent\Component\Simple&quot;/&gt;</span><br><span class="line">&lt;/components&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>etc/definition.xml</code> 定义了<strong>默认的</strong>属性和节点，当 Magento 在 <code>ui_component/[somefile].xml</code> 遇到特定的节点的时候，就会用 <code>definition.xml</code> 中的值。以本例来说，当 Magento 遇到 <code>pulsestorm_simple</code> 时，就会使用 <code>Pulsestorm\SimpleUiComponent\Component\Simple</code> 类。就是说，下面我们使用 <code>pulsestorm_simple</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/ui_component/pulsestorm_simple.xml --&gt;</span><br><span class="line">&lt;pulsestorm_simple xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;</span><br><span class="line">&lt;/pulsestorm_simple&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 会尝试用 <code>Pulsestorm\SimpleUiComponent\Component\Simple</code> 实例化对象，用这个对象去 render UI component。所以错误就是 <code>Pulsestorm\SimpleUiComponent\Component\Simple</code> 不存在。下面创建它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/Component/Simple.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\SimpleUiComponent\Component;</span><br><span class="line">class Simple extends \Magento\Ui\Component\AbstractComponent</span><br><span class="line">&#123;</span><br><span class="line">    const NAME = &#x27;pulsestorm_simple&#x27;;</span><br><span class="line">    public function getComponentName()</span><br><span class="line">    &#123;</span><br><span class="line">        return static::NAME;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 2 的 UI component 类必须继承 <code>Magento\Ui\Component\AbstractComponent</code> 类，必须定义一个 <code>getComponentName</code> 方法。ui component 的 name 是否必须和 UI component node 的 name 一样，还是要和 <code>ui_componont/[filename].xml</code> (pulsestorm_simple) 一样不太清楚。但是最好是跟 Magento 的核心代码的做法保持一致。所以，我们也给我们的 component 一个 NAME constant 。 清空缓存，刷新页面后我们得到了一个新的错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 exception(s):</span><br><span class="line">Exception #0 (Magento\Framework\Exception\LocalizedException): Object</span><br><span class="line">DOMDocument should be created.</span><br><span class="line"></span><br><span class="line">Exception #0 (Magento\Framework\Exception\LocalizedException): Object</span><br><span class="line">DOMDocument should be created.</span><br></pre></td></tr></table></figure>
+
+<p>这次 Magento 又报错说 XML 文件缺少了。ui component object （继承自 <code>Magento\Ui\Component\AbstractComponent</code>）负责 render XHML templates 。 我们告诉 Magento ，我需要 render <code>Pulsestorm\SimpleUiComponent\Component\Simple</code> 对象，但是我们没告诉它 <code>Pulsestorm\SimpleUiComponent\Component\Simple</code> 这个对象应该用哪个 template 。下面我们修改 <code>definition.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/base/ui_component/etc/definition.xml --&gt;</span><br><span class="line">&lt;components xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_definition.xsd&quot;&gt;</span><br><span class="line">    &lt;pulsestorm_simple class=&quot;Pulsestorm\SimpleUiComponent\Component\Simple&quot;&gt;</span><br><span class="line">        &lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">            &lt;item name=&quot;template&quot; xsi:type=&quot;string&quot;&gt;templates/our-template&lt;/item&gt;</span><br><span class="line">        &lt;/argument&gt;</span><br><span class="line">    &lt;/pulsestorm_simple&gt;</span><br><span class="line">&lt;/components&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面创建模板文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/ui_component/templates/our-template.xhtml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello World&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>UI component 将会在模块的 <code>view/[area]/ui_component</code> 目录下找 template。<code>definition.xml</code> 文件中的值会加上 <code>.xhtml</code> 后缀转成文件路径。请注意，虽然文件看起来很像 HTML ，但是他们是有 XML 头的。他们是 XHTML 文件，是需要格式良好的 XML 。 下面清楚缓存，刷新页面，这次我们又看到一个新的错误，不过这次已经接近目标了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">( ! ) Fatal error: Method Magento\Ui\TemplateEngine\Xhtml\Result::__toString() must not throw an</span><br><span class="line"> exception, caught Error: Call to a member function getConfigData() on null</span><br><span class="line"> in /path/to/magento/</span><br><span class="line"> vendor/magento/module-ui/Component/Wrapper/UiComponent.php on line 0</span><br></pre></td></tr></table></figure>
+
+<p>UI components 系统除了 render XHTML templates 外，还需要将特定的 XHTML template 与 data provider class 匹配起来。UI component 设计本意是从服务端获取数据，data provider 是 component 获得数据的正式方法。 这意味着，创建一个最简单的 UI component 的最后一步就是配置一个 data provider class 。这个改动放在 <code>pulsestorm_simple.xml</code> 中，因为理论上每个 component 实例都 render 不同的 UI Component 。下面我们给 <code>pulsestorm_simple.xml</code> 添加 <code>dataSource</code> 节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/ui_component/pulsestorm_simple.xml --&gt;</span><br><span class="line">&lt;pulsestorm_simple xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dataSource name=&quot;pulsestorm_simple_data_source&quot;&gt;</span><br><span class="line">        &lt;argument name=&quot;dataProvider&quot; xsi:type=&quot;configurableObject&quot;&gt;</span><br><span class="line">            &lt;!-- the PHP class that implements a data provider --&gt;</span><br><span class="line">            &lt;argument name=&quot;class&quot; xsi:type=&quot;string&quot;&gt;Pulsestorm\SimpleUiComponent\Model\DataProvider&lt;/argument&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!-- redundant with the `dataSource` name --&gt;</span><br><span class="line">            &lt;argument name=&quot;name&quot; xsi:type=&quot;string&quot;&gt;pulsestorm_simple_data_source&lt;/argument&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!-- required: means ui components are meant to work with models --&gt;</span><br><span class="line">            &lt;argument name=&quot;primaryFieldName&quot; xsi:type=&quot;string&quot;&gt;entity_id&lt;/argument&gt;</span><br><span class="line"></span><br><span class="line">            &lt;!-- required: means ui components are meant to work with URL passing --&gt;</span><br><span class="line">            &lt;argument name=&quot;requestFieldName&quot; xsi:type=&quot;string&quot;&gt;id&lt;/argument&gt;</span><br><span class="line">        &lt;/argument&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/dataSource&gt;</span><br><span class="line"></span><br><span class="line">&lt;/pulsestorm_simple&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>&lt;dataSource/&gt;</code> 树中有一些冗余的样板命名约定需要注意。首先是 name 属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;dataSource name=&quot;pulsestorm_simple_data_source&quot;&gt;...&lt;/dataSource&gt;</span><br></pre></td></tr></table></figure>
+
+<p>它是 UI component 名称（pulsestorm_simple）加上 <code>_data_source</code>，同样的还有下面的参数节点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;argument name=&quot;name&quot; xsi:type=&quot;string&quot;&gt;pulsestorm_simple_data_source&lt;/argument&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个参数节点是必要的，虽然它是冗余的。 下面两个节点也是必要的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;argument name=&quot;primaryFieldName&quot; xsi:type=&quot;string&quot;&gt;entity_id&lt;/argument&gt;</span><br><span class="line">&lt;argument name=&quot;requestFieldName&quot; xsi:type=&quot;string&quot;&gt;id&lt;/argument&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最后是 class</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;argument name=&quot;class&quot; xsi:type=&quot;string&quot;&gt;Pulsestorm\SimpleUiComponent\Model\DataProvider&lt;/argument&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们告诉我们的 component 使用哪个 PHP data provider class 去进行实例化。所以我们下面创建它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/Model/DataProvider.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\SimpleUiComponent\Model;</span><br><span class="line">class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>DataProvider 类必须继承自 <code>Magento\Ui\DataProvider\AbstractDataProvider</code> —— 尽管这个类没有 abstract methods 需要定义。 下面清空缓存，刷新页面。 <img src="/wp-content/uploads/2018/05/simple-ui-component-second.png"> 我们终于把 XHTML 模板给 render 出来啦。</p>
+<h2 id="幕后发生的事情"><a href="#幕后发生的事情" class="headerlink" title="幕后发生的事情"></a><a href="#%E5%B9%95%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85"></a>幕后发生的事情</h2><p>在我们讨论可以用这个渲染的 XHTML 模板来做点什么事情之前，让我们先来谈谈幕后发生了什么。当 Magento 的 layout rendering code 遇到 UI component 标签的时候，一堆等同于下面的伪代码的代码就会执行。 配置 ui_component 的整个过程是选择实例化的类，并在该类上设置数据属性。在本例中实例化过程就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$data = functionThatLoadsArgumentNodesFromXmlFiles();</span><br><span class="line">$ui_component = new Pulsestorm\SimpleUiComponent\Component\Simple(</span><br><span class="line">    //...</span><br><span class="line">    [</span><br><span class="line">        &#x27;template&#x27;=&gt;&#x27;templates/our-template&#x27;</span><br><span class="line">    ],</span><br><span class="line">);</span><br><span class="line">echo $ui_component-&gt;render();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$data = functionThatLoadsArgumentNodesFromXmlFiles();</span><br><span class="line">$ui_component = new Pulsestorm\SimpleUiComponent\Component\Simple(</span><br><span class="line">    //...</span><br><span class="line">    $data,</span><br><span class="line">);</span><br><span class="line">echo $ui_component-&gt;render();</span><br></pre></td></tr></table></figure>
+
+<p>好的 DSL 通常会让你忘记像这样的实现细节——但是如果你从来没有遇到过 dsl， 这种事情看起来很奇怪， 也很陌生。每当你被一些 UI 组件的配置缠住时, 请记住您正在为 Magento 准备转换为 PHP 代码的值。这些值并不是简单的数据属性。</p>
+<h2 id="Raw-Template-Source"><a href="#Raw-Template-Source" class="headerlink" title="Raw Template Source"></a><a href="#raw-template-source"></a>Raw Template Source</h2><p><img src="/wp-content/uploads/2018/05/simple-ui-component-second.png"> 这是我们从浏览器中看到的样子，但是加载的源代码是什么样子的呢。我们查看网页源代码，不是 browser debugger 中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt; div &gt;</span><br><span class="line">    &lt;h1 &gt; Hello World &lt; /h1&gt;</span><br><span class="line">    &lt;script type = &quot;text/x-magento-init&quot; &gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;*&quot;:</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;Magento_Ui/js/core/app&quot;:</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;types&quot;:</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;dataSource&quot;: [],</span><br><span class="line">                    &quot;pulsestorm_simple&quot;:</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;extends&quot;: &quot;pulsestorm_simple&quot;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &quot;html_content&quot;:</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;component&quot;: &quot;Magento_Ui\/js\/form\/components\/html&quot;,</span><br><span class="line">                        &quot;extends&quot;: &quot;pulsestorm_simple&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                &quot;components&quot;:</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;pulsestorm_simple&quot;:</span><br><span class="line">                    &#123;</span><br><span class="line">                        &quot;children&quot;:</span><br><span class="line">                        &#123;</span><br><span class="line">                            &quot;pulsestorm_simple&quot;:</span><br><span class="line">                            &#123;</span><br><span class="line">                                &quot;type&quot;: &quot;pulsestorm_simple&quot;,</span><br><span class="line">                                &quot;name&quot;: &quot;pulsestorm_simple&quot;</span><br><span class="line">                            &#125;,</span><br><span class="line">                            &quot;pulsestorm_simple_data_source&quot;:</span><br><span class="line">                            &#123;</span><br><span class="line">                                &quot;type&quot;: &quot;dataSource&quot;,</span><br><span class="line">                                &quot;name&quot;: &quot;pulsestorm_simple_data_source&quot;,</span><br><span class="line">                                &quot;dataScope&quot;: &quot;pulsestorm_simple&quot;,</span><br><span class="line">                                &quot;config&quot;:</span><br><span class="line">                                &#123;</span><br><span class="line">                                    &quot;params&quot;:</span><br><span class="line">                                    &#123;</span><br><span class="line">                                        &quot;namespace&quot;: &quot;pulsestorm_simple&quot;</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt; /script&gt;</span><br><span class="line">&lt;/div &gt;</span><br></pre></td></tr></table></figure>
+
+<p>Magento 从 XHTML template 中不仅仅是加载了 <code>&lt;div&gt;</code> 和 <code>&lt;h1&gt;</code> 标签，他还载入了一个 <code>text/x-magento-init</code> script 。这是我们今天要讨论的关于 UI component system 的最后一个方面。UI component 不仅加载 XHTML template，也不仅仅是将 template 和 data provider 对象绑定起来，他还加载一个 JSON 对象，通过 <code>x-magento-init</code> 的方式，用这个 JSON 对象来实例化 <code>Magento_Ui/js/core/app</code> RequireJS app&#x2F;module。 现在，我们知道 UI component 做的大致事情了，下面我们来看看这个 template&#x2F;rendering engine 的一些功能。</p>
+<h2 id="XHTML-Template-Tags"><a href="#XHTML-Template-Tags" class="headerlink" title="XHTML Template Tags"></a><a href="#xhtml-template-tags"></a>XHTML Template Tags</h2><p>和 <code>phtml</code> 模板类似 —— 你可以在 XHTML 模板中对底层的 UI Component 类进行 “调用”。你可以使用特殊的模板指令 <code>&amp;#123;&amp;#123;...&amp;#125;&amp;#125;</code>。下面我们看个例子，我们给 component 类添加一个 <code>getEvenMoreData</code> 方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/Component/Simple.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\SimpleUiComponent\Component;</span><br><span class="line">class Simple extends \Magento\Ui\Component\AbstractComponent</span><br><span class="line">&#123;</span><br><span class="line">    const NAME = &#x27;pulsestorm_simple&#x27;;</span><br><span class="line">    public function getComponentName()</span><br><span class="line">    &#123;</span><br><span class="line">        return static::NAME;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //added this method</span><br><span class="line">    public function getEvenMoreData()</span><br><span class="line">    &#123;</span><br><span class="line">        return &#x27;Even More Data!&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以在 <code>xhtml</code> template 中调用 <code>&amp;#123;&amp;#123;...&amp;#125;&amp;#125;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/ui_component/templates/our-template.xhtml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello World&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &amp;#123;&amp;#123;getComponentName()&amp;#125;&amp;#125;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line"></span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &amp;#123;&amp;#123;getEvenMoreData()&amp;#125;&amp;#125;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码保存后，清空缓存刷新页面。你就会看到类的方法&#x2F;属性中的数据传递到模板上来了。 <img src="/wp-content/uploads/2018/05/simple-ui-component-third.png"> 除了调用对象中的方法，我们应该还能通过 data 配置节点来获得 data 属性值，就像下面这样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/base/ui_component/etc/definition.xml --&gt;</span><br><span class="line">&lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">    &lt;item name=&quot;template&quot; xsi:type=&quot;string&quot;&gt;templates/our-template&lt;/item&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- NEW NODE HERE --&gt;</span><br><span class="line">    &lt;item name=&quot;message&quot; xsi:type=&quot;string&quot;&gt;Hello World&lt;/item&gt;</span><br><span class="line">&lt;/argument&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后再 xhtml 中调用它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">    &amp;#123;&amp;#123;message&amp;#125;&amp;#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是，这里有个 <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/issues/6532">bug</a>，除非这个 data variable 在 tag 的属性中，否则加载的还是 <code>&amp;#123;&amp;#123;message&amp;#125;&amp;#125;</code> 而不是它的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;div class=&quot;&amp;#123;&amp;#123;message&amp;#125;&amp;#125;&quot;&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">    &amp;#123;&amp;#123;message&amp;#125;&amp;#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面这一段 render 出来的是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;div class=&quot;Hello World&quot;&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">    &amp;#123;&amp;#123;message&amp;#125;&amp;#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>真是很烦人，再次表明 UI Component system 还不成熟。</p>
+<h2 id="理解-UI-Component-继承"><a href="#理解-UI-Component-继承" class="headerlink" title="理解 UI Component 继承"></a><a href="#%E7%90%86%E8%A7%A3-ui-component-%E7%BB%A7%E6%89%BF"></a>理解 UI Component 继承</h2><p>在<code>definition.xml</code> 中放置顶级节点，意味着你创建了一个可重用的 UI 组件标签。其他程序员可以在 XML 文件中使用 <code>&lt;uiComponent&gt;</code> 使用你的组件。 <code>definition.xml</code> 文件还可以设置组件的默认值，不过这些值是可以被覆盖的。 举例来说，我们设置了默认的模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/base/ui_component/etc/definition.xml --&gt;</span><br><span class="line">&lt;components xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_definition.xsd&quot;&gt;</span><br><span class="line">    &lt;pulsestorm_simple class=&quot;Pulsestorm\SimpleUiComponent\Component\Simple&quot;&gt;</span><br><span class="line">        &lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">            &lt;item name=&quot;template&quot; xsi:type=&quot;string&quot;&gt;templates/our-template&lt;/item&gt;</span><br><span class="line">        &lt;/argument&gt;</span><br><span class="line">    &lt;/pulsestorm_simple&gt;</span><br><span class="line">&lt;/components&gt;</span><br></pre></td></tr></table></figure>
+
+<p>假设我们需要一个 <code>pulsestorm_simple</code> 组件，但是我们要换一个 template。那么我们可以按照相同的结构重写一下要用的 template。 比如，我们需要下面的模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/ui_component/templates/different.xhtml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Hello Brave New World&lt;/h1&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们需要做的就是增加下面 template 部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/SimpleUiComponent/view/adminhtml/ui_component/pulsestorm_simple.xml --&gt;</span><br><span class="line">&lt;pulsestorm_simple xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">        &lt;item name=&quot;template&quot; xsi:type=&quot;string&quot;&gt;templates/different&lt;/item&gt;</span><br><span class="line">    &lt;/argument&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">&lt;/pulsestorm_simple&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个功能通常不作用于 template，它常用在配置参数的重写上，并且对于使用至关重要。在实际开发中，你不会向 <code>definition.xml</code> 中加东西，但是 debug grid listing 的参数时，还是需要参考 <code>definition.xml</code> 的。</p>
+<h2 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a><a href="#%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE"></a>添加数据</h2><p>今天我们要说的最后一件时 UI Component 的 data 。UI Component 的 data 类似于 grid listing 的行，或是 form 的默认值。Behind the scenes, the UI Component system can render this backend data for you in the frontend as a javascript array&#x2F;object. 我们需要做的就是在 component 类中定义 <code>getDataSourceData</code> 方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/Component/Simple.php    </span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\SimpleUiComponent\Component;</span><br><span class="line">class Simple extends \Magento\Ui\Component\AbstractComponent</span><br><span class="line">&#123;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">    public function getDataSourceData()</span><br><span class="line">    &#123;</span><br><span class="line">        return [&#x27;data&#x27; =&gt; [&#x27;foo&#x27;=&gt;&#x27;bar&#x27;]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>清除缓存并刷新页面后，查看源代码，我们会发现刚刚的 <code>foo =&gt; bar</code> 已经在 JSON 中了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;pulsestorm_simple_data_source&quot;: &#123;</span><br><span class="line">    //...</span><br><span class="line">    &quot;config&quot;: &#123;</span><br><span class="line">        &quot;data&quot;: &#123;</span><br><span class="line">            &quot;foo&quot;: &quot;bar&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    //...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可能会感到很困惑，如果 data 来自于 component 类的 <code>getDataSourceData</code> 方法，那么为什么还要配置 <code>Pulsestorm\SimpleUiComponent\Model\DataProvider</code> 呢？ Alan 也没有好的答案。基于核心代码，看起来正确的使用方式是，在 component 类中获得 data provider 对象，然后调用它的 <code>getData</code> 方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/Component/Simple.php</span><br><span class="line">public function getDataSourceData()</span><br><span class="line">&#123;</span><br><span class="line">    return [&#x27;data&#x27; =&gt; $this-&gt;getContext()-&gt;getDataProvider()-&gt;getData()];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>data provider 的 <code>getData</code> 方法返回实际的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/SimpleUiComponent/Model/DataProvider.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\SimpleUiComponent\Model;</span><br><span class="line">class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider</span><br><span class="line">&#123;</span><br><span class="line">    public function getData()</span><br><span class="line">    &#123;</span><br><span class="line">        return [[&#x27;foo&#x27;=&gt;&#x27;baz&#x27;]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>乍一看，UI Component 系统似乎是一个面向对象的领域专用语言（domain specific language），用来创建用户界面的组件，可能已经朝着这个目的去做了，但是，深入了解后发现，他还没有完成，里面有各种边缘清空，bugs, 奇怪的遗漏。</p>
+<h2 id="后续步骤"><a href="#后续步骤" class="headerlink" title="后续步骤"></a><a href="#%E5%90%8E%E7%BB%AD%E6%AD%A5%E9%AA%A4"></a>后续步骤</h2><p>简而言之, 这是 UI Component system 的 PHP 部分。在一天结束时, 所有这些复杂性可以归结为渲染一个 xhtml 模板并将其绑定到数据源上。 在我们的后续文章中，我们将更深入地了解 Magento 的 js 系统（RequireJS 和 knockout.js）是如何与 UI component 系统交互的。这些交互正是 Magento 的 grid listings 和后端 forms 渲染的主要工作，理解这些系统对于自定义后端 UI 是至关重要的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/magento-2-ui-components/" rel="tag"># magento 2 ui components</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento-2-add-custom-validation/" rel="prev" title="Magento 2 add custom validation">
+      <i class="fa fa-chevron-left"></i> Magento 2 add custom validation
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/alan-magento-2-simplest-ui-knockout-component/" rel="next" title="Magento 2: Simplest UI Knockout Component">
+      Magento 2: Simplest UI Knockout Component <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8-Pestle-%E5%88%9B%E5%BB%BA%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">用 Pestle 创建基本的模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-UI-component"><span class="nav-number">2.</span> <span class="nav-text">配置 UI component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%B3%E8%BF%87%E9%AA%8C%E8%AF%81"><span class="nav-number">3.</span> <span class="nav-text">跳过验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-Component-Rendering-Class"><span class="nav-number">4.</span> <span class="nav-text">UI Component Rendering Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%95%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">5.</span> <span class="nav-text">幕后发生的事情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raw-Template-Source"><span class="nav-number">6.</span> <span class="nav-text">Raw Template Source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XHTML-Template-Tags"><span class="nav-number">7.</span> <span class="nav-text">XHTML Template Tags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%A7%A3-UI-Component-%E7%BB%A7%E6%89%BF"><span class="nav-number">8.</span> <span class="nav-text">理解 UI Component 继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE"><span class="nav-number">9.</span> <span class="nav-text">添加数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%E6%AD%A5%E9%AA%A4"><span class="nav-number">10.</span> <span class="nav-text">后续步骤</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

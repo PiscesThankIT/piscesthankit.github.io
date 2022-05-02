@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="上一篇 Web 字体 讲了 css 的 font-family 规则以及西文的 Web 安全字体。这篇我们来讲中文安全字体。 操作系统预装字体有哪些首先我们需要知道操作系统的预装字体有哪些。 Windows OS X 黑体：SimHei 冬青黑体: Hiragino Sans GB （SNOW LEOPARD 10.6 开始提供） 宋体：SimSun 华文细黑：STHeiti Light （又名S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中文 Web 安全字体">
+<meta property="og:url" content="http://example.com/web-fonts-chinese/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="上一篇 Web 字体 讲了 css 的 font-family 规则以及西文的 Web 安全字体。这篇我们来讲中文安全字体。 操作系统预装字体有哪些首先我们需要知道操作系统的预装字体有哪些。 Windows OS X 黑体：SimHei 冬青黑体: Hiragino Sans GB （SNOW LEOPARD 10.6 开始提供） 宋体：SimSun 华文细黑：STHeiti Light （又名S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/chinese-web-fonts-simsun.jpg">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/chinese-web-fonts-Microsoft-yahei.jpg">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/chinese-web-fonts-clear-type.jpg">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/web-fonts-chineses-compare.png">
+<meta property="article:published_time" content="2017-01-12T07:35:02.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.210Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/01/chinese-web-fonts-simsun.jpg">
+
+<link rel="canonical" href="http://example.com/web-fonts-chinese/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>中文 Web 安全字体 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/web-fonts-chinese/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          中文 Web 安全字体
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-12 15:35:02" itemprop="dateCreated datePublished" datetime="2017-01-12T15:35:02+08:00">2017-01-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>上一篇 <a href="/web-fonts/">Web 字体</a> 讲了 css 的 font-family 规则以及西文的 Web 安全字体。这篇我们来讲中文安全字体。</p>
+<h2 id="操作系统预装字体有哪些"><a href="#操作系统预装字体有哪些" class="headerlink" title="操作系统预装字体有哪些"></a><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%A2%84%E8%A3%85%E5%AD%97%E4%BD%93%E6%9C%89%E5%93%AA%E4%BA%9B"></a>操作系统预装字体有哪些</h2><p>首先我们需要知道操作系统的预装字体有哪些。</p>
+<p>Windows</p>
+<p>OS X</p>
+<p>黑体：SimHei</p>
+<p>冬青黑体: Hiragino Sans GB （SNOW LEOPARD 10.6 开始提供）</p>
+<p>宋体：SimSun</p>
+<p>华文细黑：STHeiti Light （又名STXihei）</p>
+<p>新宋体：NSimSun</p>
+<p>华文黑体：STHeiti</p>
+<p>仿宋：FangSong</p>
+<p>华文楷体：STKaiti</p>
+<p>楷体：KaiTi</p>
+<p>华文宋体：STSong</p>
+<p>仿宋_GB2312：FangSong_GB2312</p>
+<p>华文仿宋：STFangsong</p>
+<p>楷体_GB2312：KaiTi_GB2312</p>
+<p>微软雅黑：Microsoft YaHei （Windows 7开始提供）</p>
+<p><em>注：在XP系统中，没有仿宋、楷体，只有仿宋_GB2312和楷体_GB2312这两种字体。但是到了Win7系统，却只有仿宋和楷体，没有了仿宋_GB2312和楷体_GB2312这两种字体。所以在XP系统下制作的公文在Win7系统中打开，全部转换成系统默认的微软雅黑字体。而在Win7系统下制作的公文在XP系统中打开，全部转换成系统默认的宋体。</em></p>
+<h2 id="font-family-使用注意"><a href="#font-family-使用注意" class="headerlink" title="font-family 使用注意"></a><a href="#font-family-%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F"></a>font-family 使用注意</h2><p>使用 css font-family 需要注意以下几点：</p>
+<ol>
+<li><p>中文字体有英文名称的，建议把中英文名称都写上，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: Tahoma, Helvetica, Arial, &quot;Microsoft Yahei&quot;,&quot;微软雅黑&quot;, STXihei, &quot;华文细黑&quot;, sans-serif;</span><br></pre></td></tr></table></figure>
+
+<p>“Microsoft YaHei” 是 “微软雅黑” 的英文名</p>
+</li>
+<li><p>在声明中文字体前声明英文字体 原因是 font-family 会优先使用前面的字体，这样如果中文字体包含了英文字母，那么就会用中文字体库来渲染，这样往往不好看。</p>
+</li>
+<li><p>字体名如果由多个单词组成，那么需要使用引号</p>
+</li>
+</ol>
+<h2 id="衬线体和无衬线体"><a href="#衬线体和无衬线体" class="headerlink" title="衬线体和无衬线体"></a><a href="#%E8%A1%AC%E7%BA%BF%E4%BD%93%E5%92%8C%E6%97%A0%E8%A1%AC%E7%BA%BF%E4%BD%93"></a>衬线体和无衬线体</h2><p>衬线体(Serif)是比划末端带有衬线的字体，衬线体装饰性强，易于辨认，常用于正文。 无衬线体当然就是不带衬线的字体，常用于标题，用于强调和突出。</p>
+<h2 id="常见的中文字体"><a href="#常见的中文字体" class="headerlink" title="常见的中文字体"></a><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93"></a>常见的中文字体</h2><h3 id="宋体-SimSun"><a href="#宋体-SimSun" class="headerlink" title="宋体 (SimSun)"></a><a href="#%E5%AE%8B%E4%BD%93-(simsun)"></a>宋体 (SimSun)</h3><p><img src="/wp-content/uploads/2017/01/chinese-web-fonts-simsun.jpg"> 宋体是最常用的字体。很多人不喜欢宋体，就像很多设计师不喜欢 Arial 一样（windows 的错…）。 如果没有指定字体，windows 系统往往会选择宋体来渲染。 声明就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: Arial, Helvetica, tahoma, verdana, SimSun,宋体,STXihei,华文细黑, sans-serif;</span><br></pre></td></tr></table></figure>
+
+<h3 id="微软雅黑-Microsoft-YaHei"><a href="#微软雅黑-Microsoft-YaHei" class="headerlink" title="微软雅黑 (Microsoft YaHei)"></a><a href="#%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91-(microsoft-yahei)"></a>微软雅黑 (Microsoft YaHei)</h3><p><img src="/wp-content/uploads/2017/01/chinese-web-fonts-Microsoft-yahei.jpg"> 微软雅黑应该说是 windows 平台上最主要的字体了。不过这个字体表现良好主要归功于 ClearType feature，但是 Windows XP 默认关闭了这个功能，所以在 XP 上看起来就惨不忍睹了。 <img src="/wp-content/uploads/2017/01/chinese-web-fonts-clear-type.jpg"> 当然 XP 并没有预装这种字体，可以给微软雅黑设置一个 fallback 宋体或者黑体。不过黑体比较粗，不适合用于字号较小的文字。 OS X 对应的字体是华文细黑 (STXihei) 声明就像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: Tahoma, Arial, Helvetica, &quot;Microsoft YaHei New&quot;, &quot;Microsoft Yahei&quot;, &quot;微软雅黑&quot;, 宋体, SimSun, STXihei, &quot;华文细黑&quot;, sans-serif;</span><br></pre></td></tr></table></figure>
+
+<h3 id="仿宋-FangSong"><a href="#仿宋-FangSong" class="headerlink" title="仿宋 (FangSong)"></a><a href="#%E4%BB%BF%E5%AE%8B-(fangsong)"></a>仿宋 (FangSong)</h3><p>仿宋是一种更具装饰性的字体，是衬线体。只有 14 px 以上才比较好，不然太模糊了。(仿宋体是国家规定的机械制图标准字体。)</p>
+<h3 id="楷体-KaiTi"><a href="#楷体-KaiTi" class="headerlink" title="楷体 (KaiTi)"></a><a href="#%E6%A5%B7%E4%BD%93-(kaiti)"></a>楷体 (KaiTi)</h3><p>楷体的装饰性也很强，字面比仿宋体还宽一点，笔画更清楚些，模仿手写体，但是也不宜用在 14 px 以下。</p>
+<h3 id="冬青黑体简体中文-Hiragino-Sans-GB"><a href="#冬青黑体简体中文-Hiragino-Sans-GB" class="headerlink" title="冬青黑体简体中文 (Hiragino Sans GB)"></a><a href="#%E5%86%AC%E9%9D%92%E9%BB%91%E4%BD%93%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-(hiragino-sans-gb)"></a>冬青黑体简体中文 (Hiragino Sans GB)</h3><p>这是 OS X 系统的字体，从 10.6 开始提供，苹果系统使用了很长世间的华文黑体 STHeiti 。从 OS X 10.6 开始 STHeiti 被彻底修订了(combining 华文黑体STHeiti and 华文细黑STXihei)，重命名为(汉黑) HanHei SC ，并且作为系统的默认字体。但是，冬青黑被认为是最好的 web 中文字体，但冬青黑不是 Mac 系统的默认字体。</p>
+<h3 id="兰亭黑-pro"><a href="#兰亭黑-pro" class="headerlink" title="兰亭黑 pro"></a><a href="#%E5%85%B0%E4%BA%AD%E9%BB%91-pro"></a>兰亭黑 pro</h3><p>兰亭黑 pro 是兰亭黑的改造版，很适合演示。不过不在安全字体的讨论范围内。因为系统是没有预装兰亭黑 pro 的</p>
+<h2 id="字体的排位"><a href="#字体的排位" class="headerlink" title="字体的排位"></a><a href="#%E5%AD%97%E4%BD%93%E7%9A%84%E6%8E%92%E4%BD%8D"></a>字体的排位</h2><p>很多时候我们会将 Windows 的字体放在 OS X 系统之前，按照道理是没问题的，反正 OS X 系统里又没有 Windows 的字体。但是由于各种因素 (比如 Office for Mac 软件帮你安装了 Win 下常用的中文字体)，所以这个时候对 OS X 的用户来说，体验就不好了。相反，Windows 的用户较少安装 OS X 的字体，所以我们应该将针对 OS X 的字体放在 Win 的前面。</p>
+<h2 id="不一定是最佳实践的-Tip"><a href="#不一定是最佳实践的-Tip" class="headerlink" title="不一定是最佳实践的 Tip"></a><a href="#%E4%B8%8D%E4%B8%80%E5%AE%9A%E6%98%AF%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E7%9A%84-tip"></a>不一定是最佳实践的 Tip</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: Helvetica, Tahoma, Arial, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;,&quot;WenQuanYi Micro Hei&quot;, sans-serif;</span><br></pre></td></tr></table></figure>
+
+<p>“WenQuanYi Micro Hei” 用于 Linux 用户。 其他的就让他自己 fallback 吧。 然后博主又去找了 Apple 网站的字体设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: &#x27;HanHei SC&#x27;, &#x27;PingFang SC&#x27;, &#x27;Helvetica Neue&#x27;, &#x27;Helvetica&#x27;, &#x27;STHeitiSC-Light&#x27;, &#x27;Arial&#x27;, sans-serif;</span><br></pre></td></tr></table></figure>
+
+<p>看起来没有考虑 Windows 用户呢 … 就让系统自己选吧 然后是微软商城的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: &quot;SegoeUI&quot;, &quot;Microsoft YaHei&quot;, &quot;Hiragino Sans GB&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>好像位置不正确呢？… 也许可以参考小米、简书的。</p>
+<h2 id="常见字体效果比较"><a href="#常见字体效果比较" class="headerlink" title="常见字体效果比较"></a><a href="#%E5%B8%B8%E8%A7%81%E5%AD%97%E4%BD%93%E6%95%88%E6%9E%9C%E6%AF%94%E8%BE%83"></a>常见字体效果比较</h2><p>windows 平台，安装了冬青黑体简体中文和汉黑，<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1skJVqiD#list/path=%2Fwww.hellomagento2.com%2F%E5%AD%97%E4%BD%93">下载地址</a> 下图是 chrome 下的效果 <img src="/wp-content/uploads/2017/01/web-fonts-chineses-compare.png"> chrome 上没有指定字体使用的是宋体，但是博主在 firefox 上测试发现未指定字体使用的是微软雅黑，而且浏览器中可以设置字体。 最后附上这段效果的 html 代码，有兴趣的可以自行测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang=&quot;zh&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        text-align: center;</span><br><span class="line">        margin-top: 50px;</span><br><span class="line">        background-color: #efe1d6;</span><br><span class="line">        font-size: 14px;</span><br><span class="line">    &#125;</span><br><span class="line">      .songti &#123;</span><br><span class="line">        font-family: &#x27;SimSun&#x27;,宋体;</span><br><span class="line">      &#125;</span><br><span class="line">      .fsong &#123;</span><br><span class="line">        font-family: &#x27;FangSong&#x27;,仿宋;</span><br><span class="line">      &#125;</span><br><span class="line">      .kai &#123;</span><br><span class="line">        font-family: &#x27;KaiTi&#x27;,楷体;</span><br><span class="line">      &#125;</span><br><span class="line">      .yh &#123;</span><br><span class="line">        font-family: &#x27;Microsoft YaHei&#x27;,微软雅黑;</span><br><span class="line">      &#125;</span><br><span class="line">      .dqh &#123;</span><br><span class="line">        font-family: &#x27;Hiragino Sans GB&#x27;;</span><br><span class="line">      &#125;</span><br><span class="line">      .hh &#123;</span><br><span class="line">        font-family: &#x27;HanHeiSC&#x27;;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;p&gt;没有没有指定字体这里是可以比较的文本内容&lt;/p&gt;</span><br><span class="line">    &lt;p class=&quot;songti&quot;&gt;宋体宋体宋体宋体这里是可以比较的文本内容&lt;/p&gt;</span><br><span class="line">    &lt;p class=&quot;fsong&quot;&gt;仿宋体仿宋体仿宋这里是可以比较的文本内容&lt;/p&gt;</span><br><span class="line">    &lt;p class=&quot;kai&quot;&gt;楷体楷体楷体楷体这里是可以比较的文本内容&lt;/p&gt;</span><br><span class="line">    &lt;p class=&quot;yh&quot;&gt;微软雅黑微软雅黑这里是可以比较的文本内容&lt;/p&gt;</span><br><span class="line">    &lt;p class=&quot;dqh&quot;&gt;冬青黑体简体中文这里是可以比较的文本内容&lt;/p&gt;</span><br><span class="line">    &lt;p class=&quot;hh&quot;&gt;汉黑汉黑汉黑汉黑这里是可以比较的文本内容&lt;/p&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a><a href="#%E5%8F%82%E8%80%83%E5%9C%B0%E5%9D%80"></a>参考地址</h2><p><a target="_blank" rel="noopener" href="http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/">Chinese Standard Web Fonts: A Guide to CSS Font Family Declarations for Web Design in Simplified Chinese</a> <a target="_blank" rel="noopener" href="http://daoinsights.com/chinese-web-fonts-part-1/">Chinese Web Fonts – Part 1</a> <a target="_blank" rel="noopener" href="https://ruby-china.org/topics/14005">Web 中文字体应用指南</a> <a target="_blank" rel="noopener" href="http://www.imooc.com/article/11261">如何优雅的选择默认字体(font-family)</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/magento2-cli-upgrade/" rel="prev" title="Magento 2 命令行升级">
+      <i class="fa fa-chevron-left"></i> Magento 2 命令行升级
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/px-pt-em-rem/" rel="next" title="px、pt、%、em 和 rem">
+      px、pt、%、em 和 rem <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%A2%84%E8%A3%85%E5%AD%97%E4%BD%93%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">1.</span> <span class="nav-text">操作系统预装字体有哪些</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#font-family-%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F"><span class="nav-number">2.</span> <span class="nav-text">font-family 使用注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%AC%E7%BA%BF%E4%BD%93%E5%92%8C%E6%97%A0%E8%A1%AC%E7%BA%BF%E4%BD%93"><span class="nav-number">3.</span> <span class="nav-text">衬线体和无衬线体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93"><span class="nav-number">4.</span> <span class="nav-text">常见的中文字体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8B%E4%BD%93-SimSun"><span class="nav-number">4.1.</span> <span class="nav-text">宋体 (SimSun)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91-Microsoft-YaHei"><span class="nav-number">4.2.</span> <span class="nav-text">微软雅黑 (Microsoft YaHei)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BF%E5%AE%8B-FangSong"><span class="nav-number">4.3.</span> <span class="nav-text">仿宋 (FangSong)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A5%B7%E4%BD%93-KaiTi"><span class="nav-number">4.4.</span> <span class="nav-text">楷体 (KaiTi)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%AC%E9%9D%92%E9%BB%91%E4%BD%93%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-Hiragino-Sans-GB"><span class="nav-number">4.5.</span> <span class="nav-text">冬青黑体简体中文 (Hiragino Sans GB)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B0%E4%BA%AD%E9%BB%91-pro"><span class="nav-number">4.6.</span> <span class="nav-text">兰亭黑 pro</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E7%9A%84%E6%8E%92%E4%BD%8D"><span class="nav-number">5.</span> <span class="nav-text">字体的排位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E4%B8%80%E5%AE%9A%E6%98%AF%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E7%9A%84-Tip"><span class="nav-number">6.</span> <span class="nav-text">不一定是最佳实践的 Tip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AD%97%E4%BD%93%E6%95%88%E6%9E%9C%E6%AF%94%E8%BE%83"><span class="nav-number">7.</span> <span class="nav-text">常见字体效果比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%9C%B0%E5%9D%80"><span class="nav-number">8.</span> <span class="nav-text">参考地址</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

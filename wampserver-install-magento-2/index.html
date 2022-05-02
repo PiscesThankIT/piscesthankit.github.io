@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Wampserver 简介Wampserver 是 window 下的 apache、 php 和 mysql 的集成包。他可以帮助你快速搭建PHP环境。对于初学者来说，非常适合。不过要进入生产环境，这样的集成包有一些奇怪的问题，还是用标准的配置方法更好。对于 Magento 2 来说，官方的系统要求是 Linux，所以强烈建议深入学习和生产环境时使用Linux 环境进行服务器配置。可以参考本站的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wampserver 本地搭建 Magento 2">
+<meta property="og:url" content="http://example.com/wampserver-install-magento-2/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="Wampserver 简介Wampserver 是 window 下的 apache、 php 和 mysql 的集成包。他可以帮助你快速搭建PHP环境。对于初学者来说，非常适合。不过要进入生产环境，这样的集成包有一些奇怪的问题，还是用标准的配置方法更好。对于 Magento 2 来说，官方的系统要求是 Linux，所以强烈建议深入学习和生产环境时使用Linux 环境进行服务器配置。可以参考本站的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/08/wampserver-install-magento2-error.png">
+<meta property="article:published_time" content="2016-08-21T07:23:27.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.036Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="推荐">
+<meta property="article:tag" content="Wampserver">
+<meta property="article:tag" content="install Magento 2">
+<meta property="article:tag" content="虚拟目录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/08/wampserver-install-magento2-error.png">
+
+<link rel="canonical" href="http://example.com/wampserver-install-magento-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Wampserver 本地搭建 Magento 2 | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/wampserver-install-magento-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Wampserver 本地搭建 Magento 2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-21 15:23:27" itemprop="dateCreated datePublished" datetime="2016-08-21T15:23:27+08:00">2016-08-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Wampserver-简介"><a href="#Wampserver-简介" class="headerlink" title="Wampserver 简介"></a><a href="#wampserver-%E7%AE%80%E4%BB%8B"></a>Wampserver 简介</h2><p>Wampserver 是 window 下的 apache、 php 和 mysql 的集成包。他可以帮助你快速搭建PHP环境。对于初学者来说，非常适合。不过要进入生产环境，这样的集成包有一些奇怪的问题，还是用标准的配置方法更好。对于 Magento 2 来说，官方的系统要求是 Linux，所以强烈建议深入学习和生产环境时使用Linux 环境进行服务器配置。可以参考本站的另一篇文章 <a href="/aliyun-ecs-install-magento-2/">阿里云 ECS 安装 Magento 2 (原创)</a></p>
+<h3 id="准备需要的软件"><a href="#准备需要的软件" class="headerlink" title="准备需要的软件"></a><a href="#%E5%87%86%E5%A4%87%E9%9C%80%E8%A6%81%E7%9A%84%E8%BD%AF%E4%BB%B6"></a>准备需要的软件</h3><ol>
+<li><p>Wampserver<br>Wampserver 可以去<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/wampserver/">该网站下载</a>，官方发布，可以获得最新版，缺点就是下载速度慢地很。<br>可以去我的百度云下载：<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1skJVqiD">http://pan.baidu.com/s/1skJVqiD</a></p>
+</li>
+<li><p>Magento 安装包<br>这个官方给出了三种：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.magentocommerce.com/download">官方下载地址</a></li>
+<li>Composer 的方式</li>
+<li>GitHub 的方式<br>这里，我推荐官方下载地址，也可以去我的百度云下载（<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1skJVqiD%EF%BC%89">http://pan.baidu.com/s/1skJVqiD）</a></li>
+</ul>
+</li>
+</ol>
+<p>该教程准备的Wampserver 是 wampserver3.0.4_x64_apache2.4.18_mysql5.7.11_php5.6.19-7.0.4.exe ，我是64位的系统，云盘里放的也是这个版本，还放了一个32位的。</p>
+<p>Magento 是 Magento-CE-2.1.0_sample_data-2016-06-23-02-32-34.zip ，这个是Magento 2.1 版本带演示数据的。（云盘里有2.1版本带演示数据和不带演示数据的）</p>
+<h2 id="安装-Wampserver"><a href="#安装-Wampserver" class="headerlink" title="安装 Wampserver"></a><a href="#%E5%AE%89%E8%A3%85-wampserver"></a>安装 Wampserver</h2><p>这个很简单啦，下一步下一步就行。<br>安装好后启动它。</p>
+<h2 id="配置-Wampserver-虚拟目录"><a href="#配置-Wampserver-虚拟目录" class="headerlink" title="配置 Wampserver 虚拟目录"></a><a href="#%E9%85%8D%E7%BD%AE-wampserver-%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95"></a>配置 Wampserver 虚拟目录</h2><p>我们的开发环境要能够放多个网站，当然用子目录也是可以的，子目录就是比如<code>http://127.0.0.1/a</code> 放一个站，<code>http://127.0.0.1/b</code> 又放一个站。不过这样很容易混乱，所以我们来配置一下虚拟目录。</p>
+<h3 id="配置虚拟目录"><a href="#配置虚拟目录" class="headerlink" title="配置虚拟目录"></a><a href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95"></a>配置虚拟目录</h3><p>我的在wamp 安装在<code>D:\wamp64</code> 目录下。<br>打开<code>D:\wamp64\bin\apache\apache2.4.17\conf\extra\httpd-vhosts.conf</code> 我们可以看到如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># Virtual Hosts</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName localhost</span><br><span class="line">    DocumentRoot d:/wamp64/www</span><br><span class="line">    &lt;Directory  &quot;d:/wamp64/www/&quot;&gt;</span><br><span class="line">        Options +Indexes +FollowSymLinks +MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require local</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我将他改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># Virtual Hosts</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName localhost</span><br><span class="line">    DocumentRoot e:/www/hellomagento2</span><br><span class="line">    &lt;Directory  &quot;e:/www/hellomagento2&quot;&gt;</span><br><span class="line">        Options +Indexes +FollowSymLinks +MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require local</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:81&gt;</span><br><span class="line">    ServerName localhost</span><br><span class="line">    DocumentRoot e:/www/wp</span><br><span class="line">    &lt;Directory  &quot;e:/www/wp&quot;&gt;</span><br><span class="line">        Options +Indexes +FollowSymLinks +MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require local</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后修改<code>D:\wamp64\bin\apache\apache2.4.17\conf\httpd.conf</code>找到这一段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 0.0.0.0:80</span><br><span class="line">Listen [::0]:80</span><br></pre></td></tr></table></figure>
+
+<p>在后面添加监听81端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Listen 0.0.0.0:80</span><br><span class="line">Listen [::0]:80</span><br><span class="line">Listen 0.0.0.0:81</span><br><span class="line">Listen [::0]:81</span><br></pre></td></tr></table></figure>
+
+<p>这时候我们在任务栏里找到 wamp 的图标，单击一下，点击<strong>Restart All services</strong> 等到 wamp 由再次变成绿色以后，在浏览器输入<code>127.0.0.1</code>就会访问<code>e:/www/hellomagento2</code>下的网站，而如果输入<code>127.0.0.1:81</code>则会访问<code>e:/www/wp</code><br>上面两个<code>127.0.0.1</code>都可以用<code>localhost</code>替代。我们来看下为什么可以用<code>localhost</code>替代。<br>以管理员身份打开记事本，在记事本中打开<code>C:\Windows\System32\drivers\etc\hosts</code>，我们可以看到这样的记录<code>127.0.0.1 localhost</code><br>hosts 是一个记录主机名和ip地址映射的文件，相当于本地的 DNS，当我在浏览器中输入某个域名的时候，本机会先查看 hosts 中是否有记录，如果有直接转到该 ip，不需要再访问DNS服务器了。所以我们现在给他加一条<code>127.0.0.1 thankit.cn</code> 加完后我们在浏览器中输入<code>thankit.cn</code>照样可以访问<code>e:/www/hellomagento2</code>下的网站了对吧。</p>
+<p>上面我们给不同的端口分配了不同的虚拟目录，现在我要同一个端口也可以有不同的网站呢？<br>我们已经给hosts 增加了一条记录，让<code>thankit.cn</code>也可以访问到<code>127.0.0.1</code>了，现在我要让<code>thankit.cn</code>对应<code>e:/www/thankit</code>应该怎么做呢？<br>打开<code>D:\wamp64\bin\apache\apache2.4.17\conf\extra\httpd-vhosts.conf</code> 在上面的基础上添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName thankit.cn</span><br><span class="line">    DocumentRoot e:/www/thankit</span><br><span class="line">    &lt;Directory  &quot;e:/www/thankit&quot;&gt;</span><br><span class="line">        Options +Indexes +FollowSymLinks +MultiViews</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require local</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意 ServerName 现在是 <code>thankit.cn</code>让 wamp <strong>Restart All services</strong>，之后浏览器中输入<code>thankit.cn</code>是不是可以访问到<code>e:/www/thankit</code></p>
+<p>根据你的需求配置好自己的虚拟目录吧。</p>
+<h2 id="安装-Magento-2-1"><a href="#安装-Magento-2-1" class="headerlink" title="安装 Magento 2.1"></a><a href="#%E5%AE%89%E8%A3%85-magento-2.1"></a>安装 Magento 2.1</h2><p>我们用<code>localhost</code> 对应的<code>e:/www/hellomagento2</code>来安装 Magento 2。<br>先将2.1的zip 解压后放到<code>e:/www/hellomagento2</code>下。<br>我们来创建一个数据库。在任务栏找到 wamp ，单击出现的面板中再点击 phpMyAdmin，默认用户名为root，密码为空。登录后创建一个数据库hellomagento2。<br>在浏览器中打开<code>localhost</code>这时候就是 Magento 安装界面了。第一步的检测，PHP Settings Check 发生错误。<br><img src="/wp-content/uploads/2016/08/wampserver-install-magento2-error.png"><br>上面说让我们打开php.ini 修改 <code>always_populate_raw_post_data</code> 为 -1</p>
+<p><em>wampserver 是有两个 php.ini 的，我的在wamp 安装在<code>D:\wamp64</code> 目录下，以我的安装目录为例，php 下的<code>D:\wamp64\bin\php\php5.6.19\php.ini</code>是cli 命令行使用时的配置文件，而apache 下的<code>D:\wamp64\bin\apache\apache2.4.18\bin\php.ini</code>是web 访问时的配置文件。此处先注意一下，以后会需要改命令行下的 php.ini，现在不需要</em></p>
+<p>现在我们改<code>D:\wamp64\bin\apache\apache2.4.18\bin\php.ini</code>，找到<code>always_populate_raw_post_data</code> 发现他是<code>;always_populate_raw_post_data = -1</code>，去掉前面的分号保存，wamp <strong>Restart All services</strong>，回到浏览器 Magento 安装页面，重新检测一下(Try again)，这次没有错误啦。<br>下一步，填入数据库名称<code>hellomagento2</code>再下一步，下面很简单，根据提示下一步下一步就安装成功啦。</p>
+<h2 id="简单调优"><a href="#简单调优" class="headerlink" title="简单调优"></a><a href="#%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98"></a>简单调优</h2><p>我们可以通过增加 PHP 的 memory_limit 来让 Magento 跑快一点。<br>官方推荐的memory_limit 是这样的：</p>
+<ul>
+<li>Compiling code, 768M</li>
+<li>Deploying static asses, 768M</li>
+<li>Installing and updating Magento components from Magento Marketplace, 1G</li>
+<li>Testing, 2G<br>所以我们起码给个 768M 吧，这次我们修改 <code>D:\wamp64\bin\apache\apache2.4.18\bin\php.ini</code> 和 <code>D:\wamp64\bin\php\php5.6.19\php.ini</code>，找到 <code>memory_limit</code>，发现默认才给了128M，速度当然慢了。强烈建议你两个都修改，因为 Magento 是要用命令行的，而博主就遇到过一直报内存不够的错误，当时我还不知道 Wamp 是有两个 php.ini 的…<br>记得改完<strong>Restart All services</strong></li>
+</ul>
+<h2 id="相关文章列表"><a href="#相关文章列表" class="headerlink" title="相关文章列表"></a><a href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8"></a>相关文章列表</h2><p><a href="/wampserver-lan-magento">局域网访问本地 Magento</a><br><a href="/php-path/">php 不是内部或外部命令，也不是可运行的程序或批处理文件</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8E%A8%E8%8D%90/" rel="tag"># 推荐</a>
+              <a href="/tags/Wampserver/" rel="tag"># Wampserver</a>
+              <a href="/tags/install-Magento-2/" rel="tag"># install Magento 2</a>
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95/" rel="tag"># 虚拟目录</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/products-menu/" rel="prev" title="商品菜单">
+      <i class="fa fa-chevron-left"></i> 商品菜单
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/wampserver-lan-magento/" rel="next" title="局域网访问本地 Magento">
+      局域网访问本地 Magento <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wampserver-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">Wampserver 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E9%9C%80%E8%A6%81%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">准备需要的软件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Wampserver"><span class="nav-number">2.</span> <span class="nav-text">安装 Wampserver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-Wampserver-%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">配置 Wampserver 虚拟目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95"><span class="nav-number">3.1.</span> <span class="nav-text">配置虚拟目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Magento-2-1"><span class="nav-number">4.</span> <span class="nav-text">安装 Magento 2.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98"><span class="nav-number">5.</span> <span class="nav-text">简单调优</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0%E5%88%97%E8%A1%A8"><span class="nav-number">6.</span> <span class="nav-text">相关文章列表</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

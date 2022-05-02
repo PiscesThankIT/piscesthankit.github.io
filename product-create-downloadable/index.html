@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 可下载商品可以是任何以文件形式交付的东西，比如电子书、音乐、视频、软件或更新。你可以出售专辑，单独出售每首歌曲。你还可以使用可下载商品提供电子版的产品目录。 因为直到付款后才可以下载商品，因此你可以提供样品。比如一本书的摘录、音频文件或视频文件中的一段剪辑，这样客户可以在购买前先感受下。供下载的文件可以放在自己的服务器上，也可以放在其他服务器上。  可下载商品可以配置为要求客户登陆后获取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可下载商品(Downloadable Product)">
+<meta property="og:url" content="http://example.com/product-create-downloadable/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 可下载商品可以是任何以文件形式交付的东西，比如电子书、音乐、视频、软件或更新。你可以出售专辑，单独出售每首歌曲。你还可以使用可下载商品提供电子版的产品目录。 因为直到付款后才可以下载商品，因此你可以提供样品。比如一本书的摘录、音频文件或视频文件中的一段剪辑，这样客户可以在购买前先感受下。供下载的文件可以放在自己的服务器上，也可以放在其他服务器上。  可下载商品可以配置为要求客户登陆后获取">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/storefront-product-downloadable_thumb_0_0.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-add-downloadable.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-create-choose-attribute-set.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/btn-switch-no_32x18.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-create-store-view-choose.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-details-downloadable.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-downloadable-information.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-downloadable-link-detail.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-downloadable-samples.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/btn-switch-yes_32x18.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-edit-save-close.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-admin-customer-view.png">
+<meta property="article:published_time" content="2017-01-04T06:28:40.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.204Z">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/01/storefront-product-downloadable_thumb_0_0.png">
+
+<link rel="canonical" href="http://example.com/product-create-downloadable/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>可下载商品(Downloadable Product) | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-downloadable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          可下载商品(Downloadable Product)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-04 14:28:40" itemprop="dateCreated datePublished" datetime="2017-01-04T14:28:40+08:00">2017-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-downloadable.html">原文地址</a></em></p>
+<p>可下载商品可以是任何以文件形式交付的东西，比如电子书、音乐、视频、软件或更新。你可以出售专辑，单独出售每首歌曲。你还可以使用可下载商品提供电子版的产品目录。</p>
+<p>因为直到付款后才可以下载商品，因此你可以提供样品。比如一本书的摘录、音频文件或视频文件中的一段剪辑，这样客户可以在购买前先感受下。供下载的文件可以放在自己的服务器上，也可以放在其他服务器上。</p>
+<p><img src="/wp-content/uploads/2017/01/storefront-product-downloadable_thumb_0_0.png" alt="Downloadable Product"></p>
+<p>可下载商品可以配置为要求客户登陆后获取下载链接，或者可以通过邮件发送，并与其他人分享。了解更多 <a href="/product-download-options">配置可下载商品的选项</a></p>
+<p>以下将指引你创建一个基本设置的可下载商品。必填项以红色星号(*)标记出来。填完必填项并保存后，你可以继续填写剩下的字段、添加图片。</p>
+<p><em>Downloadable file names can include letters and numbers. Either a dash or underscore character can be used to represent a space between words. Any invalid characters in the file name are replaced with an underscore.</em></p>
+<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
+<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Simple Product</strong><br><img src="/wp-content/uploads/2017/01/product-add-downloadable.png"></li>
+</ol>
+<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集是产品的模板，要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
+<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
+<li>输入产品的名称 <strong>Product Name</strong></li>
+<li>使用基于产品名称的默认 SKU 或者重新输入一个 SKU</li>
+<li>输入产品的价格 <strong>Price</strong></li>
+<li>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></li>
+<li>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</li>
+<li>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></li>
+</ol>
+<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
+<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
+<li>None</li>
+<li>Taxable Goods</li>
+</ul>
+</li>
+<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
+<li>可下载商品不用配送，也没有重量。</li>
+<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
+<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。</li>
+<li>如果要标记改商品为新品，勾选 New 复选框</li>
+<li>设置 <strong>Format</strong> 为以下值<ul>
+<li>Download</li>
+<li>DVD<br>如果必要的话，你可以编辑属性来增加更多选项值<br><img src="/wp-content/uploads/2017/01/product-details-downloadable.png"><br>可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
+</ul>
+</li>
+</ol>
+<h2 id="第五步：完成可下载商品信息"><a href="#第五步：完成可下载商品信息" class="headerlink" title="第五步：完成可下载商品信息"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%8F%AF%E4%B8%8B%E8%BD%BD%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第五步：完成可下载商品信息</h2><p>向下滚动找到 <strong>Downloadable Information</strong>，然后展开这部分，然后勾选 Is this downloadable product?</p>
+<p>这部分有信息由两块内容组成。第一部分描述下载链接，第二部分描述样本文件。更多配置查看 <a href="/product-download-options">configuration</a></p>
+<p><img src="/wp-content/uploads/2017/01/product-downloadable-information.png" alt="Downloadable Information"></p>
+<h3 id="完成链接部分"><a href="#完成链接部分" class="headerlink" title="完成链接部分"></a><a href="#%E5%AE%8C%E6%88%90%E9%93%BE%E6%8E%A5%E9%83%A8%E5%88%86"></a>完成链接部分</h3><ol>
+<li><p>输入 标题 <strong>Title</strong></p>
+</li>
+<li><p>如果需要的话，勾选 Links can be purchased separately</p>
+</li>
+<li><p>点击 <strong>Add Link</strong>，然后做如下事情：<br>a. 输入标题和价格<br>b. 不管是正式文件还是样品文件，选择下列方法之一</p>
+<p>Upload File</p>
+<p>上传到本服务器</p>
+<p>URL</p>
+<p>输入 URL</p>
+<p>c. 设置 <strong>Shareable</strong> 为下列值之一</p>
+<p>No</p>
+<p>要求客户必须登陆账户获取下载链接</p>
+<p>Yes</p>
+<p>通过邮件发送连接，这样客户很方便与其他人分享</p>
+<p>Use Config</p>
+<p>使用在 <a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/configuration/catalog/catalog.html#DownloadableProductOptions">Downloadable Product Options</a> 中指定的方法</p>
+<p>d. 做如下操作：</p>
+<ul>
+<li>限制每位客户的下载，输入 <strong>Max. Downloads</strong></li>
+<li>无限下载，勾选 <strong>Unlimited</strong> 复选框<br><img src="/wp-content/uploads/2017/01/product-downloadable-link-detail.png"></li>
+</ul>
+</li>
+<li><p>要增加一个链接，点击 <strong>Add Link</strong>，然后重复上述步骤</p>
+</li>
+</ol>
+<h3 id="完成样品部分"><a href="#完成样品部分" class="headerlink" title="完成样品部分"></a><a href="#%E5%AE%8C%E6%88%90%E6%A0%B7%E5%93%81%E9%83%A8%E5%88%86"></a>完成样品部分</h3><ol>
+<li><p>输入 标题 Title</p>
+</li>
+<li><p>点击 Add Link<br><img src="/wp-content/uploads/2017/01/product-downloadable-samples.png"></p>
+</li>
+<li><p>完成以下操作：<br>a. 输入每个样本的标题<br>b. 选择下列之一的发行方法：</p>
+<p>Upload File</p>
+<p>上传到本服务器</p>
+<p>URL</p>
+<p>输入 URL</p>
+<p>c. 点击 <strong>Add Link</strong> ，并重复上述步骤增加样本<br>d. 拖放 <img src="/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png"> 图标调整样本的位置</p>
+</li>
+</ol>
+<h2 id="第六步：填写商品信息"><a href="#第六步：填写商品信息" class="headerlink" title="第六步：填写商品信息"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第六步：填写商品信息</h2><p>往下拉，然后根据需要填写以下部分：</p>
+<ul>
+<li>Content</li>
+<li>Images and Videos</li>
+<li>Related Products, Up-Sells, and Cross-Sells</li>
+<li>Search Engine Optimization</li>
+<li>Customizable Options</li>
+<li>Products in Websites</li>
+<li>Design</li>
+<li>Gift Options</li>
+</ul>
+<h2 id="第七步：发布商品"><a href="#第七步：发布商品" class="headerlink" title="第七步：发布商品"></a><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>第七步：发布商品</h2><ol>
+<li>如果你已经准备好要发布产品了，那么设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>下面你可以点击右上角的 <strong>Save &amp; Close</strong> 或者 <strong>Save</strong> 然后再 <strong>Admin</strong> 菜单中选择 <strong>Customer View</strong> 检查下产品发布信息是否 OK</li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ul>
+<li>可下载商品可以上传到当前服务器上，或者提供到另一服务器的下载链接</li>
+<li>你可以决定客户可以下载的次数</li>
+<li>购买可下载商品的客户可以被要求结账前必须登陆</li>
+<li>The delivery of a downloadable product can be made when the order is in either a “Pending” or “Invoiced” state.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/product-create-bundle/" rel="prev" title="捆绑商品(Bundle Product)">
+      <i class="fa fa-chevron-left"></i> 捆绑商品(Bundle Product)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/product-download-options/" rel="next" title="配置下载选项(Configuring Download Options)">
+      配置下载选项(Configuring Download Options) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">第一步：选择产品类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">第二步：选择属性集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">第三步：完成必要的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">第四步：完成基本设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%8F%AF%E4%B8%8B%E8%BD%BD%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"><span class="nav-number">5.</span> <span class="nav-text">第五步：完成可下载商品信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%88%90%E9%93%BE%E6%8E%A5%E9%83%A8%E5%88%86"><span class="nav-number">5.1.</span> <span class="nav-text">完成链接部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%88%90%E6%A0%B7%E5%93%81%E9%83%A8%E5%88%86"><span class="nav-number">5.2.</span> <span class="nav-text">完成样品部分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"><span class="nav-number">6.</span> <span class="nav-text">第六步：填写商品信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"><span class="nav-number">7.</span> <span class="nav-text">第七步：发布商品</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E7%82%B9"><span class="nav-number">8.</span> <span class="nav-text">要点</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

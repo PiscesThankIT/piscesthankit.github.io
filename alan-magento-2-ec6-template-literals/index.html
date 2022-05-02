@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="原文地址 今天我们将了解 ES6 template literals （模板字符串）。Template literals 是 javascript 的新特性，Magento 2 的 UI Component 系统部分核心功能依赖它。Template literals 本身就是一个需要理解的重要概念，但是更重要的是要理解 Magento 在 template literals 之上创建的额外抽象层。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Magento 2 ES6 Template Literals">
+<meta property="og:url" content="http://example.com/alan-magento-2-ec6-template-literals/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:description" content="原文地址 今天我们将了解 ES6 template literals （模板字符串）。Template literals 是 javascript 的新特性，Magento 2 的 UI Component 系统部分核心功能依赖它。Template literals 本身就是一个需要理解的重要概念，但是更重要的是要理解 Magento 在 template literals 之上创建的额外抽象层。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-07-09T01:54:16.000Z">
+<meta property="article:modified_time" content="2022-05-01T09:11:17.346Z">
+<meta property="article:author" content="ThankIT">
+<meta property="article:tag" content="magento 2 ui components">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/alan-magento-2-ec6-template-literals/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Magento 2 ES6 Template Literals | { Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/alan-magento-2-ec6-template-literals/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Magento 2 ES6 Template Literals
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-07-09 09:54:16" itemprop="dateCreated datePublished" datetime="2018-07-09T09:54:16+08:00">2018-07-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://alanstorm.com/magento_2_ec6_template_literals/">原文地址</a> 今天我们将了解 ES6 template literals （模板字符串）。Template literals 是 javascript 的新特性，Magento 2 的 UI Component 系统部分核心功能依赖它。Template literals 本身就是一个需要理解的重要概念，但是更重要的是要理解 Magento 在 template literals 之上创建的额外抽象层。还有 Magento 的 <code>uiClass</code> object system 是怎么把它吸收进来的。 开始前，需要感谢 “bassplayer7” ，他在 <a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/137689/sigil-strings-in-magento-2s-requirejs-files/137716#137716">StackExchange 上的回答</a>，提供了完成该篇文章所需要的重要信息。</p>
+<h2 id="ES6-Template-Literals"><a href="#ES6-Template-Literals" class="headerlink" title="ES6 Template Literals"></a><a href="#es6-template-literals"></a>ES6 Template Literals</h2><p>很多人的第一个问题可能是 —— ES6 是什么鬼？ ES 是 ECMAScript 的缩写，ECMA 是 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ecma_International">Ecma_International</a> 的缩写，他是一个将各种 javascript&#x2F;jscript&#x2F;actionscript 编程语言标准化的机构。 <a target="_blank" rel="noopener" href="http://es6-features.org/#Constants">ECMAScript 6</a> 是该标准的最新版本。浏览器厂商（Apple, Google, Firefox）正在根据 ES6 标准实现功能（类似于 HTML 是怎样推出的）。 其中一个功能正是 template literals 。Template literals 让 javascript 具备了简单的、内置的模板语言。我们将在 Google Chrome Console 中运行一些 template literal 示例代码，但是你是可以在任何支持 ES6 标准的 javascript 环境中运行这些示例代码的。 Template literals 最简单的形式和字符串的区别很小。看下面的<code>Hello World</code> 文本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; results = `Hello World`</span><br><span class="line">&gt; console.log(results);</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>注意，我们把 “Hello World” 放在了重音符中（就是这个符号：<strong>`</strong> 中） 放在重音符中的文本表示，这个字符串是一个 template literal 到目前为止，字符串和模板字符串（Template literal）没什么特别大的区别。Template literals are (from a userland perspective) immediately rendered as strings</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; var results = `Hello World`</span><br><span class="line">&gt; var type    = typeof results;</span><br><span class="line">&gt; console.log(type)</span><br><span class="line">string</span><br></pre></td></tr></table></figure>
+
+<p><code>results</code> 变量看起来和 string 没什么区别，反正到目前为止，template literals 看起来没什么用。 当然了，如果他们没有什么用的话，我们也不会写文章说它了。Template literals 支持 <strong>template variables&#x2F;placeholders</strong> ，看下面的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; var salutation = &quot;Goodbye&quot;</span><br><span class="line">&gt; var results = `$&#123;salutation&#125; World`</span><br><span class="line">&gt; console.log(results);</span><br></pre></td></tr></table></figure>
+
+<p><code>$&#123;salutation&#125;</code> 就是一个 template literal variable (or placeholder) 这些变量从 js 当前作用域中获得。所以 js 会把 <code>$&#123;salutation&#125;</code> 替换成 <code>Goodbye</code> 。 js 会这么做是因为我们给全局变量 <code>salutation</code> 赋值为 <code>Goodbye</code> 。 要了解更多 template literals <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">请访问 Mozilla developer network</a> ，会讲更多高级特性，比如 <code>tag</code> 。</p>
+<h2 id="Browser-Support-and-Magento-2"><a href="#Browser-Support-and-Magento-2" class="headerlink" title="Browser Support and Magento 2"></a><a href="#browser-support-and-magento-2"></a>Browser Support and Magento 2</h2><p>跟其他 js 新特性一样，客户端开发者在使用前需要特别注意浏览器是否支持该特性。目前不是所有浏览器都支持 Template literals ，在老的浏览器上使用他们会导致错误。 Magento 2 的开发者通过创建 RequireJS 模块来 rendering template literals 去绕过使用限制。这个模块的 id 就是 <code>mage/utils/template</code> ，所以你可以像下面这样使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 注意要在 Magento 页面中打开 debugger</span><br><span class="line">//requires an enviornment bootstrapped with Magento 2</span><br><span class="line">//javascript.  i.e. open you debugger on a Magento page</span><br><span class="line"></span><br><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">    window.salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">    var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">    var results         = templateRenderer.template(templateLiteral);</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Brave New World</span><br></pre></td></tr></table></figure>
+
+<p>幕后，<code>mage/utils/template</code> 模块会检查浏览器对 template literal 的支持。如果支持，模块将使用浏览器原生的实现方式，如果不支持，模块将使用纯用户级的实现方式（速度更慢一点）。<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Polyfill">这被称为 polyfill</a> 这个模块很有用，但是有几点需要说明。首先，你会注意到我们需要把 <code>salutation</code> 变量搁到全局的命名空间上（在浏览器的 js 环境下指的是 “window”）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>原生的 template literals 会从当前作用域取值，但是 Magento 2 的模块（任何用户级代码）则不能自动地访问该作用域，因此，template literals 只能从全局作用域上取值。 看下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里会报错(除非你定义了一个全局变量 salutation)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">VM1627:1 Uncaught ReferenceError: salutation is not defined</span><br></pre></td></tr></table></figure>
+
+<p>（这一段我也没看懂，所以放上原文） The second mage&#x2F;utils&#x2F;template caveat, and likely a direct result of the above scope problem, is Magento 2’s template literals have extra abilities that go above and beyond those defined in the standard.</p>
+<h2 id="Binding-View-Variables-to-a-Template-Literal"><a href="#Binding-View-Variables-to-a-Template-Literal" class="headerlink" title="Binding View Variables to a Template Literal"></a><a href="#binding-view-variables-to-a-template-literal"></a>Binding View Variables to a Template Literal</h2><p>Magento 2 的 template litearls 允许你绑定特定的对象到特定的 template literal 上，然后通过特别的语法引用变量。就像下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var viewVars        = &#123;</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;What a Crazy&#x27;</span><br><span class="line">        &#125;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral, viewVars);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>就是说，<code>template</code> 方法第二个参数接受一个对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">templateRenderer.template(templateLiteral, viewVars);</span><br></pre></td></tr></table></figure>
+
+<p>但是上面的代码还是会报错。这是因为我们前面说过要用特殊的语法的。你需要在 <code>$&#123;&#125;</code> 里面用第二个 <code>$</code> 符号来引用对象。 就是说下面这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>需要变成这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var templateLiteral = &#x27;$&#123;$.placeholder&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>这有点笨拙，不过还是很好理解的，只要明白 <code>$.</code> 指代你传递过去的对象。 下面这样就对了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var viewVars        = &#123;</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;What a Crazy&#x27;</span><br><span class="line">        &#125;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;$.salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral, viewVars);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">What a Crazy World</span><br></pre></td></tr></table></figure>
+
+<h2 id="Connection-to-UI-Components"><a href="#Connection-to-UI-Components" class="headerlink" title="Connection to UI Components"></a><a href="#connection-to-ui-components"></a>Connection to UI Components</h2><p>为什么我们要在讲 Magento 2 的 UI Component 系列文章中讲 template literals 呢？这是因为 template literals 已经被植入了 view model constructor object 系统中。 我们知道，Magento UI Components 使用的 Knockout.js view model constructor objects 是基于 <code>uiElement/Magento_Ui/js/lib/core/element/element</code> 模块的。(<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_simplest_ui_knockout_component/#configuring-a-view-model-constructor">不明白戳这里</a>) 下面是一个简单的例子，我们先创建一个 view model constructor ，然后用这个 constructor 去创建 view model</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;&#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">UiClass &#123;_super: undefined, ignoreTmpls: Object, ...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个 view model constructor 有能力带 default 值进行实例化（因为 <code>uiElement</code> 继承自 <code>uiClass/Magento_Ui/js/lib/core/class</code>，这个父类是拥有这个能力的）如果你为 view model constructor 提供 default object ，像下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">viewModelConstructor = Element.extend(&#123;</span><br><span class="line">    &#x27;defaults&#x27;:&#123;</span><br><span class="line">        &#x27;ourDefaultValue&#x27;:&#x27;Look at our value!&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>那么所有通过这个 constructor 实例化的对象都会拥有 default 值 ourDefaultValue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;ourDefaultValue&#x27;:&#x27;Look at our value!&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.ourDefaultValue);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Look at our value!</span><br></pre></td></tr></table></figure>
+
+<p>Magento 对象系统会是检查所有的 default 字符串，发现 template literal 就会自动计算出他们。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    window.salutation = &#x27;Hello&#x27;;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Hello World.</span><br></pre></td></tr></table></figure>
+
+<p>注意这里使用的是全局的 <code>salutation</code> 值。 看下面的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;$.salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Goodbye World.</span><br></pre></td></tr></table></figure>
+
+<p>给 view model constructor 传递对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;$.salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor(&#123;</span><br><span class="line">        &#x27;salutation&#x27;:&#x27;This is still a crazy&#x27;</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">This is still a crazy World.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Wrap-Up"><a href="#Wrap-Up" class="headerlink" title="Wrap Up"></a><a href="#wrap-up"></a>Wrap Up</h2><p>本文揭示了想把 Magento 当作平台使用的开发者遇到的挑战之一。不仅有前沿 javaScript 概念，还有 Magento 通过不那么标准的方式(binding view variables)去扩展了这些概念，还有 Magento 是如何将这些概念吸收到自己的系统中去的（<code>uiClass</code> object system）。 如果没有上面的这些概念，那么你遇到下面这些代码的时候：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">return Element.extend(&#123;</span><br><span class="line">    defaults: &#123;</span><br><span class="line">        clientConfig: &#123;</span><br><span class="line">            urls: &#123;</span><br><span class="line">                save: &#x27;$&#123; $.submit_url &#125;&#x27;,</span><br><span class="line">                beforeSave: &#x27;$&#123; $.validate_url &#125;&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>就只能摸不着头脑干着急了。 现在我们了解了 Magento 的 ES6-like template literals .我们距离更进一步的探索又近了一步，下面我们将探索 Magento 是如何将后端数据放入 view model constructor 的 <code>default</code> 数组中的，还有 Magento 是如何处理 UI Component 生成的 data sources 的。 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34270829/chrome-console-clear-assignment-and-variables">chrome console 中 var 声明的也是全局变量</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/magento-2-ui-components/" rel="tag"># magento 2 ui components</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/alan-magento-2s-base-javascript-class/" rel="prev" title="Magento 2’s Base Javascript Class">
+      <i class="fa fa-chevron-left"></i> Magento 2’s Base Javascript Class
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/magento-2-%E7%A7%BB%E9%99%A4-last-name/" rel="next" title="Magento 2 移除 Last Name">
+      Magento 2 移除 Last Name <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-Template-Literals"><span class="nav-number">1.</span> <span class="nav-text">ES6 Template Literals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Browser-Support-and-Magento-2"><span class="nav-number">2.</span> <span class="nav-text">Browser Support and Magento 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binding-View-Variables-to-a-Template-Literal"><span class="nav-number">3.</span> <span class="nav-text">Binding View Variables to a Template Literal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection-to-UI-Components"><span class="nav-number">4.</span> <span class="nav-text">Connection to UI Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wrap-Up"><span class="nav-number">5.</span> <span class="nav-text">Wrap Up</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

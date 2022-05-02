@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="{ Hello Magento 2 }">
+<meta property="og:url" content="http://example.com/page/18/index.html">
+<meta property="og:site_name" content="{ Hello Magento 2 }">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ThankIT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/page/18/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>{ Hello Magento 2 }</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">{ Hello Magento 2 }</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">解决 Magento 2 应用问题，更注重深度挖掘。(ง •̀_•́)ง</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-bundle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-bundle/" class="post-title-link" itemprop="url">捆绑商品(Bundle Product)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-04 11:28:05" itemprop="dateCreated datePublished" datetime="2017-01-04T11:28:05+08:00">2017-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-bundle.html">原文地址</a></em></p>
+<p>捆绑商品让客户从各种各样的选项中“创造他们自己的”商品。捆绑产品可以是礼品、电脑、或者其他可以自定义的商品。捆绑商品中的每个项可以是以下商品类型：</p>
+<ul>
+<li><a href="/product-create-simple/">简单商品</a></li>
+<li><a href="/product-create-virtual/">虚拟商品</a></li>
+</ul>
+<p><img src="/wp-content/uploads/2017/01/product-bundle_thumb_0_0.png"></p>
+<p>当客户点击 <strong>Customize and Add to Cart</strong> 按钮后，才会出现选型。因为商品包含在捆绑数组中，所以 SKU 、价格、重量 可以被设置为静态的或固定的</p>
+<p><em>Minimum Advertised Price (MAP) is not available for Bundle products with dynamic pricing.</em></p>
+<p><img src="/wp-content/uploads/2017/01/product-bundle-customize.png"></p>
+<p>以下将指引你创建一个基本设置的捆绑商品。必填项以红色星号(*)标记出来。填完必填项并保存后，你可以继续填写剩下的字段。</p>
+<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
+<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Bundle Product</strong><br><img src="/wp-content/uploads/2017/01/product-add-bundle.png"></li>
+</ol>
+<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集是产品的模板，要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
+<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
+<li><p>输入产品的名称 <strong>Product Name</strong></p>
+</li>
+<li><p>使用基于产品名称的默认 SKU 或者重新输入一个 SKU<br>决定分配给每个捆绑项的 SKU 的类型，可以做如下事情：</p>
+<ul>
+<li>A Dynamic SKU can be assigned automatically to each bundle item by adding a suffix to the default SKU. By default, Dynamic SKU is set to “Yes.”</li>
+<li>If you prefer to assign a unique SKU for each bundle item, set Dynamic SKU to the “No” <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"> position.<br><img src="/wp-content/uploads/2017/01/product-bundle-dynamic-sku-price.png"></li>
+</ul>
+</li>
+<li><p>决定捆绑商品的价格，可以做如下设置：</p>
+<ul>
+<li>A Dynamic Price changes to reflect the options chosen by the customer. By default, Dynamic Price is set to “Yes,” and the Price field is left blank.</li>
+<li>To charge a fixed price for the bundle, set Dynamic Price to the “No.” <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"> position. Then, enter the Price that you want to charge for the bundle.</li>
+</ul>
+</li>
+<li><p>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></p>
+</li>
+<li><p>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</p>
+</li>
+<li><p>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></p>
+</li>
+</ol>
+<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
+<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
+<li>None</li>
+<li>Taxable Goods</li>
+</ul>
+</li>
+<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
+<li>设置捆绑商品的重量，做如下事情：<ul>
+<li>A Dynamic Weight changes to reflect the options chosen by the customer. By default, Dynamic Weight is set to “Yes,” and the Weight field is left blank.</li>
+<li>To assign a fixed weight to the bundle, set Dynamic Weight to the “No.” <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"> position. Then, enter the Weight of the bundle.<br><img src="/wp-content/uploads/2017/01/product-bundle-dynamic-weight.png"></li>
+</ul>
+</li>
+<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
+<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。</li>
+<li>如果要标记改商品为新品，勾选 New 复选框</li>
+<li>选择 <strong>Country of Manufacture</strong><br><img src="/wp-content/uploads/2017/01/product-bundle-details.png"><br>可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
+</ol>
+<h2 id="第五步：添加捆绑商品"><a href="#第五步：添加捆绑商品" class="headerlink" title="第五步：添加捆绑商品"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E6%B7%BB%E5%8A%A0%E6%8D%86%E7%BB%91%E5%95%86%E5%93%81"></a>第五步：添加捆绑商品</h2><ol>
+<li><p>下拉到捆绑商品选项部分，然后，设置 <strong>Ship Bundle Items</strong> 为以下值之一</p>
+<ul>
+<li>Separately</li>
+<li>Together<br><img src="/wp-content/uploads/2017/01/product-bundle-items.png" alt="Bundle Items"></li>
+</ul>
+</li>
+<li><p>点击 <strong>Add Option</strong>，做如下操作：<br><img src="/wp-content/uploads/2017/01/product-bundle-new-option.png"><br>a. 输入 Option Title 他将作为字段的标签名<br>b. 设置 Input Type 为下列值之一：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* Drop-down</span><br><span class="line">* Radio buttons</span><br><span class="line">* Checkbox</span><br><span class="line">* Multiple Select</span><br></pre></td></tr></table></figure>
+
+<p>c. 如要设置字段必选，则勾选 Required 复选框<br>d. 点击 <strong>Add Products to Option</strong>，然后选择你要包含的产品<br>e. 点击 <strong>Add Selected Products</strong><br><img src="/wp-content/uploads/2017/01/product-bundle-add-products-to-option.png" alt="Add Selected Products"><br>f. 等列表出现后，选择其中一个作为默认项<br>g. 输入 默认数量 <strong>Default Quantity</strong> (客户选择该项时的默认数量)<br>h. To allow customers to change the quantity of any bundle item, mark the User Defined checkbox of any item that you do not want changed.<br>By default, the Default Quantity that is included in a bundle item cannot be changed by the customer. However, the customer can enter the quantity of the item that is to be included in the bundle.<br>For example, if the Default Quantity of the Sprite Status Ball is set to 2, and the customer orders 4 of that bundle option, the total number of total balls purchased is 8.<br><img src="/wp-content/uploads/2017/01/product-bundle-item-detail.png"></p>
+</li>
+<li><p>重复上述过程，给每个要添加到捆绑商品中的项做好设置</p>
+</li>
+<li><p>如要移除，点击 <img src="/wp-content/uploads/2017/01/btn-delete_22x18.png"> 图标</p>
+</li>
+</ol>
+<h2 id="第六步：填写商品信息"><a href="#第六步：填写商品信息" class="headerlink" title="第六步：填写商品信息"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第六步：填写商品信息</h2><p>往下拉，然后根据需要填写以下部分：</p>
+<ul>
+<li>Content</li>
+<li>Images and Videos</li>
+<li>Related Products, Up-Sells, and Cross-Sells</li>
+<li>Search Engine Optimization</li>
+<li>Customizable Options</li>
+<li>Products in Websites</li>
+<li>Design</li>
+<li>Gift Options</li>
+</ul>
+<h2 id="第七步：发布商品"><a href="#第七步：发布商品" class="headerlink" title="第七步：发布商品"></a><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>第七步：发布商品</h2><ol>
+<li>如果你已经准备好要发布产品了，那么设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>下面你可以点击右上角的 <strong>Save &amp; Close</strong> 或者 <strong>Save</strong> 然后再 <strong>Admin</strong> 菜单中选择 <strong>Customer View</strong> 检查下产品发布信息是否 OK</li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<h2 id="Input-Controls"><a href="#Input-Controls" class="headerlink" title="Input Controls"></a><a href="#input-controls"></a>Input Controls</h2><p>Control</p>
+<p>Description</p>
+<p>Drop-down</p>
+<p>Displays a drop-down list of options with the product name and price. Only one item can be selected.<br><img src="/wp-content/uploads/2017/01/product-bundle-input-type-drop-down.png"></p>
+<p>Radio Buttons</p>
+<p>Displays a radio button for each option, followed by the product name and price. Only one item can be selected.<br><img src="/wp-content/uploads/2017/01/product-bundle-input-type-radio-buttons.png"></p>
+<p>Checkbox</p>
+<p>Displays a checkbox for each option, followed by the product name and price. Multiple items can be selected.<br><img src="/wp-content/uploads/2017/01/product-bundle-input-type-checkbox.png"></p>
+<p>Multiple Select</p>
+<p>Displays a list of options with the product name and price. To select multiple items, hold down the Ctrl (or Option) key, and click each item.<br><img src="/wp-content/uploads/2017/01/product-bundle-input-type-multiple-select.png"></p>
+<h2 id="Field-Descriptions"><a href="#Field-Descriptions" class="headerlink" title="Field Descriptions"></a><a href="#field-descriptions"></a>Field Descriptions</h2><p>Field</p>
+<p>Description</p>
+<p>SKU</p>
+<p>Determines if each item is assigned a variable, dynamic SKU, or if a fixed SKU is used for the bundle. Options include: Fixed &#x2F; Dynamic.</p>
+<p>Weight</p>
+<p>Specifies the weight is calculated based on the items selected, or is a fixed weight for the entire bundle. Options include: Fixed &#x2F; Dynamic.</p>
+<p>Price View</p>
+<p>Determines if the product price is shown as a range, from the least expensive to the most expensive (Price Range), or with the least expensive shown (As Low As). Options include: Price Range &#x2F; As Low As.</p>
+<p>Ship Bundle Items</p>
+<p>Specifies if individual items can be shipped separately.</p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ul>
+<li>客户可以构建他们自己的捆绑商品</li>
+<li>捆绑商品项可以是没有自定义选项的简单商品或虚拟商品</li>
+<li>price view 可以被设置为价格区间或者是 As Low as (最低)</li>
+<li>SKU 和 重量可以是固定的或动态的</li>
+<li>数量可以是预定义的或客户自己定义的值</li>
+<li>捆绑商品可以一起配送或分开配送</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-virtual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-virtual/" class="post-title-link" itemprop="url">虚拟商品(Virtual Product)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-04 10:10:28" itemprop="dateCreated datePublished" datetime="2017-01-04T10:10:28+08:00">2017-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-virtual.html">原文地址</a></em></p>
+<p>虚拟商品是无形的，通常用于出售如下商品：服务、会员资格、担保、订阅的产品等。虚拟商品可以单独出售，或被应用在<a href="/product-create-grouped/">组合商品</a>和<a href="/product-create-bundle">捆绑商品</a>中。</p>
+<p>除了虚拟商品没有重量，他的创建过程和简单商品一样。</p>
+<p><img src="/wp-content/uploads/2017/01/product-virtual-membership_thumb_0_0.png"></p>
+<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
+<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Virtual Product</strong><br><img src="/wp-content/uploads/2017/01/product-add-virtual.png"></li>
+</ol>
+<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集是产品的模板，要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
+<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
+<li>输入产品的名称 <strong>Product Name</strong></li>
+<li>使用基于产品名称的默认 SKU 或者重新输入一个 SKU</li>
+<li>输入产品的价格 <strong>Price</strong></li>
+<li>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></li>
+<li>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</li>
+<li>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></li>
+</ol>
+<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
+<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
+<li>None</li>
+<li>Taxable Goods</li>
+</ul>
+</li>
+<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
+<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
+<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。<br>可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
+</ol>
+<h2 id="第五步：填写商品信息"><a href="#第五步：填写商品信息" class="headerlink" title="第五步：填写商品信息"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第五步：填写商品信息</h2><p>往下拉，然后根据需要填写以下部分：</p>
+<ul>
+<li>Content</li>
+<li>Images and Videos</li>
+<li>Related Products, Up-Sells, and Cross-Sells</li>
+<li>Search Engine Optimization</li>
+<li>Customizable Options</li>
+<li>Products in Websites</li>
+<li>Design</li>
+<li>Gift Options</li>
+</ul>
+<h2 id="第六步：发布商品"><a href="#第六步：发布商品" class="headerlink" title="第六步：发布商品"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>第六步：发布商品</h2><ol>
+<li>如果你已经准备好要发布产品了，那么设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>下面你可以点击右上角的 <strong>Save &amp; Close</strong> 或者 <strong>Save</strong> 然后再 <strong>Admin</strong> 菜单中选择 <strong>Customer View</strong> 检查下产品发布信息是否 OK</li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ol>
+<li>虚拟商品用于无形的商品，例如服务，订阅，担保</li>
+<li>虚拟商品很像简单商品，只是虚拟商品没有重量</li>
+<li>结账时不会出现配送选项，除非购物车中有其他有形的商品</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-grouped/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-grouped/" class="post-title-link" itemprop="url">组合商品(Grouped Product)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-04 09:49:07" itemprop="dateCreated datePublished" datetime="2017-01-04T09:49:07+08:00">2017-01-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-grouped.html">原文地址</a></em></p>
+<p>组合商品是一些独立的简单商品的组合，你可以提供简单商品的变体，或者按照季节、主题组合单品形成一套不同的商品。每个单品是可以单独购买的，或者作为组合商品的一部分购买。在购物车中，每个商品是单独列出的。</p>
+<p><img src="/wp-content/uploads/2017/01/product-grouped_thumb_0_0.png"></p>
+<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
+<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Grouped Product</strong></li>
+</ol>
+<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集是产品的模板，要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
+<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
+<li>输入产品的名称 <strong>Product Name</strong></li>
+<li>使用基于产品名称的默认 SKU 或者重新输入一个 SKU</li>
+<li>输入产品的价格 <strong>Price</strong></li>
+<li>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></li>
+<li>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</li>
+<li>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></li>
+</ol>
+<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
+<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
+<li>None</li>
+<li>Taxable Goods</li>
+</ul>
+</li>
+<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
+<li>输入产品的重量</li>
+<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
+<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。</li>
+<li>如果要标记改商品为新品，勾选 New 复选框</li>
+<li>选择 <strong>Country of Manufacture</strong><br><img src="/wp-content/uploads/2017/01/product-grouped-details_thumb_0_0.png"><br>可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
+</ol>
+<h2 id="第五步：将商品添加到组合中"><a href="#第五步：将商品添加到组合中" class="headerlink" title="第五步：将商品添加到组合中"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%B0%86%E5%95%86%E5%93%81%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%84%E5%90%88%E4%B8%AD"></a>第五步：将商品添加到组合中</h2><ol>
+<li>下拉找到 <strong>Grouped Products</strong> 部分，然后点击 <strong>Add Products to Group</strong><br><img src="/wp-content/uploads/2017/01/product-grouped-products.png"></li>
+<li>如有必要，可以使用筛选找出你需要包含的商品</li>
+<li>列表中，勾选需要包含的商品<br><img src="/wp-content/uploads/2017/01/product-grouped-add-products.png"></li>
+<li>点击 <strong>Add Selected Products</strong> 将他们添加进去<br>选中的商品会出现在组合商品部分<br><img src="/wp-content/uploads/2017/01/product-grouped-grouped-products-section.png"></li>
+<li>然后，可以做如下事情：<ul>
+<li>为每个项填入 <strong>Default Quantity</strong></li>
+<li>要调整商品的位置，拖动第一栏的 <img src="/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png"> 图标到新的位置。</li>
+<li>要移除某个商品，点击 <strong>Remove</strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="第六步：填写商品信息"><a href="#第六步：填写商品信息" class="headerlink" title="第六步：填写商品信息"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第六步：填写商品信息</h2><p>往下拉，然后根据需要填写以下部分：</p>
+<ul>
+<li>Content</li>
+<li>Images and Videos</li>
+<li>Related Products, Up-Sells, and Cross-Sells</li>
+<li>Search Engine Optimization</li>
+<li>Customizable Options</li>
+<li>Products in Websites</li>
+<li>Design</li>
+<li>Gift Options</li>
+</ul>
+<h2 id="第七步：发布商品"><a href="#第七步：发布商品" class="headerlink" title="第七步：发布商品"></a><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>第七步：发布商品</h2><ol>
+<li>如果你已经准备好要发布产品了，那么设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>下面你可以点击右上角的 <strong>Save &amp; Close</strong> 或者 <strong>Save</strong> 然后再 <strong>Admin</strong> 菜单中选择 <strong>Customer View</strong> 检查下产品发布信息是否 OK</li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<h2 id="第八步：配置购物车缩略图（可选）"><a href="#第八步：配置购物车缩略图（可选）" class="headerlink" title="第八步：配置购物车缩略图（可选）"></a><a href="#%E7%AC%AC%E5%85%AB%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%BC%A9%E7%95%A5%E5%9B%BE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>第八步：配置购物车缩略图（可选）</h2><p>如果你的组合商品中每个单品的图片都不同，你可以设置购物车中的缩略图使用正确的图片</p>
+<ol>
+<li>后台侧边栏，点击 <strong>Stores</strong>，在 Settings 下，选择 <strong>Configuration</strong></li>
+<li>左侧边栏 Sales 下，选择 <strong>Checkout</strong>，展开 <strong>Shopping Cart</strong> 部分</li>
+<li>设置 <strong>Grouped Product Image</strong> 为 Product Thumbnail Itself</li>
+<li>完成后，点击 <strong>Save Config</strong></li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-grouped-product.png"></p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ul>
+<li>组合商品本质上是简单商品的组合</li>
+<li>作为组合商品的一部分的简单商品和虚拟商品不能拥有自定义选项(custom options)</li>
+<li>组合商品中的每项被购买后都会单独存在于购物车中，而不是作为组合商品的一部分</li>
+<li>购物车中的缩略图，可以被配置为使用组合商品的图片，或是组合商品中单项的图片</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-configurable-add-configurations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-configurable-add-configurations/" class="post-title-link" itemprop="url">可配置商品添加配置项(Adding Configurations)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 21:25:37" itemprop="dateCreated datePublished" datetime="2017-01-03T21:25:37+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-configurable-add-configurations.html">原文地址</a></em></p>
+<p>下面这个例子中添加了三个颜色三个尺码的配置项。总共会创建9个简单商品，每个商品都有唯一的 SKU ，页面顶部的进度条会显示你现在在哪里，并引导你完成所有步骤。</p>
+<p><img src="/wp-content/uploads/2017/01/product-configurable-progress-bar-step1.png" alt="Process bar"></p>
+<h2 id="步骤一：选择属性"><a href="#步骤一：选择属性" class="headerlink" title="步骤一：选择属性"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7"></a>步骤一：选择属性</h2><ol>
+<li>上一部分 <a href="/product-create-configurable/">可配置商品(Configurable Product)</a> 点击保存后，下拉到 <strong>Configurations</strong> 部分，然后点击 <strong>Create Configurations</strong><br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations_thumb_0_0.png"></li>
+<li>勾选你要包含的属性。比如，这里我们选择 color 和 size</li>
+<li>列表显示了该属性集中所有可被应用在可配置商品上的属性<br><img src="/wp-content/uploads/2017/01/product-create-configurable-step1.png"></li>
+<li>如果你需要添加新的属性，点击 <strong>Create New Attribute</strong> 完成attribute 的属性，然后点击 <strong>Save Attribute</strong>，然后勾选复选框选择属性。</li>
+<li>右上角，点击 <strong>Next</strong></li>
+</ol>
+<h2 id="步骤二：输入属性值"><a href="#步骤二：输入属性值" class="headerlink" title="步骤二：输入属性值"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%EF%BC%9A%E8%BE%93%E5%85%A5%E5%B1%9E%E6%80%A7%E5%80%BC"></a>步骤二：输入属性值</h2><ol>
+<li>为每个属性勾选应用到该商品上的值<br><img src="/wp-content/uploads/2017/01/product-create-configurable-step2.png"></li>
+<li>重新排列属性的顺序，可以拖动 <img src="/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png">图标到新的位置。他们的顺序决定着产品详情页中下拉列表的位置。</li>
+<li>在进度条中，点击 <strong>Next</strong></li>
+</ol>
+<h2 id="步骤三：配置图片、价格和数量"><a href="#步骤三：配置图片、价格和数量" class="headerlink" title="步骤三：配置图片、价格和数量"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%9B%BE%E7%89%87%E3%80%81%E4%BB%B7%E6%A0%BC%E5%92%8C%E6%95%B0%E9%87%8F"></a>步骤三：配置图片、价格和数量</h2><p>这一步决定着每个配置项的图片、价格和数量。可选项是一样的，你只能选一个。可以是 apply the same setting to all SKUs, apply a unique setting to each SKU, or skip the settings for now</p>
+<ol>
+<li>选择应用的配置选项<ul>
+<li><p>配置图片<br>方法一：对所有 SKUs 应用同一组图片(Apply a Single Set of Images to All SKUs)</p>
+<ol>
+<li>选择 Apply a Single Set of Images to All SKUs</li>
+<li>浏览选择图片或者拖动图片到下图的框中<br><img src="/wp-content/uploads/2017/01/product-configurations-images-apply-single-set.png"><br>方法二：对每个 SKU 应用单独的图片<br>因为我们已经为父商品上传了图片，我们将使用这个选项来为每个颜色上传图片。假设某个客户购买了某个颜色的T恤，那么购物车中显示的就是这里的图片。</li>
+<li>选择 Apply unique images by attribute to each SKU</li>
+<li>选择图像要说明的属性，比如：color</li>
+<li>对每个属性值，要么浏览选择图片，要么拖拽到框中<br>If you drag the an image to a value box, it appears in the sections for the other values, as well.如果你想要删除图片，点击 <img src="/wp-content/uploads/2017/01/btn-trashcan-sm_19x18.png">图标<br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations-add-images-unique.png"></li>
+</ol>
+</li>
+<li><p>配置价格<br>方法一：对所有 SKU 应用相同的价格 (Apply the Same Price to All SKUs)</p>
+<ol>
+<li>选择 Apply single price to all SKUs</li>
+<li>输入 价格<br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations-price-all-skus.png"><br>方法二：对每个 SKU 应用不同的价格 (Apply a Different Price for Each SKU)</li>
+<li>如果商品的各种变体价格不一样，选择 Apply unique prices by attribute to each SKU</li>
+<li>选择价格差异基于的属性</li>
+<li>设置每个属性值的价格。在这个例子中，XL 尺码的更贵一点<br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations-price-unique.png"></li>
+</ol>
+</li>
+<li><p>配置数量<br>方法一：对所有的 SKU 应用相同的数量 (Apply the Same Quantity to All SKUs)</p>
+<ol>
+<li>如果所有 SKU 的库存数量都是一样的，选择 Apply the Same Quantity to All SKUs</li>
+<li>输入 数量<br><img src="/wp-content/uploads/2017/01/product-configurations-quantity-same-all-skus.png" alt="Same Quantity for All SKUs"><br>方法二：不同的属性应用不同的数量 (Apply Different Quantity by Attribute)</li>
+<li>如果每个属性的数量不同，选择 Apply Different Quantity by Attribute</li>
+<li>设置每个的值<br><img src="/wp-content/uploads/2017/01/product-configurations-quantity-different.png"></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>完成后，点击右上角的 <strong>Next</strong></li>
+</ol>
+<h2 id="步骤四：生成产品配置"><a href="#步骤四：生成产品配置" class="headerlink" title="步骤四：生成产品配置"></a><a href="#%E6%AD%A5%E9%AA%A4%E5%9B%9B%EF%BC%9A%E7%94%9F%E6%88%90%E4%BA%A7%E5%93%81%E9%85%8D%E7%BD%AE"></a>步骤四：生成产品配置</h2><p>等一会儿，等产品列表显示出来以后，做如下事情：</p>
+<ul>
+<li>如果你对生成的配置满意，点击 <strong>Next</strong></li>
+<li>要做修改，点击 <strong>Back</strong></li>
+</ul>
+<p><img src="/wp-content/uploads/2017/01/product-create-configurable-summary.png"></p>
+<h2 id="步骤五：添加产品图片"><a href="#步骤五：添加产品图片" class="headerlink" title="步骤五：添加产品图片"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%94%EF%BC%9A%E6%B7%BB%E5%8A%A0%E4%BA%A7%E5%93%81%E5%9B%BE%E7%89%87"></a>步骤五：添加产品图片</h2><ol>
+<li>下拉到 <strong>Images and Videos</strong> 部分，然后展开</li>
+<li>点击 相机 图标，选择该商品的主图<br>了解更多，请查阅 <a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-images-and-video.html">Images and Video</a></li>
+</ol>
+<h2 id="步骤六：完成产品信息"><a href="#步骤六：完成产品信息" class="headerlink" title="步骤六：完成产品信息"></a><a href="#%E6%AD%A5%E9%AA%A4%E5%85%AD%EF%BC%9A%E5%AE%8C%E6%88%90%E4%BA%A7%E5%93%81%E4%BF%A1%E6%81%AF"></a>步骤六：完成产品信息</h2><p>下拉完成以下部分的信息</p>
+<ul>
+<li>Content</li>
+<li>Images and Videos</li>
+<li>Related Products, Up-Sells, and Cross-Sells</li>
+<li>Search Engine Optimization</li>
+<li>Customizable Options</li>
+<li>Products in Websites</li>
+<li>Design</li>
+<li>Gift Options</li>
+</ul>
+<h2 id="步骤七：发布商品"><a href="#步骤七：发布商品" class="headerlink" title="步骤七：发布商品"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%83%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>步骤七：发布商品</h2><ol>
+<li>如果该商品可以发布了，则设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>你可以点击 <strong>Save &amp; Close</strong> 或者以客户的视角浏览商品的信息</li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<h2 id="步骤八：配置购物车缩略图-可选"><a href="#步骤八：配置购物车缩略图-可选" class="headerlink" title="步骤八：配置购物车缩略图(可选)"></a><a href="#%E6%AD%A5%E9%AA%A4%E5%85%AB%EF%BC%9A%E9%85%8D%E7%BD%AE%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%BC%A9%E7%95%A5%E5%9B%BE(%E5%8F%AF%E9%80%89)"></a>步骤八：配置购物车缩略图(可选)</h2><p>如果你商品的每个变体都有不同的图片，你可以配置购物车的缩略图使用正确的图片</p>
+<ol>
+<li>后台侧边栏，点击 <strong>Stores</strong>，在 Settings 下，选择 <strong>Configuration</strong></li>
+<li>左侧边栏 Sales 下，选择 <strong>Checkout</strong>，展开 <strong>Shopping Cart</strong> 部分</li>
+<li>设置 <strong>Configurable Product Image</strong> 为 Product Thumbnail Itself</li>
+<li>完成后，点击 <strong>Save Config</strong></li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-configurable-product.png"></p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ul>
+<li>可配置产品允许客户从下拉列表中选择选项。每个选项实际上都是一个单独的简单商品</li>
+<li>每个下拉列表的值都是基于 dropdown 类型的属性。drop-down 类型的属性必须包含在属性集中，该属性集则是当前可配置产品的模板</li>
+<li>购物车中产品的缩略图可以配置为产品的图片，或者是可配置产品的变体产品的图片</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-configurable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-configurable/" class="post-title-link" itemprop="url">可配置商品(Configurable Product)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 16:26:29" itemprop="dateCreated datePublished" datetime="2017-01-03T16:26:29+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-configurable.html">原文地址</a></em></p>
+<p>可配置商品看起来有一系列的选项。每个选项代表着单独的具有唯一 SKU 的简单商品。这样可以追踪每个变体的库存。你可以通过简单商品的 custom option 来达到类似的效果，但是不能跟踪每个商品变体的库存。</p>
+<p><img src="/wp-content/uploads/2017/01/product-configurable_thumb_0_0.png"></p>
+<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
+<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Configurable Product</strong><br><img src="/wp-content/uploads/2017/01/product-add-configurable.png"></li>
+</ol>
+<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集决定着该产品中使用的选择字段有哪些。默认情况下，是 default 属性集。<em>对于可配置商品来说，属性集必须包含至少一个 drop-down 属性，另外，drop-down 属性的 scope 必须是 Global</em> 下面这个例子里使用的下拉选项式属性是 color 和 size</p>
+<p>要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
+<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
+<li>输入产品的名称 <strong>Product Name</strong></li>
+<li>使用基于产品名称的默认 SKU 或者重新输入一个 SKU</li>
+<li>输入产品的价格 <strong>Price</strong></li>
+<li>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></li>
+<li>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</li>
+<li>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></li>
+</ol>
+<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
+<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
+<li>None</li>
+<li>Taxable Goods</li>
+</ul>
+</li>
+<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
+<li>输入产品的重量</li>
+<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
+<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。</li>
+<li>如果要标记改商品为新品，勾选 New 复选框</li>
+<li>选择 <strong>Country of Manufacture</strong><br><img src="/wp-content/uploads/2017/01/product-details-configurable.png"><br>可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
+</ol>
+<h2 id="第五步：保存并继续"><a href="#第五步：保存并继续" class="headerlink" title="第五步：保存并继续"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E4%BF%9D%E5%AD%98%E5%B9%B6%E7%BB%A7%E7%BB%AD"></a>第五步：保存并继续</h2><p>现在保存你的商品，在下一个步骤中，你将为每个产品的变体配置设置。</p>
+<ol>
+<li>右上角，点击 <strong>Save</strong></li>
+<li>下面阅读 <a href="/product-create-configurable-add-configurations">添加配置(Adding Configurations)</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-simple/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-simple/" class="post-title-link" itemprop="url">简单商品(Simple Product)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 15:45:46" itemprop="dateCreated datePublished" datetime="2017-01-03T15:45:46+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-simple.html">原文地址</a></em></p>
+<p>发挥产品类型的力量的关键之一在于学会什么时候使用简单商品类型。简单商品可以被单独出售，或者作为组合商品、可配置商品及捆绑商品的组成部分出售。拥有自定义选项的简单商品，有时候也被称为符合商品 (composite product)</p>
+<p>以下步骤将带领你，使用默认的商品模板和基本的设置，创建一个简单商品。学会基本的设置后，你就可以根据需要完成更高级的设置了。</p>
+<p><img src="/wp-content/uploads/2017/01/product-simple_thumb_0_0.png"></p>
+<h2 id="第一步：选择产品类型"><a href="#第一步：选择产品类型" class="headerlink" title="第一步：选择产品类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E4%BA%A7%E5%93%81%E7%B1%BB%E5%9E%8B"></a>第一步：选择产品类型</h2><ol>
+<li>后台侧边栏，点击 <strong>Products</strong> ，在 <strong>Inventory</strong> 下选择 <strong>Catalog</strong></li>
+<li>右上角 <strong>Add Product</strong> 菜单，选择 <strong>Simple Product</strong><br><img src="/wp-content/uploads/2017/01/product-add-simple.png"></li>
+</ol>
+<h2 id="第二步：选择属性集"><a href="#第二步：选择属性集" class="headerlink" title="第二步：选择属性集"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7%E9%9B%86"></a>第二步：选择属性集</h2><p>属性集是产品的模板，要选择属性集，可以在搜索框里输入属性集的名字。<br><img src="/wp-content/uploads/2017/01/product-create-choose-attribute-set.png"></p>
+<h2 id="第三步：完成必要的设置"><a href="#第三步：完成必要的设置" class="headerlink" title="第三步：完成必要的设置"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"></a>第三步：完成必要的设置</h2><ol>
+<li>输入产品的名称 <strong>Product Name</strong></li>
+<li>使用基于产品名称的默认 SKU 或者重新输入一个 SKU</li>
+<li>输入产品的价格 <strong>Price</strong></li>
+<li>因为产品还没有准备好发布，所以把 <strong>Enable Product</strong> 切换到 No 的位置 <img src="/wp-content/uploads/2017/01/btn-switch-no_32x18.png"></li>
+<li>点击 <strong>Save</strong><br>产品被保存后，左上角会出现 <strong>Store View chooser</strong>（用来选择作用于哪个店铺）</li>
+<li>选择作用于那个 <strong>store view</strong><br><img src="/wp-content/uploads/2017/01/product-create-store-view-choose.png"></li>
+</ol>
+<h2 id="第四步：完成基本设置"><a href="#第四步：完成基本设置" class="headerlink" title="第四步：完成基本设置"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"></a>第四步：完成基本设置</h2><ol>
+<li>设置 <strong>Tax Class</strong> 为以下值之一：<ul>
+<li>None</li>
+<li>Taxable Goods</li>
+</ul>
+</li>
+<li>输入库存数量 <strong>Quantity</strong>，注意默认情况下 <strong>Stock Status</strong> 设置为 <strong>In Stock</strong></li>
+<li>输入产品的重量</li>
+<li><strong>Visibility</strong> 默认设置是 Catalog, Search</li>
+<li>把产品分配给 <strong>Categories</strong>，点击选项框，这一步也可以创建 category ，都是显而易见的，所以不详细翻译了。</li>
+<li>如果要标记改商品为新品，勾选 New 复选框</li>
+<li>选择 <strong>Country of Manufacture</strong><br><img src="/wp-content/uploads/2017/01/product-details-simple.png">可能还有很多其他属性。属性集的选项是不一样的，你可以稍后再填写他们。</li>
+</ol>
+<h2 id="第五步：填写商品信息"><a href="#第五步：填写商品信息" class="headerlink" title="第五步：填写商品信息"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%A1%AB%E5%86%99%E5%95%86%E5%93%81%E4%BF%A1%E6%81%AF"></a>第五步：填写商品信息</h2><p>往下拉，然后根据需要填写以下部分：</p>
+<ul>
+<li>Content</li>
+<li>Images and Videos</li>
+<li>Related Products, Up-Sells, and Cross-Sells</li>
+<li>Search Engine Optimization</li>
+<li>Customizable Options</li>
+<li>Products in Websites</li>
+<li>Design</li>
+<li>Gift Options</li>
+</ul>
+<h2 id="第六步：发布商品"><a href="#第六步：发布商品" class="headerlink" title="第六步：发布商品"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>第六步：发布商品</h2><ol>
+<li>如果你已经准备好要发布产品了，那么设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>下面你可以点击右上角的 <strong>Save &amp; Close</strong> 或者 <strong>Save</strong> 然后再 <strong>Admin</strong> 菜单中选择 <strong>Customer View</strong> 检查下产品发布信息是否 OK</li>
+</ol>
+<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ol>
+<li>简单商品可以被用在可配置商品、捆绑商品和组合商品中</li>
+<li>简单商品类型可以使用自定义的选项，这样一个 SKU 也可以卖出不同的商品变体</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/product-types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-types/" class="post-title-link" itemprop="url">商品类型 (Product Types)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 14:37:57" itemprop="dateCreated datePublished" datetime="2017-01-03T14:37:57+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-types.html">原文地址</a></em></p>
+<h2 id="简单商品"><a href="#简单商品" class="headerlink" title="简单商品"></a><a href="#%E7%AE%80%E5%8D%95%E5%95%86%E5%93%81"></a>简单商品</h2><p>简单商品是具有单独的 SKU 的实体。简单商品有各种定价和输入控件，这样就可以在出售时有一些变化。简单商品可以和组合商品、捆绑商品、可配置商品联系起来使用。<br><img src="/wp-content/uploads/2017/01/product-simple_thumb_0_0.png"></p>
+<h2 id="可配置商品"><a href="#可配置商品" class="headerlink" title="可配置商品"></a><a href="#%E5%8F%AF%E9%85%8D%E7%BD%AE%E5%95%86%E5%93%81"></a>可配置商品</h2><p>可配置商品看起来有一系列的选项。每个选项代表着单独的具有唯一 SKU 的简单商品。这样可以追踪每个变体的库存（比如具体到某件衣服某个颜色某个尺码的库存）<br><img src="/wp-content/uploads/2017/01/product-configurable_thumb_0_0.png"></p>
+<h2 id="组合商品"><a href="#组合商品" class="headerlink" title="组合商品"></a><a href="#%E7%BB%84%E5%90%88%E5%95%86%E5%93%81"></a>组合商品</h2><p>组合商品是组合在一起进行出售的商品，有时候这样是为了促销。可以单独购买，也可以购买几种组合。</p>
+<p><img src="/wp-content/uploads/2017/01/product-grouped_thumb_0_0.png"></p>
+<h2 id="虚拟商品"><a href="#虚拟商品" class="headerlink" title="虚拟商品"></a><a href="#%E8%99%9A%E6%8B%9F%E5%95%86%E5%93%81"></a>虚拟商品</h2><p>虚拟商品是无形的，通常用于出售如下商品：服务、会员资格、担保、订阅的产品等。虚拟商品可以被应用在组合商品和捆绑商品中。</p>
+<p><img src="/wp-content/uploads/2017/01/product-virtual-membership_thumb_0_0.png"></p>
+<h2 id="捆绑商品"><a href="#捆绑商品" class="headerlink" title="捆绑商品"></a><a href="#%E6%8D%86%E7%BB%91%E5%95%86%E5%93%81"></a>捆绑商品</h2><p>捆绑商品让客户从各种各样的选项中“创造他们自己的”商品。捆绑产品可以是礼品、电脑、或者其他可以自定义的商品。捆绑商品中的每个选项都是单独的商品。</p>
+<p><img src="/wp-content/uploads/2017/01/product-bundle_thumb_0_0.png"></p>
+<h2 id="可下载商品"><a href="#可下载商品" class="headerlink" title="可下载商品"></a><a href="#%E5%8F%AF%E4%B8%8B%E8%BD%BD%E5%95%86%E5%93%81"></a>可下载商品</h2><p>包含一个或多个可疑下载的电子文件的产品就是可下载的商品。这些文件可以放在自己的服务器上，或者是提供下载的 URL</p>
+<p><img src="/wp-content/uploads/2017/01/storefront-product-downloadable_thumb_0_0.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/excel-csv-utf8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/excel-csv-utf8/" class="post-title-link" itemprop="url">Excel 编辑 csv 中文乱码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 12:57:20" itemprop="dateCreated datePublished" datetime="2017-01-03T12:57:20+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Magento 中很多地方用到 csv 格式的文件，在 <a href="/magento-2-zh-hans-cn-csv/#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%AD%A3%E4%B8%AD%E6%96%87%E5%8C%85">Magento 2 中文化问题（原创）</a> 中提到，对待 csv 文件，你可以使用任何编辑器进行编辑，比如 notepad、sublime text 之类的，或者专门的编辑器 Ron’s Editor。但是 Ron’s Editor 是收费的，破解版也不敢用，而一般的编辑器对付修改不太多的情况还是够用的，但是列一多的话，没有格子，弄起来很不方便。所以看起来还是用 Excel 比较好。</p>
+<p>Excel 处理有中文字符的文件会出现乱码，本篇将介绍怎么处理这种情况。</p>
+<p>出现乱码的原因是 Excel 以 ANSI 格式打开，不会做编码识别。而我们的 csv 文件是 UTF-8 编码的。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a><a href="#%E6%AD%A5%E9%AA%A4"></a>步骤</h2><ol>
+<li>打开 Excel ，新建一个空白的工作簿，<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv.png"></li>
+<li>数据 -&gt; 自文本，选择 csv 文件<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv-2.png"></li>
+<li>此处选择 utf-8 编码，下一步<br><img src="/wp-content/uploads/2017/01/excel-utf-8-csv-3.png"></li>
+<li>勾选“逗号”，下一步，完成</li>
+</ol>
+<p>这时候我们就可以编辑他了，最好另存为 Excel 格式的文件，保存中间状态，最后需要 csv 文件格式的时候再另存为 -&gt; CSV (逗号分隔符)(*.csv)</p>
+<p>Update: 发现一个比较好用的编辑工具，Apache OpenOffice</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1skJVqiD">http://pan.baidu.com/s/1skJVqiD</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/white-paper-magento-2-0-performance-and-scalability/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/white-paper-magento-2-0-performance-and-scalability/" class="post-title-link" itemprop="url">Magento 2.0 性能优化配置建议及 benchmark 测试结果(官方白皮书翻译)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-18 20:33:55" itemprop="dateCreated datePublished" datetime="2016-12-18T20:33:55+08:00">2016-12-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>这是 Magento 官方的白皮书，不代表博主个人观点。翻译也是劳动，谢绝转载！</em></p>
+<p><a href="/wp-content/uploads/2016/12/White-Paper-Magento-2.0-Performance-and-Scalability-03.31.16.pdf">原文下载</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><a href="#%E4%BB%8B%E7%BB%8D"></a>介绍</h2><p>Magento 2.0 是为下一代电子商务而设计的 —— 让他比以往更快速、更容易、更低成本地创建完美适应您的业务需求的购物体验。</p>
+<p>（一大段的介绍非常安利，博主估计，翻译出来也没有多少人会看，所以就概括一下了，有兴趣的请参阅原文。）</p>
+<p>Magento 2 希望比以往更快速，更容易，更低成本，这一切都建立在 Magento 2 在流行的框架上搭建了一个更现代的架构。（也就是说 Magento 2 团队相信用更先进的技术来实现更快的速度，更低的成本，让他更容易。）他的模块化设计是自定义和灵活性的关键；内置的自动测试框架可以加快开发的速度；他的 API 可以很方便地与第三方系统集成；简化的结账流程以及响应式的设计；重新设计的后台控制面板提高管理效率；系统更容易升级；</p>
+<p>Magento 2.0 ：</p>
+<ul>
+<li>相同的硬件可以每小时可以处理更多订单</li>
+<li>目录浏览可以立马响应</li>
+<li>购物车和结账响应时间下降了两位数</li>
+<li>更好地处理高峰时的订单，超大的目录和庞大的客户名单</li>
+<li>后台支持更多管理用户同时操作</li>
+</ul>
+<p>该白皮书深入探讨了 Magento 2.0 的性能和可扩展性，可以帮助您了解该平台将如何支持您业务的长期发展。本书同时提供了 Magento 2.0 站点优化的配置建议以及基准测试结果。</p>
+<h2 id="建议使用的-Magento-配置"><a href="#建议使用的-Magento-配置" class="headerlink" title="建议使用的 Magento 配置"></a><a href="#%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E7%9A%84-magento-%E9%85%8D%E7%BD%AE"></a>建议使用的 Magento 配置</h2><p>Magneto 为不同的使用情形提供了相当多的部署和配置选项。要充分发挥 Magento 本身的性能和超强的扩展性优势，需要正确设置好 Magento 。此外，关于环境配置的建议，不在本篇范围之内。</p>
+<p><em>重要说明：文中涉及到的测试都是基于建议和支持的配置。配置的偏差可能导致不同的测试结果，不能准确反映出产品设计和构建的自然情况</em></p>
+<h3 id="核心配置"><a href="#核心配置" class="headerlink" title="核心配置"></a><a href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE"></a>核心配置</h3><p>Magento 2.0 为使用 PHP7 和 Varnish 而优化，虽然也可以在 PHP5.6 和没有 Varnish 的情况下运行，不过不建议这样用。建议同时使用 PHP7 和 Varnish 来支持站点的业务处理，获得最佳的性能。</p>
+<h3 id="静态资源设置"><a href="#静态资源设置" class="headerlink" title="静态资源设置"></a><a href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BE%E7%BD%AE"></a>静态资源设置</h3><p>静态资源的设置决定着 CSS,JavaScript,HTML 和图像等资源，如何准备好供站点使用。</p>
+<ul>
+<li>Stores -&gt; Configuration -&gt; Advanced -&gt; Developer:<ul>
+<li>Grid Settings: Asynchronous indexing: Enable<ul>
+<li>CSS Settings: Minify CSS Files: Yes</li>
+</ul>
+</li>
+<li>JS Settings: Minify JS Files: Yes</li>
+<li>Merge JavaScript Files: No</li>
+<li>Template Settings: Minify HTML: Yes</li>
+<li>JavaScript Settings: Enable JavaScript Bundling: Yes</li>
+</ul>
+</li>
+</ul>
+<h3 id="页面缓存"><a href="#页面缓存" class="headerlink" title="页面缓存"></a><a href="#%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98"></a>页面缓存</h3><p>页面缓存设置决定着使用页面缓存的哪个文件版本，为了获得最佳性能，强烈建议开启 Varnish 的缓存。注意，这需要部署和配置 Varnish</p>
+<ul>
+<li>Stores -&gt; Configuration -&gt; Advanced -&gt; System -&gt; Full page cache<ul>
+<li>Caching Application-&gt;Varnish Caching</li>
+</ul>
+</li>
+</ul>
+<h3 id="Email-设置"><a href="#Email-设置" class="headerlink" title="Email 设置"></a><a href="#email-%E8%AE%BE%E7%BD%AE"></a>Email 设置</h3><p>Email 设置控制着邮件何时发送，它和邮件何时生成相关。</p>
+<ul>
+<li>Stores-&gt;Configuration-&gt;Sales-&gt;Sales Emails:<ul>
+<li>General settings: Asynchronous sending: Enable</li>
+</ul>
+</li>
+</ul>
+<h3 id="索引设置"><a href="#索引设置" class="headerlink" title="索引设置"></a><a href="#%E7%B4%A2%E5%BC%95%E8%AE%BE%E7%BD%AE"></a>索引设置</h3><ul>
+<li>System-&gt;Index Management:<ul>
+<li>All indexers should be in “Update on schedule” mode</li>
+</ul>
+</li>
+</ul>
+<h3 id="应用缓存"><a href="#应用缓存" class="headerlink" title="应用缓存"></a><a href="#%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98"></a>应用缓存</h3><ul>
+<li>Configure the platform to use Redis in env.php<ul>
+<li>Requires deployment and configuration of Redis</li>
+</ul>
+</li>
+</ul>
+<h3 id="Production-Mode-（生产模式）"><a href="#Production-Mode-（生产模式）" class="headerlink" title="Production Mode （生产模式）"></a><a href="#production-mode-%EF%BC%88%E7%94%9F%E4%BA%A7%E6%A8%A1%E5%BC%8F%EF%BC%89"></a>Production Mode （生产模式）</h3><p>可以通过如下命令，启用生产模式：<br><code>php bin/magento deploy:mode:set production</code></p>
+<p>如果要让开发者控制其中的过程，可以拆成几个步骤：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento setup:di:compile</span><br><span class="line">php bin/magento setup:static-content:deploy</span><br><span class="line">set MODE production manually in web server config</span><br></pre></td></tr></table></figure>
+
+<h2 id="分层架构"><a href="#分层架构" class="headerlink" title="分层架构"></a><a href="#%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84"></a>分层架构</h2><p>Magento 2.0 平台是分层的架构，公有四层，分别为性能和可扩展性进行了优化。他们是：the client, the page cache, the application, and the database tiers</p>
+<p>此种标准的 web 应用结构，允许架构的不同组件独立地扩展，以应对不同的业务需求和不同的负载情况。</p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-layered-architecture.png"></p>
+<p>接下来的章节将描述 Magento 2.0 对每层做的性能和扩展性的改进</p>
+<h2 id="性能和扩展性的改进"><a href="#性能和扩展性的改进" class="headerlink" title="性能和扩展性的改进"></a><a href="#%E6%80%A7%E8%83%BD%E5%92%8C%E6%89%A9%E5%B1%95%E6%80%A7%E7%9A%84%E6%94%B9%E8%BF%9B"></a>性能和扩展性的改进</h2><p>Magento 2.0 改进了应用如何与浏览器进行交互，以及减少了服务器必须传输给浏览器进行渲染的数据量。这些改进可以显著地提高页面响应时间和加载时间，给建立更快的站点提供一个良好的起点。</p>
+<h3 id="客户端的改进"><a href="#客户端的改进" class="headerlink" title="客户端的改进"></a><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E6%94%B9%E8%BF%9B"></a>客户端的改进</h3><p>页面加载时间很重要，Magneto 通过减少页面渲染必须的数据量来降低加载时间。主要有以下方式：</p>
+<ul>
+<li>使用了压缩 （即删掉不必要的字符）。使用了 jShrink 和 cssmin，以及针对 HTML 的内部开发的压缩引擎。图片使用 PHP 的 gd2 库进行压缩。</li>
+<li>最大限度利用浏览器缓存。初次访问会缓存所有 Js 和 css，这样可以减少下个页面的请求。</li>
+<li>在结账和购物车操作中使用异步操作。</li>
+</ul>
+<h3 id="页面缓存-1"><a href="#页面缓存-1" class="headerlink" title="页面缓存"></a><a href="#%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98"></a>页面缓存</h3><p>通过 Varnish page caching 来提供更快的服务器响应。<br>（原文内容比较多，还提到了Edge Side Includes，博主的水平有限，还是不翻译为妙，需要研究的请参阅原文）</p>
+<h3 id="应用层的增强"><a href="#应用层的增强" class="headerlink" title="应用层的增强"></a><a href="#%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E5%A2%9E%E5%BC%BA"></a>应用层的增强</h3><p>Magento 2.0 架构设计旨在满足大型的、发展中的企业的扩展性和稳定性需求。下面的改进旨在消除后端业务操作过程中的阻塞或表锁定。</p>
+<ul>
+<li>异步的订单和产品更新<br>大企业订单产品都很多，通常同时有很多管理用户同时作业。Magento 2.0 引入了可选的订单和产品异步更新，这样可以消除表锁定和阻塞，提高效率。</li>
+<li>工作队列机制<br>看起来这是 EE 版本特有的功能。有兴趣的请参阅原文。</li>
+<li>PHP Interpreters<br>PHP7 采用了新的解释器，提高了性能，所以 Magento 2 建议使用 PHP7</li>
+</ul>
+<h3 id="数据库提升"><a href="#数据库提升" class="headerlink" title="数据库提升"></a><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E5%8D%87"></a>数据库提升</h3><ul>
+<li>多个主数据库，每个主数据库可以拥有多个从数据库</li>
+</ul>
+<p><img src="/wp-content/uploads/2016/12/magento-database-tier-with-multiple-master-db.png"></p>
+<ul>
+<li>MySQL Cluster Support</li>
+</ul>
+<h3 id="性能测试工具-（Performance-Toolkit）"><a href="#性能测试工具-（Performance-Toolkit）" class="headerlink" title="性能测试工具 （Performance Toolkit）"></a><a href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7-%EF%BC%88performance-toolkit%EF%BC%89"></a>性能测试工具 （Performance Toolkit）</h3><p>The Magento Performance Toolkit is a script and a set of JMeter tests that allow for consistent and<br>repeatable performance testing for Magento applications. The script allows the generation of four distinct<br>customer profiles that are intended to represent diﬀerent eCommerce business sizes. The data from the<br>script populates a Magento instance. The Performance Toolkit is bundled with the Magento distribution<br>(in the setup&#x2F;performance-toolkit directory).</p>
+<h2 id="性能测试结果"><a href="#性能测试结果" class="headerlink" title="性能测试结果"></a><a href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C"></a>性能测试结果</h2><p>为了表现，Magento 2.0 灵活架构带来的性能提升，我们对 Magento EE 2.0 和 Magneto EE 1.14.2 基于建议的设置进行了 benchmark （基准）测试。<strong>这些测试表明 Magneto 2.0 (Varnish+PHP7.0)可以为小型和大型商业部署都提供更高的吞吐量（每小时订单数）和更快的响应时间</strong></p>
+<h3 id="测试配置"><a href="#测试配置" class="headerlink" title="测试配置"></a><a href="#%E6%B5%8B%E8%AF%95%E9%85%8D%E7%BD%AE"></a>测试配置</h3><h4 id="软件"><a href="#软件" class="headerlink" title="软件"></a><a href="#%E8%BD%AF%E4%BB%B6"></a>软件</h4><p>我们给下面的软件都使用了推荐设置和本身自带的支持设置（比如 Varnish 就是 Magento 2.0 自带支持的）</p>
+<ul>
+<li>Magento Enterprise Edition 2.0 with PHP7 and Varnish caching</li>
+<li>Magento Enterprise Edition 1.14.2 with PHP5.6 and Full-Page Caching</li>
+</ul>
+<p>其他测试是无效的，因为他们不能提供推荐的或是支持的设置数据。附录中可查看软件的其他的额外细节说明。</p>
+<h4 id="方案"><a href="#方案" class="headerlink" title="方案"></a><a href="#%E6%96%B9%E6%A1%88"></a>方案</h4><p>研究了如下两种情况：</p>
+<ul>
+<li><strong>小型</strong> $100万-$500万 在线销售额，部署在一台的4核 web 服务器上和一台单独的数据库节点上。使用了 25 个同时的 JMeter 线程（模拟25个并发请求）来测试某个时间段的峰值流量。(with $1-$5M in online sales deployed on a single 4-core web node and a single database node. 25 simultaneous JMeter threads (representing 25 concurrent requests) were used to show site performance during a period of peak traffic, such as a sale)</li>
+<li><strong>大型</strong> $5千万-$1亿 在线销售额，部署在5台4核的 web 节点和一太单独的数据库节点上。使用了 25-100 个 JMeter 线程（模拟25到100个并发请求）来测试不断增加负载的情况下的性能。(with $50-$100M in online sales deployed on five 4-core web nodes and a single database node. 25 to 100 simultaneous JMeter threads (representing 25 to 100 concurrent requests) were used to show site performance under increasing traffic loads.)</li>
+</ul>
+<p>附录部分有交代测试的配置情况。博主觉得这个信息很重要，所以把他搬到这里来。</p>
+<p>小型的 Small Merchant Deployment (4 web node cores)</p>
+<ul>
+<li>Software<ul>
+<li>PhP 5.6.13 with Zend Opcache v7.0.6-dev (for Magento Enterprise Edition 1.14.2)</li>
+<li>PhP 7.0.3-1 with Opcache (for Magento Enterprise Edition 2.0)</li>
+<li>Nginx 1.6.2</li>
+<li>MySQL 5.6.28</li>
+<li>Varnish 4.0.2 (for Magento Enterprise Edition 2.0)</li>
+<li>Redis 3.0.5</li>
+<li>CentOS 6.4, CentOS 7.0 and Debian (on core 3.16.7)</li>
+</ul>
+</li>
+<li>1 Web Node<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software</li>
+<li>Nginx</li>
+<li>Varnish (for Magento Enterprise Edition 2.0)</li>
+<li>php-fpm</li>
+</ul>
+</li>
+<li>1 Database Node<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software</li>
+<li>MySQL</li>
+<li>Redis (FPC Cache for Magento Enterprise Edition 1.14.2, Session Storage)</li>
+</ul>
+</li>
+<li>1 JMeter node (to drive the tests)<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+</ul>
+</li>
+<li>All performance tests leverage real cores. Virtual can bring unexpectedly high deviation</li>
+</ul>
+<p>大型的 Larger Merchant Deployment (20 web node cores)</p>
+<ul>
+<li>Software<ul>
+<li>PhP 5.6.13 with Zend Opcache v7.0.6-dev (for Magento Enterprise Edition 1.14.2)</li>
+<li>PhP 7.0.3-1 with Opcache (for Magento Enterprise Edition 2.0)</li>
+<li>Nginx 1.6.2</li>
+<li>MySQL 5.6.28</li>
+<li>Varnish 4.0.2 (for Magento Enterprise Edition 2.0)</li>
+<li>Redis 3.0.5</li>
+<li>Memcache 1.4.21</li>
+<li>CentOS 6.4, CentOS 7.0 and Debian (on core 3.16.7)</li>
+</ul>
+</li>
+<li>5 Web Nodes<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software<ul>
+<li>Web Node #1:<ul>
+<li>Nginx</li>
+<li>Varnish (for Magento Enterprise Edition 2.0)</li>
+<li>php-fpm</li>
+</ul>
+</li>
+<li>Web Node #2 – #5:<ul>
+<li>php-fpm</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1 Database Node<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+<li>Running Software<ul>
+<li>MySQL</li>
+<li>Redis (Session Storage, FPC storage for Magento Enterprise Edition 1.14.2)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JMeter node (to drive the tests)<ul>
+<li>4 CPUs Core i7 with hyper threading</li>
+<li>8GB of memory</li>
+<li>500 GB 7200 RPM SSHD and RAID 1, 5, or 10 disks</li>
+</ul>
+</li>
+<li>All performance tests leverage real cores. Virtual can bring unexpectedly high deviation.</li>
+</ul>
+<p>两种情况都假设商店是如下情况：</p>
+<p>Websites &#x2F;Store Views</p>
+<p>SKUs (Simple&#x2F;Configurable)</p>
+<p>Categories &#x2F;Nesting</p>
+<p>Catalog &#x2F; Cart Rules</p>
+<p>Customers (in Database)</p>
+<p>Orders(in Database)</p>
+<p>2 &#x2F; 2</p>
+<p>16,000 &#x2F; 1,000</p>
+<p>300 &#x2F; 3</p>
+<p>20 &#x2F; 20</p>
+<p>200</p>
+<p>1600</p>
+<p>请查看附录了解更多详情</p>
+<h4 id="测试方法"><a href="#测试方法" class="headerlink" title="测试方法"></a><a href="#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"></a>测试方法</h4><p>测试模拟了典型的电子商务网站使用场景，例如：</p>
+<ul>
+<li>目录浏览，包括访问首页，目录页，可配置产品详细页面和简单产品详细页面</li>
+<li>将简单商品和可配置商品都加入购物车</li>
+<li>以访客身份或已注册用户身份完成结账的所有步骤</li>
+</ul>
+<p>我们假设了如下的用户会话的流量模式：</p>
+<ul>
+<li>62% 只浏览</li>
+<li>30% 浏览并将产品添加到购物车，但没有结账</li>
+<li>4% 以访客身份结账</li>
+<li>4% 以注册用户身份结账</li>
+</ul>
+<p>所有的测试使用的 Magento Performance Toolkit，JMeter 用来测量和报告服务器响应时间（以毫秒为单位）</p>
+<h3 id="Small-Merchant-Deployment-（小型部署）"><a href="#Small-Merchant-Deployment-（小型部署）" class="headerlink" title="Small Merchant Deployment （小型部署）"></a><a href="#small-merchant-deployment-%EF%BC%88%E5%B0%8F%E5%9E%8B%E9%83%A8%E7%BD%B2%EF%BC%89"></a>Small Merchant Deployment （小型部署）</h3><p>小型部署的测试表明，Magento EE 2.0 在处理25个并发时可以成功应对。Magento EE 2.0 表现比 Magento EE 1.14.2 好。</p>
+<ul>
+<li>Magento EE 2.0 比 Magneto EE 1.14.2 每小时多处理 28% 订单，达到597个订单每小时。</li>
+<li>目录浏览的响应时间非常小，几乎是立马响应（响应时间和浏览器中客户感受到的时间不一样）</li>
+<li>添加到购物车的响应速度相比较快了 66%</li>
+<li>所有结账步骤合在一起，访客结账响应时间快 48% ， 已注册客户结账响应时间快 36%</li>
+</ul>
+<h4 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a><a href="#%E5%90%9E%E5%90%90%E9%87%8F"></a>吞吐量</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-throught-results.png" alt="吞吐量"></p>
+<h4 id="响应时间"><a href="#响应时间" class="headerlink" title="响应时间"></a><a href="#%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"></a>响应时间</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-catalog-browsing.png" alt="目录浏览"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-add-to-cart.png" alt="添加到购物车"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-checkout.png" alt="结账"></p>
+<h3 id="Large-Merchant-Deployment-大型部署"><a href="#Large-Merchant-Deployment-大型部署" class="headerlink" title="Large Merchant Deployment (大型部署)"></a><a href="#large-merchant-deployment-(%E5%A4%A7%E5%9E%8B%E9%83%A8%E7%BD%B2)"></a>Large Merchant Deployment (大型部署)</h3><p>测试表明 Magento EE 2.0 的表现比 Magneto EE 1.14.2 好</p>
+<ul>
+<li>多处理 39% 的订单，达到 2558 个订单每小时</li>
+<li>目录页面的响应时间几乎是立刻马上</li>
+<li>加入购物车的服务器响应时间在 500 毫秒以下，速度相比较快了 66%</li>
+<li>所有结账步骤加载一起，访客结账的响应时间快了 51%，已注册用户结账的响应时间快了 36%</li>
+</ul>
+<h4 id="吞吐量-1"><a href="#吞吐量-1" class="headerlink" title="吞吐量"></a><a href="#%E5%90%9E%E5%90%90%E9%87%8F"></a>吞吐量</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-throught-results-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-orders-per-hour-big.png"></p>
+<h4 id="服务器响应时间"><a href="#服务器响应时间" class="headerlink" title="服务器响应时间"></a><a href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"></a>服务器响应时间</h4><p><img src="/wp-content/uploads/2016/12/white-paper-magento-home-page-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-category-page-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-product-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-add-to-cart-big.png"></p>
+<p><img src="/wp-content/uploads/2016/12/white-paper-magento-checkout-big.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a href="#%E6%80%BB%E7%BB%93"></a>总结</h2><p>Magento 2.0 性能更好，吞吐量更大，响应时间更短。</p>
+<p>三大段英文，博主实在不想翻译了，感兴趣的童鞋请查看原文。原文总结部分的测试数据表格呈现，博主也省略了，因为博主觉得上面的树状图表现力更好。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-feature-list-chinese-3/" class="post-title-link" itemprop="url">Magento 基本功能列表（翻译三）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 16:20:08" itemprop="dateCreated datePublished" datetime="2016-12-14T16:20:08+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="架构及安全"><a href="#架构及安全" class="headerlink" title="架构及安全"></a><a href="#%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%AE%89%E5%85%A8"></a>架构及安全</h2><ul>
+<li>建立在现代的技术栈上，使用了流行的框架，支持行业标准</li>
+<li>可以进行细粒度的自定义，模块化的代码库，很容易添加和移除功能</li>
+<li>业务逻辑使用稳定 service contract interfaces ，以确保站点更容易升级和自定义</li>
+<li>可以使用高效的 web Api （SOAP 和 REST）与第三方应用集成</li>
+<li>通过 plug-ins 和依赖注入的软件设计模式，更顺利的管理扩展之间的交互</li>
+<li>加快上线速度，通过完全自动化的测试框架提高代码质量</li>
+<li>Update code with a standalone installer that checks for prerequisites before starting the installation process</li>
+<li>通过命令行接口自动化某些开发和生产任务</li>
+<li>定期的扫描、外部渗透测试，bug 赏金程序，促进平台核心的安全</li>
+<li>Magento 安全中心和安全警报邮件列表，会通知你安全问题</li>
+</ul>
+<h2 id="布局和主题"><a href="#布局和主题" class="headerlink" title="布局和主题"></a><a href="#%E5%B8%83%E5%B1%80%E5%92%8C%E4%B8%BB%E9%A2%98"></a>布局和主题</h2><ul>
+<li>自定义 blank 主题 或 luuma 主题，以加快上线速度</li>
+<li>通过主题集成，更容易地位不同的国家、品牌或季节促销活动创建站点</li>
+<li>通过 Magento UI 和 模式库，使得主题开发更快速和更一致</li>
+<li>使用 Less 预处理节省时间，通过代码复用和全局变量的更改，更易于站点维护</li>
+<li>通过分离表现层和业务逻辑，降低前段编码的复杂性</li>
+</ul>
+<h2 id="性能和可扩展性"><a href="#性能和可扩展性" class="headerlink" title="性能和可扩展性"></a><a href="#%E6%80%A7%E8%83%BD%E5%92%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"></a>性能和可扩展性</h2><ul>
+<li>使用预先集成在 Apache 中的 Varnish 缓存页面内容，获得更好的性能</li>
+<li>Implement hole punching and Edge Side Includes (ESI) to handle page elements that can’t be cached</li>
+<li>收益于更快的索引，以及增量索引，以更新站点内容和更好的性能</li>
+<li>Minify JavaScript, CSS 和 HTML ，压缩图像，以减少文件大小，加快加载速度</li>
+<li>将 JavaScript 和他们的依赖打包，加快浏览器加载速度</li>
+<li>访问的第一个页面缓存所有 Js 和 CSS ，以尽量减少后续页面必须加载的内容</li>
+<li>使用 Magento 内置的性能工具包，测量和优化站点的性能</li>
+<li>允许大型团队（许多管理用户）管理订单，按计划更新产品</li>
+</ul>
+<h2 id="相关文档下载"><a href="#相关文档下载" class="headerlink" title="相关文档下载"></a><a href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD"></a>相关文档下载</h2><p>本系列翻译的是第三个文档中 Magento General Feature List (Features found in all Magento projects) 部分</p>
+<p><a href="/wp-content/uploads/2016/12/Magento%20Full%20Features%20List%20052714.pdf">Magento Full Features List 052714.pdf</a><br><a href="/wp-content/uploads/2016/12/Magento_Enterprise_Edition_2.1_Feature_List_06.15.16.pdf">Magento_Enterprise_Edition_2.1_Feature_List_06.15.16.pdf</a><br><a href="/wp-content/uploads/2016/12/Magento-Feature-List-11.16.2015.pdf">Magento-Feature-List-11.16.2015.pdf</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ThankIT</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThankIT</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
