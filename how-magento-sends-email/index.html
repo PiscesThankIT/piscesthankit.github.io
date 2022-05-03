@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/hellomagento2/images/cropped-favicon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/hellomagento2/images/cropped-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/hellomagento2/images/cropped-favicon-16x16.png">
-  <link rel="mask-icon" href="/hellomagento2/images/cropped-favicon.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
 
-<link rel="stylesheet" href="/hellomagento2/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/hellomagento2/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/hellomagento2/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="很多用 Magento 的人可能并不是技术人员，他们也不关心 Magento 是怎么发邮件的，只要能用就好了。不过知道这些会有助于发生问题时更快定位问题所在。 Magento 发送邮件的功能是建立在 Zend Framework 的 Zend_Mail 类基础上。负责完成该工作的是 Zend_Mail_Transport_Sendmail.php ，这个类又是建立在 PHP 的 Mail 基础上的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Magento 是怎么发邮件的">
-<meta property="og:url" content="https://piscesthankit.github.io/hellomagento2/how-magento-sends-email/index.html">
+<meta property="og:url" content="http://example.com/how-magento-sends-email/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="很多用 Magento 的人可能并不是技术人员，他们也不关心 Magento 是怎么发邮件的，只要能用就好了。不过知道这些会有助于发生问题时更快定位问题所在。 Magento 发送邮件的功能是建立在 Zend Framework 的 Zend_Mail 类基础上。负责完成该工作的是 Zend_Mail_Transport_Sendmail.php ，这个类又是建立在 PHP 的 Mail 基础上的">
 <meta property="og:locale" content="zh_CN">
@@ -32,7 +32,7 @@
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/how-magento-sends-email/">
+<link rel="canonical" href="http://example.com/how-magento-sends-email/">
 
 
 <script id="page-configurations">
@@ -94,7 +94,7 @@
 
   <div class="site-meta">
 
-    <a href="/hellomagento2/" class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">{ Hello Magento 2 }</h1>
       <span class="logo-line-after"><i></i></span>
@@ -116,22 +116,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/hellomagento2/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/hellomagento2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/hellomagento2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/hellomagento2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -189,10 +189,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/hellomagento2/how-magento-sends-email/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/how-magento-sends-email/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/hellomagento2/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="ThankIT">
       <meta itemprop="description" content="">
     </span>
@@ -220,7 +220,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/hellomagento2/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
                 </span>
             </span>
 
@@ -238,7 +238,7 @@
         <p>很多用 Magento 的人可能并不是技术人员，他们也不关心 Magento 是怎么发邮件的，只要能用就好了。不过知道这些会有助于发生问题时更快定位问题所在。</p>
 <p>Magento 发送邮件的功能是建立在 Zend Framework 的 Zend_Mail 类基础上。负责完成该工作的是 <code>Zend_Mail_Transport_Sendmail.php</code> ，这个类又是建立在 PHP 的 Mail 基础上的。PHP 的 Mail 使用的是服务器提供的 sendmail 脚本来发送邮件。</p>
 <p>如果你不知道 Magento 默认是使用服务器的 sendmail 来发邮件的，那么在后台弄好邮件相关设置后，就会莫名其妙地发现 Magento 还是不能发送邮件。</p>
-<p>如何搭建一个简单的邮件服务器（邮件传输代理）呢？可以使用 postfix、sendmail 等等。这种做法的直接好处是，可以使用许多个邮箱地址，完成不同的工作。比如：一般的邮件用 <a href="mailto:&#111;&#x77;&#x6e;&#x65;&#114;&#64;&#121;&#111;&#x75;&#x72;&#100;&#x6f;&#109;&#x61;&#x69;&#x6e;&#x2e;&#99;&#x6f;&#x6d;">&#111;&#x77;&#x6e;&#x65;&#114;&#64;&#121;&#111;&#x75;&#x72;&#100;&#x6f;&#109;&#x61;&#x69;&#x6e;&#x2e;&#99;&#x6f;&#x6d;</a> ，销售相关的用 <a href="mailto:&#115;&#x61;&#x6c;&#x65;&#x73;&#64;&#x79;&#111;&#117;&#114;&#x64;&#x6f;&#109;&#x61;&#105;&#x6e;&#46;&#99;&#x6f;&#x6d;">&#115;&#x61;&#x6c;&#x65;&#x73;&#64;&#x79;&#111;&#117;&#114;&#x64;&#x6f;&#109;&#x61;&#105;&#x6e;&#46;&#99;&#x6f;&#x6d;</a>。下面的方式就不能使用多个邮箱地址了。</p>
+<p>如何搭建一个简单的邮件服务器（邮件传输代理）呢？可以使用 postfix、sendmail 等等。这种做法的直接好处是，可以使用许多个邮箱地址，完成不同的工作。比如：一般的邮件用 <a href="mailto:&#111;&#119;&#110;&#101;&#x72;&#x40;&#x79;&#x6f;&#117;&#x72;&#x64;&#111;&#109;&#97;&#105;&#x6e;&#46;&#99;&#x6f;&#109;">&#111;&#119;&#110;&#101;&#x72;&#x40;&#x79;&#x6f;&#117;&#x72;&#x64;&#111;&#109;&#97;&#105;&#x6e;&#46;&#99;&#x6f;&#109;</a> ，销售相关的用 <a href="mailto:&#x73;&#97;&#x6c;&#101;&#x73;&#64;&#x79;&#x6f;&#x75;&#x72;&#x64;&#111;&#x6d;&#97;&#105;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x73;&#97;&#x6c;&#101;&#x73;&#64;&#x79;&#x6f;&#x75;&#x72;&#x64;&#111;&#x6d;&#97;&#105;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>。下面的方式就不能使用多个邮箱地址了。</p>
 <p>下面要说到的这种方式是使用 SMTP 插件。这种插件的原理是使用新的类代替 <code>Zend_Mail_Transport_Sendmail.php</code> 完成工作（实际上是<code>\Magento\Framework\Mail\Transport</code> 负责的），这个新的类可以设置 SMTP 。这种方式相当于你把账户名，密码告诉他，他直接用外部的邮件服务器发邮件。</p>
 <p>这种方式只能配置一个账户，所以后台邮件地址得设置地和他一样。</p>
 <p>以上是博主的个人理解，有错误还请各位纠正，谢谢！</p>
@@ -258,11 +258,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/hellomagento2/magento-2-goals/" rel="prev" title="Magento 2 Goals （翻译）">
+    <a href="/magento-2-goals/" rel="prev" title="Magento 2 Goals （翻译）">
       <i class="fa fa-chevron-left"></i> Magento 2 Goals （翻译）
     </a></div>
       <div class="post-nav-item">
-    <a href="/hellomagento2/magento-time-timezone%EF%BC%89/" rel="next" title="Magento 的时区和时间（原理）">
+    <a href="/magento-time-timezone%EF%BC%89/" rel="next" title="Magento 的时区和时间（原理）">
       Magento 的时区和时间（原理） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -334,20 +334,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/hellomagento2/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">313</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/hellomagento2/categories/">
+            <a href="/categories/">
           
         <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/hellomagento2/tags/">
+            <a href="/tags/">
           
         <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
@@ -399,30 +399,30 @@
   </div>
 
   
-  <script src="/hellomagento2/lib/anime.min.js"></script>
-  <script src="/hellomagento2/lib/velocity/velocity.min.js"></script>
-  <script src="/hellomagento2/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/hellomagento2/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="/hellomagento2/js/motion.js"></script>
-
-
-<script src="/hellomagento2/js/schemes/pisces.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="/hellomagento2/js/next-boot.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/hellomagento2/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

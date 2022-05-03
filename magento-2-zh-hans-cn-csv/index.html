@@ -5,37 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/hellomagento2/images/cropped-favicon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/hellomagento2/images/cropped-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/hellomagento2/images/cropped-favicon-16x16.png">
-  <link rel="mask-icon" href="/hellomagento2/images/cropped-favicon.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
 
-<link rel="stylesheet" href="/hellomagento2/css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/hellomagento2/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/hellomagento2/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="转载请注明出处 Magento 作为多语言的电商系统，提供了很全面的多语言支持，下面我将总结一下目前我所了解的 Magento 中文化的知识，欢迎补充！谢绝转载。以下中文化指的的简体中文。 设置首先我们从简单的使用谈起。 如果你希望你的前台是中文，那么请在后台 Stores &gt; Configuration &gt; General &gt; Local 中设置 Local 为 Chinese">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Magento 2 中文化问题（原创）">
-<meta property="og:url" content="https://piscesthankit.github.io/hellomagento2/magento-2-zh-hans-cn-csv/index.html">
+<meta property="og:url" content="http://example.com/magento-2-zh-hans-cn-csv/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="转载请注明出处 Magento 作为多语言的电商系统，提供了很全面的多语言支持，下面我将总结一下目前我所了解的 Magento 中文化的知识，欢迎补充！谢绝转载。以下中文化指的的简体中文。 设置首先我们从简单的使用谈起。 如果你希望你的前台是中文，那么请在后台 Stores &gt; Configuration &gt; General &gt; Local 中设置 Local 为 Chinese">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/12/about-zh-hans-cn-csv-1.png">
+<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/about-zh-hans-cn-csv-1.png">
 <meta property="article:published_time" content="2016-12-02T05:33:15.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.178Z">
 <meta property="article:author" content="ThankIT">
 <meta property="article:tag" content="Magento 2中文化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/12/about-zh-hans-cn-csv-1.png">
+<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/12/about-zh-hans-cn-csv-1.png">
 
-<link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/magento-2-zh-hans-cn-csv/">
+<link rel="canonical" href="http://example.com/magento-2-zh-hans-cn-csv/">
 
 
 <script id="page-configurations">
@@ -97,7 +97,7 @@
 
   <div class="site-meta">
 
-    <a href="/hellomagento2/" class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">{ Hello Magento 2 }</h1>
       <span class="logo-line-after"><i></i></span>
@@ -119,22 +119,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/hellomagento2/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/hellomagento2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/hellomagento2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/hellomagento2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -192,10 +192,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/hellomagento2/magento-2-zh-hans-cn-csv/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-zh-hans-cn-csv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/hellomagento2/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="ThankIT">
       <meta itemprop="description" content="">
     </span>
@@ -223,7 +223,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/hellomagento2/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
+                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
                 </span>
             </span>
 
@@ -245,7 +245,7 @@
 
 <p>那就戳进去看看咯，这个地址提供了单个的包，找到 <code>zh_CN</code> 然后下载后改名为 <code>zh_Hans_CN.csv</code> 然后丢到相应的位置就可以了。</p>
 <h2 id="中文包的位置"><a href="#中文包的位置" class="headerlink" title="中文包的位置"></a><a href="#%E4%B8%AD%E6%96%87%E5%8C%85%E7%9A%84%E4%BD%8D%E7%BD%AE"></a>中文包的位置</h2><p>接下来我们来说位置。Magento 2 的 Component 主要有三种：module、theme、lanaguage package。在 module 和 theme 中 都有 <code>i18n</code> 这个文件夹（如果没有可以自己建），这个文件夹负责放翻译文件。 经过测试，博主发现，module 中 <code>i18n</code> 下的翻译文件会被应用到前台和后台（假设你前后台都是简体中文的话），但是 theme 中的翻译只会被应用到前台。所以理论上讲，你下载了上面的包改名后丢到任意的 module 中，都是可以的。 至于 language package ，他当然前后台都得负责了，关于 language package 的继承问题，还是以后用到的时候再探索吧。 博主的建议是把整站的中文包丢到 language package 里面比较好。就是说 Magento 自带模块的中文翻译放到 language package 中，你购买的主题，插件什么的中文包放在自己对应的目录下，这样会清晰很多。 Magento 拥有中文的 language package，请各位寻找下，如果包都在 vendor 下，那么在该目录下找名字叫 <code>language-zh_hans_cn</code> 的，如果你是 git 上那种目录结构，那么在 <code>app/i18n/Magento/zh_Hans_CN</code> 下 好了，把你的包丢进去，刷新缓存，有效果了吧？</p>
-<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>官方的语言包托管在 Crowdin 上，如果你注册一下，也可以参与翻译，反正就是给有兴趣锻炼翻译的人准备的，而且会有机器翻译提示，质量不是很好。博主查看了语言包的内容，有些实在是风马牛不相及，当然不相关的还是很少的。 另一个问题是 Magento 2 每次有新版本，那么需要翻译的字段都会有一些差异或者是增减。很明显，如果等待官方的更新的话，估计是不太可能了。 然后就是翻译的结构问题。打个比方来说，英文中使用 <code>127 records found</code> 这里的 127 不在翻译短语中，翻译短语是<code>records found</code>，翻成中文就是 <code>找到的记录</code> ，连起来变成 <code>127 找到的记录</code>， 是不是很别扭？因为中英文的句子结构不同。看起来这种事情也没有更好的解决办法了。 最后一个问题就是翻译的情境问题，在 csv 里面你可不知道这个短语在什么情境下面，所以翻译可能不是很贴切，有一些词汇还和业务逻辑有关，如果不是很了解业务逻辑，还真是不可能找到合适的词汇。 好吧，说了这么多，其实总结起来就是中文化是要长期迭代的过程。需要大家的共同努力。 <strong>博主根据上面的官方翻译文件进行了部分校正，发布在 github ，大家可以去下载</strong> 地址是：<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/zh_Hans_CN">https://github.com/PiscesThankIT/zh_Hans_CN</a> 我的想法是，既然我们有了一个还不错的基础包，<strong>请下载使用的人，在发现有需要改进的词汇或者问题时，在我的 github 下给我提评论，或者在我的博客上评论，或者将你更改后的文件发给我（<a href="mailto:&#x31;&#53;&#49;&#x38;&#53;&#x32;&#53;&#56;&#54;&#x32;&#64;&#x71;&#113;&#46;&#99;&#111;&#x6d;">&#x31;&#53;&#49;&#x38;&#53;&#x32;&#53;&#56;&#54;&#x32;&#64;&#x71;&#113;&#46;&#99;&#111;&#x6d;</a>），我更正后更新到 github 上，这样我们就有一个正向的循环，大家都能受益。</strong></p>
+<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>官方的语言包托管在 Crowdin 上，如果你注册一下，也可以参与翻译，反正就是给有兴趣锻炼翻译的人准备的，而且会有机器翻译提示，质量不是很好。博主查看了语言包的内容，有些实在是风马牛不相及，当然不相关的还是很少的。 另一个问题是 Magento 2 每次有新版本，那么需要翻译的字段都会有一些差异或者是增减。很明显，如果等待官方的更新的话，估计是不太可能了。 然后就是翻译的结构问题。打个比方来说，英文中使用 <code>127 records found</code> 这里的 127 不在翻译短语中，翻译短语是<code>records found</code>，翻成中文就是 <code>找到的记录</code> ，连起来变成 <code>127 找到的记录</code>， 是不是很别扭？因为中英文的句子结构不同。看起来这种事情也没有更好的解决办法了。 最后一个问题就是翻译的情境问题，在 csv 里面你可不知道这个短语在什么情境下面，所以翻译可能不是很贴切，有一些词汇还和业务逻辑有关，如果不是很了解业务逻辑，还真是不可能找到合适的词汇。 好吧，说了这么多，其实总结起来就是中文化是要长期迭代的过程。需要大家的共同努力。 <strong>博主根据上面的官方翻译文件进行了部分校正，发布在 github ，大家可以去下载</strong> 地址是：<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/zh_Hans_CN">https://github.com/PiscesThankIT/zh_Hans_CN</a> 我的想法是，既然我们有了一个还不错的基础包，<strong>请下载使用的人，在发现有需要改进的词汇或者问题时，在我的 github 下给我提评论，或者在我的博客上评论，或者将你更改后的文件发给我（<a href="mailto:&#x31;&#x35;&#49;&#56;&#x35;&#x32;&#x35;&#56;&#x36;&#x32;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;">&#x31;&#x35;&#49;&#56;&#x35;&#x32;&#x35;&#56;&#x36;&#x32;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;</a>），我更正后更新到 github 上，这样我们就有一个正向的循环，大家都能受益。</strong></p>
 <h2 id="如何更正中文包"><a href="#如何更正中文包" class="headerlink" title="如何更正中文包"></a><a href="#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%AD%A3%E4%B8%AD%E6%96%87%E5%8C%85"></a>如何更正中文包</h2><p>很多朋友不知道如何修改 csv 文件。csv 文件就是纯文本文件，只是用逗号分隔符来分割字段。你完全可以用记事本打开，不过记事本打开实在是很不好查看。默认情况下，你的电脑一定会替你用 EXCEL 打开， 用它打开有中文是会乱码的，要想不乱码，方法有点复杂，修改又有麻烦，所以博主还是放弃了这个念头。 你可以用任何编辑器打开，比如 notepad sublime 之类。博主觉得 notepad 编辑 csv 比较好。他的文件搜索在搜模板文件的时候真的很好用（题外话）。 有朋友推荐使用 csv 的编辑器，当然针对 csv 的编辑器，那查看起来真是很舒服的，but，大部分 csv 编辑器中文依然会乱码，因为不支持 unicode 编码的方式吧。博主找到一个很好用的，可惜免费版不能进行修改，破解版刚下载就提示有毒，吓得宝宝还是不要用了。这个编辑器的名字叫 Ron’s Editor ，不差钱的朋友可以支持下开发者哈。 回到正题，我们现在已经有合适的编辑器来编辑 csv 文件了。打开它，会发现至少有两栏。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Report Bugs&quot;,报告错误,module,Magento_Backend</span><br></pre></td></tr></table></figure>
 
@@ -259,7 +259,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/hellomagento2/tags/Magento-2%E4%B8%AD%E6%96%87%E5%8C%96/" rel="tag"># Magento 2中文化</a>
+              <a href="/tags/Magento-2%E4%B8%AD%E6%96%87%E5%8C%96/" rel="tag"># Magento 2中文化</a>
           </div>
 
         
@@ -268,11 +268,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/hellomagento2/switch-magento-2-system-modes/" rel="prev" title="magento 2 modes - 每种模式的特点及如何切换（翻译）">
+    <a href="/switch-magento-2-system-modes/" rel="prev" title="magento 2 modes - 每种模式的特点及如何切换（翻译）">
       <i class="fa fa-chevron-left"></i> magento 2 modes - 每种模式的特点及如何切换（翻译）
     </a></div>
       <div class="post-nav-item">
-    <a href="/hellomagento2/centos-7-lamp-magento-2/" rel="next" title="CentOS 7 搭建 LAMP 环境安装 Magento 2">
+    <a href="/centos-7-lamp-magento-2/" rel="next" title="CentOS 7 搭建 LAMP 环境安装 Magento 2">
       CentOS 7 搭建 LAMP 环境安装 Magento 2 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -345,20 +345,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/hellomagento2/archives/">
+          <a href="/archives/">
         
           <span class="site-state-item-count">313</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/hellomagento2/categories/">
+            <a href="/categories/">
           
         <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/hellomagento2/tags/">
+            <a href="/tags/">
           
         <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
@@ -410,30 +410,30 @@
   </div>
 
   
-  <script src="/hellomagento2/lib/anime.min.js"></script>
-  <script src="/hellomagento2/lib/velocity/velocity.min.js"></script>
-  <script src="/hellomagento2/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/hellomagento2/js/utils.js"></script>
+<script src="/js/utils.js"></script>
 
-<script src="/hellomagento2/js/motion.js"></script>
-
-
-<script src="/hellomagento2/js/schemes/pisces.js"></script>
+<script src="/js/motion.js"></script>
 
 
-<script src="/hellomagento2/js/next-boot.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/hellomagento2/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
