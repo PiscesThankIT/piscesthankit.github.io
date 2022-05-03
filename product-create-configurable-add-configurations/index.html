@@ -5,52 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
-  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/hellomagento2/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hellomagento2/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hellomagento2/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/hellomagento2/images/cropped-favicon.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/hellomagento2/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/hellomagento2/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/hellomagento2/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="原文地址 下面这个例子中添加了三个颜色三个尺码的配置项。总共会创建9个简单商品，每个商品都有唯一的 SKU ，页面顶部的进度条会显示你现在在哪里，并引导你完成所有步骤。  步骤一：选择属性 上一部分 可配置商品(Configurable Product) 点击保存后，下拉到 Configurations 部分，然后点击 Create Configurations 勾选你要包含的属性。比如，这里我们">
 <meta property="og:type" content="article">
 <meta property="og:title" content="可配置商品添加配置项(Adding Configurations)">
-<meta property="og:url" content="http://example.com/product-create-configurable-add-configurations/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/hellomagento2/product-create-configurable-add-configurations/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="原文地址 下面这个例子中添加了三个颜色三个尺码的配置项。总共会创建9个简单商品，每个商品都有唯一的 SKU ，页面顶部的进度条会显示你现在在哪里，并引导你完成所有步骤。  步骤一：选择属性 上一部分 可配置商品(Configurable Product) 点击保存后，下拉到 Configurations 部分，然后点击 Create Configurations 勾选你要包含的属性。比如，这里我们">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurable-progress-bar-step1.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurable-create-configurations_thumb_0_0.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-create-configurable-step1.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-create-configurable-step2.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurations-images-apply-single-set.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/btn-trashcan-sm_19x18.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurable-create-configurations-add-images-unique.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurable-create-configurations-price-all-skus.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurable-create-configurations-price-unique.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurations-quantity-same-all-skus.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-configurations-quantity-different.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-create-configurable-summary.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/btn-switch-yes_32x18.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-edit-save-close.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/product-admin-customer-view.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-configurable-product.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurable-progress-bar-step1.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations_thumb_0_0.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-create-configurable-step1.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-create-configurable-step2.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurations-images-apply-single-set.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/btn-trashcan-sm_19x18.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations-add-images-unique.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations-price-all-skus.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations-price-unique.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurations-quantity-same-all-skus.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurations-quantity-different.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-create-configurable-summary.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/btn-switch-yes_32x18.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-edit-save-close.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-admin-customer-view.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-configurable-product.png">
 <meta property="article:published_time" content="2017-01-03T13:25:37.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.197Z">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/01/product-configurable-progress-bar-step1.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/product-configurable-progress-bar-step1.png">
 
-<link rel="canonical" href="http://example.com/product-create-configurable-add-configurations/">
+<link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/product-create-configurable-add-configurations/">
 
 
 <script id="page-configurations">
@@ -112,7 +112,7 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/hellomagento2/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">{ Hello Magento 2 }</h1>
       <span class="logo-line-after"><i></i></span>
@@ -134,22 +134,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/hellomagento2/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/hellomagento2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/hellomagento2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/hellomagento2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -207,10 +207,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/product-create-configurable-add-configurations/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/hellomagento2/product-create-configurable-add-configurations/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/hellomagento2/images/avatar.gif">
       <meta itemprop="name" content="ThankIT">
       <meta itemprop="description" content="">
     </span>
@@ -238,7 +238,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                  <a href="/hellomagento2/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
                 </span>
             </span>
 
@@ -255,17 +255,17 @@
       
         <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-create-configurable-add-configurations.html">原文地址</a></em></p>
 <p>下面这个例子中添加了三个颜色三个尺码的配置项。总共会创建9个简单商品，每个商品都有唯一的 SKU ，页面顶部的进度条会显示你现在在哪里，并引导你完成所有步骤。</p>
-<p><img src="/wp-content/uploads/2017/01/product-configurable-progress-bar-step1.png" alt="Process bar"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurable-progress-bar-step1.png" alt="Process bar"></p>
 <h2 id="步骤一：选择属性"><a href="#步骤一：选择属性" class="headerlink" title="步骤一：选择属性"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E9%80%89%E6%8B%A9%E5%B1%9E%E6%80%A7"></a>步骤一：选择属性</h2><ol>
-<li>上一部分 <a href="/product-create-configurable/">可配置商品(Configurable Product)</a> 点击保存后，下拉到 <strong>Configurations</strong> 部分，然后点击 <strong>Create Configurations</strong><br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations_thumb_0_0.png"></li>
+<li>上一部分 <a href="/product-create-configurable/">可配置商品(Configurable Product)</a> 点击保存后，下拉到 <strong>Configurations</strong> 部分，然后点击 <strong>Create Configurations</strong><br><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations_thumb_0_0.png"></li>
 <li>勾选你要包含的属性。比如，这里我们选择 color 和 size</li>
-<li>列表显示了该属性集中所有可被应用在可配置商品上的属性<br><img src="/wp-content/uploads/2017/01/product-create-configurable-step1.png"></li>
+<li>列表显示了该属性集中所有可被应用在可配置商品上的属性<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-create-configurable-step1.png"></li>
 <li>如果你需要添加新的属性，点击 <strong>Create New Attribute</strong> 完成attribute 的属性，然后点击 <strong>Save Attribute</strong>，然后勾选复选框选择属性。</li>
 <li>右上角，点击 <strong>Next</strong></li>
 </ol>
 <h2 id="步骤二：输入属性值"><a href="#步骤二：输入属性值" class="headerlink" title="步骤二：输入属性值"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%EF%BC%9A%E8%BE%93%E5%85%A5%E5%B1%9E%E6%80%A7%E5%80%BC"></a>步骤二：输入属性值</h2><ol>
-<li>为每个属性勾选应用到该商品上的值<br><img src="/wp-content/uploads/2017/01/product-create-configurable-step2.png"></li>
-<li>重新排列属性的顺序，可以拖动 <img src="/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png">图标到新的位置。他们的顺序决定着产品详情页中下拉列表的位置。</li>
+<li>为每个属性勾选应用到该商品上的值<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-create-configurable-step2.png"></li>
+<li>重新排列属性的顺序，可以拖动 <img src="/hellomagento2/wp-content/uploads/2017/01/btn-sort-order-inline_16x18.png">图标到新的位置。他们的顺序决定着产品详情页中下拉列表的位置。</li>
 <li>在进度条中，点击 <strong>Next</strong></li>
 </ol>
 <h2 id="步骤三：配置图片、价格和数量"><a href="#步骤三：配置图片、价格和数量" class="headerlink" title="步骤三：配置图片、价格和数量"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%9B%BE%E7%89%87%E3%80%81%E4%BB%B7%E6%A0%BC%E5%92%8C%E6%95%B0%E9%87%8F"></a>步骤三：配置图片、价格和数量</h2><p>这一步决定着每个配置项的图片、价格和数量。可选项是一样的，你只能选一个。可以是 apply the same setting to all SKUs, apply a unique setting to each SKU, or skip the settings for now</p>
@@ -274,27 +274,27 @@
 <li><p>配置图片<br>方法一：对所有 SKUs 应用同一组图片(Apply a Single Set of Images to All SKUs)</p>
 <ol>
 <li>选择 Apply a Single Set of Images to All SKUs</li>
-<li>浏览选择图片或者拖动图片到下图的框中<br><img src="/wp-content/uploads/2017/01/product-configurations-images-apply-single-set.png"><br>方法二：对每个 SKU 应用单独的图片<br>因为我们已经为父商品上传了图片，我们将使用这个选项来为每个颜色上传图片。假设某个客户购买了某个颜色的T恤，那么购物车中显示的就是这里的图片。</li>
+<li>浏览选择图片或者拖动图片到下图的框中<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurations-images-apply-single-set.png"><br>方法二：对每个 SKU 应用单独的图片<br>因为我们已经为父商品上传了图片，我们将使用这个选项来为每个颜色上传图片。假设某个客户购买了某个颜色的T恤，那么购物车中显示的就是这里的图片。</li>
 <li>选择 Apply unique images by attribute to each SKU</li>
 <li>选择图像要说明的属性，比如：color</li>
-<li>对每个属性值，要么浏览选择图片，要么拖拽到框中<br>If you drag the an image to a value box, it appears in the sections for the other values, as well.如果你想要删除图片，点击 <img src="/wp-content/uploads/2017/01/btn-trashcan-sm_19x18.png">图标<br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations-add-images-unique.png"></li>
+<li>对每个属性值，要么浏览选择图片，要么拖拽到框中<br>If you drag the an image to a value box, it appears in the sections for the other values, as well.如果你想要删除图片，点击 <img src="/hellomagento2/wp-content/uploads/2017/01/btn-trashcan-sm_19x18.png">图标<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations-add-images-unique.png"></li>
 </ol>
 </li>
 <li><p>配置价格<br>方法一：对所有 SKU 应用相同的价格 (Apply the Same Price to All SKUs)</p>
 <ol>
 <li>选择 Apply single price to all SKUs</li>
-<li>输入 价格<br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations-price-all-skus.png"><br>方法二：对每个 SKU 应用不同的价格 (Apply a Different Price for Each SKU)</li>
+<li>输入 价格<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations-price-all-skus.png"><br>方法二：对每个 SKU 应用不同的价格 (Apply a Different Price for Each SKU)</li>
 <li>如果商品的各种变体价格不一样，选择 Apply unique prices by attribute to each SKU</li>
 <li>选择价格差异基于的属性</li>
-<li>设置每个属性值的价格。在这个例子中，XL 尺码的更贵一点<br><img src="/wp-content/uploads/2017/01/product-configurable-create-configurations-price-unique.png"></li>
+<li>设置每个属性值的价格。在这个例子中，XL 尺码的更贵一点<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurable-create-configurations-price-unique.png"></li>
 </ol>
 </li>
 <li><p>配置数量<br>方法一：对所有的 SKU 应用相同的数量 (Apply the Same Quantity to All SKUs)</p>
 <ol>
 <li>如果所有 SKU 的库存数量都是一样的，选择 Apply the Same Quantity to All SKUs</li>
-<li>输入 数量<br><img src="/wp-content/uploads/2017/01/product-configurations-quantity-same-all-skus.png" alt="Same Quantity for All SKUs"><br>方法二：不同的属性应用不同的数量 (Apply Different Quantity by Attribute)</li>
+<li>输入 数量<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurations-quantity-same-all-skus.png" alt="Same Quantity for All SKUs"><br>方法二：不同的属性应用不同的数量 (Apply Different Quantity by Attribute)</li>
 <li>如果每个属性的数量不同，选择 Apply Different Quantity by Attribute</li>
-<li>设置每个的值<br><img src="/wp-content/uploads/2017/01/product-configurations-quantity-different.png"></li>
+<li>设置每个的值<br><img src="/hellomagento2/wp-content/uploads/2017/01/product-configurations-quantity-different.png"></li>
 </ol>
 </li>
 </ul>
@@ -306,7 +306,7 @@
 <li>如果你对生成的配置满意，点击 <strong>Next</strong></li>
 <li>要做修改，点击 <strong>Back</strong></li>
 </ul>
-<p><img src="/wp-content/uploads/2017/01/product-create-configurable-summary.png"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2017/01/product-create-configurable-summary.png"></p>
 <h2 id="步骤五：添加产品图片"><a href="#步骤五：添加产品图片" class="headerlink" title="步骤五：添加产品图片"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%BA%94%EF%BC%9A%E6%B7%BB%E5%8A%A0%E4%BA%A7%E5%93%81%E5%9B%BE%E7%89%87"></a>步骤五：添加产品图片</h2><ol>
 <li>下拉到 <strong>Images and Videos</strong> 部分，然后展开</li>
 <li>点击 相机 图标，选择该商品的主图<br>了解更多，请查阅 <a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-images-and-video.html">Images and Video</a></li>
@@ -323,11 +323,11 @@
 <li>Gift Options</li>
 </ul>
 <h2 id="步骤七：发布商品"><a href="#步骤七：发布商品" class="headerlink" title="步骤七：发布商品"></a><a href="#%E6%AD%A5%E9%AA%A4%E4%B8%83%EF%BC%9A%E5%8F%91%E5%B8%83%E5%95%86%E5%93%81"></a>步骤七：发布商品</h2><ol>
-<li>如果该商品可以发布了，则设置 <strong>Enable Product</strong> 为 Yes <img src="/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
+<li>如果该商品可以发布了，则设置 <strong>Enable Product</strong> 为 Yes <img src="/hellomagento2/wp-content/uploads/2017/01/btn-switch-yes_32x18.png"></li>
 <li>你可以点击 <strong>Save &amp; Close</strong> 或者以客户的视角浏览商品的信息</li>
 </ol>
-<p><img src="/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
-<p><img src="/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2017/01/product-edit-save-close.png"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2017/01/product-admin-customer-view.png"></p>
 <h2 id="步骤八：配置购物车缩略图-可选"><a href="#步骤八：配置购物车缩略图-可选" class="headerlink" title="步骤八：配置购物车缩略图(可选)"></a><a href="#%E6%AD%A5%E9%AA%A4%E5%85%AB%EF%BC%9A%E9%85%8D%E7%BD%AE%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%BC%A9%E7%95%A5%E5%9B%BE(%E5%8F%AF%E9%80%89)"></a>步骤八：配置购物车缩略图(可选)</h2><p>如果你商品的每个变体都有不同的图片，你可以配置购物车的缩略图使用正确的图片</p>
 <ol>
 <li>后台侧边栏，点击 <strong>Stores</strong>，在 Settings 下，选择 <strong>Configuration</strong></li>
@@ -335,7 +335,7 @@
 <li>设置 <strong>Configurable Product Image</strong> 为 Product Thumbnail Itself</li>
 <li>完成后，点击 <strong>Save Config</strong></li>
 </ol>
-<p><img src="/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-configurable-product.png"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2017/01/config-sales-checkout-shopping-cart-configurable-product.png"></p>
 <h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a><a href="#%E8%A6%81%E7%82%B9"></a>要点</h2><ul>
 <li>可配置产品允许客户从下拉列表中选择选项。每个选项实际上都是一个单独的简单商品</li>
 <li>每个下拉列表的值都是基于 dropdown 类型的属性。drop-down 类型的属性必须包含在属性集中，该属性集则是当前可配置产品的模板</li>
@@ -356,11 +356,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/product-create-configurable/" rel="prev" title="可配置商品(Configurable Product)">
+    <a href="/hellomagento2/product-create-configurable/" rel="prev" title="可配置商品(Configurable Product)">
       <i class="fa fa-chevron-left"></i> 可配置商品(Configurable Product)
     </a></div>
       <div class="post-nav-item">
-    <a href="/product-create-grouped/" rel="next" title="组合商品(Grouped Product)">
+    <a href="/hellomagento2/product-create-grouped/" rel="next" title="组合商品(Grouped Product)">
       组合商品(Grouped Product) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -433,20 +433,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/hellomagento2/archives/">
         
           <span class="site-state-item-count">313</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/hellomagento2/categories/">
           
         <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/hellomagento2/tags/">
           
         <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
@@ -498,30 +498,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/hellomagento2/lib/anime.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/hellomagento2/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/hellomagento2/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/hellomagento2/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/hellomagento2/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/hellomagento2/js/local-search.js"></script>
 
 
 

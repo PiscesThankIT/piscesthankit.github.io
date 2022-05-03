@@ -5,33 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
-  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/hellomagento2/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hellomagento2/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hellomagento2/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/hellomagento2/images/cropped-favicon.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/hellomagento2/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/hellomagento2/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/hellomagento2/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="如果模块需要管理员设置某些选项，就需要通过 system.xml 配置文件来创建和保存配置字段。那么我们怎么创建和使用 system.xml 呢？ 第一步：创建 system.xml请在 Magento 2 后台进入 Stores -&gt; Settings -&gt; Configuration 。 Magento 2 的系统配置页面被分成了几个部分：Tabs, Sections, Group">
 <meta property="og:type" content="article">
 <meta property="og:title" content="System.xml Configuration">
-<meta property="og:url" content="http://example.com/system-xml-configuration/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/hellomagento2/system-xml-configuration/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="如果模块需要管理员设置某些选项，就需要通过 system.xml 配置文件来创建和保存配置字段。那么我们怎么创建和使用 system.xml 呢？ 第一步：创建 system.xml请在 Magento 2 后台进入 Stores -&gt; Settings -&gt; Configuration 。 Magento 2 的系统配置页面被分成了几个部分：Tabs, Sections, Group">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/tabs-sections-groups-fields.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/configuration-scope.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/thankit_helloworld_configuration_page.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/core_config_data_records.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2017/09/get-configuration-value-by-helper-file.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/tabs-sections-groups-fields.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/configuration-scope.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/thankit_helloworld_configuration_page.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/core_config_data_records.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/get-configuration-value-by-helper-file.png">
 <meta property="article:published_time" content="2017-09-09T08:22:11.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.265Z">
 <meta property="article:author" content="ThankIT">
@@ -39,9 +39,9 @@
 <meta property="article:tag" content="config.xml">
 <meta property="article:tag" content="Magneto 2 system.xml">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/wp-content/uploads/2017/09/tabs-sections-groups-fields.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/tabs-sections-groups-fields.png">
 
-<link rel="canonical" href="http://example.com/system-xml-configuration/">
+<link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/system-xml-configuration/">
 
 
 <script id="page-configurations">
@@ -103,7 +103,7 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/hellomagento2/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">{ Hello Magento 2 }</h1>
       <span class="logo-line-after"><i></i></span>
@@ -125,22 +125,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/hellomagento2/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/hellomagento2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/hellomagento2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/hellomagento2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -198,10 +198,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/system-xml-configuration/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/hellomagento2/system-xml-configuration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/hellomagento2/images/avatar.gif">
       <meta itemprop="name" content="ThankIT">
       <meta itemprop="description" content="">
     </span>
@@ -229,7 +229,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">插件开发系列教程</span></a>
+                  <a href="/hellomagento2/categories/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">插件开发系列教程</span></a>
                 </span>
             </span>
 
@@ -245,7 +245,7 @@
 
       
         <p>如果模块需要管理员设置某些选项，就需要通过 <code>system.xml</code> 配置文件来创建和保存配置字段。那么我们怎么创建和使用 <code>system.xml</code> 呢？</p>
-<h2 id="第一步：创建-system-xml"><a href="#第一步：创建-system-xml" class="headerlink" title="第一步：创建 system.xml"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-system.xml"></a>第一步：创建 system.xml</h2><p>请在 Magento 2 后台进入 <code>Stores -&gt; Settings -&gt; Configuration</code> 。 Magento 2 的系统配置页面被分成了几个部分：Tabs, Sections, Groups, Fields 。 <img src="/wp-content/uploads/2017/09/tabs-sections-groups-fields.png" alt="Magento 2 system configuration page is divided logically in few parts: Tabs, Sections, Groups, Fields"> 以之前的 <code>ThankIT_HelloWorld</code> 模块为基础，下面我们创建一个配置页面，tab 是 ThankIT （for our vendor），section 是 Hello World （for our module），group 组包含一些简单的字段。 File: app&#x2F;code&#x2F;ThankIT&#x2F;HelloWorld&#x2F;etc&#x2F;adminhtml&#x2F;system.xml</p>
+<h2 id="第一步：创建-system-xml"><a href="#第一步：创建-system-xml" class="headerlink" title="第一步：创建 system.xml"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-system.xml"></a>第一步：创建 system.xml</h2><p>请在 Magento 2 后台进入 <code>Stores -&gt; Settings -&gt; Configuration</code> 。 Magento 2 的系统配置页面被分成了几个部分：Tabs, Sections, Groups, Fields 。 <img src="/hellomagento2/wp-content/uploads/2017/09/tabs-sections-groups-fields.png" alt="Magento 2 system configuration page is divided logically in few parts: Tabs, Sections, Groups, Fields"> 以之前的 <code>ThankIT_HelloWorld</code> 模块为基础，下面我们创建一个配置页面，tab 是 ThankIT （for our vendor），section 是 Hello World （for our module），group 组包含一些简单的字段。 File: app&#x2F;code&#x2F;ThankIT&#x2F;HelloWorld&#x2F;etc&#x2F;adminhtml&#x2F;system.xml</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Config:etc/system_file.xsd&quot;&gt;</span><br><span class="line">    &lt;system&gt;</span><br><span class="line">        &lt;tab id=&quot;mageplaza&quot; translate=&quot;label&quot; sortOrder=&quot;10&quot;&gt;</span><br><span class="line">            &lt;label&gt;Mageplaza&lt;/label&gt;</span><br><span class="line">        &lt;/tab&gt;</span><br><span class="line">        &lt;section id=&quot;helloworld&quot; translate=&quot;label&quot; sortOrder=&quot;130&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;1&quot; showInStore=&quot;1&quot;&gt;</span><br><span class="line">            &lt;class&gt;separator-top&lt;/class&gt;</span><br><span class="line">            &lt;label&gt;Hello World&lt;/label&gt;</span><br><span class="line">            &lt;tab&gt;mageplaza&lt;/tab&gt;</span><br><span class="line">            &lt;resource&gt;Mageplaza_HelloWorld::hello_configuration&lt;/resource&gt;</span><br><span class="line">            &lt;group id=&quot;general&quot; translate=&quot;label&quot; type=&quot;text&quot; sortOrder=&quot;10&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;0&quot; showInStore=&quot;0&quot;&gt;</span><br><span class="line">                &lt;label&gt;General Configuration&lt;/label&gt;</span><br><span class="line">                &lt;field id=&quot;enable&quot; translate=&quot;label&quot; type=&quot;select&quot; sortOrder=&quot;1&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;0&quot; showInStore=&quot;0&quot;&gt;</span><br><span class="line">                    &lt;label&gt;Module Enable&lt;/label&gt;</span><br><span class="line">                    &lt;source_model&gt;Magento\Config\Model\Config\Source\Yesno&lt;/source_model&gt;</span><br><span class="line">                &lt;/field&gt;</span><br><span class="line">                &lt;field id=&quot;display_text&quot; translate=&quot;label&quot; type=&quot;text&quot; sortOrder=&quot;1&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;0&quot; showInStore=&quot;0&quot;&gt;</span><br><span class="line">                    &lt;label&gt;Display Text&lt;/label&gt;</span><br><span class="line">                    &lt;comment&gt;This text will display on the frontend.&lt;/comment&gt;</span><br><span class="line">                &lt;/field&gt;</span><br><span class="line">            &lt;/group&gt;</span><br><span class="line">        &lt;/section&gt;</span><br><span class="line">    &lt;/system&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
 
 <p>以下是关于 system.xml 中一些元素的介绍。</p>
@@ -257,7 +257,7 @@
 <li>Label element child is the text which will show as tab title.</li>
 </ul>
 </li>
-<li>The Section element will have id, sortOrder, translate attributes like the Tab element. Some other attributes (showInDefault, showInWebsite, showInStore) will decide this element will be show on each scope or not. You can change the scope here <img src="/wp-content/uploads/2017/09/configuration-scope.png" alt="change system configuration scope"></li>
+<li>The Section element will have id, sortOrder, translate attributes like the Tab element. Some other attributes (showInDefault, showInWebsite, showInStore) will decide this element will be show on each scope or not. You can change the scope here <img src="/hellomagento2/wp-content/uploads/2017/09/configuration-scope.png" alt="change system configuration scope"></li>
 </ul>
 <p>The section may have many group and some other child elements:</p>
 <ul>
@@ -274,8 +274,8 @@
 <p>格式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;default&gt;</span><br><span class="line">    &lt;section_id&gt;</span><br><span class="line">        &lt;group_id&gt;</span><br><span class="line">            &lt;field_id&gt;&#123;value&#125;&lt;/field_id&gt;</span><br><span class="line">        &lt;/group_id&gt;</span><br><span class="line">    &lt;/section_id&gt;</span><br><span class="line">&lt;/default&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="第三步：刷新缓存"><a href="#第三步：刷新缓存" class="headerlink" title="第三步：刷新缓存"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%88%B7%E6%96%B0%E7%BC%93%E5%AD%98"></a>第三步：刷新缓存</h2><p>刷新缓存后，你就可以看到结果了： <img src="/wp-content/uploads/2017/09/thankit_helloworld_configuration_page.png" alt="ThankIT HelloWorld Configuration page"></p>
-<h2 id="第四步：获得配置值"><a href="#第四步：获得配置值" class="headerlink" title="第四步：获得配置值"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%BE%97%E9%85%8D%E7%BD%AE%E5%80%BC"></a>第四步：获得配置值</h2><p>在 <code>system.xml</code> 中，我们加了两个字段，他们的 path 是： <code>helloworld/general/enable</code> <code>helloworld/general/display_text</code> 然后，我们改一下配置，保存后，刷新缓存。我们查看 <code>core_config_data</code> 这张数据库表，就会看到我们保存的配置值了（只创建了 config.xml 并不会在该表插入记录，后台点击保存后才会在表中插入记录）。 <img src="/wp-content/uploads/2017/09/core_config_data_records.png" alt="core_config_data 中的记录值"> 万变不离其宗，获取配置值，是通过 <code>\Magento\Framework\App\Config\ScopeConfigInterface</code> 来实现的。 通过查 di.xml 可以发现 <code>&lt;preference for=&quot;Magento\Framework\App\Config\ScopeConfigInterface&quot; type=&quot;Magento\Framework\App\Config&quot; /&gt;</code> 所以实际注入的是 <code>Magento\Framework\App\Config</code></p>
+<h2 id="第三步：刷新缓存"><a href="#第三步：刷新缓存" class="headerlink" title="第三步：刷新缓存"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%88%B7%E6%96%B0%E7%BC%93%E5%AD%98"></a>第三步：刷新缓存</h2><p>刷新缓存后，你就可以看到结果了： <img src="/hellomagento2/wp-content/uploads/2017/09/thankit_helloworld_configuration_page.png" alt="ThankIT HelloWorld Configuration page"></p>
+<h2 id="第四步：获得配置值"><a href="#第四步：获得配置值" class="headerlink" title="第四步：获得配置值"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%BE%97%E9%85%8D%E7%BD%AE%E5%80%BC"></a>第四步：获得配置值</h2><p>在 <code>system.xml</code> 中，我们加了两个字段，他们的 path 是： <code>helloworld/general/enable</code> <code>helloworld/general/display_text</code> 然后，我们改一下配置，保存后，刷新缓存。我们查看 <code>core_config_data</code> 这张数据库表，就会看到我们保存的配置值了（只创建了 config.xml 并不会在该表插入记录，后台点击保存后才会在表中插入记录）。 <img src="/hellomagento2/wp-content/uploads/2017/09/core_config_data_records.png" alt="core_config_data 中的记录值"> 万变不离其宗，获取配置值，是通过 <code>\Magento\Framework\App\Config\ScopeConfigInterface</code> 来实现的。 通过查 di.xml 可以发现 <code>&lt;preference for=&quot;Magento\Framework\App\Config\ScopeConfigInterface&quot; type=&quot;Magento\Framework\App\Config&quot; /&gt;</code> 所以实际注入的是 <code>Magento\Framework\App\Config</code></p>
 <h3 id="标准用法"><a href="#标准用法" class="headerlink" title="标准用法"></a><a href="#%E6%A0%87%E5%87%86%E7%94%A8%E6%B3%95"></a>标准用法</h3><p>在构造函数中注入 <code>\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig</code> 并设置 <code>$this-&gt;scopeConfig = $scopeConfig;</code> 我们就可以通过</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&gt;scopeConfig-&gt;getValue(&#x27;helloworld/general/enable&#x27;, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);</span><br></pre></td></tr></table></figure>
 
@@ -286,7 +286,7 @@
 <p>File: app\code\ThankIT\HelloWorld\view\frontend\templates\index\index.phtml</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;h3&gt;get configuration value by helper file&lt;/h3&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$helper = $this-&gt;helper(&#x27;ThankIT\HelloWorld\Helper\Data&#x27;);</span><br><span class="line">echo $helper-&gt;getConfigValue(&#x27;helloworld/general/display_text&#x27;);</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">echo $helper-&gt;getGeneralConfig(&#x27;display_text&#x27;);</span><br></pre></td></tr></table></figure>
 
-<p>结果： <img src="/wp-content/uploads/2017/09/get-configuration-value-by-helper-file.png" alt="get-configuration-value-by-helper-file"> _ 关于 helper Helpers are classes that can be used anywhere we want,we can use them in controllers,views,modeles and even in other helpers. Helpers are usually created to provide methods for a common functionality. 它一般位于 &#x2F;Helper 目录下，常用的文件名是 Data.php 它继承自 <code>Magento\Framework\App\Helper\AbstractHelper</code> _ 因为他的父类已经注入了<code>\Magento\Framework\App\Config\ScopeConfigInterface</code> 所以我们可以在 helper 中使用 <code>$this-&gt;scopeConfig-&gt;getValue()</code> 来获得配置值。 在 block 中我们可以通过 <code>$this-&gt;helper(&#39;&#123;Vendor&#125;\&#123;Module&#125;\Helper\Data&#39;);</code> 来获得 helper 。注意，此处一定是右斜杠。path 是左斜杠。</p>
+<p>结果： <img src="/hellomagento2/wp-content/uploads/2017/09/get-configuration-value-by-helper-file.png" alt="get-configuration-value-by-helper-file"> _ 关于 helper Helpers are classes that can be used anywhere we want,we can use them in controllers,views,modeles and even in other helpers. Helpers are usually created to provide methods for a common functionality. 它一般位于 &#x2F;Helper 目录下，常用的文件名是 Data.php 它继承自 <code>Magento\Framework\App\Helper\AbstractHelper</code> _ 因为他的父类已经注入了<code>\Magento\Framework\App\Config\ScopeConfigInterface</code> 所以我们可以在 helper 中使用 <code>$this-&gt;scopeConfig-&gt;getValue()</code> 来获得配置值。 在 block 中我们可以通过 <code>$this-&gt;helper(&#39;&#123;Vendor&#125;\&#123;Module&#125;\Helper\Data&#39;);</code> 来获得 helper 。注意，此处一定是右斜杠。path 是左斜杠。</p>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.mageplaza.com/magento-2-module-development/create-system-xml-configuration-magento-2.html">Magento 2 How to Create System.xml Configuration</a></p>
 
     </div>
@@ -297,9 +297,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/helper/" rel="tag"># helper</a>
-              <a href="/tags/config-xml/" rel="tag"># config.xml</a>
-              <a href="/tags/Magneto-2-system-xml/" rel="tag"># Magneto 2 system.xml</a>
+              <a href="/hellomagento2/tags/helper/" rel="tag"># helper</a>
+              <a href="/hellomagento2/tags/config-xml/" rel="tag"># config.xml</a>
+              <a href="/hellomagento2/tags/Magneto-2-system-xml/" rel="tag"># Magneto 2 system.xml</a>
           </div>
 
         
@@ -308,11 +308,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/magento-2-templates-use-block-or-this/" rel="prev" title="Magento 2 Templates: Use $block or $this">
+    <a href="/hellomagento2/magento-2-templates-use-block-or-this/" rel="prev" title="Magento 2 Templates: Use $block or $this">
       <i class="fa fa-chevron-left"></i> Magento 2 Templates: Use $block or $this
     </a></div>
       <div class="post-nav-item">
-    <a href="/magento-2-admin-acl-access-control-lists/" rel="next" title="Magento 2 Admin ACL Access Control Lists">
+    <a href="/hellomagento2/magento-2-admin-acl-access-control-lists/" rel="next" title="Magento 2 Admin ACL Access Control Lists">
       Magento 2 Admin ACL Access Control Lists <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -385,20 +385,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/hellomagento2/archives/">
         
           <span class="site-state-item-count">313</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/hellomagento2/categories/">
           
         <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/hellomagento2/tags/">
           
         <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
@@ -450,30 +450,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/hellomagento2/lib/anime.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/hellomagento2/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/hellomagento2/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/hellomagento2/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/hellomagento2/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/hellomagento2/js/local-search.js"></script>
 
 
 

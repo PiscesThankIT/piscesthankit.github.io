@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
-  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/hellomagento2/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hellomagento2/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hellomagento2/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/hellomagento2/images/cropped-favicon.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/hellomagento2/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/hellomagento2/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/hellomagento2/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="在修改了 wsdl.xml 文件后，需要刷新 magento 缓存， http:&#x2F;&#x2F;yourdomain&#x2F;index.php&#x2F;api&#x2F;v2_soap&#x2F;?wsdl 应该就会有变化。 如果有变化，但是实际没有效果，可以考虑删除 soap 的缓存文件。（尤其是在 wamp 、 xampp 等集成环境中） php.ini 中关于 SOAP 缓存的设置 1234567; Enables or disable">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SOAP 缓存问题">
-<meta property="og:url" content="http://example.com/soap-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/hellomagento2/soap-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="在修改了 wsdl.xml 文件后，需要刷新 magento 缓存， http:&#x2F;&#x2F;yourdomain&#x2F;index.php&#x2F;api&#x2F;v2_soap&#x2F;?wsdl 应该就会有变化。 如果有变化，但是实际没有效果，可以考虑删除 soap 的缓存文件。（尤其是在 wamp 、 xampp 等集成环境中） php.ini 中关于 SOAP 缓存的设置 1234567; Enables or disable">
 <meta property="og:locale" content="zh_CN">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="Magento1 ，soap 缓存">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/soap-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/soap-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/">
 
 
 <script id="page-configurations">
@@ -95,7 +95,7 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/hellomagento2/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">{ Hello Magento 2 }</h1>
       <span class="logo-line-after"><i></i></span>
@@ -117,22 +117,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/hellomagento2/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/hellomagento2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/hellomagento2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/hellomagento2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -190,10 +190,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/soap-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/hellomagento2/soap-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/hellomagento2/images/avatar.gif">
       <meta itemprop="name" content="ThankIT">
       <meta itemprop="description" content="">
     </span>
@@ -221,7 +221,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-1/" itemprop="url" rel="index"><span itemprop="name">Magento 1</span></a>
+                  <a href="/hellomagento2/categories/Magento-1/" itemprop="url" rel="index"><span itemprop="name">Magento 1</span></a>
                 </span>
             </span>
 
@@ -249,7 +249,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Magento1-%EF%BC%8Csoap-%E7%BC%93%E5%AD%98/" rel="tag"># Magento1 ，soap 缓存</a>
+              <a href="/hellomagento2/tags/Magento1-%EF%BC%8Csoap-%E7%BC%93%E5%AD%98/" rel="tag"># Magento1 ，soap 缓存</a>
           </div>
 
         
@@ -258,11 +258,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/magento-soap-%E9%94%99%E8%AF%AF/" rel="prev" title="Magento Soap 错误">
+    <a href="/hellomagento2/magento-soap-%E9%94%99%E8%AF%AF/" rel="prev" title="Magento Soap 错误">
       <i class="fa fa-chevron-left"></i> Magento Soap 错误
     </a></div>
       <div class="post-nav-item">
-    <a href="/virtualbox%E4%B8%8B%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E5%86%85%E7%BD%91%E4%BA%92%E9%80%9A%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D/" rel="next" title="VirtualBox下虚拟机和主机内网互通+虚拟机静态IP的网络配置">
+    <a href="/hellomagento2/virtualbox%E4%B8%8B%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E5%86%85%E7%BD%91%E4%BA%92%E9%80%9A%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D/" rel="next" title="VirtualBox下虚拟机和主机内网互通+虚拟机静态IP的网络配置">
       VirtualBox下虚拟机和主机内网互通+虚拟机静态IP的网络配置 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -334,20 +334,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/hellomagento2/archives/">
         
           <span class="site-state-item-count">313</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/hellomagento2/categories/">
           
         <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/hellomagento2/tags/">
           
         <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
@@ -399,30 +399,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/hellomagento2/lib/anime.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/hellomagento2/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/hellomagento2/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/hellomagento2/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/hellomagento2/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/hellomagento2/js/local-search.js"></script>
 
 
 

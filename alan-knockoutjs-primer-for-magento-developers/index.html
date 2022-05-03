@@ -5,39 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
-  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/hellomagento2/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hellomagento2/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hellomagento2/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/hellomagento2/images/cropped-favicon.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/hellomagento2/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/hellomagento2/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/hellomagento2/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="原文地址 在我们可以继续探索 Magento 的 js 高级特性之前，我们得先补习 KnockoutJSKnockoutJS 是一个 javaScript MVVM 系统，他是 Magento 2 中的主要 DOM 操作框架。 本篇教程旨在帮助 Magento 开发者熟悉 KnockoutJS 的基本概念，重点介绍 Magento 使用的一些 KnockoutJS 功能。如果你打算用 Knocko">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KnockoutJS Primer for Magento Developers （翻译）">
-<meta property="og:url" content="http://example.com/alan-knockoutjs-primer-for-magento-developers/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/hellomagento2/alan-knockoutjs-primer-for-magento-developers/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="原文地址 在我们可以继续探索 Magento 的 js 高级特性之前，我们得先补习 KnockoutJSKnockoutJS 是一个 javaScript MVVM 系统，他是 Magento 2 中的主要 DOM 操作框架。 本篇教程旨在帮助 Magento 开发者熟悉 KnockoutJS 的基本概念，重点介绍 Magento 使用的一些 KnockoutJS 功能。如果你打算用 Knocko">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-first.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-second.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-third.png">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-first.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-second.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-third.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png">
 <meta property="article:published_time" content="2016-11-01T07:15:39.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.123Z">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/11/alan-knockoutjs-first.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-first.png">
 
-<link rel="canonical" href="http://example.com/alan-knockoutjs-primer-for-magento-developers/">
+<link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/alan-knockoutjs-primer-for-magento-developers/">
 
 
 <script id="page-configurations">
@@ -99,7 +99,7 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/hellomagento2/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">{ Hello Magento 2 }</h1>
       <span class="logo-line-after"><i></i></span>
@@ -121,22 +121,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/hellomagento2/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/hellomagento2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/hellomagento2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/hellomagento2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -194,10 +194,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/alan-knockoutjs-primer-for-magento-developers/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/hellomagento2/alan-knockoutjs-primer-for-magento-developers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/hellomagento2/images/avatar.gif">
       <meta itemprop="name" content="ThankIT">
       <meta itemprop="description" content="">
     </span>
@@ -225,7 +225,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
+                  <a href="/hellomagento2/categories/alan-storm/" itemprop="url" rel="index"><span itemprop="name">alan storm</span></a>
                 </span>
             </span>
 
@@ -267,7 +267,7 @@
 <p>最后，修改<code>h1</code>和<code>p</code>标签，给他们添加如下的<code>data-bind</code>属性</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>现在刷新页面，你应该会看到：<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-first.png"><br>恭喜你！你成功创建了第一 KnockoutJS view model 和 view</p>
+<p>现在刷新页面，你应该会看到：<br><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-first.png"><br>恭喜你！你成功创建了第一 KnockoutJS view model 和 view</p>
 <h2 id="What-Just-Happened"><a href="#What-Just-Happened" class="headerlink" title="What Just Happened"></a><a href="#what-just-happened"></a>What Just Happened</h2><p>KnockoutJS 本身是 <strong>MVVM</strong>系统，MVVM 代表着 Model，View,View Model。Really though, KnockoutJS is better billed as a VVM system, since its agnostic about what sort of model code you use to fetch data. view 是指 HTML 页面，view model 是指带数据的 js 对象。</p>
 <p>让我们来看看js 代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    viewModel = &#123;</span><br><span class="line">        title:&quot;Hello World&quot;,</span><br><span class="line">        content:&quot;So many years of hello world&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -298,14 +298,14 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; data-bind=&quot;value:theValue&quot;/&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <p>刷新页面，你会看到：</p>
-<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-second.png"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-second.png"></p>
 <p>这里我们使用了一个新的 KnockoutJS 绑定</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-bind=&quot;value:theValue&quot;</span><br></pre></td></tr></table></figure>
 
 <p>我们使用<code>value</code>绑定将值赋给表单字段。下面让我们把 input 换成 select 看看</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;select data-bind=&quot;value:theValue&quot;&gt;</span><br><span class="line">        &lt;option value=&quot;&quot;&gt;-- Choose --&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1&quot;&gt;First&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;2&quot;&gt;Second&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;3&quot;&gt;Third&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>刷新页面后，你会看到已经设置 select 的值为2了。<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-third.png"></p>
+<p>刷新页面后，你会看到已经设置 select 的值为2了。<br><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-third.png"></p>
 <p>虽然这个例子很简单，背后的概念可不简单。不需要修改任何 js 程序代码，value binding 就可以让我们更改 UI</p>
 <h2 id="Observables"><a href="#Observables" class="headerlink" title="Observables"></a><a href="#observables"></a>Observables</h2><p>到目前为止，我们看到还只是小招数，已经很强大了。Neat, maybe useful, but it only sets the stage for KnockoutJS’s real “knockout” feature — observables.</p>
 <p>下面，我们还是以例子开始。</p>
@@ -340,7 +340,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div id=&quot;two&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:second&#125;&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script type=&quot;text/html&quot; id=&quot;hello-world&quot;&gt;</span><br><span class="line">        &lt;h1 data-bind=&quot;text:theTitle&quot;&gt;&lt;/h1&gt;</span><br><span class="line">        &lt;p data-bind=&quot;text:theContent&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <p>你将会看到：</p>
-<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png"></p>
 <p>template 绑定接受一个 js 对象作为参数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
@@ -389,11 +389,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/alan-magento-2-javascript-init-scripts/" rel="prev" title="Magento 2 Javascript Init Scripts（翻译）">
+    <a href="/hellomagento2/alan-magento-2-javascript-init-scripts/" rel="prev" title="Magento 2 Javascript Init Scripts（翻译）">
       <i class="fa fa-chevron-left"></i> Magento 2 Javascript Init Scripts（翻译）
     </a></div>
       <div class="post-nav-item">
-    <a href="/alan-magento-2-knockoutjs-integration/" rel="next" title="Magento 2 KnockoutJS 集成">
+    <a href="/hellomagento2/alan-magento-2-knockoutjs-integration/" rel="next" title="Magento 2 KnockoutJS 集成">
       Magento 2 KnockoutJS 集成 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -466,20 +466,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/hellomagento2/archives/">
         
           <span class="site-state-item-count">313</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/hellomagento2/categories/">
           
         <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/hellomagento2/tags/">
           
         <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
@@ -531,30 +531,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/hellomagento2/lib/anime.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/hellomagento2/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/hellomagento2/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/hellomagento2/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/hellomagento2/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/hellomagento2/js/local-search.js"></script>
 
 
 

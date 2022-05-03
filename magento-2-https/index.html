@@ -5,36 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 6.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/cropped-favicon-16x16.png">
-  <link rel="mask-icon" href="/images/cropped-favicon.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/hellomagento2/images/cropped-favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/hellomagento2/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/hellomagento2/images/cropped-favicon-16x16.png">
+  <link rel="mask-icon" href="/hellomagento2/images/cropped-favicon.svg" color="#222">
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/hellomagento2/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/hellomagento2/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/hellomagento2/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本篇我们来谈一谈 Magento 2 如何使用 Https Https 是什么超文本传输安全协议（Hypertext Transfer Protocol Secure 缩写：HTTPS，也被称为HTTP over TLS，HTTP over SSL 或 HTTP Secure）他是一种网络安全传输协议。 HTTPS 使用 HTTP 进行通信，但利用 SSL&#x2F;TLS 来对数据包进行加密。H">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Magento 2 Https">
-<meta property="og:url" content="http://example.com/magento-2-https/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/hellomagento2/magento-2-https/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="本篇我们来谈一谈 Magento 2 如何使用 Https Https 是什么超文本传输安全协议（Hypertext Transfer Protocol Secure 缩写：HTTPS，也被称为HTTP over TLS，HTTP over SSL 或 HTTP Secure）他是一种网络安全传输协议。 HTTPS 使用 HTTP 进行通信，但利用 SSL&#x2F;TLS 来对数据包进行加密。H">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/wp-content/uploads/2016/12/magento2-https.png">
+<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/12/magento2-https.png">
 <meta property="article:published_time" content="2016-12-12T07:05:57.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.182Z">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/wp-content/uploads/2016/12/magento2-https.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/12/magento2-https.png">
 
-<link rel="canonical" href="http://example.com/magento-2-https/">
+<link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/magento-2-https/">
 
 
 <script id="page-configurations">
@@ -96,7 +96,7 @@
 
   <div class="site-meta">
 
-    <a href="/" class="brand" rel="start">
+    <a href="/hellomagento2/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">{ Hello Magento 2 }</h1>
       <span class="logo-line-after"><i></i></span>
@@ -118,22 +118,22 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+    <a href="/hellomagento2/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/hellomagento2/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/hellomagento2/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/hellomagento2/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -191,10 +191,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-https/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/hellomagento2/magento-2-https/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/hellomagento2/images/avatar.gif">
       <meta itemprop="name" content="ThankIT">
       <meta itemprop="description" content="">
     </span>
@@ -222,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
+                  <a href="/hellomagento2/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
                 </span>
             </span>
 
@@ -245,7 +245,7 @@
 <h2 id="阿里云免费证书"><a href="#阿里云免费证书" class="headerlink" title="阿里云免费证书"></a><a href="#%E9%98%BF%E9%87%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6"></a>阿里云免费证书</h2><p>博主的 Magento 2 搭建在阿里云上，所以以阿里云为例，申请一个免费的证书配置到 Magento 2上。</p>
 <p>登录阿里云后，在产品与服务中，找到证书服务 &gt; 购买证书，然后按照提示申请好就行了。博主使用的域名验证类型是 DNS ，所以还要去域名解析中做好配置。然后下载该证书。</p>
 <p>请根据你的服务器类型下载证书，就像下面这样：</p>
-<p><img src="/wp-content/uploads/2016/12/magento2-https.png"></p>
+<p><img src="/hellomagento2/wp-content/uploads/2016/12/magento2-https.png"></p>
 <p>你看，他都告诉你怎么安装证书了。不过这个是 Centos 上的 Apache 配置方式。博主是 Ubuntu，所以下面的内容针对的是 Ubuntu 下 Apache 的证书配置。</p>
 <h2 id="Ubuntu-Apache-配置证书"><a href="#Ubuntu-Apache-配置证书" class="headerlink" title="Ubuntu Apache 配置证书"></a><a href="#ubuntu-apache-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6"></a>Ubuntu Apache 配置证书</h2><p>首先，确保 SSL 模块加载进 Apache 了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a2enmod ssl</span><br><span class="line">...</span><br><span class="line">Module ssl already enabled</span><br></pre></td></tr></table></figure>
@@ -282,11 +282,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/magento2-product-image-zoom/" rel="prev" title="Magento2 产品放大镜效果的实现">
+    <a href="/hellomagento2/magento2-product-image-zoom/" rel="prev" title="Magento2 产品放大镜效果的实现">
       <i class="fa fa-chevron-left"></i> Magento2 产品放大镜效果的实现
     </a></div>
       <div class="post-nav-item">
-    <a href="/how-to-update-csv-using-older-csv-file/" rel="next" title="关于中文包的更新方法问题 （原创）">
+    <a href="/hellomagento2/how-to-update-csv-using-older-csv-file/" rel="next" title="关于中文包的更新方法问题 （原创）">
       关于中文包的更新方法问题 （原创） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -359,20 +359,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+          <a href="/hellomagento2/archives/">
         
           <span class="site-state-item-count">313</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+            <a href="/hellomagento2/categories/">
           
         <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
+            <a href="/hellomagento2/tags/">
           
         <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
@@ -424,30 +424,30 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+  <script src="/hellomagento2/lib/anime.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.min.js"></script>
+  <script src="/hellomagento2/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+<script src="/hellomagento2/js/utils.js"></script>
 
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
+<script src="/hellomagento2/js/motion.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/hellomagento2/js/schemes/pisces.js"></script>
 
 
-
-
-  
+<script src="/hellomagento2/js/next-boot.js"></script>
 
 
 
 
   
-<script src="/js/local-search.js"></script>
+
+
+
+
+  
+<script src="/hellomagento2/js/local-search.js"></script>
 
 
 
