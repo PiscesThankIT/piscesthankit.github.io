@@ -27,18 +27,18 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="Varnish 是一款高性能的开源 HTTP 加速器，反向代理缓存，挪威最大的在线报纸 Verdens Gang 使用 3 台 Varnish 代替了原来的 12 台 Squid，性能比以前更好。 安装以 ubuntu 为例 1sudo apt-get install varnish  启动 1service varnish start  访问网站：以我安装 varnish 的虚拟机为例，访问 1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/10/varnish6081.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/10/6081response-header.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/10/80responseheader.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/10/magento2varnish-configuration.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/10/homepagetime.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/10/varnish6081.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/10/6081response-header.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/10/80responseheader.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/10/magento2varnish-configuration.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/10/homepagetime.png">
 <meta property="article:published_time" content="2017-10-28T09:16:34.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.287Z">
 <meta property="article:author" content="ThankIT">
 <meta property="article:tag" content="magento2">
 <meta property="article:tag" content="varnish 安装和配置">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/10/varnish6081.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/10/varnish6081.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/config-varnish-magento/">
 
@@ -250,11 +250,11 @@
 <p>启动</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish start</span><br></pre></td></tr></table></figure>
 
-<p>访问网站：以我安装 varnish 的虚拟机为例，访问 <code>192.168.0.215:6081</code> 出现如下提示： <img src="/hellomagento2/wp-content/uploads/2017/10/varnish6081.png"> 默认情况下 varnish 会请求他所在服务器的 8080 端口。 而我虚拟机上实际用的是 80 端口。所以 503 错误。 修改配置 <code>etc/varnish/default.vcl</code> 打开该文件会看到：</p>
+<p>访问网站：以我安装 varnish 的虚拟机为例，访问 <code>192.168.0.215:6081</code> 出现如下提示： <img src="/wp-content/uploads/2017/10/varnish6081.png"> 默认情况下 varnish 会请求他所在服务器的 8080 端口。 而我虚拟机上实际用的是 80 端口。所以 503 错误。 修改配置 <code>etc/varnish/default.vcl</code> 打开该文件会看到：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line">backend default &#123;</span><br><span class="line">    .host = &quot;127.0.0.1&quot;;</span><br><span class="line">    .port = &quot;8080&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我将端口改为 80 后保存，然后 <code>service varnish reload</code> 然后再刷新这下就正常了。跟访问 80 端口一样。</p>
-<h2 id="初步试验"><a href="#初步试验" class="headerlink" title="初步试验"></a><a href="#%E5%88%9D%E6%AD%A5%E8%AF%95%E9%AA%8C"></a>初步试验</h2><p>在安装 varnish 之前，我已经建好了 Magento 2 的一个站点，80 访问正常。 下面用 6081 端口访问，看看有什么问题，记录下来，可能对后面有参照作用。 以下是我发现的问题： 首页正常，但页面中所有的链接仍然会被跳转回 80 端口。就是说尽管我请求的页面是 6081 但是页面中的其他链接仍然是 80 端口的请求。 6081 地址的后台是 404 woff, woff2,ttf 字体文件状态是 canceled 对比请求的头部信息变化： 6081 请求 <img src="/hellomagento2/wp-content/uploads/2017/10/6081response-header.png" alt="6081"> 80 请求 <img src="/hellomagento2/wp-content/uploads/2017/10/80responseheader.png" alt="80"> 至少可以发现请求头中出现了 <code>X-Varnish</code></p>
+<h2 id="初步试验"><a href="#初步试验" class="headerlink" title="初步试验"></a><a href="#%E5%88%9D%E6%AD%A5%E8%AF%95%E9%AA%8C"></a>初步试验</h2><p>在安装 varnish 之前，我已经建好了 Magento 2 的一个站点，80 访问正常。 下面用 6081 端口访问，看看有什么问题，记录下来，可能对后面有参照作用。 以下是我发现的问题： 首页正常，但页面中所有的链接仍然会被跳转回 80 端口。就是说尽管我请求的页面是 6081 但是页面中的其他链接仍然是 80 端口的请求。 6081 地址的后台是 404 woff, woff2,ttf 字体文件状态是 canceled 对比请求的头部信息变化： 6081 请求 <img src="/wp-content/uploads/2017/10/6081response-header.png" alt="6081"> 80 请求 <img src="/wp-content/uploads/2017/10/80responseheader.png" alt="80"> 至少可以发现请求头中出现了 <code>X-Varnish</code></p>
 <h2 id="让-Varnish-使用-80"><a href="#让-Varnish-使用-80" class="headerlink" title="让 Varnish 使用 80"></a><a href="#%E8%AE%A9-varnish-%E4%BD%BF%E7%94%A8-80"></a>让 Varnish 使用 80</h2><p>先让 varnish 停下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish stop</span><br></pre></td></tr></table></figure>
 
@@ -280,7 +280,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/sbin/varnishd -a :80 -T localhost:6082 -f /etc/varnish/default.vcl -S /etc/varnish/secret -s malloc,256m</span><br></pre></td></tr></table></figure>
 
 <p>保存后 <code>systemctl daemon-reload</code> 然后重新启动下 varnish 这下终于可以愉快的玩耍了。</p>
-<h2 id="配置-Magneto"><a href="#配置-Magneto" class="headerlink" title="配置 Magneto"></a><a href="#%E9%85%8D%E7%BD%AE-magneto"></a>配置 Magneto</h2><p>可以通过命令行或者进入后台进行配置，参考文尾的参考链接。 登录管理后台后，进入 <strong>STORES &gt; Configuration &gt; ADVANCED &gt; System &gt; Full Page Cache.</strong> 然后看图： <img src="/hellomagento2/wp-content/uploads/2017/10/magento2varnish-configuration.png" alt="Configure Magento to use Varnish"> 刷新缓存，体验飞起来的速度。 φ(゜▽゜*) 首页加载时间如下图，留着以后参考： <img src="/hellomagento2/wp-content/uploads/2017/10/homepagetime.png"></p>
+<h2 id="配置-Magneto"><a href="#配置-Magneto" class="headerlink" title="配置 Magneto"></a><a href="#%E9%85%8D%E7%BD%AE-magneto"></a>配置 Magneto</h2><p>可以通过命令行或者进入后台进行配置，参考文尾的参考链接。 登录管理后台后，进入 <strong>STORES &gt; Configuration &gt; ADVANCED &gt; System &gt; Full Page Cache.</strong> 然后看图： <img src="/wp-content/uploads/2017/10/magento2varnish-configuration.png" alt="Configure Magento to use Varnish"> 刷新缓存，体验飞起来的速度。 φ(゜▽゜*) 首页加载时间如下图，留着以后参考： <img src="/wp-content/uploads/2017/10/homepagetime.png"></p>
 <h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p>如果遇到问题，可以参考以下文档，顺藤摸瓜。 <a target="_blank" rel="noopener" href="https://varnish-cache.org/docs/5.0/tutorial/putting_varnish_on_port_80.html">Put Varnish on port 80</a> <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/config-guide/varnish/config-varnish-magento.html">Configure Magento to use Varnish</a></p>
 
     </div>

@@ -27,12 +27,12 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="本篇我们来谈一谈 Magento 2 如何使用 Https Https 是什么超文本传输安全协议（Hypertext Transfer Protocol Secure 缩写：HTTPS，也被称为HTTP over TLS，HTTP over SSL 或 HTTP Secure）他是一种网络安全传输协议。 HTTPS 使用 HTTP 进行通信，但利用 SSL&#x2F;TLS 来对数据包进行加密。H">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/12/magento2-https.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/12/magento2-https.png">
 <meta property="article:published_time" content="2016-12-12T07:05:57.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.182Z">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/12/magento2-https.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/12/magento2-https.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/magento-2-https/">
 
@@ -245,7 +245,7 @@
 <h2 id="阿里云免费证书"><a href="#阿里云免费证书" class="headerlink" title="阿里云免费证书"></a><a href="#%E9%98%BF%E9%87%8C%E4%BA%91%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6"></a>阿里云免费证书</h2><p>博主的 Magento 2 搭建在阿里云上，所以以阿里云为例，申请一个免费的证书配置到 Magento 2上。</p>
 <p>登录阿里云后，在产品与服务中，找到证书服务 &gt; 购买证书，然后按照提示申请好就行了。博主使用的域名验证类型是 DNS ，所以还要去域名解析中做好配置。然后下载该证书。</p>
 <p>请根据你的服务器类型下载证书，就像下面这样：</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/12/magento2-https.png"></p>
+<p><img src="/wp-content/uploads/2016/12/magento2-https.png"></p>
 <p>你看，他都告诉你怎么安装证书了。不过这个是 Centos 上的 Apache 配置方式。博主是 Ubuntu，所以下面的内容针对的是 Ubuntu 下 Apache 的证书配置。</p>
 <h2 id="Ubuntu-Apache-配置证书"><a href="#Ubuntu-Apache-配置证书" class="headerlink" title="Ubuntu Apache 配置证书"></a><a href="#ubuntu-apache-%E9%85%8D%E7%BD%AE%E8%AF%81%E4%B9%A6"></a>Ubuntu Apache 配置证书</h2><p>首先，确保 SSL 模块加载进 Apache 了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a2enmod ssl</span><br><span class="line">...</span><br><span class="line">Module ssl already enabled</span><br></pre></td></tr></table></figure>

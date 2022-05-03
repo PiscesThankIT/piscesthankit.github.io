@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="本篇我们将介绍如何创建 Admin menu 。 Admin menu 看起来就是这样：  他是有层次的。可以分成三级，最左侧大类的 Sales ，然后是分组 Operation ，然后是 Orders 和 invoice 等。 我们来看 orders 的链接结构： 1http:&#x2F;&#x2F;example&#x2F;admin&#x2F;sales&#x2F;order&#x2F;index&#x2F;key&#x2F;9118b14253fc71837e2b0d">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/admin-menu.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/menu-%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/09/admin-menu.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/09/menu-%E6%95%88%E6%9E%9C.png">
 <meta property="article:published_time" content="2017-09-13T02:12:06.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.267Z">
 <meta property="article:author" content="ThankIT">
 <meta property="article:tag" content="Magento 2 admin menu">
 <meta property="article:tag" content="menu.xml">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/admin-menu.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/09/admin-menu.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/magento-2-create-admin-menu/">
 
@@ -240,7 +240,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本篇我们将介绍如何创建 Admin menu 。 Admin menu 看起来就是这样： <img src="/hellomagento2/wp-content/uploads/2017/09/admin-menu.png" alt="admin menu"> 他是有层次的。可以分成三级，最左侧大类的 Sales ，然后是分组 Operation ，然后是 Orders 和 invoice 等。 我们来看 orders 的链接结构：</p>
+        <p>本篇我们将介绍如何创建 Admin menu 。 Admin menu 看起来就是这样： <img src="/wp-content/uploads/2017/09/admin-menu.png" alt="admin menu"> 他是有层次的。可以分成三级，最左侧大类的 Sales ，然后是分组 Operation ，然后是 Orders 和 invoice 等。 我们来看 orders 的链接结构：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://example/admin/sales/order/index/key/9118b14253fc71837e2b0d7ea73c818b63d1401ebd1f04f310486d985f3e6d57/</span><br></pre></td></tr></table></figure>
 
 <p>和前台的 url 结构相比较，他多出了 <code>admin</code> 和后面的 <code>/key/118b14253fc71837e2b0d7ea73c818b63d1401ebd1f04f310486d985f3e6d57/</code> key 是为了防止跨站脚本攻击（cross site script attacks） 后台的 url 结构就是(看到的)</p>
@@ -262,7 +262,7 @@
 <li>The action attribute will define the url of the page which this menu link to. As we talk above, the url will be followed this format {router_name}{controller_folder}{action_name}.</li>
 <li>The resource attribute is used to defined the ACL rule which the admin user must have in order to see and access this menu. We will find more detail about ACL in other topic.</li>
 </ul>
-<p>关于最左侧的大类的 icon 请参考<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/pattern-library/graphics/iconography/iconography.html">Magento Admin Pattern Library-Iconography</a> 效果如下 <img src="/hellomagento2/wp-content/uploads/2017/09/menu-%E6%95%88%E6%9E%9C.png" alt="menu效果"> 这里只有两层结构，下面看下三层的结构：</p>
+<p>关于最左侧的大类的 icon 请参考<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/pattern-library/graphics/iconography/iconography.html">Magento Admin Pattern Library-Iconography</a> 效果如下 <img src="/wp-content/uploads/2017/09/menu-%E6%95%88%E6%9E%9C.png" alt="menu效果"> 这里只有两层结构，下面看下三层的结构：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">/**</span><br><span class="line"> * Copyright © 2013-2017 Magento, Inc. All rights reserved.</span><br><span class="line"> * See COPYING.txt for license details.</span><br><span class="line"> */</span><br><span class="line">--&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Backend:etc/menu.xsd&quot;&gt;</span><br><span class="line">    &lt;menu&gt;</span><br><span class="line">        &lt;add id=&quot;Magento_Sales::sales&quot; title=&quot;Sales&quot; translate=&quot;title&quot; module=&quot;Magento_Sales&quot; sortOrder=&quot;15&quot; dependsOnModule=&quot;Magento_Sales&quot; resource=&quot;Magento_Sales::sales&quot;/&gt;</span><br><span class="line">        &lt;add id=&quot;Magento_Sales::sales_operation&quot; title=&quot;Operations&quot; translate=&quot;title&quot; module=&quot;Magento_Sales&quot; sortOrder=&quot;10&quot; parent=&quot;Magento_Sales::sales&quot; resource=&quot;Magento_Sales::sales_operation&quot; /&gt;</span><br><span class="line">        &lt;add id=&quot;Magento_Sales::sales_order&quot; title=&quot;Orders&quot; translate=&quot;title&quot; module=&quot;Magento_Sales&quot; sortOrder=&quot;10&quot; parent=&quot;Magento_Sales::sales_operation&quot; action=&quot;sales/order&quot; resource=&quot;Magento_Sales::sales_order&quot;/&gt;</span><br><span class="line">        &lt;add id=&quot;Magento_Sales::sales_invoice&quot; title=&quot;Invoices&quot; translate=&quot;title&quot; module=&quot;Magento_Sales&quot; sortOrder=&quot;20&quot; parent=&quot;Magento_Sales::sales_operation&quot; action=&quot;sales/invoice&quot; resource=&quot;Magento_Sales::sales_invoice&quot;/&gt;</span><br><span class="line">        ....</span><br><span class="line">    &lt;/menu&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
 
 <p>对应第一张的图片。</p>

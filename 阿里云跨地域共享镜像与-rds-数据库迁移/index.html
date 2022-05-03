@@ -27,12 +27,12 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="这是一篇工作总结性的文章 测试环境和正式的生产环境都在 阿里云 ECS  上，但由不同的账户持有（就是移交给客户）。他们在不同的地域。而且原先的数据库使用的是 ECS 上自建的 MySQL 数据库，现在要迁移到 阿里云的 RDS 。 所以就用到了阿里云跨地域共享镜像。这个对部署来说还是挺方便的。 首先要创建自定义镜像，在实例的操作中可以找到对应的操作。  由于阿里云的自定义镜像不能跨地域使用，所以">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/aliyun-cross-region-share-image.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/01/aliyun-cross-region-share-image.png">
 <meta property="article:published_time" content="2017-01-19T11:51:29.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.213Z">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/01/aliyun-cross-region-share-image.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/01/aliyun-cross-region-share-image.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/%E9%98%BF%E9%87%8C%E4%BA%91%E8%B7%A8%E5%9C%B0%E5%9F%9F%E5%85%B1%E4%BA%AB%E9%95%9C%E5%83%8F%E4%B8%8E-rds-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB/">
 
@@ -241,7 +241,7 @@
 <p>测试环境和正式的生产环境都在 <a target="_blank" rel="noopener" href="https://s.click.taobao.com/t?e=m=2&s=ZLet3zzmTmQcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClArdSxPlT44jLmf8osd37L+e76oIJDt2lqK4gxhN4u746yZnvxiWdZT2znNtfj0B10+dn1BbglxZYxUhy8exlzcpAFEHVckI7b93srg/L/eD3keUEnoKELDlWYetMiZZgV+Sx6OrKqagyklzFeKMz7Cd4Qek9OyREeQ+dciYQJaT7LNmFwzcjFAU=">阿里云 ECS</a>  上，但由不同的账户持有（就是移交给客户）。他们在不同的地域。而且原先的数据库使用的是 ECS 上自建的 MySQL 数据库，现在要迁移到 <a target="_blank" rel="noopener" href="https://s.click.taobao.com/t?e=m=2&s=3ACopjQ2jqscQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClArdSxPlT44jLOBBmly7IL4676oIJDt2lqK4gxhN4u746yZnvxiWdZT2znNtfj0B10+dn1BbglxZYxUhy8exlzcq9AmARIwX9K+nbtOD3UdznPV1H2z0iQv9NkKVMHClW0R0UfDzlkg+9vjQXzzpXdTHGJe8N/wNpGw==">阿里云的 RDS</a> 。</p>
 <p>所以就用到了阿里云跨地域共享镜像。这个对部署来说还是挺方便的。</p>
 <p>首先要创建自定义镜像，在实例的操作中可以找到对应的操作。</p>
-<p><img src="/hellomagento2/wp-content/uploads/2017/01/aliyun-cross-region-share-image.png"></p>
+<p><img src="/wp-content/uploads/2017/01/aliyun-cross-region-share-image.png"></p>
 <p>由于阿里云的自定义镜像不能跨地域使用，所以我们需要复制镜像到目标地域。截止到本文发表时间，复制镜像功能出于公测状态，需要提交工单申请，参考这里 <a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/25462.html">复制镜像</a>。以后应该就不用申请可以直接用了吧。工单陆续交流了接近 2 小时，终于开通了，可能中午吃饭时间吧。还是有点慢的。</p>
 <p>复制到目标地域后，就可以分享镜像给指定的用户了。<a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/25463.html?spm=5176.doc25462.6.662.kkJrEx">共享镜像</a> 参考这里。<br>操作很容易，不过要最好看下注意事项。</p>
 <p>然后可以登录收到共享的账户，更换系统盘，使用共享的镜像来创建实例了。</p>

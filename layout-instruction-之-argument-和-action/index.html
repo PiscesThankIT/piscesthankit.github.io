@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="本篇我们将通过一个 demo 来演示如何使用 layout 指令 ——— argument 和 action 。 本篇基于 创建 Magento 2 Hello World Simple Module 文章中的简单模块。 创建 ControllerFile:app\code\ThankIT\HelloWorld\Controller\Layout\Instruction.php 123456789">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/layout-instruction-argument-action.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/09/layout-instruction-argument-action.png">
 <meta property="article:published_time" content="2017-09-15T01:42:56.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.268Z">
 <meta property="article:author" content="ThankIT">
@@ -35,7 +35,7 @@
 <meta property="article:tag" content="argument">
 <meta property="article:tag" content="Layout instruction">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/09/layout-instruction-argument-action.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/09/layout-instruction-argument-action.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/layout-instruction-%E4%B9%8B-argument-%E5%92%8C-action/">
 
@@ -253,7 +253,7 @@
 <h2 id="创建-view"><a href="#创建-view" class="headerlink" title="创建 view"></a><a href="#%E5%88%9B%E5%BB%BA-view"></a>创建 view</h2><p>File:app\code\ThankIT\HelloWorld\view\frontend\templates\layout\instruction.phtml</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo $block-&gt;getLabel();?&gt;</span><br><span class="line">&lt;?php //等价于//echo $block-&gt;getData(&#x27;label&#x27;);?&gt;</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">&lt;?php echo $block-&gt;getSomeThing();?&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a><a href="#%E6%B5%8B%E8%AF%95"></a>测试</h2><p>刷新缓存后，访问 <code>http://example/helloworld/layout/instruction/</code> 会看到： <img src="/hellomagento2/wp-content/uploads/2017/09/layout-instruction-argument-action.png" alt="layout-instruction-argument-action"></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a><a href="#%E6%B5%8B%E8%AF%95"></a>测试</h2><p>刷新缓存后，访问 <code>http://example/helloworld/layout/instruction/</code> 会看到： <img src="/wp-content/uploads/2017/09/layout-instruction-argument-action.png" alt="layout-instruction-argument-action"></p>
 <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a><a href="#%E6%B3%A8%E6%84%8F%E7%82%B9"></a>注意点</h2><h3 id="Use-block-object-methods-to-set-block-properties"><a href="#Use-block-object-methods-to-set-block-properties" class="headerlink" title="Use block object methods to set block properties"></a><a href="#use-block-object-methods-to-set-block-properties"></a>Use block object methods to set block properties</h3><p>There are two ways to access block object methods:</p>
 <ul>
 <li>using the <code>&lt;argument&gt;</code> instruction for <code>&lt;block&gt;</code> or <code>&lt;referenceBlock&gt;</code></li>

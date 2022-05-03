@@ -27,17 +27,17 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="原文地址 费率表方式指的是根据一些条件，参考表的记录来计算运输费用，这些条件包括：  Weight v. Destination Price v. Destination # of Items v. Destination  举例来说，假设你的仓库在洛杉矶，那么发货到圣地亚哥就比到佛蒙特州要便宜。您可以使用费率表的方式给离您近的客户更多好处。 用来计算费率的数据是以电子表格的形式准备好后，导入网站">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/10/storefront-cart-table-rate.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/10/shipping-table-rates-export.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/10/table-rates-weight-destination-csv.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/10/shipping-table-rates-import.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/10/price-v-destination.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/10/weight-v-destination.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/10/storefront-cart-table-rate.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/10/shipping-table-rates-export.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/10/table-rates-weight-destination-csv.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/10/shipping-table-rates-import.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/10/price-v-destination.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/10/weight-v-destination.png">
 <meta property="article:published_time" content="2016-10-14T13:24:23.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.086Z">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/10/storefront-cart-table-rate.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/10/storefront-cart-table-rate.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/shipping-table-rate/">
 
@@ -253,7 +253,7 @@
 <p>用来计算费率的数据是以电子表格的形式准备好后，导入网站的，计算出的结果显示在购物车的运费估算部分。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同一时刻费率表中只有某一项是被采用的</span><br></pre></td></tr></table></figure>
 
-<p><img src="/hellomagento2/wp-content/uploads/2016/10/storefront-cart-table-rate.png" alt="Table Rate in Shopping Cart"></p>
+<p><img src="/wp-content/uploads/2016/10/storefront-cart-table-rate.png" alt="Table Rate in Shopping Cart"></p>
 <h2 id="第一步：完成默认设置"><a href="#第一步：完成默认设置" class="headerlink" title="第一步：完成默认设置"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E9%BB%98%E8%AE%A4%E8%AE%BE%E7%BD%AE"></a>第一步：完成默认设置</h2><p>第一步是完成费率表的默认设置，这一步不需要改变配置的作用域。</p>
 <ol>
 <li><p>后台侧边栏，点击<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>(Configuration)</p>
@@ -278,11 +278,11 @@
 <h2 id="第二步：准备费率表的数据"><a href="#第二步：准备费率表的数据" class="headerlink" title="第二步：准备费率表的数据"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%87%86%E5%A4%87%E8%B4%B9%E7%8E%87%E8%A1%A8%E7%9A%84%E6%95%B0%E6%8D%AE"></a>第二步：准备费率表的数据</h2><ol>
 <li>在左上角，设置<strong>店铺视图</strong>(Store View) 为 “Main Website” 或者其他你要配置的其他站。弹出确定窗口后，点击OK。<br>导入导出选项现在出来了。现在每个选项右边都有使用默认值(Use Default)<br><em>要进行更改，您得先取消使用默认的勾选</em></li>
 <li>修改<strong>条件</strong>(Condition)，取消使用默认值的勾选，然后选择其他选项。</li>
-<li>点击<strong>导出 CSV</strong>(Export CSV)。然后将 tablerates.csv 文件保存下来。<br><img src="/hellomagento2/wp-content/uploads/2016/10/shipping-table-rates-export.png" alt="Export CSV"></li>
+<li>点击<strong>导出 CSV</strong>(Export CSV)。然后将 tablerates.csv 文件保存下来。<br><img src="/wp-content/uploads/2016/10/shipping-table-rates-export.png" alt="Export CSV"></li>
 <li>用编辑器打开。然后填入合适的值。<ul>
 <li>使用星号(<code>*</code>)作为通配符，表示所有可能的值</li>
 <li>Country 列必须是有效的代号</li>
-<li>按照 Region&#x2F;State 进行排序，这样指定的地区在表格上方，通配符在下方。这样会先使用确定的规则，然后才考虑通配符代表的规则。<br><img src="/hellomagento2/wp-content/uploads/2016/10/table-rates-weight-destination-csv.png" alt="Weight vs. Destination (Australia)"></li>
+<li>按照 Region&#x2F;State 进行排序，这样指定的地区在表格上方，通配符在下方。这样会先使用确定的规则，然后才考虑通配符代表的规则。<br><img src="/wp-content/uploads/2016/10/table-rates-weight-destination-csv.png" alt="Weight vs. Destination (Australia)"></li>
 </ul>
 </li>
 <li>完成后，保存 tablerates.csv 文件</li>
@@ -290,14 +290,14 @@
 <h2 id="第三步：导入费率表数据"><a href="#第三步：导入费率表数据" class="headerlink" title="第三步：导入费率表数据"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AF%BC%E5%85%A5%E8%B4%B9%E7%8E%87%E8%A1%A8%E6%95%B0%E6%8D%AE"></a>第三步：导入费率表数据</h2><ol>
 <li>回到配置页的费率表部分</li>
 <li>在左上角，选择您的表费率要作用的店铺视图(Store View)</li>
-<li>在<strong>Import</strong>(导入)字段旁，点击<strong>选择文件</strong>(Choose File)。选择您刚刚完成的tablerates.csv 文件，进行导入。<br><img src="/hellomagento2/wp-content/uploads/2016/10/shipping-table-rates-import.png" alt="Import Table Rates"></li>
+<li>在<strong>Import</strong>(导入)字段旁，点击<strong>选择文件</strong>(Choose File)。选择您刚刚完成的tablerates.csv 文件，进行导入。<br><img src="/wp-content/uploads/2016/10/shipping-table-rates-import.png" alt="Import Table Rates"></li>
 <li>完成后，点击 Save Config</li>
 </ol>
 <h2 id="第四步：校对费率"><a href="#第四步：校对费率" class="headerlink" title="第四步：校对费率"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%A0%A1%E5%AF%B9%E8%B4%B9%E7%8E%87"></a>第四步：校对费率</h2><p>为了却表表费率正确，请测试付款流程中，不同的地址的运费和手续费计算是否正确。</p>
 <h2 id="例子-1：Price-v-Destination"><a href="#例子-1：Price-v-Destination" class="headerlink" title="例子 1：Price v. Destination"></a><a href="#%E4%BE%8B%E5%AD%90-1%EF%BC%9Aprice-v.-destination"></a>例子 1：Price v. Destination</h2><p>这个例子是关于如何使用 Price v. Destination 条件的。我们为美国大陆，Alaska, 和 Hawaii 基于订单总金额三个不同档位的的费率规则。星号（通配符）表示任何值。</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/10/price-v-destination.png"></p>
+<p><img src="/wp-content/uploads/2016/10/price-v-destination.png"></p>
 <h2 id="例子-2：Weight-v-Destination"><a href="#例子-2：Weight-v-Destination" class="headerlink" title="例子 2：Weight v. Destination"></a><a href="#%E4%BE%8B%E5%AD%90-2%EF%BC%9Aweight-v.-destination"></a>例子 2：Weight v. Destination</h2><p>根据订单的重量和目的地来计算费用的费率表</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/10/weight-v-destination.png"></p>
+<p><img src="/wp-content/uploads/2016/10/weight-v-destination.png"></p>
 <h2 id="例子-3：仅对美国大陆某些州包邮"><a href="#例子-3：仅对美国大陆某些州包邮" class="headerlink" title="例子 3：仅对美国大陆某些州包邮"></a><a href="#%E4%BE%8B%E5%AD%90-3%EF%BC%9A%E4%BB%85%E5%AF%B9%E7%BE%8E%E5%9B%BD%E5%A4%A7%E9%99%86%E6%9F%90%E4%BA%9B%E5%B7%9E%E5%8C%85%E9%82%AE"></a>例子 3：仅对美国大陆某些州包邮</h2><ol>
 <li><p>创建一个 tablerates.csv 文件，文件包含所有你想包邮的州的代码。</p>
 </li>

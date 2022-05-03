@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="page 页面的布局由两种主要的布局组件决定：page layout file 和 page configuration file。 page layout file 决定页面的线框，比如一列的布局。技术上来讲，page layout 是 xml 文件，决定 HTML 页面中 &lt;body&gt; 里面的结构。Page layouts feature only containers。page">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/layout-file-types-1.png">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/layout-file-types-2.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/11/layout-file-types-1.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/11/layout-file-types-2.png">
 <meta property="article:published_time" content="2016-11-07T03:28:46.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.129Z">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/11/layout-file-types-1.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/11/layout-file-types-1.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/magento-2-layout-types/">
 
@@ -276,9 +276,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># File: app\design\frontend\ThankIT\Pisces\Magento_Theme\page_layout\custom-home.xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;layout xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">        xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_layout.xsd&quot;&gt;</span><br><span class="line">    &lt;update handle=&quot;empty&quot;/&gt;</span><br><span class="line">    &lt;referenceContainer name=&quot;page.wrapper&quot;&gt;</span><br><span class="line">        &lt;container name=&quot;header.container&quot; as=&quot;header_container&quot; label=&quot;Page Header Container&quot;  htmlTag=&quot;header&quot; htmlClass=&quot;page-header&quot; before=&quot;main.content&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;page.top&quot; as=&quot;page_top&quot; label=&quot;After Page Header&quot; after=&quot;header.container&quot;/&gt;</span><br><span class="line">        &lt;container name=&quot;footer-container&quot; as=&quot;footer&quot; before=&quot;before.body.end&quot; label=&quot;Page Footer Container&quot; htmlTag=&quot;footer&quot; htmlClass=&quot;page-footer&quot; /&gt;</span><br><span class="line">    &lt;/referenceContainer&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
 
 <p>这两个都到位后，我们进入后台，<strong>Content -&gt; Pages</strong> 找到 Home page，进入编辑，<strong>Design &gt; Page Layout &gt; Layout</strong> 就可以看到我们已经声明的<code>Custom Home</code> page layout 可以用了。</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/11/layout-file-types-1.png"></p>
+<p><img src="/wp-content/uploads/2016/11/layout-file-types-1.png"></p>
 <p>如果我们对首页应用该布局，并且当前店铺的主题是<code>ThankIT\Pisces</code>，也就是我们刚刚创建的主题，这时候去首页看下他的源代码，注意下图红框中的<code>page-layout-custom-home</code>。（如果当前主题不是刚刚创建的主题，那么首页会是空白页面，博主也不清楚为什么。）</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/11/layout-file-types-2.png"></p>
+<p><img src="/wp-content/uploads/2016/11/layout-file-types-2.png"></p>
 <p>（上面两张图仅供参考，并不是<code>Pisces</code>主题的真实截图，图方便拿了别人的图来示意一下。）</p>
 <h2 id="Page-configuration"><a href="#Page-configuration" class="headerlink" title="Page configuration"></a><a href="#page-configuration"></a>Page configuration</h2><p>page configuration 往 page layout 文件规定的线框结构中填充内容。它还包含 meta 信息，还有<code>&lt;head&gt;</code>部分的内容。</p>
 <p>他的一般位置在：</p>

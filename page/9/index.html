@@ -231,13 +231,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="500-错误"><a href="#500-错误" class="headerlink" title="500 错误"></a><a href="#500-%E9%94%99%E8%AF%AF"></a>500 错误</h2><p><img src="/hellomagento2/wp-content/uploads/2018/02/50-http-error.png"> 下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 <code>vi /etc/php/7.0/apache2/php.ini</code> 使得：</p>
+          <h2 id="500-错误"><a href="#500-错误" class="headerlink" title="500 错误"></a><a href="#500-%E9%94%99%E8%AF%AF"></a>500 错误</h2><p><img src="/wp-content/uploads/2018/02/50-http-error.png"> 下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 <code>vi /etc/php/7.0/apache2/php.ini</code> 使得：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display_errors = On</span><br><span class="line">error_reporting = E_ALL  E_STRICT</span><br></pre></td></tr></table></figure>
 
 <p>修改 apache 配置 <code>vi /etc/apache2/apache2.conf</code> 添加以下行：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php_flag display_errors on</span><br><span class="line">php_value error_reporting 2039</span><br></pre></td></tr></table></figure>
 
-<p>重启 apache 后，错误提示如下： <img src="/hellomagento2/wp-content/uploads/2018/02/500%E6%8F%90%E7%A4%BA.png"></p>
+<p>重启 apache 后，错误提示如下： <img src="/wp-content/uploads/2018/02/500%E6%8F%90%E7%A4%BA.png"></p>
 <h3 id="本节参考链接"><a href="#本节参考链接" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/googlg/article/details/52814387">php 服务器500错误解决</a></p>
 <h2 id="Xdebug"><a href="#Xdebug" class="headerlink" title="Xdebug"></a><a href="#xdebug"></a>Xdebug</h2><p>Xdebug 提供了各种自带的函数，并对已有的某些 PHP 函数进行覆写，可以方便地用于调试排错； Xdebug 还可以跟踪程序的运行，通过对日志文件的分析，我们可以迅速找到程序运行的瓶颈所在，提高程序效率，从而提高整个系统的性能。 ubuntu 下的安装</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install php-xdebug</span><br></pre></td></tr></table></figure>
@@ -248,19 +248,19 @@
 <p>重启 Apache</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
 
-<p>返回的错误 <img src="/hellomagento2/wp-content/uploads/2018/02/xdebug.png"></p>
+<p>返回的错误 <img src="/wp-content/uploads/2018/02/xdebug.png"></p>
 <h2 id="xbebug-对-var-dump-的覆写"><a href="#xbebug-对-var-dump-的覆写" class="headerlink" title="xbebug 对 var_dump() 的覆写"></a><a href="#xbebug-%E5%AF%B9-%60var_dump()%60-%E7%9A%84%E8%A6%86%E5%86%99"></a>xbebug 对 <code>var_dump()</code> 的覆写</h2><p>我们关闭 xdebug ，那么</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$arrTest = array(</span><br><span class="line">    &quot;test&quot;=&gt;&quot;abc&quot;,</span><br><span class="line">    &quot;test2&quot;=&gt;&quot;abc2&quot;</span><br><span class="line">);</span><br><span class="line">echo &#x27;&lt;pre&gt;&#x27;;</span><br><span class="line">var_dump(  $arrTest );</span><br><span class="line">echo &#x27;&lt;/pre&gt;&#x27;;</span><br><span class="line"></span><br><span class="line">var_dump(  $arrTest );</span><br></pre></td></tr></table></figure>
 
-<p>输出结果看起来是这样的： <img src="/hellomagento2/wp-content/uploads/2018/02/disable-xdebug-vardump-.png"> 打开 xdebug ，同样的 php 文件 输出结果好看多了 <img src="/hellomagento2/wp-content/uploads/2018/02/enable-xdebug-vardump-.png"></p>
+<p>输出结果看起来是这样的： <img src="/wp-content/uploads/2018/02/disable-xdebug-vardump-.png"> 打开 xdebug ，同样的 php 文件 输出结果好看多了 <img src="/wp-content/uploads/2018/02/enable-xdebug-vardump-.png"></p>
 <h3 id="本节参考链接-1"><a href="#本节参考链接-1" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="http://www.oschina.net/question/54100_44230">使用xdebug调试PHP程序</a></p>
 <h2 id="phpstorm-配置-xdebug"><a href="#phpstorm-配置-xdebug" class="headerlink" title="phpstorm 配置 xdebug"></a><a href="#phpstorm-%E9%85%8D%E7%BD%AE-xdebug"></a>phpstorm 配置 xdebug</h2><p>首先 xdebug 已经安装好了。 <code>phpinfo()</code> 找到 xdebug 有一个设置文件在 <code>/etc/php/7.0/apache2/conf.d/20-xdebug.ini</code> 设置如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xdebug.remote_enable = on</span><br><span class="line">xdebug.idekey=PHPSTORM</span><br><span class="line">xdebug.remote_port= 9000</span><br><span class="line">xdebug.remote_host = localhost</span><br></pre></td></tr></table></figure>
 
-<p><code>xdebug.remote_host</code> <strong>是 xdebug 远程调试时要连接的主机地址。用本机开发的话填 “localhost” 就可以了，如果开发环境在远程，比如，在 vritualbox 的虚机里，你需要让虚拟机中的 Xdebug 连接上你本地，地址类似 “192.168.1.1”</strong> <code>xdebug.remote_port</code> <strong>是 xebug 远程调试时要连接的端口号</strong> 然后重启下 apache 打开 phpStorm 打开设置面板（windows Ctrl+Alt+S） “Languages &amp; Frameworks -&gt; PHP -&gt; Debug” ，端口改成 “9000” <img src="/hellomagento2/wp-content/uploads/2018/02/xdebug-port.png"> 然后设置 Remote Web Server “Run -&gt; Web Server Debug Validation”, 选择 “Remote Web Server” 现在还没有“Deployment server”，点右侧的 “…”, 新增一个。详细的图文可以参考下面的链接。这步的目的是让 phpstorm 可以操作你的文件。 下面我们需要给浏览器装一个辅助工具，比如 <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog">xdebug Helper</a></p>
-<h3 id="调试过程"><a href="#调试过程" class="headerlink" title="调试过程"></a><a href="#%E8%B0%83%E8%AF%95%E8%BF%87%E7%A8%8B"></a>调试过程</h3><p>在 phpStorm 中开启监听端口 点击电话状图标 <img src="/hellomagento2/wp-content/uploads/2018/02/phpstorm-%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3-disable.png"> 使其变成 <img src="/hellomagento2/wp-content/uploads/2018/02/phpstorm-%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3-enable.png"> 然后设置断点 回到 chrome 中，打开要调试的页面，然后点击刚刚安装的虫子按钮，使其变绿。 如果一切顺利，刷新页面，程序会暂停在断点处。</p>
+<p><code>xdebug.remote_host</code> <strong>是 xdebug 远程调试时要连接的主机地址。用本机开发的话填 “localhost” 就可以了，如果开发环境在远程，比如，在 vritualbox 的虚机里，你需要让虚拟机中的 Xdebug 连接上你本地，地址类似 “192.168.1.1”</strong> <code>xdebug.remote_port</code> <strong>是 xebug 远程调试时要连接的端口号</strong> 然后重启下 apache 打开 phpStorm 打开设置面板（windows Ctrl+Alt+S） “Languages &amp; Frameworks -&gt; PHP -&gt; Debug” ，端口改成 “9000” <img src="/wp-content/uploads/2018/02/xdebug-port.png"> 然后设置 Remote Web Server “Run -&gt; Web Server Debug Validation”, 选择 “Remote Web Server” 现在还没有“Deployment server”，点右侧的 “…”, 新增一个。详细的图文可以参考下面的链接。这步的目的是让 phpstorm 可以操作你的文件。 下面我们需要给浏览器装一个辅助工具，比如 <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog">xdebug Helper</a></p>
+<h3 id="调试过程"><a href="#调试过程" class="headerlink" title="调试过程"></a><a href="#%E8%B0%83%E8%AF%95%E8%BF%87%E7%A8%8B"></a>调试过程</h3><p>在 phpStorm 中开启监听端口 点击电话状图标 <img src="/wp-content/uploads/2018/02/phpstorm-%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3-disable.png"> 使其变成 <img src="/wp-content/uploads/2018/02/phpstorm-%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3-enable.png"> 然后设置断点 回到 chrome 中，打开要调试的页面，然后点击刚刚安装的虫子按钮，使其变绿。 如果一切顺利，刷新页面，程序会暂停在断点处。</p>
 <h3 id="本节参考链接-2"><a href="#本节参考链接-2" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="http://www.dahouduan.com/2017/10/15/phpstorm-config-xdebug/">Phpstorm 配置 Xdebug 断点调试教程</a> <a target="_blank" rel="noopener" href="http://guojianxiang.com/posts/2015-09-06-PHP_Debug_Tool-Xdebug.html">PHP调试工具-Xdebug</a></p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a><a href="#%E5%8E%9F%E7%90%86"></a>原理</h2><p><img src="/hellomagento2/wp-content/uploads/2018/02/debug%E5%8E%9F%E7%90%86.png" alt="xdebug 原理图示"></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a><a href="#%E5%8E%9F%E7%90%86"></a>原理</h2><p><img src="/wp-content/uploads/2018/02/debug%E5%8E%9F%E7%90%86.png" alt="xdebug 原理图示"></p>
 <h3 id="本节参考链接-3"><a href="#本节参考链接-3" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="https://laravel-china.org/articles/4090/the-first-step-to-becoming-a-senior-php-programmer-debugging-xdebug-principle">成为高级 PHP 程序员的第一步——调试（xdebug 原理篇）</a></p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a><a href="#%E5%85%B6%E4%BB%96"></a>其他</h3><p><a target="_blank" rel="noopener" href="https://blog.spoock.com/2017/09/19/xdebug-attack-surface/">xdebug的攻击面</a></p>
 
@@ -329,7 +329,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a><a href="#%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"></a>命令总结</h2><p>工作区（Working Directory）-&gt; 暂存区（Stage or Index）-&gt; 本地仓库（Local Repository）-&gt; 远程仓库（Remote repository） 工作区有一个隐藏目录 <code>.git</code>，它是 Git 的版本库。 <img src="/hellomagento2/wp-content/uploads/2018/02/git-repository.jpg"> git 只能跟踪文本文件的改动，不能跟踪二进制文件（word 、图片、 视频等）</p>
+          <h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a><a href="#%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"></a>命令总结</h2><p>工作区（Working Directory）-&gt; 暂存区（Stage or Index）-&gt; 本地仓库（Local Repository）-&gt; 远程仓库（Remote repository） 工作区有一个隐藏目录 <code>.git</code>，它是 Git 的版本库。 <img src="/wp-content/uploads/2018/02/git-repository.jpg"> git 只能跟踪文本文件的改动，不能跟踪二进制文件（word 、图片、 视频等）</p>
 <h3 id="create-amp-clone"><a href="#create-amp-clone" class="headerlink" title="create &amp; clone"></a><a href="#create-&&-clone"></a>create &amp; clone</h3><p><code>git init</code></p>
 <p>create new repository</p>
 <p><code>git clone path/to/repository</code></p>
@@ -537,8 +537,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="配置主机的内网静态-IP"><a href="#配置主机的内网静态-IP" class="headerlink" title="配置主机的内网静态 IP"></a><a href="#%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E7%9A%84%E5%86%85%E7%BD%91%E9%9D%99%E6%80%81-ip"></a>配置主机的内网静态 IP</h2><p>打开 Orcale VM VirtualBox 管理器，从菜单中选择 <strong>管理</strong> &gt; <strong>主机网络管理器</strong>，双击 VirtualBox Host-Only Ethernet Adapter ，修改他的 IP 地址为 192.168.1.1 <img src="/hellomagento2/wp-content/uploads/2018/01/host-only.png"> 关闭 DHCP 服务器 <img src="/hellomagento2/wp-content/uploads/2018/01/host-only-colse-dhcp.png"></p>
-<h2 id="配置虚拟机的网卡"><a href="#配置虚拟机的网卡" class="headerlink" title="配置虚拟机的网卡"></a><a href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%BD%91%E5%8D%A1"></a>配置虚拟机的网卡</h2><p>加入第一块网卡，配置如下： <img src="/hellomagento2/wp-content/uploads/2018/01/eth0.png"> 加入第二块网卡，配置如下： <img src="/hellomagento2/wp-content/uploads/2018/01/eth1.png"> 注意：虚拟机之间的内网名字可以随便起，这里叫做 neta。如果在配置在第二个虚拟机的时候，也要记得选择 netca 这个内网名字，这样虚拟机之间才可以互相通信。 加入第三块网卡，配置如下： <img src="/hellomagento2/wp-content/uploads/2018/01/eth2.png"> 装系统的步骤就跳过了，博主使用的是 ubuntu 16 进入系统后，输入：</p>
+          <h2 id="配置主机的内网静态-IP"><a href="#配置主机的内网静态-IP" class="headerlink" title="配置主机的内网静态 IP"></a><a href="#%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E7%9A%84%E5%86%85%E7%BD%91%E9%9D%99%E6%80%81-ip"></a>配置主机的内网静态 IP</h2><p>打开 Orcale VM VirtualBox 管理器，从菜单中选择 <strong>管理</strong> &gt; <strong>主机网络管理器</strong>，双击 VirtualBox Host-Only Ethernet Adapter ，修改他的 IP 地址为 192.168.1.1 <img src="/wp-content/uploads/2018/01/host-only.png"> 关闭 DHCP 服务器 <img src="/wp-content/uploads/2018/01/host-only-colse-dhcp.png"></p>
+<h2 id="配置虚拟机的网卡"><a href="#配置虚拟机的网卡" class="headerlink" title="配置虚拟机的网卡"></a><a href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%BD%91%E5%8D%A1"></a>配置虚拟机的网卡</h2><p>加入第一块网卡，配置如下： <img src="/wp-content/uploads/2018/01/eth0.png"> 加入第二块网卡，配置如下： <img src="/wp-content/uploads/2018/01/eth1.png"> 注意：虚拟机之间的内网名字可以随便起，这里叫做 neta。如果在配置在第二个虚拟机的时候，也要记得选择 netca 这个内网名字，这样虚拟机之间才可以互相通信。 加入第三块网卡，配置如下： <img src="/wp-content/uploads/2018/01/eth2.png"> 装系统的步骤就跳过了，博主使用的是 ubuntu 16 进入系统后，输入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig -a</span><br></pre></td></tr></table></figure>
 
 <p>查看所有的网卡信息，根据 mac 地址确定三块网卡对应的名称。</p>
@@ -949,7 +949,7 @@
 <p>这样我们在他的末尾加上运行参数，变成：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot; --args --disable-web-security --allow-file-access-from-files</span><br></pre></td></tr></table></figure>
 
-<p><img src="/hellomagento2/wp-content/uploads/2018/01/chrome-args.png" alt="chrome 加运行参数"> 然后通过该快捷方式启动浏览器，会有如下提示： <img src="/hellomagento2/wp-content/uploads/2018/01/chrome-tips.png" alt="chrome 安全性提示"> 如果没有提示，可以关闭所有 chrome 然后重新开一次。</p>
+<p><img src="/wp-content/uploads/2018/01/chrome-args.png" alt="chrome 加运行参数"> 然后通过该快捷方式启动浏览器，会有如下提示： <img src="/wp-content/uploads/2018/01/chrome-tips.png" alt="chrome 安全性提示"> 如果没有提示，可以关闭所有 chrome 然后重新开一次。</p>
 <p>本来以为问题解决了，但是居然有时灵有时不灵。。</p>
 <p>然后查到资料说较高的版本还需要配置一个参数 <code>--user-data-dir</code></p>
 <p>这样就变成了：</p>
@@ -1025,7 +1025,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>问题一：安装卡在 sample data 部分，没有错误提示 <img src="/hellomagento2/wp-content/uploads/2018/01/error.png" alt="wamp 安装 Magento 2 卡住"> 解决方法： increasing the MySQL max_allowed_packet Wamp 有设置。可以通过 sql 语句</p>
+          <p>问题一：安装卡在 sample data 部分，没有错误提示 <img src="/wp-content/uploads/2018/01/error.png" alt="wamp 安装 Magento 2 卡住"> 解决方法： increasing the MySQL max_allowed_packet Wamp 有设置。可以通过 sql 语句</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show VARIABLES like &#x27;%max_allowed_packet%&#x27;;</span><br></pre></td></tr></table></figure>
 
 <p>查看设置值。 问题二：安装到 91% 卡住，但是看不出有问题 解决方法： 可能已经安装好了，可以尝试直接访问。 十有八九访问发现样式丢失，则执行</p>

@@ -470,7 +470,7 @@
 
 <p>以下内容是根据网络内容整理的，没有官方说明哈，大家可以自行搜索了解更多百度蜘蛛的 IP 段含义。有很多 IP 段，这里我就只列出我遇到的 IP 段含义。</p>
 <p>先上一张图，吊一吊胃口，哈哈！</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/09/baidu_spider_ip_cute.jpg"></p>
+<p><img src="/wp-content/uploads/2016/09/baidu_spider_ip_cute.jpg"></p>
 <h2 id="123-开头的"><a href="#123-开头的" class="headerlink" title="123 开头的"></a><a href="#123-%E5%BC%80%E5%A4%B4%E7%9A%84"></a>123 开头的</h2><p>新站都是123开头的，这窝就放心了。说明在考察期。<br>如果是老站，并且曾经是220开头的，现在成120开头的了，这就要注意啦，是不是最近不好好写内容，还是网站结构改太多了。</p>
 <h2 id="220-开头的"><a href="#220-开头的" class="headerlink" title="220 开头的"></a><a href="#220-%E5%BC%80%E5%A4%B4%E7%9A%84"></a>220 开头的</h2><p>正常抓取，根据最后一位还可以细分，这个嘛，没有实践没有发言权，博主只要知道本站是正常的就放心了。</p>
 <h2 id="180-开头的"><a href="#180-开头的" class="headerlink" title="180 开头的"></a><a href="#180-%E5%BC%80%E5%A4%B4%E7%9A%84"></a>180 开头的</h2><p>据说是提权蜘蛛，流量有一定增长。只是据说。。</p>
@@ -619,7 +619,7 @@
           <p>本站是一个新站，已经整整一个月了，百度还没有收录内页，博主都开始怀疑百度蜘蛛到底有没有来过了。于是决定查看 Apache 日志分析一下，看百度蜘蛛到底来没来过。</p>
 <p>博主的日志在 <code>/var/log/apache2/</code></p>
 <p>日志文件下载到本机后用 baretail （日志分析工具）高亮 <code>baidu.com/search</code></p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/09/apache_log.png" alt="apache log"></p>
+<p><img src="/wp-content/uploads/2016/09/apache_log.png" alt="apache log"></p>
 <p>这说明百度蜘蛛来过。可是，等等，上面的记录是什么鬼？请求中为什么有别人家的网站地址呢？</p>
 <p>有人说可能是有人在测试服务器有没有支持正向代理，看了一会儿也没有搞清楚是什么情况，更没有在本地模拟出类似情况来，所以暂时先放一放，若有知道的，望不吝告知，感谢！</p>
 <p>既然有人测试，不得不防，想起来我的服务器错误页会返回web 服务器版本信息什么，我得关闭这个功能。</p>
@@ -633,9 +633,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 reload</span><br></pre></td></tr></table></figure>
 
 <p>这样错误页面就由之前这样（本地演示哈^_^ ）</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/09/apache_log_pre.png"></p>
+<p><img src="/wp-content/uploads/2016/09/apache_log_pre.png"></p>
 <p>变成这样了</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/09/apache_log_after.png"></p>
+<p><img src="/wp-content/uploads/2016/09/apache_log_after.png"></p>
 
       
     </div>
@@ -796,7 +796,7 @@
 <h3 id="wooCommerce"><a href="#wooCommerce" class="headerlink" title="wooCommerce"></a><a href="#woocommerce"></a>wooCommerce</h3><p>wooCommerce 实际上wordpress 的扩展插件，由于wordpress 的广泛使用。轻量适合产品不多的情况。</p>
 <h3 id="magento"><a href="#magento" class="headerlink" title="magento"></a><a href="#magento"></a>magento</h3><p>magento 2008年发布第一个版本，2011年三月获得EBAY战略投资。他的定位是企业级的商务系统，最大的特点是可扩展性非常强大。规范的代码标准，强大的社区，模块化的体系，简直就是商城系统中的“绝世好剑”。而且2015年5月发布的Magento 2.0，采用的技术栈更上一层楼。（比起死乞白赖吃老本强出不知道多少，额，不客观了。。）<br>magento 的问题在于，他的门槛要稍微高些，因为他有自己的逻辑。这么说吧，看过几天php的，就能看懂上述简单的PHP模板式的系统，但是要来看 magento 没有一些功力是办不到的。如果有现成的教程除外。另外，由于他更加复杂，中文化的工作量不少，这也制约了 magento 在国内的发展。</p>
 <h2 id="网上商城系统占有率（2015年十月）"><a href="#网上商城系统占有率（2015年十月）" class="headerlink" title="网上商城系统占有率（2015年十月）"></a><a href="#%E7%BD%91%E4%B8%8A%E5%95%86%E5%9F%8E%E7%B3%BB%E7%BB%9F%E5%8D%A0%E6%9C%89%E7%8E%87%EF%BC%882015%E5%B9%B4%E5%8D%81%E6%9C%88%EF%BC%89"></a>网上商城系统占有率（2015年十月）</h2><p>最后贴上一张网上商城系统全球的市场占有率情况：<br><a target="_blank" rel="noopener" href="https://blog.aheadworks.com/2015/10/ecommerce-platforms-popularity-october-2015-top-five-solutions-take-three-quarters-of-the-market/">图片来源</a></p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/08/bibi-ecommerce-platform-chart.png"></p>
+<p><img src="/wp-content/uploads/2016/08/bibi-ecommerce-platform-chart.png"></p>
 <p>未完待续。</p>
 
       
@@ -946,7 +946,7 @@
 <p>接触过开源软件的朋友很可能对 GNU协议比较了解，其实GNU与OSL没有本质区别，但是因为今年来一些商业公司针对开源项目提起了一些诉讼，所以产生了法律方面更完善的OSL协议。 我想上面的几条权利和义务已经介绍的很清楚了，更具体的判断行为是否可以，那就需要专业律师咨询了。</p>
 <p>上面一段摘自开源中国社区，<a target="_blank" rel="noopener" href="http://www.oschina.net/question/12_4285?_t_t_t=0.3621957151192301">原文地址</a></p>
 <p>可是 magento 的插件算是衍生著作吗？需要继续遵循OSL协议吗？是否必须开源呢？</p>
-<h2 id="询问官方"><a href="#询问官方" class="headerlink" title="询问官方"></a><a href="#%E8%AF%A2%E9%97%AE%E5%AE%98%E6%96%B9"></a>询问官方</h2><p>博主发邮件询问了 magento marketplace 的support(<a href="mailto:&#x6d;&#97;&#x72;&#x6b;&#x65;&#116;&#112;&#x6c;&#x61;&#x63;&#x65;&#x40;&#109;&#97;&#103;&#101;&#x6e;&#116;&#x6f;&#x2e;&#x63;&#111;&#109;">&#x6d;&#97;&#x72;&#x6b;&#x65;&#116;&#112;&#x6c;&#x61;&#x63;&#x65;&#x40;&#109;&#97;&#103;&#101;&#x6e;&#116;&#x6f;&#x2e;&#x63;&#111;&#109;</a>)</p>
+<h2 id="询问官方"><a href="#询问官方" class="headerlink" title="询问官方"></a><a href="#%E8%AF%A2%E9%97%AE%E5%AE%98%E6%96%B9"></a>询问官方</h2><p>博主发邮件询问了 magento marketplace 的support(<a href="mailto:&#109;&#97;&#114;&#107;&#101;&#x74;&#x70;&#x6c;&#x61;&#x63;&#x65;&#64;&#109;&#x61;&#x67;&#x65;&#x6e;&#116;&#111;&#46;&#x63;&#x6f;&#109;">&#109;&#97;&#114;&#107;&#101;&#x74;&#x70;&#x6c;&#x61;&#x63;&#x65;&#64;&#109;&#x61;&#x67;&#x65;&#x6e;&#116;&#111;&#46;&#x63;&#x6f;&#109;</a>)</p>
 <p>我：Do extensions submit to Marketplace need to be open source ?（提交给marketplace 的插件必须开源么？）</p>
 <p>对方：No the products do not have to be open source （不是必须开源的）</p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a><a href="#%E7%BB%93%E8%AE%BA"></a>结论</h2><p>如果 magento 的插件不要求开源，那说明他就不是 magento 的衍生著作，他是开发者的著作，开发者可自行决定使用什么协议，是否开源。</p>

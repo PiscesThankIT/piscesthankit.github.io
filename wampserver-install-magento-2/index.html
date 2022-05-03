@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="Wampserver 简介Wampserver 是 window 下的 apache、 php 和 mysql 的集成包。他可以帮助你快速搭建PHP环境。对于初学者来说，非常适合。不过要进入生产环境，这样的集成包有一些奇怪的问题，还是用标准的配置方法更好。对于 Magento 2 来说，官方的系统要求是 Linux，所以强烈建议深入学习和生产环境时使用Linux 环境进行服务器配置。可以参考本站的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/08/wampserver-install-magento2-error.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/08/wampserver-install-magento2-error.png">
 <meta property="article:published_time" content="2016-08-21T07:23:27.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.036Z">
 <meta property="article:author" content="ThankIT">
@@ -36,7 +36,7 @@
 <meta property="article:tag" content="install Magento 2">
 <meta property="article:tag" content="虚拟目录">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/08/wampserver-install-magento2-error.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/08/wampserver-install-magento2-error.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/wampserver-install-magento-2/">
 
@@ -275,7 +275,7 @@
 
 <p>注意 ServerName 现在是 <code>thankit.cn</code>让 wamp <strong>Restart All services</strong>，之后浏览器中输入<code>thankit.cn</code>是不是可以访问到<code>e:/www/thankit</code></p>
 <p>根据你的需求配置好自己的虚拟目录吧。</p>
-<h2 id="安装-Magento-2-1"><a href="#安装-Magento-2-1" class="headerlink" title="安装 Magento 2.1"></a><a href="#%E5%AE%89%E8%A3%85-magento-2.1"></a>安装 Magento 2.1</h2><p>我们用<code>localhost</code> 对应的<code>e:/www/hellomagento2</code>来安装 Magento 2。<br>先将2.1的zip 解压后放到<code>e:/www/hellomagento2</code>下。<br>我们来创建一个数据库。在任务栏找到 wamp ，单击出现的面板中再点击 phpMyAdmin，默认用户名为root，密码为空。登录后创建一个数据库hellomagento2。<br>在浏览器中打开<code>localhost</code>这时候就是 Magento 安装界面了。第一步的检测，PHP Settings Check 发生错误。<br><img src="/hellomagento2/wp-content/uploads/2016/08/wampserver-install-magento2-error.png"><br>上面说让我们打开php.ini 修改 <code>always_populate_raw_post_data</code> 为 -1</p>
+<h2 id="安装-Magento-2-1"><a href="#安装-Magento-2-1" class="headerlink" title="安装 Magento 2.1"></a><a href="#%E5%AE%89%E8%A3%85-magento-2.1"></a>安装 Magento 2.1</h2><p>我们用<code>localhost</code> 对应的<code>e:/www/hellomagento2</code>来安装 Magento 2。<br>先将2.1的zip 解压后放到<code>e:/www/hellomagento2</code>下。<br>我们来创建一个数据库。在任务栏找到 wamp ，单击出现的面板中再点击 phpMyAdmin，默认用户名为root，密码为空。登录后创建一个数据库hellomagento2。<br>在浏览器中打开<code>localhost</code>这时候就是 Magento 安装界面了。第一步的检测，PHP Settings Check 发生错误。<br><img src="/wp-content/uploads/2016/08/wampserver-install-magento2-error.png"><br>上面说让我们打开php.ini 修改 <code>always_populate_raw_post_data</code> 为 -1</p>
 <p><em>wampserver 是有两个 php.ini 的，我的在wamp 安装在<code>D:\wamp64</code> 目录下，以我的安装目录为例，php 下的<code>D:\wamp64\bin\php\php5.6.19\php.ini</code>是cli 命令行使用时的配置文件，而apache 下的<code>D:\wamp64\bin\apache\apache2.4.18\bin\php.ini</code>是web 访问时的配置文件。此处先注意一下，以后会需要改命令行下的 php.ini，现在不需要</em></p>
 <p>现在我们改<code>D:\wamp64\bin\apache\apache2.4.18\bin\php.ini</code>，找到<code>always_populate_raw_post_data</code> 发现他是<code>;always_populate_raw_post_data = -1</code>，去掉前面的分号保存，wamp <strong>Restart All services</strong>，回到浏览器 Magento 安装页面，重新检测一下(Try again)，这次没有错误啦。<br>下一步，填入数据库名称<code>hellomagento2</code>再下一步，下面很简单，根据提示下一步下一步就安装成功啦。</p>
 <h2 id="简单调优"><a href="#简单调优" class="headerlink" title="简单调优"></a><a href="#%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98"></a>简单调优</h2><p>我们可以通过增加 PHP 的 memory_limit 来让 Magento 跑快一点。<br>官方推荐的memory_limit 是这样的：</p>

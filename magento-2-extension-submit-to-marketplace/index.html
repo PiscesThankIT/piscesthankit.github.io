@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="Magento MarketPlace 是类似 APPStore 这样的官方应用市场，您可以从 MarketPlace 购买下载插件，然后安装到自己的店铺中，实现所需要的功能。Magento Connect 负责 Magento 1 的插件， Magneto MarketPlace 则负责 Magento 2 的插件。 ThankIT 的支付宝和微信插件既然开发好了，何不提交官方市场呢？于是博主开">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/09/marketplace.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/09/marketplace.png">
 <meta property="article:published_time" content="2016-09-19T10:03:50.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.063Z">
 <meta property="article:author" content="ThankIT">
 <meta property="article:tag" content="MarketPlace">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2016/09/marketplace.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2016/09/marketplace.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/magento-2-extension-submit-to-marketplace/">
 
@@ -244,7 +244,7 @@
 <p>博主总结一下慢的大原因：<br>一是语言障碍，虽然每个字都看得懂，但是就是没明白啥意思，囧！<br>二是时间差，发邮件询问问题，今天问，最快明天才能看到回答。</p>
 <p>具体原因我们细细说：<br>Magento MarketPlace 的提交流程大致是这样的，先要告诉他们该插件解决了什么问题，然后你插件独特在哪里，通过初步的审核后，可以上传插件进行 Techincal Review 了，这一步会对代码进行检查，如果有 Error 就不能通过，这一步很严格，比如不允许用 echo 直接输出，可以参考如下资料：<br><a target="_blank" rel="noopener" href="http://docs.magento.com/marketplace/user_guide/extensions/review-code-validation.html">Code Validation</a><br><a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/111085/how-to-fix-warnings-errors-raised-by-the-magento-marketplace-technical-review/111086">How to fix warnings &#x2F; errors raised by the Magento Marketplace technical review report</a></p>
 <p>这一步博主遇到官方提交的一个坑，就是明明我的描述没有超过规定的字数，鬼知道什么时候他给我的描述加了<code>&lt;p&gt;</code>标签，于是报错不能提交，这时候既无法上传插件又无法修改描述，天，博主的内心是崩溃的！<br>而且位置什么的全错位了。根本没有办法进入下一步。就像这样(这是微信支付插件依赖的一个Package，微信插件已经通过 Technical Review 了)：</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/09/marketplace.png"></p>
+<p><img src="/wp-content/uploads/2016/09/marketplace.png"></p>
 <p>第一次遇到这个问题（ThankIT&#x2F;MobileDetect），我发邮件过去询问没有得到回答，想想算了改个名字（改成了ThankIT&#x2F;DeviceDetect）重新上传一下吧，于是不了了之了。尼玛，这次又遇到了，这次要改名字，有点麻烦了！于是只好再试试看问官方吧，目前还没有得到回复。。</p>
 <p>支付宝的插件已经通过 Technical Review 进入 Market Review 阶段，这个阶段遇到的问题有：介绍自己的文字和图像不过关，我也不晓得有什么区别。。为什么不让过。自己的域名不能包含“magento”二字，博主只好特意又申请一个域名。。标题必须得是英文的（我有中英文啊。。），还有介绍内容得让别人知道 Alipay 是什么等等…最后终于提交 Market Review 博主默默地等了六天，还是没有动静。于是博主问官方，到底要多久啊？对面说，一般非支付插件，5至7个工作日，支付插件要更久一些。。好吧，博主默默等待了小半个月，突然醒悟可能是有文件没签。。就是下面提到的这个：</p>
 <p>支付插件是个特殊的存在，原文如下：</p>

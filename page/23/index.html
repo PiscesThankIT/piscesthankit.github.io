@@ -258,7 +258,7 @@
 <p>最后，修改<code>h1</code>和<code>p</code>标签，给他们添加如下的<code>data-bind</code>属性</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>现在刷新页面，你应该会看到：<br><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-first.png"><br>恭喜你！你成功创建了第一 KnockoutJS view model 和 view</p>
+<p>现在刷新页面，你应该会看到：<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-first.png"><br>恭喜你！你成功创建了第一 KnockoutJS view model 和 view</p>
 <h2 id="What-Just-Happened"><a href="#What-Just-Happened" class="headerlink" title="What Just Happened"></a><a href="#what-just-happened"></a>What Just Happened</h2><p>KnockoutJS 本身是 <strong>MVVM</strong>系统，MVVM 代表着 Model，View,View Model。Really though, KnockoutJS is better billed as a VVM system, since its agnostic about what sort of model code you use to fetch data. view 是指 HTML 页面，view model 是指带数据的 js 对象。</p>
 <p>让我们来看看js 代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    viewModel = &#123;</span><br><span class="line">        title:&quot;Hello World&quot;,</span><br><span class="line">        content:&quot;So many years of hello world&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -289,14 +289,14 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; data-bind=&quot;value:theValue&quot;/&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <p>刷新页面，你会看到：</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-second.png"></p>
+<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-second.png"></p>
 <p>这里我们使用了一个新的 KnockoutJS 绑定</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-bind=&quot;value:theValue&quot;</span><br></pre></td></tr></table></figure>
 
 <p>我们使用<code>value</code>绑定将值赋给表单字段。下面让我们把 input 换成 select 看看</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;select data-bind=&quot;value:theValue&quot;&gt;</span><br><span class="line">        &lt;option value=&quot;&quot;&gt;-- Choose --&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1&quot;&gt;First&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;2&quot;&gt;Second&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;3&quot;&gt;Third&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>刷新页面后，你会看到已经设置 select 的值为2了。<br><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-third.png"></p>
+<p>刷新页面后，你会看到已经设置 select 的值为2了。<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-third.png"></p>
 <p>虽然这个例子很简单，背后的概念可不简单。不需要修改任何 js 程序代码，value binding 就可以让我们更改 UI</p>
 <h2 id="Observables"><a href="#Observables" class="headerlink" title="Observables"></a><a href="#observables"></a>Observables</h2><p>到目前为止，我们看到还只是小招数，已经很强大了。Neat, maybe useful, but it only sets the stage for KnockoutJS’s real “knockout” feature — observables.</p>
 <p>下面，我们还是以例子开始。</p>
@@ -331,7 +331,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div id=&quot;two&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:second&#125;&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script type=&quot;text/html&quot; id=&quot;hello-world&quot;&gt;</span><br><span class="line">        &lt;h1 data-bind=&quot;text:theTitle&quot;&gt;&lt;/h1&gt;</span><br><span class="line">        &lt;p data-bind=&quot;text:theContent&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
 <p>你将会看到：</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png"></p>
+<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png"></p>
 <p>template 绑定接受一个 js 对象作为参数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
@@ -1466,7 +1466,7 @@
       
           <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/media-storage.html">原文地址</a></em></p>
 <p>Media storage 帮助您组织和获取存储在服务器上的媒体文件。文件的路径是由配置中的 Base URL 决定的。当您编辑pages 和 static blocks 的时候，在编辑器上可以进入 Media Storage 。Media Storage 通常位于和 Magento 程序文件所在的服务器。另外，文件也可以托管在数据里，或者在单独的服务器或 CDN 上。编辑器可以配置为使用静态的或动态的媒URL。（The editor can be configured to use either static or dynamic media URLs for catalog content in category or product descriptions.）</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/10/media-storage.png" alt="Media Storage"></p>
+<p><img src="/wp-content/uploads/2016/10/media-storage.png" alt="Media Storage"></p>
 <p>译者注：这个 Media Storage 真难找。只有在编辑页面或者静态块的时候，先点击<strong>Show &#x2F; Hide Editor</strong>，然后出现<strong>Insert Image</strong>（在第三个），点击它，就是 Media Storage 了。</p>
 <h2 id="上传图片到媒体库"><a href="#上传图片到媒体库" class="headerlink" title="上传图片到媒体库"></a><a href="#%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E5%AA%92%E4%BD%93%E5%BA%93"></a>上传图片到媒体库</h2><ol>
 <li>左侧是文件夹树结构。要保存到哪个文件夹，就进入哪个文件。必要的话可以创建文件夹。</li>
@@ -1548,7 +1548,7 @@
 <li>完成页面的新增。</li>
 <li>后台侧边栏，点击<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>(Configuration)</li>
 <li>在左侧面板选择<strong>常规</strong>(General)&gt; <strong>Web</strong>(Web)</li>
-<li>展开 <strong>Default Pages</strong> 做如下操作:<br><img src="/hellomagento2/wp-content/uploads/2016/10/config-general-web-default-pages.png" alt="Default Pages"><br>a. 设置<strong>CMS Home Pag</strong>为一个新的页面<br>b. 点击 <strong>Save Config</strong></li>
+<li>展开 <strong>Default Pages</strong> 做如下操作:<br><img src="/wp-content/uploads/2016/10/config-general-web-default-pages.png" alt="Default Pages"><br>a. 设置<strong>CMS Home Pag</strong>为一个新的页面<br>b. 点击 <strong>Save Config</strong></li>
 <li>前往<strong>Cache Management</strong>，刷新缓存。</li>
 </ol>
 
@@ -1620,28 +1620,28 @@
           <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/page-add.html">原文地址</a></em></p>
 <p>不管是什么类型的页面，本质上新增页面的过程是一样的。您可以在页面中包含文本，图片，内容块，变量及widget。大多数内容页面被设计为给主要讨好搜索引擎，其次才是给人看的。当您选择页面的标题和URL，meta 数据和内容的时候，请牢记您的页面有两种完全不同的看客（搜索引擎和人），他们的需求是很不一样的。</p>
 <p>下面的步骤帮助您通览创建一个基本的页面的过程。高级的用法此处略过，不过其他章节会有涉及。</p>
-<p><img src="/hellomagento2/wp-content/uploads/2016/10/pages.png" alt="Pages"></p>
+<p><img src="/wp-content/uploads/2016/10/pages.png" alt="Pages"></p>
 <h2 id="第一步：创建新的页面"><a href="#第一步：创建新的页面" class="headerlink" title="第一步：创建新的页面"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E9%A1%B5%E9%9D%A2"></a>第一步：创建新的页面</h2><ol>
 <li>后台侧边栏，点击<strong>内容</strong>(Content)，在<strong>元素</strong>(Elements)下选择<strong>页面</strong>(Pages)</li>
-<li>点击<strong>Add New Page</strong>按钮<br><img src="/hellomagento2/wp-content/uploads/2016/10/pages-new-page.png" alt="New Page"></li>
+<li>点击<strong>Add New Page</strong>按钮<br><img src="/wp-content/uploads/2016/10/pages-new-page.png" alt="New Page"></li>
 <li>在新的页面，做如下操作：<br>a. 默认情况下，你一保存，页面就被发不出去了。如果你不想马上发布出去，设置<strong>Enable Page</strong>为 No<br>b. 输入<strong>页面标题</strong>(Page Title)，这个标题会出现在面包屑导航中。</li>
 </ol>
 <h3 id="第二步：完成内容"><a href="#第二步：完成内容" class="headerlink" title="第二步：完成内容"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%86%85%E5%AE%B9"></a>第二步：完成内容</h3><ol>
-<li>展开<strong>内容</strong>(Content)部分<br><img src="/hellomagento2/wp-content/uploads/2016/10/page-content.png" alt="Content"></li>
+<li>展开<strong>内容</strong>(Content)部分<br><img src="/wp-content/uploads/2016/10/page-content.png" alt="Content"></li>
 <li>在<strong>内容标题</strong>中输入您页面上希望显示的标题</li>
 <li>默认情况下，编辑工具是所见即所得的模式。如果你更喜欢编写HTML代码的话，点击<strong>Show &#x2F; Hide Editor</strong></li>
 <li>按需要完成内容的文本和格式组织。您可以添加图片，变量和widgets。了解更多，请查看Using the Editor</li>
 <li>点击<strong>Save and Continue Edit</strong></li>
 </ol>
 <h3 id="第三步：完成SEO信息的填写"><a href="#第三步：完成SEO信息的填写" class="headerlink" title="第三步：完成SEO信息的填写"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90seo%E4%BF%A1%E6%81%AF%E7%9A%84%E5%A1%AB%E5%86%99"></a>第三步：完成SEO信息的填写</h3><ol>
-<li>展开<strong>搜索引擎优化</strong>(Search Engine Optimization)部分，做如下操作：<br>a. 页面保存时，会创建一个默认的URL Key，这个URL Key取了Content Heading 的值。您可以接受这个默认值，或者输入其他的值。推荐做法是小写字母加短横线作为分隔符，不要用空格。<br>b. 输入<strong>Meta Title</strong>，这个值必须少于70个字符，会出现在浏览器的标题栏和选项卡中。<br>c. 输入您选择的高质量的关键词，Meta Keywords 搜索引擎会用它来索引您的页面。关键词之间使用英文逗号分隔。Meta Keywords 会被有些搜索引擎忽略，不过有些还是会采用的。<br>d. 在<strong>Meta Description</strong>字段中，输入您页面的简短描述，这个影响搜索引擎排序。理想情况下，描述信息应该在150到160个字符之间，最多不要超过255个字符。<br><img src="/hellomagento2/wp-content/uploads/2016/10/page-search-engine-optimization.png" alt="Search Engine Optimization"></li>
+<li>展开<strong>搜索引擎优化</strong>(Search Engine Optimization)部分，做如下操作：<br>a. 页面保存时，会创建一个默认的URL Key，这个URL Key取了Content Heading 的值。您可以接受这个默认值，或者输入其他的值。推荐做法是小写字母加短横线作为分隔符，不要用空格。<br>b. 输入<strong>Meta Title</strong>，这个值必须少于70个字符，会出现在浏览器的标题栏和选项卡中。<br>c. 输入您选择的高质量的关键词，Meta Keywords 搜索引擎会用它来索引您的页面。关键词之间使用英文逗号分隔。Meta Keywords 会被有些搜索引擎忽略，不过有些还是会采用的。<br>d. 在<strong>Meta Description</strong>字段中，输入您页面的简短描述，这个影响搜索引擎排序。理想情况下，描述信息应该在150到160个字符之间，最多不要超过255个字符。<br><img src="/wp-content/uploads/2016/10/page-search-engine-optimization.png" alt="Search Engine Optimization"></li>
 <li>点击<strong>Save and Continue Edit</strong></li>
 </ol>
 <h3 id="第四步：决定该页面的作用域"><a href="#第四步：决定该页面的作用域" class="headerlink" title="第四步：决定该页面的作用域"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%86%B3%E5%AE%9A%E8%AF%A5%E9%A1%B5%E9%9D%A2%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"></a>第四步：决定该页面的作用域</h3><ol>
 <li>展开<strong>Page in Websites</strong>部分</li>
-<li>在<strong>Store View</strong>列表中选择你希望该页面出现的店铺视图。如果您有多个websites，选择希望该页面可见的每个website 和store view<br><img src="/hellomagento2/wp-content/uploads/2016/10/page-in-websites.png" alt="Pages in Websites"></li>
+<li>在<strong>Store View</strong>列表中选择你希望该页面出现的店铺视图。如果您有多个websites，选择希望该页面可见的每个website 和store view<br><img src="/wp-content/uploads/2016/10/page-in-websites.png" alt="Pages in Websites"></li>
 </ol>
-<h3 id="第五步：Enter-Any-Design-Changes-（可选）"><a href="#第五步：Enter-Any-Design-Changes-（可选）" class="headerlink" title="第五步：Enter Any Design Changes （可选）"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9Aenter-any-design-changes-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>第五步：Enter Any Design Changes （可选）</h3><p><img src="/hellomagento2/wp-content/uploads/2016/10/page-design.png" alt="Design"></p>
+<h3 id="第五步：Enter-Any-Design-Changes-（可选）"><a href="#第五步：Enter-Any-Design-Changes-（可选）" class="headerlink" title="第五步：Enter Any Design Changes （可选）"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9Aenter-any-design-changes-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>第五步：Enter Any Design Changes （可选）</h3><p><img src="/wp-content/uploads/2016/10/page-design.png" alt="Design"></p>
 <p>要设定Design 变动的时间，请展开<strong>Custom Design Update</strong>部分，做如下事情：</p>
 <p>a. 使用日历控件选择 Design Change 起作用的时间段。<br>b. 需要的话，设置<strong>New Theme</strong>为该页面使用的不同主题。<br>c. 需要的话，设置<strong>New Layout</strong>为以下值：</p>
 <ul>
@@ -1651,7 +1651,7 @@
 <li>3 columns</li>
 <li>Empty</li>
 </ul>
-<p><img src="/hellomagento2/wp-content/uploads/2016/10/page-custom-design-update.png" alt="Custom Design Update"></p>
+<p><img src="/wp-content/uploads/2016/10/page-custom-design-update.png" alt="Custom Design Update"></p>
 <h2 id="第六步：预览页面"><a href="#第六步：预览页面" class="headerlink" title="第六步：预览页面"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E9%A2%84%E8%A7%88%E9%A1%B5%E9%9D%A2"></a>第六步：预览页面</h2><ol>
 <li>点击<strong>Save Page</strong>保存页面，点击<strong>Back</strong>返回页面表格。</li>
 <li>在表格中找到页面，在 Action 列，选择 View。</li>

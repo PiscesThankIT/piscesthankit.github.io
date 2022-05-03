@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="overflow-wrap 和 word-break 都是用于长单词断句的。 12345678910111213141516171819202122232425&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;    &lt;title&gt;test&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;&lt;style type&#x3D;&quot;text&#x2F;c">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/08/overflow-wrap-and-word-break.png">
+<meta property="og:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/08/overflow-wrap-and-word-break.png">
 <meta property="article:published_time" content="2017-08-26T03:49:15.000Z">
 <meta property="article:modified_time" content="2022-05-01T09:11:17.253Z">
 <meta property="article:author" content="ThankIT">
@@ -35,7 +35,7 @@
 <meta property="article:tag" content="overflow-wrap">
 <meta property="article:tag" content="word-break">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://piscesthankit.github.io/hellomagento2/wp-content/uploads/2017/08/overflow-wrap-and-word-break.png">
+<meta name="twitter:image" content="https://piscesthankit.github.io/wp-content/uploads/2017/08/overflow-wrap-and-word-break.png">
 
 <link rel="canonical" href="https://piscesthankit.github.io/hellomagento2/difference-between-overflow-wrap-and-word-break/">
 
@@ -243,7 +243,7 @@
         <p>overflow-wrap 和 word-break 都是用于长单词断句的。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;test&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    p &#123;</span><br><span class="line">        width: 300px;</span><br><span class="line">        background-color: #f9f2f4;</span><br><span class="line">        color: #c7254e;</span><br><span class="line">    &#125;</span><br><span class="line">    .overflow-wrap &#123;</span><br><span class="line">        overflow-wrap: break-word;</span><br><span class="line">    &#125;</span><br><span class="line">    .word-break &#123;</span><br><span class="line">        word-break: break-all;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;p &gt;浏览器默认情况下：&lt;br/&gt;ThankIT, Hello, How are yoooooooooooooooooooooooooooooooooooooooooooooooooooou?&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;overflow-wrap&quot;&gt;overflow-wrap:break-word&lt;br/&gt;ThankIT, Hello, How are yoooooooooooooooooooooooooooooooooooooooooooooooooooou?&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;word-break&quot;&gt;break-word:break-all&lt;br/&gt;ThankIT, Hello, How are yoooooooooooooooooooooooooooooooooooooooooooooooooooou?&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/hellomagento2/wp-content/uploads/2017/08/overflow-wrap-and-word-break.png"> 默认情况下，如果一个单词很长，导致一行中剩下的空间放不下的时候，浏览器就会把该单词移到下一行，如果宽度还是超出父元素，就会溢出。 overflow-wrap 最早叫 word-wrap ，最早是 IE 的特性。现在 word-wrap 作为 overflow-wrap 的别名，几乎所有浏览器都支持。在断句的时候，会首先将长单词挪到下一行，然后下一行再放不下则断开。 word-break 则是不考虑换行，充分利用空间，简单粗暴。</p>
+<p><img src="/wp-content/uploads/2017/08/overflow-wrap-and-word-break.png"> 默认情况下，如果一个单词很长，导致一行中剩下的空间放不下的时候，浏览器就会把该单词移到下一行，如果宽度还是超出父元素，就会溢出。 overflow-wrap 最早叫 word-wrap ，最早是 IE 的特性。现在 word-wrap 作为 overflow-wrap 的别名，几乎所有浏览器都支持。在断句的时候，会首先将长单词挪到下一行，然后下一行再放不下则断开。 word-break 则是不考虑换行，充分利用空间，简单粗暴。</p>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p>内有案例可查看其他值的效果 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap">overflow-wrap</a> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/word-break">word-break</a></p>
 
     </div>
