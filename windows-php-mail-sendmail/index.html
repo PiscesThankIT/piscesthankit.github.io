@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言：本篇是探索如何配置 Magento 2 的邮件服务器的分支 我的本地环境是 win10 + wamp，我想用 php 的 mail()函数通过腾讯企业邮箱发送邮件。使用腾讯企业邮箱请参考免费域名邮箱 —— 使用腾讯企业邮箱 下载 sendmailWamp 本身并没有带邮件服务器，所以我们要先去下载一个，windows 环境下，请去fake sendmail for windows下载。然后解">
+  <meta name="description" content="前言：本篇是探索如何配置 Magento 2 的邮件服务器的分支  我的本地环境是 win10 + wamp，我想用 php 的 mail()函数通过腾讯企业邮箱发送邮件。 使用腾讯企业邮箱请参考免费域名邮箱 —— 使用腾讯企业邮箱  下载 sendmail Wamp 本身并没有带邮件服务器，所以我们要先去下载一个，windows 环境下，请去fake sendmail for windows下载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows 下配置用 mail()发送邮件">
 <meta property="og:url" content="http://example.com/windows-php-mail-sendmail/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
-<meta property="og:description" content="前言：本篇是探索如何配置 Magento 2 的邮件服务器的分支 我的本地环境是 win10 + wamp，我想用 php 的 mail()函数通过腾讯企业邮箱发送邮件。使用腾讯企业邮箱请参考免费域名邮箱 —— 使用腾讯企业邮箱 下载 sendmailWamp 本身并没有带邮件服务器，所以我们要先去下载一个，windows 环境下，请去fake sendmail for windows下载。然后解">
+<meta property="og:description" content="前言：本篇是探索如何配置 Magento 2 的邮件服务器的分支  我的本地环境是 win10 + wamp，我想用 php 的 mail()函数通过腾讯企业邮箱发送邮件。 使用腾讯企业邮箱请参考免费域名邮箱 —— 使用腾讯企业邮箱  下载 sendmail Wamp 本身并没有带邮件服务器，所以我们要先去下载一个，windows 环境下，请去fake sendmail for windows下载">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/wp-content/uploads/2016/10/exmail-qq-SMTP-service.png">
 <meta property="og:image" content="http://example.com/wp-content/uploads/2016/10/mail-result.png">

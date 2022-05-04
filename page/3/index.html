@@ -231,13 +231,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="postman-请求断点调试"><a href="#postman-请求断点调试" class="headerlink" title="postman 请求断点调试"></a><a href="#postman-%E8%AF%B7%E6%B1%82%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95"></a>postman 请求断点调试</h2><p>请求地址 + <code>?XDEBUG_SESSION_START=PHPSTORM</code> for example:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://wendym230ce.me/test/index/index?XDEBUG_SESSION_START=PHPSTORM</span><br></pre></td></tr></table></figure>
+          postman 请求断点调试
+请求地址 + ?XDEBUG_SESSION_START=PHPSTORM for example:
 
-<h2 id="php-cli-远程断点调试"><a href="#php-cli-远程断点调试" class="headerlink" title="php cli 远程断点调试"></a><a href="#php-cli-%E8%BF%9C%E7%A8%8B%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95"></a>php cli 远程断点调试</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export XDEBUG_CONFIG=&quot;remote_enable=1 remote_mode=req remote_port=9000 remote_host=XX.XX.XX.XX remote_connect_back=1&quot;</span><br><span class="line">export PHP_IDE_CONFIG=&quot;serverName=wendym231ce.me&quot;</span><br></pre></td></tr></table></figure>
+1
 
-<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/php-%e8%b0%83%e8%af%95/">PHP 调试</a> <a target="_blank" rel="noopener" href="https://www.jetbrains.com/help/phpstorm/debugging-a-php-cli-script.html">Debugging a PHP CLI script</a></p>
 
+http://wendym230ce.me/test/index/index?XDEBUG_SESSION_START=PHPSTORM
+
+
+php cli 远程断点调试
+1
+2
+
+
+export XDEBUG_CONFIG="remote_enable=1 remote_mode=req remote_port=9000 remote_host=XX.XX.XX.XX remote_connect_back=1"
+export PHP_IDE_CONF
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-debug/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -303,20 +320,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="/wp-content/uploads/2019/06/catalog-qty.png" alt="product catalog qty"> 这一列是特别的。 首先我们知道产品列表的 url 是 <code>.../admin/catalog/product/index/...</code> 那么顺着找到对应的 layout 文件 <code>vendor\magento\module-catalog\view\adminhtml\layout\catalog_product_index.xml</code>。在该 layout 文件中可以看到列表的主体部分是由 ui component 实现的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;uiComponent name=&quot;product_listing&quot;/&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+          这一列是特别的。 首先我们知道产品列表的 url 是 .../admin/catalog/product/index/... 那么顺着找到对应的 layout 文件 vendor\magento\module-catalog\view\adminhtml\layout\catalog_product_index.xml。在该 layout 文件中可以看到列表的主体部分是由 ui component 实现的。
 
-<p><code>product_listing.xml</code> 有两处，主体位于 <code>vendor\magento\module-catalog\view\adminhtml\ui_component\product_listing.xml</code> ，另一处在 <code>vendor\magento\module-catalog-inventory\view\adminhtml\ui_component\product_listing.xml</code> 而位于 <code>catalog inventory</code> 模块中的 <code>product_listing.xml</code> 正是产品的 quantity 列。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;listing xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;columns name=&quot;product_columns&quot; class=&quot;Magento\Catalog\Ui\Component\Listing\Columns&quot;&gt;</span><br><span class="line">        &lt;column name=&quot;qty&quot;&gt;</span><br><span class="line">            &lt;argument name=&quot;data&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">                &lt;item name=&quot;config&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">                    &lt;item name=&quot;filter&quot; xsi:type=&quot;string&quot;&gt;textRange&lt;/item&gt;</span><br><span class="line">                    &lt;item name=&quot;add_field&quot; xsi:type=&quot;boolean&quot;&gt;true&lt;/item&gt;</span><br><span class="line">                    &lt;item name=&quot;label&quot; xsi:type=&quot;string&quot; translate=&quot;true&quot;&gt;Quantity&lt;/item&gt;</span><br><span class="line">                    &lt;item name=&quot;sortOrder&quot; xsi:type=&quot;number&quot;&gt;75&lt;/item&gt;</span><br><span class="line">                &lt;/item&gt;</span><br><span class="line">            &lt;/argument&gt;</span><br><span class="line">        &lt;/column&gt;</span><br><span class="line">    &lt;/columns&gt;</span><br><span class="line">&lt;/listing&gt;</span><br></pre></td></tr></table></figure>
+1
+2
+3
 
-<p>但是如果你深扒的话，一定会发现 那么 collection 中的 qty 是从哪里来的？ 在 catalog-inventory 的 etc&#x2F;adminhtml&#x2F;di.xml 中可以找到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;type name=&quot;Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider&quot;&gt;</span><br><span class="line">    &lt;arguments&gt;</span><br><span class="line">        &lt;argument name=&quot;addFieldStrategies&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">            &lt;item name=&quot;qty&quot; xsi:type=&quot;object&quot;&gt;Magento\CatalogInventory\Ui\DataProvider\Product\AddQuantityFieldToCollection&lt;/item&gt;</span><br><span class="line">        &lt;/argument&gt;</span><br><span class="line">        &lt;argument name=&quot;addFilterStrategies&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">            &lt;item name=&quot;qty&quot; xsi:type=&quot;object&quot;&gt;Magento\CatalogInventory\Ui\DataProvider\Product\AddQuantityFilterToCollection&lt;/item&gt;</span><br><span class="line">        &lt;/argument&gt;</span><br><span class="line">    &lt;/arguments&gt;</span><br><span class="line">&lt;/type&gt;</span><br></pre></td></tr></table></figure>
 
-<p>深入的查看下 AddQuantityFieldToCollection 这个类</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public function addField(Collection $collection, $field, $alias = null)</span><br><span class="line">    &#123;</span><br><span class="line">        $collection-&gt;joinField(</span><br><span class="line">            &#x27;qty&#x27;,</span><br><span class="line">            &#x27;cataloginventory_stock_item&#x27;,</span><br><span class="line">            &#x27;qty&#x27;,</span><br><span class="line">            &#x27;product_id=entity_id&#x27;,</span><br><span class="line">            &#x27;&amp;#123;&amp;#123;table&amp;#125;&amp;#125;.stock_id=1&#x27;,</span><br><span class="line">            &#x27;left&#x27;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+...
+<uiComponent name="product_listing"/>
+...
 
-<p>每个 vendor\magento\module-ui\Component\Listing\Columns\Column.php 对象会调用 <code>prepare()</code> &gt; 调用 <code>addFieldToSelect（）</code> $this-&gt;getContext()-&gt;getDataProvider()-&gt;addField($this-&gt;getName()); ProductDataProvider 调用他的 addField() 就加入了 qty</p>
 
+product_listing.xml 有两处，主体位于 vendor\m
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%90%8E%E5%8F%B0%E4%BA%A7%E5%93%81%E7%9A%84%E6%95%B0%E9%87%8F%E6%98%AF%E5%A6%82%E4%BD%95%E5%8A%A0%E5%88%B0-column-%E4%B8%AD%E7%9A%84/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -382,35 +406,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
-<li>Simple Proudct a simple product can be sold individually, or as part of a grouped, configurable, or bundle product. A simple product can have custom options with a variety of input controls, which makes it possible to sell many product variations from a single SKU</li>
-<li>Configurable Product A configurable product allows the shopper to choose options from drop-down lists. Each option in a configurable product represents a separate, simple product with a distinct SKU, which makes it possible to track inventory for each variation. Each drop-down list value is based on an attribute of the “Dropdown” input type(You can choose from (Dropdown &#x2F;visual swatch &#x2F; text swatch)). The drop-down attributes must be included in the attribute set, which is then used as a template for the configurable product. The thumbnail image in the shopping cart can be set to display the image from the configurable product record, or from the product variation. Simple and virtual products that are part of a configurable product cannot have custom options.</li>
-<li>Group Product A grouped product is essentially a collection of simple associated products. Simple and virtual products that are part of a grouped product cannot have custom options. Each item purchased appears individually in the shopping cart, rather than as part of the group. The thumbnail image in the shopping cart can be set to display the image from the grouped parent product, or the associated product. For example with demo data: <a href="http://example.com/set-of-sprite-yoga-straps.html">http://example.com/set-of-sprite-yoga-straps.html</a></li>
-<li>Bundled Product The main point that distinguishes bundled product from grouped products is that when items are bundled together, it is hardly possible for any of the products to be removed from the set. In simple words, one product cannot live without the other, would hardly function if the other is missing. One product complements the other. For example with demo data: <a href="http://example.com/sprite-yoga-companion-kit.html">http://example.com/sprite-yoga-companion-kit.html</a></li>
-<li>Downloadable Products Downloadable products can be uploaded to the server, or linked to from another server on the Internet. You can determine the number of times a customer can download a product. Customers who purchase a downloadable product can be required to log in before going through checkout. The delivery of a downloadable product can be made when the order is in either a “Pending” or “Invoiced” state.</li>
-<li>Virtual Products Virtual products are used for non-tangible products such as services, subscriptions, and warranties. Virtual products are much like simple products, but without the Weight. Shipping Options do not appear during checkout unless there is a tangible product in the cart.</li>
-</ul>
-<h2 id="Experients"><a href="#Experients" class="headerlink" title="Experients"></a><a href="#experients"></a>Experients</h2><h3 id="Config-XML"><a href="#Config-XML" class="headerlink" title="Config XML"></a><a href="#config-xml"></a>Config XML</h3><p>etc&#x2F;product_types.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Catalog:etc/product_types.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;new_product_type&quot; label=&quot;New Product Type&quot; modelInstance=&quot;VendorName\TestModule\Model\Product\Type\NewProductType&quot; indexPriority=&quot;60&quot; sortOrder=&quot;80&quot; isQty=&quot;true&quot;&gt;</span><br><span class="line">        &lt;priceModel instance=&quot;VendorName\TestModule\Model\Product\Price&quot; /&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>The <code>type</code> node has three required attributes.</p>
-<ul>
-<li>name: This attribute defines the custom product code which is used in code and in the database.</li>
-<li>label: Defines the product type label in the Magento admin.</li>
-<li>modelInstance: Specifies the fully qualified namespace of the corresponding product type model.</li>
-</ul>
-<h3 id="Product-Type-Model"><a href="#Product-Type-Model" class="headerlink" title="Product Type Model"></a><a href="#product-type-model"></a>Product Type Model</h3><p>Each product instance is associated with an instance of the corresponding product type model. This model has the opportunity to modify product type behavior and attributes and is called during many product manipulation processes.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product\Type;</span><br><span class="line"></span><br><span class="line">class NewProductType extends \Magento\Catalog\Model\Product\Type\AbstractType</span><br><span class="line">&#123;</span><br><span class="line">    const TYPE_ID = &#x27;new_product_type&#x27;;</span><br><span class="line"></span><br><span class="line">    public function deleteTypeSpecificData(\Magento\Catalog\Model\Product $product)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>A product model must inherit from the <code>\Magento\Catalog\Model\Product\Type\AbstractType</code> base class. The base class has only one abstract method: <code>deleteTypeSpecificData</code>. This oddly specific method is called during a product instance save if its type has changed, and gives the original product type the opportunity to clean up any type-specific data before the type change is finalized.</p>
-<h3 id="Price-Model"><a href="#Price-Model" class="headerlink" title="Price Model"></a><a href="#price-model"></a>Price Model</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product;</span><br><span class="line"></span><br><span class="line">class Price extends \Magento\Catalog\Model\Product\Type\Price</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function getPrice($product)</span><br><span class="line">    &#123;</span><br><span class="line">        return $product-&gt;getData(&#x27;price&#x27;) + 200;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Associate-With-Price-Attributes"><a href="#Associate-With-Price-Attributes" class="headerlink" title="Associate With Price Attributes"></a><a href="#associate-with-price-attributes"></a>Associate With Price Attributes</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Setup\Patch\Data;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\Setup\Patch\DataPatchInterface;</span><br><span class="line">use Magento\Customer\Model\Customer;</span><br><span class="line">use Magento\Customer\Setup\CustomerSetupFactory;</span><br><span class="line">use Magento\Eav\Setup\EavSetupFactory;</span><br><span class="line">use Magento\Framework\Setup\ModuleDataSetupInterface;</span><br><span class="line">use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;</span><br><span class="line"></span><br><span class="line">class CustomProductTypePatch implements DataPatchInterface</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct(</span><br><span class="line">        ModuleDataSetupInterface $moduleDataSetup,</span><br><span class="line">        CustomerSetupFactory $customerSetupFactory,</span><br><span class="line">        EavSetupFactory $eavSetupFactory,</span><br><span class="line">        AttributeSetFactory $attributeSetFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;moduleDataSetup = $moduleDataSetup;</span><br><span class="line">        $this-&gt;customerSetupFactory = $customerSetupFactory;</span><br><span class="line">        $this-&gt;eavSetupFactory = $eavSetupFactory;</span><br><span class="line">        $this-&gt;attributeSetFactory = $attributeSetFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getAliases()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This internal Magento method, that means that some patches with time can change their names,</span><br><span class="line">         * but changing name should not affect installation process, that&#x27;s why if we will change name of the patch</span><br><span class="line">         * we will add alias here</span><br><span class="line">         */</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function apply()</span><br><span class="line">    &#123;</span><br><span class="line">        /** @var EavSetup $eavSetup */</span><br><span class="line">        $eavSetup = $this-&gt;eavSetupFactory-&gt;create([&#x27;setup&#x27; =&gt; $this-&gt;moduleDataSetup]);</span><br><span class="line"></span><br><span class="line">        //associate these attributes with new product type</span><br><span class="line">        $fieldList = [</span><br><span class="line">            &#x27;price&#x27;,</span><br><span class="line">            &#x27;special_price&#x27;,</span><br><span class="line">            &#x27;special_from_date&#x27;,</span><br><span class="line">            &#x27;special_to_date&#x27;,</span><br><span class="line">            &#x27;minimal_price&#x27;,</span><br><span class="line">            &#x27;cost&#x27;,</span><br><span class="line">            &#x27;tier_price&#x27;,</span><br><span class="line">            &#x27;weight&#x27;,</span><br><span class="line">        ];</span><br><span class="line"></span><br><span class="line">        // make these attributes applicable to new product type</span><br><span class="line">        foreach ($fieldList as $field) &#123;</span><br><span class="line">            $applyTo = explode(</span><br><span class="line">                &#x27;,&#x27;,</span><br><span class="line">                $eavSetup-&gt;getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, &#x27;apply_to&#x27;)</span><br><span class="line">            );</span><br><span class="line">            if (!in_array(\VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID, $applyTo)) &#123;</span><br><span class="line">                $applyTo[] = \VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID;</span><br><span class="line">                $eavSetup-&gt;updateAttribute(</span><br><span class="line">                    \Magento\Catalog\Model\Product::ENTITY,</span><br><span class="line">                    $field,</span><br><span class="line">                    &#x27;apply_to&#x27;,</span><br><span class="line">                    implode(&#x27;,&#x27;, $applyTo)</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static function getDependencies()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This is dependency to another patch. Dependency should be applied first</span><br><span class="line">         * One patch can have few dependencies</span><br><span class="line">         * Patches do not have versions, so if in old approach with Install/Ugrade data scripts you used</span><br><span class="line">         * versions, right now you need to point from patch with higher version to patch with lower version</span><br><span class="line">         * But please, note, that some of your patches can be independent and can be installed in any sequence</span><br><span class="line">         * So use dependencies only if this important for you</span><br><span class="line">         */</span><br><span class="line">        // return [</span><br><span class="line">        //     SomeDependency::class</span><br><span class="line">        // ];</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>After <code>bin/magento setup:upgrade</code>. Now we create a new product using custom product type. <img src="/wp-content/uploads/2019/06/new_product_type.png"> <img src="/wp-content/uploads/2019/06/custom_product_type.png"> <img src="/wp-content/uploads/2019/06/new_product_type_product.png"> The product type instance and product price type is used in <code>Magento\Catalog\Model\Product</code></p>
-<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>You need to create a custom price calculator for simple products. You have already created the new price model. Keeping simplicity in mind, what additional steps do you take to implement this? (Multiple Choice) A. Make your new price model extend \Magento\Catalog\Model\Product\Type\Price. B. Update the frontend templates to use the new price methods. C. Create a plugin for the getPriceModel() method and return your price model. D. In your product_types.xml module, reference the simple product type, and set a value for the priceModel attribute Answer A D</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="https://www.ubertheme.com/magento-news/magento-product-types/">Manage Magento 2 Product Types and Catalog Data</a> <a target="_blank" rel="noopener" href="https://www.classyllama.com/blog/custom-product-types-magento-2">Custom Product Types in Magento 2</a> <a target="_blank" rel="noopener" href="https://www.mageplaza.com/devdocs/how-create-new-product-type-magento-2.html">How to Create a New Product Type in Magento 2</a></p>
-
+          * Simple Proudct a simple product can be sold individually, or as part of a grouped, configurable, or bundle product. A simple product can have custom options with a variety of input controls, which makes it possible to sell many product variations from a single SKU
+ * Configurable Product A configu
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/create-new-product-type/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -476,8 +481,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>We see parent product thumbnail in cart by default. Actually this can be configured. Go to Configuration &gt; Sales &gt; Checkout &gt; Configurable Product Image , and set “Parent Product Thumbnail” to be “Product Thumbnail Itself”. Save it and flush cache. <img src="/wp-content/uploads/2019/06/product_image_itself.png"> <img src="/wp-content/uploads/2019/06/product_image_itself_cart.png"></p>
-
+          We see parent product thumbnail in cart by default. Actually this can be configured. Go to Configuration > Sales > Checkout > Configurable Product Image , and set “Parent Product Thumbnail” to be “Product Thumbnail Itself”. Save it and flush cache.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/configurable-product-image-in-cart/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -543,26 +555,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Private content section is used to deal with customer private content for cacheable pages.</p>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><a href="#experiments"></a>Experiments</h2><p>etc&#x2F;frontend&#x2F;di.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:ObjectManager/etc/config.xsd&quot;&gt;</span><br><span class="line">    &lt;preference for=&quot;VendorName\TestModule\Api\Data\AttributeInterface&quot; type=&quot;VendorName\TestModule\Model\Attribute&quot;/&gt;</span><br><span class="line">    &lt;type name=&quot;Magento\Customer\CustomerData\SectionPoolInterface&quot;&gt;</span><br><span class="line">        &lt;arguments&gt;</span><br><span class="line">            &lt;argument name=&quot;sectionSourceMap&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">                &lt;item name=&quot;customsection&quot; xsi:type=&quot;string&quot;&gt;VendorName\TestModule\CustomerData\CustomSection&lt;/item&gt;</span><br><span class="line">            &lt;/argument&gt;</span><br><span class="line">        &lt;/arguments&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          Private content section is used to deal with customer private content for cacheable pages.
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\CustomerData;</span><br><span class="line">use Magento\Customer\CustomerData\SectionSourceInterface;</span><br><span class="line"></span><br><span class="line">class CustomSection implements SectionSourceInterface</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * &#123;@inheritdoc&#125;</span><br><span class="line">     */</span><br><span class="line">    public function getSectionData()</span><br><span class="line">    &#123;</span><br><span class="line">        $randString = $this-&gt;getNonceStr();</span><br><span class="line">        return [</span><br><span class="line">            &#x27;msg&#x27; =&gt; $randString,</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function getNonceStr($length = 32)</span><br><span class="line">    &#123;</span><br><span class="line">        $chars = &#x27;abcdefghijklmnopqrstuvwxyz0123456789&#x27;;</span><br><span class="line">        $str   = &#x27;&#x27;;</span><br><span class="line">        for ($i = 0; $i &lt; $length; ++$i) &#123;</span><br><span class="line">            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);</span><br><span class="line">        &#125;</span><br><span class="line">        return $str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+Experiments
+etc/frontend/di.xml
 
-<p>view&#x2F;frontend&#x2F;layout&#x2F;catalog_product_view.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;referenceContainer name=&quot;content&quot;&gt;</span><br><span class="line">            &lt;block class=&quot;Magento\Framework\View\Element\Template&quot;  name=&quot;custom_section&quot; template=&quot;VendorName_TestModule::customsection.phtml&quot;&gt;</span><br><span class="line">            &lt;/block&gt;</span><br><span class="line">        &lt;/referenceContainer&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
 
-<p>view&#x2F;frontend&#x2F;templates&#x2F;customsection.phtml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">test section</span><br><span class="line">&lt;div class=&quot;customsection&quot; data-bind=&quot;scope: &#x27;section&#x27;&quot;&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text: customsection().msg&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;*&quot;: &#123;</span><br><span class="line">            &quot;Magento_Ui/js/core/app&quot;: &#123;</span><br><span class="line">                &quot;components&quot;: &#123;</span><br><span class="line">                    &quot;section&quot;: &#123;</span><br><span class="line">                        &quot;component&quot;: &quot;VendorName_TestModule/js/section&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<p>view&#x2F;frontend&#x2F;web&#x2F;js&#x2F;section.js</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">define([</span><br><span class="line">    &#x27;uiComponent&#x27;,</span><br><span class="line">    &#x27;Magento_Customer/js/customer-data&#x27;,</span><br><span class="line">    &#x27;Magento_Customer/js/section-config&#x27;</span><br><span class="line">], function (Component, customerData, config) &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    return Component.extend(&#123;</span><br><span class="line">        /** @inheritdoc */</span><br><span class="line">        initialize: function () &#123;</span><br><span class="line">            this._super();</span><br><span class="line">            // this.customsection = customerData.get(&#x27;customsection&#x27;); //pass your custom section name</span><br><span class="line"></span><br><span class="line">            customerData.reload(&#x27;customsection&#x27;);</span><br><span class="line">            this.customsection = customerData.get(&#x27;customsection&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>Ok, every time we refresh catalog detail page, we will see randonm string. Now, I want the random string to be refreshed when customer add a product to cart. etc&#x2F;frontend&#x2F;sections.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">        xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Customer:etc/sections.xsd&quot;&gt;</span><br><span class="line">    &lt;action name=&quot;checkout/cart/add&quot;&gt;</span><br><span class="line">        &lt;section name=&quot;customsection&quot;/&gt;</span><br><span class="line">    &lt;/action&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="https://devdocs.magento.com/guides/v2.3/extension-dev-guide/cache/page-caching/private-content.html">DevDocs - Private content</a> <a target="_blank" rel="noopener" href="https://webkul.com/blog/sections-magento-2/">Sections in Magento 2</a> <a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/112948/magento-2-how-do-customer-sections-sections-xml-work">Magento 2: how do customer sections &#x2F; sections.xml work?</a> During cacheable page rendering Magento is cleaning all data that can be specific to a particular user (unsetting private data). That’s why session is empty during rendering. The responsibility of cleaning private data lies on several depersonalization plugins. Customer session for example is cleaned by <code>\Magento\Customer\Model\Layout\DepersonalizePlugin</code>. <a target="_blank" rel="noopener" href="https://devdocs.magento.com/guides/v2.2/extension-dev-guide/cache/page-caching/private-content.html">Session depersonalization in Magento 2, why and how?</a> <a target="_blank" rel="noopener" href="https://www.atwix.com/magento-2/session-depersonalization-in-magento-2-why-and-how/">customer session does not work except customer page - Magento 2</a></p>
-
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManage
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/private-content/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -628,22 +648,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Event/etc/events.xsd&quot;&gt;</span><br><span class="line">    &lt;event name=&quot;controller_custom_event&quot;&gt;</span><br><span class="line">        &lt;observer name=&quot;doA&quot; instance=&quot;VendorName\TestModule\Observer\doA&quot; /&gt;</span><br><span class="line">    &lt;/event&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          1
+2
+3
+4
+5
+6
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Observer;</span><br><span class="line"></span><br><span class="line">class doA implements \Magento\Framework\Event\ObserverInterface</span><br><span class="line">&#123;</span><br><span class="line">    public function execute(\Magento\Framework\Event\Observer $observer)</span><br><span class="line">    &#123;</span><br><span class="line">        $writer = new \Zend\Log\Writer\Stream(BP . &#x27;/var/log/layout_block.xml&#x27;);</span><br><span class="line">        $logger = new \Zend\Log\Logger();</span><br><span class="line">        $logger-&gt;addWriter($writer);</span><br><span class="line">        $logger-&gt;info(&#x27;doA&#x27;);</span><br><span class="line">        $logger-&gt;info(get_class($observer));</span><br><span class="line">        $logger-&gt;info(print_r($observer-&gt;getData(&#x27;my_event_data&#x27;), true));</span><br><span class="line">        $logger-&gt;info(print_r($observer-&gt;getMyEventData(), true));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Dispatching events:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$eventData = &#x27;ssss&#x27;;</span><br><span class="line">/* @param \Magento\Framework\Event\Manager */</span><br><span class="line">$eventManger = $this-&gt;_objectManager-&gt;get(&#x27;\Magento\Framework\Event\ManagerInterface&#x27;);</span><br><span class="line">$eventManger-&gt;dispatch(&#x27;controller_custom_event&#x27;, [&#x27;my_event_data&#x27; =&gt; $eventData]);</span><br></pre></td></tr></table></figure>
-
-<h2 id="Best-practices"><a href="#Best-practices" class="headerlink" title="Best practices"></a><a href="#best-practices"></a>Best practices</h2><ul>
-<li>Make your observer efficient</li>
-<li>Do not include business logic</li>
-<li>Declare observer in the appropriate scope</li>
-<li>Avoid cyclical event loops</li>
-<li>Do not rely on invocation order</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="https://devdocs.magento.com/guides/v2.3/ext-best-practices/extension-coding/observers-bp.html">Observers Best Practices</a></p>
-
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_custom_event">
+        <observer name="doA" instance="VendorName\TestModule\Observer\doA" />
+    <
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/events/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -709,15 +734,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>app/code/VendorName/TestModule/etc/di.xml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:ObjectManager/etc/config.xsd&quot;&gt;</span><br><span class="line">   &lt;type name=&quot;Magento\Framework\Console\CommandList&quot;&gt;</span><br><span class="line">        &lt;arguments&gt;</span><br><span class="line">            &lt;argument name=&quot;commands&quot; xsi:type=&quot;array&quot;&gt;</span><br><span class="line">                &lt;item name=&quot;exampleSayHello&quot; xsi:type=&quot;object&quot;&gt;VendorName\TestModule\Console\Sayhello&lt;/item&gt;</span><br><span class="line">            &lt;/argument&gt;</span><br><span class="line">        &lt;/arguments&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          app/code/VendorName/TestModule/etc/di.xml
 
-<p><code>app/code/VendorName/TestModule/Console/Sayhello.php</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Console;</span><br><span class="line"></span><br><span class="line">use Symfony\Component\Console\Command\Command;</span><br><span class="line">use Symfony\Component\Console\Input\InputInterface;</span><br><span class="line">use Symfony\Component\Console\Output\OutputInterface;</span><br><span class="line"></span><br><span class="line">class Sayhello extends Command</span><br><span class="line">&#123;</span><br><span class="line">    protected function configure()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;setName(&#x27;exampleGroup:exampleSubject:sayHello&#x27;);</span><br><span class="line">        $this-&gt;setDescription(&#x27;Demo command line&#x27;);</span><br><span class="line"></span><br><span class="line">        parent::configure();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">    &#123;</span><br><span class="line">        $output-&gt;writeln(&quot;Hello World&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
 
-<p><code>php bin/magento</code> <img src="/wp-content/uploads/2019/06/cli.png"> <code>php bin/magento exampleGroup:exampleSubject:sayHello;</code> <img src="/wp-content/uploads/2019/06/cli_2.png"></p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="https://www.mageplaza.com/magento-2-module-development/magento-2-how-to-add-command-line-console-cli.html">How to Add Command line in to Console CLI in Magento 2</a> <a target="_blank" rel="noopener" href="https://devdocs.magento.com/guides/v2.3/extension-dev-guide/cli-cmds/cli-naming-guidelines.html">Command naming guidelines</a></p>
 
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <type name="Magento\Framework\Console\CommandList">
+        <ar
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/how-to-add-cli-commands/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -783,9 +825,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://alanstorm.com/magento-2-full-page-caching-code-points/">Magento 2 Full Page Caching Code Points</a></p>
-<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>What is the difference between setting cacheable&#x3D;”false” on a block in layout XML attribute and the block’s getCacheLifetime() &#x3D;&#x3D;&#x3D; null? A. cacheable&#x3D;”false” and the effect of getCacheLifetime &#x3D;&#x3D;&#x3D; null are the same. B. cacheable&#x3D;”false” affects the parent block or container. getCacheLifetime() &#x3D;&#x3D;&#x3D; null prevents the current block from being cached. C cacheable&#x3D;”false” prevents the entire page from caching. getCacheLifetime() &#x3D;&#x3D;&#x3D; null prevents the block from being cached, but it would still be cached by the full page caching mechanism. D. cacheable&#x3D;”false” prevents a block from being cached. getCacheLifetime() has been deprecated. Answer C</p>
+          Magento 2 Full Page Caching Code Points
 
+Practices Tests
+What is the difference between setting cacheable=”false” on a block in layout XML attribute and the block’s getCacheLifetime() === null? A. cacheable=”false” and the effect of getCacheLifetime === null are the same. B. cacheable=”false” affect
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/full-page-cache-code-points/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -851,12 +902,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>You will probably aggree that: Templates should only be about representation, and should not contain business logic. Magento’s blocks perform or provide business logic for the templates. One problem with inheriting the template block is the constructor is very large. This makes testing and reusability difcult. The answer to this is using a View Mode. While the block is responsible for outputting its contents and the view model handles the logic. For example:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;block class=&quot;Magento\Backend\Block\Template&quot; name=&quot;admin.temando.batch.solve&quot;&gt;</span><br><span class="line">    &lt;arguments&gt;</span><br><span class="line">        &lt;argument name=&quot;template&quot; xsi:type=&quot;string&quot;&gt;Temando_Shipping::batch/solve.phtml&lt;/argument&gt;</span><br><span class="line">        &lt;argument name=&quot;viewModel&quot; xsi:type=&quot;object&quot;&gt;Temando\Shipping\ViewModel\Batch\BatchDetails&lt;/argument&gt;</span><br><span class="line">        &lt;argument name=&quot;supportViewModel&quot; xsi:type=&quot;object&quot;&gt;Temando\Shipping\ViewModel\Account\Support&lt;/argument&gt;</span><br><span class="line">    &lt;/arguments&gt;</span><br><span class="line">&lt;/block&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Now, you can get your view model by using <code>$viewModel = $block-&gt;getData(&#39;viewModel&#39;);</code> in your template. This is because <code>Magento\Framework\View\Element\AbstractBlock</code> extends <code>\Magento\Framework\DataObject</code>.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="https://firegento.com/blog/2017/12/07/better-blocks-magento-2-php-view-models/">Better Blocks: Magento 2 PHP View Models</a></p>
-
+          You will probably aggree that: Templates should only be about representation, and should not contain business logic. Magento’s blocks perform or provide business logic for the templates. One problem with inheriting the template block is the constructor is very large. This makes testing and reusabili
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blocks-view-model/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -922,17 +976,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>The lifestyle of an object determines the number of instances that can exist of that object. You can configure dependencies in Magento to have the following lifestyles:</p>
-<ul>
-<li>Singleton(default) - One instance of this class exists. The object manager creates it at the first request. Requesting the class again returns the same instance. Disposing or ending the container registered to it releases the instance.</li>
-<li>Transient - The object manager creates a new instance of the class for every request.</li>
-</ul>
-<p>The shared property determines the lifestyle of both argument and type configurations.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:ObjectManager/etc/config.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;Magento\Filesystem&quot; shared=&quot;false&quot;&gt;</span><br><span class="line">        &lt;arguments&gt;</span><br><span class="line">            &lt;argument name=&quot;adapter&quot; xsi:type=&quot;object&quot; shared=&quot;false&quot;&gt;Magento\Filesystem\Adapter\Local&lt;/argument&gt;</span><br><span class="line">        &lt;/arguments&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          The lifestyle of an object determines the number of instances that can exist of that object. You can configure dependencies in Magento to have the following lifestyles:
 
-<p>In this example Magento\Filesystem is not shared, so all clients will retrieve separate instances of Magento\Filesystem. Also, every instance of Magento\Filesystem will get separate instance of $adapter, because it too is non-shared.</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h1><p><a target="_blank" rel="noopener" href="https://devdocs.magento.com/guides/v2.3/extension-dev-guide/build/di-xml-file.html#object-lifestyle-configuration">devDocs — Object lifestyle configuration</a></p>
-
+ * Singleton(default) - One instance of this class exists. The object manager creates it at the first request. Requesting the clas
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/object-lifestyle-configuration/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

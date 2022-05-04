@@ -231,39 +231,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="500-错误"><a href="#500-错误" class="headerlink" title="500 错误"></a><a href="#500-%E9%94%99%E8%AF%AF"></a>500 错误</h2><p><img src="/wp-content/uploads/2018/02/50-http-error.png"> 下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 <code>vi /etc/php/7.0/apache2/php.ini</code> 使得：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">display_errors = On</span><br><span class="line">error_reporting = E_ALL  E_STRICT</span><br></pre></td></tr></table></figure>
+          500 错误
+ 下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 vi /etc/php/7.0/apache2/php.ini 使得：
 
-<p>修改 apache 配置 <code>vi /etc/apache2/apache2.conf</code> 添加以下行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php_flag display_errors on</span><br><span class="line">php_value error_reporting 2039</span><br></pre></td></tr></table></figure>
+1
+2
 
-<p>重启 apache 后，错误提示如下： <img src="/wp-content/uploads/2018/02/500%E6%8F%90%E7%A4%BA.png"></p>
-<h3 id="本节参考链接"><a href="#本节参考链接" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/googlg/article/details/52814387">php 服务器500错误解决</a></p>
-<h2 id="Xdebug"><a href="#Xdebug" class="headerlink" title="Xdebug"></a><a href="#xdebug"></a>Xdebug</h2><p>Xdebug 提供了各种自带的函数，并对已有的某些 PHP 函数进行覆写，可以方便地用于调试排错； Xdebug 还可以跟踪程序的运行，通过对日志文件的分析，我们可以迅速找到程序运行的瓶颈所在，提高程序效率，从而提高整个系统的性能。 ubuntu 下的安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install php-xdebug</span><br></pre></td></tr></table></figure>
 
-<p>查看模块情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -m</span><br></pre></td></tr></table></figure>
+display_errors = On
+error_reporting = E_ALL  E_STRICT
 
-<p>重启 Apache</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service apache2 restart</span><br></pre></td></tr></table></figure>
 
-<p>返回的错误 <img src="/wp-content/uploads/2018/02/xdebug.png"></p>
-<h2 id="xbebug-对-var-dump-的覆写"><a href="#xbebug-对-var-dump-的覆写" class="headerlink" title="xbebug 对 var_dump() 的覆写"></a><a href="#xbebug-%E5%AF%B9-%60var_dump()%60-%E7%9A%84%E8%A6%86%E5%86%99"></a>xbebug 对 <code>var_dump()</code> 的覆写</h2><p>我们关闭 xdebug ，那么</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$arrTest = array(</span><br><span class="line">    &quot;test&quot;=&gt;&quot;abc&quot;,</span><br><span class="line">    &quot;test2&quot;=&gt;&quot;abc2&quot;</span><br><span class="line">);</span><br><span class="line">echo &#x27;&lt;pre&gt;&#x27;;</span><br><span class="line">var_dump(  $arrTest );</span><br><span class="line">echo &#x27;&lt;/pre&gt;&#x27;;</span><br><span class="line"></span><br><span class="line">var_dump(  $arrTest );</span><br></pre></td></tr></table></figure>
+修改 apache 配置 vi /etc/apache2/apache2.conf 添加以下行：
 
-<p>输出结果看起来是这样的： <img src="/wp-content/uploads/2018/02/disable-xdebug-vardump-.png"> 打开 xdebug ，同样的 php 文件 输出结果好看多了 <img src="/wp-content/uploads/2018/02/enable-xdebug-vardump-.png"></p>
-<h3 id="本节参考链接-1"><a href="#本节参考链接-1" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="http://www.oschina.net/question/54100_44230">使用xdebug调试PHP程序</a></p>
-<h2 id="phpstorm-配置-xdebug"><a href="#phpstorm-配置-xdebug" class="headerlink" title="phpstorm 配置 xdebug"></a><a href="#phpstorm-%E9%85%8D%E7%BD%AE-xdebug"></a>phpstorm 配置 xdebug</h2><p>首先 xdebug 已经安装好了。 <code>phpinfo()</code> 找到 xdebug 有一个设置文件在 <code>/etc/php/7.0/apache2/conf.d/20-xdebug.ini</code> 设置如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xdebug.remote_enable = on</span><br><span class="line">xdebug.idekey=PHPSTORM</span><br><span class="line">xdebug.remote_port= 9000</span><br><span class="line">xdebug.remote_host = localhost</span><br></pre></td></tr></table></figure>
+1
+2
 
-<p><code>xdebug.remote_host</code> <strong>是 xdebug 远程调试时要连接的主机地址。用本机开发的话填 “localhost” 就可以了，如果开发环境在远程，比如，在 vritualbox 的虚机里，你需要让虚拟机中的 Xdebug 连接上你本地，地址类似 “192.168.1.1”</strong> <code>xdebug.remote_port</code> <strong>是 xebug 远程调试时要连接的端口号</strong> 然后重启下 apache 打开 phpStorm 打开设置面板（windows Ctrl+Alt+S） “Languages &amp; Frameworks -&gt; PHP -&gt; Debug” ，端口改成 “9000” <img src="/wp-content/uploads/2018/02/xdebug-port.png"> 然后设置 Remote Web Server “Run -&gt; Web Server Debug Validation”, 选择 “Remote Web Server” 现在还没有“Deployment server”，点右侧的 “…”, 新增一个。详细的图文可以参考下面的链接。这步的目的是让 phpstorm 可以操作你的文件。 下面我们需要给浏览器装一个辅助工具，比如 <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?utm_source=chrome-app-launcher-info-dialog">xdebug Helper</a></p>
-<h3 id="调试过程"><a href="#调试过程" class="headerlink" title="调试过程"></a><a href="#%E8%B0%83%E8%AF%95%E8%BF%87%E7%A8%8B"></a>调试过程</h3><p>在 phpStorm 中开启监听端口 点击电话状图标 <img src="/wp-content/uploads/2018/02/phpstorm-%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3-disable.png"> 使其变成 <img src="/wp-content/uploads/2018/02/phpstorm-%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3-enable.png"> 然后设置断点 回到 chrome 中，打开要调试的页面，然后点击刚刚安装的虫子按钮，使其变绿。 如果一切顺利，刷新页面，程序会暂停在断点处。</p>
-<h3 id="本节参考链接-2"><a href="#本节参考链接-2" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="http://www.dahouduan.com/2017/10/15/phpstorm-config-xdebug/">Phpstorm 配置 Xdebug 断点调试教程</a> <a target="_blank" rel="noopener" href="http://guojianxiang.com/posts/2015-09-06-PHP_Debug_Tool-Xdebug.html">PHP调试工具-Xdebug</a></p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a><a href="#%E5%8E%9F%E7%90%86"></a>原理</h2><p><img src="/wp-content/uploads/2018/02/debug%E5%8E%9F%E7%90%86.png" alt="xdebug 原理图示"></p>
-<h3 id="本节参考链接-3"><a href="#本节参考链接-3" class="headerlink" title="本节参考链接"></a><a href="#%E6%9C%AC%E8%8A%82%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>本节参考链接</h3><p><a target="_blank" rel="noopener" href="https://laravel-china.org/articles/4090/the-first-step-to-becoming-a-senior-php-programmer-debugging-xdebug-principle">成为高级 PHP 程序员的第一步——调试（xdebug 原理篇）</a></p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a><a href="#%E5%85%B6%E4%BB%96"></a>其他</h3><p><a target="_blank" rel="noopener" href="https://blog.spoock.com/2017/09/19/xdebug-attack-surface/">xdebug的攻击面</a></p>
 
+php_flag display_errors on
+php_value error_reporting 2039
+
+
+重启 apache 后，错误提示如下： 
+
+本节参考链接
+php 服务器5
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/php-%E8%B0%83%E8%AF%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -329,71 +329,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a><a href="#%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"></a>命令总结</h2><p>工作区（Working Directory）-&gt; 暂存区（Stage or Index）-&gt; 本地仓库（Local Repository）-&gt; 远程仓库（Remote repository） 工作区有一个隐藏目录 <code>.git</code>，它是 Git 的版本库。 <img src="/wp-content/uploads/2018/02/git-repository.jpg"> git 只能跟踪文本文件的改动，不能跟踪二进制文件（word 、图片、 视频等）</p>
-<h3 id="create-amp-clone"><a href="#create-amp-clone" class="headerlink" title="create &amp; clone"></a><a href="#create-&&-clone"></a>create &amp; clone</h3><p><code>git init</code></p>
-<p>create new repository</p>
-<p><code>git clone path/to/repository</code></p>
-<p>clone local repository</p>
-<p><code>git clone username@host:path/to/repository</code></p>
-<p>clone remote repository</p>
-<h3 id="add-amp-remove"><a href="#add-amp-remove" class="headerlink" title="add &amp; remove"></a><a href="#add-&-remove"></a>add &amp; remove</h3><p><code>git add &lt;filename&gt;/*</code></p>
-<p>add (all)changes to INDEX</p>
-<p><code>git rm &lt;filename&gt;</code></p>
-<p>remove&#x2F;delete</p>
-<h3 id="commit-amp-synchronize"><a href="#commit-amp-synchronize" class="headerlink" title="commit &amp; synchronize"></a><a href="#commit-&-synchronize"></a>commit &amp; synchronize</h3><p><code>git commit -m &quot;Commit message&quot;</code></p>
-<p>commit changes</p>
-<p><code>git remote add origin &lt;server&gt;</code></p>
-<p>connect local repository to remote repository</p>
-<p><code>git push origin master</code></p>
-<p>push changes to remote repository</p>
-<p><code>git pull</code></p>
-<p>update local repository with remote changes</p>
-<h3 id="branches"><a href="#branches" class="headerlink" title="branches"></a><a href="#branches"></a>branches</h3><p><code>git branch</code></p>
-<p>查看分支</p>
-<p><code>git checkout -b &lt;branch&gt;</code></p>
-<p>create new branch 相当于 <code>git branch &lt;branch&gt;</code> <code>git checkout &lt;branch&gt;</code></p>
-<p><code>git checkout master</code></p>
-<p>switch to master branch</p>
-<p><code>git branch -d &lt;branch&gt;</code></p>
-<p>delete branch</p>
-<p><code>git push origin &lt;branch&gt;</code></p>
-<p>push branch to remote repository</p>
-<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a><a href="#merge"></a>merge</h3><p><code>git merge &lt;branch&gt;</code></p>
-<p>合并指定分支到当前分支</p>
-<p><code>git merge --no-ff -m &quot;commit message&quot; &lt;branch&gt;</code></p>
-<p>不要用 fast forward 方式合并</p>
-<h3 id="restore"><a href="#restore" class="headerlink" title="restore"></a><a href="#restore"></a>restore</h3><p><code>git status</code></p>
-<p>查看仓库状态</p>
-<p><code>git diff</code></p>
-<p>比较 工作区与暂存区</p>
-<p><code>git diff --cached</code></p>
-<p>比较 暂存区与本地仓库</p>
-<p><code>git diff master origin/master</code></p>
-<p>比较 本地仓库与远程仓库</p>
-<p><code>git checkout (HEAD) &lt;file&gt;/.</code></p>
-<p>回到上次 add 或 commit 的状态</p>
-<p><code>git reset (HEAD) &lt;file&gt;</code></p>
-<p><code>git add</code> 的逆向，退回到 add 之前</p>
-<p><code>git reset --hard &lt;commit&gt;</code></p>
-<p>回退版本，会重写工作区。比如： <code>git reset --hard HEAD^</code> 回退到上一个版本。</p>
-<p>在 git 中，用 <code>HEAD</code> 表示当前版本，上一个版本就是 <code>HEAD^</code>，上上一个版本就是 <code>HEAD^^</code> <code>HEAD~100</code> 就是往上 100 个版本。</p>
-<h3 id="others"><a href="#others" class="headerlink" title="others"></a><a href="#others"></a>others</h3><p><code>git --help</code></p>
-<p>查看命令</p>
-<p><code>git log --pretty=oneline --abbrev-commit --graph</code></p>
-<p>查看log</p>
-<p><code>git reflog</code></p>
-<p>查看所有操作记录</p>
-<p><code>git tag &lt;tag&gt; &lt;commit ID&gt;</code></p>
-<p>create tag</p>
-<p><code>git stash</code></p>
-<p>把工作现场收起来</p>
-<p><code>git stash list</code></p>
-<p>查看</p>
-<p><code>git stash pop</code></p>
-<p>相当于 <code>git stash apply</code> <code>git stash drop</code></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a><a href="#%E5%8F%82%E8%80%83"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000">工作区和暂存区</a> <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011969554#articleHeader14">Git的4个阶段的撤销更改</a> <a target="_blank" rel="noopener" href="http://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a></p>
-<h2 id="高阶"><a href="#高阶" class="headerlink" title="高阶"></a><a href="#%E9%AB%98%E9%98%B6"></a>高阶</h2><p><a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2">Git 官方 book</a></p>
+          命令总结
+工作区（Working Directory）-> 暂存区（Stage or Index）-> 本地仓库（Local Repository）-> 远程仓库（Remote repository） 工作区有一个隐藏目录 .git，它是 Git 的版本库。 git 只能跟踪文本文件的改动，不能跟踪二进制文件（word 、图片、 视频等）
 
+create & clone
+git init
+
+create new repository
+
+git clone path/to/repository
+
+clone local repository
+
+git clone username@host:pa
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/git-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -459,19 +415,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="了解"><a href="#了解" class="headerlink" title="了解"></a><a href="#%E4%BA%86%E8%A7%A3"></a>了解</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/learn-magento-before-use-archive/">了解 Magento</a></p>
-<h2 id="中文化"><a href="#中文化" class="headerlink" title="中文化"></a><a href="#%E4%B8%AD%E6%96%87%E5%8C%96"></a>中文化</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-%E4%B8%AD%E6%96%87%E5%8C%96%E4%B8%8E-language-package%EF%BC%88%E5%8E%9F%E5%88%9B%EF%BC%89/">Magento 2 中文化与 language package（原创）</a></p>
-<h2 id="使用手册"><a href="#使用手册" class="headerlink" title="使用手册"></a><a href="#%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C"></a>使用手册</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-user-guide-contents/">Magento 2 用户使用手册 目录索引</a></p>
-<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a><a href="#%E5%AD%97%E4%BD%93"></a>字体</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/web-fonts/">Web 字体</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/web-fonts-chinese/">中文 Web 安全字体</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a><a href="#%E5%AE%89%E8%A3%85"></a>安装</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/centos-7-%E6%90%AD%E5%BB%BA-lnmp-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-magento/">Centos 7 搭建 LNMP 环境安装 Magento</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/centos-7-lamp-magento-2/">CentOS 7 搭建 LAMP 环境安装 Magento 2</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/aliyun-ecs-install-magento-2/">阿里云 ECS (Ubuntu LAMP)安装 Magento 2 (原创)</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/wampserver-install-magento-2/">Wampserver 本地搭建 Magento 2</a> 如果你是 windows 系统，推荐使用虚拟机，而不是集成包（wamp, xampp）来进行进一步的探索。</p>
-<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a><a href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"></a>虚拟机</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/hyper-v-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/">hyper-v 创建虚拟机</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/virtualbox%E4%B8%8B%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E5%86%85%E7%BD%91%E4%BA%92%E9%80%9A%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D/">VirtualBox下虚拟机和主机内网互通+虚拟机静态IP的网络配置</a></p>
-<h2 id="Alan-Storm-系列"><a href="#Alan-Storm-系列" class="headerlink" title="Alan Storm 系列"></a><a href="#alan-storm-%E7%B3%BB%E5%88%97"></a>Alan Storm 系列</h2><h3 id="Magento-2-Advanced-Javascript"><a href="#Magento-2-Advanced-Javascript" class="headerlink" title="Magento 2: Advanced Javascript"></a><a href="#magento-2:-advanced-javascript"></a>Magento 2: Advanced Javascript</h3><p>1.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-javascript-init-scripts/">Magento 2 Javascript Init Scripts（翻译）</a> 2.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-knockoutjs-primer-for-magento-developers/">KnockoutJS Primer for Magento Developers （翻译）</a> 3.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_knockoutjs_integration/">Magento 2 KnockoutJS 集成</a> 4.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_the-curious-case-of-magento-2-mixins/">The Curious Case of Magento 2 Mixins</a> 5.Knockout Observables for Javascript Programmers 6.Modifying a jQuery Widget in Magento 2 补充： 1.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-javascript-init-ways/"><code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code></a> 2.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-and-konockoutjs/">Magento 2 and konockoutjs</a> 3.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/requirejs-modularity-async/">关于 RequireJS</a> 3.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-js-%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">Magento 2 JS 开发入门</a> 4.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/jquery-plugin-and-widget/">jQuery Plugin and Widget</a> 5.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/requirejs-%E7%9A%84-shim-%E7%94%A8%E6%B3%95/">RequireJS 的 shim 用法</a></p>
-<h3 id="Magento-2-for-PHP-MVC-Developers"><a href="#Magento-2-for-PHP-MVC-Developers" class="headerlink" title="Magento 2 for PHP MVC Developers"></a><a href="#magento-2-for-php-mvc-developers"></a>Magento 2 for PHP MVC Developers</h3><p>1.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-mvvm-mvc/">Magento 2 简介 —— 不再是 MVC （翻译）</a> 2.Magento 2: Serving Frontend Files 3.Magento 2: Adding Frontend Files to your Module 4.Magento 2: Code Generation with Pestle 5.Magento 2: Adding Frontend Assets via Layout XML 6.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-and-requirejs/">Magento 2 and RequireJS (翻译)</a> 7.Magento 2 and the Less CSS Preprocessor 8.Magento 2: CRUD Models for Database Access 9.Magento 2: Understanding Object Repositories 10.Magento 2: Understanding Access Control List Rules 11.Magento 2: Admin Menu Items 12.Magento 2: Advanced Routing 13.Magento 2: Admin MVC&#x2F;MVVM Endpoints 补充: 1.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-request-flow/">Magento 2 的请求处理流程</a> 2.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-layout/">Magento Layout</a></p>
-<h3 id="The-Magento-2-Object-System"><a href="#The-Magento-2-Object-System" class="headerlink" title="The Magento 2 Object System"></a><a href="#the-magento-2-object-system"></a>The Magento 2 Object System</h3><p>1.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_object_manager/">Magento 2 Object Manager</a> 2.Magento 2’s Automatic Dependency Injection 3.Magento 2 Object Manager Preferences 4.Magento 2 Object Manager Argument Replacement 5.Magento 2 Object Manager Virtual Types 6.Magento 2 Object Manager: Proxy Objects 7.Magento 2 Object Manager: Instance Objects 8.Magento 2 Object Manager Plugin System Magento 2 and Composer 1.Magento 2: Composer, Marketplace, and Satis 2.Magento 2: Composer Plugins 3.Magento 2: Composer and Components</p>
-<h3 id="Magento-2-UI-Components"><a href="#Magento-2-UI-Components" class="headerlink" title="Magento 2 UI Components"></a><a href="#magento-2-ui-components"></a>Magento 2 UI Components</h3><p>1.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_introducing_ui_components/">Magento 2 的 UI Components 介绍（翻译）</a> 2.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_simplest_ui_component/">Magento 2: Simplest UI Component</a> 3.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_simplest_ui_knockout_component/">Magento 2: Simplest UI Knockout Component</a> 4.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_simplest_xsd_valid_ui_component/">Magento 2: Simplest XSD Valid UI Component</a> 5.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_ec6_template_literals/">Magento 2: ES6 Template Literals</a> 6.Magento 2: uiClass Data Features 7.Magento 2: UI Component Data Sources 8.Magento 2: UI Component Retrospective 9.Observables, uiElement Objects, and Variable Tracking 10.Magento 2: uiElement Features and Checkout Application 11.Magento 2: Remaining uiElement Defaults 12.Magento 2: Knockout.js Template Primer 13.Magento 2 UI Component Code Generation 补充： <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/category/developer-documentation/articles-for-professional-programmers/">UI components 完整案例</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento-2s-base-javascript-class/">Magento 2’s Base Javascript Class</a></p>
-<h3 id="Magento-2-uiElement-Internals"><a href="#Magento-2-uiElement-Internals" class="headerlink" title="Magento 2: uiElement Internals"></a><a href="#magento-2:-uielement-internals"></a>Magento 2: uiElement Internals</h3><p>1.Magento 2: Defaults, uiElement, Observables, and the Fundamental Problem of Userland Object Systems 2.Magento 2: Javascript Primer for uiElement Internals 3.Tracing Javascript’s Prototype Chain 4.Magento 2: uiElement Standard Library Primer 5.Magento 2: Using the uiClass Object Constructor 6.Magento 2: uiClass Internals</p>
-<h2 id="插件开发系列教程"><a href="#插件开发系列教程" class="headerlink" title="插件开发系列教程"></a><a href="#%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B"></a>插件开发系列教程</h2><p>1.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/%E5%88%9B%E5%BB%BA-magento-2-hello-world-simple-module/">创建 Magento 2 Hello World Simple Module</a> 2.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-%E4%B8%AD%E7%9A%84-controller/">Magento 2 中的 Controller</a> 3.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/crud-models-in-magento-2/">CRUD Models in Magento 2</a> 4.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-templates-use-block-or-this/">Magento 2 Templates: Use $block or $this</a> 5.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/system-xml-configuration/">System.xml Configuration</a> 6.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-admin-acl-access-control-lists/">Magento 2 Admin ACL Access Control Lists</a> 7.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-create-admin-menu/">Magento 2 Create Admin Menu</a> 8.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/layout-instruction-%E4%B9%8B-argument-%E5%92%8C-action/">Layout instruction 之 argument 和 action</a> 9.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-javascript-init-ways/"><code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code></a> 10.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-and-konockoutjs/">Magento 2 and konockoutjs</a> 11.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/how-to-create-admin-grid-in-magento-2/">How to Create Admin Grid in Magento 2</a> 12.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-js-%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8/">Magento 2 JS 开发入门</a> 13.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-helper/">magento 2 helper</a> 14.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/ui-components-%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B/">UI components 完整案例</a> 15.<a target="_blank" rel="noopener" href="https://www.hellomagento2.com/magento-2-%E4%BD%BF%E7%94%A8-grunt-%E7%BC%96%E8%AF%91-less/">Magento 2 使用 Grunt 编译 Less</a></p>
+          了解
+了解 Magento
 
+中文化
+Magento 2 中文化与 language package（原创）
+
+使用手册
+Magento 2 用户使用手册 目录索引
+
+字体
+Web 字体 中文 Web 安全字体
+
+安装
+Centos 7 搭建 LNMP 环境安装 Magento CentOS 7 搭建 LAMP 环境安装 Magento 2 阿里云 ECS (Ubuntu LAMP)安装 Magento 2 (原创) Wampserver 本地搭建 Magento 2 如果你是 windows 系统，推荐使用虚拟机，而不是集成包（wamp, xampp）来进行进一步的探索。
+
+虚拟机
+hype
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/summary/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -537,31 +505,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="配置主机的内网静态-IP"><a href="#配置主机的内网静态-IP" class="headerlink" title="配置主机的内网静态 IP"></a><a href="#%E9%85%8D%E7%BD%AE%E4%B8%BB%E6%9C%BA%E7%9A%84%E5%86%85%E7%BD%91%E9%9D%99%E6%80%81-ip"></a>配置主机的内网静态 IP</h2><p>打开 Orcale VM VirtualBox 管理器，从菜单中选择 <strong>管理</strong> &gt; <strong>主机网络管理器</strong>，双击 VirtualBox Host-Only Ethernet Adapter ，修改他的 IP 地址为 192.168.1.1 <img src="/wp-content/uploads/2018/01/host-only.png"> 关闭 DHCP 服务器 <img src="/wp-content/uploads/2018/01/host-only-colse-dhcp.png"></p>
-<h2 id="配置虚拟机的网卡"><a href="#配置虚拟机的网卡" class="headerlink" title="配置虚拟机的网卡"></a><a href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%BD%91%E5%8D%A1"></a>配置虚拟机的网卡</h2><p>加入第一块网卡，配置如下： <img src="/wp-content/uploads/2018/01/eth0.png"> 加入第二块网卡，配置如下： <img src="/wp-content/uploads/2018/01/eth1.png"> 注意：虚拟机之间的内网名字可以随便起，这里叫做 neta。如果在配置在第二个虚拟机的时候，也要记得选择 netca 这个内网名字，这样虚拟机之间才可以互相通信。 加入第三块网卡，配置如下： <img src="/wp-content/uploads/2018/01/eth2.png"> 装系统的步骤就跳过了，博主使用的是 ubuntu 16 进入系统后，输入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig -a</span><br></pre></td></tr></table></figure>
+          配置主机的内网静态 IP
+打开 Orcale VM VirtualBox 管理器，从菜单中选择 管理 > 主机网络管理器，双击 VirtualBox Host-Only Ethernet Adapter ，修改他的 IP 地址为 192.168.1.1 关闭 DHCP 服务器 
 
-<p>查看所有的网卡信息，根据 mac 地址确定三块网卡对应的名称。</p>
-<h2 id="在虚拟机内部配置网卡"><a href="#在虚拟机内部配置网卡" class="headerlink" title="在虚拟机内部配置网卡"></a><a href="#%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%85%E9%83%A8%E9%85%8D%E7%BD%AE%E7%BD%91%E5%8D%A1"></a>在虚拟机内部配置网卡</h2><p>sudo vi &#x2F;etc&#x2F;network&#x2F;interfaces</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># This file describes the network interfaces available on your system</span><br><span class="line"># and how to activate them. For more information, see interfaces(5).</span><br><span class="line"></span><br><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line"># The loopback network interface</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"># The primary network interface</span><br><span class="line">auto enp0s3</span><br><span class="line">iface enp0s3 inet static</span><br><span class="line">address 192.168.1.2</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line"></span><br><span class="line">auto enp0s8</span><br><span class="line">iface enp0s8 inet static</span><br><span class="line">address 192.168.0.2</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line"></span><br><span class="line">auto enp0s9</span><br><span class="line">iface enp0s9 inet dhcp</span><br></pre></td></tr></table></figure>
-
-<p>重启 networking 服务使其生效：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/networking restart</span><br></pre></td></tr></table></figure>
-
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a><a href="#%E9%AA%8C%E8%AF%81"></a>验证</h2><p>通过主机 ping 虚拟机</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.1.2</span><br></pre></td></tr></table></figure>
-
-<p>在虚拟机中 ping 主机</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.1.1</span><br></pre></td></tr></table></figure>
-
-<p>ping 不通，尝试关闭主机的防火墙，这次就通了。 虚拟机之间互 ping</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.0.2</span><br></pre></td></tr></table></figure>
-
-<p>虚拟机上网</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping baidu.com</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="http://xintq.net/2014/09/05/virtualbox/">VirtualBox下虚拟机和主机内网互通+虚拟机静态IP的网络配置</a></p>
-
+配置虚拟机的网卡
+加入第一块网卡，配置如下： 加入第二块网卡，配置如下： 注意：虚拟机之间的内网名字可以随便起，这里叫做 neta。如果在配置在第二个虚拟机的时候，也要记得选择 netca 这个内网名字，这样虚拟机之间才可以互相通信。 加入第三块网卡，配置如下： 装系统的步骤就跳过了，博主使用的是 ubuntu 16
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/virtualbox%E4%B8%8B%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8C%E4%B8%BB%E6%9C%BA%E5%86%85%E7%BD%91%E4%BA%92%E9%80%9A%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%9D%99%E6%80%81ip%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -627,11 +583,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在修改了 wsdl.xml 文件后，需要刷新 magento 缓存， <code>http://yourdomain/index.php/api/v2_soap/?wsdl</code> 应该就会有变化。 如果有变化，但是实际没有效果，可以考虑删除 soap 的缓存文件。（尤其是在 wamp 、 xampp 等集成环境中） php.ini 中关于 SOAP 缓存的设置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">; Enables or disables WSDL caching feature.</span><br><span class="line">; http://php.net/soap.wsdl-cache-enabled</span><br><span class="line">soap.wsdl_cache_enabled=1</span><br><span class="line"></span><br><span class="line">; Sets the directory name where SOAP extension will put cache files.</span><br><span class="line">; http://php.net/soap.wsdl-cache-dir</span><br><span class="line">soap.wsdl_cache_dir=&quot;D:/wamp64/tmp&quot;</span><br></pre></td></tr></table></figure>
+          在修改了 wsdl.xml 文件后，需要刷新 magento 缓存， http://yourdomain/index.php/api/v2_soap/?wsdl 应该就会有变化。 如果有变化，但是实际没有效果，可以考虑删除 soap 的缓存文件。（尤其是在 wamp 、 xampp 等集成环境中） php.ini 中关于 SOAP 缓存的设置
 
-<p>Magento 1 中后台相关设置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System -&gt; Configuration -&gt; Magento Core API -&gt; General Settings</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
+
+
+; Enables or disables WSDL caching feature.
+; http://php.net/soap.wsdl-cache-enabled
+soap.wsdl_cache_enabled=1
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/soap-%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -697,11 +670,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>php 版本 5.6.31 Magento 1 wamp 环境 使用 soap 登录时遇到错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught SoapFault exception: [Client] looks like we got no XML document in D:\wamp64\www\soap_wq.php:3 Stack trace: #0 D:\wamp64\www\soap_wq.php(3): SoapClient-&gt;__call(&#x27;login&#x27;, Array) #1 D:\wamp64\www\soap_wq.php(3): SoapClient-&gt;login....</span><br></pre></td></tr></table></figure>
+          php 版本 5.6.31 Magento 1 wamp 环境 使用 soap 登录时遇到错误：
 
-<p>解决办法： 修改 <code>php.ini</code> 的 <code>always_populate_raw_post_data = -1</code> 之前是被注释掉的状态。</p>
+1
 
+
+Uncaught SoapFault exception: [Client] looks like we got no XML document in D:\wamp64\www\soap_wq.php:3 Stack trace: #0 D:\wamp64\www\soap_wq.php(3): SoapClient->__call('login', Array) #1 D:\wamp64\www\soap_wq.php(3): SoapClient->login....
+
+
+解决办法
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-soap-%E9%94%99%E8%AF%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -767,41 +752,63 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>表 <code>directory_country_region</code></p>
-<p>region_id</p>
-<p>country_id</p>
-<p>code</p>
-<p>default_name</p>
-<p>485</p>
-<p>CN</p>
-<p>110000</p>
-<p>北京1</p>
-<p>表 <code>directory_country_region_name</code></p>
-<p>local</p>
-<p>region_id</p>
-<p>name</p>
-<p>en_US</p>
-<p>485</p>
-<p>北京2</p>
-<p>zh_CN</p>
-<p>485</p>
-<p>北京3</p>
-<p>代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo Mage::app()-&gt;getLocale()-&gt;getLocaleCode();</span><br><span class="line">echo &#x27;&lt;br&gt;&#x27;;</span><br><span class="line">$regionModel = Mage::getModel(&#x27;directory/region&#x27;)-&gt;load(&#x27;485&#x27;);</span><br><span class="line">echo $region = $regionModel-&gt;getName();</span><br></pre></td></tr></table></figure>
+          表 directory_country_region
 
-<p>不同 locale 值的输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">en_US</span><br><span class="line">北京2</span><br></pre></td></tr></table></figure>
+region_id
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zh_CN</span><br><span class="line">北京3</span><br></pre></td></tr></table></figure>
+country_id
 
-<p>那么按照这样的逻辑，如果我们按照 region name 来取 region id 的话会怎样呢？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$regionModel = Mage::getModel(&#x27;directory/region&#x27;)-&gt;loadByName(&#x27;北京3&#x27;, &#x27;CN&#x27;);</span><br><span class="line">echo &#x27;&lt;br&gt;----&#x27;;</span><br><span class="line">echo $regionModel-&gt;getName();</span><br><span class="line">echo &#x27;&lt;br&gt;----&#x27;;</span><br><span class="line">echo $regionModel-&gt;getId();</span><br></pre></td></tr></table></figure>
+code
 
-<p>结果是没有输出，如果是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">----北京3</span><br><span class="line">----485</span><br></pre></td></tr></table></figure>
+default_name
 
-<p>所以取 region name 是自动根据时区来输出的。但根据名称取 region ，region name 是根据 <code>directory_country_region</code> 的 <code>default_name</code> 来看下这部分实现的源代码： Mage_Directory_Model_Resource_Region 类</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public function loadByName(Mage_Directory_Model_Region $region, $regionName, $countryId)</span><br><span class="line">&#123;</span><br><span class="line">    return $this-&gt;_loadByCountry($region, $countryId, (string)$regionName, &#x27;default_name&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">protected function _loadByCountry($object, $countryId, $value, $field)</span><br><span class="line">&#123;</span><br><span class="line">    $adapter        = $this-&gt;_getReadAdapter();</span><br><span class="line">    $locale         = Mage::app()-&gt;getLocale()-&gt;getLocaleCode();</span><br><span class="line">    $joinCondition  = $adapter-&gt;quoteInto(&#x27;rname.region_id = region.region_id AND rname.locale = ?&#x27;, $locale);</span><br><span class="line">    $select         = $adapter-&gt;select()</span><br><span class="line">        -&gt;from(array(&#x27;region&#x27; =&gt; $this-&gt;getMainTable()))</span><br><span class="line">        -&gt;joinLeft(</span><br><span class="line">            array(&#x27;rname&#x27; =&gt; $this-&gt;_regionNameTable),</span><br><span class="line">            $joinCondition,</span><br><span class="line">            array(&#x27;name&#x27;))</span><br><span class="line">        -&gt;where(&#x27;region.country_id = ?&#x27;, $countryId)</span><br><span class="line">        -&gt;where(&quot;region.&#123;$field&#125; = ?&quot;, $value);</span><br><span class="line"></span><br><span class="line">    $data = $adapter-&gt;fetchRow($select);</span><br><span class="line">    if ($data) &#123;</span><br><span class="line">        $object-&gt;setData($data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $this-&gt;_afterLoad($object);</span><br><span class="line"></span><br><span class="line">    return $this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+485
+
+CN
+
+110000
+
+北京1
+
+表 directory_country_region_name
+
+local
+
+region_id
+
+name
+
+en_US
+
+485
+
+北京2
+
+zh_CN
+
+485
+
+北京3
+
+代码：
+
+1
+2
+3
+4
+
+
+echo Mage::app()->getLocale()->getLocaleCode();
+echo '<br>';
+$regionModel = Mage::getModel('directory
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-1-region-region-name-%E5%92%8C-locale/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -867,17 +874,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>直接上代码吧。 必不可少的是 <code>app/etc/modules/MyCompany_MyModule.xml</code> 和 <code>app/code/local/MyCompany/MyModule/etc/config.xml</code> File: app&#x2F;etc&#x2F;modules&#x2F;ThankIT_Devtool.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config&gt;</span><br><span class="line">    &lt;modules&gt;</span><br><span class="line">        &lt;ThankIT_Devtool&gt;</span><br><span class="line">            &lt;active&gt;true&lt;/active&gt;</span><br><span class="line">            &lt;codePool&gt;local&lt;/codePool&gt;</span><br><span class="line">        &lt;/ThankIT_Devtool&gt;</span><br><span class="line">    &lt;/modules&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          直接上代码吧。 必不可少的是 app/etc/modules/MyCompany_MyModule.xml 和 app/code/local/MyCompany/MyModule/etc/config.xml File: app/etc/modules/ThankIT_Devtool.xml
 
-<p>File:app&#x2F;code&#x2F;local&#x2F;ThankIT&#x2F;Devtool&#x2F;etc&#x2F;config.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config&gt;</span><br><span class="line">    &lt;modules&gt;</span><br><span class="line">        &lt;ThankIT_Devtool&gt;</span><br><span class="line">            &lt;version&gt;0.1.0&lt;/version&gt;</span><br><span class="line">        &lt;/ThankIT_Devtool&gt;</span><br><span class="line">    &lt;/modules&gt;</span><br><span class="line">     &lt;frontend&gt;</span><br><span class="line">        &lt;routers&gt;</span><br><span class="line">            &lt;thankit_SomeFreeRouterName1&gt;</span><br><span class="line">                &lt;use&gt;standard&lt;/use&gt;</span><br><span class="line">                &lt;args&gt;</span><br><span class="line">                    &lt;module&gt;ThankIT_Devtool&lt;/module&gt;</span><br><span class="line">                    &lt;frontName&gt;dev&lt;/frontName&gt;</span><br><span class="line">                &lt;/args&gt;</span><br><span class="line">            &lt;/thankit_SomeFreeRouterName1&gt;</span><br><span class="line">        &lt;/routers&gt;</span><br><span class="line">    &lt;/frontend&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
+8
+9
 
-<p>File: app&#x2F;code&#x2F;local&#x2F;ThankIT&#x2F;Devtool&#x2F;controllers&#x2F;IndexController.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">class ThankIT_Devtool_IndexController extends Mage_Core_Controller_Front_Action</span><br><span class="line">&#123;</span><br><span class="line">    public function indexAction()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &#x27;Hello developer...&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    public function sayHelloAction()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &#x27;Hello one more time...&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>下面访问 <code>http://yoursite.com/dev/index/sayhello</code> 就会出现 <code>Hello one more time...</code> 了。</p>
-
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <ThankIT_Devtool>
+            <active>true</active>
+            <codePool>local
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-1-%E5%88%9B%E5%BB%BA%E7%AE%80%E5%8D%95%E6%A8%A1%E5%9D%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -943,23 +966,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>现代浏览器出于安全方面的考虑，不允许网站访问本地文件。但是有时候我们调试需要访问本地文件。 解决方法是通过给 chrome 加运行参数来禁用浏览器的安全设置。 在 chrome 快捷方式上右击，进入属性，找到 “目标” (target) ，这里面通常是 chrome 程序的位置信息，例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot;</span><br></pre></td></tr></table></figure>
+          现代浏览器出于安全方面的考虑，不允许网站访问本地文件。但是有时候我们调试需要访问本地文件。 解决方法是通过给 chrome 加运行参数来禁用浏览器的安全设置。 在 chrome 快捷方式上右击，进入属性，找到 “目标” (target) ，这里面通常是 chrome 程序的位置信息，例如：
 
-<p>这样我们在他的末尾加上运行参数，变成：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot; --args --disable-web-security --allow-file-access-from-files</span><br></pre></td></tr></table></figure>
+1
 
-<p><img src="/wp-content/uploads/2018/01/chrome-args.png" alt="chrome 加运行参数"> 然后通过该快捷方式启动浏览器，会有如下提示： <img src="/wp-content/uploads/2018/01/chrome-tips.png" alt="chrome 安全性提示"> 如果没有提示，可以关闭所有 chrome 然后重新开一次。</p>
-<p>本来以为问题解决了，但是居然有时灵有时不灵。。</p>
-<p>然后查到资料说较高的版本还需要配置一个参数 <code>--user-data-dir</code></p>
-<p>这样就变成了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot; --disable-web-security --allow-file-access-from-files --user-data-dir=C:\MyChromeDevUserData</span><br></pre></td></tr></table></figure>
 
-<p><code>C:\MyChromeDevUserData</code> 是我们自己创建的目录。重新打开 chrome 后，原来收藏的链接和历史记录都不见了，相当于另一个用户。</p>
-<p>但是，很悲催的是，尽管不再报错 <code>Not allowed to load local resource</code> 但对于本地文件的访问依然被 cancle 了。这样还是无法测试。。。</p>
-<p>可能和协议限制有关。。 chrome 版本是 63.0.3239.132（正式版本） （32 位）</p>
-<p>暂时先这样把。有解决了的童鞋，感谢给我留言哦！</p>
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 
+
+这样我们在他的末尾加上运行参数，变成：
+
+1
+
+
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/chrome-%E6%8A%A5%E9%94%99-not-allowed-to-load-local-resource/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1025,11 +1053,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>问题一：安装卡在 sample data 部分，没有错误提示 <img src="/wp-content/uploads/2018/01/error.png" alt="wamp 安装 Magento 2 卡住"> 解决方法： increasing the MySQL max_allowed_packet Wamp 有设置。可以通过 sql 语句</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show VARIABLES like &#x27;%max_allowed_packet%&#x27;;</span><br></pre></td></tr></table></figure>
+          问题一：安装卡在 sample data 部分，没有错误提示 解决方法： increasing the MySQL max_allowed_packet Wamp 有设置。可以通过 sql 语句
 
-<p>查看设置值。 问题二：安装到 91% 卡住，但是看不出有问题 解决方法： 可能已经安装好了，可以尝试直接访问。 十有八九访问发现样式丢失，则执行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento  setup:static-content:deploy</span><br></pre></td></tr></table></figure>
+1
+
+
+show VARIABLES like '%max_allowed_packet%';
+
+
+查看设置值。 问题二：安装到 91% 卡住，但是看不出有问题 解决方法： 可能已经安装好了，可以尝试直接访问。 十有八九访问发现样式丢失，则执行
+
+1
+
+
+php bin/magento  setup:static-content:deploy
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/wamp-%E5%AE%89%E8%A3%85-magento-2-%E5%8D%A1%E4%BD%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

@@ -231,21 +231,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在 Magento 2 的 templates 中使用 <code>$block</code> 还是 <code>$this</code> ？ 结论：<code>$block</code> 和 <code>$this</code> 指向同一个 block 对象，但是建议使用 <code>$block</code> 不建议使用 <code>$this</code>。 在 M2 的 template 中，<code>$this</code> 指向的不再是该 template 的 block 对象，而是一个 template 类：<code>Magento\Framework\View\TemplateEngine\Php</code> 以之前的 ThankIT_HelloWorld 模块为基础，修改以下文件，进行实验。 File：app\code\ThankIT\HelloWorld\view\frontend\templates\index\index.phtml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Welcome to hellomagento2.com</span><br><span class="line">&lt;?php</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">echo get_class($this);</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">echo $block-&gt;sayHello();</span><br><span class="line">echo &#x27;&lt;br/&gt;&#x27;;</span><br><span class="line">// discouraged</span><br><span class="line">echo $this-&gt;sayHello();</span><br></pre></td></tr></table></figure>
-
-<p>File: app\code\ThankIT\HelloWorld\Block\Index\Index.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Block\Index;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\View\Element\Template;</span><br><span class="line"></span><br><span class="line">class Index extends Template</span><br><span class="line">&#123;</span><br><span class="line">    # ... other code</span><br><span class="line">    public function sayHello()</span><br><span class="line">    &#123;</span><br><span class="line">        return __(&#x27;Hello World&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">    #... ohter code ...</span><br></pre></td></tr></table></figure>
-
-<p>那么访问我们的 url <code>http://example.com/helloworld/index/index/</code> 得到的类名正是 <code>Magento\Framework\View\TemplateEngine\Php</code> 查看该类的以下方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Redirects methods calls to the current block</span><br><span class="line"> *</span><br><span class="line"> * This is needed because the templates are included in the context of this engine</span><br><span class="line"> * rather than in the context of the block.</span><br><span class="line"> *</span><br><span class="line"> * @param   string $method</span><br><span class="line"> * @param   array  $args</span><br><span class="line"> * @return  mixed</span><br><span class="line"> */</span><br><span class="line">public function __call($method, $args)</span><br><span class="line">&#123;</span><br><span class="line">    return call_user_func_array([$this-&gt;_currentBlock, $method], $args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这就解释了为什么我们可以通过 <code>$this</code> 来调用 block 中的方法。 查看该类的以下方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Render output</span><br><span class="line"> *</span><br><span class="line"> * Include the named PHTML template using the given block as the $this</span><br><span class="line"> * reference, though only public methods will be accessible.</span><br><span class="line"> *</span><br><span class="line"> * @param BlockInterface           $block</span><br><span class="line"> * @param string                   $fileName</span><br><span class="line"> * @param array                    $dictionary</span><br><span class="line"> * @return string</span><br><span class="line"> * @throws \Exception</span><br><span class="line"> */</span><br><span class="line">public function render(BlockInterface $block, $fileName, array $dictionary = [])</span><br><span class="line">&#123;</span><br><span class="line">    ob_start();</span><br><span class="line">    try &#123;</span><br><span class="line">        $tmpBlock = $this-&gt;_currentBlock;</span><br><span class="line">        $this-&gt;_currentBlock = $block;</span><br><span class="line">        extract($dictionary, EXTR_SKIP);</span><br><span class="line">        include $fileName;</span><br><span class="line">        $this-&gt;_currentBlock = $tmpBlock;</span><br><span class="line">    &#125; catch (\Exception $exception) &#123;</span><br><span class="line">        ob_end_clean();</span><br><span class="line">        throw $exception;</span><br><span class="line">    &#125;</span><br><span class="line">    /** Get output buffer. */</span><br><span class="line">    $output = ob_get_clean();</span><br><span class="line">    return $output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 <code>include $fileName;</code> 前，<code>$this-&gt;_currentBlock = $block</code> ，而在 template 中，<code>$block</code> 和 <code>$this-&gt;_currentBlock</code> 是一样的。这就解释了为什么我们可以通过 <code>$block</code> 来访问 block 中的方法。 但是 <code>The php sniffer with the EcgM2 standards</code> 不建议使用 <code>$this</code> ，所以我们还是用 <code>$block</code> 吧。</p>
-<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p><a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/103096/magento-2-templates-use-block-or-this">Magento 2 Templates: Use <code>$block</code> or <code>$this</code>?</a></p>
-
+          在 Magento 2 的 templates 中使用 $block 还是 $this ？ 结论：$block 和 $this 指向同一个 block 对象，但是建议使用 $block 不建议使用 $this。 在 M2 的 template 中，$this 指向的不再是该 template 的 block 对象，而是一个 template 类：Magento\Framework\View\TemplateEngine\Php 以之前的 ThankIT_HelloWorld 模块为基础，修改以下文件，进行实验。 File：app\code\ThankIT\HelloWorld\view\fro
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-templates-use-block-or-this/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -311,14 +305,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>apt-get update &amp; upgrade</code> 后出现了以下错误，Magento 2 的站点也出现 500 错误。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library &#x27;/usr/lib/php/20151012/dom.so&#x27; - /usr/lib/php/20151012/dom.so: undefined symbol: php_libxml_node_free_list in Unknown on line 0</span><br><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library &#x27;/usr/lib/php/20151012/xmlreader.so&#x27; - /usr/lib/php/20151012/xmlreader.so: undefined symbol: dom_node_class_entry in Unknown on line 0</span><br><span class="line">PHP Warning:  PHP Startup: Unable to load dynamic library &#x27;/usr/lib/php/20151012/xsl.so&#x27; - /usr/lib/php/20151012/xsl.so: undefined symbol: dom_node_class_entry in Unknown on line 0</span><br></pre></td></tr></table></figure>
+          apt-get update & upgrade 后出现了以下错误，Magento 2 的站点也出现 500 错误。
 
-<p>解决办法，重新安装了一下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y php7.0 libapache2-mod-php7.0 php7.0 php7.0-common php7.0-gd php7.0-mysql php7.0-mcrypt php7.0-curl php7.0-intl php7.0-xsl php7.0-mbstring php7.0-zip php7.0-bcmath php7.0-iconv</span><br></pre></td></tr></table></figure>
+1
+2
+3
 
-<p><code>servie apache2 restart</code> 后正常了。</p>
 
+PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/lib/php/20151012/dom.so' - /usr/lib/php/20151012/dom.so: undefined symbol: php_libxml_node_free_list in Unknown on line 0
+PHP Warning:  PHP Startup: Unable to load dyna
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ubuntu-14-04-php-warning/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -384,68 +387,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>本篇我们将介绍通过 setup script 创建数据表，创建 Magento 2 model, resource model, collection ，以及如何通过它们对数据进行增删改查。 Magento 2 中的 CRUD Models 用于操纵数据库中的数据，不需要很多代码就可以创建一个 CRUD 。 CRUD 代表 Create, Read, Update and Delete （增删改查）。 我们将创建一个表 <code>thankit_helloworld_post</code></p>
-<p>Name</p>
-<p>Description</p>
-<p>post_id</p>
-<p>ID 主键</p>
-<p>name</p>
-<p>post 的名称</p>
-<p>url_key</p>
-<p>Post URL Key</p>
-<p>post_content</p>
-<p>post 的内容</p>
-<p>tags</p>
-<p>post tags</p>
-<p>status</p>
-<p>post 状态</p>
-<p>featured_image</p>
-<p>Post Featured Image</p>
-<p>sample_country_selection</p>
-<p>Post Sample Country Selection</p>
-<p>sample_multiselect</p>
-<p>Post Sample Multiselect</p>
-<p>created_at</p>
-<p>创建时间</p>
-<p>updated_at</p>
-<p>更新时间</p>
-<h2 id="第一步：Setup-Script"><a href="#第一步：Setup-Script" class="headerlink" title="第一步：Setup Script"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Asetup-script"></a>第一步：Setup Script</h2><p>File:app&#x2F;code&#x2F;ThankIT&#x2F;HelloWorld&#x2F;Setup&#x2F;InstallSchema.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Setup;</span><br><span class="line"></span><br><span class="line">class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * install tables</span><br><span class="line">     *</span><br><span class="line">     * @param \Magento\Framework\Setup\SchemaSetupInterface $setup</span><br><span class="line">     * @param \Magento\Framework\Setup\ModuleContextInterface $context</span><br><span class="line">     * @return void</span><br><span class="line">     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)</span><br><span class="line">     */</span><br><span class="line">    public function install(</span><br><span class="line">        \Magento\Framework\Setup\SchemaSetupInterface $setup,</span><br><span class="line">        \Magento\Framework\Setup\ModuleContextInterface $context</span><br><span class="line">    ) &#123;</span><br><span class="line">        $installer = $setup;</span><br><span class="line">        $installer-&gt;startSetup();</span><br><span class="line">        if (!$installer-&gt;tableExists(&#x27;thankit_helloworld_post&#x27;)) &#123;</span><br><span class="line">            $table = $installer-&gt;getConnection()-&gt;newTable(</span><br><span class="line">                $installer-&gt;getTable(&#x27;thankit_helloworld_post&#x27;)</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;post_id&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,</span><br><span class="line">                null,</span><br><span class="line">                [</span><br><span class="line">                    &#x27;identity&#x27; =&gt; true,</span><br><span class="line">                    &#x27;nullable&#x27; =&gt; false,</span><br><span class="line">                    &#x27;primary&#x27;  =&gt; true,</span><br><span class="line">                    &#x27;unsigned&#x27; =&gt; true,</span><br><span class="line">                ],</span><br><span class="line">                &#x27;Post ID&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;name&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                255,</span><br><span class="line">                [&#x27;nullable =&gt; false&#x27;],</span><br><span class="line">                &#x27;Post Name&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;url_key&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                255,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post URL Key&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;post_content&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                &#x27;64k&#x27;,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Post Content&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;tags&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                255,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Tags&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;status&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,</span><br><span class="line">                1,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Status&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;featured_image&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                255,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Featured Image&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;sample_country_selection&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                3,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Sample Country Selection&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;sample_upload_file&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                255,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Sample File&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;sample_multiselect&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,</span><br><span class="line">                &#x27;64k&#x27;,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Sample Multiselect&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;created_at&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,</span><br><span class="line">                null,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Created At&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;addColumn(</span><br><span class="line">                &#x27;updated_at&#x27;,</span><br><span class="line">                \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,</span><br><span class="line">                null,</span><br><span class="line">                [],</span><br><span class="line">                &#x27;Post Updated At&#x27;</span><br><span class="line">            )</span><br><span class="line">            -&gt;setComment(&#x27;Post Table&#x27;);</span><br><span class="line">            $installer-&gt;getConnection()-&gt;createTable($table);</span><br><span class="line">            $installer-&gt;getConnection()-&gt;addIndex(</span><br><span class="line">                $installer-&gt;getTable(&#x27;thankit_helloworld_post&#x27;),</span><br><span class="line">                $setup-&gt;getIdxName(</span><br><span class="line">                    $installer-&gt;getTable(&#x27;thankit_helloworld_post&#x27;),</span><br><span class="line">                    [&#x27;name&#x27;,&#x27;url_key&#x27;,&#x27;post_content&#x27;,&#x27;tags&#x27;,&#x27;featured_image&#x27;,&#x27;sample_upload_file&#x27;],</span><br><span class="line">                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT</span><br><span class="line">                ),</span><br><span class="line">                [&#x27;name&#x27;,&#x27;url_key&#x27;,&#x27;post_content&#x27;,&#x27;tags&#x27;,&#x27;featured_image&#x27;,&#x27;sample_upload_file&#x27;],</span><br><span class="line">                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        $installer-&gt;endSetup();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          本篇我们将介绍通过 setup script 创建数据表，创建 Magento 2 model, resource model, collection ，以及如何通过它们对数据进行增删改查。 Magento 2 中的 CRUD Models 用于操纵数据库中的数据，不需要很多代码就可以创建一个 CRUD 。 CRUD 代表 Create, Read, Update and Delete （增删改查）。 我们将创建一个表 thankit_helloworld_post
 
-<p><em>了解 addColumn() addIndex() addForeignKey 的参数参照 <code>vendor/magento/framework/DB/Ddl/Table</code></em></p>
-<p>该文件只会在安装模块时执行一次。如果你以前安装过该模块了，这个文件就不会执行了。 执行命令行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+Name
 
-<p>如果你的数据库中没有出现 <code>thankit_helloworld_post</code> 表，那么请在数据库中找到 <code>setup_module</code> 表，找到 <code>ThankIT_HelloWorld</code> 的记录，删掉这行记录。然后再运行上面的命令行。 <code>InstallSchema.php</code> 是用来创建数据库结构的，如果你想插入记录的话，使用 <code>InstallData.php</code> 参考下面的文件，看 <code>InstallData.php</code> 是怎么个用法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- vendor/magento/module-tax/Setup/InstallData.php</span><br><span class="line">- vendor/magento/module-customer/Setup/InstallData.php</span><br><span class="line">- vendor/magento/module-catalog/Setup/InstallData.php</span><br></pre></td></tr></table></figure>
+Description
 
-<p>这些安装文件是在初次安装时执行的，如果你想在升级时做点什么，请使用 <code>UpgradeSchema.php</code> 和 <code>UpgradeData.php</code></p>
-<h2 id="第二步：创建-Model"><a href="#第二步：创建-Model" class="headerlink" title="第二步：创建 Model"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-model"></a>第二步：创建 Model</h2><p>Magento 2 中模型有很多作用，比如操作数据，安装或升级模块。在本教程中，我们只涉及数据的增删改查操作。我们要操作 <code>thankit_helloworld_post</code> 中的数据，需要创建 Model, Resource Model, Resource Model Conllection File: app&#x2F;code&#x2F;ThankIT&#x2F;HelloWorld&#x2F;Model&#x2F;Post.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Model;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @method Post setName($name)</span><br><span class="line"> * @method Post setUrlKey($urlKey)</span><br><span class="line"> * @method Post setPostContent($postContent)</span><br><span class="line"> * @method Post setTags($tags)</span><br><span class="line"> * @method Post setStatus($status)</span><br><span class="line"> * @method Post setFeaturedImage($featuredImage)</span><br><span class="line"> * @method Post setSampleCountrySelection($sampleCountrySelection)</span><br><span class="line"> * @method Post setSampleUploadFile($sampleUploadFile)</span><br><span class="line"> * @method Post setSampleMultiselect($sampleMultiselect)</span><br><span class="line"> * @method mixed getName()</span><br><span class="line"> * @method mixed getUrlKey()</span><br><span class="line"> * @method mixed getPostContent()</span><br><span class="line"> * @method mixed getTags()</span><br><span class="line"> * @method mixed getStatus()</span><br><span class="line"> * @method mixed getFeaturedImage()</span><br><span class="line"> * @method mixed getSampleCountrySelection()</span><br><span class="line"> * @method mixed getSampleUploadFile()</span><br><span class="line"> * @method mixed getSampleMultiselect()</span><br><span class="line"> * @method Post setCreatedAt(\string $createdAt)</span><br><span class="line"> * @method string getCreatedAt()</span><br><span class="line"> * @method Post setUpdatedAt(\string $updatedAt)</span><br><span class="line"> * @method string getUpdatedAt()</span><br><span class="line"> */</span><br><span class="line">class Post extends \Magento\Framework\Model\AbstractModel</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Initialize resource model</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    protected function _construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_init(&#x27;ThankIT\HelloWorld\Model\ResourceModel\Post&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+post_id
 
-<p>Model 必须继承 <code>\Magento\Framework\Model\AbstractModel</code> 而该类又继承自 <code>\Magento\Framework\Object</code> ，这样我们的 model 就拥有了额外的方法，比如 <code>load, delete, save, toArray, toJson, toString, toXml</code> Model 中关键的代码是</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Initialize resource model</span><br><span class="line"> *</span><br><span class="line"> * @return void</span><br><span class="line"> */</span><br><span class="line">protected function _construct()</span><br><span class="line">&#123;</span><br><span class="line">   $this-&gt;_init(&#x27;ThankIT\HelloWorld\Model\ResourceModel\Post&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ID 主键
 
-<h2 id="第三步：Resource-Model"><a href="#第三步：Resource-Model" class="headerlink" title="第三步：Resource Model"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9Aresource-model"></a>第三步：Resource Model</h2><p>Model 中包含总体上的数据逻辑，但它不执行 sql 语句，由 Resource model 做。 File: ThankIT\HelloWorld\Model\ResourceModel\Post.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Model\ResourceModel;</span><br><span class="line"></span><br><span class="line">class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Date model</span><br><span class="line">     *</span><br><span class="line">     * @var \Magento\Framework\Stdlib\DateTime\DateTime</span><br><span class="line">     */</span><br><span class="line">    protected $_date;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * constructor</span><br><span class="line">     *</span><br><span class="line">     * @param \Magento\Framework\Stdlib\DateTime\DateTime $date</span><br><span class="line">     * @param \Magento\Framework\Model\ResourceModel\Db\Context $context</span><br><span class="line">     */</span><br><span class="line">    public function __construct(</span><br><span class="line">        \Magento\Framework\Stdlib\DateTime\DateTime $date,</span><br><span class="line">        \Magento\Framework\Model\ResourceModel\Db\Context $context</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;_date = $date;</span><br><span class="line">        parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Initialize resource model</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    protected function _construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_init(&#x27;thankit_helloworld_post&#x27;, &#x27;post_id&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Retrieves Post Name from DB by passed id.</span><br><span class="line">     * 本篇未使用到 保留 以后研究</span><br><span class="line">     * @param string $id</span><br><span class="line">     * @return stringbool</span><br><span class="line">     */</span><br><span class="line">    public function getPostNameById($id)</span><br><span class="line">    &#123;</span><br><span class="line">        $adapter = $this-&gt;getConnection();</span><br><span class="line">        $select = $adapter-&gt;select()</span><br><span class="line">            -&gt;from($this-&gt;getMainTable(), &#x27;name&#x27;)</span><br><span class="line">            -&gt;where(&#x27;post_id = :post_id&#x27;);</span><br><span class="line">        $binds = [&#x27;post_id&#x27; =&gt; (int) $id];</span><br><span class="line">        return $adapter-&gt;fetchOne($select, $binds);</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * before save callback</span><br><span class="line">     *</span><br><span class="line">     * @param \Magento\Framework\Model\AbstractModel\Mageplaza\HelloWorld\Model\Post $object</span><br><span class="line">     * @return $this</span><br><span class="line">     */</span><br><span class="line">    protected function _beforeSave(\Magento\Framework\Model\AbstractModel $object)</span><br><span class="line">    &#123;</span><br><span class="line">        $object-&gt;setUpdatedAt($this-&gt;_date-&gt;date());</span><br><span class="line">        if ($object-&gt;isObjectNew()) &#123;</span><br><span class="line">            $object-&gt;setCreatedAt($this-&gt;_date-&gt;date());</span><br><span class="line">        &#125;</span><br><span class="line">        return parent::_beforeSave($object);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+name
 
-<p>所有 resource model 都必须继承 <code>\Magento\Framework\Model\ResourceModel\Db\AbstractDb</code> 该 class 包含着从数据库中取数据的方法。 和 model 类一样，resource model 也必须有 <code>_construct()</code> 方法，该方法调用 <code>_init()</code> 方法来定义表名和主键。 该例中重要的代码是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Initialize resource model</span><br><span class="line"> *</span><br><span class="line"> * @return void</span><br><span class="line"> */</span><br><span class="line">protected function _construct()</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;_init(&#x27;thankit_helloworld_post&#x27;, &#x27;post_id&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+post 的名称
 
-<h2 id="第四步：Resource-Model-Collection"><a href="#第四步：Resource-Model-Collection" class="headerlink" title="第四步：Resource Model Collection"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9Aresource-model-collection"></a>第四步：Resource Model Collection</h2><p>collection model 可以看作是一个 resource model，通过它我们可以获取数据的集合，可以对数据集合进行过滤。 File:ThankIT\HelloWorld\Model\ResourceModel\Post\Collection.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Model\ResourceModel\Post;</span><br><span class="line"></span><br><span class="line">class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * resource collection initialization</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    protected function _construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_init(&#x27;ThankIT\HelloWorld\Model\Post&#x27;, &#x27;ThankIT\HelloWorld\Model\ResourceModel\Post&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+url_key
 
-<p>collection 类继承自 <code>\Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection</code> 关键代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * resource collection initialization</span><br><span class="line"> *</span><br><span class="line"> * @param string $model</span><br><span class="line"> * @param string $resourceModel</span><br><span class="line"> * @return $this</span><br><span class="line"> */</span><br><span class="line">protected function _construct()</span><br><span class="line">&#123;</span><br><span class="line">   $this-&gt;_init(&#x27;ThankIT\HelloWorld\Model\Post&#x27;, &#x27;ThankIT\HelloWorld\Model\ResourceModel\Post&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>\Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection</code> 继承自 <code>\Magento\Framework\Data\Collection\AbstractDb</code> ，而 AbstractDb 继承自 <code>\Magento\Framework\Data\Collection</code> ， Collection 最后实现以下接口 <code>\Countable</code>, <code>Magento\Framework\Option\ArrayInterface</code>, and <code>Magento\Framework\Data\CollectionDataSourceInterface</code> 这么多层的继承，collection 类就获得了非常多的方法，比如 <code>join, addFieldToFilter, count, getAllIds, getColumnValues, getFirstItem, getLastItem</code> 等。</p>
-<h2 id="第五步：Factory-Object"><a href="#第五步：Factory-Object" class="headerlink" title="第五步：Factory Object"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9Afactory-object"></a>第五步：Factory Object</h2><p>OOP 中，工厂方法是用来实例化对象的。在 Magento 2 中，Factory Object 也是一样。 Magento 的 object manager 遇到一个以 <code>Factory</code> 结尾的类时，如果该类不存在，那么就会在 <code>var/generation</code> 目录下自动生成一个。 下面以例子来说明： File: ThankIT\HelloWorld\Block\Index\Index.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Block\Index;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\View\Element\Template;</span><br><span class="line"></span><br><span class="line">class Index extends Template</span><br><span class="line">&#123;</span><br><span class="line">    protected $_postFactory;</span><br><span class="line">    public function __construct(</span><br><span class="line">        \Magento\Framework\View\Element\Template\Context $context,</span><br><span class="line">        \ThankIT\HelloWorld\Model\PostFactory $postFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;_postFactory = $postFactory;</span><br><span class="line">        parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function _prepareLayout()</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        /* case 1</span><br><span class="line">         * @return string &#x27;ThankIT\HelloWorld\Model\PostFactory&#x27; (length=36)</span><br><span class="line">         */</span><br><span class="line">        // var_dump(</span><br><span class="line">        //     get_class($this-&gt;_postFactory)</span><br><span class="line">        // );</span><br><span class="line">        // exit;</span><br><span class="line"></span><br><span class="line">        /* case 2</span><br><span class="line">         * 插入数据</span><br><span class="line">         */</span><br><span class="line">        // $post = $this-&gt;_postFactory-&gt;create();</span><br><span class="line">        // $post-&gt;setData(&#x27;name&#x27;, &#x27;fist post name&#x27;)</span><br><span class="line">        //     -&gt;setUrlKey(&#x27;fist&#x27;)</span><br><span class="line">        //     -&gt;setPostContent(&#x27;fist post content&#x27;)</span><br><span class="line">        //     -&gt;save();</span><br><span class="line">        // var_dump(&#x27;Done&#x27;);</span><br><span class="line">        // exit;</span><br><span class="line"></span><br><span class="line">        /* case 3</span><br><span class="line">         * load ID 为 1 的 model</span><br><span class="line">         */</span><br><span class="line">        // $post = $this-&gt;_postFactory-&gt;create();</span><br><span class="line">        // $post = $post-&gt;load(1);</span><br><span class="line">        // var_dump($post-&gt;getData());</span><br><span class="line">        // var_dump($post-&gt;getName());</span><br><span class="line">        // var_dump($post-&gt;getData(&#x27;url_key&#x27;));</span><br><span class="line">        // var_dump($post-&gt;getNoExist()); //return null</span><br><span class="line">        // exit;</span><br><span class="line"></span><br><span class="line">        /* case 4</span><br><span class="line">         * use collection</span><br><span class="line">         */</span><br><span class="line">        // $post = $this-&gt;_postFactory-&gt;create();</span><br><span class="line">        // $post-&gt;setData(&#x27;name&#x27;, &#x27;name&#x27;)</span><br><span class="line">        //     -&gt;setUrlKey(&#x27;url&#x27;)</span><br><span class="line">        //     -&gt;setPostContent(&#x27;post content&#x27;)</span><br><span class="line">        //     -&gt;save();</span><br><span class="line">        // $collection = $post-&gt;getCollection();</span><br><span class="line">        // foreach ($collection as $item) &#123;</span><br><span class="line">        //     var_dump($item-&gt;getData());</span><br><span class="line">        // &#125;</span><br><span class="line">        // exit;</span><br><span class="line"></span><br><span class="line">        /* case 5</span><br><span class="line">         * update</span><br><span class="line">         */</span><br><span class="line">        // $post = $this-&gt;_postFactory-&gt;create();</span><br><span class="line">        // $post = $post-&gt;load(1);</span><br><span class="line">        // var_dump($post-&gt;getData());</span><br><span class="line">        // $post-&gt;setName(&#x27;now update&#x27;)-&gt;save();</span><br><span class="line">        // var_dump($post-&gt;getData());</span><br><span class="line">        // exit;</span><br><span class="line"></span><br><span class="line">        /* case 6</span><br><span class="line">         * delete</span><br><span class="line">         */</span><br><span class="line">        // $post = $this-&gt;_postFactory-&gt;create();</span><br><span class="line">        // $collection = $post-&gt;getCollection();</span><br><span class="line">        // foreach ($collection as $item) &#123;</span><br><span class="line">        //     var_dump($item-&gt;getData());</span><br><span class="line">        // &#125;</span><br><span class="line">        // $post = $post-&gt;load(2)-&gt;delete();</span><br><span class="line">        // var_dump(&#x27;after delete&#x27;);</span><br><span class="line">        // foreach ($collection as $item) &#123;</span><br><span class="line">        //     var_dump($item-&gt;getData());</span><br><span class="line">        // &#125;</span><br><span class="line">        // exit();</span><br><span class="line"></span><br><span class="line">        /* case 7</span><br><span class="line">         * collection count</span><br><span class="line">         */</span><br><span class="line">        // $post = $this-&gt;_postFactory-&gt;create();</span><br><span class="line">        // $collection = $post-&gt;getCollection();</span><br><span class="line">        // var_dump($collection-&gt;count());</span><br><span class="line">        // var_dump($collection-&gt;getFirstItem()-&gt;getData());</span><br><span class="line">        // exit;</span><br><span class="line"></span><br><span class="line">        /* case 8</span><br><span class="line">         * collection filter</span><br><span class="line">         */</span><br><span class="line">        // $post = $this-&gt;_postFactory-&gt;create();</span><br><span class="line">        // $collection = $post-&gt;getCollection();</span><br><span class="line">        // $post = $collection-&gt;addFieldToFilter(&#x27;url_key&#x27;, &#x27;fist&#x27;)-&gt;getFirstItem();</span><br><span class="line">        // var_dump($post-&gt;getData());</span><br><span class="line">        // exit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每个 case 分别去掉注释进行测试，查看效果。</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.mageplaza.com/magento-2-module-development/how-to-create-crud-model-magento-2.html">CRUD Models in Magento 2</a> <a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_crud_models_for_database_access/">Magento 2: CRUD Models for Database Access</a></p>
-<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a><a href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"></a>代码下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/ThankIT_HelloWorld_3">ThankIT_HelloWorld_3</a></p>
-
+Pos
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/crud-models-in-magento-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -511,52 +477,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>本篇围绕 Magento 2 的 Controller ，介绍控制器是怎么工作的，怎么创建，它和 layout 配置文件配合，怎么输出一个页面，以及控制器中经常用到的两个方法 <code>_redirect()</code> 和 <code>_forward()</code> 。 控制器在 Magento 2 中是很重要的，一般而言，对 PHP MVC 框架来说也是很重要的。它的功能是接受请求，处理请求和呈现页面(render page)。 模块的 Controller 目录下有一个或多个文件，每个文件都是一个单独的 class ，每个 class 都有一个 <code>execute</code> 方法。Magento 2 中有两种类型的控制器，一种是前台控制器，另一种是后台控制器。他们大体上是一样的流程，后台控制器稍微特别点，它拥有一个检查权限的方法。</p>
-<h2 id="控制器怎么工作的？"><a href="#控制器怎么工作的？" class="headerlink" title="控制器怎么工作的？"></a><a href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F"></a>控制器怎么工作的？</h2><p>它从终端用户（浏览器或命令行）接受请求，比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/route_name/controller/action</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>route_name</code> 是一个在 routes.xml 中设置的唯一名称</li>
-<li><code>controller</code> 是 Controller 目录下的文件夹</li>
-<li><code>action</code> 是一个有 execute 方法的 class</li>
-</ul>
-<p>Magento 2 系统中处理请求，路由到对应控制器的类是 frontController (<code>Magento\Framework\App\FrontController</code>) 看代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">foreach ($this-&gt;_routerList as $router) &#123;</span><br><span class="line">   try &#123;</span><br><span class="line">      $actionInstance = $router-&gt;match($request);</span><br><span class="line">   …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果找到匹配的 action 类，那么就会执行其中的 <code>execute</code> 方法。</p>
-<h2 id="如何创建控制器"><a href="#如何创建控制器" class="headerlink" title="如何创建控制器"></a><a href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E6%8E%A7%E5%88%B6%E5%99%A8"></a>如何创建控制器</h2><p>如果还不清楚怎么创建模块，请参考 <a href="/%E5%88%9B%E5%BB%BA-magento-2-hello-world-simple-module/">创建 Magento 2 Hello World Simple Module</a>。本篇以该文中创建的模块为基础。该文末尾可以找到对应的代码下载地址，可以下载后跟着本文的步骤做。本文末尾也附带完成后的代码供比对。 要创建控制器，首先需要在模块目录下创建 <code>Controller</code> 目录。 假设我们在 <code>ThankIT_HelloWorld</code> 模块的基础上创建一个 <code>Index</code> controller 和一个 <code>Index</code> action</p>
-<h3 id="创建-routes-xml"><a href="#创建-routes-xml" class="headerlink" title="创建 routes.xml"></a><a href="#%E5%88%9B%E5%BB%BA-routes.xml"></a>创建 routes.xml</h3><p>File: etc&#x2F;frontend&#x2F;routes.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:App/etc/routes.xsd&quot;&gt;</span><br><span class="line">    &lt;router id=&quot;standard&quot;&gt;</span><br><span class="line">        &lt;route frontName=&quot;helloworld&quot; id=&quot;helloworld&quot;&gt;</span><br><span class="line">            &lt;module name=&quot;ThankIT_HelloWorld&quot;/&gt;</span><br><span class="line">        &lt;/route&gt;</span><br><span class="line">    &lt;/router&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建控制器"><a href="#创建控制器" class="headerlink" title="创建控制器"></a><a href="#%E5%88%9B%E5%BB%BA%E6%8E%A7%E5%88%B6%E5%99%A8"></a>创建控制器</h3><p>File: Controller&#x2F;Index&#x2F;Index.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Controller\Index;</span><br><span class="line"></span><br><span class="line">class Index extends \Magento\Framework\App\Action\Action &#123;</span><br><span class="line"></span><br><span class="line">    protected $resultPageFactory;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Constructor</span><br><span class="line">     *</span><br><span class="line">     * @param \Magento\Framework\App\Action\Context  $context</span><br><span class="line">     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory</span><br><span class="line">     */</span><br><span class="line">    public function __construct(</span><br><span class="line">        \Magento\Framework\App\Action\Context $context,</span><br><span class="line">        \Magento\Framework\View\Result\PageFactory $resultPageFactory</span><br><span class="line">    )</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;resultPageFactory = $resultPageFactory;</span><br><span class="line">        parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute view action</span><br><span class="line">     *</span><br><span class="line">     * @return \Magento\Framework\Controller\ResultInterface</span><br><span class="line">     */</span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;resultPageFactory-&gt;create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所有 controller 都必须继承自 <code>\Magento\Framework\App\Action\Action</code> 该类有 <code>dispatch</code> 方法，就是 <code>dispatch</code> 方法会调用 <code>execute</code> 方法。在 <code>execute</code> 方法中我们放控制器的逻辑并返回响应结果。</p>
-<h3 id="创建-layout-文件"><a href="#创建-layout-文件" class="headerlink" title="创建 layout 文件"></a><a href="#%E5%88%9B%E5%BB%BA-layout-%E6%96%87%E4%BB%B6"></a>创建 layout 文件</h3><p>File: view&#x2F;frontend&#x2F;layout&#x2F;helloworld_index_index.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><br><span class="line">&lt;page layout=&quot;1column&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;referenceContainer name=&quot;content&quot;&gt;</span><br><span class="line">            &lt;block class=&quot;ThankIT\HelloWorld\Block\Index\Index&quot; name=&quot;index.index&quot; template=&quot;ThankIT_HelloWorld::index/index.phtml&quot;/&gt;</span><br><span class="line">        &lt;/referenceContainer&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-Block"><a href="#创建-Block" class="headerlink" title="创建 Block"></a><a href="#%E5%88%9B%E5%BB%BA-block"></a>创建 Block</h3><p>File: app\code\ThankIT\HelloWorld\Block\Index\Index.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Block\Index;</span><br><span class="line">use Magento\Framework\View\Element\Template;</span><br><span class="line"></span><br><span class="line">class Index extends Template</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-template"><a href="#创建-template" class="headerlink" title="创建 template"></a><a href="#%E5%88%9B%E5%BB%BA-template"></a>创建 template</h3><p>File: view&#x2F;frontend&#x2F;templates&#x2F;index&#x2F;index.phtml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Welcome to hellomagento2.com</span><br></pre></td></tr></table></figure>
-
-<h3 id="刷新缓存"><a href="#刷新缓存" class="headerlink" title="刷新缓存"></a><a href="#%E5%88%B7%E6%96%B0%E7%BC%93%E5%AD%98"></a>刷新缓存</h3><p>命令行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento cache:flush</span><br></pre></td></tr></table></figure>
-
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a><a href="#%E6%B5%8B%E8%AF%95"></a>测试</h3><p>浏览器中打开<code>http://&lt;yourhost.com&gt;/helloworld/index/index</code> 或者 <code>http://&lt;yourhost.com&gt;/helloworld/</code> 我们就可以看到结果了，这次不是纯字符串哦。 <img src="/wp-content/uploads/2017/08/How-to-create-Controllers-in-Magento-2.png" alt="How to create Controllers in Magento 2"></p>
-<h2 id="Permission-ACL"><a href="#Permission-ACL" class="headerlink" title="Permission - ACL"></a><a href="#permission---acl"></a>Permission - ACL</h2><p>参考 <a href="/magento-2-admin-acl-access-control-lists">Magento 2 Admin ACL Access Control Lists</a></p>
-<h2 id="Magento-2-控制的其他方法"><a href="#Magento-2-控制的其他方法" class="headerlink" title="Magento 2 控制的其他方法"></a><a href="#magento-2-%E6%8E%A7%E5%88%B6%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"></a>Magento 2 控制的其他方法</h2><h3 id="Forward-method"><a href="#Forward-method" class="headerlink" title="Forward method"></a><a href="#forward-method"></a>Forward method</h3><p><code>_forward()</code> protected 方法会将请求转向其他 <code>controller/action</code> 但是用户在浏览器中看到的 URL 是不变的。 例如: File: Controller&#x2F;Index&#x2F;Forward.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Controller\Index;</span><br><span class="line"></span><br><span class="line">class Forward extends \Magento\Framework\App\Action\Action</span><br><span class="line">&#123;</span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_forward(&#x27;index&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建好以后 <code>cache:flush</code> 然后访问 <code>http://&lt;yourhost.com&gt;/helloworld/index/forward</code> 会看到和访问 <code>http://&lt;yourhost.com&gt;/helloworld/index/index</code> 一样的结果，但是我们的 url 并没有改变。 <code>_forward()</code> 还有其他参数：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function _forward($action, $controller = null, $module = null, array $params = null)</span><br></pre></td></tr></table></figure>
-
-<p>其中的 <code>$module</code> 指的是 route_name 对应在 routes.xml 中设置的唯一名称。</p>
-<h3 id="Redirect-method"><a href="#Redirect-method" class="headerlink" title="Redirect method"></a><a href="#redirect-method"></a>Redirect method</h3><p><code>_redirect()</code> 除了会会将请求转向其他 <code>controller/action</code> ，响应的 URL 也会发生改变。 可将上述例子中的 <code>$this-&gt;_forward(&#39;index&#39;);</code> 改成 <code>$this-&gt;_redirect(&#39;*/*/index&#39;);</code> 查看效果。</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.mageplaza.com/magento-2-module-development/how-to-create-controllers-magento-2.html">how to create Controllers in Magento 2</a></p>
-<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a><a href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"></a>代码下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/ThankIT_HelloWorld_2">相关代码下载</a></p>
-
+          本篇围绕 Magento 2 的 Controller ，介绍控制器是怎么工作的，怎么创建，它和 layout 配置文件配合，怎么输出一个页面，以及控制器中经常用到的两个方法 _redirect() 和 _forward() 。 控制器在 Magento 2 中是很重要的，一般而言，对 PHP MVC 框架来说也是很重要的。它的功能是接受请求，处理请求和呈现页面(render page)。 模块的 Controller 目录下有一个或多个文件，每个文件都是一个单独的 class ，每个 class 都有一个 execute 方法。Magento 2 中有两种类型的控制器，一种是前台控制器，另一
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-%E4%B8%AD%E7%9A%84-controller/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -622,45 +551,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>本篇文章将介绍如何创建一个输出 <code>hello world</code> 的简单模块。 在 Magento 2 中，模块存在于 <code>app/code</code> 目录下，格式如下 <code>app/code/&lt;Vendor&gt;/&lt;ModuleName&gt;</code>。</p>
-<h2 id="第一步：创建模块所需的目录"><a href="#第一步：创建模块所需的目录" class="headerlink" title="第一步：创建模块所需的目录"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%9D%97%E6%89%80%E9%9C%80%E7%9A%84%E7%9B%AE%E5%BD%95"></a>第一步：创建模块所需的目录</h2><p>我们将使用 <code>ThankIT</code> 作为 Vendor name ，<code>HelloWorld</code> 作为 ModuleName ，所以我们现在创建文件目录 <code>app/code/ThankIT/HelloWorld</code></p>
-<h2 id="第二步：创建-module-xml-声明该模块"><a href="#第二步：创建-module-xml-声明该模块" class="headerlink" title="第二步：创建 module.xml 声明该模块"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-module.xml-%E5%A3%B0%E6%98%8E%E8%AF%A5%E6%A8%A1%E5%9D%97"></a>第二步：创建 module.xml 声明该模块</h2><p>在上面创建的目录下，创建 <code>etc</code> 目录，在 <code>etc</code> 下创建 <code>module.xml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/ThankIT/HelloWorld/etc/module.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Module/etc/module.xsd&quot;&gt;</span><br><span class="line">    &lt;module name=&quot;ThankIT_HelloWorld&quot; setup_version=&quot;1.0.0&quot; /&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          本篇文章将介绍如何创建一个输出 hello world 的简单模块。 在 Magento 2 中，模块存在于 app/code 目录下，格式如下 app/code/<Vendor>/<ModuleName>。
 
-<p>在该配置文件中，我们注册了一个模块名称为 <code>ThankIT_HelloWorld</code> 的模块，它的版本是 <code>1.0.0</code></p>
-<h2 id="第三步：创建-registration-php-注册模块"><a href="#第三步：创建-registration-php-注册模块" class="headerlink" title="第三步：创建 registration.php 注册模块"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-registration.php-%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97"></a>第三步：创建 registration.php 注册模块</h2><p>Magento 2 中的所有模块都必须通过 magento 的 ComponentRegistrar 类进行注册。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/ThankIT/HelloWorld/registration.php</span><br><span class="line">&lt;?php</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::MODULE,</span><br><span class="line">    &#x27;ThankIT_HelloWorld&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+第一步：创建模块所需的目录
+我们将使用 ThankIT 作为 Vendor name ，HelloWorld 作为 ModuleName ，所以我们现在创建文件目录 app/code/ThankIT/HelloWorld
 
-<h2 id="第四步：Enable-该模块"><a href="#第四步：Enable-该模块" class="headerlink" title="第四步：Enable 该模块"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9Aenable-%E8%AF%A5%E6%A8%A1%E5%9D%97"></a>第四步：Enable 该模块</h2><p>上面步骤做完后，我们就已经创建好了一个空模块，下面输入以下命令行，看看我们的模块是否已经注册好了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento module:status</span><br></pre></td></tr></table></figure>
+第二步：创建 module.xml 声明该模块
+在上面创建的目录下，创建 etc 目录，在 etc 下创建 module.xml
 
-<p>你会看到</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List of disabled modules:</span><br><span class="line">ThankIT_HelloWorld</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
 
-<p>这代表，模块已经被检测到，但 disabled 状态，下面启用它</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento module:enable ThankIT_HelloWorld</span><br></pre></td></tr></table></figure>
 
-<p>如果看到以下信息，表明模块已经成功启用了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The following modules has been enabled:</span><br><span class="line">- ThankIT_HelloWorld</span><br></pre></td></tr></table></figure>
-
-<p>这是你第一次启用该模块，magento 需要检查和升级模块的数据库记录，运行以下命令行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
-
-<p>现在我们进入后台，在 <code>Stores -&gt; Configuration -&gt; Advanced -&gt; Advanced</code> 下我们可以看到该模块了</p>
-<h2 id="第五步：为模块创建路由"><a href="#第五步：为模块创建路由" class="headerlink" title="第五步：为模块创建路由"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E4%B8%BA%E6%A8%A1%E5%9D%97%E5%88%9B%E5%BB%BA%E8%B7%AF%E7%94%B1"></a>第五步：为模块创建路由</h2><p>Magento 系统中，请求 URL 是如下格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/&lt;router_name&gt;/&lt;controller_name&gt;/&lt;action_name&gt;</span><br></pre></td></tr></table></figure>
-
-<p>路由用来分配 URL 给对应的 controller （控制器）和 action 。在该模块中，我们给前端创建一个路由，所以创建下面的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/ThankIT/HelloWorld/etc/frontend/routes.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:App/etc/routes.xsd&quot;&gt;</span><br><span class="line">    &lt;router id=&quot;standard&quot;&gt;</span><br><span class="line">        &lt;route id=&quot;helloworld&quot; frontName=&quot;helloworld&quot;&gt;</span><br><span class="line">            &lt;module name=&quot;ThankIT_HelloWorld&quot; /&gt;</span><br><span class="line">        &lt;/route&gt;</span><br><span class="line">    &lt;/router&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>定义好路由后，我们的模块 URL 路径变成 <code>http://example.com/helloworld/*</code></p>
-<h2 id="第六步：创建-controller-和-action"><a href="#第六步：创建-controller-和-action" class="headerlink" title="第六步：创建 controller 和 action"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA-controller-%E5%92%8C-action"></a>第六步：创建 controller 和 action</h2><p>在该步骤中，我们将创建 controller 和 action 来输出 <code>Hello World</code> 。假设我们的 URL 是 <code>http://example.com/helloworld/index/display</code> 所以我们将创建如下文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Mageplaza/HelloWorld/Controller/Index/Display.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace ThankIT\HelloWorld\Controller\Index;</span><br><span class="line"></span><br><span class="line">class Display extends \Magento\Framework\App\Action\Action</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct(</span><br><span class="line">        \Magento\Framework\App\Action\Context $context</span><br><span class="line">    )&#123;</span><br><span class="line">    return parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &#x27;Hello World&#x27;;</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果打开 <code>http://example.com/helloworld/index/display</code> 就会看到输出 <code>Hello World</code> 字符串。 如果出现 404 请清空缓存 <code>php bin/magento cache:clean</code></p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://www.mageplaza.com/magento-2-module-development/">Magento 2 Module Development - Magento 2 Hello World Simple Module</a></p>
-<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a><a href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"></a>代码下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/ThankIT_HelloWorld/">ThankIT_HelloWorld 模块代码下载</a></p>
-
+<!--
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%88%9B%E5%BB%BA-magento-2-hello-world-simple-module/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -726,14 +640,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="相邻兄弟选择器"><a href="#相邻兄弟选择器" class="headerlink" title="+ 相邻兄弟选择器"></a><a href="#+-%E7%9B%B8%E9%82%BB%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8"></a>+ 相邻兄弟选择器</h4><h4 id="兄弟选择器-不相邻也没关系"><a href="#兄弟选择器-不相邻也没关系" class="headerlink" title="~ 兄弟选择器 不相邻也没关系"></a><a href="#~-%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8-%E4%B8%8D%E7%9B%B8%E9%82%BB%E4%B9%9F%E6%B2%A1%E5%85%B3%E7%B3%BB"></a>~ 兄弟选择器 不相邻也没关系</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .case-1 h1+p &#123;</span><br><span class="line">        color :#e47b7b;</span><br><span class="line">    &#125;</span><br><span class="line">    .case-2 h1~p &#123;</span><br><span class="line">        color :#e47b7b;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;case-1&quot;&gt;</span><br><span class="line">    &lt;h1&gt;h1 相邻兄弟选择器&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;我是紧邻 h1 的 p 我变红&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;我不是紧邻的 p 我没有效果&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;case-2&quot;&gt;</span><br><span class="line">    &lt;h1&gt;h1 兄弟选择器 不相邻也没有关系&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;我是紧邻 h1 的 p &lt;/p&gt;</span><br><span class="line">    &lt;div&gt;我是个 div &lt;/div&gt;</span><br><span class="line">    &lt;p&gt;我不是紧邻的 p &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          + 相邻兄弟选择器
+~ 兄弟选择器 不相邻也没关系
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
 
-<p><img src="/wp-content/uploads/2017/08/%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8.png"></p>
-<h4 id="gt-直接后代"><a href="#gt-直接后代" class="headerlink" title="&gt; 直接后代"></a><a href="#%3E-%E7%9B%B4%E6%8E%A5%E5%90%8E%E4%BB%A3"></a>&gt; 直接后代</h4><h4 id="X-Y-所有的后代"><a href="#X-Y-所有的后代" class="headerlink" title="X Y 所有的后代"></a><a href="#x-y-%E6%89%80%E6%9C%89%E7%9A%84%E5%90%8E%E4%BB%A3"></a>X Y 所有的后代</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    ul &#123;</span><br><span class="line">        list-style: none;</span><br><span class="line">        margin:0;</span><br><span class="line">        padding: 5px;</span><br><span class="line">    &#125;</span><br><span class="line">    .case-3 &gt; ul &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">    .case-4 ul &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;case-3&quot; style=&quot;margin-bottom: 15px;&quot;&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;直接后代&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;直接后代&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;直接后代&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li&gt;二代&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;二代&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;二代&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;case-4&quot;&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;直接后代&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;直接后代&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;直接后代&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">                &lt;li&gt;二代&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;二代&lt;/li&gt;</span><br><span class="line">                &lt;li&gt;二代&lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/wp-content/uploads/2017/08/%E5%90%8E%E4%BB%A3%E9%80%89%E6%8B%A9%E5%99%A8.png"></p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a><a href="#%E5%8F%82%E8%80%83"></a>参考</h4><p><a target="_blank" rel="noopener" href="http://yanhaijing.com/css/2014/01/04/the-30-css-selectors-you-must-memorize/">30个你必须记住的CSS选择符</a></p>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ThankIT</title>
+</head>
+<body>
+<style type="text/css">
+    .case-1 h1+p {
+        color :#e47b7b;
+    }
+    .case-2 h1~p {
+        color :#e47b7b;
+    }
+</styl
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/css-%E7%9A%84%E5%87%A0%E4%B8%AA%E9%80%89%E6%8B%A9%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -799,19 +758,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">    .child &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">        padding: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">        I am child</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0
 
-<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C.png"></p>
-<h2 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%80"></a>解决方法一</h2><p>设置父元素</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.solution-one .parent &#123;</span><br><span class="line">        overflow: auto;</span><br><span class="line">        zoom: 1;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;div class=&quot;solution-one&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
 
-<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E4%BF%AE%E5%A4%8D.png"></p>
-<h2 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%BA%8C"></a>解决方法二</h2><p>利用 after 伪元素</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.solution-two .parent:after &#123;</span><br><span class="line">        content: &quot; &quot;;</span><br><span class="line">        display: table;</span><br><span class="line">        clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;div class=&quot;solution-two&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E4%BF%AE%E5%A4%8D.png"> 完整的参考代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">    .child &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">        padding: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">    .solution-one .parent &#123;</span><br><span class="line">        overflow: auto;</span><br><span class="line">        zoom: 1;</span><br><span class="line">    &#125;</span><br><span class="line">    .solution-two .parent:after &#123;</span><br><span class="line">        content: &quot; &quot;;</span><br><span class="line">        display: table;</span><br><span class="line">        clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">        I am child</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;clear: both;height: 20px;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;solution-one&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;clear: both;height: 20px;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;solution-two&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ThankIT</title>
+</head>
+<body>
+<style type="text/css">
+    .parent {
+        border:10px solid #f9f2f4;
+    }
+    .ch
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/css-%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -877,13 +871,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p:first-child&#123;color: red;&#125;</span><br></pre></td></tr></table></figure>
+          1
 
-<p>乍一看以为是父元素的第一个 p ，更确切的含义是选择父元素的第一个子元素，且该元素是 p</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">div &#123;</span><br><span class="line">    background-color: #f9f2f4;</span><br><span class="line">    padding: 15px;</span><br><span class="line">    margin-top: 15px;</span><br><span class="line">&#125;</span><br><span class="line">.notwork p:first-child&#123;color: red;&#125;</span><br><span class="line">.work p:nth-child(2)&#123;color: red;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;notwork&quot;&gt;</span><br><span class="line">    &lt;span&gt;第一个 p 应该是红色，但不是&lt;/span&gt;</span><br><span class="line">    &lt;p&gt;first p&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;second p&lt;/p&gt;</span><br><span class="line">    &lt;a&gt;third a&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;work&quot;&gt;</span><br><span class="line">    &lt;span&gt;第一个 p 应该是红色&lt;/span&gt;</span><br><span class="line">    &lt;p&gt;first p&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;second p&lt;/p&gt;</span><br><span class="line">    &lt;a&gt;third a&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/wp-content/uploads/2017/08/fist-child.png"></p>
+p:first-child{color: red;}
 
+
+乍一看以为是父元素的第一个 p ，更确切的含义是选择父元素的第一个子元素，且该元素是 p
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ThankIT</title>
+</head>
+<body>
+<style>
+div {
+    background-color: #f9f2f4;
+    padding: 15px;
+  
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/fist-child-%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -949,33 +995,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>处理元素内的空白</p>
-<p>换行符</p>
-<p>空白和 Tab</p>
-<p>文本超出容器宽度</p>
-<p>nomal</p>
-<p>忽略</p>
-<p>折叠</p>
-<p>换行</p>
-<p>nowrap</p>
-<p>忽略</p>
-<p>折叠</p>
-<p>不换行</p>
-<p>pre</p>
-<p>换行</p>
-<p>保持原样</p>
-<p>不换行</p>
-<p>pre-wrap</p>
-<p>换行</p>
-<p>保持原样</p>
-<p>换行</p>
-<p>pre-line</p>
-<p>换行</p>
-<p>折叠</p>
-<p>换行</p>
-<p><img src="/wp-content/uploads/2017/08/white-space.png"></p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">white-space</a> <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/1f451fc21b37">不简单的 white-space 属性</a></p>
+          处理元素内的空白
 
+换行符
+
+空白和 Tab
+
+文本超出容器宽度
+
+nomal
+
+忽略
+
+折叠
+
+换行
+
+nowrap
+
+忽略
+
+折叠
+
+不换行
+
+pre
+
+换行
+
+保持原样
+
+不换行
+
+pre-wrap
+
+换行
+
+保持原样
+
+换行
+
+pre-line
+
+换行
+
+折叠
+
+换行
+
+
+
+参考文档
+white-space 不简单的 white-space 属性
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/white-space/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1041,12 +1120,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>overflow-wrap 和 word-break 都是用于长单词断句的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;test&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    p &#123;</span><br><span class="line">        width: 300px;</span><br><span class="line">        background-color: #f9f2f4;</span><br><span class="line">        color: #c7254e;</span><br><span class="line">    &#125;</span><br><span class="line">    .overflow-wrap &#123;</span><br><span class="line">        overflow-wrap: break-word;</span><br><span class="line">    &#125;</span><br><span class="line">    .word-break &#123;</span><br><span class="line">        word-break: break-all;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;p &gt;浏览器默认情况下：&lt;br/&gt;ThankIT, Hello, How are yoooooooooooooooooooooooooooooooooooooooooooooooooooou?&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;overflow-wrap&quot;&gt;overflow-wrap:break-word&lt;br/&gt;ThankIT, Hello, How are yoooooooooooooooooooooooooooooooooooooooooooooooooooou?&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;word-break&quot;&gt;break-word:break-all&lt;br/&gt;ThankIT, Hello, How are yoooooooooooooooooooooooooooooooooooooooooooooooooooou?&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          overflow-wrap 和 word-break 都是用于长单词断句的。
 
-<p><img src="/wp-content/uploads/2017/08/overflow-wrap-and-word-break.png"> 默认情况下，如果一个单词很长，导致一行中剩下的空间放不下的时候，浏览器就会把该单词移到下一行，如果宽度还是超出父元素，就会溢出。 overflow-wrap 最早叫 word-wrap ，最早是 IE 的特性。现在 word-wrap 作为 overflow-wrap 的别名，几乎所有浏览器都支持。在断句的时候，会首先将长单词挪到下一行，然后下一行再放不下则断开。 word-break 则是不考虑换行，充分利用空间，简单粗暴。</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p>内有案例可查看其他值的效果 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap">overflow-wrap</a> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/word-break">word-break</a></p>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+</head>
+<style type="text/css">
+    p {
+        width: 300px;
+        background-color: #f9f2f4;
+        color: #c7254e;
+    }
+    .overfl
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/difference-between-overflow-wrap-and-word-break/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

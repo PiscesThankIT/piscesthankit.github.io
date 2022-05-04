@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="500 错误 下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 vi &#x2F;etc&#x2F;php&#x2F;7.0&#x2F;apache2&#x2F;php.ini 使得： 12display_errors &#x3D; Onerror_reporting &#x3D; E_ALL  E_STRICT  修改 apache 配置 vi &#x2F;etc&#x2F;apache2&#x2F;apache2.conf 添加以下行： 12php_flag d">
+  <meta name="description" content="500 错误  下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 vi &#x2F;etc&#x2F;php&#x2F;7.0&#x2F;apache2&#x2F;php.ini 使得：  1 2   display_errors &#x3D; On error_reporting &#x3D; E_ALL  E_STRICT   修改 apache 配置 vi &#x2F;etc&#x2F;apache2&#x2F;apache2.conf 添加以下行：  1 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 调试">
 <meta property="og:url" content="http://example.com/php-%E8%B0%83%E8%AF%95/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
-<meta property="og:description" content="500 错误 下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 vi &#x2F;etc&#x2F;php&#x2F;7.0&#x2F;apache2&#x2F;php.ini 使得： 12display_errors &#x3D; Onerror_reporting &#x3D; E_ALL  E_STRICT  修改 apache 配置 vi &#x2F;etc&#x2F;apache2&#x2F;apache2.conf 添加以下行： 12php_flag d">
+<meta property="og:description" content="500 错误  下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 vi &#x2F;etc&#x2F;php&#x2F;7.0&#x2F;apache2&#x2F;php.ini 使得：  1 2   display_errors &#x3D; On error_reporting &#x3D; E_ALL  E_STRICT   修改 apache 配置 vi &#x2F;etc&#x2F;apache2&#x2F;apache2.conf 添加以下行：  1 2">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/wp-content/uploads/2018/02/50-http-error.png">
 <meta property="og:image" content="http://example.com/wp-content/uploads/2018/02/500%E6%8F%90%E7%A4%BA.png">

@@ -231,10 +231,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/media-gallery.html">原文网址</a></em> 产品页面上的 Media Gallery 展示多个与该产品相关的图像、视频或色板。每个缩略图都可以表现不同的产品视角或产品的变体。单击缩略图以浏览, 虽然库的位置因主题而异, 但默认位置就在产品页中主图像的下方。 <img src="/wp-content/uploads/2017/08/storefront-thumbnail-gallery.png" alt="Media Gallery"></p>
-<h2 id="放大图片"><a href="#放大图片" class="headerlink" title="放大图片"></a><a href="#%E6%94%BE%E5%A4%A7%E5%9B%BE%E7%89%87"></a>放大图片</h2><p>如果图片尺寸够大可以创造放大效果，那么可以就可以查看鼠标位置的放大图像。放大效果激活时，您可以移动鼠标以查看不同位置的放大图像。放大的选取图像出现在主图的右侧。 <img src="/wp-content/uploads/2017/08/storefront-image-zoom.png" alt="Image Zoom"></p>
-<h2 id="Light-Boxes-and-Sliders"><a href="#Light-Boxes-and-Sliders" class="headerlink" title="Light Boxes and Sliders"></a><a href="#light-boxes-and-sliders"></a>Light Boxes and Sliders</h2><p>有许多第三方插件实现 Light Boxes and Sliders ，您可以用他们来增强产品图片的显示效果。</p>
+          原文网址 产品页面上的 Media Gallery 展示多个与该产品相关的图像、视频或色板。每个缩略图都可以表现不同的产品视角或产品的变体。单击缩略图以浏览, 虽然库的位置因主题而异, 但默认位置就在产品页中主图像的下方。 
 
+放大图片
+如果图片尺寸够大可以创造放大效果，那么可以就可以查看鼠标位置的放大图像。放大效果激活时，您可以移动鼠标以查看不同位置的放大图像。放大的选取图像出现在主图的右侧。 
+
+Light Boxes and Sliders
+有许多第三方插件实现 Light Boxes and Sliders ，您可以用他们来增强产品图片的显示效果。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/media-gallery/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -300,49 +311,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/product-video.html">原文网址</a></em> 要添加产品视频, 您必须首先从您的 Google 帐户获取一个 API 密钥, 然后在您的商店的配置中输入它。然后, 您才可以从产品链接到视频。</p>
-<h2 id="第一步：获得-YouTube-API-key"><a href="#第一步：获得-YouTube-API-key" class="headerlink" title="第一步：获得 YouTube API key"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%BE%97-youtube-api-key"></a>第一步：获得 YouTube API key</h2><ol>
-<li>登录 Google 账户。然后进入 <a target="_blank" rel="noopener" href="https://console.developers.google.com/">Google Developers Console</a>，然后，做以下事情： a. Under Use Google APIs, click <strong>Enable and manage APIs</strong> b. In the panel on the left choose <strong>Credentials</strong>. Expand the Add Credentials menu, and choose <strong>API key</strong>. c. When prompted to create a new key, choose <strong>Server key</strong>. Enter a name for the key, and tap <strong>Create</strong>.</li>
-<li>等待生成密钥，然后把密钥复制一下，下一步，要将该密钥填进配置中。</li>
-</ol>
-<h2 id="第二步：配置"><a href="#第二步：配置" class="headerlink" title="第二步：配置"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE"></a>第二步：配置</h2><ol>
-<li>后台侧边栏，点击 <strong>Stores</strong> &gt; <strong>Settiings</strong> &gt; <strong>Configuration</strong></li>
-<li>在 <strong>Catalog</strong> &gt; <strong>Catalog</strong> 下，</li>
-<li>展开 <strong>Product Video</strong> 部分，然后粘贴上一步骤的 <strong>YouTube API key</strong> <img src="/wp-content/uploads/2017/08/config-catalog-catalog-product-video.png" alt="Product Video"></li>
-<li>完成后，点击 <strong>Save Config</strong></li>
-<li>刷新缓存</li>
-</ol>
-<h2 id="第三步：视频链接"><a href="#第三步：视频链接" class="headerlink" title="第三步：视频链接"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%A7%86%E9%A2%91%E9%93%BE%E6%8E%A5"></a>第三步：视频链接</h2><ol>
-<li>打开某产品编辑，在图像和视频部分，点击 <strong>Add Video</strong> 如果你还没有输入 YouTube API key ，点击 <strong>OK</strong> 继续，你不能链接到 YouTube 视频，但是你仍然可以完成这个步骤 <img src="/wp-content/uploads/2017/08/product-video-add.png" alt="Add Video"></li>
-<li>输入 YouTube 或 Vimeo 视频的链接</li>
-<li>输入标题和描述</li>
-<li>上传 <strong>Preview Image</strong> (预览图)，浏览图片并选择文件。</li>
-<li>如果你喜欢用视频的元数据，点击 <strong>Get Video Information</strong></li>
-<li>选中以下复选框来确定视频的角色<ul>
-<li>Base Image</li>
-<li>Small Image</li>
-<li>Swatch Image</li>
-<li>Thumbnail</li>
-<li>Hide from Product Page</li>
-</ul>
-</li>
-<li>完成后，点击 <strong>Save</strong> <img src="/wp-content/uploads/2017/08/product-video-new-with-data.png" alt="Add Video"></li>
-</ol>
-<h2 id="字段描述"><a href="#字段描述" class="headerlink" title="字段描述"></a><a href="#%E5%AD%97%E6%AE%B5%E6%8F%8F%E8%BF%B0"></a>字段描述</h2><p>Field</p>
-<p>Description</p>
-<p>URL</p>
-<p>相关视频的链接</p>
-<p>Title</p>
-<p>视频的标题</p>
-<p>Description</p>
-<p>视频描述</p>
-<p>Preview Image</p>
-<p>视频的预览图</p>
-<p>Get Video Information</p>
-<p>Retrieves the video meta data that is stored on the host server. You can use the original data, or update it as needed.</p>
-<p>Role</p>
-<p>Determines how the preview image is used in your store. Options: Base Image Small Image Thumbnail Swatch Image Hide from Product Page</p>
+          原文网址 要添加产品视频, 您必须首先从您的 Google 帐户获取一个 API 密钥, 然后在您的商店的配置中输入它。然后, 您才可以从产品链接到视频。
 
+第一步：获得 YouTube API key
+ 1. 登录 Google 账户。然后进入 Google Developers Console，然后，做以下事情： a. Under Use Google APIs, click Enable and manage APIs b. In the panel on the left choose Credentials. Expand the Add Credentials menu, and 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/product-video/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -412,23 +392,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em>转载请注明出处</em> 关于 Magento 2 的中文化，之前博主已经写过三篇文章，感兴趣的请参阅本文的相关阅读部分。 下面我们来回顾一下。</p>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a><a href="#%E5%9B%9E%E9%A1%BE"></a>回顾</h2><p>首先是设置问题。 前台设置，<em>Stores &gt; Configuration &gt; General &gt; Local</em> 中设置 Local 为 Chinese（China） 账户设置，后台你的账户 <em>Account Setting &gt; Interface Local 中设置 Interface Local</em> 为 Chinese（China） Magento 2 的 component 有三种，module、theme、language package。 module 和 theme 中都有 <code>i18n</code> ，只要把 zh_Hans_CN.csv 放进去就可以了。module 中 <code>i18n</code> 下的翻译文件会被应用到前台和后台（假设你前后台都是简体中文的话），但是 theme 中的翻译只会被应用到前台。 提取的 csv 有四列，但是其实只有前两列有用。重复的字段，实际使用的是最后一个翻译值。 之前的文章博主教大家的方法是，寻找 Magento 自带的 language package。这个有一些局限性。 主要问题就在于，假如我们采用命令行的方式更新，那么文件会被退回到初始状态，我们放进去的 zh_Hans_CN 会被丢掉。 所以更妥当的做法是，我们建一个自己的 language package，或者下载一个，然后放到 app&#x2F;i18n 下面。</p>
-<h2 id="如何创建-language-package"><a href="#如何创建-language-package" class="headerlink" title="如何创建 language package"></a><a href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA-language-package"></a>如何创建 language package</h2><p>以创建中文包为例，但是方法是通用的。 我们在 app&#x2F;i18n 下创建一个文件夹 <code>ThankIT</code> ，在 <code>ThankIT</code> 下创建 <code>zh_Hans_CN</code>，然后在创建以下文件</p>
-<h4 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a><a href="#composer.json"></a>composer.json</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;thankit/language-zh_hans_cn&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Chinese (China) language&quot;,</span><br><span class="line">    &quot;version&quot;: &quot;100.3.0-dev&quot;,</span><br><span class="line">    &quot;license&quot;: [</span><br><span class="line">        &quot;OSL-3.0&quot;,</span><br><span class="line">        &quot;AFL-3.0&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;magento/framework&quot;: &quot;100.3.*&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;type&quot;: &quot;magento2-language&quot;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;files&quot;: [</span><br><span class="line">            &quot;registration.php&quot;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          转载请注明出处 关于 Magento 2 的中文化，之前博主已经写过三篇文章，感兴趣的请参阅本文的相关阅读部分。 下面我们来回顾一下。
 
-<h4 id="language-xml"><a href="#language-xml" class="headerlink" title="language.xml"></a><a href="#language.xml"></a>language.xml</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;language xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:App/Language/package.xsd&quot;&gt;</span><br><span class="line">    &lt;code&gt;zh_Hans_CN&lt;/code&gt;</span><br><span class="line">    &lt;vendor&gt;ThankIT&lt;/vendor&gt;</span><br><span class="line">    &lt;package&gt;zh_Hans_CN&lt;/package&gt;</span><br><span class="line">&lt;/language&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="registration-php"><a href="#registration-php" class="headerlink" title="registration.php"></a><a href="#registration.php"></a>registration.php</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::LANGUAGE,</span><br><span class="line">    &#x27;thankit_zh_hans-cn&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>最后把之前的 <code>zh_Hans_CN.csv</code> 放进去，齐活。 正确设置，并使用命令行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php bin/magento setup:static-content:deploy</span><br></pre></td></tr></table></figure>
-
-<p>然后就可以看到效果了。</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"></a>常见问题</h2><p>经常有人说安装中文包以后出错了，这通常是因为你的 <code>zh_Hans_CN.csv</code> 中含有空行，特别是在结尾的部分，有时候是提供安装包的人不小心干的，有时候是自己不小心干的。</p>
-<h2 id="福利"><a href="#福利" class="headerlink" title="福利"></a><a href="#%E7%A6%8F%E5%88%A9"></a>福利</h2><p>上面的 package 上传到 github 了，可以自己下载，然后放到 app&#x2F;i18n 目录下。 <a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/language-zh-hans-cn">PiscesThankIT&#x2F;language-zh-hans-cn</a> 另外放一个台湾繁体的。由于繁体的官方的翻译比率太低，所以，博主拿简体中文转化成了繁体中文，翻译比率大概是 88%。 <a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/language-zh-hant-tw">PiscesThankIT&#x2F;language-zh-hant-tw</a> <a target="_blank" rel="noopener" href="https://github.com/Magento2Translations">Magento 2 Translations &amp; language packs （所有语言）</a> 如果你想修改翻译，请参考相关阅读部分。</p>
-<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a><a href="#%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB"></a>相关阅读</h2><p><a href="/magento-2-zh-hans-cn-csv/">Magento 2 中文化问题（原创）</a> <a href="/how-to-update-csv-using-older-csv-file/">关于中文包的更新方法问题 （原创）</a> <a href="/magento-csv-php-update/">中文包的更新方法问题（二）</a> 其他相关 <a href="/magento-2-validation-js-bug-fix/">Magento 2.0&#x2F;2.1 表单验证翻译 bug 修复</a> <a href="/excel-csv-utf8/">Excel 编辑 csv 中文乱码</a></p>
-
+回顾
+首先是设置问题。 前台设置，Stores > Configuration > General > Local 中设置 Local 为 Chinese（China） 账户设置，后台你的账户 Account Setting > Interface Local 中设置 Interface Local 为 Chinese（China） Magento 2 的 component 有三种，module、theme、language package。 module
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-%E4%B8%AD%E6%96%87%E5%8C%96%E4%B8%8E-language-package%EF%BC%88%E5%8E%9F%E5%88%9B%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -494,23 +469,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="授权问题"><a href="#授权问题" class="headerlink" title="授权问题"></a><a href="#%E6%8E%88%E6%9D%83%E9%97%AE%E9%A2%98"></a>授权问题</h2><p>以 root 身份登陆 MySQL</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; SELECT User, Host FROM user; -- 查看现有用户和允许连接的主机</span><br><span class="line">+------+-----------+</span><br><span class="line"> User  Host      </span><br><span class="line">+------+-----------+</span><br><span class="line"> root  localhost </span><br><span class="line">+------+-----------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+          授权问题
+以 root 身份登陆 MySQL
 
-<p>Host 为 localhost 表示只允许 localhost 连接，下面把他改为 <code>%</code> 就可以任意访问了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set host=&#x27;%&#x27; where user=&#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
+8
+9
 
-<p>理论上来讲只需要下面的代码就行了。 grant all on yourdb.* to yourUsername@yourHost identified by “yourPassword” WITH GRANT OPTION;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
 
-<h2 id="端口问题"><a href="#端口问题" class="headerlink" title="端口问题"></a><a href="#%E7%AB%AF%E5%8F%A3%E9%97%AE%E9%A2%98%E3%80%82"></a>端口问题</h2><p>登录到服务器后，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -angrep 3306</span><br></pre></td></tr></table></figure>
+mysql> use mysql
+Database changed
+mysql> SELECT User, Host FROM user; -- 查看现有用户和允许连接的主机
++------+-----------+
+ User  Host      
++------+-----------+
+ root  localhost 
++------+-----------+
+1 row in set (0.00 sec)
 
-<p>查看 mysql 默认的端口 3306 是否开启，允许哪个 ip 使用，如果发现 127.0.0.1 就说明 3306 端口只允许本机 ip 访问 下面修改设置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
 
-<p>将 bind-address &#x3D; 127.0.0.1 注释掉</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+Host 为 localhost 表示只允许 localhost 连接，下面把他改为 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mysql-%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -576,8 +568,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>上周 ThankIT 帮一位朋友完成了 MCE 1.9.2.4 到 MCE 2.1.7 升级，此处做一次总结。 总的来说，M1 升级到 2 的时机已经成熟。Magento 官方推出了数据迁移工具和代码迁移工具，文档也比较完整了。社区开发的迁移工具也迭代得差不多了。 了解 Magento 官方数据迁移工具的安装，请戳这里 <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/migration/migration-tool-install.html">Install Data Migration Tool</a> 这个安装工具必须使用 composer 的方式安装，如果以插件的方式安装，命令 migrate 会找不到。配置起来有点复杂。 ThankIT 使用的是 Ubertheme 的 UB Data 工具，以插件形式安装就行，可视化的操作，比较方便。但也不是下一步下一步就行。 数据写入到库后，还是会有问题的，比如 customer 明明已经在数据库中，后台却没有记录。这是 customer 的表迁移后缺少了部分字段。 还有可能会遇到系统 Bug 导致的错误。 再比如这个 <code>Magento\Catalog\Model\Product\Attribute\Backend\Media does not exist</code> 错误是 <code>eav_attribute</code> 表的 <code>media_gallery</code> 的 <code>backend_model</code> 字段不对，应该为 null 导致的。（可能受版本影响，工具还来不及面面俱到） 还有如果原来的 M1 站点有图片 404 ，迁移后可能导致错误等。 总体上来说，迁移需要有分析问题解决问题的能力。^^</p>
-
+          上周 ThankIT 帮一位朋友完成了 MCE 1.9.2.4 到 MCE 2.1.7 升级，此处做一次总结。 总的来说，M1 升级到 2 的时机已经成熟。Magento 官方推出了数据迁移工具和代码迁移工具，文档也比较完整了。社区开发的迁移工具也迭代得差不多了。 了解 Magento 官方数据迁移工具的安装，请戳这里 Install Data Migration Tool 这个安装工具必须使用 composer 的方式安装，如果以插件的方式安装，命令 migrate 会找不到。配置起来有点复杂。 ThankIT 使用的是 Ubertheme 的 UB Data 工具，以插件形式安装就行，可视
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-1-migrate-to-magento-2-conclusion/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -643,9 +642,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Magento 算是很老牌的电商平台了（Magento 于 2015 年发布了全新的版本 Magento 2 ），woocommerce 则是基于 wordpress 的电商插件，全球市场近 39% 的份额（Builtwith 统计）。 Magento 的开发成本要比 woocommerce 高出不少，也更加耗资源，woocommerce 则比较容易上手。 本文旨在探索 Magento 和 woocommerce 分别可以处理多少产品。 这是个很难回答的问题，因为即使是相同的工具，看怎么用，也会有不同的结果。 首先我们要给他一些限定条件： 默认情况下，在一般的服务器上跑，可以处理的产品数量范围。额外扩展和优化后，可以达到的上线是多少？ <strong>以下结论来自于网络整理，并没有非常权威的答案，仅供参考</strong> Magento CE 1.9X 大多数情况下，不做额外的优化，管理 1 - 2.5 万产品妥妥的。通过系统扩展、资源调整和代码优化，可以处理 10 - 20 万产品甚至更多。 Magento EE 13.x 14.x 大多数情况下，没有额外优化，可以管理 10 - 20 万产品。合理优化和扩展后，可以处理 40 - 50 万甚至更多。 Magento 2 CE 大多数情况下，没有额外优化，可以管理 10 - 20 万产品，合理优化和扩展后，可以处理 40 - 50 万甚至更多。 Magento 2 EE 被设计为处理更多产品，取决于一些企业版的高级特性，比如：database sharding, job queues, advanced mysql and web server topologies and proper resources。 这样我们大概就知道 Magento 处理十万级别的是没有问题的了。 下面说 woocommerce ，官方的说法： <em>Sky is the limit. We’ve seen instances of shops with 100,000+ products listed, handling thousands of transactions per minute. In those cases, they had great hosting support and their own developer team focused on optimization.</em> 然后社区的回答，商品数量在 1500 - 2500 之间的时候，会出现性能问题，这时候需要做优化。 所以，我们大概得出的结论是： woocommerce 在大多数情况下，不做额外的优化，可以处理 1500 - 2500 的产品。如果做优化，可以到达 10 万甚至更多。</p>
-<h2 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a><a href="#%E5%8F%82%E8%80%83%E5%9C%B0%E5%9D%80"></a>参考地址</h2><p><a target="_blank" rel="noopener" href="https://aionhill.com/how-many-products-can-magento-handle">Can Magento really handle over 500,000 products? If yes, how?</a> <a target="_blank" rel="noopener" href="https://www.quora.com/Can-I-use-WooCommerce-for-a-large-store">Can I use WooCommerce for a large store?</a> <a target="_blank" rel="noopener" href="https://docs.woocommerce.com/document/woocommerce-scaling-faqs/">WooCommerce Scaling FAQs</a></p>
-
+          Magento 算是很老牌的电商平台了（Magento 于 2015 年发布了全新的版本 Magento 2 ），woocommerce 则是基于 wordpress 的电商插件，全球市场近 39% 的份额（Builtwith 统计）。 Magento 的开发成本要比 woocommerce 高出不少，也更加耗资源，woocommerce 则比较容易上手。 本文旨在探索 Magento 和 woocommerce 分别可以处理多少产品。 这是个很难回答的问题，因为即使是相同的工具，看怎么用，也会有不同的结果。 首先我们要给他一些限定条件： 默认情况下，在一般的服务器上跑，可以处理的产品数量范围
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-woocommerce-how-many-products-can-they-handle/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -711,97 +716,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a><a href="#%E9%A2%98%E5%A4%96%E8%AF%9D"></a>题外话</h2><p>为什么 Magento 主题的博客研究起 cordova 来了？因为博主希望解决掉商城的全平台问题。 cordova 是贡献给 Apache 后的开源项目，Phonegap 的核心引擎。cordova 通过 Webview 提供 js 和原生代码之间的桥接，这样就可以利用 JS 来调用原生的代码，实现相应的功能，比如调用相机，地理位置什么的。（这样的介绍好像没什么卵用，总之一句话，cordova 是做 APP 跨平台开发的） 博主 14 年的时候用 phonegap 做过一个 APP，当时前端框架用的 jquery mobile。在流畅性上，还是不太理想，但是这个锅个人认为大部分要由 jquery mobile 来背，（：D 当然还有博主水平不够的原因）。最后，权衡开发成本和流畅性，选择混合开发还是划算的。 cordova 是混合开发中非常成熟的方案了。虽然一直在讲 webview 的渲染速度慢，但是近些年手机的运行速度也大大提升了。博主最近下载了一款基于 cordova 的应用，体验了一下，速度是很可以的。 因为 cordova 的插件机制，可以让你调用原生去做事，所以这个速度的优化空间是比较大的。况且，我们还可以在原生中嵌入 cordova 的 webviews ，让他们互通。在某些场景下使用原生的，另一些场景下使用 cordova ，想想还是很吸引人的。 在技术的选择上，常常有太多的争论，本文且不讨论这些，重点记录 cordova Android 插件开发的一个入门 exercise 。</p>
-<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a><a href="#%E5%89%8D%E6%8F%90"></a>前提</h2><p>安装了： cordova Node.js Android SDK 然后通过 npm 安装 plugman</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g plugman</span><br><span class="line">plugman --version</span><br><span class="line">1.4.1</span><br></pre></td></tr></table></figure>
-
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a><a href="#%E7%9B%AE%E6%A0%87"></a>目标</h2><p>练习的目的主要是熟悉插件开发的过程。 插件将提供接受一个字符型参数的 <code>echo</code> 方法，然后在成功调用后通过 <code>success</code> 方法返回传入的字符。</p>
-<h2 id="创建插件"><a href="#创建插件" class="headerlink" title="创建插件"></a><a href="#%E5%88%9B%E5%BB%BA%E6%8F%92%E4%BB%B6"></a>创建插件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugman create --name ModusEcho --plugin_id com-moduscreate-plugins-echo --plugin_version 0.0.1 --path modusechoplugin</span><br><span class="line"></span><br><span class="line">ls -l modusechoplugin/ModusEcho</span><br><span class="line"></span><br><span class="line">-rw-r--r--  1 simon  staff  372 Feb  3 12:32 plugin.xml</span><br><span class="line">drwxr-xr-x  2 simon  staff   68 Feb  3 12:32 src</span><br><span class="line">drwxr-xr-x  3 simon  staff  102 Feb  3 12:32 www</span><br></pre></td></tr></table></figure>
-
-<p>这样我们就在当前目录下创建了 <code>modusechoplugin/ModusEcho</code> 内部结构如上面所示。 <code>plugin.xml</code> 看起来是下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;utf-8&#x27;?&gt;</span><br><span class="line">&lt;plugin id=&quot;com-moduscreate-plugins-echo&quot; version=&quot;0.0.1&quot; xmlns=&quot;http://apache.org/cordova/ns/plugins/1.0&quot; xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">    &lt;name&gt;ModusEcho&lt;/name&gt;</span><br><span class="line">    &lt;js-module name=&quot;ModusEcho&quot; src=&quot;www/ModusEcho.js&quot;&gt;</span><br><span class="line">        &lt;clobbers target=&quot;cordova.plugins.ModusEcho&quot; /&gt;</span><br><span class="line">    &lt;/js-module&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-
-<p>关于 <code>plugin.xml</code> ，参考 <a target="_blank" rel="noopener" href="https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html">Plugin.xml</a>，<code>id</code>、<code>version</code>、<code>name</code> 都是命令中指定的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;clobbers target=&quot;cordova.plugins.ModusEcho&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里指定模块将被 export 到 <code>window.cordova.plugins.ModusEcho</code> 这里我们将他改成<code>modusecho</code>，这样就可以通过 <code>modusecho</code> 或者 <code>window.modusecho</code> 访问了，变成下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;utf-8&#x27;?&gt;</span><br><span class="line">&lt;plugin id=&quot;com-moduscreate-plugins-echo&quot; version=&quot;0.0.1&quot; </span><br><span class="line">xmlns=&quot;http://apache.org/cordova/ns/plugins/1.0&quot; </span><br><span class="line">xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">  &lt;name&gt;ModusEcho&lt;/name&gt;</span><br><span class="line">  &lt;js-module name=&quot;ModusEcho&quot; src=&quot;www/ModusEcho.js&quot;&gt;</span><br><span class="line">    &lt;clobbers target=&quot;modusecho&quot; /&gt;</span><br><span class="line">  &lt;/js-module&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-
-<p>然后来看 <code>www/ModusEcho.js</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var exec = require(&#x27;cordova/exec&#x27;);</span><br><span class="line"></span><br><span class="line">exports.coolMethod = function(arg0, success, error) &#123;</span><br><span class="line">    exec(success, error, &quot;ModusEcho&quot;, &quot;coolMethod&quot;, [arg0]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>我们将他改成：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var exec = require(&#x27;cordova/exec&#x27;);</span><br><span class="line"></span><br><span class="line">exports.echo = function(arg0, success, error) &#123;</span><br><span class="line">  exec(success, error, &quot;ModusEcho&quot;, &quot;echo&quot;, [arg0]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>The JavaScript interface provides the front-facing interface, making it perhaps the most important part of the plugin. You can structure your plugin’s JavaScript however you like, but you need to call cordova.exec to communicate with the native platform。 就是说这里通过 Cordova bridge 的 <code>exec</code> 方法来调用原生的代码。</p>
-<h2 id="创建-cordova-项目做测试用"><a href="#创建-cordova-项目做测试用" class="headerlink" title="创建 cordova 项目做测试用"></a><a href="#%E5%88%9B%E5%BB%BA-cordova-%E9%A1%B9%E7%9B%AE%E5%81%9A%E6%B5%8B%E8%AF%95%E7%94%A8"></a>创建 cordova 项目做测试用</h2><p>这里我们先创建一个 cordova 项目来测试一下。(注意不要在当前创建的插件目录下)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova create testapp com.moduscreate.testapp TestApp</span><br></pre></td></tr></table></figure>
-
-<p>上面的语法是<code>cordova create path [id [name [config]]] [options]</code>，参考 <a target="_blank" rel="noopener" href="https://cordova.apache.org/docs/en/latest/reference/cordova-cli/index.html">Cordova Command-line-interface (CLI) Reference</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd testapp</span><br><span class="line">cordova platform add android</span><br><span class="line">cordova plugin add &lt;path/to/plugin&gt;</span><br></pre></td></tr></table></figure>
-
-<p>eg：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add ../modusechoplugin/ModusEcho/</span><br></pre></td></tr></table></figure>
-
-<p>博主的目录是： dir&#x2F;testapp cordova 项目 dir&#x2F;modusechoplugin&#x2F;ModusEcho 插件项目 然后我们得到一个错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Invalid Plugin! ..\..\cordova\modusechoplugin\ModusEcho needs a valid package.json</span><br></pre></td></tr></table></figure>
-
-<p>因为插件没有 package.json 下面切换到插件目录（存在 plugin.xml 的目录）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugman createpackagejson .</span><br></pre></td></tr></table></figure>
-
-<p>然后就生成 package.json 了，这时候再回到 cordova 项目目录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add ../modusechoplugin/ModusEcho/</span><br></pre></td></tr></table></figure>
-
-<p>这次就成功了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova run android</span><br></pre></td></tr></table></figure>
-
-<p>启用了模拟器，然后就看到经典的画面了。 现在我们可以发现 testapp&#x2F;plugins&#x2F;com-moduscreate-plugin-echo 下面有我们的插件了。</p>
-<h2 id="测试不使用-cordova-exec"><a href="#测试不使用-cordova-exec" class="headerlink" title="测试不使用 cordova exec"></a><a href="#%E6%B5%8B%E8%AF%95%E4%B8%8D%E4%BD%BF%E7%94%A8-cordova-exec"></a>测试不使用 cordova exec</h2><p>上面我们的 <code>testapp/plugins/com-moduscreate-plugin-echo/www/ModusEcho.js</code> 是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var exec = require(&#x27;cordova/exec&#x27;);</span><br><span class="line"></span><br><span class="line">exports.coolMethod = function(arg0, success, error) &#123;</span><br><span class="line">  exec(success, error, &quot;ModusEcho&quot;, &quot;coolMethod&quot;, [arg0]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>先把他注释掉，然后改成下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// var exec = require(&#x27;cordova/exec&#x27;);</span><br><span class="line"></span><br><span class="line">// exports.echo = function(arg0, success, error) &#123;</span><br><span class="line">//     exec(success, error, &quot;ModusEcho&quot;, &quot;echo&quot;, [arg0]);</span><br><span class="line">// &#125;;</span><br><span class="line">exports.echojs = function(arg0, success, error) &#123;</span><br><span class="line">  // Do something</span><br><span class="line">  success(arg0);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>然后修改 <code>testapp\www\js\index.js</code> 为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">onDeviceReady: function() &#123;</span><br><span class="line">        this.receivedEvent(&#x27;deviceready&#x27;);</span><br><span class="line">        modusecho.echojs(</span><br><span class="line">        &#x27;Hello Plugin&#x27;,</span><br><span class="line">        function(msg) &#123;</span><br><span class="line">          document.getElementsByTagName(&#x27;h1&#x27;)[0].innerHTML = msg;</span><br><span class="line">        &#125;,</span><br><span class="line">        function(err) &#123;</span><br><span class="line">          document.getElementsByTagName(&#x27;h1&#x27;)[0].innerHTML = err;</span><br><span class="line">        &#125;</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-
-<p>然后</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova run android</span><br></pre></td></tr></table></figure>
-
-<p>理论上原来的 Apache Cordova 应该被换成 Hello Plugin 也就是说，这里不使用 cordova 的 exec 也完全没有问题，重点是 export 了该方法。 但是实际上由于此处是直接在 cordova 中改写插件，<code>testapp\platforms\android\assets\www\plugins\com-moduscreate-plugins-echo\www\ModusEcho.js</code> 并没有发生变化，这是 cordova 自动生成的一个 js ，并且比原始的 js 多了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cordova.define(&quot;com-moduscreate-plugins-echo.ModusEcho&quot;, function(require, exports, module) &#123;</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>所以，直接改写不太 ok ，目前还没找到相关的命令，此处还是更改原来的插件代码，然后在 cordova 项目下先移除，再次添加，这次就成功了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin rm com-moduscreate-plugins-echo</span><br><span class="line">cordova plugin add ../modusechoplugin/ModusEcho/</span><br></pre></td></tr></table></figure>
-
-<h2 id="module-exports"><a href="#module-exports" class="headerlink" title="module.exports"></a><a href="#module.exports"></a>module.exports</h2><p>上面 <code>www/ModusEcho.js</code> 是这样的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exports.echojs = function(arg0, success, error) &#123;</span><br><span class="line">  // Do something</span><br><span class="line">  success(arg0);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>如果写成：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    Base: &#123;</span><br><span class="line">        hello: function(arg0, success, error) &#123;</span><br><span class="line">            // Do something</span><br><span class="line">            success(arg0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>那么我们就该这样引用：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">modusecho.Base.hello(</span><br><span class="line">        &#x27;Hello world&#x27;,</span><br><span class="line">        function(msg) &#123;</span><br><span class="line">          document.getElementsByTagName(&#x27;h1&#x27;)[0].innerHTML = msg;</span><br><span class="line">        &#125;,</span><br><span class="line">        function(err) &#123;</span><br><span class="line">          document.getElementsByTagName(&#x27;h1&#x27;)[0].innerHTML = err;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="cordova-exec"><a href="#cordova-exec" class="headerlink" title="cordova exec"></a><a href="#cordova-exec"></a>cordova exec</h2><p>这里还是将 <code>www/ModusEcho.js</code> 改成：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var exec = require(&#x27;cordova/exec&#x27;);</span><br><span class="line"></span><br><span class="line">exports.echo = function(arg0, success, error) &#123;</span><br><span class="line">  exec(success, error, &quot;ModusEcho&quot;, &quot;echo&quot;, [arg0]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>cordova 的 exec 接收 5 个参数 <code>function(winParam) &#123;&#125;</code>: A success callback function. Assuming your exec call completes successfully, this function executes along with any parameters you pass to it. <code>function(error) &#123;&#125;</code>: An error callback function. If the operation does not complete successfully, this function executes with an optional error parameter. <code>&quot;service&quot;</code>: The service name to call on the native side. This corresponds to a native class, for which more information is available in the native guides listed below. <code>&quot;action&quot;</code>: The action name to call on the native side. This generally corresponds to the native class method. See the native guides listed below. <code>[/* arguments */]</code>: An array of arguments to pass into the native environment. 现在个 plugin.xml 加上如下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;platform name=&quot;android&quot;&gt;</span><br><span class="line">  &lt;config-file target=&quot;config.xml&quot; parent=&quot;/*&quot;&gt;</span><br><span class="line">    &lt;feature name=&quot;ModusEcho&quot;&gt;</span><br><span class="line">      &lt;param name=&quot;android-package&quot;</span><br><span class="line">             value=&quot;com.moduscreate.plugin.ModusEcho&quot;/&gt;</span><br><span class="line">    &lt;/feature&gt;</span><br><span class="line">  &lt;/config-file&gt;</span><br><span class="line">  &lt;source-file src=&quot;src/android/com/moduscreate/plugin/ModusEcho.java&quot; </span><br><span class="line">target-dir=&quot;src/com/moduscreate/plugin&quot; /&gt;</span><br><span class="line">&lt;/platform&gt;</span><br></pre></td></tr></table></figure>
-
-<p>插件目录下的<code>src/android/com/moduscreate/plugin/ModusEcho.java</code> 将会被拷贝到 cordova 项目的 <code>platforms\android\src\com\moduscreate\plugin</code> 下，并且<code>com.moduscreate.plugin.ModusEcho</code> 被映射为 <code>ModusEcho</code> plugin service。（对应 exec 中的 service）</p>
-<h2 id="创建-ModusEcho-java"><a href="#创建-ModusEcho-java" class="headerlink" title="创建 ModusEcho.java"></a><a href="#%E5%88%9B%E5%BB%BA-modusecho.java"></a>创建 ModusEcho.java</h2><p>在插件目录创建 <code>src/android/com/moduscreate/plugin/ModusEcho.java</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">package com.moduscreate.plugin;</span><br><span class="line"></span><br><span class="line">import org.apache.cordova.CordovaPlugin;</span><br><span class="line">import org.apache.cordova.CallbackContext;</span><br><span class="line">import org.json.JSONArray;</span><br><span class="line">import org.json.JSONObject;</span><br><span class="line">import org.json.JSONException;</span><br><span class="line">import android.content.Context;</span><br><span class="line">import android.widget.Toast;</span><br><span class="line"></span><br><span class="line">public class ModusEcho extends CordovaPlugin &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public boolean execute(</span><br><span class="line">    String action, </span><br><span class="line">    JSONArray args, </span><br><span class="line">    CallbackContext callbackContext</span><br><span class="line">  ) throws JSONException &#123;</span><br><span class="line">    if (&quot;echo&quot;.equals(action)) &#123;</span><br><span class="line">      echo(args.getString(0), callbackContext);</span><br><span class="line">      return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private void echo(</span><br><span class="line">    String msg, </span><br><span class="line">    CallbackContext callbackContext</span><br><span class="line">  ) &#123;</span><br><span class="line">    if (msg == null  msg.length() == 0) &#123;</span><br><span class="line">      callbackContext.error(&quot;Empty message!&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      Toast.makeText(</span><br><span class="line">        webView.getContext(), </span><br><span class="line">        msg, </span><br><span class="line">        Toast.LENGTH_LONG</span><br><span class="line">      ).show();</span><br><span class="line">      callbackContext.success(msg);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>修改项目的 index.js 为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">onDeviceReady: function() &#123;</span><br><span class="line">        this.receivedEvent(&#x27;deviceready&#x27;);</span><br><span class="line">        modusecho.echo(</span><br><span class="line">            &#x27;Plugin Ready!&#x27;,</span><br><span class="line">            function(msg) &#123;</span><br><span class="line">                document.getElementById(&#x27;deviceready&#x27;).querySelector(&#x27;.received&#x27;).innerHTML = msg;</span><br><span class="line">            &#125;,</span><br><span class="line">            function(err) &#123;</span><br><span class="line">                document.getElementById(&#x27;deviceready&#x27;).innerHTML = &#x27;&lt;p class=&quot;event received&quot;&gt;&#x27; + err + &#x27;&lt;/p&gt;&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-
-<p>然后</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin rm com-moduscreate-plugins-echo</span><br><span class="line">cordova plugin add ../modusechoplugin/ModusEcho/</span><br><span class="line">cordova run android</span><br></pre></td></tr></table></figure>
-
-<p>这样就可以看到： <img src="/wp-content/uploads/2017/06/cordova.png"></p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://moduscreate.com/plugin-authoring-cordova-6-ios-android/">Plugin Authoring in Cordova 6 for iOS and Android</a></p>
-
+          题外话
+为什么 Magento 主题的博客研究起 cordova 来了？因为博主希望解决掉商城的全平台问题。 cordova 是贡献给 Apache 后的开源项目，Phonegap 的核心引擎。cordova 通过 Webview 提供 js 和原生代码之间的桥接，这样就可以利用 JS 来调用原生的代码，实现相应的功能，比如调用相机，地理位置什么的。（这样的介绍好像没什么卵用，总之一句话，cordova 是做 APP 跨平台开发的） 博主 14 年的时候用 phonegap 做过一个 APP，当时前端框架用的 jquery mobile。在流畅性上，还是不太理想，但是这个锅个人认为大部分要由 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/cordova-plugin-development-exercise/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -867,8 +791,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="bootstrap-多级导航-PC-手机解决方案"><a href="#bootstrap-多级导航-PC-手机解决方案" class="headerlink" title="bootstrap 多级导航 PC 手机解决方案"></a><a href="#bootstrap-%E5%A4%9A%E7%BA%A7%E5%AF%BC%E8%88%AA-pc-%E6%89%8B%E6%9C%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"></a>bootstrap 多级导航 PC 手机解决方案</h1><p>多于两层的导航比较少，这里业务需要 bootstrap 的多级导航。在 PC 上悬停时出现子菜单（默认是 click 的方式），在手机上依然是 click 出现子菜单，不能是悬停。PC 上下拉选项可以点击进入链接，手机点击显示或隐藏子菜单。 以下是 demo <a href="/wp-content/uploads/2017/06/index3.html">在线 demo</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;!-- 最新版本的 Bootstrap 核心 CSS 文件 --&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css&quot; integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot; crossorigin=&quot;anonymous&quot;&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;!-- 最新的 Bootstrap 核心 JavaScript 文件 --&gt;</span><br><span class="line">    &lt;script src=&quot;https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js&quot; integrity=&quot;sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">@media (min-width: 767px) &#123;</span><br><span class="line">    .navbar-nav .dropdown-menu .caret &#123;</span><br><span class="line">        transform: rotate(-90deg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;navbar navbar-default navbar-fixed-top&quot; role=&quot;navigation&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;navbar-header&quot;&gt;</span><br><span class="line">                &lt;button type=&quot;button&quot; class=&quot;navbar-toggle&quot; data-toggle=&quot;collapse&quot; data-target=&quot;.navbar-collapse&quot;&gt;</span><br><span class="line">                    &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;</span><br><span class="line">                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span><br><span class="line">                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span><br><span class="line">                    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;</span><br><span class="line">                &lt;/button&gt;</span><br><span class="line">                &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;NavBar&lt;/a&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;collapse navbar-collapse&quot;&gt;</span><br><span class="line">                &lt;ul class=&quot;nav navbar-nav&quot;&gt;</span><br><span class="line">                    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                    &lt;li&gt;&lt;a href=&quot;https://github.com/fontenele/bootstrap-navbar-dropdowns&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                    &lt;li&gt;</span><br><span class="line">                        &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Menu 1 &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                        &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action [Menu 1.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action [Menu 1.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here [Menu 1.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link [Menu 1.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;One more separated link [Menu 1.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;</span><br><span class="line">                                &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Dropdown [Menu 1.1] &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                                &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action [Menu 1.2]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                    &lt;li&gt;</span><br><span class="line">                                        &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Dropdown [Menu 1.2] &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                                        &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                                            &lt;li&gt;</span><br><span class="line">                                                &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Dropdown [Menu 1.3] &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                                                &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action [Menu 1.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action [Menu 1.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here [Menu 1.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link [Menu 1.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;One more separated link [Menu 1.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                &lt;/ul&gt;</span><br><span class="line">                                            &lt;/li&gt;</span><br><span class="line">                                        &lt;/ul&gt;</span><br><span class="line">                                    &lt;/li&gt;</span><br><span class="line">                                &lt;/ul&gt;</span><br><span class="line">                            &lt;/li&gt;</span><br><span class="line">                        &lt;/ul&gt;</span><br><span class="line">                    &lt;/li&gt;</span><br><span class="line">                    &lt;li&gt;</span><br><span class="line">                        &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Menu 2 &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                        &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action [Menu 2.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action [Menu 2.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here [Menu 2.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link [Menu 2.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;One more separated link [Menu 2.1]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                            &lt;li&gt;</span><br><span class="line">                                &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Dropdown [Menu 2.1] &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                                &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action [Menu 2.2]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action [Menu 2.2]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here [Menu 2.2]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link [Menu 2.2]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                                    &lt;li&gt;</span><br><span class="line">                                        &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Dropdown [Menu 2.2] &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                                        &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                                            &lt;li&gt;</span><br><span class="line">                                                &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;Dropdown [Menu 2.3] &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;&lt;/a&gt;</span><br><span class="line">                                                &lt;ul class=&quot;dropdown-menu&quot;&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Action [Menu 2.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Another action [Menu 2.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Something else here [Menu 2.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Separated link [Menu 2.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;</span><br><span class="line">                                                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;One more separated link [Menu 2.4]&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                                                &lt;/ul&gt;</span><br><span class="line">                                            &lt;/li&gt;</span><br><span class="line">                                        &lt;/ul&gt;</span><br><span class="line">                                    &lt;/li&gt;</span><br><span class="line">                                &lt;/ul&gt;</span><br><span class="line">                            &lt;/li&gt;</span><br><span class="line">                        &lt;/ul&gt;</span><br><span class="line">                    &lt;/li&gt;</span><br><span class="line">                &lt;/ul&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;!--/.nav-collapse --&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    jQuery(document).ready(function() &#123;</span><br><span class="line">        var $ = jQuery;</span><br><span class="line"></span><br><span class="line">        function dropdownOpen() &#123;</span><br><span class="line">            // console.log(&#x27;drop&#x27;);</span><br><span class="line">            var screenWidth = $(window).width();</span><br><span class="line">            var isPhone = screenWidth &lt; 768;</span><br><span class="line">            if (!isPhone) &#123;</span><br><span class="line">                $(&#x27;.navbar-nav a.dropdown-toggle&#x27;).unbind(&#x27;mouseover&#x27;).on(&#x27;mouseover&#x27;, function() &#123;</span><br><span class="line">                    // console.log(this);</span><br><span class="line">                    var $el = $(this);</span><br><span class="line">                    var $parent = $(this).offsetParent(&quot;.dropdown-menu&quot;);</span><br><span class="line"></span><br><span class="line">                    $(this).parent(&quot;li&quot;).addClass(&#x27;open&#x27;);</span><br><span class="line"></span><br><span class="line">                    if (!$parent.parent().hasClass(&#x27;nav&#x27;)) &#123;</span><br><span class="line">                        $el.next().css(&#123;</span><br><span class="line">                            &quot;top&quot;: $el[0].offsetTop,</span><br><span class="line">                            &quot;left&quot;: $parent.outerWidth() - 4</span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    $(&#x27;.nav li.open&#x27;).not($(this).parents(&quot;li&quot;)).removeClass(&quot;open&quot;);</span><br><span class="line"></span><br><span class="line">                    return false;</span><br><span class="line">                &#125;);</span><br><span class="line">                $(&#x27;.navbar-nav a.dropdown-toggle&#x27;).addClass(&#x27;disabled&#x27;);</span><br><span class="line">                $(&#x27;.navbar-nav a.dropdown-toggle&#x27;).unbind(&#x27;click&#x27;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                $(&#x27;.navbar-nav a.dropdown-toggle&#x27;).unbind(&#x27;mouseover&#x27;);</span><br><span class="line">                $(&#x27;.navbar-nav a.dropdown-toggle&#x27;).removeClass(&#x27;disabled&#x27;);</span><br><span class="line">                $(&#x27;.navbar-nav a.dropdown-toggle&#x27;).unbind(&#x27;click&#x27;).on(&#x27;click&#x27;, function() &#123;</span><br><span class="line"></span><br><span class="line">                    $(this).parent(&quot;li&quot;).toggleClass(&#x27;open&#x27;);</span><br><span class="line"></span><br><span class="line">                    return false;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // resize 会执行两次</span><br><span class="line">        $(window).on(&#x27;resize&#x27;, dropdownOpen).trigger(&#x27;resize&#x27;);</span><br><span class="line">    &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          bootstrap 多级导航 PC 手机解决方案
+多于两层的导航比较少，这里业务需要 bootstrap 的多级导航。在 PC 上悬停时出现子菜单（默认是 click 的方式），在手机上依然是 click 出现子菜单，不能是悬停。PC 上下拉选项可以点击进入链接，手机点击显示或隐藏子菜单。 以下是 demo 在线 demo
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+4
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/bootstrap-mulilevel-navbar-pc-mobile/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -934,14 +916,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>曾经的 ECshop 占据了国内相当大的一部分市场，现在出 3.6 了，所以博主想看看 ecshop 有没有什么变化。 下载的话，还需要注册，博主把自己下载的<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1skJVqiD#list/path=%2Fwww.hellomagento2.com">搁在这里</a>，有兴趣的可以下载下来看看。 以下是安装截图，看看就好。 <img src="/wp-content/uploads/2017/05/1.png"> <img src="/wp-content/uploads/2017/05/2.png"> <img src="/wp-content/uploads/2017/05/3.png"> <img src="/wp-content/uploads/2017/05/4.png"> <img src="/wp-content/uploads/2017/05/5.png"> <img src="/wp-content/uploads/2017/05/6.png"> <img src="/wp-content/uploads/2017/05/7.png"> <img src="/wp-content/uploads/2017/05/8.png"> <img src="/wp-content/uploads/2017/05/9.png"> <img src="/wp-content/uploads/2017/05/10.png"> <img src="/wp-content/uploads/2017/05/11.png"> <img src="/wp-content/uploads/2017/05/12.png"> 大致看了下代码，没有命名空间，主要是面向过程的写法，smarty 模版机制，MySQLi 的连接方式。主要有三个入口，appserver 负责 API ，这个给 APP 调用（需要另外付费）。ecshop&#x2F;h5 负责 H5 页面，ecshop 负责 PC 入口。（如果我说的不对，欢迎纠正） 这样的话，代码架构有点过时了，可维护性会很差。 然后我找到了判断是 PC 还是手机的代码，整理后是这样的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$ua = strtolower($_SERVER[&#x27;HTTP_USER_AGENT&#x27;]);</span><br><span class="line"></span><br><span class="line">$uachar = &quot;/(nokiasonyericssonmotsamsungsghlgphilipspanasonicalcatellenovocldcmidpmobile)/i&quot;;</span><br><span class="line"></span><br><span class="line">if ($ua == &#x27;&#x27;  preg_match($uachar, $ua)) &#123;</span><br><span class="line">    echo &#x27;手机端&#x27;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &#x27;pc&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>虽然不全面，倒还算简洁可用，所以先放这里吧。 然后我又找了一个更全面点的，也顺带放这里吧，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function isMobile()</span><br><span class="line">&#123;</span><br><span class="line">    //正则表达式,批配不同手机浏览器UA关键词。</span><br><span class="line">    $regex_match = &quot;/(nokiaiphoneandroidmotorola^mot\-softbankfomadocomokddiup\.browserup\.link&quot;;</span><br><span class="line">    $regex_match .= &quot;htcdopodblazernetfrontheliohosinhuaweinovarraCoolPadwebostechfaithpalmsource&quot;;</span><br><span class="line">    $regex_match .= &quot;blackberryalcatelamoiktouchnexiansamsung^sam\-s[cg]h^lgeericssonphilipssagemwellcombunjalloomaui&quot;;</span><br><span class="line">    $regex_match .= &quot;symbiansmartphonemidpwapphonewindows ceiemobile^spice^bird^zte\-longcospantechgionee^sie\-portalmmm&quot;;</span><br><span class="line">    $regex_match .= &quot;jig\s browserhiptop^ucweb^benqhaier^lctopera\s*mobiopera\*mini320x320240x320176x220&quot;;</span><br><span class="line">    $regex_match .= &quot;)/i&quot;;</span><br><span class="line">    return isset($_SERVER[&#x27;HTTP_X_WAP_PROFILE&#x27;]) or isset($_SERVER[&#x27;HTTP_PROFILE&#x27;]) or preg_match($regex_match, strtolower($_SERVER[&#x27;HTTP_USER_AGENT&#x27;])); //如果UA中存在上面的关键词则返回真。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (isMobile()) &#123;</span><br><span class="line">    //如果为真，则进行WAP页面。</span><br><span class="line">    echo &#x27;WAP&#x27;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    //如果为假，则进行PC页面。</span><br><span class="line">    echo &#x27;PC&#x27;;</span><br><span class="line">    //return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后我又顺道去看了国内其他一些系统，然后就发现了开源但不可二开这种奇葩的协议，反正就是要购买授权啦。 提一个 ShopSN ，基于 ThinkPHP 3.2.3，据说是要做全网的，但是目前还没有看到演示的手机端，但是协议还是让人放心的，付费去版权，不付费也可以用。过一段时间再看看吧。 2017&#x2F;05&#x2F;19 更新 之前在 ecshop 注册了，这不销售打电话过来了。以下是了解到的信息。 正式使用需要授权，授权费用是 7800 包括 PC 和 H5 ，下载的测试代码可以看到 PC 但是看不了 H5 APP 需要单独授权，Android 和 IOS 一起 2.44 万，不提供源代码。 提供源代码，一起总共 7.58 万。</p>
-
+          曾经的 ECshop 占据了国内相当大的一部分市场，现在出 3.6 了，所以博主想看看 ecshop 有没有什么变化。 下载的话，还需要注册，博主把自己下载的搁在这里，有兴趣的可以下载下来看看。 以下是安装截图，看看就好。 大致看了下代码，没有命名空间，主要是面向过程的写法，smarty 模版机制，MySQLi 的连接方式。主要有三个入口，appserver 负责 API ，这个给 APP 调用（需要另外付费）。ecshop/h5 负责 H5 页面，ecshop 负责 PC 入口。（如果我说的不对，欢迎纠正） 这样的话，代码架构有点过时了，可维护性会很差。 然后我找到了判断是 PC 还是手机的
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ecshop-3-6-%E5%88%9D%E6%8E%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1007,61 +990,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em>这又是一次不成功的尝试，10 个月前试过一次，同样由于权限问题止步。此次记录下来备查。</em> windows 10 系统。官网下载安装包，下一步下一步，安装后重启。确认安装成功后，打开 CMD 。 运行一个 ubuntu 的 container</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -ti --name lamp ubuntu:16.04 bash</span><br></pre></td></tr></table></figure>
+          这又是一次不成功的尝试，10 个月前试过一次，同样由于权限问题止步。此次记录下来备查。 windows 10 系统。官网下载安装包，下一步下一步，安装后重启。确认安装成功后，打开 CMD 。 运行一个 ubuntu 的 container
 
-<p>升级系统</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y update</span><br><span class="line">apt-get -y upgrade</span><br></pre></td></tr></table></figure>
+1
 
-<p>安装apache2</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install apache2</span><br></pre></td></tr></table></figure>
 
-<p>查看 apache 版本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apache2 -v</span><br><span class="line">Server version: Apache/2.4.18 (Ubuntu)</span><br><span class="line">Server built:   2017-05-05T16:32:00</span><br></pre></td></tr></table></figure>
+docker run -ti --name lamp ubuntu:16.04 bash
 
-<p>启用 Apache rewrite 模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a2enmod rewrite</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install vim</span><br></pre></td></tr></table></figure>
+升级系统
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apache2/sites-available/000-default.conf</span><br></pre></td></tr></table></figure>
+1
+2
 
-<p>在文件末尾添加 下面的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory &quot;/var/www/html&quot;&gt;</span><br><span class="line">    AllowOverride  all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+apt-get -y update
+apt-get -y upgrade
 
-<p>安装 MySQL 5.7</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install mysql-server-5.7 mysql-client-5.7</span><br></pre></td></tr></table></figure>
 
-<p>输入 root 的密码：root</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br><span class="line">mysql -u root -p</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 6</span><br><span class="line">Server version: 5.7.18-0ubuntu0.16.04.1 (Ubuntu)</span><br></pre></td></tr></table></figure>
+安装apache2
 
-<p>创建数据库 magento 并将所有权限授予 magento 用户 密码 magento</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create database magento;</span><br><span class="line">GRANT ALL ON magento.* TO magento@localhost IDENTIFIED BY &#x27;magento&#x27;;</span><br><span class="line">exit</span><br><span class="line">mysql -u magento -p</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+1
 
-<p>安装 php 7</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y update</span><br><span class="line">apt-get install software-properties-common</span><br><span class="line">add-apt-repository ppa:ondrej/php</span><br><span class="line">apt-get -y update</span><br><span class="line">apt-get install -y php7.0 libapache2-mod-php7.0 php7.0 php7.0-common php7.0-gd php7.0-mysql php7.0-mcrypt php7.0-curl php7.0-intl php7.0-xsl php7.0-mbstring php7.0-zip php7.0-bcmath php7.0-iconv</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">php -v</span><br><span class="line"></span><br><span class="line">PHP 7.0.19-1+deb.sury.org~xenial+1 (cli) (built: May 11 2017 14:06:14) ( NTS )</span><br><span class="line">Copyright (c) 1997-2017 The PHP Group</span><br><span class="line">Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies</span><br><span class="line">    with Zend OPcache v7.0.19-1+deb.sury.org~xenial+1, Copyright (c) 1999-2017, by Zend Technologies</span><br></pre></td></tr></table></figure>
+apt-get -y install apache2
 
-<p>PHP 的其他设置 有两个 php.ini &#x2F;etc&#x2F;php&#x2F;7.0&#x2F;apache2&#x2F;php.ini &#x2F;etc&#x2F;php&#x2F;7.0&#x2F;cli&#x2F;php.ini 两个都需要更改并启用 opcache</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">date.timezone = &quot;Asia/Shanghai&quot;</span><br><span class="line">memory_limit = 1024M</span><br><span class="line">opcache.enable=1</span><br><span class="line">opcache.enable_cli=1</span><br><span class="line">opcache.save_comments = 1</span><br><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m &quot;This is lamp for magento2&quot; -a &quot;Pisces.ThankIT&quot; lamp wqdocker/lamp:v1</span><br></pre></td></tr></table></figure>
+查看 apache 版本
 
-<p>这样我就得到了一个 lamp 的 image 然后我尝试更改挂载上去的目录权限，无效。 以下是失败的部分</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -tid -p 80:80 --name lampv1 -v g:/dockerwww:/var/www/html  wqdocker/lamp:v1 bash</span><br></pre></td></tr></table></figure>
+1
+2
+3
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -tid -p 80:80 -p 3306:3306 --name lampv2 -v g:/dockerwww:/var/www/html  wqdocker/lamp:v1 bash</span><br></pre></td></tr></table></figure>
 
-<p>进入容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker attach lampv1</span><br><span class="line">service apache2 start</span><br><span class="line">service mysql start</span><br></pre></td></tr></table></figure>
+apache2 -v
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">useradd -r -m -s /bin/bash magento</span><br><span class="line">配置用户的密码(magento)</span><br><span class="line">passwd magento</span><br><span class="line">寻找 apache 的 user (www-data)</span><br><span class="line">ps aux  grep apache</span><br><span class="line">www-data 的 group 也是www-data</span><br><span class="line">groups www-data</span><br><span class="line">把 magento 用户创建的任何文件都分配给 www-data 组</span><br><span class="line">usermod -g www-data magento</span><br><span class="line">验证下 magento 在 www-data 组</span><br><span class="line">groups magento</span><br><span class="line">chown magento:www-data index.php</span><br></pre></td></tr></table></figure>
-
-<p>无法修改权限，查了一些资料，推测是 docker 在 windows 系统上的 bug 。 在 ubuntu 系统下，权限的映射有点小问题，但是可以解决。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/docker-%E6%90%AD%E5%BB%BA-lamp-%E7%8E%AF%E5%A2%83-%EF%BC%88%E5%A4%B1%E8%B4%A5%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

@@ -231,141 +231,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/knockoutjs_primer_for_magento_developers/">原文地址</a></em></p>
-<p>在我们可以继续探索 Magento 的 js 高级特性之前，我们得先补习 <a target="_blank" rel="noopener" href="http://knockoutjs.com/">KnockoutJS</a>KnockoutJS 是一个 javaScript MVVM 系统，他是 Magento 2 中的主要 DOM 操作框架。</p>
-<p>本篇教程旨在帮助 Magento 开发者熟悉 KnockoutJS 的基本概念，重点介绍 Magento 使用的一些 KnockoutJS 功能。如果你打算用 KnockoutJS 创建东西的话，强烈建议你参阅<a target="_blank" rel="noopener" href="http://learn.knockoutjs.com/">KnockoutJS 官方 tutorials</a></p>
-<h2 id="Hello-Model-View-View-Model"><a href="#Hello-Model-View-View-Model" class="headerlink" title="Hello Model,View,View Model"></a><a href="#hello-model,view,view-model"></a>Hello Model,View,View Model</h2><p>首先，让我们来创建下面的 HTML 页面</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://code.jquery.com/jquery-3.0.0.min.js&quot; integrity=&quot;sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          原文地址
 
-<p>这个页面：</p>
-<ol>
-<li>从 CDN 加载 KnockoutJS 库</li>
-<li>从 CDN 加载 JQuery 库</li>
-<li>设置了一个空的 DOM 结构</li>
-</ol>
-<p>你不需要从 CDN 加载 jQuery 和 KnockoutJS，不过这样做比较容易。</p>
-<p>如果你用浏览器打开这个页面，你会看到一个空白页。因为你得：</p>
-<ol>
-<li>Add the javascript code that creates a view model and applies the KnockoutJS bindings</li>
-<li>Add the view code to the HTML page that reads from the view model</li>
-</ol>
-<p>我们先来做第一个，创建一个名为<code>ko-init.js</code>的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    viewModel = &#123;</span><br><span class="line">        title:&quot;Hello World&quot;,</span><br><span class="line">        content:&quot;So many years of hello world&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+在我们可以继续探索 Magento 的 js 高级特性之前，我们得先补习 KnockoutJSKnockoutJS 是一个 javaScript MVVM 系统，他是 Magento 2 中的主要 DOM 操作框架。
 
-<p>然后在我们的页面中引入这个js 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.0.0.min.js&quot; integrity=&quot;sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;ko-init.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+本篇教程旨在帮助 Magento 开发者熟悉 KnockoutJS 的基本概念，重点介绍 Magento 使用的一些 KnockoutJS 功能。如果你打算用 KnockoutJS 创建东西的话，强烈建议你参阅KnockoutJS 官方 tutorials
 
-<p>最后，修改<code>h1</code>和<code>p</code>标签，给他们添加如下的<code>data-bind</code>属性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+Hello Model,View,View Model
+首先，让我们来创建下面的 HTML 页面
 
-<p>现在刷新页面，你应该会看到：<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-first.png"><br>恭喜你！你成功创建了第一 KnockoutJS view model 和 view</p>
-<h2 id="What-Just-Happened"><a href="#What-Just-Happened" class="headerlink" title="What Just Happened"></a><a href="#what-just-happened"></a>What Just Happened</h2><p>KnockoutJS 本身是 <strong>MVVM</strong>系统，MVVM 代表着 Model，View,View Model。Really though, KnockoutJS is better billed as a VVM system, since its agnostic about what sort of model code you use to fetch data. view 是指 HTML 页面，view model 是指带数据的 js 对象。</p>
-<p>让我们来看看js 代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    viewModel = &#123;</span><br><span class="line">        title:&quot;Hello World&quot;,</span><br><span class="line">        content:&quot;So many years of hello world&quot;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+1
+2
 
-<p>jQuery 并非必要的，只不过 KnockoutJS 不能在 DOM 还没有完成加载前进行渲染，jQuery 的 document ready 函数正可以帮助我们达到目的。<code>jQuery();</code>相当于<code>$(document).ready();</code></p>
-<p>这里我们创建了一个带键值对的 view model</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">viewModel = &#123;</span><br><span class="line">    title:&quot;Hello World&quot;,</span><br><span class="line">    content:&quot;So many years of hello world&quot;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>然后我们应用了 KnockoutJS 的绑定。换一种说法是我们让 KnockoutJS 用 view model 去渲染 view。再说一遍，view 是整个 HTML 页面。</p>
-<p>我们来看看 view 部分，注意<code>data-bind</code>属性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:title&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>当你调用<code>applyBindings</code>时，KnockoutJS 会扫描整个 HTML 页面寻找<code>data-bind</code>属性。it parses the attribute for the binding name and value, and then invokes a set of rules based on the name of the binding.</p>
-<p>举例来说，上面我们调用的绑定是<code>text</code>，我们传递给<code>text</code>绑定的是<code>title</code>。text 绑定应用的规则是：“从 view model 对象中使用传递过来的值作为键取出对应的值，然后将该值插入到 DOM 中，作为一个 text 节点。”如果用纯 js 来表示的话，就是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">value = viewModel[&#x27;title&#x27;];</span><br><span class="line">textNode = document.createTextNode(value);</span><br><span class="line">h1.appendChild(textNode);</span><br></pre></td></tr></table></figure>
-
-<p>KnockoutJS 的第一个招数是他使开发者免于自己使用 js 创建和更新 DOM 节点。开发者通关过书写带有<code>data-bind</code>属性的 HTML 标签来给他赋值。你不仅可以使用键值对，看下面这个更复杂的 view model。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.getTitle = function()</span><br><span class="line">        &#123;</span><br><span class="line">            return &quot;Hello Method World&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">       this.content = &quot;So many years of hello world&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这里我们使用了 js 构造函数创建了一个简单的对象。这个对象有一个<code>getTitle</code>方法。如果我们修改下<code>page.html</code>来调用<code>getTitle</code>方法，你会发现效果和预期的一样。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Another way of thinking about binding parameters is they’re a temporary, limited javascript scope to access your view model’s values and methods.</p>
-<h2 id="Other-Bindings"><a href="#Other-Bindings" class="headerlink" title="Other Bindings"></a><a href="#other-bindings"></a>Other Bindings</h2><p>虽然这个例子比较简单，但是从中可以开始了解到，这种简单的构建 block 是如何实现更为复杂的视图逻辑的。（While this example is simple, you can start to see how this basic building block could implement far more complicated view logic）更新DOM的事交给数据绑定来做，更新模型的事情交给non-DOM js 代码来完成。</p>
-<p>再举个例子了解下其他的绑定。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.getTitle = function()</span><br><span class="line">        &#123;</span><br><span class="line">            return &quot;Hello World&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">       this.content = &quot;So many years of hello world&quot;;</span><br><span class="line">       this.theValue = &quot;2&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; data-bind=&quot;value:theValue&quot;/&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>刷新页面，你会看到：</p>
-<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-second.png"></p>
-<p>这里我们使用了一个新的 KnockoutJS 绑定</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-bind=&quot;value:theValue&quot;</span><br></pre></td></tr></table></figure>
-
-<p>我们使用<code>value</code>绑定将值赋给表单字段。下面让我们把 input 换成 select 看看</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:getTitle()&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:content&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;select data-bind=&quot;value:theValue&quot;&gt;</span><br><span class="line">        &lt;option value=&quot;&quot;&gt;-- Choose --&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1&quot;&gt;First&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;2&quot;&gt;Second&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;3&quot;&gt;Third&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>刷新页面后，你会看到已经设置 select 的值为2了。<br><img src="/wp-content/uploads/2016/11/alan-knockoutjs-third.png"></p>
-<p>虽然这个例子很简单，背后的概念可不简单。不需要修改任何 js 程序代码，value binding 就可以让我们更改 UI</p>
-<h2 id="Observables"><a href="#Observables" class="headerlink" title="Observables"></a><a href="#observables"></a>Observables</h2><p>到目前为止，我们看到还只是小招数，已经很强大了。Neat, maybe useful, but it only sets the stage for KnockoutJS’s real “knockout” feature — observables.</p>
-<p>下面，我们还是以例子开始。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:theValue&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;select data-bind=&quot;value:theValue&quot;&gt;</span><br><span class="line">        &lt;option value=&quot;&quot;&gt;-- Choose --&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;1&quot;&gt;First&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;2&quot;&gt;Second&lt;/option&gt;</span><br><span class="line">        &lt;option value=&quot;3&quot;&gt;Third&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; data-bind=&quot;value:theValue&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">    &lt;br/&gt;&lt;br/&gt;</span><br><span class="line">    &lt;button id=&quot;button&quot;&gt;Do It&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">       this.theValue = ko.observable(&quot;1&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    window.viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(window.viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>重新载入页面，你会发现我们给<code>&lt;input/&gt;</code>和<code>&lt;p/&gt;</code>标签绑定了值<code>1</code>。到目前为止我们的页面没什么新变化——这和我们之前做的绑定一样。但是，你注意到在我们的 view model 中，我写了一点不一样的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">this.theValue = ko.observable(&quot;1&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>我们没有给<code>theValue</code>硬编一个值或者是一个custom function，我们给他的是一个 KnockoutJS <code>observable</code><strong>An observable is a special sort of getter and setter.</strong></p>
-<p>打开浏览器 console ，输入<code>viewModel.theValue()</code>，你会发现我们可以像调用函数一样取得 observable 的值。（因为我们定义viewModel为全局对象window 的属性，所以我们可以通过 console 访问到他）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; viewModel.theValue()</span><br><span class="line">&gt; &quot;1&quot;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以给 observable 传递参数来设置他的值。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; viewModel.theValue(&quot;3&quot;)</span><br><span class="line">//...</span><br><span class="line">&gt; viewModel.theValue()</span><br><span class="line">&gt; &quot;3&quot;</span><br></pre></td></tr></table></figure>
-
-<p>However, the real power of an observable is in what happens to the DOM nodes we’ve bound that observable to。试着在console 中改变 observer 的值，注意页面的变化。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; viewModel.theValue(&quot;3&quot;);</span><br><span class="line">&gt; viewModel.theValue(&quot;2&quot;);</span><br><span class="line">&gt; viewModel.theValue(&quot;1&quot;);</span><br><span class="line">&gt; viewModel.theValue(&quot;10&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>一旦你修改了 observable 的值，被绑定的 DOM 也立刻有了变化。作为开发者，我们再也不用关心怎么更新 DOM nodes 了。一旦我们给 model 中的值做了改变，他的值会立刻自动反应到用户界面上。</p>
-<p>看下面一个view model 带方法的例子。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.theValue = ko.observable(&quot;1&quot;);</span><br><span class="line">        var that = this;</span><br><span class="line">        this.pickRandomValue = function()&#123;</span><br><span class="line">            var val = Math.floor(Math.random() * (3));</span><br><span class="line">            that.theValue(val);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    window.viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(window.viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>使用 KnockoutJS 的事件绑定（比如<code>click</code>）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;button data-bind=&quot;click:pickRandomValue&quot;&gt;Do It&lt;/button&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Template-Binding"><a href="#Template-Binding" class="headerlink" title="Template Binding"></a><a href="#template-binding"></a>Template Binding</h2><p>另一个要重点理解的是 KnockoutJS 的模板绑定。考虑下面的 view model</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.first = &#123;</span><br><span class="line">            theTitle:ko.observable(&quot;Hello World&quot;),</span><br><span class="line">            theContent:ko.observable(&quot;Back to Hello World&quot;)</span><br><span class="line">        &#125;;</span><br><span class="line">        this.second = &#123;</span><br><span class="line">            theTitle:ko.observable(&quot;Goodbye World&quot;),</span><br><span class="line">            theContent:ko.observable(&quot;We&#x27;re sailing west now&quot;)</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    ko.applyBindings(viewModel);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这里我们创建了一个标准的view model 但是 data 对象是嵌套的。然后我么修改view</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;main&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div id=&quot;two&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:second&#125;&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script type=&quot;text/html&quot; id=&quot;hello-world&quot;&gt;</span><br><span class="line">        &lt;h1 data-bind=&quot;text:theTitle&quot;&gt;&lt;/h1&gt;</span><br><span class="line">        &lt;p data-bind=&quot;text:theContent&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>你将会看到：</p>
-<p><img src="/wp-content/uploads/2016/11/alan-knockoutjs-fourth.png"></p>
-<p>template 绑定接受一个 js 对象作为参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div id=&quot;one&quot; data-bind=&quot;template:&#123;&#x27;name&#x27;:&#x27;hello-world&#x27;,&#x27;data&#x27;:first&#125;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>data 参数是我们要渲染的 view model 的属性。name 是要查找和渲染的模板名称。</p>
-<p>添加模板最基本的做法是添加<code>&lt;script type=&quot;text/html&quot;&gt;</code>并且给他命名。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;script type=&quot;text/html&quot; id=&quot;hello-world&quot;&gt;</span><br><span class="line">    &lt;h1 data-bind=&quot;text:theTitle&quot;&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p data-bind=&quot;text:theContent&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>If you’ve never seen this before it may seem weird&#x2F;foreign, but many modern javascript frameworks use non-<code>text/javascript</code> <code>&lt;script/&gt;</code> tags as a way to add non-rendered (but DOM accessible) content to a page.模板是一些带有 KnockoutJS 绑定的 HTML 片段</p>
-<h2 id="Components"><a href="#Components" class="headerlink" title="Components"></a><a href="#components"></a>Components</h2><p>下面是组件绑定。 Components are a way to package together a KnockoutJS template, and a KnockoutJS view file. This means you can have a relatively simple view。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div data-bind=&quot;component:&#x27;component-hello-world&#x27;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>隐藏了注册了的组件的复杂性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.message = &quot;Hello World&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var theTemplate = &quot;&lt;h1 data-bind=\&quot;text:message\&quot;&gt;&lt;/h1&gt;&quot;;</span><br><span class="line"></span><br><span class="line">    ko.components.register(&#x27;component-hello-world&#x27;, &#123;</span><br><span class="line">        viewModel:viewModelConstructor,</span><br><span class="line">        template:theTemplate</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    ko.applyBindings();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>component 对象的<code>register</code>方法第一个参数接受组件的名称，第二个参数接受一个 KnockoutJS component 对象。component 对象是一个有两个属性的 js 对象。<code>viewModel</code>属性接受一个 view model 构造函数，<code>template</code>属性是 KnockoutJS 模板字符串。一旦完成组件注册，你就可以通过传递组件的名称来使用它了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div data-bind=&quot;component:&#x27;component-hello-world&#x27;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如果你不想用<code>data-bind</code>这样的语法，KnockoutJS 提供了另一种基于组件名称的自定义标签，试试看下面的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;component-hello-world&gt;&lt;/component-hello-world&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这依然仅仅触及 KnockoutJS 的表面，官方文档对<a target="_blank" rel="noopener" href="http://knockoutjs.com/documentation/component-overview.html">组件绑定</a>讲得不错，可以参阅以下。</p>
-<h2 id="Custom-Binding"><a href="#Custom-Binding" class="headerlink" title="Custom Binding"></a><a href="#custom-binding"></a>Custom Binding</h2><p>KnockoutJS 允许开发者创建自定义绑定。举例来说，下面我们调用了名为<code>pulseStormHelloWorld</code>的绑定，并且将viewModel中的<code>message</code>属性的值传递给他。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: page.html --&gt;</span><br><span class="line">&lt;div data-bind=&quot;pulseStormHelloWorld:message&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>我们还没有实现<code>pulseStormHelloWorld</code>绑定，所以现在刷新页面是空白页。因为 KnockoutJS 忽略了它。下面修改<code>ko-init.js</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//File: ko-init.js</span><br><span class="line">jQuery(function()&#123;</span><br><span class="line">    var viewModelConstructor = function()</span><br><span class="line">    &#123;</span><br><span class="line">        this.message = &quot;Hello World&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ko.bindingHandlers.pulseStormHelloWorld = &#123;</span><br><span class="line">        update: function(element, valueAccessor)&#123;</span><br><span class="line">            jQuery(element).html(&#x27;&lt;h1&gt;&#x27; + valueAccessor() + &#x27;&lt;/h1&gt;&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    ko.applyBindings(new viewModelConstructor);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>创建自定义的KnockoutJS绑定，我只需要给 <code>ko.bindingHandlers</code>对象添加一个属性。这个属性的名称就是我们自定义绑定的名称。The <code>handler</code> is a JS object with an <code>update</code> method.当绑定被唤起时，KnockoutJS 就会调用<code>update</code>方法—— 不管是<code>applyBindings</code>或是通过 observable</p>
-<p>刷新页面，你会看到自定义绑定起作用了。当然，这只是个普通的例子，但是通过自定义绑定你可以让 KnockoutJS 做任何你想得到的事。</p>
-<p>如果想了解更多关于KnockoutJS自定义绑定的，请移步<a target="_blank" rel="noopener" href="http://learn.knockoutjs.com/#/?tutorial=custombindings">官方custom binding tutorial</a></p>
-<h2 id="Wrap-up"><a href="#Wrap-up" class="headerlink" title="Wrap up"></a><a href="#wrap-up"></a>Wrap up</h2><p>KnockoutJS 是一个强大现代的js框架。Its semantics, and disregard for traditional HTML concepts, may make some developers shy away at first, but as a tool of organizing and taming DOM complexity in a modern javascript application KnockoutJS has few peers.我们的教程是不完整的，但是希望足以引发你对KnockoutJS的兴趣，自己探索它的文档和教程。</p>
-<p>KncokoutJS 本身不足以构成一个完整的 JS 应用程序。下周我们会探索 Magento 中与 KnockoutJS 密切相关的框架。这样会让你更了解 Magento 核心系统是如何工作的，还有怎样在你自己的模块和应用中应用 KnockoutJS。</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a><a href="#%E4%B8%8B%E8%BD%BD"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/KnockoutJS-Primer-for-Magento-Developers">文中使用的源代码</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/alan-knockoutjs-primer-for-magento-developers/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -431,85 +316,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_javascript_init_scripts/">原文地址</a></em> 在 Alan 的 <a target="_blank" rel="noopener" href="http://alanstorm.com/category/magento-2/#magento_2_mvc">Magento 2 for PHP MVC</a>系列文章中，曾经提到 RequireJS 是 Magento 2 系统所有 JS 的基础。这的确是事实，但是 RequireJS 仅仅触及 Magento 中 javaScript 可能性的表面。 今天我们将探索 Magento 2 引入的各种系统，以执行非嵌入<code>&lt;script type=&quot;text/javascript&quot;&gt;</code>标签的 js 代码作为开始。</p>
-<h2 id="JavaScript-Init-Methods"><a href="#JavaScript-Init-Methods" class="headerlink" title="JavaScript Init Methods"></a><a href="#javascript-init-methods"></a>JavaScript Init Methods</h2><p>Magento js init 方法解决了一些不同的问题： 第一，他提供了一种标准机制，阻止直接在页面中嵌入 js 代码的行为。 第二，提供了调用 RequireJS 模块程序的方式（通过 define 来定义）(原话：Second, they provide a way to invoke a stand alone RequireJS module (defined with define) <strong>as a program</strong>.) 第三，提供了给程序传递服务器端产生的 JSON 对象的方式。 第四，提供了一种方式，告诉程序哪个　DOM　节点（如果有的话）是它的作用对象。 记住这四点。They may help you if you’re struggling with the mental model behind these custom framework features.</p>
-<h2 id="Setting-up-a-Module"><a href="#Setting-up-a-Module" class="headerlink" title="Setting up a Module"></a><a href="#setting-up-a-module"></a>Setting up a Module</h2><p>今天的教程和 Magento 的 PHP 不怎么相关，你可以在任何<code>phtml</code>模板上进行实验。 这里 Alan 没有提供示例代码，不过博主建了一个，可以去<a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/JavascriptInitTutorial">https://github.com/PiscesThankIT/JavascriptInitTutorial</a>下载。 下载后启用它</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_JavascriptInitTutorial</span><br><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
+          原文地址 在 Alan 的 Magento 2 for PHP MVC系列文章中，曾经提到 RequireJS 是 Magento 2 系统所有 JS 的基础。这的确是事实，但是 RequireJS 仅仅触及 Magento 中 javaScript 可能性的表面。 今天我们将探索 Magento 2 引入的各种系统，以执行非嵌入<script type="text/javascript">标签的 js 代码作为开始。
 
-<p>现在在浏览器中输入如下URL</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/pulsestorm_javascriptinittutorial/</span><br></pre></td></tr></table></figure>
-
-<p>你应该看到<code>app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</code>模板被渲染出来了。</p>
-<h2 id="Setting-up-a-RequireJS-Module"><a href="#Setting-up-a-RequireJS-Module" class="headerlink" title="Setting up a RequireJS Module"></a><a href="#setting-up-a-requirejs-module"></a>Setting up a RequireJS Module</h2><p>我们现在已经有了一个模块，下面我们创建一个 RequireJS 的模块。 创建如下文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function()&#123;</span><br><span class="line">    alert(&quot;A simple RequireJS module&quot;);</span><br><span class="line">    return &#123;&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这是个很简单的 RequireJS 模块。根据模块的文件位置以及 Magento 载入js 文件的方式，我们可以推得该模块的名称&#x2F;ID是<code>Pulsestorm_JavascriptInitTutorial/example</code> 下面，修改<code>content.phtml</code>文件成下面的样子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    requirejs([&#x27;Pulsestorm_JavascriptInitTutorial/example&#x27;],function(example)&#123;</span><br><span class="line">        alert(&quot;Loaded&quot;);</span><br><span class="line">        console.log(example);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们创建了一个依赖<code>Pulsestorm_JavascriptInitTutorial/example</code>模块的程序。 浏览器中刷新<code>http://magento.example.com/pulsestorm_javascriptinittutorial/</code> URL，你应该看到 alert 弹出。 如果你觉得上面的内容不太熟悉，你可以参阅本站<a href="/alan-magento-2-and-requirejs/">Magento 2 and RequireJS (翻译)</a> 译者注：刷新浏览器后首先看到的是 A simple RequireJS module 弹出框，点击确定后，看到 Loaded 弹出框，点击确定后，在 Console 中看到输出的空对象。 页面载入时先执行了<code>Pulsestorm_JavascriptInitTutorial/example</code> 成功后返回值为空对象，传递给了回调函数的<code>example</code>。执行回调函数内部的alert 和 console 输出。</p>
-<h2 id="X-Magento-Init"><a href="#X-Magento-Init" class="headerlink" title="X-Magento-Init"></a><a href="#x-magento-init"></a>X-Magento-Init</h2><p>首先我们来了解<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code>初始化方法。这个方法最简单的用法是让你运行某个 RequireJS 模块。把<code>content.phtml</code>模板改成下面的样子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;two&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Goodbye World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;*&quot;: &#123;</span><br><span class="line">            &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>现在在重新载入页面，你应该看到 A simple RequireJS module 弹出框。这个是我们<code>example.js</code>中的定义的。 如果你从来没看过这种语法，可能觉得他看起来很怪。让我们一点一点来看一看。 首先是<code>&lt;script/&gt;</code>标签</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    //...</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这不是 javaScript 的标签。注意<code>type=&quot;text/x-magento-init&quot;</code>属性。如果浏览器不认识 script 标签中的值，它就会忽略该标签中的内容。Magento (其他现代前端框架类似)利用了这个行为来实现它自己的功能。Magento 中有 js 代码会查找带有<code>text/x-magento-init</code>属性的标签，这超出了本篇教程的范围。如果你想进一步探索的话，可以先看看这个<a target="_blank" rel="noopener" href="http://magento.stackexchange.com/questions/89187/in-magento2-what-is-script-type-text-x-magento-init">this Stack Exchange question and answer</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&#123;</span><br><span class="line">    &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Magento 会查找该对象的键，并且以 RequireJS 模块的方式将他载入进来。这里就是让<code>example.js</code>被载入的关键。 你很可能很想知道为什么这个对象没有值呢。你还可能很想知道为什么这个对象是另一个键为<code>*</code>的对象的值。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&#123;</span><br><span class="line">    &quot;*&quot;: &#123;/*...*/&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>解释这些原因前，我们得先说一说 javascript components。</p>
-<h2 id="Magento-JavaScript-Components"><a href="#Magento-JavaScript-Components" class="headerlink" title="Magento JavaScript Components"></a><a href="#magento-javascript-components"></a>Magento JavaScript Components</h2><p>上面的例子运行了一个 RequireJS 模块程序。Magento 经常用<code>x-magento-init</code>方法调用 RequireJS 模块程序。但是，<code>x-magento-init</code>真正强大的能力是创建<strong>Magento Javascript Component</strong> <strong>Magento Javascript Component are RequireJS modules that return a function。</strong> Magento’s system code will call this function in a specific way that exposes extra functionality. 下面我们来看例子。修改<code>example.js</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function () &#123;</span><br><span class="line">    var mageJsComponent = function()</span><br><span class="line">    &#123;</span><br><span class="line">        alert(&quot;A simple magento component.&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这里我们定义了一个匿名函数，并将他分配给了<code>mageJsComponent</code>变量。然后我们返回他。 重新载入页面，你会看到 A Simple Magento Component 弹出框。 看起来可能有点蠢——如果 Magento 只是要调用它，返回一个 function 的意义是什么呢？你是对的，但是你对是因为我们少了点什么。修改<code>phtml</code>模板：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Hello World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;two&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Goodbye World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;*&quot;: &#123;</span><br><span class="line">            &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>修改 RequireJS 模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function () &#123;</span><br><span class="line">    var mageJsComponent = function(config)</span><br><span class="line">    &#123;</span><br><span class="line">        alert(&quot;Look in your browser&#x27;s console&quot;);</span><br><span class="line">        console.log(config);</span><br><span class="line">        //alert(config);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>重新载入页面，你可以看到 alert 中的信息变成了Look in your browser’s console。你在浏览器的 console 中会看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;config:&quot;value&quot;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>When we create a Magento Javascript Component, Magento calls the returned function and includes the object from text&#x2F;x-magento-init</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>键是 RequireJS 模块名，值是我们要传递给该 component 的对象。 这些例子可能看起来又傻又抽象。但是，在实际使用的模块中，我们会使用 PHP 来生成 JSON。系统允许我们在 phtml 模板中 render the JSON，并将他们传递给 js 代码。这有助于避免使用 PHP 直接生成 js 代码，直接生成的做法会产生糟糕的代码，还可能引入错误或者安全问题。 结束<code>x-magento-init</code>之前，还有最后一点要说。记得前文说<code>x-magento-init</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提供了给程序传递服务器端产生的 JSON 对象的方式。</span><br><span class="line">提供了一种方式，告诉程序哪个　DOM　节点（如果有的话）是它的作用对象。</span><br></pre></td></tr></table></figure>
-
-<p>我们已经说过如何将服务器端生成的 JSON 传递给js 了，还没有说 DOM 节点。 修改<code>example.js</code>模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/web/example.js</span><br><span class="line">define([], function () &#123;</span><br><span class="line">    var mageJsComponent = function(config, node)</span><br><span class="line">    &#123;</span><br><span class="line">        console.log(config);</span><br><span class="line">        console.log(node);</span><br><span class="line">        //alert(config);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return mageJsComponent;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这里我们给<code>mageJsComponent</code>函数增加了一个参数。第二个参数就是我们程序要作用的 DOM node。但是，刷新页面，你会看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;config:&quot;value&quot;&#125;</span><br><span class="line">&gt; false</span><br></pre></td></tr></table></figure>
-
-<p>Magento 确实传递了值给<code>node</code>——但值输出是<code>false</code>，这个值是什么呢？ Magento不能神奇地知道你要作用于哪个 DOM node。我们得告诉他。修改<code>phtml</code>模板：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Hello World&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;two&quot; class=&quot;foo&quot;&gt;</span><br><span class="line">    Goodbye World</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/x-magento-init&quot;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;#one&quot;: &#123;</span><br><span class="line">            &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们把原先的<code>*</code>改成了<code>#one</code>。之前我们用的<code>*</code>代表了这样一种特殊情形：当程序不需要作用于任何 DOM node 的时候。这个对象的键实际上是 CSS&#x2F;jQuery style selector 。这个键告诉<code>Pulsestorm_JavascriptInitTutorial/example</code>程序哪个 DOM node 是他的作用对象。现在我们刷新页面（记得刷新下缓存），我们会在 console 中看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;config: &quot;value&quot;&#125;</span><br><span class="line">&gt; &lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Hello World&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>你不仅可以使用id选择器，还可以用css class 选择器。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/JavascriptInitTutorial/view/frontend/templates/content.phtml</span><br><span class="line">&quot;.foo&quot;: &#123;</span><br><span class="line">    &quot;Pulsestorm_JavascriptInitTutorial/example&quot;:&#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 console 中会看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">&gt; &lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Hello World&lt;/div&gt;</span><br><span class="line">&gt; Object &#123;&quot;config&quot;:&quot;value&quot;&#125;</span><br><span class="line">&gt; &lt;div id=&quot;one&quot; class=&quot;foo&quot;&gt;Goodbye World&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>通过这样的系统，Magento 鼓励开发者避免在 RequireJS 模块中硬编码 DOM nodes。The <code>x-magento-init</code> means there’s a system level path forward for building Javascript modules that rely on server side rendered JSON, and operate on any arbitrary DOM node. It’s always been possible for Magento module developers to implement their own systems for this sort of functionality, but Magento 2 provides a standard, built in way to achieve this.</p>
-<h2 id="Data-mage-init-Attribute"><a href="#Data-mage-init-Attribute" class="headerlink" title="Data-mage-init Attribute"></a><a href="#data-mage-init-attribute"></a>Data-mage-init Attribute</h2><p>除了<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code>方式，还有一种方式可以对特定的 DOM　node 调用实现类似功能，就是使用<code>data-mage-init</code>属性。 将 phtml 模板替换成以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div data-mage-init=&#x27;&#123;&quot;Pulsestorm_JavascriptInitTutorial/example&quot;: &#123;&quot;another&quot;:&quot;example&quot;&amp;#125;&amp;#125;&#x27;&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>cache:clean</code>后重新载入页面，在console 中你应该看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Object &#123;another: &quot;example&quot;&#125;</span><br><span class="line">&gt; &lt;div&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里，我们给特定的div 增加了一个<code>data-mage-init</code>属性。这个属性的值是一个 JSON 对象。类似于<code>x-magento-init</code>，这个对象的键是我们要调用的 RequireJS 模块或是 Magento Javascript Component，他的值是要传递给js component config 参数的 JSON 对象。 <em>注意，我们的属性中使用的是单引号</em></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div data-mage-init=&#x27;...&#x27;&gt;A single div&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这是必要的，<code>data-mage-init</code>属性会严格按照 JSON 格式解析，就是说 JSON 对象必须使用双引号，所以我们的属性就只能用单引号了。</p>
-<h2 id="Wrap-up"><a href="#Wrap-up" class="headerlink" title="Wrap up"></a><a href="#wrap-up"></a>Wrap up</h2><p>不管是用<code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code>还是用<code>data-mage-init</code>， both these techniques provide a standard, system unified way of introducing Javascript entry points onto your page.Many of Magento’s front end and back end UI features rely on this syntax, so even if you personally eschew them, understanding how these systems work is an important part of being a Magento 2 developer.</p>
-<h2 id="示例代码下载"><a href="#示例代码下载" class="headerlink" title="示例代码下载"></a><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"></a>示例代码下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/JavascriptInitTutorial">https://github.com/PiscesThankIT/JavascriptInitTutorial</a></p>
-
+JavaScript Init Methods
+Magento js init 方法解决了一些不同的问题： 第一，他提供了一种标准机制，阻止直接在页面中嵌入 js 代码的行为
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/alan-magento-2-javascript-init-scripts/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -575,189 +393,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_and_requirejs/">原文地址</a></em></p>
-<p>既然我们已经探讨过向 Magento 2 中引入 javaScript 和 CSS 的基本知识了，现在我们要开始探索 Magento 引入的现代前端工具和库了。</p>
-<p>Magento 引入现代前端科技处于有点 tricky 的位置。Magento 是一个软件平台，其次才是在该平台上的电子商务系统。有些机构的市场营销项目在启用6个月后就会被抛弃，有些原型工作在产品发布一年后就会贬值，Magento 和他们不同，作为电商平台需要专注于稳定、成熟的技术，要接受时间的考验。</p>
-<p>今天，我们将探讨<a target="_blank" rel="noopener" href="http://requirejs.org/">RequireJS</a>—— 他是 Magento 2 系统中几乎所有 javaScript 的基础。</p>
-<p>在我们说到 Magento 2 的 RequireJS 实现之前，我们先要快速地了解下 RequireJS 是做什么的。</p>
-<h2 id="RequireJS"><a href="#RequireJS" class="headerlink" title="RequireJS"></a><a href="#requirejs"></a>RequireJS</h2><p>RequireJS 是一个 javaScript 模块系统。他实现的是 AMD 标准（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Asynchronous_module_definition">Asynchronous module definition</a>）（相关的另一个标准叫 CMD）</p>
-<p>AMD 标准中，javaScript 模块提供做以下事情的方法：</p>
-<ol>
-<li>运行 javaScript 程序默认不会用全局命名空间。</li>
-<li>模块间共享代码和数据（Share javascript code and data between named modules and programs）</li>
-</ol>
-<p>这就是 RequireJS 的全部职责。你可能会使用 RequireJS 的模块实现某个功能，但是这个功能不是 RequireJS 本身提供的。 RequireJS 只是确保你获得那个功能的工具。</p>
-<p><a target="_blank" rel="noopener" href="http://requirejs.org/docs/start.html">RequireJS 的 start page</a>就有不错的例子解释 RequireJS 是怎么工作的。我们直接扣过来，再加点说明。</p>
-<p>首先，下载 <a target="_blank" rel="noopener" href="http://requirejs.org/docs/download.html#requirejs">RequireJS 的源文件</a>把它保存到一个名为<code>scripts</code>的文件夹下。</p>
-<p>然后，创建如下文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: require-example.html --&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;My Sample Project&lt;/title&gt;</span><br><span class="line">        &lt;!-- data-main attribute tells require.js to load</span><br><span class="line">             scripts/main.js after require.js loads. --&gt;</span><br><span class="line">        &lt;script data-main=&quot;scripts/main&quot; src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;h1&gt;My Sample Project&lt;/h1&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          原文地址
 
-<p>下面的代码让这个页面加载 RequireJS</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: require-example.html --&gt;</span><br><span class="line">&lt;script data-main=&quot;scripts/main&quot; src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+既然我们已经探讨过向 Magento 2 中引入 javaScript 和 CSS 的基本知识了，现在我们要开始探索 Magento 引入的现代前端工具和库了。
 
-<p><code>src</code>用法我们是熟悉的，除了它，还有另一个custom <code>data-main</code>属性。这个属性告诉 RequireJS 使用<code>scripts/main</code>模块作为程序的入口。这个<code>scripts/main</code>对应文件<code>scripts/main.js</code></p>
-<p>创建这么个文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//File: scripts/main.js</span><br><span class="line">requirejs([], function() &#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+Magento 引入现代前端科技处于有点 tricky 的位置。Magento 是一个软件平台，其次才是在该平台上的电子商务系统。有些机构的市场营销项目在启用6个月后就会被抛弃，有些原型工作在产品发布一年后就会贬值，Magento 和他们不同，作为电商平台需要专注于稳定、成熟的技术，要接受时间的考验。
 
-<p>这个文件创建好后，重新载入你的页面，这时候你应该看到弹出框弹出“Hello World”。恭喜你，你已经创建了第一个 RequireJS 程序。</p>
-<p>用jQuery 的<code>document ready</code>也可以做到，RequireJS 没有比它多做什么。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jQuery(function()&#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+今天，我们将探讨RequireJS—— 他是 Magento 2 系统中几乎所有 javaScript 的基础。
 
-<p>RequireJS 特别在他的模块化。举个例子，假设我们想要用一个叫<code>helper/world</code>的模块，那么修改我们的<code>main.js</code>文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;helper/world&#x27;], function(helper_world) &#123;</span><br><span class="line">    var message = helper_world.getMessage();</span><br><span class="line">    alert(message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这里，我们将要载入的模块组织成一个数组，并将该数组作为第一个参数传递给<code>requirejs</code>方法。然后，RequireJS 将<code>helper/world</code>的输出作为<code>helper_world</code>参数传递给 function。</p>
-<p>当然，如果你现在运行的话会得到一个 javascript 错误。这是因为我们还没有定义<code>helper/world</code>模块。要定义这个模块，将模块的名字转化为文件的路径，并创建如下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//File: scripts/helper/world.js</span><br><span class="line">define([], function()&#123;</span><br><span class="line">    var o = &#123;&#125;;</span><br><span class="line">    o.getMessage = function()</span><br><span class="line">    &#123;</span><br><span class="line">        return &#x27;Hello Module World&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    return o;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>模块定义和我们之前的主程序定义差不多，差别在于这里使用的是<code>define</code>而不是<code>requirejs</code>。<code>define</code>的第一个参数是你模块需要使用的 RequireJS 模块数组。（我们的例子里，这里是空的）第二个参数是javaScript 的函数&#x2F;闭包，定义你模块的返回值。</p>
-<p>RequireJS 不规定模块应该返回或者输出什么。模块可以返回字符串，可以返回仅有一个方法的 javaScrinpt 对象（上面这个例子就是）。他还可以载入一个 javaScript 库（比如PrototypeJS）然后返回一个PrototypeJS 对象。RequireJS 只提供通过模块共享代码的系统，剩下的取决于项目开发者。</p>
-<p>在我们开始 Magento 的 RequireJS 实现之前，有两个主题需要先谈谈：Require JS file loading 和 RequireJS module naming</p>
-<h2 id="RequireJS-File-Loading"><a href="#RequireJS-File-Loading" class="headerlink" title="RequireJS File Loading"></a><a href="#requirejs-file-loading"></a>RequireJS File Loading</h2><p>默认情况下，RequireJS 会将模块名转换成 HTTP(S)路径。比如<code>helper/world</code>转化成：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/scripts/helper/world.js</span><br><span class="line">https://example.com/scripts/helper/world.js</span><br><span class="line">//example.com/helper/scripts/world.js</span><br></pre></td></tr></table></figure>
-
-<p>模块名被转化为以<code>.js</code>结尾的文件路径。默认情况下，RequireJS 会使用<code>require.js</code>脚本所在的文件夹作为基础路径。（上面的例子中就是<code>/script</code>）</p>
-<p>但是，RequireJS 允许你设置不同的基础路径。在 RequireJS 程序开始前，添加以下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require.config(&#123;</span><br><span class="line">    baseUrl: &#x27;/my-javascript-code&#x27;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>添加这段代码后，RequireJS 要加载<code>helper/world</code>模块的时候，就会从下面的路径去找：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://example.com/my-javascript-code/helper/world.js</span><br><span class="line">https://example.com/my-javascript-code/helper/world.js</span><br><span class="line">//example.com/my-javascript-code/helper/world.js</span><br></pre></td></tr></table></figure>
-
-<p>这个功能让你爱把 js 脚本放哪里就放哪里。</p>
-<h2 id="RequireJS-Module-Naming"><a href="#RequireJS-Module-Naming" class="headerlink" title="RequireJS:Module Naming"></a><a href="module-naming"></a>RequireJS:Module Naming</h2><p>到目前为止，我们的例子中，RequireJS 模块名和他的物理路径是绑定的。换句话说，<code>helper/world</code>模块始终对应路径<code>helper/world.js</code></p>
-<p>RequireJS 允许你通过配置来做点变化。例如，假如你希望你的<code>helper/world</code>模块被称为<code>hello</code>，只要在程序开始前添加如下配置代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require.config(&#123;</span><br><span class="line">    paths: &#123;</span><br><span class="line">        &quot;hello&quot;: &quot;helper/world&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><code>path</code>给你的模块重命名或者说是给他一个别名。<code>paths</code>对象的键代表着你想要的别名（hello），键对应的值表示模块的实际名称(helper&#x2F;world)</p>
-<p>上面的代码放好后，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;hello&#x27;], function(hello) &#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这段代码就会从<code>helper/world.js</code>路径来加载<code>hello</code>模块。</p>
-<p>还有很多其他的配置指令来控制 RequireJS 从哪里加载模块，不过这超出本篇的范围了，了解更多，请参考<a target="_blank" rel="noopener" href="http://requirejs.org/docs/api.html#jsfiles">“Load Javascript Files”</a></p>
-<p>对日常的 javaScript 开发来说，你本不需要关注模块是如何通过 HTPP 加载的。你只需要在用到某模块时，就能得到那个模块，这就够了。当你需要添加新模块，添加某些不兼容的代码，或者查找某个模块的源代码（为了弄清他做什么的）时，就要关注 RequireJS 是怎么加载文件的了。</p>
-<h2 id="Magento-2-and-RequireJS"><a href="#Magento-2-and-RequireJS" class="headerlink" title="Magento 2 and RequireJS"></a><a href="#magento-2-and-requirejs"></a>Magento 2 and RequireJS</h2><p>Magento 自带了 RequireJS 库，引入了一些配置，并且提供了让你添加自己的配置的机制。</p>
-<p>Magento 2 使用了上面提到的 <code>baseUrl</code>。如果你查看 Magento 的页面源文件，你会看到如下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    require.config(</span><br><span class="line">        &#123;&quot;baseUrl&quot;:&quot;http://magento.example.com/static/adminhtml/Magento/backend/en_US&quot;&#125;</span><br><span class="line">    );</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这意味着，遇到<code>helper/world</code>模块的时候，他将会从类似下面的URL找文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/static/adminhtml/Magento/backend/en_US/helper/world.js</span><br></pre></td></tr></table></figure>
-
-<p>如果你阅读过 Alan 这个系列的前几篇文章，你可能认出这个URL是从模块加载前端静态的文件的URL了。这意味着你可以在你的模块中放一个RequireJS模块定义文件，例如在下面这个位置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/code/Package/Module/view/base/web/my_module.js</span><br></pre></td></tr></table></figure>
-
-<p>这样你就有了一个名为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Package_Module/my_module</span><br></pre></td></tr></table></figure>
-
-<p>的RequireJS 模块。<br>可以从以下URL加载他：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/static/adminhtml/Magento/backend/en_US/Package_Module/my_module.js</span><br></pre></td></tr></table></figure>
-
-<p>这意味着你可以立刻开始在<code>phtml</code>模板中使用该模块了，就像这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    requirejs(&#x27;Package_Module/my_module&#x27;, function(my_module)&#123;</span><br><span class="line">        //...program here...</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>或者使用单独的javaScript 文件来使用它。</p>
-<h2 id="Congiguring-RequireJS-via-Modules"><a href="#Congiguring-RequireJS-via-Modules" class="headerlink" title="Congiguring RequireJS via Modules"></a><a href="#congiguring-requirejs-via-modules"></a>Congiguring RequireJS via Modules</h2><p>前面，我们说过RequireJS 的两个配置指令——<code>baseUrl</code>和<code>path</code>。随着你步入高级开发阶段，你将接触并使用到许多 RequireJS 的其他配置指令。</p>
-<p>每个 Magento 模块都可以通过一个名为<code>requirejs-config.js</code>的文件来添加 RequireJS 配置指令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app/code/Package/Module/view/base/requirejs-config.js</span><br><span class="line">app/code/Package/Module/view/frontend/requirejs-config.js</span><br><span class="line">app/code/Package/Module/view/adminhtml/requirejs-config.js</span><br></pre></td></tr></table></figure>
-
-<p>This is a special javascript file that Magento will automatically load on every page load using the area hierarchy. 让我们来试试看。首先我们要创建一个名为<code>Pulsestorm_RequireJsTutorial</code>的Magento 模块。<br>创建好后启用该模块：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_RequireJsTutorial</span><br><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
-
-<p>如果你不会创建Magento 模块的话，请参考<a href="/alan-magento-2-mvvm-mvc/">Magento 2 简介 —— 不再是 MVC</a></p>
-<p>模块创建好后，请增加如下文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/RequireJsTutorial/view/base/requirejs-config.js</span><br><span class="line">alert(&quot;Hello&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>清空缓存，载入 Magento 系统的任意页面（包括后台），你应该会看到<code>alert</code>被调用的弹出框了。恭喜你，你已经成功得给模块增加了一个<code>requirejs-config.js</code>文件。</p>
-<h2 id="The-Purpose-of-requirejs-config-js"><a href="#The-Purpose-of-requirejs-config-js" class="headerlink" title="The Purpose of requirejs-config.js"></a><a href="#the-purpose-of-requirejs-config.js"></a>The Purpose of requirejs-config.js</h2><p>虽然你可以使用<code>requirejs-config.js</code>运行任意的js，但是他的主要任务是：</p>
-<ol>
-<li>让 end-user-programmers 向 Magento 的 RequireJS 系统中增加<code>require.config</code>选项。</li>
-<li>让 end-user-programmers 对自己的 js 代码进行配置或初始化。</li>
-</ol>
-<p>要了解 RequireJS 是怎么做的，我们需要看看 Magento 实际上是怎么处理这些<code>requirejs-config.js</code>文件的。如果你查看 Magento 的任意页面的源代码，你会看到类似下面的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script  type=&quot;text/javascript&quot;  src=&quot;http://magento.example.com/static/_requirejs/adminhtml/Magento/backend/en_US/requirejs-config.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这是在<code>setup:di:compile</code>（production 模式）过程中，或者运行时（developer 和 default模式）生成的一个特殊的 javaScript 文件。如果你不太了解 Magento 的模式对前端文件加载的影响，你可以查看 Alan 的文章<a target="_blank" rel="noopener" href="http://alanstorm.com/magento-2-frontend-files-serving/">Magento 2: Serving Frontend Files</a>。在接下来的文章中，我们都假设你是<code>developer</code>模式的。</p>
-<p>如果你在浏览器中查看下<code>requirejs-config.js</code>文件，你会看到你的<code>alert</code>表达式出现在像下面的代码中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">    require.config(config);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>虽然它不是100%明显，Magento 2 通过从<code>requirejs-config.js</code>生成上述代码块来让我们给系统添加额外的 RequireJS 初始化。</p>
-<p>我们通过一个具体的例子来进一步了解上面的意思。让我们修改<code>requirejs-config.js</code>变成下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">alert(&quot;Done&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>这里我们定义了一个<code>config</code>变量，并且修改了<code>alert</code>的值。现在你再一次载入页面，看看<code>requirejs-config.js</code>文件，你应该就知道 Magento 到底干了什么。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">alert(&quot;Done&quot;);</span><br><span class="line">require.config(config);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>对每个<code>requirejs-config.js</code>文件，Magento 都创建了一个类似下面的代码块：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    //CONTENTS HERE</span><br><span class="line">    require.config(config);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p><code>requirejs-config.js</code>的内容替换了<code>//CONTENTS HERE</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">alert(&quot;Done&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>这意味着，如果我们在<code>requirejs-config.js</code>文件中定义一个<code>config</code>变量，Magento 最终会将该变量传递给<code>require.config</code>。这将使得 Magento 的模块开发者可以使用 <code>RequireJS</code>的一些特性，比如：<code>shim</code>,<code>paths</code>,<code>baseUrl</code>,<code>map</code>以及其他<a target="_blank" rel="noopener" href="http://requirejs.org/docs/api.html#config">RequireJS’s configuration directives</a></p>
-<h2 id="Understanding-Lazy-Loading"><a href="#Understanding-Lazy-Loading" class="headerlink" title="Understanding Lazy Loading"></a><a href="#understanding-lazy-loading"></a>Understanding Lazy Loading</h2><p>另一个要理解的重点是RequireJS 的模块是延迟加载的（lazy load）。</p>
-<p>换句话说，加入我们使用了下面的配置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;my_module&quot;:&quot;Package_Module/my_module&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>默认情况下，Magento 是不会加载<code>Package_Module/my_module.js</code>文件的。Magento 只会在你要用它的时候加载他。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;my_module&#x27;], function(my_module)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">requirejs([&#x27;Package_Module/my_module&#x27;], function(my_module)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">define([&#x27;Package_Module/my_module&#x27;], function(my_module)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>记住，RequireJS 的日常开发时是不需要考虑如何请求源文件的细节的。延迟加载帮助用户节约了带宽，有时候某些页面用不着某些js 文件，这样就不用下载他们了。</p>
-<p>但是，在不那么理想的情况下，延迟加载的行为可能和一些比较早的 js 框架或是库配合不好。下面我们在讲到一些<code>jQuery gotchas</code>时，我们会探讨一个例子。</p>
-<h2 id="Global-jQuery-Object"><a href="#Global-jQuery-Object" class="headerlink" title="Global jQuery Object"></a><a href="#global-jquery-object"></a>Global jQuery Object</h2><p>即使你决定不用 RequireJS，你坚持用 plain old jQuery。你还是需要知道 RequireJS 是怎样与 AMD 标准前的 js 库交互的。</p>
-<p>在 Magento 2 中，jQuery 以 RequireJS 模块的方式被加载进来。这意味着，如果你尝试使用如下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    jQuery(function()&#123;</span><br><span class="line">        //your code here</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>你的浏览器会报错说<code>jQuery</code> is undefined。这是因为jQuery 全局对象并不存在，你得以 RequireJS 模块的方式使用jQuery。如果你习惯写上面这种类型的代码，你得这样做：</p>
-<ol>
-<li>Replace it with code that kicks off execution of a RequireJS program</li>
-<li>Configure that program to use the jquery module as a dependency</li>
-</ol>
-<p>换句话说，像下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;jquery&#x27;], function(jQuery)&#123;</span><br><span class="line">    jQuery(function()&#123;</span><br><span class="line">        //your code here</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>通过<code>requirejs</code>函数调用开始，传递给他所依赖的模块的数组，并且以匿名函数作为程序的main entry point。</p>
-<p><code>requirejs</code>的第一个参数是他所依赖的模块的数组列表。举例来说，下面的代码相当于告诉 RequireJS “我的程序是依赖jQuery模块的”。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;jquery&#x27;],</span><br></pre></td></tr></table></figure>
-
-<p><code>requirejs</code>的第二个参数是一个匿名函数，RequireJS 会加载你声明的依赖模块，并将他的返回值传递给匿名函数并调用它。</p>
-<p>jQuery 的新版本会检测自己是否被包含在 RequireJS&#x2F;AMD 的环境中，如果是就会定义一个模块，并且返回全局的 jQuery 对象。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/ File: http://code.jquery.com/jquery-1.12.0.js</span><br><span class="line">// Register as a named AMD module, since jQuery can be concatenated with other</span><br><span class="line">// files that may use define, but not via a proper concatenation script that</span><br><span class="line">// understands anonymous AMD modules. A named AMD is safest and most robust</span><br><span class="line">// way to register. Lowercase jquery is used because AMD module names are</span><br><span class="line">// derived from file names, and jQuery is normally delivered in a lowercase</span><br><span class="line">// file name. Do this after creating the global so that if an AMD module wants</span><br><span class="line">// to call noConflict to hide this version of jQuery, it will work.</span><br><span class="line"></span><br><span class="line">// Note that for maximum portability, libraries that are not jQuery should</span><br><span class="line">// declare themselves as anonymous modules, and avoid setting a global if an</span><br><span class="line">// AMD loader is present. jQuery is a special case. For more information, see</span><br><span class="line">// https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon</span><br><span class="line"></span><br><span class="line">if ( typeof define === &quot;function&quot; &amp;&amp; define.amd ) &#123;</span><br><span class="line">    define( &quot;jquery&quot;, [], function() &#123;</span><br><span class="line">        return jQuery;</span><br><span class="line">    &#125; );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="RequireJS-and-jQuery-Plugins"><a href="#RequireJS-and-jQuery-Plugins" class="headerlink" title="RequireJS and jQuery Plugins"></a><a href="#requirejs-and-jquery-plugins"></a>RequireJS and jQuery Plugins</h2><p>There’s another gotcha to using jQuery and RequireJS together. jQuery 库早于 RequireJS 和 AMD 标准好多年，他形成了自己的庞大的插件系统。那时候还没有模块化，js 默认用的全局变量，这个插件系统也配合得蛮好的，插件开发者通过修改全局的 jQuery 对象来创建他们的插件。</p>
-<p>对 RequireJS 来说这样就带来一个问题 —— 就像之前我们提到的，全局的 <code>jQuery</code> 对象是不存在的，你得在<code>requirejs</code>匿名函数中使用<code>jQuery</code>模块。这意味着以前下面这种引入 jQuery 插件的方式会在用到<code>jQuery</code>或者<code>$</code>别名时会出错。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://magento.example.com/js/path/to/jquery/plugin/jquery.cookie.js&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//File: http://magento.example.com/js/path/to/jquery/plugin/jquery.cookie.js</span><br><span class="line">var config = $.cookie = function (key, value, options) &#123;</span><br></pre></td></tr></table></figure>
-
-<p>如果你想在 Magento 2 的系统中使用 jQuery 插件，你得通过 RequrieJS。幸运的是，过程还是相对直接的。</p>
-<p>首先，你得通过<code>path</code>给该插件一个别名</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;jquery.cookie&quot;:&quot;Package_Module/path/to/jquery.cookie.min&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码创建了一个名为<code>jquery.cookie</code>的模块，该模块的位于<code>Package_Module</code>模块，是一个jQuery cookie 插件。</p>
-<p>现在，你可能认为我们可以用下面的代码来使用它了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">requirejs([&#x27;jquery&#x27;,&#x27;jquery.cookie&#x27;], function(jQuery, jQueryCookie)&#123;</span><br><span class="line">    //my code here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>毕竟，我们列出的依赖模块有<code>jQuery</code>和<code>jquery.cookie</code>，这应该会触发对他们的加载。</p>
-<p>你是对的——<strong>但只是有时候</strong>。RequireJS 是异步加载模块源文件的，但它可不保证加载的顺序。这意味着它可能会先加载jQuery 库，但是，有时候页面上的其他脚本或者网络情况可能会导致jQuery cookie 插件反而先被加载了。如果jQuery cookie 先被加载了，他就会因为找不到 jQuery 对象而出错。</p>
-<p>这样看来，RequireJS 的设计可不太好。但是你得知道 RequireJS 和 AMD 标准是用来避免全局变量的污染的。RequireJS 和 jQuery 这样的库不能无缝对接，这一点都不奇怪。 Even though jQuery is responsible about its use of global state (one global jQuery object), it still uses global state, and RequireJS isn’t going to get in the business of deciding who does and doesn’t use global state responsibly.</p>
-<p>关于加载顺序，RequireJS 提供了<code>shim</code>配置指令来让我们指定依赖模块的加载顺序。<br>你可以告诉 RequireJS :</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hey RequireJS，当你加载jquery.cookie的时候，请你确保jquery 模块已经完全加载了。</span><br></pre></td></tr></table></figure>
-
-<p>配置就像这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    paths:&#123;</span><br><span class="line">        &quot;jquery.cookie&quot;:&quot;Package_Module/path/to/jquery.cookie.min&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    shim:&#123;</span><br><span class="line">        &#x27;jquery.cookie&#x27;:&#123;</span><br><span class="line">            &#x27;deps&#x27;:[&#x27;jquery&#x27;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>我们定义了一个名为<code>shim</code>的配置属性，这个属性是一个键值对js对象。键表示模块的名字，值是js另一个对象，他定义该模块的<code>shim</code>配置。</p>
-<p><code>shim</code>还有很多其他配置选项。上面我们用的<code>deps</code>确保 RequireJS 在加载jquery.cookie 前先加载数组中的模块([jquery])。</p>
-<p><code>dep</code>配置选项只显示了<code>shim</code>能够做的一小部分，想了解更多细节，请参阅<a target="_blank" rel="noopener" href="http://requirejs.org/docs/api.html#config-shim">the shim documentation</a></p>
-<p>有了上面的配置，你现在可以安全地创建依赖 jquery cookie 插件的 RequireJS 程序了。</p>
-<h2 id="Require-vs-RequireJS"><a href="#Require-vs-RequireJS" class="headerlink" title="Require vs RequireJS"></a><a href="#require-vs-requirejs"></a>Require vs RequireJS</h2><p>在总结前还有一件事要注意。整个 RequireJS 的文档，你可以看到两个函数：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require()</span><br><span class="line">requirejs();</span><br></pre></td></tr></table></figure>
-
-<p>这两个函数有什么不同吗？哦，他们没有什么不同，他们是同一个函数。</p>
-<p>AMD 标准命名为 require，但是，RequireJS 意识到一些在用的代码已经定义了 require 函数，为了保证 RequirejS 可以同那些定义了 require 函数的代码一起使用，所以提供了一个 别名叫 requirejs</p>
-<h2 id="Wrap-Up"><a href="#Wrap-Up" class="headerlink" title="Wrap Up"></a><a href="#wrap-up"></a>Wrap Up</h2><p>本篇已经带你初步了解了 Magento 对 javaScript 以及现代前端库的使用。但是，所有这些都有赖于 RequireJS 。If you start there, you should be able to track back any javascript based feature to its inclusion via RequireJS, and through that figure out what’s going on. As always, knowing what a specific library does is always useful — but knowing how the framework your code lives in works is the key to becoming a more productive and rational programmer.</p>
-<h2 id="相关源文件下载"><a href="#相关源文件下载" class="headerlink" title="相关源文件下载"></a><a href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"></a>相关源文件下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/RequireJS-tutorial">https://github.com/PiscesThankIT/RequireJS-tutorial</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/RequireJsTutorial">https://github.com/PiscesThankIT/RequireJsTutorial</a></p>
-
+在
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/alan-magento-2-and-requirejs/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -823,31 +475,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Magento 2 通过 layout 文件引入 CSS。从技术讲，使用模板文件也可以引入 CSS，但是我们强烈推荐<strong>不要</strong>这样做。</p>
-<p><em>CSS 的类名可以用在 templates 和 layouts 中</em></p>
-<p>本篇描述 Magento 应用文件系统中默认情况下 CSS 文件是如何组织的，以及在布局中引入 CSS 的推荐做法。</p>
-<h2 id="Magento-的-CSS-是如何组织的"><a href="#Magento-的-CSS-是如何组织的" class="headerlink" title="Magento 的 CSS 是如何组织的"></a><a href="#magento-%E7%9A%84-css-%E6%98%AF%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E7%9A%84"></a>Magento 的 CSS 是如何组织的</h2><p>按照惯例来讲， CSS 和 LESS 文件只存在 theme 中。Module 文件夹中不包含任何样式。<br>在 theme 文件夹中，样式表被存放在如下位置：</p>
-<p>Directory, relative to</p>
-<p>Description</p>
-<p><code>/&lt;Namespace&gt;_&lt;Module&gt;/web/css</code></p>
-<p>特定模块的样式</p>
-<p><code>/web/css</code></p>
-<p>包含以下文件:</p>
-<ul>
-<li><code>print.less</code>: used to generate styles for the printed version of store pages.</li>
-<li><code>_styles.less</code> – a composite file, which includes all LESS files used in the theme. The underscore sign (<code>_</code>) in a file name conventionally means that a file is not used independently, but is included in other files.</li>
-<li><code>styles-m.less</code>: used to generate mobile-specific styles, includes <code>_styles.less</code></li>
-<li><code>styles-l.less</code>: used to generate desktop-specific styles, includes <code>_styles.less</code>.</li>
-<li><code>/source</code>: this subdirectory contains LESS configuration files that invoke mixins from the Magento UI library.</li>
-<li><code>/source/_theme.less</code>: overrides the default Magento UI library variables values.</li>
-</ul>
-<h2 id="通过布局引入-CSS"><a href="#通过布局引入-CSS" class="headerlink" title="通过布局引入 CSS"></a><a href="#%E9%80%9A%E8%BF%87%E5%B8%83%E5%B1%80%E5%BC%95%E5%85%A5-css"></a>通过布局引入 CSS</h2><p>通常来讲，你引入的 CSS ，所有的店铺页都是可以访问的。<code>Magento_Theme</code>的<code>default_head_blocks.xml</code>定义了所有 Magento 页面的<code>&lt;head&gt;</code>部分。推荐做法是在你自己的theme 中增加一个<code>default_head_blocks.xml</code>来扩展它。</p>
-<p>你 theme 中的<code>default_head_blocks.xml</code>应该放置在类似下面的位置<code>&lt;theme_dir&gt;/Magento_Theme/layout/default_head_blocks.xml</code>。要引入某个 css 文件，在<code>&lt;head&gt;</code>部分添加这样的代码：<code>&lt;css src=&quot;&lt;path&gt;/&lt;file&gt;&quot; media=&quot;print&lt;option&gt;&quot;/&gt;</code><br><code>&lt;path&gt;</code>是相对于你主题文件目录的（<code>&lt;theme_dir&gt;/web</code>）。下面是 Blank 主题引入 css 的例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#File: &lt;Magento_Blank_theme_dir&gt;/Magento_Theme/layout/default_head_blocks.xml</span><br><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;css src=&quot;css/styles-m.css&quot; /&gt;</span><br><span class="line">        &lt;css src=&quot;css/styles-l.css&quot; media=&quot;screen and (min-width: 768px)&quot;/&gt;</span><br><span class="line">        &lt;css src=&quot;css/print.css&quot; media=&quot;print&quot; /&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+          Magento 2 通过 layout 文件引入 CSS。从技术讲，使用模板文件也可以引入 CSS，但是我们强烈推荐不要这样做。
 
-<p><em>如果系统没有找到css 文件，就会找同名的<code>.less</code>文件。这是Magento 内置的机制，可以参考 <a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css-preprocess.html">CSS Preprocessing</a> 获得更多信息</em></p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css-themes.html">Include CSS</a></p>
+CSS 的类名可以用在 templates 和 layouts 中
 
+本篇描述 Magento 应用文件系统中默认情况下 CSS 文件是如何组织的，以及在布局中引入 CSS 的推荐做法。
+
+Magento 的 CSS 是如何组织的
+按照惯例来讲， CSS 和 LESS 文件只存在 theme 中。Module 文件夹中不包含任何样式。
+在 theme 文件夹中，样式表被存放在如下位置：
+
+Directory, relative to
+
+Description
+
+/
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-include-css/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -913,262 +563,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em>前言：Alan Storm 的文章以其深度和专业性给博主留下了深刻的印象，而且他非常注意通过代码实例来讲解。在博主眼中 Alan 绝对是大师级的 Magento 专家，所以博主决定翻译他关于 Magento 2 的文章。本篇<a target="_blank" rel="noopener" href="http://alanstorm.com/magento_2_mvvm_mvc">原文地址</a></em></p>
-<p>今天我们来做个 Magento 2 的“Hello World”示例。我们会设置一个新的 URL ,并向你展示如何为这个 URL 创建 phtml 模版。在这个过程中我们要说一说<strong>设计模式</strong>以及 Magento 是怎样的设计模式。不过，这篇文章的核心部分是简单地、可以跟着做的步骤，它会帮助你入门 Magento 2 的模块开发。</p>
-<p>等不及的可以去github上下载 <a target="_blank" rel="noopener" href="https://github.com/astorm/magento2-hello-world">Alan 的本篇完整模块代码</a>，但是我们强烈建议你自己完成创建的过程。</p>
-<p>对 Magento 1 的开发者来说，一个大的惊喜是 Magento 2 不是一个 Model，View，Controller 的系统。Magento 2 是近似 Model,View,ViewModel(MVVM)的系统，然而他的架构师们还没有给它起一个特定的称呼。</p>
-<p>Magento 2 中，当你请求一个URL</p>
-<p><code>http://magento.example.com/hello_mvc/hello/world</code></p>
-<p>系统会将请求路由到 Controller 类的 execute method，类似于 MVC 系统将请求路由到 Controller 类的 action method。但是，和传统的 MVC 系统不一样的是，这个 Controller 类只负责如下事情：</p>
-<ul>
-<li>决定使用哪个 page layout</li>
-<li>Handling saving data from <code>POST</code> requests</li>
-<li>下面两件事情之一：<ul>
-<li>让系统 render HTTP response</li>
-<li>将用户重定向到下一页或上一页</li>
-</ul>
-</li>
-</ul>
-<p>你会发现我们都没提在 View 中设置变量。这是因为每个 View 要自己负责从 model layer, request object,或其他外部系统中取得自己的信息。Magento 将 HTML 页面分解成许多片段，称之为 containers 。每个 container 包含嵌套的对象树，叫做 blocks。每个 block 对象拥有一个 phtml 模板文件，用来指定该 block 对象要展现的 HTML 。按照 MVVC 的说法，Magento 的 block 对象就是 View Model。block 对象将会完成所有对 CRUD models, request object, 外部系统等的数据读入。phtml 模板文件是 View （MVVM 中的 View），他只和 ViewModel 交互（block 对象）</p>
-<p>作为模块开发者，如果你想在 Magento 中创建一个新的 URL ，你需要做如下事情：</p>
-<ul>
-<li>Configure a module to tell Magento which controller it should use for a URL</li>
-<li>Configure a module to tell Magento which Block objects should be added to the system</li>
-</ul>
-<p>看到这里有点招架不住了吧，不要担心。本篇介绍文章的剩余部分会带领你完成建立一个 Magento 2 “Hello World” 模块的所有必要步骤。多练习几次，你就会开始掌握新的术语，以及什么代码应该放在哪里。</p>
-<h2 id="关于“Cache-Clearing”的注意点"><a href="#关于“Cache-Clearing”的注意点" class="headerlink" title="关于“Cache Clearing”的注意点"></a><a href="#%E5%85%B3%E4%BA%8E%E2%80%9Ccache-clearing%E2%80%9D%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9"></a>关于“Cache Clearing”的注意点</h2><p>像大多数现代框架一样，Magento 2 使用了很多不同的缓存文件来加快会拖慢速度的操作。这些缓存目的是使系统在生产环境中跑地更快 —— 但是这经常会导致 Magento 没有用最新的配置或源文件，所以看不到变化。</p>
-<p>当你在 Magento 2 系统中创建新功能的时候，常常是很有必要清空你的缓存的。你可以通过<code>bin/magento</code>的 CLI 命令(<code>cache:clean</code>)，后台的<code>System -&gt; Cache Management</code>，或者通过删除缓存文件(一般在<code>var/cache</code>文件下，如果你用了缓存引擎则另当别论)来清空缓存。</p>
-<p>为让速度飞起来，除了缓存文件，Magneto 2 还生成很多 boilerplate classes。这些文件放在<code>var/generation</code>路径下。当你修改了某些配置或代码文件后，通常有必要重新生成这些文件。目前，没有任何方法(CLI或者后台)可以帮你重新生成。唯一的方法是手动删除<code>var/generation</code>下的文件。</p>
-<p>我们会尽量在需要清空缓存和重新生成代码文件的时候给你提个醒的，不过要是你遇到应该起作用却没有起作用的情况时，试试看这样做：先清除缓存和生成的代码文件，然后重新载入页面或是重新运行命令。</p>
-<p>这些命令可以帮助你快速地回到正确的道路上。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /path/to/magento/var/generation/*</span><br><span class="line">rm -rf /path/to/magento/var/cache/*</span><br></pre></td></tr></table></figure>
+          前言：Alan Storm 的文章以其深度和专业性给博主留下了深刻的印象，而且他非常注意通过代码实例来讲解。在博主眼中 Alan 绝对是大师级的 Magento 专家，所以博主决定翻译他关于 Magento 2 的文章。本篇原文地址
 
-<h2 id="Magento-2-Hello-World-Module"><a href="#Magento-2-Hello-World-Module" class="headerlink" title="Magento 2 Hello World Module"></a><a href="#magento-2-hello-world-module"></a>Magento 2 Hello World Module</h2><p>今天我们的目标是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">访问这个URL http://magento.example.com/hello_mvc/hello/world 返回 Magento2 默认主题下的 “Hello World” 信息。</span><br></pre></td></tr></table></figure>
+今天我们来做个 Magento 2 的“Hello World”示例。我们会设置一个新的 URL ,并向你展示如何为这个 URL 创建 phtml 模版。在这个过程中我们要说一说设计模式以及 Magento 是怎样的设计模式。不过，这篇文章的核心部分是简单地、可以跟着做的步骤，它会帮助你入门 Magento 2 的模块开发。
 
-<p>从更高的角度来说，我们要完成这个目标的步骤如下：</p>
-<ul>
-<li>创建一个 Magento 2 的 Module</li>
-<li>Configure this module with a route for a URL</li>
-<li>Create a class for our controller object</li>
-<li>Create a full action name layout handle XML file</li>
-<li>Use the full action name layout handle XML file to add a new block to the content container</li>
-<li>Create a template for our block</li>
-</ul>
-<p>上面一些术语我们有的已经提到过了，有的还没有。对熟悉 Magento 1的人来说，有些看起很熟悉，但是改变又很多，你可能想忘记 Magento 1 是怎么工作的了呢。虽然Magento 1 的许多知识在 Magento 2 的许多地方依然是非常宝贵的，但是设想 Magento 2 像 Magneto 1 一样的工作是不能帮助你寻找结果。</p>
-<h2 id="创建一个-Magento-2-的-Module"><a href="#创建一个-Magento-2-的-Module" class="headerlink" title="创建一个 Magento 2 的 Module"></a><a href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-magento-2-%E7%9A%84-module"></a>创建一个 Magento 2 的 Module</h2><p>Magento 2 中，Module 让程序员可以以模块化地方式向系统中增加新的代码。当你通过 Module 向系统增加代码时，系统才会知道去哪里找你的代码。Module 还定义了使用PHP 命名空间的规则，这样可以避免和其他开发者的代码冲突。Module 是Magento 2 系统的“头等公民”——核心团队也是使用 Module 来实现前后端功能的哦。</p>
-<p>Module 需要被放在<code>app/code</code>文件夹下。Magento 2中所有的 module 都有唯一的名字，这个名字由两部分组成。第一部分是描述创建者（公司、个人或者小组）的单词。有时候称之为 vendor namespace。第二部分，是描述该模块功能的单词。</p>
-<p>举例来说，Magento 2 自带的一个模块叫 <code>Magento_Contact</code>。这个第一部分 Magento 描述的是该模块的创建者（Magneto 核心团队）。第二部分 Contact 说的是这个模块干什么事情（给 Magento 增加 Contact form）</p>
-<p>我们这个入门教程，就来创建一个叫<code>Pulsestorm_HelloWorldMVVM</code>的 module 吧。要创建这个模块，请你创建相应的文件，把内容复制进去。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/etc/module.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd&quot;&gt;</span><br><span class="line">    &lt;module name=&quot;Pulsestorm_HelloWorldMVVM&quot; setup_version=&quot;0.0.1&quot; /&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>module 一般放在<code>app/code</code>文件夹下，根据 module 的名字我们给他创建文件结构。（Pulsestorm_HelloWorldMVVM 对应 Pulsestorm&#x2F;HelloWorldMVVM）</p>
-<p>Magento 2 的 module 将包含许多 XML 配置文件，这些配置文件放在 <code>etc</code> 文件夹下。刚刚创建的<code>module.xml</code>是 module 的主要配置文件。这个文件正是 Magento 核心代码搜索系统的模块时要找的文件。</p>
-<p><code>&lt;config/&gt;</code> 根节点就是样板，不用管他，照抄就行。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/etc/module.xml --&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Magento 2 使用 XSD schema 文件来验证所有 module 配置文件的内容。拷贝就行了，不会有变化。</p>
-<p>这个配置文件我们感兴趣的部分是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/etc/module.xml --&gt;</span><br><span class="line">&lt;module name=&quot;Pulsestorm_HelloWorldMVVM&quot; setup_version=&quot;0.0.1&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>&lt;module/&gt;</code> 节点告诉 Magento 我们想要给系统添加一个 module。<code>name</code>属性告诉 Magneto module 的名字是什么。<code>setup_version</code>告诉 Magento 我们 module 的版本是什么。这个 version 节点对 Magento 的 setup-resource&#x2F;migration 系统很重要，不过今天我们不展开说。</p>
-<p>上面的事情做好后，下面我们向<code>app/etc/config.php</code>文件的全局 module 列表中添加我们的 module。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: app/etc/config.php</span><br><span class="line">&lt;?php</span><br><span class="line">return array (</span><br><span class="line">  &#x27;modules&#x27; =&gt;</span><br><span class="line">  array (</span><br><span class="line">    &#x27;Magento_Store&#x27; =&gt; 1,</span><br><span class="line">    &#x27;Magento_AdvancedPricingImportExport&#x27; =&gt; 1,</span><br><span class="line">    &#x27;Magento_Directory&#x27; =&gt; 1,</span><br><span class="line">    //...</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>你看这是一个长长的 module 列表。这个文件是为了让核心代码不用每次请求时都去逐个扫描<code>app/code/*</code>文件。把我们的模块也加入到数组的最后。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#File: app/etc/config.php</span><br><span class="line">&lt;?php</span><br><span class="line">return array (</span><br><span class="line">  &#x27;modules&#x27; =&gt;</span><br><span class="line">  array (</span><br><span class="line">    &#x27;Magento_Store&#x27; =&gt; 1,</span><br><span class="line">    &#x27;Magento_AdvancedPricingImportExport&#x27; =&gt; 1,</span><br><span class="line">    &#x27;Magento_Directory&#x27; =&gt; 1,</span><br><span class="line">    //...</span><br><span class="line">    &#x27;Pulsestorm_HelloWorldMVVM&#x27;=&gt; 1</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>Magento Merchant Beta 版本后的更新：beta 版本后核心团队增加了 <code>registration.php</code> 文件，现在每个 module 都需要他。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/registration.php</span><br><span class="line">&lt;?php</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::MODULE,</span><br><span class="line">    &#x27;Pulsestorm_HelloWorldMVVM&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>上面的文件，除了<code>Pulsestorm_HelloWorldMVVM</code>不同，其他所有的 module 内容都是一样的。第二个参数是你的 module 的全名。</p>
-<p>Why is this here here? It’s part of how Magento identifies which modules are installed into a system. This replaces the old Magento 1 app&#x2F;etc&#x2F;module files, and takes the ultimate source of truth for module presence away from app&#x2F;etc&#x2F;config.php.</p>
-<h2 id="安装疑难解答"><a href="#安装疑难解答" class="headerlink" title="安装疑难解答"></a><a href="#%E5%AE%89%E8%A3%85%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94"></a>安装疑难解答</h2><p>有几种不同的方法来检查 module 是否正确安装好了。其中一种是使用 CLI 命令<code>module:status</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:status</span><br><span class="line">List of enabled modules:</span><br><span class="line">Magento_Store</span><br><span class="line">Magento_AdvancedPricingImportExport</span><br><span class="line">//...</span><br><span class="line">Pulsestorm_HelloWorldMVVM</span><br><span class="line"></span><br><span class="line">List of disabled modules:</span><br><span class="line">//...</span><br></pre></td></tr></table></figure>
-
-<p>这个命令会列出系统中所有安装了的和没有安装的 module</p>
-<p>另一种方式是进入后台，在_Stores -&gt; Configuration -&gt; Advanced -&gt; Advanced -&gt; Disable Modules Output_ 查看。</p>
-<p>关于module 的创建最后要提醒的是，安装一个新的 module 可能会看到如下错误提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Please upgrade your database: Run &quot;bin/magento setup:upgrade&quot; </span><br><span class="line">from the Magento root directory. </span><br><span class="line">The following modules are outdated:</span><br><span class="line">//...</span><br></pre></td></tr></table></figure>
-
-<p>这里不去深究错误原因，这是 Magento setup resource migration system 发出的警告。他告诉你模块的版本和上次setup resource migration scripts 执行的 module 版本不相符。</p>
-<p>别管他，从 CMD 运行如下命令，警告就会消失了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加-controller-action"><a href="#添加-controller-action" class="headerlink" title="添加 controller action"></a><a href="#%E6%B7%BB%E5%8A%A0-controller-action"></a>添加 controller action</h2><p>我们已经创建了 module，接下来为我们的 URL 配置好路由，并创建一个控制器类。在这之前，我们来做个事情。</p>
-<p>Magneto 2 社区版本吸收了许多原来企业版才有的特性。其中就包括 full page caching。这对生产环境来说是非常棒的，然而要是你开着全页缓存，开发一个新的 URL 的话，会有点痛苦。你可以登录后台，到_System -&gt; Cache Management_ 中关了它。如果你让他开着，那么每次请求都要删除缓存，缓存文件在<code>var/page_cache</code>目录下。</p>
-<p>之前提到的两个缓存文件夹是<code>var/cache</code> 和<code>var/generation</code></p>
-<p>关闭全页缓存后，我们就可以继续前进了。</p>
-<h2 id="Magnento-2-的路由"><a href="#Magnento-2-的路由" class="headerlink" title="Magnento 2 的路由"></a><a href="#magnento-2-%E7%9A%84%E8%B7%AF%E7%94%B1"></a>Magnento 2 的路由</h2><p>我们要让 Magento 2 响应如下 URL</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/index.php/hello_mvvm/hello/world</span><br></pre></td></tr></table></figure>
-
-<p><code>index.php</code>部分是可以不要的。如果你启用了<code>mod_rewrite</code>（或者是web 服务器其他对应的组建），那么上面的 URL 等价于下面的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/hello_mvvm/hello/world</span><br></pre></td></tr></table></figure>
-
-<p>在Magento 2 系统中，每个独立的 module 都可以声明一个 <strong>front name</strong>，这个<strong>front name</strong>就是URL 中的第一段，对应我们的URL，就是<code>hello_mvvm</code>。如果一个 module 申明了一个 front name，那么相当于他告诉系统：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Magneto system code 你好，如果你看见任何以 /hello_mvvm 开头的URL，我有他们的控制器。</span><br></pre></td></tr></table></figure>
-
-<p>要让我们的模块声明<code>hello_mvvm</code>的front name，请增加如下配置文件。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/etc/frontend/routes.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd&quot;&gt;</span><br><span class="line">    &lt;router id=&quot;standard&quot;&gt;</span><br><span class="line">        &lt;route id=&quot;hello_mvvm&quot; frontName=&quot;hello_mvvm&quot;&gt;</span><br><span class="line">            &lt;module name=&quot;Pulsestorm_HelloWorldMVVM&quot; /&gt;</span><br><span class="line">        &lt;/route&gt;</span><br><span class="line">    &lt;/router&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这个新创建的<code>routes.xml</code>文件告诉 Magento 我们要声明一个 front name。注意这个文件放在子目录<code>frontend</code>下面。Magnento 2 系统允许开发者创建多个<strong>application areas</strong>。 areas 控制的事情有载入哪个session，检查哪个 access control rule，以及载入那个配置文件。<code>frontend</code> area 就是前台购物应用。如果这里没有看明白也不用担心，乖乖放在指定位置就没事了。</p>
-<p><code>&lt;router/&gt;</code>节点包含了我们所有的routes</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;router id=&quot;standard&quot;&gt;</span><br><span class="line">    &lt;!-- ... --&gt;</span><br><span class="line">&lt;/router&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里<code>id=&quot;standard&quot;</code> 有点让人困惑。如果你为frontend area 设置 URL ，你就得用<code>standard</code>。如果你是为后台应用设置 URL 的话，你就得用<code>id=&quot;admin&quot;</code>。这个原因是历史遗留问题，如果有机会的话，后续的文章会讲到原因。</p>
-<p>在<code>&lt;router/&gt;</code>内，我们会看到<code>&lt;route/&gt;</code>标签。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;route id=&quot;hello_mvvm&quot; frontName=&quot;hello_mvvm&quot;&gt;</span><br><span class="line">    &lt;module name=&quot;Pulsestorm_HelloWorldMVVM&quot; /&gt;</span><br><span class="line">&lt;/route&gt;</span><br></pre></td></tr></table></figure>
-
-<p>每个单独的<code>&lt;route/&gt;</code>节点告诉 Magento 我们想要声明一个特定的 front name。<code>frontName</code>的属性值是 URL 第一部分的文本值。比方说<code>frontName=&quot;hello_mvvm&quot;</code>告诉 Magento 我们想要声明的 URL 长下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/hello_mvvm/*</span><br></pre></td></tr></table></figure>
-
-<p><code>node</code>节点的<code>id</code>属性唯一确定该节点。该<code>id</code>有时候也称为 route 的名称。按照惯例，99.9%的时候，该<code>id</code>的值应该都是和<code>frontName</code>一样的。如果你不知道为什么是这样的——你其实不需要知道。只要让他们一样就好了。</p>
-<p>在<code>route</code>节点内，你会看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;module name=&quot;Pulsestorm_HelloWorldMVVM&quot; /&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>name</code>属性节点应该是你 module 的名称。上面这些都弄好了以后，我们可以继续去创建控制器文件了。</p>
-<h2 id="新建控制器文件"><a href="#新建控制器文件" class="headerlink" title="新建控制器文件"></a><a href="#%E6%96%B0%E5%BB%BA%E6%8E%A7%E5%88%B6%E5%99%A8%E6%96%87%E4%BB%B6"></a>新建控制器文件</h2><p>Magento 2 使用传统的PHP“将 URL 转化为控制器类名”的方法。让我们再来看看我们的URL</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/hello_mvvm/hello/world</span><br></pre></td></tr></table></figure>
-
-<p>要找出控制器的类名，Magento 2 将会查看 URL 第二和第三部分（<code>hello</code>和<code>world</code>）</p>
-<ol>
-<li>因为我们声明了<code>Pulsestorm_HelloWorldMVVM</code>的 front name 为<code>hello_mvvm</code>，所以控制器的名称以<code>Pulsestorm\HelloWorldMVVM</code>为开头。</li>
-<li>因为我要定义一个控制器，所以接下来增加一个<code>Controller</code>（<code>Pulsestorm\HelloWorldMVVM\Controller</code>）</li>
-<li>接下来 Magento 把 URL 的第二部分(hello)添加进去，首字母大写。（<code>Pulsestorm\HelloWorldMVVM\Controller\Hello</code>）</li>
-<li>然后 Magento 把 URL 的第三部分（world）添上去，首字母大写。（Pulsestorm\HelloWorldMVVM\Controller\Hello\World）</li>
-</ol>
-<p>现在我们有控制器的全名了<code>Pulsestorm\HelloWorldMVVM\Controller\Hello\World</code>。现在创建这个文件吧。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/Controller/Hello/World.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\HelloWorldMVVM\Controller\Hello;</span><br><span class="line">class World extends \Magento\Framework\App\Action\Action</span><br><span class="line">&#123;</span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &#x27;&lt;p&gt;You Did It!&lt;/p&gt;&#x27;;</span><br><span class="line">        var_dump(__METHOD__);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>控制器文件的位置和他的全名是对应的（PSR-0标准）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class Name: Pulsestorm\HelloWorldMVVM\Controller\Hello\World;</span><br><span class="line">   app/code/Pulsestorm/HelloWorldMVVM/Controller/Hello/World.php</span><br></pre></td></tr></table></figure>
-
-<p><code>Magento\Framework\App\Action\Action</code>是前端控制器的基类。(Action 这个名字源于历史名称”action controller”)</p>
-<p>在 Magnento 2 系统中，每个控制器有且仅有一个入口，就是<code>execute</code>方法。Magento 2 的设计师这样设计是为了帮助避免冲突，在一个大的开发团队中很多人都修改同一个控制器文件实现不同的功能，如果入口还不同是很容易冲突的。</p>
-<p>上面的工作都完成后，载入这个 URL 试试看吧。（当然记得先清空生成的缓存）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento.example.com/hello_mvvm/hello/world</span><br></pre></td></tr></table></figure>
-
-<p>假如你正确地跟着上面的步骤做了，那你应该看到如下输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">You Did It</span><br><span class="line">string &#x27;Pulsestorm\HelloWorldMVVM\Controller\Hello\World::execute&#x27; (length=57)</span><br></pre></td></tr></table></figure>
-
-<p>恭喜你！你已经创建了自己的第一个 Magneto 2 controller</p>
-<h2 id="passing-off-to-the-view"><a href="#passing-off-to-the-view" class="headerlink" title="passing off to the view"></a><a href="#passing-off-to-the-view"></a>passing off to the view</h2><p>前面我们说到控制器的任务有：</p>
-<ul>
-<li>决定使用哪个 page layout</li>
-<li>Handling saving data from <code>POST</code> requests</li>
-<li>下面两件事情之一：<ul>
-<li>让系统 render HTTP response</li>
-<li>将用户重定向到下一页或上一页</li>
-</ul>
-</li>
-</ul>
-<p>今天我们只示范控制器让系统 render HTTP response。Magento 2 系统中，如果你想让控制器渲染（render）一个 HTML　Page，你得让控制器返回一个”page” objec。这是一个三步的过程：</p>
-<ol>
-<li>You need to inject a “page factory” object via automatic constructor dependency injection</li>
-<li>使用上面的 page factory 对象来创建一个 page 对象</li>
-<li>返回上面创建的 page 对象。</li>
-</ol>
-<p>实际上没有听起来这么复杂。修改你的控制器文件让他像下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\HelloWorldMVVM\Controller\Hello;</span><br><span class="line">use Magento\Framework\View\Result\PageFactory;</span><br><span class="line">use Magento\Framework\App\Action\Context;</span><br><span class="line"></span><br><span class="line">class World extends \Magento\Framework\App\Action\Action</span><br><span class="line">&#123;</span><br><span class="line">    protected $pageFactory;</span><br><span class="line">    public function __construct(Context $context, PageFactory $pageFactory)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;pageFactory = $pageFactory;</span><br><span class="line">        return parent::__construct($context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function execute()</span><br><span class="line">    &#123;</span><br><span class="line">        var_dump(__METHOD__);</span><br><span class="line">        $page_object = $this-&gt;pageFactory-&gt;create();;</span><br><span class="line">        return $page_object;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>清空缓存以及<code>var/generation</code>里的内容，然后重新载入你的页面。你可能会困惑，因为你只看到<code>var_dump</code>输出的方法名：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string &#x27;Pulsestorm\HelloWorldMVVM\Controller\Hello\World::execute&#x27; (length=57)</span><br></pre></td></tr></table></figure>
-
-<p>但是，如果你查看网页的源代码，你应该看到类似下面的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;html &gt;</span><br><span class="line">&lt;head &gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;/&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;</span><br><span class="line">&lt;meta name=&quot;description&quot; content=&quot;Default Description&quot;/&gt;</span><br><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;Magento, Varien, E-commerce&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这里的问题并不是代码有误——这是因为我们还没有告诉layout system 它需要给<code>http://magento.example.com/hello_mvvm/hello/world</code>页面做点什么。正因为如此，Magento 渲染了 HTML 的结构，但是没有填入内容。接下来我们会了解怎么告诉 layout system 做事，但是首先我们得解释一下上面我们做了什么。</p>
-<p>下面两行改变</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use Magento\Framework\View\Result\PageFactory;</span><br><span class="line">use Magento\Framework\App\Action\Context;</span><br></pre></td></tr></table></figure>
-
-<p>严格来说并非必须的，但他让我们下面可以使用<code>PageFactory</code>和<code>Context</code>短的类名，如果你对PHP的命名空间不是很熟悉，可以参考<a target="_blank" rel="noopener" href="http://alanstorm.com/php_namespace_primer/">short primer is a great place to start</a></p>
-<p>接着是我们的constructor</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">protected $pageFactory;</span><br><span class="line">public function __construct(Context $context, PageFactory $pageFactory)</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;pageFactory = $pageFactory;</span><br><span class="line">    return parent::__construct($context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是 Magento 2 的依赖注入（automatic constructor dependency injection）起作用——如果你对这个不是很熟悉，你可以参考<a target="_blank" rel="noopener" href="http://alanstorm.com/category/magento/#magento_2_object_system">our object manager series</a>。简单说来，Magento 有一些神奇的代码，当你在构造函数参数中写下某个类后，它就会自动帮你构造这个类的对象。所以，就这样我们创建了<code>PageFactory</code>的对象，并且把他赋给<code>pageFactory</code>属性。</p>
-<p>即使你对依赖注入很熟悉，上面的<code>$context</code>变量可能也会使你很困惑。 This is here because it’s also in the parent object’s (<code>Magento\Framework\App\Action\Action</code>) constructor, and we need to call <code>parent::__construct</code> to make sure any work in the parent constructor still happens.</p>
-<p>最后，一切都到了<code>execute</code>方法中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public function execute()</span><br><span class="line">&#123;</span><br><span class="line">    var_dump(__METHOD__);</span><br><span class="line">    $page_object = $this-&gt;pageFactory-&gt;create();;</span><br><span class="line">    return $page_object;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这里我们使用<code>PageFactory</code>对象创建一个page 对象，并且把他返回出去。</p>
-<h2 id="creating-the-view"><a href="#creating-the-view" class="headerlink" title="creating the view"></a><a href="#creating-the-view"></a>creating the view</h2><p>对最终程序员用户（我们），Magento 的 Page Layout 系统是通过 XML based domain specific language 来控制的。直白一点，这意味着我们可以通过创建包含指令的 XML 文件来告诉layout system 干什么。完整讲解 layout 系统已经超出本文的范围了（另开一篇也讲不完），如果你有问题，请在 Alan 的博客下评论，或者去 Stack Exchange 提问。</p>
-<p>先做下面的事情，创建下面的文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/layout/hello_mvvm_hello_world.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; layout=&quot;1column&quot; xsi:noNamespaceSchemaLocation=&quot;../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;referenceBlock name=&quot;content&quot;&gt;</span><br><span class="line">        &lt;block</span><br><span class="line">            template=&quot;content.phtml&quot;</span><br><span class="line">            class=&quot;Pulsestorm\HelloWorldMVVM\Block\Main&quot;</span><br><span class="line">            name=&quot;pulsestorm_helloworld_mvvm&quot;/&gt;</span><br><span class="line">    &lt;/referenceBlock&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
-
-<p>之后创建下面的 php <code>Block</code> 类</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/Block/Main.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\HelloWorldMVVM\Block;</span><br><span class="line">use Magento\Framework\View\Element\Template;</span><br><span class="line"></span><br><span class="line">class Main extends Template</span><br><span class="line">&#123;</span><br><span class="line">    protected function _prepareLayout()</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最后，创建如下<code>phtml</code>模板</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/templates/content.phtml</span><br><span class="line">&lt;h1&gt;Hello World&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>上面都做好了以后，清空缓存和生成的代码（<code>var/generation</code>）重新载入页面，你现在应该看到_Hello World_标题被 Magento 的设计包围着。</p>
-<h3 id="what-just-happened"><a href="#what-just-happened" class="headerlink" title="what just happened"></a><a href="#what-just-happened"></a>what just happened</h3><p>接下来的几个小节我们会解释上面做的事情——上面一个小节可能是本篇文章中最让人困惑的部分了。我们正在引入新的术语，重新定义 Magento 1 的术语。你不需要完全理解这些部分才能继续，不过这是深入了解 Magento 核心代码的伟大起点。</p>
-<p>Even if the next few sections are a little over your head, you’ll definitely want to skip ahead to the View&#x2F;View Model section near the end.</p>
-<h3 id="The-Full-Action-Name-Layout-Handle-XML-File"><a href="#The-Full-Action-Name-Layout-Handle-XML-File" class="headerlink" title="The Full Action Name Layout Handle XML File"></a><a href="#the-full-action-name-layout-handle-xml-file"></a>The Full Action Name Layout Handle XML File</h3><p>让我们从创建的 XML 文件说起</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/layout/hello_mvvm_hello_world.xml --&gt;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; layout=&quot;1column&quot; xsi:noNamespaceSchemaLocation=&quot;../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;referenceBlock name=&quot;content&quot;&gt;</span><br><span class="line">        &lt;block</span><br><span class="line">            template=&quot;content.phtml&quot;</span><br><span class="line">            class=&quot;Pulsestorm\HelloWorldMVVM\Block\Main&quot;</span><br><span class="line">            name=&quot;pulsestorm_helloworld_mvvm&quot;/&gt;</span><br><span class="line">    &lt;/referenceBlock&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这个文件被称为<code>full action name layout handle XML file</code>。之前我们提到，开发者通过 XML 文件中的指令告诉 Magneto Page Layout 系统做什么事情。这就是那个 XML 文件。<strong>Layout handle</strong> 就像是 Page Layout 系统的事件或是消息。每个 page 会触发某些 handles，这些 handles 告诉 Magento 哪些 Layout Handle XML Files 应该被加载。</p>
-<p>每个控制器页面触发一个<code>full action name</code>handle。一个 full action name 是一个组合了<code>&lt;route/&gt;</code> ID （<code>hello_mvvm</code>通常唯一确定front name）以及URL第二和第三部分（<code>hello</code> 和 <code>world</code>）的字符串。在我们的例子中，full acton name 就是<code>hello_mvvm_hello_world</code></p>
-<p>所以，当我们创建名为<code>hello_mvvm_hello_world</code>的文件时，相当于告诉 Magento：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果触发了hello_mvvm_hello_world handle，请使用这个文件中的布局指令。</span><br></pre></td></tr></table></figure>
-
-<p>至于该文件在模块文件夹中的层次位置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/code/Pulsestorm/HelloWorldMVVM/view/frontend/layout/hello_mvvm_hello_world.xml</span><br></pre></td></tr></table></figure>
-
-<p>Magento 的每个模块都有一个<code>view</code>文件夹，用来放视图相关的文件。在<code>view</code>目录下是为单独的application area 准备的子文件夹（上面的例子application area 指的是<code>frontend</code>），在<code>area</code>文件夹下是为特定的文件类型准备的文件夹（<code>layout</code>文件，<code>template</code>文件等）</p>
-<p>最后，layout 文件中的指令是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/layout/hello_mvvm_hello_world.xml --&gt;</span><br><span class="line">&lt;referenceBlock name=&quot;content&quot;&gt;</span><br><span class="line">    &lt;block</span><br><span class="line">        template=&quot;content.phtml&quot;</span><br><span class="line">        class=&quot;Pulsestorm\HelloWorldMVVM\Block\Main&quot;</span><br><span class="line">        name=&quot;pulsestorm_helloworld_mvvm&quot;/&gt;</span><br><span class="line">&lt;/referenceBlock&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这些 XML 指令大致相当于下面的伪代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//pseudo code -- does not work</span><br><span class="line">$our_view_block = $layout-&gt;createNewBlockWithClass(&#x27;Pulsestorm\HelloWorldMVVM\Block\Main&#x27;)</span><br><span class="line">$our_view_block-&gt;setName(&#x27;pulsestorm_helloworld_mvvm&#x27;);</span><br><span class="line">$out_view_block-&gt;setTemplate(&#x27;content.phtml&#x27;);</span><br><span class="line">$layout-&gt;addBlockToContentContainer($our_view_block);</span><br></pre></td></tr></table></figure>
-
-<p>大白话来说就是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Magento，请你用Pulsestorm\HelloWorldMVVM\Block\Main 类实例化一个block 对象，这个对象要使用 content.phtml 模板进行渲染，并且给这个block 对象一个全局唯一的名字叫pulsestorm_helloworld_mvvm</span><br></pre></td></tr></table></figure>
-
-<p>block 的名字应该是全局唯一的字符串，这样block 对象就可以被其他代码引用了。</p>
-<h3 id="creating-a-block-class"><a href="#creating-a-block-class" class="headerlink" title="creating a block class"></a><a href="#creating-a-block-class"></a>creating a block class</h3><p>之前提到过，Magento 2 的 page layout 是嵌套的container 和 block 的聚集。上面，我们使用full action name handle XML 文件告诉 Magento 我们要插入一个<code>Pulsestorm\HelloWorldMVVM\Block\Main</code> block 对象。我们创建了这样的 block 类：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/Block/Main.php</span><br><span class="line">&lt;?php</span><br><span class="line">namespace Pulsestorm\HelloWorldMVVM\Block;</span><br><span class="line">use Magento\Framework\View\Element\Template;</span><br><span class="line"></span><br><span class="line">class Main extends Template</span><br><span class="line">&#123;</span><br><span class="line">    protected function _prepareLayout()</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Magento 的 block 类负责渲染 HTML 片段。上面 block 的基类是<code>Magento\Framework\View\Element\Template</code>，他是 Magento 的基本模板类。继承该类的block 会渲染他模板文件中的 HTML 内容。我们在layout handle XML 文件中设置了这个模板(content.phtml)</p>
-<p>block 文件的路径和 Magento 系统中的所有 PHP 类一样，遵循 PSR-0 autoloader（<a href="/about-psr/">关于psr</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app/code/Pulsestorm/HelloWorldMVVM/Block</span><br><span class="line">         Pulsestorm\HelloWorldMVVM\Block</span><br></pre></td></tr></table></figure>
-
-<h3 id="creating-a-template-file"><a href="#creating-a-template-file" class="headerlink" title="creating a template file"></a><a href="#creating-a-template-file"></a>creating a template file</h3><p>Magento 2 系统中的大多数 block 是 template block，这意味着他们渲染<code>phtml</code>模板。当我们添加了如下属性：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/layout/hello_mvvm_hello_world.xml --&gt;</span><br><span class="line">&lt;block &lt;!-- ... --&gt;</span><br><span class="line">    template=&quot;content.phtml&quot;</span><br><span class="line">&lt;!-- ... --&gt;</span><br></pre></td></tr></table></figure>
-
-<p>就相当于我们告诉 Magento 我们希望 block 使用<code>content.phtml</code>模板文件。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/templates/content.phtml</span><br><span class="line">&lt;h1&gt;Hello World&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>模板文件被认为是view assets，所以他们属模块的<code>view</code>文件夹。像routes 和 layout 文件一样，他们有特定的 area(这里是frontend)，他们又属于<code>template</code>子文件夹。</p>
-<p>如果你想的话也可以把模板放在<code>template</code>的子目录下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/layout/hello_mvvm_hello_world.xml --&gt;</span><br><span class="line">&lt;block &lt;!-- ... --&gt;</span><br><span class="line">    template=&quot;some/sub/folder/content.phtml&quot;</span><br><span class="line">&lt;!-- ... --&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="view-x2F-view-model"><a href="#view-x2F-view-model" class="headerlink" title="view&#x2F;view model"></a><a href="#view/view-model"></a>view&#x2F;view model</h2><p>到目前为止，我们已经完成所有的事项了。但是，还有最后一件要说。之前我们把 Magento 描述成 Model, View, View Model 系统，Magento blocks 是 View Model，phtml 模板是 View。下面说他们是怎么工作的。</p>
-<p>打开 block 类，把下面的代码添加到<code>_prepareLayout</code>方法中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/Block/Main.php</span><br><span class="line">protected function _prepareLayout()</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;setMessage(&#x27;Hello Again World&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后再你的<code>phtml</code>文件中，添加如下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/templates/content.phtml</span><br><span class="line">&lt;h1&gt;&lt;?php echo $this-&gt;escapeHtml($this-&gt;getMessage()); ?&gt;&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
-
-<p>重新载入页面，这次你应该看到的是_Hello Again World_信息。</p>
-<p>作为视图开发者，你需要自己获取或计算模板需要的数据。你可以通过模式方法<code>set</code>和<code>get</code>来完成工作，或者可以通过在 block 中直接定义方法，然后在phtml 模板中调用该方法来完成工作。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/Block/Main.php</span><br><span class="line">public function getGoodbyeMessage()</span><br><span class="line">&#123;</span><br><span class="line">    return &#x27;Goodbye World&#x27;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/templates/content.phtml</span><br><span class="line">&lt;h2&gt;&lt;?php echo $this-&gt;escapeHtml($this-&gt;getGoodbyeMessage()); ?&gt;&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
-
-<p>block 对象还允许你访问 request object —— 试着载入如下 URL</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://magento-2-july-8.dev/hello_mvvm/hello/world/name/bill</span><br></pre></td></tr></table></figure>
-
-<p>和其他 PHP 框架类似，URL 第三部分以后的键值对被认为是参数。添加如下代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/Block/Main.php</span><br><span class="line">protected function _prepareLayout()</span><br><span class="line">&#123;</span><br><span class="line">    $this-&gt;setMessage(&#x27;Hello&#x27;);</span><br><span class="line">    $this-&gt;setName($this-&gt;getRequest()-&gt;getParam(&#x27;name&#x27;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>修改 template</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/HelloWorldMVVM/view/frontend/templates/content.phtml</span><br><span class="line">&lt;h1&gt;</span><br><span class="line">    &lt;?php echo $this-&gt;escapeHtml($this-&gt;getMessage()); ?&gt;</span><br><span class="line">    &lt;?php echo $this-&gt;escapeHtml($this-&gt;getName()); ?&gt;</span><br><span class="line">&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">&lt;h2&gt;&lt;?php echo $this-&gt;escapeHtml($this-&gt;getGoodbyeMessage()); ?&gt;&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
-
-<p>传统的PHP MVC 系统在控制器中设置视图中的变量值，Magneto 的做法和传统的有点不一样。Magento 2 使用 Model, View, View Model 分离了业务逻辑和模板逻辑。</p>
-<p>对于大型的开发团队来说，每个人的职责明确，Magento 的这一改动对他们很可能是更有利的，但对全栈工程师来说不是很好，全站工程师需要考虑更多的抽象层次了。</p>
-<p>Magento 1 是可以用<code>MVVM</code>模式的，但是1的<code>Zend Framework</code>roots(and its too many chefs problem)导致了对传统的 MVC 方式的极大偏爱，使用全局注册或者在调用loadLayout 后直接设置 block 的属性值。在Magento 2 中你再也不能直接设置block 对象的属性值了，不过注册对象还是存在的，不过非官方的推荐做法是避免用这个注册对象。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a href="#%E6%80%BB%E7%BB%93"></a>总结</h2><p>Regardless of whether Magento 2’s patterns elicit a “finally PHP gets it”, or a “WTF is this”, you’ve just successfully created a new landing page and application entry point in Magento 2. You’ve also been exposed to core Magento 2 concepts like clearing the cache, clearing generated files, and the hierarchy of configuration and view files in a Magento 2 module. You’re well on your way to unlocking the mysteries of Magento 2, and all the opportunities that will open for you in the future.</p>
-<h2 id="相关源文件下载"><a href="#相关源文件下载" class="headerlink" title="相关源文件下载"></a><a href="#%E7%9B%B8%E5%85%B3%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"></a>相关源文件下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/PiscesThankIT/HelloWorldMVVM">https://github.com/PiscesThankIT/HelloWorldMVVM</a></p>
-
+等不及的可以去github上下载 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/alan-magento-2-mvvm-mvc/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1234,72 +641,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Magento 2 的入口是 index.php，有两个：</p>
-<ul>
-<li><code>&lt;your Magento install dir&gt;/index.php</code></li>
-<li><code>&lt;your Magento install dir&gt;/pub/index.php</code></li>
-</ul>
-<p>简化后的入口像这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require __DIR__ . &#x27;/app/bootstrap.php&#x27;;</span><br><span class="line">$bootstrap = \Magento\Framework\App\Bootstrap::create(BP, $_SERVER);</span><br><span class="line">$app = $bootstrap-&gt;createApplication(&#x27;Magento\Framework\App\Http&#x27;);</span><br><span class="line">$bootstrap-&gt;run($app);</span><br></pre></td></tr></table></figure>
+          Magento 2 的入口是 index.php，有两个：
 
-<p>第一句，就是将<code>&lt;your Magento install dir&gt;/app/bootstrap.php</code> 包含进来。这个<code>bootstrap.php</code>文件主要做了一件事情，就是将<code>&lt;your Magento install dir&gt;/app/autoload.php</code> 和<code>&lt;your Magento install dir&gt;/app/functions.php</code>包含进来。<code>autoload.php</code>负责了Magneto 系统中所有类的自动加载。<code>functions.php</code>负责翻译用的。</p>
-<p>第二句，调用静态方法，返回实例给<code>$bootstrap</code></p>
-<p>第三句，调用<code>$bootstrap</code>的<code>createApplication</code>方法，该方法调用 Object Manager 创建了<code>Magento\Framework\App\Http</code> 实例。</p>
-<p>第四句，将上一步骤的实例传递给<code>$bootstrap-&gt;run()</code></p>
-<p>下面进入<code>\Magento\Framework\App\Bootstrap -&gt; run</code> 看一看，简化后的方法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function run(\Magento\Framework\AppInterface $application)</span><br><span class="line">&#123;</span><br><span class="line">    //PART-2-1</span><br><span class="line">    $this-&gt;initErrorHandler();</span><br><span class="line">    $this-&gt;initObjectManager();</span><br><span class="line">    $this-&gt;assertMaintenance();</span><br><span class="line">    $this-&gt;assertInstalled();</span><br><span class="line">    //PART-2-2</span><br><span class="line">    $response = $application-&gt;launch();</span><br><span class="line">    //PART-2-3</span><br><span class="line">    $response-&gt;sendResponse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ * <your Magento install dir>/index.php
+ * <your Magento install dir>/pub/index.php
 
-<p>PART-2-1 handles the sort of housekeeping bits. It initializes the<br>custom error handler, initializes the object manager, checks if our application is in maintenance mode, and checks that it is installed.</p>
-<p>PART-2-2 部分调用<code>Magento\Framework\App\Http -&gt; launch()</code> 暂时把<code>$response</code>看作是<code>\Magento\Framework\App\Response\Http</code>类</p>
-<p>PART-2-3 调用<code>\Magento\Framework\App\Response\Http</code> 实例的<code>sendResponse</code>方法，该方法在该类的父类<code>\Magento\Framework\HTTP\PhpEnvironment\Response</code>中。这个父类继承自<code>\Zend\Http\PhpEnvironment\Response</code> 不继续深入了。总之，到这个类为止，真正开始输出数据了。</p>
-<p>总结一下，到目前为止的流程是：</p>
-<ul>
-<li>index.php</li>
-<li>\Magento\Framework\App\Bootstrap -&gt; run</li>
-<li>\Magento\Framework\App\Http -&gt; launch</li>
-<li>\Magento\Framework\App\Response\Http -&gt; sendResponse</li>
-</ul>
-<p>来看<code>\Magento\Framework\App\Http -&gt; launch</code><br>简化后是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public function launch()</span><br><span class="line">&#123;</span><br><span class="line">    // PART-3-1</span><br><span class="line">    $frontController = $this-&gt;_objectManager-&gt;get(&#x27;Magento\Framework\App\FrontControllerInterface&#x27;);</span><br><span class="line"></span><br><span class="line">    // PART-3-2</span><br><span class="line">    $result = $frontController-&gt;dispatch($this-&gt;_request);</span><br><span class="line">    if ($result instanceof \Magento\Framework\Controller\ResultInterface) &#123;</span><br><span class="line">        // PART-3-3</span><br><span class="line">        $result-&gt;renderResult($this-&gt;_response);</span><br><span class="line">    &#125; elseif ($result instanceof \Magento\Framework\App\Response\HttpInterface &#123;</span><br><span class="line">        $this-&gt;_response = $result;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        throw new \InvalidArgumentException(&#x27;Invalid return type&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // PART-3-4</span><br><span class="line">    return $this-&gt;_response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+简化后的入口像这样：
 
-<p>PART-3-1 创建一个实现<code>\Magento\Framework\App\FrontControllerInterface</code>接口的类的实例，具体是哪个接口，需要查看di.xml 文件。这个类一般是<code>Magento\Framework\App\FrontController</code>。</p>
-<p>PART-3-2 <code>Magento\Framework\App\FrontController -&gt; dispatch</code> 具体的稍后再看。他的返回值一般<code>$result</code> 是<code>\Magento\Framework\Controller\ResultInterface</code>，一般是<code>\Magento\Framework\View\Result\Page</code>类</p>
-<p>PART-3-3 执行<code>$result-&gt;renderResult($this-&gt;_response)</code>这一步没有输出，只是对<code>$this-&gt;_response</code>的修改，之后 PART-3-4 把<code>$this-&gt;response</code>返回出去。</p>
-<p>再总结一下，流程现在是：</p>
-<ul>
-<li>index.php</li>
-<li>\Magento\Framework\App\Bootstrap -&gt; run</li>
-<li>\Magento\Framework\App\Http -&gt; launch</li>
-<li>\Magento\Framework\App\FrontController -&gt; dispatch</li>
-<li>\Magento\Framework\View\Result\Page -&gt; renderResult</li>
-<li>\Magento\Framework\App\Response\Http -&gt; sendResponse</li>
-</ul>
-<p><code>\Magento\Framework\App\FrontController -&gt; dispatch</code> 需要更深入一下。简化后的方法是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public function dispatch(\Magento\Framework\App\RequestInterface $request)</span><br><span class="line">&#123;</span><br><span class="line">    // PART-4-1</span><br><span class="line">    while (!$request-&gt;isDispatched() &amp;&amp; $routingCycleCounter++ &lt; 100) &#123;</span><br><span class="line">        //PART-4-2</span><br><span class="line">        foreach ($this-&gt;_routerList as $router) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                //PART-4-3</span><br><span class="line">                $actionInstance = $router-&gt;match($request);</span><br><span class="line">                if ($actionInstance) &#123;</span><br><span class="line">                    $request-&gt;setDispatched(true);</span><br><span class="line">                    //PART-4-4</span><br><span class="line">                    $result = $actionInstance-&gt;dispatch($request);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (\Magento\Framework\Exception \NotFoundException $e) &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // PART-4-5</span><br><span class="line">    return $result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
 
-<p>PART-4-1 和 PART-4-2 给每个<code>$router</code> 100次机会找出匹配项，避免死循环。<br>routers 有以下类型：</p>
-<ul>
-<li>Magento\Framework\App\Router\Base</li>
-<li>Magento\UrlRewrite\Controller\Router</li>
-<li>Magento\Cms\Controller\Router</li>
-<li>Magento\Framework\App\Router\DefaultRouter</li>
-</ul>
-<p>他们都实现了<code>\Magento\Framework\App\RouterInterface</code> 以确保他们都实现了<code>match</code>方法。<code>match</code>返回的<code>$actionInstance</code>是一个实现了<code>\Magento\Framework\App\ActionInterface</code>接口的类的实例。</p>
-<p>PART-4-4 <code>$actionInstance</code>（比如 controller）继承自<code>\Magento\Framework\App\Action\Action</code> 类，返回<code>\Magento\Framework\App\ResponseInterface</code>。在<code>dispatch</code>方法中会执行<code>controller</code>的<code>execute</code> 方法。</p>
-<p>流程现在变成：</p>
-<ul>
-<li>index.php</li>
-<li>\Magento\Framework\App\Bootstrap -&gt; run</li>
-<li>\Magento\Framework\App\Http -&gt; launch</li>
-<li>\Magento\Framework\App\FrontController -&gt; dispatch</li>
-<li>\Magento\Framework\App\Router\Base -&gt; match</li>
-<li>\Magento\Framework\App\Action\Action -&gt; dispatch</li>
-<li>\Magento\Framework\View\Result\Page -&gt; renderResult</li>
-<li>\Magento\Framework\App\Response\Http -&gt; sendResponse</li>
-</ul>
-<p>总结，对前端开发者来说，controller 返回 Page 类型的对象后，会自动调用该page的 renderResult 方法。<br><strong>Page</strong> and <strong>Layout</strong> is where all the theme translations, layout, and template loading are triggering</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p>Magento 2 Developer’s Guide by Branko Ajzele<br><a target="_blank" rel="noopener" href="http://inchoo.net/magento-2/routing-in-magento-2/">Routing in Magento 2</a><br><a target="_blank" rel="noopener" href="http://brideo.co.uk/magento2/Request-Flow-In-Magento-2/">Request Flow in Magento 2</a></p>
 
+require __DIR__ . '/app/bootstrap.php';
+$bootstrap = \Magento\Framework\App\Bootstrap::create(BP, $_SERVER);
+$app = $bootstrap->createApplication('Magento\Framewo
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-request-flow/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1365,40 +730,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em>本篇文章主要参考官方开发文档。<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/themes/theme-create.html">原文：create a storefront theme</a>有能力的尽量阅读原文。本文只是博主自我整理的一个概要。</em></p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a><a href="#%E5%87%86%E5%A4%87"></a>准备</h2><ol>
-<li>不要修改 Magneto 自带的主题文件。Magento 2 自带两个主题，luma 和 blank。luma 依赖于blank，相当于一个官方演示主题，未来可能变化，所以新建主题最好是以 blank 为基础。</li>
-<li>切换成 developer 模式。模式影响 Magento 如何缓存静态文件。</li>
-</ol>
-<h2 id="创建-theme-文件夹"><a href="#创建-theme-文件夹" class="headerlink" title="创建 theme 文件夹"></a><a href="#%E5%88%9B%E5%BB%BA-theme-%E6%96%87%E4%BB%B6%E5%A4%B9"></a>创建 theme 文件夹</h2><ol>
-<li>进入该目录 <code>&lt;your Magento install dir&gt;/app/design/frontend</code></li>
-<li>根据你个人或公司的名称起一个<code>vendor name</code>，比如<code>ThankIT</code>，所以我创建的文件夹是<code>/app/design/frontend/ThankIT</code></li>
-<li>在这个<code>ThankIT</code>文件夹下创建一个主题的名字，比如<code>Pisces</code></li>
-</ol>
-<h2 id="声明主题"><a href="#声明主题" class="headerlink" title="声明主题"></a><a href="#%E5%A3%B0%E6%98%8E%E4%B8%BB%E9%A2%98"></a>声明主题</h2><p>在<code>app/design/frontend/ThankIT/Pisces</code>文件夹下创建<code>theme.xml</code>，这个文件至少要包含要声明的主题的名字，继承自哪个父主题（如果有父主题的话）。声明主题的预览图片是可选的，可以不声明。<br>可以从luma 主题拷贝一个theme.xml 过来改一下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;theme xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Config/etc/theme.xsd&quot;&gt;</span><br><span class="line">    &lt;title&gt;ThankIT Pisces&lt;/title&gt;</span><br><span class="line">    &lt;parent&gt;Magento/blank&lt;/parent&gt;</span><br><span class="line">    &lt;media&gt;</span><br><span class="line">        &lt;preview_image&gt;media/preview.jpg&lt;/preview_image&gt;</span><br><span class="line">    &lt;/media&gt;</span><br><span class="line">&lt;/theme&gt;</span><br></pre></td></tr></table></figure>
+          本篇文章主要参考官方开发文档。原文：create a storefront theme有能力的尽量阅读原文。本文只是博主自我整理的一个概要。
 
-<p>注意：<code>&lt;parent&gt;</code>是和<code>registration.php</code>中的声明一致，注意大小写。<code>&lt;preview_image&gt;</code>如果声明请确保<code>app/design/frontend/ThankIT/Pisces/media/preview.jpg</code>存在，不然会报错。</p>
-<h2 id="composer-json-（可选）"><a href="#composer-json-（可选）" class="headerlink" title="composer.json （可选）"></a><a href="#composer.json-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>composer.json （可选）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;thankit/theme-frontend-pisces&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;N/A&quot;,</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;~5.5.0~5.6.0~7.0.0&quot;,</span><br><span class="line">        &quot;magento/theme-frontend-blank&quot;: &quot;100.0.*&quot;,</span><br><span class="line">        &quot;magento/framework&quot;: &quot;100.0.*&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;type&quot;: &quot;magento2-theme&quot;,</span><br><span class="line">    &quot;version&quot;: &quot;100.0.1&quot;,</span><br><span class="line">    &quot;license&quot;: [</span><br><span class="line">        &quot;OSL-3.0&quot;,</span><br><span class="line">        &quot;AFL-3.0&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;files&quot;: [</span><br><span class="line">            &quot;registration.php&quot;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+准备
+ 1. 不要修改 Magneto 自带的主题文件。Magento 2 自带两个主题，luma 和 blank。luma 依赖于blank，相当于一个官方演示主题，未来可能变化，所以新建主题最好是以 blank 为基础。
+ 2. 切换成 developer 模式。模式影响 Magento 如何缓存静态文件。
 
-<h2 id="创建-registration-php"><a href="#创建-registration-php" class="headerlink" title="创建 registration.php"></a><a href="#%E5%88%9B%E5%BB%BA-registration.php"></a>创建 registration.php</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * Copyright © 2015 Magento. All rights reserved.</span><br><span class="line"> * See COPYING.txt for license details.</span><br><span class="line"> */</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::THEME,</span><br><span class="line">    &#x27;frontend/ThankIT/Pisces&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+创建 theme 文件夹
+ 1. 进入该目录 <your Magento install dir>/app/design/frontend
 
-<h2 id="配置图片"><a href="#配置图片" class="headerlink" title="配置图片"></a><a href="#%E9%85%8D%E7%BD%AE%E5%9B%BE%E7%89%87"></a>配置图片</h2><p>产品图片及其他属性在view.xml 文件中配置。如果你有父主题，并且不想改什么，也可以不要用他。<br>在<code>app/design/frontend/ThankIT/Pisces/</code>目录下创建<code>etc/view.xml</code>(拷贝一个过去改改。怎么改参考：<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/themes/theme-images.html">Configure images properties for a theme</a>)</p>
-<h2 id="创建-web-存放静态文件"><a href="#创建-web-存放静态文件" class="headerlink" title="创建 web 存放静态文件"></a><a href="#%E5%88%9B%E5%BB%BA-web-%E5%AD%98%E6%94%BE%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"></a>创建 web 存放静态文件</h2><p>静态文件包括styles,fonts,javaScript,images，这些都放在<code>app/design/frontend/ThankIT/Pisces/web/</code>目录下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app/design/&lt;area&gt;/&lt;Vendor&gt;/&lt;theme&gt;/</span><br><span class="line">├── web/</span><br><span class="line">│ ├── css/</span><br><span class="line">│ │ ├── source/ </span><br><span class="line">│ ├── fonts/</span><br><span class="line">│ ├── images/</span><br><span class="line">│ ├── js/</span><br></pre></td></tr></table></figure>
-
-<p><code>.../&lt;theme&gt;/web/images</code>放和主题相关的图片，比如主题的logo。主题文件里很有可能包含模块相关的文件，模块相关的文件路径是这样的<code>.../&lt;theme&gt;/&lt;Namespace_Module&gt;/web/css</code></p>
-<p><em>在主题开发过程中，如果你修改了web文件夹中的文件，请清空<code>pub/static 和var/view_preprocessed</code> 目录并重新载入页面。否则可能看不到改变。</em></p>
-<h2 id="主题的文件夹结构"><a href="#主题的文件夹结构" class="headerlink" title="主题的文件夹结构"></a><a href="#%E4%B8%BB%E9%A2%98%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84"></a>主题的文件夹结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app/design/frontend/&lt;Vendor&gt;/</span><br><span class="line">├── &lt;theme&gt;/</span><br><span class="line">│   ├── etc/</span><br><span class="line">│   │   ├── view.xml</span><br><span class="line">│   ├── web/</span><br><span class="line">│   │   ├── images</span><br><span class="line">│   │   │   ├── logo.svg</span><br><span class="line">│   ├── registration.php</span><br><span class="line">│   ├── theme.xml</span><br><span class="line">│   ├── composer.json</span><br></pre></td></tr></table></figure>
-
-<h2 id="主题-logo"><a href="#主题-logo" class="headerlink" title="主题 logo"></a><a href="#%E4%B8%BB%E9%A2%98-logo"></a>主题 logo</h2><p>主题的logo 默认的名字和格式是logo.svg，只要把logo.svg 图片放在<code>&lt;theme_dir&gt;/web/images</code> 路径下，系统就会识别他为主题的logo，当主题被应用时，页面头部就会显示这个logo。</p>
-<p>如果你不想用默认的名字和格式，就要声明它。</p>
-<p>创建<code>&lt;theme_dir&gt;/Magento_Theme/layout/default.xml</code>并声明，假设你的logo 文件是<code>my_logo.png</code>大小是300*300px，那就像这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;referenceBlock name=&quot;logo&quot;&gt;</span><br><span class="line">            &lt;arguments&gt;</span><br><span class="line">                &lt;argument name=&quot;logo_file&quot; xsi:type=&quot;string&quot;&gt;images/my_logo.png&lt;/argument&gt;</span><br><span class="line">                &lt;argument name=&quot;logo_img_width&quot; xsi:type=&quot;number&quot;&gt;300&lt;/argument&gt; </span><br><span class="line">                &lt;argument name=&quot;logo_img_height&quot; xsi:type=&quot;number&quot;&gt;300&lt;/argument&gt;</span><br><span class="line">            &lt;/arguments&gt;</span><br><span class="line">        &lt;/referenceBlock&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
-
-<p>关于layout 更多参考：<a target="_blank" rel="noopener" href="http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/layouts/layout-overview.html">Layout overview</a></p>
-<h2 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a><a href="#%E5%BA%94%E7%94%A8%E4%B8%BB%E9%A2%98"></a>应用主题</h2><p>在后台，进入 <code>CONTENT &gt; Design &gt; Configuration</code> 进行修改。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/how-to-create-magento-2-frontend-theme/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1464,19 +812,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/media-storage.html">原文地址</a></em></p>
-<p>Media storage 帮助您组织和获取存储在服务器上的媒体文件。文件的路径是由配置中的 Base URL 决定的。当您编辑pages 和 static blocks 的时候，在编辑器上可以进入 Media Storage 。Media Storage 通常位于和 Magento 程序文件所在的服务器。另外，文件也可以托管在数据里，或者在单独的服务器或 CDN 上。编辑器可以配置为使用静态的或动态的媒URL。（The editor can be configured to use either static or dynamic media URLs for catalog content in category or product descriptions.）</p>
-<p><img src="/wp-content/uploads/2016/10/media-storage.png" alt="Media Storage"></p>
-<p>译者注：这个 Media Storage 真难找。只有在编辑页面或者静态块的时候，先点击<strong>Show &#x2F; Hide Editor</strong>，然后出现<strong>Insert Image</strong>（在第三个），点击它，就是 Media Storage 了。</p>
-<h2 id="上传图片到媒体库"><a href="#上传图片到媒体库" class="headerlink" title="上传图片到媒体库"></a><a href="#%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E5%AA%92%E4%BD%93%E5%BA%93"></a>上传图片到媒体库</h2><ol>
-<li>左侧是文件夹树结构。要保存到哪个文件夹，就进入哪个文件。必要的话可以创建文件夹。</li>
-<li>点击选择文件，然后选择要上传的文件。</li>
-<li>点击 Insert File 就会插入文件了。</li>
-<li>To complete the Alt tag, place the cursor between the double-quotes, and enter the alt text（译者没有发现可以写入 Alt ，版本是2.1.0）</li>
-<li>点击<strong>Show &#x2F; Hide Editor</strong>可以看到效果。</li>
-</ol>
-<p>译者注：感觉不太好用。</p>
+          原文地址
 
+Media storage 帮助您组织和获取存储在服务器上的媒体文件。文件的路径是由配置中的 Base URL 决定的。当您编辑pages 和 static blocks 的时候，在编辑器上可以进入 Media Storage 。Media Storage 通常位于和 Magento 程序文件所在的服务器。另外，文件也可以托管在数据里，或者在单独的服务器或 CDN 上。编辑器可以配置为使用静态的或动态的媒URL。（The editor can be configured to use either static or dynamic media URLs for catalog c
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/media-storage/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1542,16 +888,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/page-home-new.html">原文地址</a></em></p>
-<p>您可以有好几个不同的主页，然后选择和激活其中某个作为默认的首页。</p>
-<h2 id="更改首页"><a href="#更改首页" class="headerlink" title="更改首页"></a><a href="#%E6%9B%B4%E6%94%B9%E9%A6%96%E9%A1%B5"></a>更改首页</h2><ol>
-<li>完成页面的新增。</li>
-<li>后台侧边栏，点击<strong>店铺</strong>(Stores) &gt; <strong>设置</strong>(Settings) &gt; <strong>配置</strong>(Configuration)</li>
-<li>在左侧面板选择<strong>常规</strong>(General)&gt; <strong>Web</strong>(Web)</li>
-<li>展开 <strong>Default Pages</strong> 做如下操作:<br><img src="/wp-content/uploads/2016/10/config-general-web-default-pages.png" alt="Default Pages"><br>a. 设置<strong>CMS Home Pag</strong>为一个新的页面<br>b. 点击 <strong>Save Config</strong></li>
-<li>前往<strong>Cache Management</strong>，刷新缓存。</li>
-</ol>
+          原文地址
 
+您可以有好几个不同的主页，然后选择和激活其中某个作为默认的首页。
+
+更改首页
+ 1. 完成页面的新增。
+ 2. 后台侧边栏，点击店铺(Stores) > 设置(Settings) > 配置(Configuration)
+ 3. 在左侧面板选择常规(General)> Web(Web)
+ 4. 展开 Default Pages 做如下操作:
+    
+    a. 设置CMS Home Pag为一个新的页面
+    b. 点击 Save Config
+ 5. 前往Cache Management，刷新缓存。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/page-home-new/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1617,47 +974,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/page-add.html">原文地址</a></em></p>
-<p>不管是什么类型的页面，本质上新增页面的过程是一样的。您可以在页面中包含文本，图片，内容块，变量及widget。大多数内容页面被设计为给主要讨好搜索引擎，其次才是给人看的。当您选择页面的标题和URL，meta 数据和内容的时候，请牢记您的页面有两种完全不同的看客（搜索引擎和人），他们的需求是很不一样的。</p>
-<p>下面的步骤帮助您通览创建一个基本的页面的过程。高级的用法此处略过，不过其他章节会有涉及。</p>
-<p><img src="/wp-content/uploads/2016/10/pages.png" alt="Pages"></p>
-<h2 id="第一步：创建新的页面"><a href="#第一步：创建新的页面" class="headerlink" title="第一步：创建新的页面"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E9%A1%B5%E9%9D%A2"></a>第一步：创建新的页面</h2><ol>
-<li>后台侧边栏，点击<strong>内容</strong>(Content)，在<strong>元素</strong>(Elements)下选择<strong>页面</strong>(Pages)</li>
-<li>点击<strong>Add New Page</strong>按钮<br><img src="/wp-content/uploads/2016/10/pages-new-page.png" alt="New Page"></li>
-<li>在新的页面，做如下操作：<br>a. 默认情况下，你一保存，页面就被发不出去了。如果你不想马上发布出去，设置<strong>Enable Page</strong>为 No<br>b. 输入<strong>页面标题</strong>(Page Title)，这个标题会出现在面包屑导航中。</li>
-</ol>
-<h3 id="第二步：完成内容"><a href="#第二步：完成内容" class="headerlink" title="第二步：完成内容"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90%E5%86%85%E5%AE%B9"></a>第二步：完成内容</h3><ol>
-<li>展开<strong>内容</strong>(Content)部分<br><img src="/wp-content/uploads/2016/10/page-content.png" alt="Content"></li>
-<li>在<strong>内容标题</strong>中输入您页面上希望显示的标题</li>
-<li>默认情况下，编辑工具是所见即所得的模式。如果你更喜欢编写HTML代码的话，点击<strong>Show &#x2F; Hide Editor</strong></li>
-<li>按需要完成内容的文本和格式组织。您可以添加图片，变量和widgets。了解更多，请查看Using the Editor</li>
-<li>点击<strong>Save and Continue Edit</strong></li>
-</ol>
-<h3 id="第三步：完成SEO信息的填写"><a href="#第三步：完成SEO信息的填写" class="headerlink" title="第三步：完成SEO信息的填写"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90seo%E4%BF%A1%E6%81%AF%E7%9A%84%E5%A1%AB%E5%86%99"></a>第三步：完成SEO信息的填写</h3><ol>
-<li>展开<strong>搜索引擎优化</strong>(Search Engine Optimization)部分，做如下操作：<br>a. 页面保存时，会创建一个默认的URL Key，这个URL Key取了Content Heading 的值。您可以接受这个默认值，或者输入其他的值。推荐做法是小写字母加短横线作为分隔符，不要用空格。<br>b. 输入<strong>Meta Title</strong>，这个值必须少于70个字符，会出现在浏览器的标题栏和选项卡中。<br>c. 输入您选择的高质量的关键词，Meta Keywords 搜索引擎会用它来索引您的页面。关键词之间使用英文逗号分隔。Meta Keywords 会被有些搜索引擎忽略，不过有些还是会采用的。<br>d. 在<strong>Meta Description</strong>字段中，输入您页面的简短描述，这个影响搜索引擎排序。理想情况下，描述信息应该在150到160个字符之间，最多不要超过255个字符。<br><img src="/wp-content/uploads/2016/10/page-search-engine-optimization.png" alt="Search Engine Optimization"></li>
-<li>点击<strong>Save and Continue Edit</strong></li>
-</ol>
-<h3 id="第四步：决定该页面的作用域"><a href="#第四步：决定该页面的作用域" class="headerlink" title="第四步：决定该页面的作用域"></a><a href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%86%B3%E5%AE%9A%E8%AF%A5%E9%A1%B5%E9%9D%A2%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"></a>第四步：决定该页面的作用域</h3><ol>
-<li>展开<strong>Page in Websites</strong>部分</li>
-<li>在<strong>Store View</strong>列表中选择你希望该页面出现的店铺视图。如果您有多个websites，选择希望该页面可见的每个website 和store view<br><img src="/wp-content/uploads/2016/10/page-in-websites.png" alt="Pages in Websites"></li>
-</ol>
-<h3 id="第五步：Enter-Any-Design-Changes-（可选）"><a href="#第五步：Enter-Any-Design-Changes-（可选）" class="headerlink" title="第五步：Enter Any Design Changes （可选）"></a><a href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9Aenter-any-design-changes-%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"></a>第五步：Enter Any Design Changes （可选）</h3><p><img src="/wp-content/uploads/2016/10/page-design.png" alt="Design"></p>
-<p>要设定Design 变动的时间，请展开<strong>Custom Design Update</strong>部分，做如下事情：</p>
-<p>a. 使用日历控件选择 Design Change 起作用的时间段。<br>b. 需要的话，设置<strong>New Theme</strong>为该页面使用的不同主题。<br>c. 需要的话，设置<strong>New Layout</strong>为以下值：</p>
-<ul>
-<li>1 column</li>
-<li>2 columns with left bar</li>
-<li>2 columns with right bar</li>
-<li>3 columns</li>
-<li>Empty</li>
-</ul>
-<p><img src="/wp-content/uploads/2016/10/page-custom-design-update.png" alt="Custom Design Update"></p>
-<h2 id="第六步：预览页面"><a href="#第六步：预览页面" class="headerlink" title="第六步：预览页面"></a><a href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E9%A2%84%E8%A7%88%E9%A1%B5%E9%9D%A2"></a>第六步：预览页面</h2><ol>
-<li>点击<strong>Save Page</strong>保存页面，点击<strong>Back</strong>返回页面表格。</li>
-<li>在表格中找到页面，在 Action 列，选择 View。</li>
-</ol>
-<h2 id="第七步：发布页面"><a href="#第七步：发布页面" class="headerlink" title="第七步：发布页面"></a><a href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E9%A1%B5%E9%9D%A2"></a>第七步：发布页面</h2><p>设置页面的 status 为 Enabled 就发布出去了。</p>
+          原文地址
 
+不管是什么类型的页面，本质上新增页面的过程是一样的。您可以在页面中包含文本，图片，内容块，变量及widget。大多数内容页面被设计为给主要讨好搜索引擎，其次才是给人看的。当您选择页面的标题和URL，meta 数据和内容的时候，请牢记您的页面有两种完全不同的看客（搜索引擎和人），他们的需求是很不一样的。
+
+下面的步骤帮助您通览创建一个基本的页面的过程。高级的用法此处略过，不过其他章节会有涉及。
+
+
+
+第一步：创建新的页面
+ 1. 后台侧边栏，点击内容(Content)，在元素(Elements)下选择页面(Pages)
+ 2. 点击Add New Page按钮
+    
+ 3. 在新
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/page-add/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

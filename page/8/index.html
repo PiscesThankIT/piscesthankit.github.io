@@ -231,12 +231,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>我们已经知道 module、theme、language package 都可以用来翻译。 还有 <a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ee/user_guide/system/translate-inline.html">Translate Inline 工具</a>。 那么这些翻译的优先级（从高到低）是怎样的呢？ <code>vendor\magento\framework\Translate.php #205</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$this-&gt;_loadModuleTranslation();</span><br><span class="line">$this-&gt;_loadPackTranslation();</span><br><span class="line">$this-&gt;_loadThemeTranslation();</span><br><span class="line">$this-&gt;_loadDbTranslation();</span><br></pre></td></tr></table></figure>
+          我们已经知道 module、theme、language package 都可以用来翻译。 还有 Translate Inline 工具。 那么这些翻译的优先级（从高到低）是怎样的呢？ vendor\magento\framework\Translate.php #205
 
-<p>所以优先级是： translate inline 存在数据库中的 theme 中的 language package 中的 module 中的 注意，后台也是有主题的。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a><a href="#%E5%8F%82%E8%80%83"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://gist.github.com/antonmakarenko/7538216">Translation Mechanism in Magento 2.x Platform</a></p>
+1
+2
+3
+4
 
+
+$this->_loadModuleTranslation();
+$this->_loadPackTranslation();
+$this->_loadThemeTranslation();
+$this->_loadDbTranslation();
+
+
+所以优先级是： translate inline 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-%E4%B8%AD%E7%BF%BB%E8%AF%91%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -302,10 +319,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="http://zh.learnlayout.com/">学习 css 布局</a></p>
-<p>《css 揭秘》</p>
-<p><a target="_blank" rel="noopener" href="https://css-tricks.com/">css tricks</a> <a target="_blank" rel="noopener" href="https://qishaoxuan.github.io/css_tricks/">qishaoxuan css tricks</a> <a target="_blank" rel="noopener" href="https://codepen.io/jakealbaugh/">Jake Albaugh</a></p>
+          学习 css 布局
 
+《css 揭秘》
+
+css tricks qishaoxuan css tricks Jake Albaugh
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/css-resources/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -371,8 +397,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>需求是通过 z-index 改变层级，使父元素高于子元素。 首先，z-index 作用于已经定位的元素（position 属性值是非 static 的元素） 其次，如果想要父级覆盖子级，那么父级不需要设置 z-index，子级设置 z-index 为负就可以了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;test&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;parent</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;child&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">        position: relative;</span><br><span class="line">    &#125;</span><br><span class="line">    .child &#123;</span><br><span class="line">        background-color: green;</span><br><span class="line">        position: relative;</span><br><span class="line">        z-index: -2;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          需求是通过 z-index 改变层级，使父元素高于子元素。 首先，z-index 作用于已经定位的元素（position 属性值是非 static 的元素） 其次，如果想要父级覆盖子级，那么父级不需要设置 z-index，子级设置 z-index 为负就可以了。
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+</head>
+<body>
+    <div class="parent">parent
+        
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/z-index-%E7%88%B6%E5%AD%90%E5%B1%82%E7%BA%A7%E5%85%B3%E7%B3%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -438,32 +504,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>相关的事件有三个：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">customer_register_success</span><br><span class="line">adminhtml_customer_save_after</span><br><span class="line">customer_save_after</span><br></pre></td></tr></table></figure>
+          相关的事件有三个：
 
-<p><code>customer_register_success</code> 成功创建用户事件，只作用于前端，管理后台创建新的用户是不会触发这个事件的。</p>
-<p><code>adminhtml_customer_save_after</code> 只作用于管理后台客户详情页，每次保存都会触发，但是客户列表页的行内修改不会触发该事件。</p>
-<p><code>customer_save_after</code> 每次客户信息保存都会触发该事件。</p>
-<p>所以我们怎么才能抓住前后台都有效的新用户创建事件呢？</p>
-<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a><a href="#%E6%96%B9%E6%B3%95%E4%B8%80"></a>方法一</h2><p>利用 <code>Magento\Customer\Model\AccountManagement</code>，由于所有的新用户创建都要调用该类的 <code>createAccount</code> 方法。所以我们可以用 plugin 。</p>
-<p>如果我们要拿到新创建的用户，那么可以参考下列代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;type name=&quot;Magento\Customer\Model\AccountManagement&quot;&gt;</span><br><span class="line">        &lt;plugin name=&quot;vendor_name_plugin_name&quot; type=&quot;vendor\module\Plugin\AccountManagement&quot; sortOrder=&quot;1&quot; /&gt;</span><br><span class="line">&lt;/type&gt;</span><br></pre></td></tr></table></figure>
+1
+2
+3
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function afterCreateAccountWithPasswordHash(</span><br><span class="line">        \Magento\Customer\Model\AccountManagement $subject,</span><br><span class="line">        $customer</span><br><span class="line">    ) &#123;</span><br><span class="line">        // Magento\Customer\Model\Data\Customer</span><br><span class="line">        $email = $customer-&gt;getEmail();</span><br><span class="line">        $name = $customer-&gt;getFirstname();</span><br><span class="line">        $id = $customer-&gt;getId();</span><br><span class="line">        // your code</span><br><span class="line">        // important!</span><br><span class="line">        return $customer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C"></a>方法二</h2><p>利用 Observer 得到的 Model 的 <code>isObjectNew()</code> 方法。该方法位于 <code>\Magento\Framework\Model\AbstractModel</code>。</p>
-<p>它的声明如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> /**</span><br><span class="line"> * Check object state (true - if it is object without id on object just created)</span><br><span class="line"> * This method can help detect if object just created in _afterSave method</span><br><span class="line"> * problem is what in after save object has id and we can&#x27;t detect what object was</span><br><span class="line"> * created in this transaction</span><br><span class="line"> *</span><br><span class="line"> * @param boolnull $flag</span><br><span class="line"> * @return bool</span><br><span class="line"> */</span><br><span class="line">public function isObjectNew($flag = null)</span><br><span class="line">&#123;</span><br><span class="line">    if ($flag !== null) &#123;</span><br><span class="line">        $this-&gt;_isObjectNew = $flag;</span><br><span class="line">    &#125;</span><br><span class="line">    if ($this-&gt;_isObjectNew !== null) &#123;</span><br><span class="line">        return $this-&gt;_isObjectNew;</span><br><span class="line">    &#125;</span><br><span class="line">    return !(bool)$this-&gt;getId();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+customer_register_success
+adminhtml_customer_save_after
+customer_save_after
 
-<p>但它只能用在 <code>customer_save_before</code> 中，所以如果我们需要在 <code>customer_save_after</code> 中得到该对象是不是新的对象，可以通过在 <code>customer_save_before</code> 中设置自己的值，然后在 after 的时候取。</p>
-<p>比如：<br>beforeObserver</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$customer = $observer-&gt;getEvent()-&gt;getCustomer();</span><br><span class="line">if ($customer-&gt;isObjectNew()) &#123;</span><br><span class="line">    $customer-&gt;setCustomIsObjNew(true);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>afterObserver</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$customer = $observer-&gt;getEvent()-&gt;getCustomer();</span><br><span class="line">if ($customer-&gt;getCustomIsObjNew()) &#123;</span><br><span class="line">    // your code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+customer_register_success 成功创建用户事件，只作用于前端，管理后台创建新的用户是不会触发这个事件的。
 
-<h2 id="相关连接"><a href="#相关连接" class="headerlink" title="相关连接"></a><a href="#%E7%9B%B8%E5%85%B3%E8%BF%9E%E6%8E%A5"></a>相关连接</h2><p><a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/210904/magento-2-catch-customer-creation-event-on-both-frontend-and-admin/210906#210906">https://magento.stackexchange.com/questions/210904/magento-2-catch-customer-creation-event-on-both-frontend-and-admin/210906#210906</a></p>
+adminhtml_customer_save_after 只作用于管理后台客户详情页，每次保存都会触发，但是客户列表页的行内修改不会触发该事件。
 
+customer_save_after 每次客户信息保存都会触发该事件。
+
+所以我们怎么才能抓住前后台都有效的新用户创建事件呢
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-catch-customer-creation-event-on-both-frontend-and-admin/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -529,15 +596,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>vendor/module/etc/events.xml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Event/etc/events.xsd&quot;&gt;</span><br><span class="line">    &lt;event name=&quot;newsletter_subscriber_save_after&quot;&gt;</span><br><span class="line">        &lt;observer name=&quot;vendor_module_observer_myobserver&quot; instance=&quot;Vendor\Module\Observer\MyObserver&quot; /&gt;</span><br><span class="line">    &lt;/event&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          vendor/module/etc/events.xml
 
-<p><code>Vendor\Module\Observer\MyObserver.php</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Vendor\Module\Observer;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\Event\Observer;</span><br><span class="line"></span><br><span class="line">class MyObserver implements \Magento\Framework\Event\ObserverInterface</span><br><span class="line">&#123;</span><br><span class="line">    public function execute(Observer $observer)</span><br><span class="line">    &#123;</span><br><span class="line">        $subscriber = $observer-&gt;getEvent()-&gt;getSubscriber();</span><br><span class="line">        $email = $subscriber-&gt;getEmail();</span><br><span class="line">        $subscriberStatus = $subscriber-&gt;getSubscriberStatus();</span><br><span class="line">        // subscriberStatus = 1 subscribe</span><br><span class="line">        // subscriberStatus = 3 unsubscribed</span><br><span class="line">        if ( $subscriberStatus == &#x27;1&#x27;) &#123;</span><br><span class="line">            // your code</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
 
-<p>It works both on frontend and backend</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/170157/magento-2-newsletter-subscription-event?noredirect=1&lq=1&utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa">https://magento.stackexchange.com/questions/170157/magento-2-newsletter-subscription-event?noredirect=1&lq=1&utm_medium&#x3D;organic&amp;utm_source&#x3D;google_rich_qa&amp;utm_campaign&#x3D;google_rich_qa</a></p>
 
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="newsletter_subscriber_save_after">
+        <observer name="vendor_module_observ
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-newsletter-subscription-event/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -603,12 +683,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>解决 <code>var_dump()</code> 输出不完整，带省略号。</p>
-<p>在 php.ini 中修改或添加以下设置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xdebug.var_display_max_depth = -1</span><br><span class="line">xdebug.var_display_max_children = -1</span><br><span class="line">xdebug.var_display_max_data = -1</span><br></pre></td></tr></table></figure>
+          解决 var_dump() 输出不完整，带省略号。
 
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9998490/how-to-get-xdebug-var-dump-to-show-full-object-array">https://stackoverflow.com/questions/9998490/how-to-get-xdebug-var-dump-to-show-full-object-array</a></p>
+在 php.ini 中修改或添加以下设置
 
+1
+2
+3
+
+
+xdebug.var_display_max_depth = -1
+xdebug.var_display_max_children = -1
+xdebug.var_display_max_data = -1
+
+
+参考链接
+https://stackoverflow.com/questions/9998490/how-to-get-xdebug-var-dump-to-show-full-object-array
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/var-dump-%E8%BE%93%E5%87%BA%E6%89%80%E6%9C%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -674,9 +772,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>解决方法： 删除 <code>Users\.PhpStorm2017.3\system</code> 下的 <code>caches</code> 文件夹</p>
-<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15991561/intelli-j-idea-takes-forever-to-update-indices">https://stackoverflow.com/questions/15991561/intelli-j-idea-takes-forever-to-update-indices</a></p>
+          解决方法： 删除 Users\.PhpStorm2017.3\system 下的 caches 文件夹
 
+参考网址
+https://stackoverflow.com/questions/15991561/intelli-j-idea-takes-forever-to-update-indices
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/phpstorm-%E4%B8%80%E7%9B%B4-index/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -742,129 +849,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://alanstorm.com/magento_2_object_manager/">原文网址</a></p>
-<p>原文发布时间：2015年7月10日</p>
-<p>Magento 2 相比较 1 有很多变化，尽管你还能看到 1 的影子（EAV, areas, blocks 等），但是 Magento 2 核心团队经过几年努力，已经将 1 的核心换成了更成熟的，“enterprise-java” 类型的系统，更多的类、更多的对象、更多的设计模式。</p>
-<p>尽管有些人可能会认为 Magento 2 代码复杂性增加了，Magento 2 核心团队还是花了很多时间来简化和澄清 Magento 1 中的设计。Magento 1 中 rewrite 系统（home grown class rewrite system —— based around blocks, models, and helpers）已经由以来注入容器&#x2F;对象管理器（Kiev grown dependency injection container&#x2F;object-manager system）代替了。</p>
-<p>如果你对 Magento 1 的开发方法，一直是复制粘贴，菜谱式（cookbook style）的，那么 Magento 2 对你来说就是一个新的框架，你以前的方法恐怕不管用了。</p>
-<p>但是，如果你对 1 的开发，是带着理解设计模式的实现、培养阅读源码的能力进行的，那么跟上 Magento 2 就只是小小的“颠簸”——而且，许多方面，这个“颠簸”是为了让开发更加稳定、可预测。</p>
-<p>本文是 Alan 解释 Magento 2 object manager&#x2F;dependency-injection system 系列中的第一篇。我们将探索程序员在 Magento 2 中是怎样创建对象的，探索 Magento 2 的 object system 带来的额外特性，顺便讨论下相比较 Magento 1 的变化，探索 Magento 2 中的惯例。</p>
-<h2 id="Magento-2-命令行框架"><a href="#Magento-2-命令行框架" class="headerlink" title="Magento 2 命令行框架"></a><a href="#magento-2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A1%86%E6%9E%B6"></a>Magento 2 命令行框架</h2><p>Magento 2 的体系结构转变带来的巨大变化之一就是命令行框架。这不是从 Magento 1 中来的简单框架。相反，Magento 2 自带 <a target="_blank" rel="noopener" href="http://symfony.com/doc/current/components/console.html">Symfony’s Console component</a>的完整实现。</p>
-<p>安装完 Magento 2 后，打开终端，输入 <code>php bin/magento</code>，我们会看到很多系统自带的命令。</p>
-<p>你应该会看到类似下面的输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Magento CLI version 0.74.0-beta16</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line"> command [options] [arguments]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"> --help (-h)           Display this help message</span><br><span class="line"> --quiet (-q)          Do not output any message</span><br><span class="line"> --verbose (-vvvvvv) Increase the verbosity of messages: 1 for normal</span><br><span class="line">                       output, 2 for more verbose output and 3 for debug</span><br><span class="line"> --version (-V)        Display this application version</span><br><span class="line"> --ansi                Force ANSI output</span><br><span class="line"> --no-ansi             Disable ANSI output</span><br><span class="line"> --no-interaction (-n) Do not ask any interactive question</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line"> help                                      Displays help for a command</span><br><span class="line"> list                                      Lists commands</span><br><span class="line"> //... full command list snipped ...</span><br></pre></td></tr></table></figure>
+          原文网址
 
-<p>除了自带许多有用的命令，第三方开发者也可以创建 Magento 模块来加入新的命令。</p>
-<p>我们将使用命令行来运行本教程中的示例代码。命令行是一个对运行示例代码来说，很干净的好地方，我们不需要考虑你的代码到浏览器页面加载过程中经过的各种层，我们可以直接观察输出结果。</p>
-<h2 id="安装示例代码"><a href="#安装示例代码" class="headerlink" title="安装示例代码"></a><a href="#%E5%AE%89%E8%A3%85%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"></a>安装示例代码</h2><p>Alan 准备了示例代码<a target="_blank" rel="noopener" href="https://github.com/astorm/magento2-tutorial-objectmanager1">magento2-tutorial-objectmanager1</a>，下载下来后解压出来，然后放到 app&#x2F;code 目录中，他的目录结构应该是 <code>app/code/Pulsestorm/TutorialObjectManager1/</code></p>
-<p>然后运行下面的命令，应该会看到类似的输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:status</span><br><span class="line">List of enabled modules:</span><br><span class="line">Magento_Store</span><br><span class="line">//...</span><br><span class="line"></span><br><span class="line">List of disabled modules:</span><br><span class="line">Pulsestorm_TutorialObjectManager1</span><br></pre></td></tr></table></figure>
+原文发布时间：2015年7月10日
 
-<p>我们的模块现在还是 disabled 状态。下面我们打开 <code>app/etc/config.php</code>，然后我们会看到类似的内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#File: app/etc/config.php</span><br><span class="line">&lt;?php</span><br><span class="line">return array (</span><br><span class="line">  &#x27;modules&#x27; =&gt;</span><br><span class="line">  array (</span><br><span class="line">    &#x27;Magento_Store&#x27; =&gt; 1,</span><br><span class="line">    //... full module list snipped ...</span><br><span class="line">    &#x27;Magento_Wishlist&#x27; =&gt; 1,</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+Magento 2 相比较 1 有很多变化，尽管你还能看到 1 的影子（EAV, areas, blocks 等），但是 Magento 2 核心团队经过几年努力，已经将 1 的核心换成了更成熟的，“enterprise-java” 类型的系统，更多的类、更多的对象、更多的设计模式。
 
-<p><code>app/etc/config.php</code> 返回模块的数组，我们现在看见的都是系统自带的模块，下面我们把我们的模块加到列表最后：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#File: app/etc/config.php</span><br><span class="line">&lt;?php</span><br><span class="line">return array (</span><br><span class="line">  &#x27;modules&#x27; =&gt;</span><br><span class="line">  array (</span><br><span class="line">    &#x27;Magento_Store&#x27; =&gt; 1,</span><br><span class="line">    //... full module list snipped ...</span><br><span class="line">    &#x27;Magento_Wishlist&#x27; =&gt; 1,</span><br><span class="line">    &#x27;Pulsestorm_TutorialObjectManager1&#x27; =&gt; 1,</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>这时候我们运行 <code>module:status</code> ，我们的模块就会在 enabled 列表中了</p>
-<p>和 Magento 1 一样，模块的全名由 “namespace” 文件名和 “module name” 文件名构成。但是需要注意以下几点：</p>
-<ol>
-<li>Magento 的 module namespace 是 <code>Magento</code> 不再是 <code>Mage</code></li>
-<li><code>core</code>,<code>community</code>, <code>local</code> code pools 不再有，所有模块都在 <code>app/code</code> 下</li>
-<li>原来 <code>app/etc/modules</code> 下的一堆 (module declaration files) xml 由更简单的，php 设置代替。</li>
-</ol>
-<p>在我（Alan）看来，Mage 到 Magento 的变化，是中立的，但是移除 code pools 和模块申明文件是有利的变化。</p>
-<p>虽然<code>core</code>,<code>community</code>, <code>local</code> code pools 设计让系统所有者可以通过 code pool overrides 快速实现修改，但是这也导致商家更加不愿意升级系统，还有如果开发者修改了某个类过多的隐含 contract ，那么很可能导致微妙的系统问题。</p>
-<p>Magento 1 中的模块声明文件的本意可能是设置哪些模块是 enabled 哪些不是，Magento 2 则通过简单的 on&#x2F;off 配置数组来实现。</p>
-<h2 id="运行命令行和清除缓存"><a href="#运行命令行和清除缓存" class="headerlink" title="运行命令行和清除缓存"></a><a href="#%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%92%8C%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98"></a>运行命令行和清除缓存</h2><p>ok 我们模块已经安装好了。下面我们得确保新命令 <code>ps:tutorial-object-manager-1</code> 添加到系统中了。在这之前，我们还有一件事情要做，那就是清理缓存。</p>
-<p>从概念上来说，Magento 2 清理缓存和 Magento 1 中是一样的。第一次长长的运行后，Magento 会缓存结果，用于下次更快的载入。比如说，虽然我们已经把我们的新模块加入 configuration 中了，但是 Magento 的 configuration 被缓存了，所以系统实际上还不知道我们的模块哩。</p>
-<p>我们可以通过 <code>php bin/magento cache:clean</code> 清理缓存。但是，尽管所有有类型的缓存都会被清除，但是还有一些缓存是没有类型的，所以清除命令结果并不是 100% 干净。Magento 1 包含很多没有类型的缓存（比如 Zend’s module column names），Magento 1 的缓存清理命令也不能删除这些没有类型的缓存。Magento 2 还很年轻，我们还没发现这些边缘情况，不过如果你不确定有没有清除干净的话，那么就可以使出终极手段 —— 手动移除 <code>var/cache</code> 目录下的所有文件。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf /path/to/magento/var/cache/*</span><br></pre></td></tr></table></figure>
-
-<p>此外，Magento 2 某些情况下会自动生成类，虽然严格意义上不是缓存，但是清理这些生成的类有时候对你来说也很重要。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf /path/to/magento/var/generation/*</span><br></pre></td></tr></table></figure>
-
-<p>在 production 系统中，这么做要慎重，慎重，慎重。</p>
-<p>清完缓存后，让我们来看看我们的命令:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento list</span><br><span class="line"></span><br><span class="line">//...</span><br><span class="line"></span><br><span class="line"> ps:tutorial-object-manager-1              A cli playground for testing</span><br><span class="line">                                           commands</span><br><span class="line">//...</span><br></pre></td></tr></table></figure>
-
-<p>下面运行这个命令看看：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">You did it!</span><br></pre></td></tr></table></figure>
-
-<p>恭喜你！你成功的手动安装了一个 Magento 模块。</p>
-<p>当然也可以通过命令行的方式来启用模块。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento module:enable Pulsestorm_TutorialObjectManager1</span><br><span class="line">The following modules have been enabled:</span><br><span class="line">- Pulsestorm_TutorialObjectManager1</span><br><span class="line"></span><br><span class="line">To make sure that the enabled modules are properly registered, run</span><br><span class="line">&#x27;setup:upgrade&#x27;.</span><br><span class="line"></span><br><span class="line">Cache cleared successfully.</span><br><span class="line">Generated classes cleared successfully.</span><br><span class="line"></span><br><span class="line">Alert: Generated static view files were not cleared. You can clear them</span><br><span class="line">using the --clear-static-content option. Failure to clear static view files</span><br><span class="line">might cause display issues in the Admin and storefront.</span><br></pre></td></tr></table></figure>
-
-<p>上面作为理解，下面进入动手阶段。</p>
-<h2 id="修改我们的命令"><a href="#修改我们的命令" class="headerlink" title="修改我们的命令"></a><a href="#%E4%BF%AE%E6%94%B9%E6%88%91%E4%BB%AC%E7%9A%84%E5%91%BD%E4%BB%A4"></a>修改我们的命令</h2><p>Magento 2 中每个 cli 命令都是由 php 类实现的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $output-&gt;writeln(&quot;You did it!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而安后我们把它改成：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php    </span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $output-&gt;writeln(&quot;Hello World!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后再运行我们的命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
-
-<p>我们上面做的事情就是传递一个字符串给 <code>writeln</code> 方法（等同于 echo 或者 print）。</p>
-<h2 id="Magento-2-Objects"><a href="#Magento-2-Objects" class="headerlink" title="Magento 2 Objects"></a><a href="#magento-2-objects"></a>Magento 2 Objects</h2><p>当我们想实例化一个对象的时候，我们使用 <code>new</code> 关键字，让我们再 <code>execute</code> 方法中实验一下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $object = new \Pulsestorm\TutorialObjectManager1\Model\Example;</span><br><span class="line">    $message = $object-&gt;getHelloMessage();</span><br><span class="line">    $output-&gt;writeln(</span><br><span class="line">        $message</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>再运行下我们的命令，结果是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello Magento!</span><br></pre></td></tr></table></figure>
-
-<p>我们做的事情是</p>
-<ol>
-<li>实例化 <code>Pulsestorm\TutorialObjectManager1\Model\Example</code></li>
-<li>调用实例化后对象的方法 <code>getHelloWorld</code> 取得字符串</li>
-<li><code>writeln</code> 输出字符串</li>
-</ol>
-<p>到这里都是简单的 php 用法。如果你不熟悉 php 的命名空间，那么这篇文章可能对你有用，<a target="_blank" rel="noopener" href="https://alanstorm.com/php_namespace_primer/">PHP Primer: Namespaces</a></p>
-<p>Magento 2 中没有任何机制不允许你使用 new 来实例化对象。但是如果你使用 Magengo 2 的高级特性(automatic constructor dependency injection, object proxying, etc)，那么你就需要使用 Magento 的 object manager。</p>
-<p>试试下面的用法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">protected function execute(InputInterface $input, OutputInterface $output)</span><br><span class="line">&#123;</span><br><span class="line">    $manager = $this-&gt;getObjectManager();</span><br><span class="line">    $object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">    $message = $object-&gt;getHelloMessage();</span><br><span class="line">    $output-&gt;writeln(</span><br><span class="line">        $message</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行命令，我们应该可以看到下面的输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello Magento!</span><br></pre></td></tr></table></figure>
-
-<p>和之前的区别就在下面两行代码上：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php      </span><br><span class="line">$manager = $this-&gt;getObjectManager();</span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br></pre></td></tr></table></figure>
-
-<p>第一行的 <code>$manager = $this-&gt;getObjectManager();</code> 为我们取得 object manager 。这可不是开发插件时常用的做法 —— <code>getObjectManager</code> 是本次教程自己建的 helper 方法。现在我们只要知道 <code>getObjectManager</code> 会返回 Magento object manager 的实例。</p>
-<p>object manager 是一个很特别的对象，Magento 中几乎所有的对象都是由它实例化的。代码中第二行做的就是实例化类</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#File: app/code/Pulsestorm/TutorialObjectManager1/Command/Testbed.php</span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br></pre></td></tr></table></figure>
-
-<p>我们调用 object manager 的 <code>create</code> 方法，以字符串的形式传递一个 php 类给它。object manager 就实例化了一个 <code>Pulsestorm\TutorialObjectManager1\Model\Example</code> 对象给我们。</p>
-<p>这就是 Magento 2 的 object manager 最简单的形式。看起来这样做无足轻重，但是如果所有对象的实例化都是通过它，那么 Magento 的系统工程师们就可以给这些对象 “超能力”。</p>
-<p>在介绍它的超能力之前，本文不能涵盖所有内容，所以有兴趣的可以查看源代码，Magento 的 object manager 源码位于下列类文件中：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#File: lib/internal/Magento/Framework/ObjectManager/ObjectManager.php</span><br><span class="line">namespace Magento\Framework\ObjectManager;</span><br><span class="line"></span><br><span class="line">class ObjectManager implements \Magento\Framework\ObjectManagerInterface</span><br><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果你是 Magento 1 的开发者，那么 2 中的 object manager 就是 1 中以下方法的替代：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mage::getModel(...);</span><br><span class="line">Mage::helper(...);</span><br><span class="line">Mage::getSingleton(&#x27;core/layout&#x27;)-&gt;createBlock(...);</span><br></pre></td></tr></table></figure>
-
-<p>Magento 2 中仍然存在 model,helper,block 这些概念，但是你再也不需要知道这个类的别名了（core&#x2F;template, model&#x2F;product, etc.）。object manager 可以实例化任何 php 类，不仅仅是 model, helper, block 对象。</p>
-<h2 id="自动的单例对象"><a href="#自动的单例对象" class="headerlink" title="自动的单例对象"></a><a href="#%E8%87%AA%E5%8A%A8%E7%9A%84%E5%8D%95%E4%BE%8B%E5%AF%B9%E8%B1%A1"></a>自动的单例对象</h2><p>今天我们将探讨 Magento 2 的 object manager 带给对象的超能力之一 —— 自动的单例对象。但是再讨论这个之前，我们得先明确单例的含义。</p>
-<p>试试下面的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$manager = $this-&gt;getObjectManager();</span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$object-&gt;message = &#x27;Hello PHP!&#x27;;</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$object  = $manager-&gt;create(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>运行命令，我们会看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello PHP!</span><br><span class="line">Hello Magento!a</span><br></pre></td></tr></table></figure>
-
-<p>代码与前面的类似，只是添加了一些东西。首先我们使用 object manager 从类 <code>Pulsestorm\TutorialObjectManager1\Model\Example</code> 实例化一个对象。然后我们给这个对象的 message 设置一个自定义的字符串，最后把它打印出来。第一段输出的是我们自定义的 message ，而第二段是默认的 message。</p>
-<p>下面我们不用 object manager 的 <code>create</code> 方法，而是用 <code>get</code> 方法。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$manager = $this-&gt;getObjectManager();</span><br><span class="line">$object  = $manager-&gt;get(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$object-&gt;message = &#x27;Hello PHP!&#x27;;</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$object  = $manager-&gt;get(&#x27;Pulsestorm\TutorialObjectManager1\Model\Example&#x27;);</span><br><span class="line">$output-&gt;writeln(</span><br><span class="line">    $object-&gt;getHelloMessage()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>这次的结果就不同了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ php bin/magento ps:tutorial-object-manager-1</span><br><span class="line">Hello PHP!</span><br><span class="line">Hello PHP!</span><br></pre></td></tr></table></figure>
-
-<p>第二次没有打印默认的 message ，而是打印了我们在第一个对象上设置的自定义 message。这是怎么回事呢？因为第二个对象就是第一个对象。</p>
-<p>这就是 Magento object manager 的自动单例特性。（单例就是指一个单例对象的类只有一个实例存在）。如果系统中该单例对象的类已经存在，再实例话这个单例对象的类，还是会返回已经存在的那一个。这通常是通过向类的构造函数添加特殊代码来实现的，但是通过 Magento 2 的 object manager ，任何类都可以变成单例。</p>
-<p>就我们上面的例子来说，第二次我们调用 <code>get</code> 的时候，Magento 返回给我们的对象还是那个我们设置了自定义 message 的对象。</p>
-<p>如果你了解 Magento1 ，那么 <code>create/get</code> 的区别类似于：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mage::getModel(...);</span><br><span class="line">Mage::getSingleton(...);</span><br></pre></td></tr></table></figure>
-
-<p>这两个的区别。但是，Magento 2 中这个特性是对所有 class 都有用的，不仅仅是 model 对象。</p>
-<p>自动的单例（Automatic singletons）只是 Magento 2 object manager 带给对象的超能力之一。下次我们将探讨 automatic constructor parameter dependency injection （这可是个大招），还有为啥 Magento 官方文档告诫我们不要使用 object manager (听上去有点自相矛盾)</p>
-
+尽管有些人可能会认为 Magento 2 代码复杂性增加了，Magento 2 核心团队还是花了很多时间来简化和澄清 Magento 1 中的设计。Magento 1 中 rewrite 系统（home grown class rewrite system ——
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/alan-magento-2-object-manager/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -930,47 +929,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>本篇介绍在虚拟机（ubuntu 16）中搭建 Postfix ，实现发送邮件功能。这样虚拟机中的站点（Magento、Wordpress 等不需要通过插件也能发送邮件啦。）</p>
-<h2 id="设置-hostname"><a href="#设置-hostname" class="headerlink" title="设置 hostname"></a><a href="#%E8%AE%BE%E7%BD%AE-hostname"></a>设置 hostname</h2><p>事先设置好 hostname 的话，Postfix 可以自动配置好很多参数，节省时间。假设你的网站域名是 example.com，要搭建独立的邮件服务器（推荐），就把主机名设置为 mail.example.com。 查看服务器名称</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># hostname</span><br><span class="line">ubuntu16</span><br></pre></td></tr></table></figure>
+          本篇介绍在虚拟机（ubuntu 16）中搭建 Postfix ，实现发送邮件功能。这样虚拟机中的站点（Magento、Wordpress 等不需要通过插件也能发送邮件啦。）
 
-<p>主机名设置为 <code>mail.example.com</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo &#x27;mail.example.com&#x27; &gt; /etc/hostname</span><br><span class="line"># hostname -F /etc/hostname</span><br></pre></td></tr></table></figure>
+设置 hostname
+事先设置好 hostname 的话，Postfix 可以自动配置好很多参数，节省时间。假设你的网站域名是 example.com，要搭建独立的邮件服务器（推荐），就把主机名设置为 mail.example.com。 查看服务器名称
 
-<h2 id="安装-Postfix"><a href="#安装-Postfix" class="headerlink" title="安装 Postfix"></a><a href="#%E5%AE%89%E8%A3%85-postfix"></a>安装 Postfix</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># apt-get install postfix</span><br></pre></td></tr></table></figure>
+1
+2
 
-<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a><a href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"></a>基本配置</h2><p>Postfix 的配置文件位于 <code>/etc/postfix</code> 文件夹。<code>/etc/postfix/main.cf</code> 是 Postfix 的主要配置文件，几乎所有的设置参数都是通过这个文档规定的。 修改需要注意的是：</p>
-<ul>
-<li>『 # 』符号是批注的意思；</li>
-<li>所有设定值以类似『变量』的设定方法来处理，例如 myhostname &#x3D; <a target="_blank" rel="noopener" href="http://www.centos.vbird,请注意等号的两边要给予空格符喔,/">www.centos.vbird，请注意等号的两边要给予空格符喔，</a> 且第一个字符不可以是空白，亦即『my..』要由行首写起；</li>
-<li>可以使用『 $ 』来延伸使用变量设定，例如 myorigin &#x3D; $myhostname，会等于 myorigin &#x3D; <a target="_blank" rel="noopener" href="http://www.centos.vbird;/">www.centos.vbird；</a></li>
-<li>如果该变量支持两个以上的数据，则使用空格符来分隔，不过建议使用逗号加空格符『, 』来处理。 例如： mydestination &#x3D; $myhostname, $mydomain, linux.centos.vbird，意指 mydestination 支持三个数据内容之意。</li>
-<li>可使用多行来表示同一个设定值，只要在第一行最后有逗号，且第二行开头为空格符， 即可将数据延伸到第二行继续书写 (所以刚刚第二点才说，开头不能留白！)；</li>
-<li>若重复设定某一项目，则以较晚出现的设定值为准！</li>
-</ul>
-<p>以上摘自<a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_server/0380mail.php#postfix_basic">鸟哥的 Linux 私房菜</a>，更详细的介绍也可参考该文章。 比较重要的参数设置</p>
-<ul>
-<li><strong>myhostname</strong> 设定主机名 这个参数会被很多其他参数所引用，所以务必设置正确，在本例中，它的值是 <code>mail.example.com</code></li>
-<li><strong>myorigin</strong> 发信时显示的“发信源主机” 在通过 Postfix 发送邮件的时候，如果 From 字段不完整，例如 From: user，Postfix 会根据 myorigin 的值将地址补全为 From: <a href="mailto:&#117;&#x73;&#x65;&#114;&#64;&#109;&#x61;&#105;&#108;&#x2e;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#117;&#x73;&#x65;&#114;&#64;&#109;&#x61;&#105;&#108;&#x2e;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;</a>。在本例中，我们将它的值设置为 <code>$myhostname</code></li>
-<li><strong>mynetworks</strong> 规定信任的客户端，默认只有自己</li>
-<li><strong>mydestination</strong> 规定能够收信的主机名 这个设置很重要。在本例中，我希望这台服务器能接受主域名 example.com 的邮件，所以 example.com 要出现在其中。</li>
-</ul>
-<p>我们的配置现在是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myhostname = mail.example.com</span><br><span class="line">myorigin = $myhostname</span><br><span class="line">mydestination = $myhostname, example.com, localhost</span><br></pre></td></tr></table></figure>
 
-<p>重载 Postfix</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service postfix reload</span><br></pre></td></tr></table></figure>
+# hostname
+ubuntu16
 
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a><a href="#%E6%B5%8B%E8%AF%95"></a>测试</h2><p>给自己的邮箱发送一封空邮件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># sendmail youremail@gmail.com</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
 
-<p>输入第一行的时候，sendmail 会等待输入邮件内容，此时直接输入一个 <code>.</code> 结束输入，就会发送一封空邮件。 登录你的邮箱，如无意外可以在垃圾邮件箱找到这封邮件。这说明 Postfix 已经具有发送能力。 发送一封有主题的邮件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># sendmail youremail@gmail.com</span><br><span class="line">Subject:Hello</span><br><span class="line">Nice to meet you..</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
+主机名设置为 mail.example.com
 
-<p><img src="/wp-content/uploads/2018/02/postfix-sendmail.png" alt="收到邮件"> 日志位置：<code>/var/log/mail.log</code></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="http://chloerei.com/2015/04/22/install-and-configure-postfix/">安装和配置 Postfix</a> <a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_server/0380mail.php">鸟哥的 Linux 私房菜 —— 第二十二章、邮件服务器： Postfix</a></p>
-<h2 id="本站其他相关文章"><a href="#本站其他相关文章" class="headerlink" title="本站其他相关文章"></a><a href="#%E6%9C%AC%E7%AB%99%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"></a>本站其他相关文章</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/mta-mda-mua-relationship/">关于邮件服务器</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/telnet-smtp-send-email/">telnet 登录 SMTP 发邮件</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/how-magento-sends-email/">Magento 是怎么发邮件的</a></p>
+1
+2
 
+
+# echo 'mail.example.com
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/postfix-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1036,8 +1022,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>问题：</strong>虚拟机 ping 不通主机，主机可 ping 通虚拟机。关闭主机的防火墙，发现虚拟机可以 ping 通主机。 <strong>解决方法：</strong> 1.打开 windows 防火墙 2.选择高级设置 3.入站规则 4.找到配置文件类型为“公用”的“文件和打印共享（回显请求 – ICMPv4-In）”规则，设置为允许。 <img src="/wp-content/uploads/2018/02/windows%E9%98%B2%E7%81%AB%E5%A2%99.png" alt="防火墙设置：虚拟机ping不通主机，但是主机可以ping通虚拟机"> <strong>参考：</strong> <a target="_blank" rel="noopener" href="http://www.linuxdiyf.com/linux/26502.html">防火墙设置：虚拟机ping不通主机，但是主机可以ping通虚拟机</a></p>
-
+          问题：虚拟机 ping 不通主机，主机可 ping 通虚拟机。关闭主机的防火墙，发现虚拟机可以 ping 通主机。 解决方法： 1.打开 windows 防火墙 2.选择高级设置 3.入站规则 4.找到配置文件类型为“公用”的“文件和打印共享（回显请求 – ICMPv4-In）”规则，设置为允许。 参考： 防火墙设置：虚拟机ping不通主机，但是主机可以ping通虚拟机
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E9%98%B2%E7%81%AB%E5%A2%99%E8%AE%BE%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

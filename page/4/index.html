@@ -231,9 +231,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>A virtual type allows the developer to create an instance of an existing class that has custom constructor arguments. This is useful in cases where you need a “new” class only because the constructor arguments need to be changed. This is used frequently in Magento to reduce redundant PHP classes.</p>
-<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>You are making some major adjustments to a core Magento class (ClassA). These adjustments are only necessary when utilized from a specific Magento class (ClassB). You have created MyClass that contains the needed customizations. Keeping upgradeability in mind, how do you configure di.xml to make the substitution happen? A. Ensure that MyClass extends ModuleA and set the <code>&lt;argument/&gt;</code>, for ModuleB to point to your new class in di.xml. B. Set a <code>&lt;preference/&gt;</code> for ModuleA to be replaced by MyClass C. Create a virtual type that extends ModuleB, specifying an <code>&lt;argument/&gt;</code> for MyClass. D. Create a rewrite node that injects MyClass into ClassB. Answer A</p>
+          A virtual type allows the developer to create an instance of an existing class that has custom constructor arguments. This is useful in cases where you need a “new” class only because the constructor arguments need to be changed. This is used frequently in Magento to reduce redundant PHP classes.
 
+P
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/virtual-type/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -299,10 +307,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&#x27;display_errors&#x27;, 1);</span><br><span class="line">$backend = &#x27;Cm_Cache_Backend_File&#x27;;</span><br><span class="line">$frontend = &#x27;Magento\Framework\Cache\Core&#x27;;</span><br><span class="line">$frontendOptions = [</span><br><span class="line">        &#x27;cache_id_prefix&#x27; =&gt; &#x27;7f1_&#x27;,</span><br><span class="line">        &#x27;caching&#x27;=&gt;true,</span><br><span class="line">        &#x27;lifetime&#x27; =&gt; 7200,</span><br><span class="line">        &#x27;automatic_cleaning_factor&#x27; =&gt; 0,</span><br><span class="line">        &#x27;type&#x27; =&gt; &#x27;Magento\Framework\Cache\Core&#x27;</span><br><span class="line">];</span><br><span class="line">$backendOptions = [</span><br><span class="line">    &#x27;cache_dir&#x27; =&gt; &#x27;/var/www/html/m230/var/page_cache_test&#x27;,</span><br><span class="line">    &#x27;hashed_directory_level&#x27; =&gt; 1,</span><br><span class="line">    &#x27;file_name_prefix&#x27; =&gt; &#x27;magetest&#x27;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">$cache = \Zend_Cache::factory(</span><br><span class="line">    $frontend,</span><br><span class="line">    $backend,</span><br><span class="line">    $frontendOptions,</span><br><span class="line">    $backendOptions,</span><br><span class="line">    true,</span><br><span class="line">    true,</span><br><span class="line">    true</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">var_dump(get_class($cache));</span><br><span class="line"></span><br><span class="line">$cache-&gt;save(&#x27;wanttosavedata&#x27;, &#x27;dataid&#x27;, [&#x27;datatag&#x27;, &#x27;datatag2&#x27;]);</span><br><span class="line">echo $cache-&gt;load(&#x27;first&#x27;);</span><br></pre></td></tr></table></figure>
+          1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
 
-<p>Ok, we will get these files.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var/page_cache_test</span><br><span class="line">    -- magetest-tags</span><br><span class="line">        -- magetest---7f1_datatag</span><br><span class="line">        -- magetest---7f1_datatag2</span><br><span class="line">    -- magetest--0</span><br><span class="line">        -- magetest---7f1_dataid</span><br></pre></td></tr></table></figure>
+
+ini_set('display_errors', 1);
+$backend = 'Cm_Cache_Backend_File';
+$frontend = 'Magento\Framework\Cache\Core';
+$frontendOptions = [
+        'cache_id_prefix' => '7f1_',
+        'caching'=>true,
+        'lifetime' => 72
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/use-zend-cache/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -368,25 +419,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><code>etc/cache.xml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Cache/etc/cache.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;menu&quot; translate=&quot;label,description&quot; instance=&quot;VendorName\TestModule\Model\Cache\Type&quot;&gt;</span><br><span class="line">        &lt;label&gt;Test cache type&lt;/label&gt;</span><br><span class="line">        &lt;description&gt;Test cache type Description&lt;/description&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          etc/cache.xml
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Cache;</span><br><span class="line"></span><br><span class="line">class Type extends \Magento\Framework\Cache\Frontend\Decorator\TagScope</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Cache type code unique among all cache types</span><br><span class="line">     */</span><br><span class="line">    const TYPE_IDENTIFIER = &#x27;menu&#x27;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Cache tag used to distinguish the cache type from all other cache</span><br><span class="line">     */</span><br><span class="line">    const CACHE_TAG = &#x27; MENU_TAG&#x27;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Type constructor.</span><br><span class="line">     * @param \Magento\Framework\App\Cache\Type\FrontendPool $cacheFrontendPool</span><br><span class="line">     */</span><br><span class="line">    public function __construct(\Magento\Framework\App\Cache\Type\FrontendPool $cacheFrontendPool)</span><br><span class="line">    &#123;</span><br><span class="line">        parent::__construct($cacheFrontendPool-&gt;get(self::TYPE_IDENTIFIER), self::CACHE_TAG);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
 
-<p><img src="/wp-content/uploads/2019/06/cache_type.png"> Let’s enable it and some experiments.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$menuCache = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\Cache\Type&#x27;);</span><br><span class="line">$cacheId = &#x27;custom_menu_cache&#x27;;</span><br><span class="line">$cacheTag = [&#x27;menu_tag_1&#x27;, &#x27;menu_tag_2&#x27;];</span><br><span class="line">$data = &#x27;I am custom menu content&#x27;;</span><br><span class="line">$lifeTime = &#x27;600&#x27;;</span><br><span class="line">$menuCache-&gt;save($data, $cacheId, $cacheTag, $lifeTime);</span><br></pre></td></tr></table></figure>
 
-<p>If you look at the var&#x2F;cache folder of Magento at this point, you will see something similar to the following screenshot. we find four <code>44d_CUSTOM_MENU_CACHE</code>(this is the cache id) records in four files(<code>var/cache/mage-tags/mage---44d_MAGE</code>, <code>var/cache/mage-tags/mage---44d_MENU_TAG</code>(the cache tag),<code>var/cache/mage-tags/mage---44d_MENU_TAG_1</code>,<code>var/cache/mage-tags/mage---44d_MENU_TAG_2</code>). <img src="/wp-content/uploads/2019/06/cache_type_tags.png"> And a file named <code>var/cache/mage--6/mage---44d_CUSTOM_MENU_CACHE</code>. <img src="/wp-content/uploads/2019/06/cache_type_id.png"> So, if I want to find all the cache taged with BLOCK_HTML (specified in <code>Magento\Framework\App\Cache\Type\Block</code>), I can search file name with ‘BLOCK_HTML’ <img src="/wp-content/uploads/2019/06/block_html.png"> This file writes down all the cache id taged with ‘BLOCK_HTML’. <img src="/wp-content/uploads/2019/06/block_html_cache_id.png"> the prefix <code>44d_</code> is sepecified in app&#x2F;etc&#x2F;env.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x27;cache&#x27; =&gt; [</span><br><span class="line">        &#x27;frontend&#x27; =&gt; [</span><br><span class="line">            &#x27;default&#x27; =&gt; [</span><br><span class="line">                &#x27;id_prefix&#x27; =&gt; &#x27;44d_&#x27;</span><br><span class="line">            ],</span><br><span class="line">            &#x27;page_cache&#x27; =&gt; [</span><br><span class="line">                &#x27;id_prefix&#x27; =&gt; &#x27;44d_&#x27;</span><br><span class="line">            ]</span><br><span class="line">        ]</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$menuCache = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\Cache\Type&#x27;);</span><br><span class="line">$cacheId = &#x27;custom_menu_cache&#x27;;</span><br><span class="line">$cacheTag = [&#x27;menu_tag_1&#x27;, &#x27;menu_tag_2&#x27;];</span><br><span class="line">$data = &#x27;I am custom menu content&#x27;;</span><br><span class="line">$lifeTime = &#x27;600&#x27;;</span><br><span class="line">$menuCache-&gt;save($data, $cacheId, $cacheTag, $lifeTime);</span><br><span class="line">$content = $menuCache-&gt;load($cacheId);</span><br><span class="line">var_dump($content);</span><br></pre></td></tr></table></figure>
-
-<p>We can get the string ‘I am custom menu content’;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$menuCache = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\Cache\Type&#x27;);</span><br><span class="line">$cacheId = &#x27;custom_menu_cache&#x27;;</span><br><span class="line">$cacheTag = [&#x27;menu_tag_1&#x27;, &#x27;menu_tag_2&#x27;];</span><br><span class="line">$data = &#x27;I am custom menu content&#x27;;</span><br><span class="line">$lifeTime = &#x27;600&#x27;;</span><br><span class="line">$menuCache-&gt;save($data, $cacheId, $cacheTag, $lifeTime);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var_dump($menuCache-&gt;getTag());</span><br><span class="line">echo get_class($menuCache-&gt;getLowLevelFrontend());</span><br><span class="line"></span><br><span class="line">// we will get all the cache ids in system</span><br><span class="line">var_dump($menuCache-&gt;getLowLevelFrontend()-&gt;getIds());</span><br><span class="line">// we will get all the cache tags in system</span><br><span class="line">var_dump($menuCache-&gt;getLowLevelFrontend()-&gt;getTags());</span><br></pre></td></tr></table></figure>
-
-<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>How do you create a new cache type?<br>A. Use a plugin to append to the method arguments for the <code>\Magento\Framework\App\CacheList::collect</code> method.<br>B. Create etc&#x2F;cache.xml and specify a <code>&lt;type name=&quot;cache_name&quot; instance=&quot;Class\Path&quot;/&gt;</code>.<br>C. Inject a new caching class into \Magento\Framework\App\CacheList.<br>D. Add an event observer for the cache_type_collector observer.</p>
-<p>Answer B</p>
-
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+    <type name="menu" translate="label,description" instance="VendorName\TestModule\Model\Cache\Type">
+       
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/create-cache-type/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -452,14 +507,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>After we turn on <strong>Use Flat Catalog Product</strong>, we activate the <strong>catalog_product_flat</strong> index. Run <code>bin/magento indexer:reindex catalog_product_flat</code> A new table <code>catalog_product_flat_&lt;storeId&gt;</code> will be created. In this table, product eav attributes which are configured as <strong>Used in Product Listing</strong> are added as columns. Let’s see how this worked.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;indexer id=&quot;catalog_product_flat&quot; view_id=&quot;catalog_product_flat&quot; class=&quot;Magento\Catalog\Model\Indexer\Product\Flat&quot;&gt;</span><br><span class="line">        &lt;title translate=&quot;true&quot;&gt;Product Flat Data&lt;/title&gt;</span><br><span class="line">        &lt;description translate=&quot;true&quot;&gt;Reorganize EAV product structure to flat structure&lt;/description&gt;</span><br><span class="line">&lt;/indexer&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>Magento\Catalog\Model\Indexer\Product\Flat:executeFull</code> &gt; <code>Magento\Catalog\Model\Indexer\Product\Flat\AbstractAction:_updateRelationProducts</code> &gt; <code>Magento\Catalog\Helper\Product\Flat\Indexer:getFlatColumns</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public function getFlatColumns()</span><br><span class="line">    &#123;</span><br><span class="line">        if ($this-&gt;_columns === null) &#123;</span><br><span class="line">            $this-&gt;_columns = $this-&gt;getFlatColumnsDdlDefinition();</span><br><span class="line">            foreach ($this-&gt;getAttributes() as $attribute) &#123;</span><br><span class="line">                /** @var $attribute \Magento\Eav\Model\Entity\Attribute\AbstractAttribute */</span><br><span class="line">                $columns = $attribute-&gt;setFlatAddFilterableAttributes(</span><br><span class="line">                    $this-&gt;isAddFilterableAttributes()</span><br><span class="line">                )-&gt;setFlatAddChildData(</span><br><span class="line">                    $this-&gt;isAddChildData()</span><br><span class="line">                )-&gt;getFlatColumns();</span><br><span class="line">                if ($columns !== null) &#123;</span><br><span class="line">                    $this-&gt;_columns = array_merge($this-&gt;_columns, $columns);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return $this-&gt;_columns;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Practice-Tests"><a href="#Practice-Tests" class="headerlink" title="Practice Tests"></a><a href="#practice-tests"></a>Practice Tests</h2><p>What is the purpose of the getFlatColumns method in an EAV’s Source model? A. It returns a list of columns in the entity’s _text table. B. It converts option values into row values for the attribute value tables. C. It flattens an array attribute value into a JSON string. D. It returns columns that will be added to the EAV model’s flat table. Answer D</p>
-
+          After we turn on Use Flat Catalog Product, we activate the catalog_product_flat index. Run bin/magento indexer:reindex catalog_product_flat A new table catalog_product_flat_<storeId> will be created. In this table, product eav attributes which are configured as Used in Product Listing are added as c
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/getflatcolumns/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -525,20 +581,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Why-need-index"><a href="#Why-need-index" class="headerlink" title="Why need index"></a><a href="#why-need-index"></a>Why need index</h2><p>*Indexing is how Magento transforms data such as products and categories, to improve the performance of your storefront. For example, if you change the price of an item from $4.99 to $3.99. Magento must reindex the price change to display it on your storefront. Without indexing, Magento would have to calculate the price of every product on the fly, taking into account shopping cart price rules, bundle pricing, discounts, tier pricing, etc. Loading the price for a product would take a long time, possibly resulting in cart abandonment.*</p>
-<h2 id="Add-a-custom-indexer"><a href="#Add-a-custom-indexer" class="headerlink" title="Add a custom indexer"></a><a href="#add-a-custom-indexer"></a>Add a custom indexer</h2><p>create a config file <code>app/code/VendorName/TestModule/etc/indexer.xml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Indexer/etc/indexer.xsd&quot;&gt;</span><br><span class="line">    &lt;indexer id=&quot;custom_index&quot; view_id=&quot;custom_index&quot; class=&quot;VendorName/TestModule\Model\Indexer\ExampleIndexer&quot; shared_index=&quot;custom_index&quot;&gt;</span><br><span class="line">        &lt;title translate=&quot;true&quot;&gt;Indexer Example&lt;/title&gt;</span><br><span class="line">        &lt;description translate=&quot;true&quot;&gt;Indexer Example&lt;/description&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">            &lt;indexer id=&quot;cataloginventory_stock&quot;/&gt;</span><br><span class="line">        &lt;/dependencies&gt;</span><br><span class="line">    &lt;/indexer&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>The <strong>id</strong> attribute is used to identify this indexer. You can call it when you want to check the status, mode or reindex this indexer by the command line. The <strong>view_id</strong> is the id of view element, which will be defined in the mview configuration file. The <strong>class</strong> attribute is the name to the class, which processes the indexer method. The <strong>shared_index</strong> attribute is used for combining several indexers into groups. While reindexing one of the group indexers, the others will be labeled as valid. The <strong>dependencies</strong> element is used to mark the dependencies between various indexers. Create an <code>app/code/VendorName/TestModule/etc/mview.xml</code> config file, which will be responsible for the indexation by Cron.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:Mview/etc/mview.xsd&quot;&gt;</span><br><span class="line">    &lt;view id=&quot;custom_index&quot; class=&quot;VendorName\TestModule\Model\Indexer\ExampleIndexer&quot; group=&quot;indexer&quot;&gt;</span><br><span class="line">        &lt;subscriptions&gt;</span><br><span class="line">            &lt;table name=&quot;catalog_product_entity&quot; entity_column=&quot;entity_id&quot;/&gt;</span><br><span class="line">        &lt;/subscriptions&gt;</span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>The class should implement the interfaces: <code>\Magento\Framework\Indexer\ActionInterface</code>, <code>\Magento\Framework\Mview\ActionInterface</code>. Where the <code>\Magento\Framework\Indexer\ActionInterface</code> interface contains the main indexation methods, and the <code>\Magento\Framework\Mview\ActionInterface interface</code> contains the methods that are applied for the <strong>Update By Schedule mode</strong> of an indexation.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">namespace VendorName\TestModule\Model\Indexer;</span><br><span class="line"></span><br><span class="line">class ExampleIndexer implements \Magento\Framework\Indexer\ActionInterface, \Magento\Framework\Mview\ActionInterface</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute full indexation</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function executeFull()</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement executeFull() method.</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute partial indexation by ID list</span><br><span class="line">     *</span><br><span class="line">     * @param int[] $ids</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function executeList(array $ids)</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement executeList() method.</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute partial indexation by ID</span><br><span class="line">     *</span><br><span class="line">     * @param int $id</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function executeRow($id)</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement executeRow() method.</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Execute materialization on ids entities</span><br><span class="line">     *</span><br><span class="line">     * @param int[] $ids</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     * @api</span><br><span class="line">     */</span><br><span class="line">    public function execute($ids)</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement execute() method.</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/wp-content/uploads/2019/06/custom_indexer.png"> After we change our custom indexer to ‘update by schedule mode’, a mysql trigger will be created on table ‘catalog_product_entity’. When we change mode to ‘update on save’, the trigger will be deleted. <img src="/wp-content/uploads/2019/06/mysql_trigger.png"></p>
-<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p><img src="/wp-content/uploads/2019/06/index.png"></p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p>Highly Recomend: <a target="_blank" rel="noopener" href="https://amasty.com/blog/comprehensive-guide-to-magento-2-indexing/">COMPREHENSIVE GUIDE TO MAGENTO 2 INDEXING</a> <a target="_blank" rel="noopener" href="https://devdocs.magento.com/guides/v2.3/extension-dev-guide/indexing.html">Dev docs - Indexing overview</a> <a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/117030/what-is-mview-in-magento2">what is mview in magento2?</a> <a target="_blank" rel="noopener" href="https://maxchadwick.xyz/blog/digging-into-magento-2-partial-reindexing-implementation">Digging Into Magento 2’s Partial Reindexing Implementation</a></p>
-
+          Why need index
+*Indexing is how Magento transforms data such as products and categories, to improve the performance of your storefront. For example, if you change the price of an item from $4.99 to $3.99. Magento must reindex the price change to display it on your storefront. Without indexing, Magen
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/m2-index/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -604,15 +656,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>A few classes extend \Magento\Eav\Setup\EavSetupFactory that provide additional features for specifc entity types:</p>
-<ul>
-<li>Product and Category: <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Catalog/Setup/CategorySetup.php">\Magento\Catalog\Setup\CategorySetup</a></li>
-<li>Customer and Customer address : <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Customer/Setup/CustomerSetup.php">\Magento\Customer\Setup\CustomerSetup</a></li>
-<li>Orders, Invoices, Shipments, and Credit memos: <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Sales/Setup/SalesSetup.php">\Magento\Sales\Setup\SalesSetup</a></li>
-<li>Quotes (Quote is not an eav type): <a target="_blank" rel="noopener" href="https://github.com/magento/magento2/blob/2.3-develop/app/code/Magento/Quote/Setup/QuoteSetup.php">\Magento\Quote\Setup\QuoteSetup</a></li>
-</ul>
-<p><img src="/wp-content/uploads/2019/06/eavSetup.png"> (The answer marked green is correct)</p>
+          A few classes extend \Magento\Eav\Setup\EavSetupFactory that provide additional features for specifc entity types:
 
+ * Product and Category: \Magento\Catalog\Setup\CategorySetup
+ * Customer and Customer address : \Magento\Customer\Setup\CustomerSetup
+ * Orders, Invoices, Shipments, and Credit memos:
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/eavsetup-classes/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -678,24 +734,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><a href="#experiments"></a>Experiments</h2><p>We use quote_item as an example. We create a custom product attribute with <code>product_brand</code> code.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$productResp = $this-&gt;_objectManager-&gt;get(&#x27;Magento\Catalog\Api\ProductRepositoryInterface&#x27;);</span><br><span class="line">$product = $productResp-&gt;getById(1);</span><br><span class="line">var_dump($product-&gt;getData());</span><br></pre></td></tr></table></figure>
+          Experiments
+We use quote_item as an example. We create a custom product attribute with product_brand code.
 
-<p>Ok, we can get <code>product_brand</code> attribute value.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$checkoutSession = $this-&gt;_objectManager-&gt;get(&#x27;\Magento\Checkout\Model\Session&#x27;);</span><br><span class="line">$quote = $checkoutSession-&gt;getQuote();</span><br><span class="line">$quoteItems = $quote-&gt;getAllItems();</span><br><span class="line">foreach ($quoteItems as $item) &#123;</span><br><span class="line">    $product = $item-&gt;getProduct();</span><br><span class="line">&#125;</span><br><span class="line">var_dump($product-&gt;getData());</span><br></pre></td></tr></table></figure>
+1
+2
+3
 
-<p>However, we can’t get <code>product_brand</code> attribute value through qutoe item. Let’s create a etc&#x2F;catalog_attributes.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">        xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd&quot;&gt;</span><br><span class="line">    &lt;group name=&quot;quote_item&quot;&gt;</span><br><span class="line">        &lt;attribute name=&quot;product_brand&quot;/&gt;</span><br><span class="line">    &lt;/group&gt;</span><br><span class="line">    &lt;group name=&quot;wishlist_item&quot;&gt;</span><br><span class="line">        &lt;attribute name=&quot;product_brand&quot; /&gt;</span><br><span class="line">    &lt;/group&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
 
-<p>This time, we can get <code>product_brand</code> attribute value through qutoe item. Source: <code>vendor\magento\module-quote\Model\ResourceModel\Quote\Item\Collection.php::_assignProducts</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">$productCollection = $this-&gt;_productCollectionFactory-&gt;create()-&gt;setStoreId(</span><br><span class="line">            $this-&gt;getStoreId()</span><br><span class="line">        )-&gt;addIdFilter(</span><br><span class="line">            $this-&gt;_productIds</span><br><span class="line">        )-&gt;addAttributeToSelect(</span><br><span class="line">            $this-&gt;_quoteConfig-&gt;getProductAttributes()</span><br><span class="line">        );</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+$productResp = $this->_objectManager->get('Magento\Catalog\Api\ProductRepositoryInterface');
+$product = $productResp->getById(1);
+var_dump($product->getData());
 
-<p><code>$this-&gt;_quoteConfig</code> is an instance of <code>Magento\Quote\Model\Quote\Config</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * Copyright © Magento, Inc. All rights reserved.</span><br><span class="line"> * See COPYING.txt for license details.</span><br><span class="line"> */</span><br><span class="line">namespace Magento\Quote\Model\Quote;</span><br><span class="line"></span><br><span class="line">class Config</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * @var \Magento\Catalog\Model\Attribute\Config</span><br><span class="line">     */</span><br><span class="line">    private $_attributeConfig;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param \Magento\Catalog\Model\Attribute\Config $attributeConfig</span><br><span class="line">     */</span><br><span class="line">    public function __construct(\Magento\Catalog\Model\Attribute\Config $attributeConfig)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;_attributeConfig = $attributeConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @return array</span><br><span class="line">     */</span><br><span class="line">    public function getProductAttributes()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;_attributeConfig-&gt;getAttributeNames(&#x27;quote_item&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Default Groups： quote_item wishlist_item catalog_product catalog_category unassignable used_in_autogeneration</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="https://www.atwix.com/magento-2/how-to-access-custom-catalog-attributes/">How to access custom catalog attributes in Magento 2</a></p>
-
+Ok, we can get produc
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/catalog-attributes-xml/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -761,14 +821,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a><a href="#experiments"></a>Experiments</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\ResourceModel;</span><br><span class="line"></span><br><span class="line">class CustomEav extends \Magento\Eav\Model\Entity\AbstractEntity</span><br><span class="line">&#123;</span><br><span class="line">    public function getEntityType() &#123;</span><br><span class="line">        if(empty($this-&gt;_type)) &#123;</span><br><span class="line">            $this-&gt;setType(\Magento\Catalog\Model\Product::ENTITY);</span><br><span class="line">        &#125;</span><br><span class="line">        return parent::getEntityType();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          Experiments
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    $res = $this-&gt;_objectManager-&gt;get(&#x27;VendorName\TestModule\Model\ResourceModel\CustomEav&#x27;);</span><br><span class="line">    $product = $this-&gt;_objectManager-&gt;get(&#x27;Magento\Catalog\Model\Product&#x27;);</span><br><span class="line">    $res-&gt;load($product, 1);</span><br><span class="line"></span><br><span class="line">    var_dump($product-&gt;getData());</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<p>Now we get the proudct’s eav attributes.</p>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a><a href="#notes"></a>Notes</h2><p>Source: <code>Magento\Eav\Model\Entity\AbstractEntity</code> See <code>_loadModelAttributes()</code> in the above fle for details about the loading process. Magento creates a UNION select to load attributes from each of the entity type tables to locate the applicable attribute values. See <code>_collectSaveData()</code> in the above fle for how the saving process works. EAV collections oﬀer other methods such as addAttributeToSelect (note that the feld methods, such as addFieldToFilter have been mapped to their attribute counterparts). Simple resource model extens <code>Magento\Framework\Model\ResourceModel\Db\AbstractDb</code></p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a target="_blank" rel="noopener" href="http://techjeffyu.com/blog/magento-2-creating-new-eav-entity-and-model">Magento 2: Creating New Eav Entity and Model (Updated for Data Installation)</a></p>
+<?php
+namespace VendorName\TestModule\Model\ResourceModel;
 
+class CustomEav extends \Magento\Eav\Model\Entity\AbstractEntity
+{
+    public function getEntityType() {
+        if(empty($this->_type)) {
+            $this->setType(\Magento\Catalog\Model\Product
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/how-eav-load/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -834,8 +918,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="/wp-content/uploads/2019/06/eav_entity_type.png"> Every entity type have some attributes. Attribute set is used to classify attributes. For example, when you create a new product, you can choose using which attribute set. Theoretically, every entity type can have multiple attribute sets, but, generally, only catalog_product has multiple attribute sets. Attribute group is used to group attributes on an edit page under an accordian to make attributes easier to fnd. For exmaple: catalog_category has six groups. So we can see six sections. <img src="/wp-content/uploads/2019/06/eav_groups.png"> Table <code>eav_entity_attribute</code> stores the relationship between attribute and attribute group.</p>
-
+          Every entity type have some attributes. Attribute set is used to classify attributes. For example, when you create a new product, you can choose using which attribute set. Theoretically, every entity type can have multiple attribute sets, but, generally, only catalog_product has multiple attribute s
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/attribute-sets-and-attribute-groups/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -901,14 +992,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Practice-Tests"><a href="#Practice-Tests" class="headerlink" title="Practice Tests"></a><a href="#practice-tests"></a>Practice Tests</h2><p>You are configuring a new entry in etc&#x2F;adminhtml&#x2F;system.xml that is a select &#x2F; dropdown type. What must the class for the source model extend or implement? A. \Magento\Framework\Data\OptionSourceInterface B. \Magento\Backend\Model\AbstractSource C. \Magento\Framework\Source\OptionInterface D. \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource Answer A for example: vendor\magento\module-authorizenet-acceptjs\etc\adminhtml\system.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;field id=&quot;payment_action&quot; translate=&quot;label&quot; type=&quot;select&quot; sortOrder=&quot;20&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;1&quot; showInStore=&quot;0&quot; canRestore=&quot;1&quot;&gt;</span><br><span class="line">    &lt;label&gt;Payment Action&lt;/label&gt;</span><br><span class="line">    &lt;source_model&gt;Magento\AuthorizenetAcceptjs\Model\Adminhtml\Source\PaymentAction&lt;/source_model&gt;</span><br><span class="line">    &lt;config_path&gt;payment/authorizenet_acceptjs/payment_action&lt;/config_path&gt;</span><br><span class="line">&lt;/field&gt;</span><br></pre></td></tr></table></figure>
-
-<p>class PaymentAction implements \Magento\Framework\Data\OptionSourceInterface</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">interface OptionSourceInterface</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Return array of options as value-label pairs</span><br><span class="line">     *</span><br><span class="line">     * @return array Format: array(array(&#x27;value&#x27; =&gt; &#x27;&lt;value&gt;&#x27;, &#x27;label&#x27; =&gt; &#x27;&lt;label&gt;&#x27;), ...)</span><br><span class="line">     */</span><br><span class="line">    public function toOptionArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p>Shortly speaking, the Source Model is a model of data that we can use for configuration. <a target="_blank" rel="noopener" href="https://magently.com/blog/magento-2-backend-configuration-source-model/">Magento 2 Backend Configuration: Source Model (part 1&#x2F;3)</a> Managing actions before and after saving <a target="_blank" rel="noopener" href="https://magently.com/blog/magento-2-backend-configuration-backend-model-part-23/">Magento 2 Backend Configuration: Backend Model (part 2&#x2F;3)</a> The Frontend Model responsible for our fields view. We don’t mean changing the height&#x2F;width of the input, but a non-standard fields for our non-standard configuration. <a target="_blank" rel="noopener" href="https://magently.com/blog/magento-2-backend-configuration-frontend-model-part-33/">Magento 2 Backend Configuration: Frontend Model (part 3&#x2F;3)</a></p>
-
+          Practice Tests
+You are configuring a new entry in etc/adminhtml/system.xml that is a select / dropdown type. What must the class for the source model extend or implement? A. \Magento\Framework\Data\OptionSourceInterface B. \Magento\Backend\Model\AbstractSource C. \Magento\Framework\Source\OptionInte
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/source-model-backend-model-frontend-model/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

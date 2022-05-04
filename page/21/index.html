@@ -231,10 +231,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/widgets.html">原文地址</a></em></p>
-<p>wiget 是一小段代码，可以将他放在特定的 block 引用中，它可以展示许多类型的内容。许多 widget 展示实时的、动态的数据，它创造机会让您的客户可以与您的店铺进行互动。通过 widget 工具，很容易将现有的内容（比如带有图片文本的 block）以及互动元素呈现在您店铺的任何位置。</p>
-<p>你可以使用 widget 来创建营销活动的 landing 页面，或者在特定的地方显示促销内容。widget 还可以用来添加互动元素，以及 action blocks (外部 review 系统，视频聊天，投票，订阅表单)，或者是云标签的导航，图片轮播。</p>
+          原文地址
 
+wiget 是一小段代码，可以将他放在特定的 block 引用中，它可以展示许多类型的内容。许多 widget 展示实时的、动态的数据，它创造机会让您的客户可以与您的店铺进行互动。通过 widget 工具，很容易将现有的内容（比如带有图片文本的 block）以及互动元素呈现在您店铺的任何位置。
+
+你可以使用 widget 来创建营销活动的 landing 页面，或者在特定的地方显示促销内容。widget 还可以用来添加互动元素，以及 action blocks (外部 review 系统，视频聊天，投票，订阅表单)，或者是云标签的导航，图片轮播。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/widgets/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -300,32 +309,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/design/layout-update-place-block.html">原文地址</a></p>
-<p>通过 layout update 可以将 Blocks 放置到特定页面的左边或者右边侧边栏。只要对代码做一点简单的改动，你就可以把 block 放在任意的侧边栏中，并控制他相对于其他 blocks 的位置。</p>
-<p><code>callout</code> 术语有时候指的是通过 layout update 的 XML 代码定义的一个 Block。<code>sidebar</code> 指的是页面布局的左栏或者右栏。当你键入 layout update 代码的时候，请确保语法正确，可以参考下面的例子。</p>
-<p><strong>要将 block 置于侧边栏中，页面必须要是两栏或三栏的布局</strong></p>
-<h2 id="页面侧边栏添加-block"><a href="#页面侧边栏添加-block" class="headerlink" title="页面侧边栏添加 block"></a><a href="#%E9%A1%B5%E9%9D%A2%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%B7%BB%E5%8A%A0-block"></a>页面侧边栏添加 block</h2><ol>
-<li><p>后台侧边栏，点击 <strong>Content</strong>，在 <strong>Element</strong> 下选择 <strong>Blocks</strong></p>
-</li>
-<li><p>在表格中找到你要的 block，注意他的 Identifier，不要弄错拼写。</p>
-</li>
-<li><p>后台侧边栏，点击 <strong>Content</strong>，在 <strong>Element</strong> 下选择 <strong>Pages</strong></p>
-</li>
-<li><p>找到你要修改的页面，并打开它进行编辑</p>
-</li>
-<li><p>右侧面板，选择 <strong>Design</strong>，然后做下面的事情：<br>a. 在 <strong>Layout Update XML</strong> 中，输入下面的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;reference name=&quot;right&quot;&gt;</span><br><span class="line">    &lt;block type=&quot;cms/block&quot; name=&quot;right.permanent.callout&quot;&gt;</span><br><span class="line">        &lt;action method=&quot;setBlockId&quot;&gt;&lt;block_id&gt;your-block-id&lt;/block_id&gt;&lt;/action&gt;</span><br><span class="line">    &lt;/block&gt;</span><br><span class="line">&lt;/reference&gt;</span><br></pre></td></tr></table></figure>
+          原文地址
 
-<p>b. 修改 <strong>reference name</strong> 为页面的左栏或者右栏<br>c. 修改 <strong>block.id</strong> 为你要放置的 block 的 id</p>
-</li>
-<li><p>完成后，点击 <strong>Save Page</strong></p>
-</li>
-</ol>
-<p><em>译者注，上面的代码是不正确的，User guide 还没有更正，Magento 2 中的用法应该是下面这样：</em></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;referenceContainer name=&quot;footer&quot;&gt;</span><br><span class="line">       &lt;block class=&quot;Magento\Cms\Block\Block&quot; name=&quot;block_identifier&quot;&gt;</span><br><span class="line">            &lt;arguments&gt;</span><br><span class="line">                &lt;argument name=&quot;block_id&quot; xsi:type=&quot;string&quot;&gt;block_identifier&lt;/argument&gt;</span><br><span class="line">            &lt;/arguments&gt;</span><br><span class="line">        &lt;/block&gt;</span><br><span class="line">    &lt;/referenceContainer&gt;</span><br></pre></td></tr></table></figure>
+通过 layout update 可以将 Blocks 放置到特定页面的左边或者右边侧边栏。只要对代码做一点简单的改动，你就可以把 block 放在任意的侧边栏中，并控制他相对于其他 blocks 的位置。
 
-<p>他的写法和 Layout XML 文件中的写法是完全一致的，修改后要清理缓存才会看到效果。（Markup tag 中的写法类似于 Layout 指令的简写，并且他不需要清空缓存就可以看到效果。Markup tag 中 User Guide 中的内容也不及时，请注意看译者的注释。）</p>
+callout 术语有时候指的是通过 layout update 的 XML 代码定义的一个 Block。sidebar 指的是页面布局的左栏或者右栏。当你键入 layout update 代码的时候，请确保语法正确，可以参考下面的例子。
 
+要将 block 置于侧边栏中，页面必须要是两栏或三栏的布局
+
+页面侧边栏添加 block
+ 1. 后台侧边栏，点击 Content，在
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/layout-update-place-block/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -391,26 +392,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/widget-static-block.html">原文地址</a></em></p>
-<p>CMS static block widget 可以让您把某个 content block 放置在您网站的几乎任何地方。</p>
-<p><img src="/wp-content/uploads/2016/11/widgets.png"></p>
-<h2 id="第一步：选择类型"><a href="#第一步：选择类型" class="headerlink" title="第一步：选择类型"></a><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E7%B1%BB%E5%9E%8B"></a>第一步：选择类型</h2><ol>
-<li>后台侧边栏，选择 <strong>Content</strong>，在 <strong>Elements</strong> 下选择 <strong>Widgets</strong></li>
-<li>右上角点击 <strong>Add Widget</strong>，然后做如下事情：<br>a. 在 Settings 部分，设置 <strong>Type</strong> 为 <strong>CMS Static Block</strong>，然后，点击 <strong>Contine</strong><br>b. 检查下 <strong>Design Theme</strong> 设置为当前的主题。<br>c. 点击 <strong>Contine</strong><br><img src="/wp-content/uploads/2016/11/widget-settings.png" alt="Settings"></li>
-<li>在 Storefront Properties 中，做如下事情：<br>a. 在 <strong>Widget Title</strong> 中输入描述性的标题。<br>b. 设置 <strong>Assign to Store Views</strong> 为 All Store Views 或者是你想要他可用的 view。多选的话，请按住 Ctrl 键。<br>c. 在 <strong>Sort Order</strong> 中输入数字。这个数字决定着如果相同位置有其他元素，他的位置。最上面的位置对应着 0。<br><img src="/wp-content/uploads/2016/11/widget-storefront-properties.png" alt="Storefront Properties"></li>
-</ol>
-<h2 id="第二步：完成-Layout-Updates"><a href="#第二步：完成-Layout-Updates" class="headerlink" title="第二步：完成 Layout Updates"></a><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%AE%8C%E6%88%90-layout-updates"></a>第二步：完成 Layout Updates</h2><ol>
-<li>在 Layout Updates 部分，点击 <strong>Add Layout Update</strong></li>
-<li>设置 <strong>Display On to</strong> 为你想要该 block 呈现的 category, product 或 page。要让特定的页面呈现该 block ，这样操作：<br>a. 选择你要作用的 page<br>b. 选择 <strong>Block Reference</strong>，就是下图的 container，他代表着 block 将被放置的位置<br>c. 默认的模板是 CMS Static Block Default Template<br><img src="/wp-content/uploads/2016/11/widget-layout-update-home-page.png" alt="Layout Updates"></li>
-</ol>
-<h2 id="第三步：放置-Block"><a href="#第三步：放置-Block" class="headerlink" title="第三步：放置 Block"></a><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%94%BE%E7%BD%AE-block"></a>第三步：放置 Block</h2><ol>
-<li>左侧的小面板中，选择 <strong>Widget Options</strong></li>
-<li>点击 <strong>Select Block</strong>，在列表中选择你想要的 block</li>
-<li>完成后，点击 <strong>Save</strong></li>
-<li>系统会提示你清理缓存，照做</li>
-<li>可以去前台检查一下是否生效了。</li>
-</ol>
+          原文地址
 
+CMS static block widget 可以让您把某个 content block 放置在您网站的几乎任何地方。
+
+
+
+第一步：选择类型
+ 1. 后台侧边栏，选择 Content，在 Elements 下选择 Widgets
+ 2. 右上角点击 Add Widget，然后做如下事情：
+    a. 在 Settings 部分，设置 Type 为 CMS Static Block，然后，点击 Contine
+    b. 检查下 Design Theme 设置为当前的主题。
+    c. 点击 Contine
+    
+ 3. 在 Storefront Properties 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/widget-static-block/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -476,74 +479,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/block-position.html">原文地址</a></em></p>
-<p>控制 page layout 和 blocks 位置的代码被写在 XML widget 中，这使得放置 block 在页面的特定位置变得比较容易，即时是放置在特定的产品页或分类目录中，也很容易不需要写任何代码。你可以从列表中选择选项，而不用记住所有可能的组合。</p>
-<p>下面的列表展示了不同 page 类型下，blocks 被放置的经典位置。了解更多，请参考 <a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/design/page-layout-standard.html">Standard Page Layouts</a></p>
-<h2 id="Category-and-CMS-Pages"><a href="#Category-and-CMS-Pages" class="headerlink" title="Category and CMS Pages"></a><a href="#category-and-cms-pages"></a>Category and CMS Pages</h2><p>BLOCK REFERENCE</p>
-<p>POSITION</p>
-<p>Breadcrumbs</p>
-<p>The navigation aid at the top of many pages that shows your current location as a link. Any additional content placed in the Breadcrumbs reference floats to the right of the breadcrumbs, if displayed.</p>
-<p>Left Column</p>
-<p>Content is added to the left column.</p>
-<p>Main Content Area</p>
-<p>Content is added to the main content area.</p>
-<p>My Cart Extra Actions</p>
-<p>Content appears below the Cart Subtotal in the My Cart popup located within the top link.</p>
-<p>Navigation Bar</p>
-<p>Content appears below the main navigation bar.</p>
-<p>Page Bottom</p>
-<p>Content appears at the bottom of the page.</p>
-<p>Page Footer</p>
-<p>Content appears above the footer of the page.</p>
-<p>Page Header</p>
-<p>Content appears below the header of the page.</p>
-<p>Page Top</p>
-<p>Content appears at the top of the page.</p>
-<p>Right Column</p>
-<p>Content appears in the right column.</p>
-<p>Store Language</p>
-<p>Content appears in the upper-left corner of the header.</p>
-<h2 id="Product-Page"><a href="#Product-Page" class="headerlink" title="Product Page"></a><a href="#product-page"></a>Product Page</h2><p>BLOCK REFERENCE</p>
-<p>POSITION</p>
-<p>Alert URLs</p>
-<p>Content appears below the title of the product on the product detail page.</p>
-<p>Bottom Block Options Wrapper</p>
-<p>If custom options are added, content appears below the Add to Cart button.</p>
-<p>Breadcrumbs</p>
-<p>Content appears to the right of breadcrumbs—the navigation aid that provides links as a path—that’s showcased below the navigation bar.</p>
-<p>Info Column Options Wrapper</p>
-<p>If a custom options are added, content appears to the right. The same location applies to configurable options.</p>
-<p>Left Column</p>
-<p>Content appears below the left column blocks.</p>
-<p>Main Content Area</p>
-<p>Content appears below the main content area.</p>
-<p>My Cart Extra Actions</p>
-<p>Content appears below the Cart Subtotal in the My Cart popup located within the top link.</p>
-<p>Navigation Bar</p>
-<p>Content appears below the main navigation bar.</p>
-<p>Page Bottom</p>
-<p>Content appears at the bottom of the page.</p>
-<p>Page Footer</p>
-<p>Content appears above the footer of the page.</p>
-<p>Page Header</p>
-<p>Content appears below the header of the page.</p>
-<p>Page Top</p>
-<p>Content appears at the top of the page.</p>
-<p>PayPal Express Checkout (Payflow Edition) Shortcut Wrapper</p>
-<p>If the PayPal payment method is enabled, content appears below the PayPal buy button.</p>
-<p>PayPal Express Checkout Shortcut Wrapper</p>
-<p>If the PayPal payment method is enabled, content appears below the PayPal buy button.</p>
-<p>Product Tags List</p>
-<p>Content appears below the products tag bar.</p>
-<p>Product View Extra Hint</p>
-<p>Content appears below the main top price of the product.</p>
-<p>Right Column</p>
-<p>Content appears below the right column blocks.</p>
-<p>Store Language</p>
-<p>Content appears to the right of the language chooser.</p>
-<p>Tags List Before</p>
-<p>Content appears above the Add Your Tags field.</p>
+          原文地址
 
+控制 page layout 和 blocks 位置的代码被写在 XML widget 中，这使得放置 block 在页面的特定位置变得比较容易，即时是放置在特定的产品页或分类目录中，也很容易不需要写任何代码。你可以从列表中选择选项，而不用记住所有可能的组合。
+
+下面的列表展示了不同 page 类型下，blocks 被放置的经典位置。了解更多，请参考 Standard Page Layouts
+
+Category and CMS Pages
+BLOCK REFERENCE
+
+POSITION
+
+Breadcrumbs
+
+The navigation aid at the top o
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/block-position/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -609,23 +566,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/block-add.html">原文地址</a></p>
-<p>自定义的 blocks 可以被加到页面，一组页面，甚至另一个 blocks 中。你可以在 blocks 中放一个图片轮播，然后把这个 block 放在首页上。</p>
-<p>Blocks 的工作区和 pages 的工作区使用的是相同的控件，来帮助你查找 blocks 以及日常维护操作。</p>
-<p><img src="/wp-content/uploads/2016/11/blocks-workspace.png" alt="Blocks Workspace"></p>
-<h2 id="创建-block"><a href="#创建-block" class="headerlink" title="创建 block"></a><a href="#%E5%88%9B%E5%BB%BA-block"></a>创建 block</h2><ol>
-<li><p>后台侧边栏，点击 <strong>Content</strong>，在 <strong>Elements</strong> 下，选择 <strong>Blocks</strong></p>
-</li>
-<li><p>右上角点击 <strong>Add New Block</strong>，然后，做如下事情：<br>a. 填入 <strong>Block Title</strong><br>b. 填入 <strong>Identifier</strong>，他得是唯一的，使用小写字符，并且使用下划线，不要用空格。<br>c. 选择 Block 可用的 <strong>Store View(s)</strong><br>d. 设置 <strong>Status</strong> 为 “Enabled”，这样改 block 才是可见的。<br>e. 完成 <strong>Content</strong> 内容</p>
-<ul>
-<li>你可以使用编辑器来格式化内容，创建链接，表格，图片等等。</li>
-<li>如果你更喜欢用 HTML 代码，点击 Show&#x2F;Hide Editor</li>
-</ul>
-</li>
-<li><p>完成后，点击 <strong>Save Block</strong></p>
-</li>
-</ol>
+          原文地址
 
+自定义的 blocks 可以被加到页面，一组页面，甚至另一个 blocks 中。你可以在 blocks 中放一个图片轮播，然后把这个 block 放在首页上。
+
+Blocks 的工作区和 pages 的工作区使用的是相同的控件，来帮助你查找 blocks 以及日常维护操作。
+
+
+
+创建 block
+ 1. 后台侧边栏，点击 Content，在 Elements 下，选择 Blocks
+    
+    
+ 2. 右上角点击 Add New Block，然后，做如下事情：
+    a. 填入 Block Title
+    b. 填入 Identifier，他得是唯一的，使用小写字符
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/block-add/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -691,11 +654,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/cms/blocks.html">原文地址</a></em></p>
-<p>一个 block 是一个可以放置在页面的任何位置的模块化的单元。Content blocks 有时候称之为 static blocks 或者 CMS blocks。可以用它来战士固定的信息，比如文本、图像、嵌入的视频，以及来自于 widget 、数据库或其他地方的动态信息。主页的大多数元素都是 blocks，他们很容易管理。</p>
-<p>你不用写一行代码就可以创建自定义的 blocks，并把他们放置到页面的特定位置。还可以通过创建 layout update XML 来定义 blocks 及其位置。</p>
-<p><img src="/wp-content/uploads/2016/11/storefront-blocks-home-page_thumb_0_0.png" alt="Blocks on Home Page"></p>
+          原文地址
 
+一个 block 是一个可以放置在页面的任何位置的模块化的单元。Content blocks 有时候称之为 static blocks 或者 CMS blocks。可以用它来战士固定的信息，比如文本、图像、嵌入的视频，以及来自于 widget 、数据库或其他地方的动态信息。主页的大多数元素都是 blocks，他们很容易管理。
+
+你不用写一行代码就可以创建自定义的 blocks，并把他们放置到页面的特定位置。还可以通过创建 layout update XML 来定义 blocks 及其位置。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blocks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -761,82 +732,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Web-安全字体"><a href="#Web-安全字体" class="headerlink" title="Web 安全字体"></a><a href="#web-%E5%AE%89%E5%85%A8%E5%AD%97%E4%BD%93"></a>Web 安全字体</h2><p>默认情形下，浏览器是以系统中已经安装的字体来进行渲染的。</p>
-<p>css 的 font-family 命令，指定了网页元素所使用的字体。下面是一个例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">font-family: Georgia, &quot;Times New Roman&quot;,</span><br><span class="line">             &quot;Microsoft YaHei&quot;, &quot;微软雅黑&quot;,</span><br><span class="line">             STXihei, &quot;华文细黑&quot;,</span><br><span class="line">             serif;</span><br></pre></td></tr></table></figure>
+          Web 安全字体
+默认情形下，浏览器是以系统中已经安装的字体来进行渲染的。
 
-<p>它的规则有三条：</p>
-<ol>
-<li>优先使用排在前面的字体。</li>
-<li>如果找不到该种字体，或者该种字体不包括所要渲染的文字，则使用下一种字体。</li>
-<li>如果所列出的字体，都无法满足需要，则让操作系统自行决定使用哪种字体。</li>
-</ol>
-<p>但是世界上有那么多的系统，那么多版本，预装的字体也大不相同，如果让操作系统自行决定，可能结果不是很好看。所以，人们对主流个人计算机操作系统中的系统字体做了统计，选出最小公分母，也就是大家都有的字体，称之为 Web 安全字体。</p>
-<p>要了解 Web 安全字体，可以参阅 <a target="_blank" rel="noopener" href="http://www.w3schools.com/cssref/css_websafe_fonts.asp">CSS Web Safe Font Combinations</a></p>
-<p>下面举一个例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: Arial, Helvetica, sans-serif;</span><br></pre></td></tr></table></figure>
+css 的 font-family 命令，指定了网页元素所使用的字体。下面是一个例子：
 
-<p>我们选择 Arial 作为首选字体（注：Arial 字体是最常用的 sans serif 字体，也是 Windows 的默认字体，当字体很小是不容易阅读），但是，苹果系统中没有这个字体，所以我们选择 Helvetica（和 Arial 很相似）作为第二备选字体，最后我们选择 sans-serif 作为第三备选字体，如果在一个既没有 Arial 也没有 Helvetica 的系统里，那么浏览器会使用默认的 sans-serif 字体来渲染文字。这样，我们很大程度上保证了使用不同操作系统的访问者都能看到相同（至少是类似）的页面文字。</p>
-<p>除了 Arial，常见的安全字体还有：</p>
-<ul>
-<li>Verdana 字体，它是微软公司的核心字体之一，专门为屏幕显示而开发的。它的应用广泛，宽度大而易于阅读，是显示器中最清晰的字体。CSS 写法：<code>font-family: Verdana, Geneva, sans-serif;</code></li>
-<li>Times New Roman 字体，它是最常用的 serif 字体，是浏览器默认的字体。小号字的易读性也很差。CSS 写法：<code>font-family: &#39;Times New Roman&#39;, Times, serif;</code></li>
-</ul>
-<p>以上说的这些其实是西文字体，对于中文字体，当然涉及到各类系统中中文字体的安装情况的一个统计，博主会另写一篇。</p>
-<p>安全字体显然是不够用的，所以也出现了一些通过图像，Adobe Flash或其他基于非文本的技术的解决办法。这里不做展开，但是这种方式的缺点很明显，就是它不是文本，不可以选择、这样就不能很好地被识别，翻译，供残疾人使用的设备访问。所以这种技术越来越被淘汰了。</p>
-<h2 id="font-face"><a href="#font-face" class="headerlink" title="@font-face"></a><a href="#@font-face"></a>@font-face</h2><p>他是 CSS3 的一项新特性，也不是什么新鲜技术，它最早出现在 CSS2 的规范定义中，但在 CSS2.1 中又被删除，现在正式列入 CSS3。目前主流的浏览器（IE 4+&#x2F;Firefox 3.5+&#x2F;Chrome 1+&#x2F;Safari 3.1+&#x2F;Opera 10+）都能够支持这个属性，所以不用担心会有浏览器兼容性问题。</p>
-<p>@font-face 允许您在网页中使用电脑中没有安装的字体，完全摆脱安全字体的限制。只需将字体包安装在服务器上，当用户加载网页时，字体包会自动下载到用户机器上，保证字体能够正确渲染。</p>
-<p>随着 @font-face 的不断流行，产生了许多新的字体格式图标集，称为网络字体。Google Fonts API 就是基于@font-face 的特性开发的一套优秀的网络字体库。</p>
-<p>网络字体的优点有很多：</p>
-<ul>
-<li>使用的是真正的文本，而不是图片，放大和缩小都不会影响渲染效果，用户体验好；</li>
-<li>可以被搜索引擎辨认；</li>
-<li>不像图片每次需要重新生成，添加删除更方便。</li>
-</ul>
-<p>这里先讲原理，首先，使用<code>@font-face</code>声明一个字体集，使用<code>font-family</code>描述符为它提供一个名称，然后使用<code>src</code>指向包含字体本身的文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">  src: url(&#x27;awesome-font.ttf&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
 
-<p>这里，通过链接到一个名为 <code>wesome-font.ttf</code> 的字体文件，定义了一个名为Awesome Font 的字体集。</p>
-<p>然后，在您的CSS中，使用 <code>font-family</code> 属性将该字体应用到一个 HTML 元素：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1 &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>但是，Web 字体具有许多不同的格式，并且各种 Web 浏览器支持这些格式的不同子集。</p>
-<p><img src="/wp-content/uploads/2016/11/web-fonts.jpg"></p>
-<p>也就是说，为了支持所有的主流 Web 浏览器，一个 <code>@font-face</code> CSS 声明实际上无法像前面提到的那样那么简单：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">  src: url(&#x27;awesome-font.ttf&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+font-family: Georgia, "Times New Roman",
+             "Microsoft YaHei", "微软雅黑",
+             STXihei, "华文细黑",
+             serif;
 
-<p>它应该是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;Awesome Font&#x27;;</span><br><span class="line">  src: url(&#x27;awesome-font.eot&#x27;); /* IE9 Compat Modes */</span><br><span class="line">  src: url(&#x27;awesome-font.eot?#iefix&#x27;) format(&#x27;embedded-opentype&#x27;), /* IE6-IE8 */</span><br><span class="line">       url(&#x27;awesome-font.woff&#x27;) format(&#x27;woff&#x27;), /* Modern Browsers */</span><br><span class="line">       url(&#x27;awesome-font.ttf&#x27;)  format(&#x27;truetype&#x27;), /* Safari, Android, iOS */</span><br><span class="line">       url(&#x27;awesome-font.svg#svgFontName&#x27;) format(&#x27;svg&#x27;); /* Legacy iOS */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>总结起来要点就是：</p>
-<ul>
-<li>将 WOFF 2.0 变体提供给支持它的浏览器</li>
-<li>将 WOFF 变体提供给大多数浏览器</li>
-<li>将 TTF 变体提供给旧 Android（4.4 版以下）浏览器</li>
-<li>将 EOT 变体提供给旧 IE（IE9 之下）浏览器</li>
-</ul>
-<p>从技术上讲，还有 SVG 字体容器，但 IE 和 Firefox 从不支持它，并且现在 Chrome 也不再支持它。因此，其用途就很有限。</p>
-<p>看到这里，感觉脑袋都要炸了。Google Fonts 提供了便利。Google Fonts 会根据浏览器的类型，来加载不同的 CSS 以加载不同格式的字体。</p>
-<h2 id="如何使用-Google-Fonts"><a href="#如何使用-Google-Fonts" class="headerlink" title="如何使用 Google Fonts"></a><a href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-google-fonts"></a>如何使用 Google Fonts</h2><ol>
-<li><p>标准方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">link rel=&#x27;stylesheet&#x27; type=&#x27;text/css&#x27; href=&#x27;http://fonts.googleapis.com/css?family=Condiment&#x27;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>@import</code> 方式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import url(http://fonts.googleapis.com/css?family=Condiment);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JavaScript 方式（代码省略）</p>
-</li>
-</ol>
-<h2 id="国内环境使用-Google-Fonts"><a href="#国内环境使用-Google-Fonts" class="headerlink" title="国内环境使用 Google Fonts"></a><a href="#%E5%9B%BD%E5%86%85%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8-google-fonts"></a>国内环境使用 Google Fonts</h2><p>有知乎大神，通过 Best Trace 追踪路由器，发现 Google 字体库的国内服务器在北京和上海，另外通过站长工具 ping 测试<code>http://fonts.googleapis.com</code>，速度是杠杆的。<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24955477">参考地址</a>。</p>
-<p>博主在本地也测试了引用 google fonts 的某个字体，速度是 74ms。所以看起来本阶段可以直接用 Google Fonts 了。之前的观念可以改改了。。</p>
-<p>如果速度依然有问题，可以参考参考文档的最后一条，结合前面的原理，应该是很好理解的。</p>
-<h2 id="字体图标原理"><a href="#字体图标原理" class="headerlink" title="字体图标原理"></a><a href="#%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E5%8E%9F%E7%90%86"></a>字体图标原理</h2><p><code>@font-face</code>引入一个字体集，这个字体集对应着字符的显示信息，那么浏览器读取到 <code>A</code> 的时候，就会使用 <code>A</code> 对应的 Unicode 编码去查找字体集中对应的显示描述信息。</p>
-<p>字体图标只是让某些 unicode 码（可以自己创建）对应我们自定义的字体库，而我们的字体库文件中有关于该 unicode 码的显示描述信息而已。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">font-family: &#x27;Glyphicons Halflings&#x27;;</span><br><span class="line">content: &quot;\e131&quot;;</span><br><span class="line">padding-right: 8px;</span><br><span class="line">color: #b1b1b1;</span><br><span class="line">float: left;</span><br></pre></td></tr></table></figure>
+它的规则有三条：
 
-<p>这里 unicode 码就是 <code>\e131</code>。查看网站的加载信息，可以发现我们引用了 Glyphicons Halflings 字体。他的格式和字体的格式也是相同的。</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="http://www.adobe.com/cn/devnet/html5/articles/web-typography-and-css-font-face.html">Web版式和@font-face简介</a><br><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/web/1505_zhangyan_googlefont/#icomments">使用 Google Fonts 为网页添加美观字体</a><br><a target="_blank" rel="noopener" href="https://developers.google.com/fonts/docs/technical_considerations">Google Fonts Technical Considerations</a><br><a target="_blank" rel="noopener" href="https://uhy.github.io/2014/06/22/google-fonts-api/">如何优雅的使用Google Fonts API</a></p>
-
+ 1. 优先使用排在前面的字体。
+ 2. 如果找不到该种字体，或者该种字体不包括所要渲染的文字，则使用下一种字体。
+ 3. 如
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/web-fonts/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -902,19 +827,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/marketing/variables.html">原文地址</a></em></p>
-<p>变量是一些信息片段，他们可以一次创建，多处使用，比如用在电子邮件模板，blocks 和 content pages 中。Magento 店铺预先包含了许多变量，他们可以用来个性化沟通。另外，你还可以创建自己的自定义变量。</p>
-<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a><a href="#%E7%9B%B8%E5%85%B3%E6%96%87%E7%AB%A0"></a>相关文章</h2><ul>
-<li><a href="/variables-predefined/">添加预定义的变量(Adding Predefined Variables)</a></li>
-<li><a href="/variables-custom/">添加自定义变量(Adding Custom Variables)</a></li>
-<li><a href="/markup-tags/">Markup Tags</a><ul>
-<li><a href="/markup-tags-links/">在链接中使用 Markup Tags(Using Markup Tags in Links)</a></li>
-</ul>
-</li>
-<li><a href="/catalog-urls-dynamic-media/">动态媒体网址(Dynamic Media URLs)</a></li>
-<li><a href="/variables-reference/">变量参考列表(Variable Reference)</a></li>
-</ul>
+          原文地址
 
+变量是一些信息片段，他们可以一次创建，多处使用，比如用在电子邮件模板，blocks 和 content pages 中。Magento 店铺预先包含了许多变量，他们可以用来个性化沟通。另外，你还可以创建自己的自定义变量。
+
+相关文章
+ * 添加预定义的变量(Adding Predefined Variables)
+ * 添加自定义变量(Adding Custom Variables)
+ * Markup Tags * 在链接中使用 Markup Tags(Using Markup Tags in Links)
+   
+   
+ * 动态媒体网址(Dynamic Media URLs
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/variables/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -980,91 +911,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/marketing/variables-reference.html">原文地址</a></em><br>Most email templates have a section of additional variables that are specific to the template. The following are examples of some frequently used templates</p>
-<h2 id="Email-Template-Variables"><a href="#Email-Template-Variables" class="headerlink" title="Email Template Variables"></a><a href="#email-template-variables"></a>Email Template Variables</h2><p>Variable</p>
-<p>Markup Tag</p>
-<p>Email Footer Template</p>
-<p>&amp;#123;&amp;#123;template config_path&#x3D;”design&#x2F;email&#x2F;footer_template”&amp;#125;&amp;#125;</p>
-<p>Email Header Template</p>
-<p>&amp;#123;&amp;#123;template config_path&#x3D;”design&#x2F;email&#x2F;header_template”&amp;#125;&amp;#125;</p>
-<p>Email Logo Image Alt</p>
-<p>&amp;#123;&amp;#123;var logo_alt&amp;#125;&amp;#125;</p>
-<p>Email Logo Image URL</p>
-<p>&amp;#123;&amp;#123;var logo_url&amp;#125;&amp;#125;</p>
-<p>Email Logo Image Height</p>
-<p>&amp;#123;&amp;#123;var logo_height&amp;#125;&amp;#125;</p>
-<p>Email Logo Image Width</p>
-<p>&amp;#123;&amp;#123;var logo_width&amp;#125;&amp;#125;</p>
-<p>Template CSS</p>
-<p>&amp;#123;&amp;#123;var template_stylesraw&amp;#125;&amp;#125;</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a href="#store-contact-information-variables"></a></h2><p>Store Contact Information Variables</p>
-<p>Variable</p>
-<p>Markup Tag</p>
-<p>Base Unsecure URL</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”web&#x2F;unsecure&#x2F;base_url”&amp;#125;&amp;#125;</p>
-<p>Base Secure URL</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”web&#x2F;secure&#x2F;base_url”&amp;#125;&amp;#125;</p>
-<p>General Contact Name</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_general&#x2F;name”&amp;#125;&amp;#125;</p>
-<p>General Contact Email</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_general&#x2F;email”&amp;#125;&amp;#125;</p>
-<p>Sales Representative Contact Name</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_sales&#x2F;name”&amp;#125;&amp;#125;</p>
-<p>Sales Representative Contact Email</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_sales&#x2F;email”&amp;#125;&amp;#125;</p>
-<p>Custom1 Contact Name</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_custom1&#x2F;name”&amp;#125;&amp;#125;</p>
-<p>Custom1 Contact Email</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_custom1&#x2F;email”&amp;#125;&amp;#125;</p>
-<p>Custom2 Contact Name</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_custom2&#x2F;name”&amp;#125;&amp;#125;</p>
-<p>Custom2 Contact Email</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”trans_email&#x2F;ident_custom2&#x2F;email”&amp;#125;&amp;#125;</p>
-<p>Store Name</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;name”&amp;#125;&amp;#125;</p>
-<p>Store Phone Telephone</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;phone”&amp;#125;&amp;#125;</p>
-<p>Store Hours</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;hours”&amp;#125;&amp;#125;</p>
-<p>Country</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;country_id”&amp;#125;&amp;#125;</p>
-<p>Region&#x2F;State</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;region_id”&amp;#125;&amp;#125;</p>
-<p>Zip&#x2F;Postal Code</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;postcode”&amp;#125;&amp;#125;</p>
-<p>City</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;city”&amp;#125;&amp;#125;</p>
-<p>Street Address 1</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;street_line1”&amp;#125;&amp;#125;</p>
-<p>Street Address 2</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;street_line2”&amp;#125;&amp;#125;</p>
-<p>Store Contact Address</p>
-<p>&amp;#123;&amp;#123;config path&#x3D;”general&#x2F;store_information&#x2F;address”&amp;#125;&amp;#125;</p>
-<h2 id="New-Account-Template-Variables"><a href="#New-Account-Template-Variables" class="headerlink" title="New Account Template Variables"></a><a href="#new-account-template-variables"></a>New Account Template Variables</h2><p>Variable</p>
-<p>Markup Tag</p>
-<p>Customer Account URL</p>
-<p>&amp;#123;&amp;#123;var this.getUrl($store, ‘customer&#x2F;account&#x2F;‘)&amp;#125;&amp;#125;</p>
-<p>Customer Email</p>
-<p>&amp;#123;&amp;#123;var customer.email&amp;#125;&amp;#125;</p>
-<p>Customer Name</p>
-<p>&amp;#123;&amp;#123;var customer.name&amp;#125;&amp;#125;</p>
-<h2 id="New-Order-Template-Variables"><a href="#New-Order-Template-Variables" class="headerlink" title="New Order Template Variables"></a><a href="#new-order-template-variables"></a>New Order Template Variables</h2><p>Variable</p>
-<p>Markup Tag</p>
-<p>Billing Address</p>
-<p>&amp;#123;&amp;#123;var formattedBillingAddressraw&amp;#125;&amp;#125;</p>
-<p>Email Order Note</p>
-<p>&amp;#123;&amp;#123;var order.getEmailCustomerNote()&amp;#125;&amp;#125;</p>
-<p>Order ID</p>
-<p>&amp;#123;&amp;#123;var order.increment_id&amp;#125;&amp;#125;</p>
-<p>Order Items Grid</p>
-<p>&amp;#123;&amp;#123;layout handle&#x3D;”sales_email_order_items” order&#x3D;$order area&#x3D;”frontend”&amp;#125;&amp;#125;</p>
-<p>Payment Details</p>
-<p>&amp;#123;&amp;#123;var payment_htmlraw&amp;#125;&amp;#125;</p>
-<p>Shipping Address</p>
-<p>&amp;#123;&amp;#123;var formattedShippingAddressraw&amp;#125;&amp;#125;</p>
-<p>Shipping Description</p>
-<p>&amp;#123;&amp;#123;var order.getShippingDescription()&amp;#125;&amp;#125;</p>
+          原文地址
+Most email templates have a section of additional variables that are specific to the template. The following are examples of some frequently used templates
 
+Email Template Variables
+Variable
+
+Markup Tag
+
+Email Footer Template
+
+&#123;&#123;template config_path=”design/email/footer_template”&#125
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/variables-reference/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1130,27 +995,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><em><a target="_blank" rel="noopener" href="http://docs.magento.com/m2/ce/user_guide/catalog/catalog-urls-dynamic-media.html">原文地址</a></em></p>
-<p>动态媒体URL是图像或其他媒体资源的相对引用。启用时，可以使用动态媒体 URL 链接到你服务器或者 CDN 上的媒体资源。动态媒体 URL 的使用影响着 Catalog 的表现。编辑器可以配置为在catalog product 和 category description 中是使用静态还是动态的媒体URL。</p>
-<p>动态媒体 URL 的使用看起来是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#123;&amp;#123;media url=&quot;path/to/image.jpg&quot;&amp;#125;&amp;#125;</span><br></pre></td></tr></table></figure>
+          原文地址
 
-<h2 id="配置为动态媒体URLs"><a href="#配置为动态媒体URLs" class="headerlink" title="配置为动态媒体URLs"></a><a href="#%E9%85%8D%E7%BD%AE%E4%B8%BA%E5%8A%A8%E6%80%81%E5%AA%92%E4%BD%93urls"></a>配置为动态媒体URLs</h2><ol>
-<li>在后台侧边栏，点击<strong>Stores</strong>，在<strong>Settings</strong>下，选择<strong>Configuration</strong></li>
-<li>在<strong>Catalog</strong>组下选择<strong>Catalog</strong></li>
-<li>展开<strong>Storefront</strong>部分，设置<strong>Allow Dynamic Media URLs in Products and Categories</strong> 为 Yes</li>
-<li>完成后，点击<strong>Save Config</strong><br><img src="/wp-content/uploads/2016/11/config-catalog-catalog-storefront.png" alt="storefront"></li>
-</ol>
-<h2 id="媒体文件使用静态URLs"><a href="#媒体文件使用静态URLs" class="headerlink" title="媒体文件使用静态URLs"></a><a href="#%E5%AA%92%E4%BD%93%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81urls"></a>媒体文件使用静态URLs</h2><p>默认情况下，从 media storage 向 catalog 中插入的图片，有相对的动态URLs。如果你偏好静态的URL，你可以更改设置值。</p>
-<ol>
-<li>在后台侧边栏，点击<strong>Stores</strong>，在<strong>Settings</strong>下选择<strong>Configuration</strong></li>
-<li>在<strong>General</strong>下，选择<strong>Content Management</strong></li>
-<li>展开<strong>WYSIWYGWhat Options</strong>部分<br><img src="/wp-content/uploads/2016/11/config-general-content-management-wysiwyg-options.png" alt="WYSIWYGWhat Options"></li>
-<li>设置<strong>Use Static URLs for Media Content in WYSIWYG for Catalog</strong>为Yes</li>
-<li>完成后，点击<strong>Save Config</strong></li>
-</ol>
-<p>译者注，设置为静态后，相当于将媒体地址硬编码了。原来插入图片时，编辑器会插入 markup tag，设置为静态后，直接插入了绝对地址。</p>
+动态媒体URL是图像或其他媒体资源的相对引用。启用时，可以使用动态媒体 URL 链接到你服务器或者 CDN 上的媒体资源。动态媒体 URL 的使用影响着 Catalog 的表现。编辑器可以配置为在catalog product 和 category description 中是使用静态还是动态的媒体URL。
 
+动态媒体 URL 的使用看起来是这样的：
+
+1
+
+
+&#123;&#123;media url="path/to/image.jpg"&#125;&#125;
+
+
+配置为动态媒体URLs
+ 1. 在后台侧边栏，点击Stores，在Settings下，选择Configurati
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/catalog-urls-dynamic-media/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

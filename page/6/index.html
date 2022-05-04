@@ -231,14 +231,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>如果 model 的主键不是自增的，请在 resource model 中写上 <code>$_isPkAutoIncrement = false</code></strong> 通常我们创建一个 model 关联一张表。比如说我表的主键是 <code>sample_id</code> ，他不是自增的。那么使用下面的代码，本来我想插入数据，实际表现却不是很正常，可能插入不了，要么做了更新操作。但是神奇的是可以从数据库中取数据。 插入数据可能不正常</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$data = array(&#x27;sample_id&#x27;=&gt;&#x27;new_id&#x27;,&#x27;custid&#x27;=&gt;1,&#x27;info&#x27;=&gt;&#x27;info&#x27;);</span><br><span class="line">$model = Mage::getModel(&#x27;interface/data&#x27;)-&gt;setData($data);</span><br><span class="line">$model-&gt;save();</span><br></pre></td></tr></table></figure>
+          如果 model 的主键不是自增的，请在 resource model 中写上 $_isPkAutoIncrement = false 通常我们创建一个 model 关联一张表。比如说我表的主键是 sample_id ，他不是自增的。那么使用下面的代码，本来我想插入数据，实际表现却不是很正常，可能插入不了，要么做了更新操作。但是神奇的是可以从数据库中取数据。 插入数据可能不正常
 
-<p>读数据正常</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$sample = Mage::getModel(&#x27;interface/data&#x27;)-&gt;load(&#x27;sample_id&#x27;)</span><br><span class="line">var_dump($sample-&gt;getData());</span><br></pre></td></tr></table></figure>
+1
+2
+3
 
-<p>原因就是 resource model 中 <code>$_isPkAutoIncrement</code> 没有设置为 false 。该属性是用来判断主键是否自增的，默认为 true ，就是主键自增。 参考： <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/crud-models-in-magento-2/">CRUD Models in Magento 2</a></p>
 
+$data = array('sample_id'=>'new_id','custid'=>1,'info'=>'info');
+$model = Mage::getModel('interface/
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ispkautoincrement/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -304,8 +313,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>当有两台以上网络设备需要通信，我们需要组建网络，从物理上来讲，只要做一件事情，一根网线将两者相连。此时在物理上两台机器已经可以通信。你问我你这样做了但是为什么不能联机打游戏，这是因为目前两台设备的网络参数没有被正确的设置，所以互相不理睬对方发来的数据包，所以你游戏玩不起来，但是网络在物理上已经联通了，不信你看下你的网卡上的灯(如果有的话)是不是在闪烁。至于要如何才能达到设备之间的程序可以正常通信(可以联机打游戏)，需要了解OSI七层模型(虽然你看的似懂非懂，但是你先看一下，混个脸熟)： 1、物理层： 主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用是传输比特流（就是由1、0转化为电流强弱来进行传输,到达目的地后在转化为1、0，也就是我们常说的数模转换与模数转换）。这一层的数据叫做比特。 　　 2、数据链路层： 定义了如何让格式化数据以进行传输，以及如何让控制对物理介质的访问。这一层通常还提供错误检测和纠正，以确保数据的可靠传输。 　　 3、网络层： 在位于不同地理位置的网络中的两个主机系统之间提供连接和路径选择。Internet的发展使得从世界各站点访问信息的用户数大大增加，而网络层正是管理这种连接的层。 　　 4、运输层： 定义了一些传输数据的协议和端口号（WWW端口80等），如： TCP（transmission control protocol –传输控制协议，传输效率低，可靠性强，用于传输可靠性要求高，数据量大的数据） UDP（user datagram protocol–用户数据报协议，与TCP特性恰恰相反，用于传输可靠性要求不高，数据量小的数据，如QQ聊天数据就是通过这种方式传输的）。 主要是将从下层接收的数据进行分段和传输，到达目的地址后再进行重组。常常把这一层数据叫做段。 　　 5、会话层： 通过运输层（端口号：传输端口与接收端口）建立数据传输的通路。主要在你的系统之间发起会话或者接受会话请求（设备之间需要互相认识可以是IP也可以是MAC或者是主机名） 　　 6、表示层： 可确保一个系统的应用层所发送的信息可以被另一个系统的应用层读取。例如，PC程序与另一台计算机进行通信，其中一台计算机使用扩展二一十进制交换码（EBCDIC），而另一台则使用美国信息交换标准码（ASCII）来表示相同的字符。如有必要，表示层会通过使用一种通格式来实现多种数据格式之间的转换。 　　 7、应用层： 是最靠近用户的OSI层。这一层为用户的应用程序（例如电子邮件、文件传输和终端仿真）提供网络服务。 解释一下： 协议：即语法，规范，约定，表示对于现象或者变化遵守协议的双方都对其做相同的理解，并将自己的意愿用公认的方式表达出来，以便于相互之间能够理解和协作。 在两台设备进行程序通讯的时候，我们实实在在看到的是那根不动的网线以及网卡上闪烁的灯，这是你看到的物理设备。在物理设备上，我们开始想象，里面是电信号。是代表1和0的高电压低电压不断的通过。这里每一个高电压与一个低电压就是一个bit，我们看到的这一个个bit就是通讯数据的最基本单位，至于多少的电压理解为1，多少的电压理解为0，这个就是物理层协议规定的问题，也就是说，如果通信设备共同遵循物理层协议，那么双方就能够理解或者发送对方理解的bit流。 数据链路层，是第二层，这一层基于前一层，将bit流打包，形成第二层数据帧，这个你这么理解，我监听对方的数据传输，我们约定我每次监听对方几个bit，将几个bit作为一个组合来理解，这个组合被称为数据帧，因为我们现在看的是按照第二层协议来组合的bit流，因此称为二层数据帧，二层数据帧里面打包了数据的来源设备和目标设备的物理标识(MAC地址)用于区分数据从哪里来要到哪里去。 往后的每一层，都是再前一层的基础上按照各自的目的继续组合数据帧，形成隔层的数据帧，最终这个打包了若干次的数据包被送到对端，对端依次从高到低对数据包进行拆帧，然后理解这个包的意图并做出反应，这个时候你们就可以联机打游戏了(前提游戏支持联机玩哦。。扫雷好像不能联机打)。 现在我们考虑网络的搭建： 将设备相连肯定是要用网线的，两个设备一个网线就够了，三个设备(三个网口)你要几个网线呢？嘿嘿，你的线没法插了。 讲个新设备，集线器(HUB)。 你这样想象集线器：它上面有很多接口。他把任何一个口上收到的数据在所有的接口上发送一遍，这个过程我们广播。也就是说，一个机器发送的数据包，其他设备都是能收到的(这也就是为什么网络可以被监听)，只是这些设备选择性的丢弃掉跟自己不相关的数据包(目的地址(目标MAC)跟我的地址不一样)。 ok，HUB能够解决数据互联的问题，但是这个傻瓜啥事都广播，导致线路里面有大量的包都是没有意义的，需要被丢弃的，所以我们对这个设备进行了升级，我们搞出来一个高级的玩意，叫做交换机。交换机的改进在于交换机会学习各端口所接设备的mac地址，如果没学会就广播数据包，广播后就学到了，学到后就不需要广播了，根据目标mac地址，就可以选择对应的端口发送数据，这样网络性能就有了提高。 然而有了交换机减少了广播报，但是当交换机的设备越来越多，还是会出现许多包需要通过广播来传输，这个时候我们需要控制网络的规模，其实就是为了控制广播量，将广播包的数量控制在交换机性能范围之内。方法简单，拆分，拆成多个小网络，每个网络连接一个独立的交换机，这样每个交换机只在各自的小网络内广播。此时有需要互联，怎么办，直接接在一起，这是不行的，因为你接在一起后一个交换机的数据包会发送到另一台，另一台收到包后还是会有广播的可能，这样还是会有很多数据包在所有交换机上都广播一遍，很明显，这违背了我们隔离小网络的初衷。 我们添加一个新设备，路由器。 路由器工作在第三层，你理解为他在上一层的基础上又添加了ip地址信息，当然数据包除了有了来源mac地址与目标mac地址，又有了来源ip地址和目标ip地址。路由器理解第三层的数据包，我们将独立的交换机接在路由器的各个端口上，当某一个交换机将数据包广播发送到路由器后，路由器接到数据后不会立刻广播，他会看下目标ip地址，然后根据ip地址后选择相应的端口发送，这保证了广播不会出现在不相关的交换机上。这样路由就很好的隔离了各个小网络，同时又让各个小网络能够有序通信。 好了，网络的基础建设就是建设交换机和路由器，用交换机组件小网络，用路由器连接小网络，就这么简单，按照这个方法能够构建高性能且稳定的网络，但是成本可能比较高。 因为每当分隔新的小网络，你就需要添加新的交换机，将新的交换机接到路由器上，然而买新的交换机需要钱，而且路由端口也会有用完的时候，你需要购买更多的路由，总之，你可能忙于布线，忙于添加新设备，忙于连接新设备。 给你一个新技术VLAN(虚拟局域网) 我们设计了一种全新的交换机，他比我们上面说的交换机更加智能，他能够在交换机上设定若干个逻辑区域，然后将端口划分到这些独立区域里面去，这样属于同一个独立区域的端口会参与广播，属于不同独立区域的端口之间不可以广播，这样就可以在交换机上灵活的更改局域网的数量和每个局域网的大小。由于这些网络设备在物理上属于同一个设备，在逻辑上又属于不同的网络，所以我们称这种网络为虚拟局域网，虚拟局域网用一个id来标识,这个id称为VLANID，其范围为1-4096(由相关的协议数据结构决定)。不同的id代表不同的虚拟局域网，不同的局域网内部广播，之间隔离，需要通信可以将不同的局域网内部端口接到路由器上，这样就实现了局域网之间的联通。 再来一个更加智能的设备，三层交换机。这个交换机在上面的基础上，集成了路由模块，你通过这个交换机就可以实现局域网的隔离和通信。 上面你理解的没问题的话，我们再考虑更加靠近实际的问题。 假设公司有两层楼，一层又销售部和生产部，二楼也有销售部和生产部。我们通常会在每一层使用楼道交换机，然后将该层所有端口接入楼道交换机，同时我们可能会希望做这样的隔离，让一楼销售部和二楼销售部在一个局域网中，一楼生产部和二楼生产部在一个局域网中，那你按照之前的知识，你在一楼的交换机上划分两个局域网 vlan1 vlan2，在二楼也划分vlan1 vlan2 然后 一楼交换机的vlan1 和二楼交换机的vlan1用一个跳线接起来，一楼vlan2和二楼vlan2用一个跳线接起来，这样数据就在各自的局域网内部广播了。但是这样做有点麻烦，就是你需要两根条线连接两个交换机。除了多使用一根线，你还需要多消耗端口。当你的部门变多，你需要消耗更多的跳线和端口。 给你一个新技术，trunk。 我们之前所讲的vlan里面的连接口都是access口，在支持vlan的交换机内部，所有的数据帧都是带标签(tag)的(在原始数据帧上添加vlanid表示该数据在属于哪一个vlan，有两种添加标签的方式dot1Q和ISL)，access口的特点是，在数据包发送到对端设备的时候剥离标签，这样普通的网卡就能接收到，因此我们之前一直都是使用access口来达成我们的目标。但是如果两个交换机互联，并且我们希望两个交换机上的多个vlan之间能够广播数据，那么可以使用trunk口，trunk口的作用就是可以配置数据帧在发送的时候不剥离vlan标识，这样另外一个交换机turnk口收到这个包的时候就能知道这个包在原先交换机是属于哪个vlan，这下要转发到哪些端口当中去。这样两端trunk口连接的一根跳线就可以使得不同交换机上的多个vlan能够实现广播通信。 然后讲个稍微烧脑袋的，但是你理解了的话对于你了解trunk口特别有作用： 1、支持vlan的交换机内部转发数据，都是带tag的。 2、交换机端口是untag或者tag是针对不同vlan而言的。可以在vlan1上带tag，在vlan2上不带tag 3、交换机端口需要设定pvid，默认vlanid，其只有一个作用，即使在收到不带tag的包(普通电脑发送的数据包)的时候，打上默认vlanid的标签。 4、端口在某vlan上是tag，那么接受到untag数据帧，就会按照pvid添加tag后交给内部转发，接收到是tag数据帧，则会原样转交内部转发。在发送数据帧的时候，会将转发过来的数据帧进行转发要么本来带数据帧，要么带pvid数据帧。 5、如果端口在某vlan上是untag，那么接收到tag包会直接丢弃，接收到untag后会按照pvid添加tag后转交内部转发，在发送数据帧的时候，会剥离tag信息后进行转发。 6、一个端口只能拥有一个PVID，当一个物理端口拥有了一个PVID的时候，必定会拥有和PVID的TAG等同的VlanID，而且在这个VlanID上，这个物理端口必定是Untagged Port access口与trunk的定义是厂商自己定的，通常如下： 所谓access口，他表示这个端口在某一个vlan上是untagged，因此他不能从对端设备接受tagged包，发送包的时候，会剥离tag信息。它受到的一般都是untagged报文，发送的也是untagged报文 所谓trunk口，表示这个端口在pvid的vlan上是untagged，在其他端口是tagged，这个端口通常只与交换机的turnk连接，收到的都是tagged报文，发送的也是tagged报文。 以上信息了解了你就可以搭建合理的二层网络了，就这样吧。</p>
-
+          当有两台以上网络设备需要通信，我们需要组建网络，从物理上来讲，只要做一件事情，一根网线将两者相连。此时在物理上两台机器已经可以通信。你问我你这样做了但是为什么不能联机打游戏，这是因为目前两台设备的网络参数没有被正确的设置，所以互相不理睬对方发来的数据包，所以你游戏玩不起来，但是网络在物理上已经联通了，不信你看下你的网卡上的灯(如果有的话)是不是在闪烁。至于要如何才能达到设备之间的程序可以正常通信(可以联机打游戏)，需要了解OSI七层模型(虽然你看的似懂非懂，但是你先看一下，混个脸熟)： 1、物理层： 主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E4%B8%93%E4%B8%9A%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E8%A6%81%E8%AE%A9%E5%B0%8F%E7%99%BD%E5%85%94%E7%9C%8B%E5%BE%97%E6%87%82/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -371,50 +387,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>magento 1 企业版的一些页面使用了 fpc ，如果我们调用一个产生随机字符串的方法，那么在 fpc 开着的情况下，我们每次会得到相同的字符串，而不是随机的字符串。那么我们怎样才能每次都得到随机的字符串呢？ 我们以 Magento 1.14.1.0 为例，创建一个模块 VendorName_TestModule 做实验。 File: app\etc\modules\VendorName_TestModule.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config&gt;</span><br><span class="line">    &lt;modules&gt;</span><br><span class="line">        &lt;VendorName_TestModule&gt;</span><br><span class="line">            &lt;active&gt;true&lt;/active&gt;</span><br><span class="line">            &lt;codePool&gt;local&lt;/codePool&gt;</span><br><span class="line">        &lt;/VendorName_TestModule&gt;</span><br><span class="line">    &lt;/modules&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+          magento 1 企业版的一些页面使用了 fpc ，如果我们调用一个产生随机字符串的方法，那么在 fpc 开着的情况下，我们每次会得到相同的字符串，而不是随机的字符串。那么我们怎样才能每次都得到随机的字符串呢？ 我们以 Magento 1.14.1.0 为例，创建一个模块 VendorName_TestModule 做实验。 File: app\etc\modules\VendorName_TestModule.xml
 
-<p>File: app\code\local\VendorName\TestModule\etc\config.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config&gt;</span><br><span class="line">    &lt;modules&gt;</span><br><span class="line">        &lt;VendorName_TestModule&gt;</span><br><span class="line">            &lt;version&gt;0.1.0&lt;/version&gt;</span><br><span class="line">        &lt;/VendorName_TestModule&gt;</span><br><span class="line">    &lt;/modules&gt;</span><br><span class="line">    &lt;global&gt;</span><br><span class="line">        &lt;blocks&gt;</span><br><span class="line">            &lt;testmodule&gt;</span><br><span class="line">                &lt;class&gt;VendorName_TestModule_Block&lt;/class&gt;</span><br><span class="line">            &lt;/testmodule&gt;</span><br><span class="line">        &lt;/blocks&gt;</span><br><span class="line">        &lt;helpers&gt;</span><br><span class="line">            &lt;testmodule&gt;</span><br><span class="line">                &lt;class&gt;VendorName_TestModule_Helper&lt;/class&gt;</span><br><span class="line">            &lt;/testmodule&gt;</span><br><span class="line">        &lt;/helpers&gt;</span><br><span class="line">    &lt;/global&gt;</span><br><span class="line">    &lt;frontend&gt;</span><br><span class="line">        &lt;layout&gt;</span><br><span class="line">            &lt;updates&gt;</span><br><span class="line">                &lt;testmodule&gt;</span><br><span class="line">                    &lt;file&gt;testmodule.xml&lt;/file&gt;</span><br><span class="line">                &lt;/testmodule&gt;</span><br><span class="line">            &lt;/updates&gt;</span><br><span class="line">        &lt;/layout&gt;</span><br><span class="line">    &lt;/frontend&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
+6
+7
+8
+9
 
-<p>File:app\design\frontend\rwd\default\layout\testmodule.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;layout version=&quot;0.1.0&quot;&gt;</span><br><span class="line">    &lt;default&gt;</span><br><span class="line">        &lt;reference name=&quot;content&quot;&gt;</span><br><span class="line">            &lt;block type=&quot;testmodule/fpctest&quot; name=&quot;fpctest&quot; template=&quot;testmodule/fpctest.phtml&quot; after=&quot;-&quot;/&gt;</span><br><span class="line">        &lt;/reference&gt;</span><br><span class="line">    &lt;/default&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure>
 
-<p>File: app\code\local\VendorName\TestModule\Block\Fpctest.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class VendorName_TestModule_Block_Fpctest extends Mage_Core_Block_Template</span><br><span class="line">&#123;</span><br><span class="line">    protected function _construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;setTemplate(&#x27;testmodule/fpctest.phtml&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getRandString($length = 4)</span><br><span class="line">    &#123;</span><br><span class="line">        $chars = &#x27;abcdefghijklmnopqrstuvwxyz0123456789&#x27;;</span><br><span class="line">        $str   = &#x27;&#x27;;</span><br><span class="line">        for ($i = 0; $i &lt; $length; ++$i) &#123;</span><br><span class="line">            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);</span><br><span class="line">        &#125;</span><br><span class="line">        return $str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>File: app\design\frontend\rwd\default\template\testmodule\fpctest.phtml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This is from block</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">&lt;?php echo $this-&gt;getRandString() ?&gt;</span><br><span class="line">&lt;br/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>缓存原因，每次刷新页面得到的都是相同字符串。 <img src="/wp-content/uploads/2018/12/fpc-work.gif"></p>
-<h2 id="每次刷新获得随机字符串"><a href="#每次刷新获得随机字符串" class="headerlink" title="每次刷新获得随机字符串"></a><a href="#%E6%AF%8F%E6%AC%A1%E5%88%B7%E6%96%B0%E8%8E%B7%E5%BE%97%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"></a>每次刷新获得随机字符串</h2><p>File: app\code\local\VendorName\TestModule\etc\cache.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config&gt;</span><br><span class="line">    &lt;placeholders&gt;</span><br><span class="line">        &lt;testmodule&gt;</span><br><span class="line">            &lt;block&gt;testmodule/fpctest&lt;/block&gt;</span><br><span class="line">            &lt;placeholder&gt;TESTMODULE_CACHE&lt;/placeholder&gt;</span><br><span class="line">            &lt;container&gt;VendorName_TestModule_Model_Container_Fpctest&lt;/container&gt;</span><br><span class="line">            &lt;cache_life&gt;5&lt;/cache_life&gt;</span><br><span class="line">        &lt;/testmodule&gt;</span><br><span class="line">    &lt;/placeholders&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>File: app\code\local\VendorName\TestModule\Model\Container\Fpctest.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class VendorName_TestModule_Model_Container_Fpctest extends Enterprise_PageCache_Model_Container_Abstract&#123;</span><br><span class="line"></span><br><span class="line">    protected function _renderBlock()</span><br><span class="line">    &#123;</span><br><span class="line">        $block = $this-&gt;_getPlaceHolderBlock();</span><br><span class="line">        return $block-&gt;toHtml();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _getCacheId()</span><br><span class="line">    &#123;</span><br><span class="line">        return &#x27;TESTMODULE_CACHE&#x27; . md5($this-&gt;_placeholder-&gt;getAttribute(&#x27;cache_id&#x27;)).&#x27;_&#x27;.$this-&gt;_getIdentifier();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _getIdentifier()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;_getCookieValue(Enterprise_PageCache_Model_Cookie::COOKIE_CUSTOMER, &#x27;&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function applyWithoutApp(&amp;$content)</span><br><span class="line">    &#123;</span><br><span class="line">        // by default will attempt to load block from cache.</span><br><span class="line">        return false; // always dynamic</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>记得刷新缓存 <img src="/wp-content/uploads/2018/12/fpc-applyWithoutApp.gif"> fpc 页面有 4 种状态</p>
-<ol>
-<li>Page in cache, no dynamic blocks</li>
-<li>Page in cache, dynamic blocks cached</li>
-<li>Page in cache, dynamic blocks not cached</li>
-<li>Page not in cache</li>
-</ol>
-<p>当我们刷新缓存后，再请求页面，我们的页面处于状态 4 ，执行过程就是正常的过程。但是 magento 会根据 cache.xml ，用 <code>&lt;!--&#123;MY_PLACEHOLDER_NAME_hash&#125;--&gt;rendered block content&lt;!--/&#123;MY_PLACEHOLDER_NAME_hash&#125;--&gt;</code> 替代 block 的内容缓存起来， block 也被缓存起来。在最终页面发送之前，再把上面的 placeholder 替换成缓存的 block 内容。缓存的 block 内容会有过期时间。 所以我们第二次刷新的时候，页面处于状态 2 ，那么这个时候会请求 container 的 applyWithoutApp($content)。按照道理应该返回 block 的内容（如果 block 没有过期的话）。但是我们返回的是 false ，这时候就是状态 3 了，请求转向 <code>pagecache/request/process</code> 最后来到了 container 的 applyWithApp() ，而 applyWithApp() 则会调用 $this-&gt;_renderBlock()。所以我们得到了随机的字符串。 下面讨论下过期时间 File: app\code\local\VendorName\TestModule\Model\Container\Fpctest.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class VendorName_TestModule_Model_Container_Fpctest extends Enterprise_PageCache_Model_Container_Abstract&#123;</span><br><span class="line"></span><br><span class="line">    protected function _renderBlock()</span><br><span class="line">    &#123;</span><br><span class="line">        $block = $this-&gt;_getPlaceHolderBlock();</span><br><span class="line">        return $block-&gt;toHtml();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _getCacheId()</span><br><span class="line">    &#123;</span><br><span class="line">        return &#x27;TESTMODULE_CACHE&#x27; . md5($this-&gt;_placeholder-&gt;getAttribute(&#x27;cache_id&#x27;)).&#x27;_&#x27;.$this-&gt;_getIdentifier();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _getIdentifier()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;_getCookieValue(Enterprise_PageCache_Model_Cookie::COOKIE_CUSTOMER, &#x27;&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _saveCache($data, $id, $tags = array(), $lifetime = 5)</span><br><span class="line">    &#123;</span><br><span class="line">        parent::_saveCache($data, $id, $tags, $lifetime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>刷新缓存，我们会发现随机字符串在 5 s 内保持一样，5 s 后由于缓存过期，拿到新的值。如果 $lifetime &#x3D; 0 那么就会一直过期。 <img src="/wp-content/uploads/2018/12/fpc-cachelife.gif"></p>
-<h2 id="充分利用缓存，-placeholder-带参"><a href="#充分利用缓存，-placeholder-带参" class="headerlink" title="充分利用缓存， placeholder 带参"></a><a href="#%E5%85%85%E5%88%86%E5%88%A9%E7%94%A8%E7%BC%93%E5%AD%98%EF%BC%8C-placeholder-%E5%B8%A6%E5%8F%82"></a>充分利用缓存， placeholder 带参</h2><p>在 fpc 上打孔，不能直接使用 Mage::registry() 和 Mage::app()-&gt;getFrontController()-&gt;getAction()-&gt;getFullActionName() 这种，因为在状态 3 的时候，页面是转向 <code>pagecache/request/process</code> ，它并不是一个通常的请求。如果你这么用了，那么就会发现，结果很怪异，访问 A 页面正常，访问下 B 页面也正常，再回到 A 页面，哎~ ，怎么把 B 的结果带过来了。。 下面我们让 block 缓存起来，通过 placeholder 带参来解决上面提到的问题。 File: app\code\local\VendorName\TestModule\Block\Fpctest.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class VendorName_TestModule_Block_Fpctest extends Mage_Core_Block_Template</span><br><span class="line">&#123;</span><br><span class="line">    // !important</span><br><span class="line">    public function getCacheKeyInfo() &#123;</span><br><span class="line">        $info = parent::getCacheKeyInfo();</span><br><span class="line">        $info[&#x27;page_type&#x27;] = $this-&gt;getPagetype();</span><br><span class="line">        return $info;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;setTemplate(&#x27;testmodule/fpctest.phtml&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getRandString($length = 4)</span><br><span class="line">    &#123;</span><br><span class="line">        $chars = &#x27;abcdefghijklmnopqrstuvwxyz0123456789&#x27;;</span><br><span class="line">        $str   = &#x27;&#x27;;</span><br><span class="line">        for ($i = 0; $i &lt; $length; ++$i) &#123;</span><br><span class="line">            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);</span><br><span class="line">        &#125;</span><br><span class="line">        return $str;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getPagetype()</span><br><span class="line">    &#123;</span><br><span class="line">        if ($this-&gt;hasData(&#x27;page_type&#x27;)) &#123;</span><br><span class="line">            return $this-&gt;getData(&#x27;page_type&#x27;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return Mage::app()-&gt;getFrontController()-&gt;getAction()-&gt;getFullActionName();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>File: app\code\local\VendorName\TestModule\Model\Container\Fpctest.php</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class VendorName_TestModule_Model_Container_Fpctest extends Enterprise_PageCache_Model_Container_Abstract&#123;</span><br><span class="line"></span><br><span class="line">    protected function _renderBlock()</span><br><span class="line">    &#123;</span><br><span class="line">        $block = $this-&gt;_getPlaceHolderBlock();</span><br><span class="line">        $pageType = $this-&gt;_placeholder-&gt;getAttribute(&#x27;page_type&#x27;);</span><br><span class="line">        $block-&gt;setPageType($pageType);</span><br><span class="line">        return $block-&gt;toHtml();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _getCacheId()</span><br><span class="line">    &#123;</span><br><span class="line">        return &#x27;TESTMODULE_CACHE&#x27; . md5($this-&gt;_placeholder-&gt;getAttribute(&#x27;cache_id&#x27;)).&#x27;_&#x27;.$this-&gt;_getIdentifier();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _getIdentifier()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;_getCookieValue(Enterprise_PageCache_Model_Cookie::COOKIE_CUSTOMER, &#x27;&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected function _saveCache($data, $id, $tags = array(), $lifetime = 5)</span><br><span class="line">    &#123;</span><br><span class="line">        parent::_saveCache($data, $id, $tags, $lifetime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>File: app\design\frontend\rwd\default\template\testmodule\fpctest.phtml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">This is from block</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">&lt;?php echo $this-&gt;getRandString() ?&gt;</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">&lt;?php echo $this-&gt;getPagetype();?&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9120413/how-do-i-include-a-dynamic-block-in-the-product-page-with-full-page-caching-turn/9125519#9125519">How do I include a dynamic block in the product page with full page caching turned on?</a> <a target="_blank" rel="noopener" href="https://www.pixafy.com/blog/2013/03/overcoming-magentos-full-page-cache-through-hole-punching/">Overcoming Magento’s full-page cache through hole punching</a> <a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/133412/what-do-cache-xml-in-etc-folder-of-any-module">what do cache.xml in etc folder of any module?</a></p>
-
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <VendorName_T
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-1-fpc-%E5%8A%A8%E6%80%81%E5%86%85%E5%AE%B9/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -480,12 +477,106 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li>考虑中文输入问题</li>
-<li>考虑输入的时间间隔，不一直请求后端，1 s 内的输入请求一次。</li>
-</ol>
-<p><img src="/wp-content/uploads/2018/11/autocomplete.gif"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;search auto complete&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;script</span><br><span class="line">  src=&quot;http://code.jquery.com/jquery-3.3.1.min.js&quot;</span><br><span class="line">  integrity=&quot;sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=&quot;</span><br><span class="line">  crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form id=&quot;search_form&quot; action=&quot;&quot; method=&quot;get&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;field-set&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;input-box&quot;&gt;</span><br><span class="line">                &lt;input type=&quot;search&quot; id=&quot;search&quot; name=&quot;q&quot; placeholder=&quot;Search&quot; maxlength=&quot;255&quot; class=&quot;searchText input-text required-entry&quot; autocomplete=&quot;off&quot;/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;action&quot;&gt;</span><br><span class="line">                &lt;button type=&quot;submit&quot;&gt;&lt;span&gt;Submit&lt;/span&gt;&lt;/button&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;ul id=&quot;autocomplete_terms_ul&quot;&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    #autocomplete_terms_ul &#123;</span><br><span class="line">        position: absolute;</span><br><span class="line">        background: white;</span><br><span class="line">        display: block;</span><br><span class="line">        width: 270px;</span><br><span class="line">        z-index: 999;</span><br><span class="line">        color: #333;</span><br><span class="line">        moz-box-shadow:2px 2px 5px #555;</span><br><span class="line">        -webkit-box-shadow:2px 2px 5px #555;</span><br><span class="line">        box-shadow: 2px 2px 5px #555;</span><br><span class="line">        border: 1px solid #ededed8c;</span><br><span class="line">        padding: 5px 0px;</span><br><span class="line">        display: none;</span><br><span class="line">    &#125;</span><br><span class="line">    #autocomplete_terms_ul li&#123;</span><br><span class="line">        padding: 8px 10px;</span><br><span class="line">        cursor: pointer;</span><br><span class="line">    &#125;</span><br><span class="line">    #autocomplete_terms_ul li:hover&#123;</span><br><span class="line">        background-color: #e6e6e691;</span><br><span class="line">    &#125;</span><br><span class="line">    #autocomplete_terms_ul li span&#123;</span><br><span class="line">        float:right;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">jQuery(document).ready(function() &#123;</span><br><span class="line">    var $ = jQuery,</span><br><span class="line">        timeout,</span><br><span class="line">        flag = true,</span><br><span class="line">        searchInput = $(&#x27;#search&#x27;),</span><br><span class="line">        searchForm = $(&quot;#search_form&quot;),</span><br><span class="line">        suggestBox = $(&quot;#autocomplete_terms_ul&quot;),</span><br><span class="line">        url = &quot;http://autocomplete/&quot;;</span><br><span class="line"></span><br><span class="line">    var doQuery = function (url, keyward) &#123;</span><br><span class="line">        // return $.ajax(&#123;</span><br><span class="line">        //     type: &quot;POST&quot;,</span><br><span class="line">        //     url: url,</span><br><span class="line">        //     data: &#123;prefix: keyward, count:10&#125;,</span><br><span class="line">        //     success: function (response) &#123;</span><br><span class="line">        //         showSuggestBox(JSON.parse(response));</span><br><span class="line">        //     &#125;</span><br><span class="line">        // &#125;);</span><br><span class="line">        var response = [&#123;&quot;KW&quot;:&quot;apple&quot;, &quot;QR&quot;:&quot;10&quot;&#125;,&#123;&quot;KW&quot;:&quot;banana&quot;, &quot;QR&quot;:&quot;7&quot;&#125;];</span><br><span class="line">        showSuggestBox(response);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var hideSuggestBox = function() &#123;</span><br><span class="line">        suggestBox.html(&#x27;&#x27;);</span><br><span class="line">        suggestBox.hide();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    var showSuggestBox = function(terms) &#123;</span><br><span class="line">        if (terms.length)&#123;</span><br><span class="line">            var html = &#x27;&#x27;;</span><br><span class="line">            $.each(terms, function (key, val) &#123;</span><br><span class="line">                html = html + &#x27;&lt;li&gt;&#x27; + val.KW + &#x27;&lt;span&gt;&#x27;+ val.QR +&#x27;&lt;/span&gt;&lt;/li&gt;&#x27;;</span><br><span class="line">            &#125;);</span><br><span class="line">            suggestBox.html(html);</span><br><span class="line">            suggestBox.show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    searchInput.bind(&#x27;compositionstart&#x27;, function () &#123;</span><br><span class="line">        flag = false;</span><br><span class="line">    &#125;).bind(&#x27;compositionend&#x27;, function () &#123;</span><br><span class="line">        flag = true;</span><br><span class="line">        // compositionend 在 input 之后触发</span><br><span class="line">        $(this).trigger(&#x27;input&#x27;);</span><br><span class="line">    &#125;).bind(&#x27;input&#x27;, function () &#123;</span><br><span class="line">        var keyword = $(this).val();</span><br><span class="line">        if (flag) &#123;</span><br><span class="line">            if (keyword) &#123;</span><br><span class="line">                clearTimeout(timeout);</span><br><span class="line">                timeout = setTimeout(</span><br><span class="line">                    function () &#123;</span><br><span class="line">                        doQuery(url, keyword);</span><br><span class="line">                    &#125;, 1000);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // important</span><br><span class="line">                clearTimeout(timeout);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        hideSuggestBox();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    suggestBox.on(&#x27;click&#x27;, &#x27;li&#x27;, function () &#123;</span><br><span class="line">        var suggest = $(this).clone().children().remove().end().text();</span><br><span class="line">        searchInput.val(suggest);</span><br><span class="line">        hideSuggestBox();</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            searchForm.submit();</span><br><span class="line">        &#125;, 500);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+          1. 考虑中文输入问题
+ 2. 考虑输入的时间间隔，不一直请求后端，1 s 内的输入请求一次。
+
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/js-%E6%90%9C%E7%B4%A2%E6%8F%90%E7%A4%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -551,7 +642,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\ModuleName\Controller\Index;</span><br><span class="line"></span><br><span class="line">class Index extends \Magento\Framework\App\Action\Action &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *</span><br><span class="line">     * @return \Magento\Framework\Controller\Result\Redirect</span><br><span class="line">     */</span><br><span class="line">    public function execute() &#123;</span><br><span class="line"></span><br><span class="line">        $url = &#x27;http://hellomagento2.com&#x27;;</span><br><span class="line">        // internal</span><br><span class="line">        // return $this-&gt;resultRedirectFactory-&gt;create()-&gt;setPath(&#x27;*/*/&#x27;);</span><br><span class="line">        // external</span><br><span class="line">        return $this-&gt;resultRedirectFactory-&gt;create()-&gt;setUrl($url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+
+<?php
+namespace VendorName\ModuleName\Controller\Index;
+
+class Index extends \Magento\Framework\App\Action\Action {
+
+    /**
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
+     */
+    public function execute() {
+
+        $url = 'htt
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-2-redirect-url/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -617,53 +747,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a><a href="#%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8"></a>创建容器</h2><p>从 docker hub 的仓库中拉 mysql 镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mysql</span><br></pre></td></tr></table></figure>
+          创建容器
+从 docker hub 的仓库中拉 mysql 镜像
 
-<p>查看镜像：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+1
 
-<p>运行一个 mysql 容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 3306:3306 --name mysql5.7-t1 -v /var/www/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql:5.7</span><br></pre></td></tr></table></figure>
 
-<p>上述命令中各参数的含义：</p>
-<ul>
-<li>run 运行一个 docker 容器</li>
-<li>—name 生成的容器的名字</li>
-<li>-p 3306:3306 代表这个容器中使用3306（第二个）映射到宿主主机的 3306 （第一个）端口</li>
-<li>-e 设置环境变量，设置 mysql root 的密码</li>
-<li>-d 守护进程</li>
-<li>-v 把容器中数据 &#x2F;var&#x2F;lib&#x2F;mysql 映射到宿主主机的目录 &#x2F;var&#x2F;www&#x2F;mysql ，这样即使容器删除了，数据还是在的。如果指定的宿主目录下是有之前的数据，那么容器启动后还是可以访问这些数据的，此时MYSQL_ROOT_PASSWORD 是无效的。</li>
-<li>最后的 mysql:5.7 代表要使用的镜像版本，如果不指定则会使用最新版本的</li>
-</ul>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a><a href="#%E5%91%BD%E4%BB%A4"></a>命令</h2><p>查看运行中的容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+sudo docker pull mysql
 
-<p>进入容器中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it containername bash</span><br></pre></td></tr></table></figure>
 
-<p>退出容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+查看镜像：
 
-<p>停止容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop mysql5.7-t1</span><br></pre></td></tr></table></figure>
+1
 
-<p>启动容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start mysql5.7-t1</span><br></pre></td></tr></table></figure>
 
-<p>删除容器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker rm containername</span><br></pre></td></tr></table></figure>
+docker images
 
-<h2 id="自定义-mysql-设置"><a href="#自定义-mysql-设置" class="headerlink" title="自定义 mysql 设置"></a><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89-mysql-%E8%AE%BE%E7%BD%AE"></a>自定义 mysql 设置</h2><p>container 启动后，默认情况下我们是可以在外部访问的，下面我们通过 mysql 设置只允许本地访问。</p>
-<p>重新开一个 container</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 3308:3306 --name mysql5.7-t2 -v /var/www/mysql:/var/lib/mysql -v /var/www/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=admin -d mysql:5.7</span><br></pre></td></tr></table></figure>
 
-<p>然后在宿主机 &#x2F;var&#x2F;www&#x2F;conf&#x2F; 下创建 my.cnf</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">bind-address = 127.0.0.1</span><br></pre></td></tr></table></figure>
+运行一个 mysql 容器
 
-<p>重启后，就会发现这时候外部不能访问了。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/run/">docker run</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d9b6bbc7fd77">使用Docker安装、运行mysql</a><br><a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql/">Official Repository mysql</a></p>
+1
 
+
+docker run -p 3306:3306 --name mysql5.7-t1 -v /var/www/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql:5.7
+
+
+上述命令中各参数的含义：
+
+ * run 运行一个 docker 容器
+ * —name 生成的容器的名字
+ * -p 3306:3306 代
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E4%BD%BF%E7%94%A8-docker-%E5%AE%89%E8%A3%85-mysql/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -729,25 +850,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+          1
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install \</span><br><span class="line">    apt-transport-https \</span><br><span class="line">    ca-certificates \</span><br><span class="line">    curl \</span><br><span class="line">    software-properties-common</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg  sudo apt-key add -</span><br></pre></td></tr></table></figure>
+apt-get update
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository \</span><br><span class="line">   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span><br><span class="line">   $(lsb_release -cs) \</span><br><span class="line">   stable&quot;</span><br></pre></td></tr></table></figure>
 
-<p>查看所有可用的版本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-cache madison docker-ce</span><br></pre></td></tr></table></figure>
+1
+2
+3
+4
+5
 
-<p>安装最新的版本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install docker-ce</span><br></pre></td></tr></table></figure>
 
-<p>测试装好了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
 
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository">Get Docker CE for Ubuntu</a> <a target="_blank" rel="noopener" href="https://yeasy.gitbooks.io/docker_practice/install/ubuntu.html">Ubuntu 安装 Docker CE</a></p>
 
+1
+
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg  sudo apt-key add -
+
+
+1
+2
+3
+4
+
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://dow
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/install-docker-ce-ubuntu/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -813,69 +957,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://alanstorm.com/the-curious-case-of-magento-2-mixins/">原文地址</a> 这篇要说的是 Magento 2 的 Mixins 。说它奇怪是因为 Mixins 这个命名不正确，有歧义，他其实是 RequireJS monkey patching 。（Monkey Patching 指的是在运行时动态修改模块、类或函数，通常是添加功能或修正缺陷。猴子补丁在代码运行时发挥作用，不会修改源码。） 本文的目标是教会大家用 Magento 2 js 方法安全地 overwrite js method。这已经超过了平常 RequireJS 工具的范畴。 我们将快速过一下几个概念，然后说一说 Magento js 系统相关的一些特性，最后讨论这个名称奇怪的 mixins 系统。</p>
-<h2 id="什么是-Mixin-？"><a href="#什么是-Mixin-？" class="headerlink" title="什么是 Mixin ？"></a><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-mixin-%EF%BC%9F"></a>什么是 Mixin ？</h2><p>Mixin 从某种角度看，是传统的类集成的替代方法。 传统的面向对象编程中，你可能像下面这样定义三个类：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">    public function foo()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A</span><br><span class="line">&#123;</span><br><span class="line">    public function bar()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class C extends B</span><br><span class="line">&#123;</span><br><span class="line">    public function baz()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$object = new C;</span><br></pre></td></tr></table></figure>
-
-<p>这样 <code>$object</code> 对象拥有 <code>baz</code> <code>bar</code> 和 <code>foo</code> 方法。 Mixins 提供了另一种方式。通过 Mixins ，你可以组合类的方法到你的类中。伪代码看起来是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">    public function foo()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B</span><br><span class="line">&#123;</span><br><span class="line">    public function bar()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class C</span><br><span class="line">&#123;</span><br><span class="line">    mixin A;</span><br><span class="line">    mixin B;</span><br><span class="line"></span><br><span class="line">    public function baz()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$object = new C;</span><br></pre></td></tr></table></figure>
-
-<p>注意这里没有继承，class C 从 class A 和 class B 中获得方法。 <a target="_blank" rel="noopener" href="http://php.net/manual/en/language.oop5.traits.php">PHP 的 Traits</a>就是一种简单的 mixin 系统。在 PHP 中，你必须显示地声明 traits ，然后在你地类中组合这些 traits 。Traits 自身不能被实例化，php 类也不能被当成 traits 用。 <a target="_blank" rel="noopener" href="http://ruby-doc.com/docs/ProgrammingRuby/html/tut_modules.html">Ruby</a>通过 “include” 来组合别的模块的方法。 有些语言比如 Python 则通过多重继承来实现 Mixin</p>
-<h2 id="Javascript-and-Mixins-Sitting-in-a-Tree"><a href="#Javascript-and-Mixins-Sitting-in-a-Tree" class="headerlink" title="Javascript and Mixins, Sitting in a Tree"></a><a href="#javascript-and-mixins,-sitting-in-a-tree"></a>Javascript and Mixins, Sitting in a Tree</h2><p>和 classes 不同，不同语言关于 mixin 的语法应该怎么写并没有形成共识。有些语言有明确的 mixins 而另一些语言只有事实上的 mixins Javascript 就是后者。js 不是基于类的语言，他是一种基于原型的语言。（所以可以说 js 没有类） 通过 underscore.js 的 <code>extend</code> 方法，你可以获得 mixin-like 的行为。像下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;</span><br><span class="line">    foo:function()&#123;</span><br><span class="line">        //...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var b = &#123;</span><br><span class="line">    bar:function()&#123;</span><br><span class="line">        //...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c = _.extend(a, b);</span><br></pre></td></tr></table></figure>
-
-<p>这样 c 对象拥有 foo 和 bar 方法。 比较有迷惑性的是，underscore.js 也有一个方法叫 <a target="_blank" rel="noopener" href="https://underscorejs.org/#mixin">mixin</a> 不过这个方法是用来往 underscore js 对象自身加方法的。</p>
-<h2 id="Magento-uiClass-Objects"><a href="#Magento-uiClass-Objects" class="headerlink" title="Magento uiClass Objects"></a><a href="#magento-uiclass-objects"></a>Magento uiClass Objects</h2><p>如果你已经阅读了 Alan Storm 的 <a target="_blank" rel="noopener" href="https://alanstorm.com/category/magento-2/#magento-2-ui">UI Component 系列</a>，那么你已经熟悉 <a target="_blank" rel="noopener" href="https://alanstorm.com/magento_2_uiclass_data_features/">Magento’s uiClass objects</a> 了。 这些对象也有一个 <code>extend</code> 方法。这个方法看起来和 underscore.js 的 <code>extend</code> 方法一样。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var b = &#123;</span><br><span class="line">    bar:function()&#123;</span><br><span class="line">        //...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">UiClass = requirejs(&#x27;uiClass&#x27;);</span><br><span class="line"></span><br><span class="line">// class NewClass extends uiClass</span><br><span class="line">var NewClass = UiClass.extend(b);</span><br><span class="line"></span><br><span class="line">// class AnotherNewClass extends NewClass</span><br><span class="line">var AnotherNewClass = NewClass.extend(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">var object = new NewClass;</span><br><span class="line">object.bar();</span><br></pre></td></tr></table></figure>
-
-<p>不过，<code>uiClass extend</code> 方法的用途有点不一样。<code>uiClass extend</code> 的目的是在原来的 js constructoer function 的基础上创建一个新的 js constructor function。所以上面的 <code>NewClass</code> 没有 <code>bar</code> 方法，但是他实例化出来的对象有。 这看起来更像是直接继承，但是考虑到 <code>uiClass</code> 的实现细节，可能有些人就觉得叫 mixin 挺合适的。 下面我们要切换一个话题。</p>
-<h2 id="Magento-2-RequireJS-Mixins"><a href="#Magento-2-RequireJS-Mixins" class="headerlink" title="Magento 2 RequireJS Mixins"></a><a href="#magento-2-requirejs-mixins"></a>Magento 2 RequireJS Mixins</h2><p>Magento 2 的 <code>requirejs-config.js</code> 文件有一个 <code>mixin</code> 用法。<code>mixin</code> 这个名字跟我们编程语言中的 mixin 的内涵没啥关系，暂时把他理解成一个名字就好。 虽然我们一直在吐槽这个名字取得不好，但是这功能本身还是很好很重要的哦。Magento 2 RequireJS mixins 让你监听任意 RequireJS module 的实例化，并且让你在实例化返回对象前可以修改他。 下面实验一下，首先我们弄一个空的模块来做实验。 可以通过 alan 的工具 <a target="_blank" rel="noopener" href="https://github.com/astorm/pestle">pestle commands</a> 来创建一个空模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pestle.phar generate_module Pulsestorm RequireJsRewrite 0.0.1</span><br><span class="line">$ php bin/magento module:enable Pulsestorm_RequireJsRewrite</span><br><span class="line">$ php bin/magento setup:upgrade</span><br></pre></td></tr></table></figure>
-
-<p>如果你想手动创建模块的话，看这里 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-mvvm-mvc/">Magento 2 简介 —— 不再是 MVC</a> 下面创建一个 <code>requirejs-config.js</code> 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/RequireJsRewrite/view/base/requirejs-config.js</span><br><span class="line">var config = &#123;</span><br><span class="line">    &#x27;config&#x27;:&#123;</span><br><span class="line">        &#x27;mixins&#x27;: &#123;</span><br><span class="line">            &#x27;Magento_Customer/js/view/customer&#x27;: &#123;</span><br><span class="line">                &#x27;Pulsestorm_RequireJsRewrite/hook&#x27;:true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>然后创建下面的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/RequireJsRewrite/view/base/web/hook.js</span><br><span class="line">define([], function()&#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line">    console.log(&quot;Called this Hook.&quot;);</span><br><span class="line">    return function(targetModule)&#123;</span><br><span class="line">        targetModule.crazyPropertyAddedHere = &#x27;yes&#x27;;</span><br><span class="line">        return targetModule;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>下面打开 Magento 首页，你会在浏览器 console 中看到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Called this Hook</span><br></pre></td></tr></table></figure>
-
-<p>在浏览器的 console 中我们来看看这个模块 <code>Magento_Customer/js/view/customer</code>，我们会发现这个家伙已经有了一个新的属性 <code>crazyPropertyAddedHere</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; module = requirejs(&#x27;Magento_Customer/js/view/customer&#x27;);</span><br><span class="line">&gt; console.log(module.crazyPropertyAddedHere)</span><br><span class="line">&quot;yes&quot;</span><br></pre></td></tr></table></figure>
-
-<p>也就是说上面的代码，我们修改了 <code>Magento_Customer/js/view/customer</code> 返回的对象。 如果合理使用的话，这个功能可是非常强大呢。</p>
-<h2 id="What-Just-Happened"><a href="#What-Just-Happened" class="headerlink" title="What Just Happened?"></a><a href="#what-just-happened?"></a>What Just Happened?</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/RequireJsRewrite/view/base/requirejs-config.js</span><br><span class="line">var config = &#123;</span><br><span class="line">    &#x27;config&#x27;:&#123;</span><br><span class="line">        &#x27;mixins&#x27;: &#123;</span><br><span class="line">            &#x27;Magento_Customer/js/view/customer&#x27;: &#123;</span><br><span class="line">                &#x27;Pulsestorm_RequireJsRewrite/hook.js&#x27;:true</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><code>requirejs-config.js</code> 文件让每个 Magento module 都可以给 RequireJS 加配置。可以查看这里 <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan-magento-2-and-requirejs/">Magento 2 and RequireJS</a> <code>mixins</code> 这个配置不是 RequireJS 里面的，<a target="_blank" rel="noopener" href="https://magento.stackexchange.com/questions/142826/how-are-the-things-magento-2-calls-mixins-implemented">这是 Magento 引入的</a>。这一段就是告诉 Magento ，请你监听 <code>Magento_Customer/js/view/customer</code> 模块，然后让 <code>Pulsestorm_RequireJsRewrite/hook</code> 干活。 然后我们就定义了 <code>Pulsestorm_RequireJsRewrite/hook</code> 模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//File: app/code/Pulsestorm/RequireJsRewrite/view/base/web/hook.js</span><br><span class="line">define([], function()&#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line">    console.log(&quot;Called this Hook.&quot;);</span><br><span class="line">    return function(targetModule)&#123;</span><br><span class="line">        targetModule.crazyPropertyAddedHere = &#x27;yes&#x27;;</span><br><span class="line">        return targetModule;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果你不清楚 RequireJS 模块名字和 URL 之间的关系，请阅读 <a target="_blank" rel="noopener" href="https://alanstorm.com/category/magento-2/#magento-2-mvc">Magento 2 for PHP MVC Developers 系列</a> “listener&#x2F;hook” 的模块都是标准的 RequireJS 模块。他们需要返回一个 callable object (比如 js 的 function)。上面返回的 function 就是模块 loading 后要执行的。他有一个参数 （targetModule），这个参数代表 <code>Magento_Customer/js/view/customer</code> 返回的东东。 不管咱们的 <code>Pulsestorm_RequireJsRewrite/hook</code> 返回什么，它都被当作跟原来一样的东东。这就是为啥 <code>Magento_Customer/js/view/customer</code> 拥有了 <code>crazyPropertyAddedHere</code> 属性。</p>
-<h2 id="Class-Rewrites-for-Javascript"><a href="#Class-Rewrites-for-Javascript" class="headerlink" title="Class Rewrites for Javascript"></a><a href="#class-rewrites-for-javascript"></a>Class Rewrites for Javascript</h2><p>上面我们增加了新的属性，我们还可以替换掉原来模块的方法。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">define([], function()&#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line">    console.log(&quot;Called this Hook.&quot;);</span><br><span class="line">    return function(targetModule)&#123;</span><br><span class="line">        targetModule.someMethod = function()&#123;</span><br><span class="line">            //replacement for `someMethod</span><br><span class="line">        &#125;</span><br><span class="line">        return targetModule;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>如果我们监听的模块返回的是基于 <code>uiClass</code> 的对象呢？你可以用 <code>uiClass</code> 的 <code>extend</code> 方法，但是用 <code>uiClass</code> 的 <code>_super()</code> 调用其父类的方法。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">define([], function()&#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line">    console.log(&quot;Called this Hook.&quot;);</span><br><span class="line">    return function(targetModule)&#123;</span><br><span class="line">        //if targetModule is a uiClass based object</span><br><span class="line">        return targetModule.extend(&#123;</span><br><span class="line">            someMethod:function()</span><br><span class="line">            &#123;</span><br><span class="line">                var result = this._super(); //call parent method</span><br><span class="line"></span><br><span class="line">                //do your new stuff</span><br><span class="line"></span><br><span class="line">                return result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这个功能很强大，但是跟 Magento 1 的 class rewrite 和 Magento 2 的 <code>&lt;preference&gt;</code> 一样，这个是“赢家通吃”的。比如多个开发修改同一个 function ，那么最终只有一个人的代码生效。 好在 Magento 应对这种情况还是有解决办法的，那就是使用 <code>mage/utils/wrapper</code></p>
-<h2 id="Wrapping-Function-Calls"><a href="#Wrapping-Function-Calls" class="headerlink" title="Wrapping Function Calls"></a><a href="#wrapping-function-calls"></a>Wrapping Function Calls</h2><p><code>mage/utils/wrapper</code> 类似 <a target="_blank" rel="noopener" href="https://alanstorm.com/magento_2_object_manager_plugin_system/">Magento 2 backend around plugin</a> 下面举个例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var example = &#123;&#125;;</span><br><span class="line">example.foo = function ()&#123;</span><br><span class="line">    console.log(&quot;Called foo&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var wrapper = requirejs(&#x27;mage/utils/wrapper&#x27;);</span><br><span class="line"></span><br><span class="line">var wrappedFunction = wrapper.wrap(example.foo, function(originalFunction)&#123;         console.log(&quot;Before&quot;);</span><br><span class="line">    originalFunction();</span><br><span class="line">    console.log(&quot;After&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//call wrapped function</span><br><span class="line">wrappedFunction();</span><br><span class="line"></span><br><span class="line">//change method definition to use wrapped function</span><br><span class="line">example.foo = wrappedFunction;</span><br></pre></td></tr></table></figure>
-
-<p>如果你找个 magento 的站点实验下，那么我们可以看到下面这样的输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Before</span><br><span class="line">Called foo</span><br><span class="line">After</span><br></pre></td></tr></table></figure>
-
-<p><code>wrap</code> 方法接受两个参数。第一个是原来的 function （拿饺子打比方，就是饺子馅），第二个参数是你要增加的东西（饺子皮）。<code>originalFunction</code> 指代 example.foo 。 wrapper 模块的作用是不用改原有的代码，就把一个已有的 function 和新的代码包在一起。 wrapper 带来的好处还有，如果好几个人 wrap 同一段代码，那么他们都是有效的，而不会出现像上面那样 “赢家通吃” 的局面。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var wrappedFunction2 = wrapper.wrap(wrappedFunction, function(originalFunction)&#123;</span><br><span class="line">    console.log(&quot;Before 2&quot;);</span><br><span class="line">    originalFunction();</span><br><span class="line">    console.log(&quot;After 2&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">wrappedFunction2();</span><br></pre></td></tr></table></figure>
-
-<p>结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Before 2</span><br><span class="line">VM502:9 Before</span><br><span class="line">VM502:3 Called foo</span><br><span class="line">VM502:11 After</span><br><span class="line">VM545:4 After 2</span><br></pre></td></tr></table></figure>
-
-<p>所以上面我们“赢家通吃”的代码可以改进为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">define([&#x27;mage/utils/wrapper&#x27;], function(wrapper)&#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line">    console.log(&quot;Called this Hook.&quot;);</span><br><span class="line">    return function(targetModule)&#123;</span><br><span class="line"></span><br><span class="line">        var newFunction = targetModule.someFunction;</span><br><span class="line">        var newFunction = wrapper.wrap(newFunction, function(original)&#123;</span><br><span class="line">            //do extra stuff</span><br><span class="line"></span><br><span class="line">            //call original method</span><br><span class="line">            var result = original();</span><br><span class="line"></span><br><span class="line">            //do extra stuff</span><br><span class="line"></span><br><span class="line">            //return original value</span><br><span class="line">            return result;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        targetModule.someFunction = newFunction;</span><br><span class="line">        return targetModule;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="Why-Call-this-a-Mixin"><a href="#Why-Call-this-a-Mixin" class="headerlink" title="Why Call this a Mixin"></a><a href="#why-call-this-a-mixin"></a>Why Call this a Mixin</h2><p>不纠结，不翻译，嘿嘿。。</p>
-<h2 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a><a href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E8%80%83"></a>相关参考</h2><p><a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento-2s-base-javascript-class/">Magento 2’s Base Javascript Class</a> <a target="_blank" rel="noopener" href="https://www.hellomagento2.com/alan_magento_2_simplest_ui_knockout_component/">Magento 2: Simplest UI Knockout Component</a></p>
-
+          原文地址 这篇要说的是 Magento 2 的 Mixins 。说它奇怪是因为 Mixins 这个命名不正确，有歧义，他其实是 RequireJS monkey patching 。（Monkey Patching 指的是在运行时动态修改模块、类或函数，通常是添加功能或修正缺陷。猴子补丁在代码运行时发挥作用，不会修改源码。） 本文的目标是教会大家用 Magento 2 js 方法安全地 overwrite js method。这已经超过了平常 RequireJS 工具的范畴。 我们将快速过一下几个概念，然后说一说 Magento js 系统相关的一些特性，最后讨论这个名称奇怪的 mixins 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/alan-the-curious-case-of-magento-2-mixins/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -941,14 +1031,74 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>ReflectionClass</strong> 提供关于类的信息，它有什么属性、哪些方法、方法有哪些参数，类文件的路径是什么等等。 我们先定义两个类，然后熟悉下 ReflectionClass 的一些用法。最后我们写一个简单的函数来实现依赖注入。</p>
-<h2 id="ReflectionClass-的一些方法"><a href="#ReflectionClass-的一些方法" class="headerlink" title="ReflectionClass 的一些方法"></a><a href="#reflectionclass-%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95"></a>ReflectionClass 的一些方法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Class Point</span><br><span class="line">Class Point</span><br><span class="line">&#123;</span><br><span class="line">    public $x;</span><br><span class="line">    public $y;</span><br><span class="line"></span><br><span class="line">    public function __construct($x=0, $y=0)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;x = $x;</span><br><span class="line">        $this-&gt;y = $y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Class Circle</span><br><span class="line">&#123;</span><br><span class="line">    // 半径</span><br><span class="line">    public $radius;</span><br><span class="line"></span><br><span class="line">    // 圆心点</span><br><span class="line">    public $center;</span><br><span class="line"></span><br><span class="line">    const PI = 3.14;</span><br><span class="line"></span><br><span class="line">    public function __construct(</span><br><span class="line">        Point $point,</span><br><span class="line">        $radius = 1</span><br><span class="line">    )&#123;</span><br><span class="line">        $this-&gt;center = $point;</span><br><span class="line">        $this-&gt;radius = $radius;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function printCenter()</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&#x27;center coordinate is (%d, %d)&#x27;, $this-&gt;center-&gt;x, $this-&gt;center-&gt;y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function area()</span><br><span class="line">    &#123;</span><br><span class="line">        return self::PI * pow($this-&gt;radius, 2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// examples</span><br><span class="line">$reflectionClass = new reflectionClass(Circle::class);</span><br><span class="line">var_dump($reflectionClass);</span><br><span class="line"></span><br><span class="line">// 反射出类的常量</span><br><span class="line">var_dump($reflectionClass-&gt;getConstants());</span><br><span class="line">// 通过反射获取属性</span><br><span class="line">var_dump($reflectionClass-&gt;getProperties());</span><br><span class="line">// 反射出类中定义的方法</span><br><span class="line">var_dump($reflectionClass-&gt;getMethods());</span><br><span class="line">// 文件路径</span><br><span class="line">var_dump($reflectionClass-&gt;getFileName());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$constructor = $reflectionClass-&gt;getConstructor();</span><br><span class="line">var_dump($constructor);</span><br><span class="line"></span><br><span class="line">$parameters = $constructor-&gt;getParameters();</span><br><span class="line">var_dump($parameters);</span><br></pre></td></tr></table></figure>
+          ReflectionClass 提供关于类的信息，它有什么属性、哪些方法、方法有哪些参数，类文件的路径是什么等等。 我们先定义两个类，然后熟悉下 ReflectionClass 的一些用法。最后我们写一个简单的函数来实现依赖注入。
 
-<p>（结果就忽略掉了）</p>
-<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a><a href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"></a>依赖注入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">// Class Point</span><br><span class="line">Class Point</span><br><span class="line">&#123;</span><br><span class="line">    public $x;</span><br><span class="line">    public $y;</span><br><span class="line"></span><br><span class="line">    public function __construct($x=0, $y=0)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;x = $x;</span><br><span class="line">        $this-&gt;y = $y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Class Circle</span><br><span class="line">&#123;</span><br><span class="line">    // 半径</span><br><span class="line">    public $radius;</span><br><span class="line"></span><br><span class="line">    // 圆心点</span><br><span class="line">    public $center;</span><br><span class="line"></span><br><span class="line">    const PI = 3.14;</span><br><span class="line"></span><br><span class="line">    public function __construct(</span><br><span class="line">        Point $point,</span><br><span class="line">        $radius = 1</span><br><span class="line">    )&#123;</span><br><span class="line">        $this-&gt;center = $point;</span><br><span class="line">        $this-&gt;radius = $radius;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function printCenter()</span><br><span class="line">    &#123;</span><br><span class="line">        printf(&#x27;center coordinate is (%d, %d)&#x27;, $this-&gt;center-&gt;x, $this-&gt;center-&gt;y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function area()</span><br><span class="line">    &#123;</span><br><span class="line">        return self::PI * pow($this-&gt;radius, 2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 创建类的常规方法</span><br><span class="line">// $p1 = new Point(2,2);</span><br><span class="line">// $c1 = new Circle($p1, 2);</span><br><span class="line"></span><br><span class="line">// $c1-&gt;printCenter();</span><br><span class="line">// echo $c1-&gt;area();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// dependency injection</span><br><span class="line">function make($className)</span><br><span class="line">&#123;</span><br><span class="line">    $reflectionClass = new reflectionClass($className);</span><br><span class="line">    $constructor = $reflectionClass-&gt;getConstructor();</span><br><span class="line">    $parameters = $constructor-&gt;getParameters();</span><br><span class="line">    $dependencies = getDependencies($parameters);</span><br><span class="line"></span><br><span class="line">    return $reflectionClass-&gt;newInstanceArgs($dependencies);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 依赖解析</span><br><span class="line">function getDependencies($parameters)</span><br><span class="line">&#123;</span><br><span class="line">    $dependencies = [];</span><br><span class="line">    foreach ($parameters as $parameter) &#123;</span><br><span class="line">        $dependency = $parameter-&gt;getClass();</span><br><span class="line"></span><br><span class="line">        // var_dump($dependency);</span><br><span class="line">        // 第二个参数 radius 就没有类</span><br><span class="line">        if (is_null ($dependency)) &#123;</span><br><span class="line"></span><br><span class="line">            if ($parameter-&gt;isDefaultValueAvailable()) &#123;</span><br><span class="line">                $dependencies[] = $parameter-&gt;getDefaultValue();</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 简化的处理</span><br><span class="line">                $dependencies[] = &#x27;0&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 递归解析出依赖类的对象</span><br><span class="line">            $dependencies[] = make($parameter-&gt;getClass()-&gt;name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return $dependencies;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$c2 = make(&#x27;Circle&#x27;);</span><br><span class="line">$area = $c2-&gt;area();</span><br><span class="line">var_dump($c2, $area);</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a><a href="#%E5%8F%82%E8%80%83"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://php.net/manual/en/class.reflectionclass.php">ReflectionClass php mannual</a> <a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/5e9c86686fdb6f1aff00bed5b9f3f90f77c64d79.html">参考链接</a></p>
-
+ReflectionClass 的一些方法
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%A6%82%E4%BD%95%E7%94%A8-php-%E7%9A%84%E5%8F%8D%E5%B0%84%E7%B1%BB%E5%AE%9E%E7%8E%B0%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1014,9 +1164,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>管理后台的数据是通过 UI component 加载的。<br>隐藏 customer 和 customer address 的 middlename</p>
-<p>File: app\code\Vendor\ModuleName\view\base\ui_component\customer_form.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;form xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Ui:etc/ui_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;fieldset name=&quot;customer&quot;&gt;</span><br><span class="line">        &lt;field name=&quot;middlename&quot; formElement=&quot;input&quot;&gt;</span><br><span class="line">            &lt;settings&gt;</span><br><span class="line">                &lt;visible&gt;false&lt;/visible&gt;</span><br><span class="line">            &lt;/settings&gt;</span><br><span class="line">        &lt;/field&gt;</span><br><span class="line">    &lt;/fieldset&gt;</span><br><span class="line">    &lt;fieldset name=&quot;address&quot;&gt;</span><br><span class="line">        &lt;field name=&quot;middlename&quot; formElement=&quot;input&quot;&gt;</span><br><span class="line">            &lt;settings&gt;</span><br><span class="line">                &lt;visible&gt;false&lt;/visible&gt;</span><br><span class="line">            &lt;/settings&gt;</span><br><span class="line">        &lt;/field&gt;</span><br><span class="line">    &lt;/fieldset&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+          管理后台的数据是通过 UI component 加载的。
+隐藏 customer 和 customer address 的 middlename
+
+File: app\code\Vendor\ModuleName\view\base\ui_component\customer_form.xml
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNa
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E9%9A%90%E8%97%8F-magento-2-%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E7%9A%84-middle-name/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

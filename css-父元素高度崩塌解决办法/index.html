@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0 12345678910111213141516171819202122232425&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;    &lt;title&gt;ThankIT&lt;&#x2F;title&gt;&amp;lt">
+  <meta name="description" content="当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25          ThankIT        .parent {         border:10px solid">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css 父元素高度崩塌解决办法">
 <meta property="og:url" content="http://example.com/css-%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
-<meta property="og:description" content="当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0 12345678910111213141516171819202122232425&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;    &lt;title&gt;ThankIT&lt;&#x2F;title&gt;&amp;lt">
+<meta property="og:description" content="当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25          ThankIT        .parent {         border:10px solid">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C.png">
 <meta property="og:image" content="http://example.com/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E4%BF%AE%E5%A4%8D.png">

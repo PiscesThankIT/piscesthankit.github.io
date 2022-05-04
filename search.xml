@@ -5,7 +5,7 @@
     <url>/about-me/</url>
     <content><![CDATA[<p>本博客旨在解决 Magento 2 的应用问题，更注重深度挖掘。 博主的信念是 Magento 是一个优秀的开源程序，值得被更多人探索和应用。如能为 Magento 在国内的推广尽绵薄之力，将是我莫大的荣幸。 君子性非异也，善假于物也。希望对诸君有所帮助。</p>
 <h2 id="关于版权"><a href="#关于版权" class="headerlink" title="关于版权"></a><a href="#%E5%85%B3%E4%BA%8E%E7%89%88%E6%9D%83"></a>关于版权</h2><p>除非注明转载，否则本博客下文章皆为原创或原创翻译。转载请注明出处。</p>
-<h2 id="联系信息"><a href="#联系信息" class="headerlink" title="联系信息"></a><a href="#%E8%81%94%E7%B3%BB%E4%BF%A1%E6%81%AF"></a>联系信息</h2><p>QQ 1518525862 <img src="/wp-content/uploads/2016/08/qrcode_1473317238295-150x150.jpg" alt="qrcode_1473317238295"> 微信 <img src="/wp-content/uploads/2016/08/mmqrcode1473308737790-150x150.jpg" alt="mmqrcode1473308737790"> 邮箱：<a href="mailto:&#x77;&#117;&#x71;&#105;&#111;&#110;&#103;&#49;&#x35;&#49;&#56;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x77;&#117;&#x71;&#105;&#111;&#110;&#103;&#49;&#x35;&#49;&#56;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a> 如果觉得我的东西对您有帮助，可以捐赠我 o(*^▽^*)o~♪ 支付宝支持 <img src="/wp-content/uploads/2016/08/1473317716916-150x150.jpg" alt="1473317716916"> 微信支持 <img src="/wp-content/uploads/2016/08/mm_facetoface_collect_qrcode_1473317893092-150x150.png" alt="mm_facetoface_collect_qrcode_1473317893092"></p>
+<h2 id="联系信息"><a href="#联系信息" class="headerlink" title="联系信息"></a><a href="#%E8%81%94%E7%B3%BB%E4%BF%A1%E6%81%AF"></a>联系信息</h2><p>QQ 1518525862 <img src="/wp-content/uploads/2016/08/qrcode_1473317238295-150x150.jpg" alt="qrcode_1473317238295"> 微信 <img src="/wp-content/uploads/2016/08/mmqrcode1473308737790-150x150.jpg" alt="mmqrcode1473308737790"> 邮箱：<a href="mailto:&#119;&#117;&#113;&#x69;&#x6f;&#x6e;&#x67;&#49;&#53;&#49;&#x38;&#64;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#119;&#117;&#113;&#x69;&#x6f;&#x6e;&#x67;&#49;&#53;&#49;&#x38;&#64;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a> 如果觉得我的东西对您有帮助，可以捐赠我 o(*^▽^*)o~♪ 支付宝支持 <img src="/wp-content/uploads/2016/08/1473317716916-150x150.jpg" alt="1473317716916"> 微信支持 <img src="/wp-content/uploads/2016/08/mm_facetoface_collect_qrcode_1473317893092-150x150.png" alt="mm_facetoface_collect_qrcode_1473317893092"></p>
 ]]></content>
       <categories>
         <category>uncategorized</category>
@@ -173,31 +173,6 @@
       </categories>
   </entry>
   <entry>
-    <title>管理后台菜单</title>
-    <url>/admin-menu/</url>
-    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/stores/admin-menu.html">原文地址</a></em><br>左边的侧边栏就是管理后台的主菜单了，专为台式机和移动设备而设计。弹出菜单提供了所有日常的店铺管理所需的工具。</p>
-<p>控制面板<br>控制面板提供您店铺中销售和客户活动信息的简要概述，并且通常是您登录管理后台见到的第一个页面。<br><img src="/wp-content/uploads/2016/08/admin-menu-dashboard_212x127.png"></p>
-<p>销售<br>在销售菜单里您可以找到关于订单处理，发票，发货，贷项通知单(credit memo)和交易(transitions)相关的一切。</p>
-<p><img src="/wp-content/uploads/2016/08/admin-menu-sales_212x101.png"></p>
-<p>商品<br>商品(products)菜单控制与商品目录和库存相关的一切。<br><img src="/wp-content/uploads/2016/08/admin-menu-products_212x121.png"></p>
-<p>客户<br>在客户菜单中您可以管理客户的账户，看到哪些客户正在线。<br><img src="/wp-content/uploads/2016/08/admin-menu-customers_212x127.png"></p>
-<p>营销<br>在营销菜单中，您可以设置目录和购物车价格规则以及优惠券。满足特定条件时价格规则就会触发一些操作。<br><img src="/wp-content/uploads/2016/08/admin-menu-marketing_212x121.png"></p>
-<p>内容<br>内容菜单是您管理店铺内容和设计的地方。您将学习如何创建页面(pages)，内容块(blocks),前端应用程序，以及如何如何展示您的店铺。</p>
-<p><img src="/wp-content/uploads/2016/08/admin-menu-content_212x119.png"></p>
-<p>报告<br>报告菜单提供的报告范围广泛，包括销售，购物车，商品，客户，标签，评论，和搜索字词，让您深入了解您店铺的每一个方面。</p>
-<p><img src="/wp-content/uploads/2016/08/admin-menu-reports_212x111.png"></p>
-<p>店铺<br>店铺菜单包含了配置和维护店铺各个方面的工具。</p>
-<p><img src="/wp-content/uploads/2016/08/admin-menu-stores_212x120.png"></p>
-<p>系统<br>系统菜单包括安装插件(extensions)，和管理与其他应用集成所需要的Web Services工具。</p>
-<p><img src="/wp-content/uploads/2016/08/admin-menu-system_212x122.png"></p>
-<p>寻找合作伙伴&amp;插件<br>在这里，您可以为您的店铺找到官方市场上的 Magento 合作伙伴和解决方案。</p>
-<p><img src="/wp-content/uploads/2016/08/magento-marketplace-partners-extensions_212x146.png"></p>
-]]></content>
-      <categories>
-        <category>Magento 2 用户使用手册</category>
-      </categories>
-  </entry>
-  <entry>
     <title>后台全局搜索</title>
     <url>/admin-global-search/</url>
     <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/stores/admin-global-search.html">原文地址</a></em></p>
@@ -243,6 +218,31 @@
 <li>点击视图名称切换另一个视图</li>
 <li>修改视图的名字，点击<strong>编辑</strong>(Edit)<img src="/wp-content/uploads/2016/08/btn-edit_18x18.png">图标，进行修改。</li>
 </ul>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用手册</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>管理后台菜单</title>
+    <url>/admin-menu/</url>
+    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/stores/admin-menu.html">原文地址</a></em><br>左边的侧边栏就是管理后台的主菜单了，专为台式机和移动设备而设计。弹出菜单提供了所有日常的店铺管理所需的工具。</p>
+<p>控制面板<br>控制面板提供您店铺中销售和客户活动信息的简要概述，并且通常是您登录管理后台见到的第一个页面。<br><img src="/wp-content/uploads/2016/08/admin-menu-dashboard_212x127.png"></p>
+<p>销售<br>在销售菜单里您可以找到关于订单处理，发票，发货，贷项通知单(credit memo)和交易(transitions)相关的一切。</p>
+<p><img src="/wp-content/uploads/2016/08/admin-menu-sales_212x101.png"></p>
+<p>商品<br>商品(products)菜单控制与商品目录和库存相关的一切。<br><img src="/wp-content/uploads/2016/08/admin-menu-products_212x121.png"></p>
+<p>客户<br>在客户菜单中您可以管理客户的账户，看到哪些客户正在线。<br><img src="/wp-content/uploads/2016/08/admin-menu-customers_212x127.png"></p>
+<p>营销<br>在营销菜单中，您可以设置目录和购物车价格规则以及优惠券。满足特定条件时价格规则就会触发一些操作。<br><img src="/wp-content/uploads/2016/08/admin-menu-marketing_212x121.png"></p>
+<p>内容<br>内容菜单是您管理店铺内容和设计的地方。您将学习如何创建页面(pages)，内容块(blocks),前端应用程序，以及如何如何展示您的店铺。</p>
+<p><img src="/wp-content/uploads/2016/08/admin-menu-content_212x119.png"></p>
+<p>报告<br>报告菜单提供的报告范围广泛，包括销售，购物车，商品，客户，标签，评论，和搜索字词，让您深入了解您店铺的每一个方面。</p>
+<p><img src="/wp-content/uploads/2016/08/admin-menu-reports_212x111.png"></p>
+<p>店铺<br>店铺菜单包含了配置和维护店铺各个方面的工具。</p>
+<p><img src="/wp-content/uploads/2016/08/admin-menu-stores_212x120.png"></p>
+<p>系统<br>系统菜单包括安装插件(extensions)，和管理与其他应用集成所需要的Web Services工具。</p>
+<p><img src="/wp-content/uploads/2016/08/admin-menu-system_212x122.png"></p>
+<p>寻找合作伙伴&amp;插件<br>在这里，您可以为您的店铺找到官方市场上的 Magento 合作伙伴和解决方案。</p>
+<p><img src="/wp-content/uploads/2016/08/magento-marketplace-partners-extensions_212x146.png"></p>
 ]]></content>
       <categories>
         <category>Magento 2 用户使用手册</category>
@@ -393,6 +393,78 @@
       </categories>
   </entry>
   <entry>
+    <title>Magento 2 ES6 Template Literals</title>
+    <url>/alan-magento-2-ec6-template-literals/</url>
+    <content><![CDATA[<p><a href="https://alanstorm.com/magento_2_ec6_template_literals/">原文地址</a> 今天我们将了解 ES6 template literals （模板字符串）。Template literals 是 javascript 的新特性，Magento 2 的 UI Component 系统部分核心功能依赖它。Template literals 本身就是一个需要理解的重要概念，但是更重要的是要理解 Magento 在 template literals 之上创建的额外抽象层。还有 Magento 的 <code>uiClass</code> object system 是怎么把它吸收进来的。 开始前，需要感谢 “bassplayer7” ，他在 <a href="https://magento.stackexchange.com/questions/137689/sigil-strings-in-magento-2s-requirejs-files/137716#137716">StackExchange 上的回答</a>，提供了完成该篇文章所需要的重要信息。</p>
+<h2 id="ES6-Template-Literals"><a href="#ES6-Template-Literals" class="headerlink" title="ES6 Template Literals"></a><a href="#es6-template-literals"></a>ES6 Template Literals</h2><p>很多人的第一个问题可能是 —— ES6 是什么鬼？ ES 是 ECMAScript 的缩写，ECMA 是 <a href="https://en.wikipedia.org/wiki/Ecma_International">Ecma_International</a> 的缩写，他是一个将各种 javascript&#x2F;jscript&#x2F;actionscript 编程语言标准化的机构。 <a href="http://es6-features.org/#Constants">ECMAScript 6</a> 是该标准的最新版本。浏览器厂商（Apple, Google, Firefox）正在根据 ES6 标准实现功能（类似于 HTML 是怎样推出的）。 其中一个功能正是 template literals 。Template literals 让 javascript 具备了简单的、内置的模板语言。我们将在 Google Chrome Console 中运行一些 template literal 示例代码，但是你是可以在任何支持 ES6 标准的 javascript 环境中运行这些示例代码的。 Template literals 最简单的形式和字符串的区别很小。看下面的<code>Hello World</code> 文本：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; results = `Hello World`</span><br><span class="line">&gt; console.log(results);</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>注意，我们把 “Hello World” 放在了重音符中（就是这个符号：<strong>`</strong> 中） 放在重音符中的文本表示，这个字符串是一个 template literal 到目前为止，字符串和模板字符串（Template literal）没什么特别大的区别。Template literals are (from a userland perspective) immediately rendered as strings</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; var results = `Hello World`</span><br><span class="line">&gt; var type    = typeof results;</span><br><span class="line">&gt; console.log(type)</span><br><span class="line">string</span><br></pre></td></tr></table></figure>
+
+<p><code>results</code> 变量看起来和 string 没什么区别，反正到目前为止，template literals 看起来没什么用。 当然了，如果他们没有什么用的话，我们也不会写文章说它了。Template literals 支持 <strong>template variables&#x2F;placeholders</strong> ，看下面的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; var salutation = &quot;Goodbye&quot;</span><br><span class="line">&gt; var results = `$&#123;salutation&#125; World`</span><br><span class="line">&gt; console.log(results);</span><br></pre></td></tr></table></figure>
+
+<p><code>$&#123;salutation&#125;</code> 就是一个 template literal variable (or placeholder) 这些变量从 js 当前作用域中获得。所以 js 会把 <code>$&#123;salutation&#125;</code> 替换成 <code>Goodbye</code> 。 js 会这么做是因为我们给全局变量 <code>salutation</code> 赋值为 <code>Goodbye</code> 。 要了解更多 template literals <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">请访问 Mozilla developer network</a> ，会讲更多高级特性，比如 <code>tag</code> 。</p>
+<h2 id="Browser-Support-and-Magento-2"><a href="#Browser-Support-and-Magento-2" class="headerlink" title="Browser Support and Magento 2"></a><a href="#browser-support-and-magento-2"></a>Browser Support and Magento 2</h2><p>跟其他 js 新特性一样，客户端开发者在使用前需要特别注意浏览器是否支持该特性。目前不是所有浏览器都支持 Template literals ，在老的浏览器上使用他们会导致错误。 Magento 2 的开发者通过创建 RequireJS 模块来 rendering template literals 去绕过使用限制。这个模块的 id 就是 <code>mage/utils/template</code> ，所以你可以像下面这样使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 注意要在 Magento 页面中打开 debugger</span><br><span class="line">//requires an enviornment bootstrapped with Magento 2</span><br><span class="line">//javascript.  i.e. open you debugger on a Magento page</span><br><span class="line"></span><br><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">    window.salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">    var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">    var results         = templateRenderer.template(templateLiteral);</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Brave New World</span><br></pre></td></tr></table></figure>
+
+<p>幕后，<code>mage/utils/template</code> 模块会检查浏览器对 template literal 的支持。如果支持，模块将使用浏览器原生的实现方式，如果不支持，模块将使用纯用户级的实现方式（速度更慢一点）。<a href="https://en.wikipedia.org/wiki/Polyfill">这被称为 polyfill</a> 这个模块很有用，但是有几点需要说明。首先，你会注意到我们需要把 <code>salutation</code> 变量搁到全局的命名空间上（在浏览器的 js 环境下指的是 “window”）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">window.salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>原生的 template literals 会从当前作用域取值，但是 Magento 2 的模块（任何用户级代码）则不能自动地访问该作用域，因此，template literals 只能从全局作用域上取值。 看下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这里会报错(除非你定义了一个全局变量 salutation)：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">VM1627:1 Uncaught ReferenceError: salutation is not defined</span><br></pre></td></tr></table></figure>
+
+<p>（这一段我也没看懂，所以放上原文） The second mage&#x2F;utils&#x2F;template caveat, and likely a direct result of the above scope problem, is Magento 2’s template literals have extra abilities that go above and beyond those defined in the standard.</p>
+<h2 id="Binding-View-Variables-to-a-Template-Literal"><a href="#Binding-View-Variables-to-a-Template-Literal" class="headerlink" title="Binding View Variables to a Template Literal"></a><a href="#binding-view-variables-to-a-template-literal"></a>Binding View Variables to a Template Literal</h2><p>Magento 2 的 template litearls 允许你绑定特定的对象到特定的 template literal 上，然后通过特别的语法引用变量。就像下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var viewVars        = &#123;</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;What a Crazy&#x27;</span><br><span class="line">        &#125;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral, viewVars);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>就是说，<code>template</code> 方法第二个参数接受一个对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">templateRenderer.template(templateLiteral, viewVars);</span><br></pre></td></tr></table></figure>
+
+<p>但是上面的代码还是会报错。这是因为我们前面说过要用特殊的语法的。你需要在 <code>$&#123;&#125;</code> 里面用第二个 <code>$</code> 符号来引用对象。 就是说下面这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>需要变成这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var templateLiteral = &#x27;$&#123;$.placeholder&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>这有点笨拙，不过还是很好理解的，只要明白 <code>$.</code> 指代你传递过去的对象。 下面这样就对了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var viewVars        = &#123;</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;What a Crazy&#x27;</span><br><span class="line">        &#125;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;$.salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral, viewVars);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">What a Crazy World</span><br></pre></td></tr></table></figure>
+
+<h2 id="Connection-to-UI-Components"><a href="#Connection-to-UI-Components" class="headerlink" title="Connection to UI Components"></a><a href="#connection-to-ui-components"></a>Connection to UI Components</h2><p>为什么我们要在讲 Magento 2 的 UI Component 系列文章中讲 template literals 呢？这是因为 template literals 已经被植入了 view model constructor object 系统中。 我们知道，Magento UI Components 使用的 Knockout.js view model constructor objects 是基于 <code>uiElement/Magento_Ui/js/lib/core/element/element</code> 模块的。(<a href="https://www.hellomagento2.com/alan_magento_2_simplest_ui_knockout_component/#configuring-a-view-model-constructor">不明白戳这里</a>) 下面是一个简单的例子，我们先创建一个 view model constructor ，然后用这个 constructor 去创建 view model</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;&#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">UiClass &#123;_super: undefined, ignoreTmpls: Object, ...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个 view model constructor 有能力带 default 值进行实例化（因为 <code>uiElement</code> 继承自 <code>uiClass/Magento_Ui/js/lib/core/class</code>，这个父类是拥有这个能力的）如果你为 view model constructor 提供 default object ，像下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">viewModelConstructor = Element.extend(&#123;</span><br><span class="line">    &#x27;defaults&#x27;:&#123;</span><br><span class="line">        &#x27;ourDefaultValue&#x27;:&#x27;Look at our value!&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>那么所有通过这个 constructor 实例化的对象都会拥有 default 值 ourDefaultValue</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;ourDefaultValue&#x27;:&#x27;Look at our value!&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.ourDefaultValue);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Look at our value!</span><br></pre></td></tr></table></figure>
+
+<p>Magento 对象系统会是检查所有的 default 字符串，发现 template literal 就会自动计算出他们。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    window.salutation = &#x27;Hello&#x27;;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Hello World.</span><br></pre></td></tr></table></figure>
+
+<p>注意这里使用的是全局的 <code>salutation</code> 值。 看下面的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;$.salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Goodbye World.</span><br></pre></td></tr></table></figure>
+
+<p>给 view model constructor 传递对象</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;$.salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor(&#123;</span><br><span class="line">        &#x27;salutation&#x27;:&#x27;This is still a crazy&#x27;</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">This is still a crazy World.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Wrap-Up"><a href="#Wrap-Up" class="headerlink" title="Wrap Up"></a><a href="#wrap-up"></a>Wrap Up</h2><p>本文揭示了想把 Magento 当作平台使用的开发者遇到的挑战之一。不仅有前沿 javaScript 概念，还有 Magento 通过不那么标准的方式(binding view variables)去扩展了这些概念，还有 Magento 是如何将这些概念吸收到自己的系统中去的（<code>uiClass</code> object system）。 如果没有上面的这些概念，那么你遇到下面这些代码的时候：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">return Element.extend(&#123;</span><br><span class="line">    defaults: &#123;</span><br><span class="line">        clientConfig: &#123;</span><br><span class="line">            urls: &#123;</span><br><span class="line">                save: &#x27;$&#123; $.submit_url &#125;&#x27;,</span><br><span class="line">                beforeSave: &#x27;$&#123; $.validate_url &#125;&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>就只能摸不着头脑干着急了。 现在我们了解了 Magento 的 ES6-like template literals .我们距离更进一步的探索又近了一步，下面我们将探索 Magento 是如何将后端数据放入 view model constructor 的 <code>default</code> 数组中的，还有 Magento 是如何处理 UI Component 生成的 data sources 的。 <a href="https://stackoverflow.com/questions/34270829/chrome-console-clear-assignment-and-variables">chrome console 中 var 声明的也是全局变量</a></p>
+]]></content>
+      <categories>
+        <category>alan storm</category>
+      </categories>
+      <tags>
+        <tag>magento 2 ui components</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Magento 2 Javascript Init Scripts（翻译）</title>
     <url>/alan-magento-2-javascript-init-scripts/</url>
     <content><![CDATA[<p><em><a href="http://alanstorm.com/magento_2_javascript_init_scripts/">原文地址</a></em> 在 Alan 的 <a href="http://alanstorm.com/category/magento-2/#magento_2_mvc">Magento 2 for PHP MVC</a>系列文章中，曾经提到 RequireJS 是 Magento 2 系统所有 JS 的基础。这的确是事实，但是 RequireJS 仅仅触及 Magento 中 javaScript 可能性的表面。 今天我们将探索 Magento 2 引入的各种系统，以执行非嵌入<code>&lt;script type=&quot;text/javascript&quot;&gt;</code>标签的 js 代码作为开始。</p>
@@ -477,78 +549,6 @@
       <categories>
         <category>alan storm</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Magento 2 ES6 Template Literals</title>
-    <url>/alan-magento-2-ec6-template-literals/</url>
-    <content><![CDATA[<p><a href="https://alanstorm.com/magento_2_ec6_template_literals/">原文地址</a> 今天我们将了解 ES6 template literals （模板字符串）。Template literals 是 javascript 的新特性，Magento 2 的 UI Component 系统部分核心功能依赖它。Template literals 本身就是一个需要理解的重要概念，但是更重要的是要理解 Magento 在 template literals 之上创建的额外抽象层。还有 Magento 的 <code>uiClass</code> object system 是怎么把它吸收进来的。 开始前，需要感谢 “bassplayer7” ，他在 <a href="https://magento.stackexchange.com/questions/137689/sigil-strings-in-magento-2s-requirejs-files/137716#137716">StackExchange 上的回答</a>，提供了完成该篇文章所需要的重要信息。</p>
-<h2 id="ES6-Template-Literals"><a href="#ES6-Template-Literals" class="headerlink" title="ES6 Template Literals"></a><a href="#es6-template-literals"></a>ES6 Template Literals</h2><p>很多人的第一个问题可能是 —— ES6 是什么鬼？ ES 是 ECMAScript 的缩写，ECMA 是 <a href="https://en.wikipedia.org/wiki/Ecma_International">Ecma_International</a> 的缩写，他是一个将各种 javascript&#x2F;jscript&#x2F;actionscript 编程语言标准化的机构。 <a href="http://es6-features.org/#Constants">ECMAScript 6</a> 是该标准的最新版本。浏览器厂商（Apple, Google, Firefox）正在根据 ES6 标准实现功能（类似于 HTML 是怎样推出的）。 其中一个功能正是 template literals 。Template literals 让 javascript 具备了简单的、内置的模板语言。我们将在 Google Chrome Console 中运行一些 template literal 示例代码，但是你是可以在任何支持 ES6 标准的 javascript 环境中运行这些示例代码的。 Template literals 最简单的形式和字符串的区别很小。看下面的<code>Hello World</code> 文本：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; results = `Hello World`</span><br><span class="line">&gt; console.log(results);</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
-
-<p>注意，我们把 “Hello World” 放在了重音符中（就是这个符号：<strong>`</strong> 中） 放在重音符中的文本表示，这个字符串是一个 template literal 到目前为止，字符串和模板字符串（Template literal）没什么特别大的区别。Template literals are (from a userland perspective) immediately rendered as strings</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; var results = `Hello World`</span><br><span class="line">&gt; var type    = typeof results;</span><br><span class="line">&gt; console.log(type)</span><br><span class="line">string</span><br></pre></td></tr></table></figure>
-
-<p><code>results</code> 变量看起来和 string 没什么区别，反正到目前为止，template literals 看起来没什么用。 当然了，如果他们没有什么用的话，我们也不会写文章说它了。Template literals 支持 <strong>template variables&#x2F;placeholders</strong> ，看下面的例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; var salutation = &quot;Goodbye&quot;</span><br><span class="line">&gt; var results = `$&#123;salutation&#125; World`</span><br><span class="line">&gt; console.log(results);</span><br></pre></td></tr></table></figure>
-
-<p><code>$&#123;salutation&#125;</code> 就是一个 template literal variable (or placeholder) 这些变量从 js 当前作用域中获得。所以 js 会把 <code>$&#123;salutation&#125;</code> 替换成 <code>Goodbye</code> 。 js 会这么做是因为我们给全局变量 <code>salutation</code> 赋值为 <code>Goodbye</code> 。 要了解更多 template literals <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">请访问 Mozilla developer network</a> ，会讲更多高级特性，比如 <code>tag</code> 。</p>
-<h2 id="Browser-Support-and-Magento-2"><a href="#Browser-Support-and-Magento-2" class="headerlink" title="Browser Support and Magento 2"></a><a href="#browser-support-and-magento-2"></a>Browser Support and Magento 2</h2><p>跟其他 js 新特性一样，客户端开发者在使用前需要特别注意浏览器是否支持该特性。目前不是所有浏览器都支持 Template literals ，在老的浏览器上使用他们会导致错误。 Magento 2 的开发者通过创建 RequireJS 模块来 rendering template literals 去绕过使用限制。这个模块的 id 就是 <code>mage/utils/template</code> ，所以你可以像下面这样使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 注意要在 Magento 页面中打开 debugger</span><br><span class="line">//requires an enviornment bootstrapped with Magento 2</span><br><span class="line">//javascript.  i.e. open you debugger on a Magento page</span><br><span class="line"></span><br><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">    window.salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">    var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">    var results         = templateRenderer.template(templateLiteral);</span><br><span class="line">    console.log(results);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Brave New World</span><br></pre></td></tr></table></figure>
-
-<p>幕后，<code>mage/utils/template</code> 模块会检查浏览器对 template literal 的支持。如果支持，模块将使用浏览器原生的实现方式，如果不支持，模块将使用纯用户级的实现方式（速度更慢一点）。<a href="https://en.wikipedia.org/wiki/Polyfill">这被称为 polyfill</a> 这个模块很有用，但是有几点需要说明。首先，你会注意到我们需要把 <code>salutation</code> 变量搁到全局的命名空间上（在浏览器的 js 环境下指的是 “window”）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">window.salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>原生的 template literals 会从当前作用域取值，但是 Magento 2 的模块（任何用户级代码）则不能自动地访问该作用域，因此，template literals 只能从全局作用域上取值。 看下面的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var salutation      = &#x27;Brave New&#x27;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这里会报错(除非你定义了一个全局变量 salutation)：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">VM1627:1 Uncaught ReferenceError: salutation is not defined</span><br></pre></td></tr></table></figure>
-
-<p>（这一段我也没看懂，所以放上原文） The second mage&#x2F;utils&#x2F;template caveat, and likely a direct result of the above scope problem, is Magento 2’s template literals have extra abilities that go above and beyond those defined in the standard.</p>
-<h2 id="Binding-View-Variables-to-a-Template-Literal"><a href="#Binding-View-Variables-to-a-Template-Literal" class="headerlink" title="Binding View Variables to a Template Literal"></a><a href="#binding-view-variables-to-a-template-literal"></a>Binding View Variables to a Template Literal</h2><p>Magento 2 的 template litearls 允许你绑定特定的对象到特定的 template literal 上，然后通过特别的语法引用变量。就像下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var viewVars        = &#123;</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;What a Crazy&#x27;</span><br><span class="line">        &#125;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral, viewVars);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>就是说，<code>template</code> 方法第二个参数接受一个对象。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">templateRenderer.template(templateLiteral, viewVars);</span><br></pre></td></tr></table></figure>
-
-<p>但是上面的代码还是会报错。这是因为我们前面说过要用特殊的语法的。你需要在 <code>$&#123;&#125;</code> 里面用第二个 <code>$</code> 符号来引用对象。 就是说下面这样</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var templateLiteral = &#x27;$&#123;salutation&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>需要变成这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var templateLiteral = &#x27;$&#123;$.placeholder&#125; World&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>这有点笨拙，不过还是很好理解的，只要明白 <code>$.</code> 指代你传递过去的对象。 下面这样就对了。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirejs([&#x27;mage/utils/template&#x27;], function(templateRenderer)&#123;</span><br><span class="line">        var viewVars        = &#123;</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;What a Crazy&#x27;</span><br><span class="line">        &#125;;</span><br><span class="line">        var templateLiteral = &#x27;$&#123;$.salutation&#125; World&#x27;;</span><br><span class="line">        var results         = templateRenderer.template(templateLiteral, viewVars);</span><br><span class="line">        console.log(results);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">What a Crazy World</span><br></pre></td></tr></table></figure>
-
-<h2 id="Connection-to-UI-Components"><a href="#Connection-to-UI-Components" class="headerlink" title="Connection to UI Components"></a><a href="#connection-to-ui-components"></a>Connection to UI Components</h2><p>为什么我们要在讲 Magento 2 的 UI Component 系列文章中讲 template literals 呢？这是因为 template literals 已经被植入了 view model constructor object 系统中。 我们知道，Magento UI Components 使用的 Knockout.js view model constructor objects 是基于 <code>uiElement/Magento_Ui/js/lib/core/element/element</code> 模块的。(<a href="https://www.hellomagento2.com/alan_magento_2_simplest_ui_knockout_component/#configuring-a-view-model-constructor">不明白戳这里</a>) 下面是一个简单的例子，我们先创建一个 view model constructor ，然后用这个 constructor 去创建 view model</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;&#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">UiClass &#123;_super: undefined, ignoreTmpls: Object, ...&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个 view model constructor 有能力带 default 值进行实例化（因为 <code>uiElement</code> 继承自 <code>uiClass/Magento_Ui/js/lib/core/class</code>，这个父类是拥有这个能力的）如果你为 view model constructor 提供 default object ，像下面这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">viewModelConstructor = Element.extend(&#123;</span><br><span class="line">    &#x27;defaults&#x27;:&#123;</span><br><span class="line">        &#x27;ourDefaultValue&#x27;:&#x27;Look at our value!&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>那么所有通过这个 constructor 实例化的对象都会拥有 default 值 ourDefaultValue</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;ourDefaultValue&#x27;:&#x27;Look at our value!&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.ourDefaultValue);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Look at our value!</span><br></pre></td></tr></table></figure>
-
-<p>Magento 对象系统会是检查所有的 default 字符串，发现 template literal 就会自动计算出他们。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    window.salutation = &#x27;Hello&#x27;;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Hello World.</span><br></pre></td></tr></table></figure>
-
-<p>注意这里使用的是全局的 <code>salutation</code> 值。 看下面的例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;$.salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor;</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Goodbye World.</span><br></pre></td></tr></table></figure>
-
-<p>给 view model constructor 传递对象</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">requirejs([&#x27;uiElement&#x27;], function(Element)&#123;</span><br><span class="line">    viewModelConstructor = Element.extend(&#123;</span><br><span class="line">        &#x27;defaults&#x27;:&#123;</span><br><span class="line">            &#x27;message&#x27;:&#x27;$&#123;$.salutation&#125; World. &#x27;,</span><br><span class="line">            &#x27;salutation&#x27;:&#x27;Goodbye&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    viewModel = new viewModelConstructor(&#123;</span><br><span class="line">        &#x27;salutation&#x27;:&#x27;This is still a crazy&#x27;</span><br><span class="line">    &#125;);</span><br><span class="line">    console.log(viewModel.message);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">This is still a crazy World.</span><br></pre></td></tr></table></figure>
-
-<h2 id="Wrap-Up"><a href="#Wrap-Up" class="headerlink" title="Wrap Up"></a><a href="#wrap-up"></a>Wrap Up</h2><p>本文揭示了想把 Magento 当作平台使用的开发者遇到的挑战之一。不仅有前沿 javaScript 概念，还有 Magento 通过不那么标准的方式(binding view variables)去扩展了这些概念，还有 Magento 是如何将这些概念吸收到自己的系统中去的（<code>uiClass</code> object system）。 如果没有上面的这些概念，那么你遇到下面这些代码的时候：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">return Element.extend(&#123;</span><br><span class="line">    defaults: &#123;</span><br><span class="line">        clientConfig: &#123;</span><br><span class="line">            urls: &#123;</span><br><span class="line">                save: &#x27;$&#123; $.submit_url &#125;&#x27;,</span><br><span class="line">                beforeSave: &#x27;$&#123; $.validate_url &#125;&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-
-<p>就只能摸不着头脑干着急了。 现在我们了解了 Magento 的 ES6-like template literals .我们距离更进一步的探索又近了一步，下面我们将探索 Magento 是如何将后端数据放入 view model constructor 的 <code>default</code> 数组中的，还有 Magento 是如何处理 UI Component 生成的 data sources 的。 <a href="https://stackoverflow.com/questions/34270829/chrome-console-clear-assignment-and-variables">chrome console 中 var 声明的也是全局变量</a></p>
-]]></content>
-      <categories>
-        <category>alan storm</category>
-      </categories>
-      <tags>
-        <tag>magento 2 ui components</tag>
-      </tags>
   </entry>
   <entry>
     <title>Magento 2 Object Manager（翻译）</title>
@@ -1821,28 +1821,6 @@
       </categories>
   </entry>
   <entry>
-    <title>版权声明</title>
-    <url>/copyright-notice/</url>
-    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/design/copyright-notice.html">原文地址</a></em></p>
-<p>您店铺的每一页页脚都有版权声明。作为最佳实践，版权声明应该包括本年度，并注明贵公司是该网站内容的合法拥有者。</p>
-<p><img src="/wp-content/uploads/2016/08/storefront-footer-copyright_thumb_0_0.png"></p>
-<p>这个字符&amp;Copy;可以用来插入版权符号，看例子：<br>长格式示例<br><em>Copyright &amp;Copy; 2016 Magento, Inc. All rights reserved.</em><br>短格式示例<br><em>&amp;Copy; 2016 Magento, Inc. All rights reserved.</em></p>
-<h2 id="修改版权声明"><a href="#修改版权声明" class="headerlink" title="修改版权声明"></a><a href="#%E4%BF%AE%E6%94%B9%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"></a>修改版权声明</h2><ol>
-<li><p>后台侧边栏，点击<strong>内容</strong>(Content) &gt; <strong>设计</strong>(Design) &gt; <strong>配置</strong> (Configuration)</p>
-</li>
-<li><p>在表格中找到您要修改的 Store view ，在 Action 列，点击编辑(Edit)，做如下操作：<br><img src="/wp-content/uploads/2016/08/design-configuration_thumb_0_0.png" alt="Design Configuration"><br>a. 在<strong>其他设置</strong>(Other Setttings)下展开<strong>页脚</strong>(Footer)部分</p>
-<p><img src="/wp-content/uploads/2016/08/design-configuration-footer_thumb_0_0.png"></p>
-<p>b. 在<strong>版权</strong>(Copyright)字段输入版权信息，这个字符&amp;Copy;可以用来插入版权符号。</p>
-</li>
-<li><p>完成后点击保存配置(Save Configuration)</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Magento 2 用户使用手册</category>
-      </categories>
-  </entry>
-  <entry>
     <title>cordova 插件开发</title>
     <url>/cordova-plugin-development-exercise/</url>
     <content><![CDATA[<h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a><a href="#%E9%A2%98%E5%A4%96%E8%AF%9D"></a>题外话</h2><p>为什么 Magento 主题的博客研究起 cordova 来了？因为博主希望解决掉商城的全平台问题。 cordova 是贡献给 Apache 后的开源项目，Phonegap 的核心引擎。cordova 通过 Webview 提供 js 和原生代码之间的桥接，这样就可以利用 JS 来调用原生的代码，实现相应的功能，比如调用相机，地理位置什么的。（这样的介绍好像没什么卵用，总之一句话，cordova 是做 APP 跨平台开发的） 博主 14 年的时候用 phonegap 做过一个 APP，当时前端框架用的 jquery mobile。在流畅性上，还是不太理想，但是这个锅个人认为大部分要由 jquery mobile 来背，（：D 当然还有博主水平不够的原因）。最后，权衡开发成本和流畅性，选择混合开发还是划算的。 cordova 是混合开发中非常成熟的方案了。虽然一直在讲 webview 的渲染速度慢，但是近些年手机的运行速度也大大提升了。博主最近下载了一款基于 cordova 的应用，体验了一下，速度是很可以的。 因为 cordova 的插件机制，可以让你调用原生去做事，所以这个速度的优化空间是比较大的。况且，我们还可以在原生中嵌入 cordova 的 webviews ，让他们互通。在某些场景下使用原生的，另一些场景下使用 cordova ，想想还是很吸引人的。 在技术的选择上，常常有太多的争论，本文且不讨论这些，重点记录 cordova Android 插件开发的一个入门 exercise 。</p>
@@ -1961,6 +1939,28 @@
       </categories>
   </entry>
   <entry>
+    <title>版权声明</title>
+    <url>/copyright-notice/</url>
+    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/design/copyright-notice.html">原文地址</a></em></p>
+<p>您店铺的每一页页脚都有版权声明。作为最佳实践，版权声明应该包括本年度，并注明贵公司是该网站内容的合法拥有者。</p>
+<p><img src="/wp-content/uploads/2016/08/storefront-footer-copyright_thumb_0_0.png"></p>
+<p>这个字符&amp;Copy;可以用来插入版权符号，看例子：<br>长格式示例<br><em>Copyright &amp;Copy; 2016 Magento, Inc. All rights reserved.</em><br>短格式示例<br><em>&amp;Copy; 2016 Magento, Inc. All rights reserved.</em></p>
+<h2 id="修改版权声明"><a href="#修改版权声明" class="headerlink" title="修改版权声明"></a><a href="#%E4%BF%AE%E6%94%B9%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"></a>修改版权声明</h2><ol>
+<li><p>后台侧边栏，点击<strong>内容</strong>(Content) &gt; <strong>设计</strong>(Design) &gt; <strong>配置</strong> (Configuration)</p>
+</li>
+<li><p>在表格中找到您要修改的 Store view ，在 Action 列，点击编辑(Edit)，做如下操作：<br><img src="/wp-content/uploads/2016/08/design-configuration_thumb_0_0.png" alt="Design Configuration"><br>a. 在<strong>其他设置</strong>(Other Setttings)下展开<strong>页脚</strong>(Footer)部分</p>
+<p><img src="/wp-content/uploads/2016/08/design-configuration-footer_thumb_0_0.png"></p>
+<p>b. 在<strong>版权</strong>(Copyright)字段输入版权信息，这个字符&amp;Copy;可以用来插入版权符号。</p>
+</li>
+<li><p>完成后点击保存配置(Save Configuration)</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用手册</category>
+      </categories>
+  </entry>
+  <entry>
     <title>create cache type</title>
     <url>/create-cache-type/</url>
     <content><![CDATA[<p><code>etc/cache.xml</code></p>
@@ -1987,6 +1987,42 @@
       </categories>
   </entry>
   <entry>
+    <title>Create new product type</title>
+    <url>/create-new-product-type/</url>
+    <content><![CDATA[<ul>
+<li>Simple Proudct a simple product can be sold individually, or as part of a grouped, configurable, or bundle product. A simple product can have custom options with a variety of input controls, which makes it possible to sell many product variations from a single SKU</li>
+<li>Configurable Product A configurable product allows the shopper to choose options from drop-down lists. Each option in a configurable product represents a separate, simple product with a distinct SKU, which makes it possible to track inventory for each variation. Each drop-down list value is based on an attribute of the “Dropdown” input type(You can choose from (Dropdown &#x2F;visual swatch &#x2F; text swatch)). The drop-down attributes must be included in the attribute set, which is then used as a template for the configurable product. The thumbnail image in the shopping cart can be set to display the image from the configurable product record, or from the product variation. Simple and virtual products that are part of a configurable product cannot have custom options.</li>
+<li>Group Product A grouped product is essentially a collection of simple associated products. Simple and virtual products that are part of a grouped product cannot have custom options. Each item purchased appears individually in the shopping cart, rather than as part of the group. The thumbnail image in the shopping cart can be set to display the image from the grouped parent product, or the associated product. For example with demo data: <a href="http://example.com/set-of-sprite-yoga-straps.html">http://example.com/set-of-sprite-yoga-straps.html</a></li>
+<li>Bundled Product The main point that distinguishes bundled product from grouped products is that when items are bundled together, it is hardly possible for any of the products to be removed from the set. In simple words, one product cannot live without the other, would hardly function if the other is missing. One product complements the other. For example with demo data: <a href="http://example.com/sprite-yoga-companion-kit.html">http://example.com/sprite-yoga-companion-kit.html</a></li>
+<li>Downloadable Products Downloadable products can be uploaded to the server, or linked to from another server on the Internet. You can determine the number of times a customer can download a product. Customers who purchase a downloadable product can be required to log in before going through checkout. The delivery of a downloadable product can be made when the order is in either a “Pending” or “Invoiced” state.</li>
+<li>Virtual Products Virtual products are used for non-tangible products such as services, subscriptions, and warranties. Virtual products are much like simple products, but without the Weight. Shipping Options do not appear during checkout unless there is a tangible product in the cart.</li>
+</ul>
+<h2 id="Experients"><a href="#Experients" class="headerlink" title="Experients"></a><a href="#experients"></a>Experients</h2><h3 id="Config-XML"><a href="#Config-XML" class="headerlink" title="Config XML"></a><a href="#config-xml"></a>Config XML</h3><p>etc&#x2F;product_types.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Catalog:etc/product_types.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;new_product_type&quot; label=&quot;New Product Type&quot; modelInstance=&quot;VendorName\TestModule\Model\Product\Type\NewProductType&quot; indexPriority=&quot;60&quot; sortOrder=&quot;80&quot; isQty=&quot;true&quot;&gt;</span><br><span class="line">        &lt;priceModel instance=&quot;VendorName\TestModule\Model\Product\Price&quot; /&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The <code>type</code> node has three required attributes.</p>
+<ul>
+<li>name: This attribute defines the custom product code which is used in code and in the database.</li>
+<li>label: Defines the product type label in the Magento admin.</li>
+<li>modelInstance: Specifies the fully qualified namespace of the corresponding product type model.</li>
+</ul>
+<h3 id="Product-Type-Model"><a href="#Product-Type-Model" class="headerlink" title="Product Type Model"></a><a href="#product-type-model"></a>Product Type Model</h3><p>Each product instance is associated with an instance of the corresponding product type model. This model has the opportunity to modify product type behavior and attributes and is called during many product manipulation processes.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product\Type;</span><br><span class="line"></span><br><span class="line">class NewProductType extends \Magento\Catalog\Model\Product\Type\AbstractType</span><br><span class="line">&#123;</span><br><span class="line">    const TYPE_ID = &#x27;new_product_type&#x27;;</span><br><span class="line"></span><br><span class="line">    public function deleteTypeSpecificData(\Magento\Catalog\Model\Product $product)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A product model must inherit from the <code>\Magento\Catalog\Model\Product\Type\AbstractType</code> base class. The base class has only one abstract method: <code>deleteTypeSpecificData</code>. This oddly specific method is called during a product instance save if its type has changed, and gives the original product type the opportunity to clean up any type-specific data before the type change is finalized.</p>
+<h3 id="Price-Model"><a href="#Price-Model" class="headerlink" title="Price Model"></a><a href="#price-model"></a>Price Model</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product;</span><br><span class="line"></span><br><span class="line">class Price extends \Magento\Catalog\Model\Product\Type\Price</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function getPrice($product)</span><br><span class="line">    &#123;</span><br><span class="line">        return $product-&gt;getData(&#x27;price&#x27;) + 200;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Associate-With-Price-Attributes"><a href="#Associate-With-Price-Attributes" class="headerlink" title="Associate With Price Attributes"></a><a href="#associate-with-price-attributes"></a>Associate With Price Attributes</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Setup\Patch\Data;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\Setup\Patch\DataPatchInterface;</span><br><span class="line">use Magento\Customer\Model\Customer;</span><br><span class="line">use Magento\Customer\Setup\CustomerSetupFactory;</span><br><span class="line">use Magento\Eav\Setup\EavSetupFactory;</span><br><span class="line">use Magento\Framework\Setup\ModuleDataSetupInterface;</span><br><span class="line">use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;</span><br><span class="line"></span><br><span class="line">class CustomProductTypePatch implements DataPatchInterface</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct(</span><br><span class="line">        ModuleDataSetupInterface $moduleDataSetup,</span><br><span class="line">        CustomerSetupFactory $customerSetupFactory,</span><br><span class="line">        EavSetupFactory $eavSetupFactory,</span><br><span class="line">        AttributeSetFactory $attributeSetFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;moduleDataSetup = $moduleDataSetup;</span><br><span class="line">        $this-&gt;customerSetupFactory = $customerSetupFactory;</span><br><span class="line">        $this-&gt;eavSetupFactory = $eavSetupFactory;</span><br><span class="line">        $this-&gt;attributeSetFactory = $attributeSetFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getAliases()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This internal Magento method, that means that some patches with time can change their names,</span><br><span class="line">         * but changing name should not affect installation process, that&#x27;s why if we will change name of the patch</span><br><span class="line">         * we will add alias here</span><br><span class="line">         */</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function apply()</span><br><span class="line">    &#123;</span><br><span class="line">        /** @var EavSetup $eavSetup */</span><br><span class="line">        $eavSetup = $this-&gt;eavSetupFactory-&gt;create([&#x27;setup&#x27; =&gt; $this-&gt;moduleDataSetup]);</span><br><span class="line"></span><br><span class="line">        //associate these attributes with new product type</span><br><span class="line">        $fieldList = [</span><br><span class="line">            &#x27;price&#x27;,</span><br><span class="line">            &#x27;special_price&#x27;,</span><br><span class="line">            &#x27;special_from_date&#x27;,</span><br><span class="line">            &#x27;special_to_date&#x27;,</span><br><span class="line">            &#x27;minimal_price&#x27;,</span><br><span class="line">            &#x27;cost&#x27;,</span><br><span class="line">            &#x27;tier_price&#x27;,</span><br><span class="line">            &#x27;weight&#x27;,</span><br><span class="line">        ];</span><br><span class="line"></span><br><span class="line">        // make these attributes applicable to new product type</span><br><span class="line">        foreach ($fieldList as $field) &#123;</span><br><span class="line">            $applyTo = explode(</span><br><span class="line">                &#x27;,&#x27;,</span><br><span class="line">                $eavSetup-&gt;getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, &#x27;apply_to&#x27;)</span><br><span class="line">            );</span><br><span class="line">            if (!in_array(\VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID, $applyTo)) &#123;</span><br><span class="line">                $applyTo[] = \VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID;</span><br><span class="line">                $eavSetup-&gt;updateAttribute(</span><br><span class="line">                    \Magento\Catalog\Model\Product::ENTITY,</span><br><span class="line">                    $field,</span><br><span class="line">                    &#x27;apply_to&#x27;,</span><br><span class="line">                    implode(&#x27;,&#x27;, $applyTo)</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static function getDependencies()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This is dependency to another patch. Dependency should be applied first</span><br><span class="line">         * One patch can have few dependencies</span><br><span class="line">         * Patches do not have versions, so if in old approach with Install/Ugrade data scripts you used</span><br><span class="line">         * versions, right now you need to point from patch with higher version to patch with lower version</span><br><span class="line">         * But please, note, that some of your patches can be independent and can be installed in any sequence</span><br><span class="line">         * So use dependencies only if this important for you</span><br><span class="line">         */</span><br><span class="line">        // return [</span><br><span class="line">        //     SomeDependency::class</span><br><span class="line">        // ];</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>After <code>bin/magento setup:upgrade</code>. Now we create a new product using custom product type. <img src="/wp-content/uploads/2019/06/new_product_type.png"> <img src="/wp-content/uploads/2019/06/custom_product_type.png"> <img src="/wp-content/uploads/2019/06/new_product_type_product.png"> The product type instance and product price type is used in <code>Magento\Catalog\Model\Product</code></p>
+<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>You need to create a custom price calculator for simple products. You have already created the new price model. Keeping simplicity in mind, what additional steps do you take to implement this? (Multiple Choice) A. Make your new price model extend \Magento\Catalog\Model\Product\Type\Price. B. Update the frontend templates to use the new price methods. C. Create a plugin for the getPriceModel() method and return your price model. D. In your product_types.xml module, reference the simple product type, and set a value for the priceModel attribute Answer A D</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a href="https://www.ubertheme.com/magento-news/magento-product-types/">Manage Magento 2 Product Types and Catalog Data</a> <a href="https://www.classyllama.com/blog/custom-product-types-magento-2">Custom Product Types in Magento 2</a> <a href="https://www.mageplaza.com/devdocs/how-create-new-product-type-magento-2.html">How to Create a New Product Type in Magento 2</a></p>
+]]></content>
+      <categories>
+        <category>M2 Certified Professional Developer</category>
+      </categories>
+  </entry>
+  <entry>
     <title>create customer attribute</title>
     <url>/create-customer-attribute/</url>
     <content><![CDATA[<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a><a href="#notes"></a>Notes</h2><p>Custom attributes are those added on behalf of a merchant. For example, a merchant might need to add attributes to describe products, such as shape or volume. A merchant can add these attributes in the Magento Admin panel. Custom attributes are a subset of EAV attributes.</p>
@@ -2000,6 +2036,17 @@
 ]]></content>
       <categories>
         <category>M2 Certified Professional Developer</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>css resources</title>
+    <url>/css-resources/</url>
+    <content><![CDATA[<p><a href="http://zh.learnlayout.com/">学习 css 布局</a></p>
+<p>《css 揭秘》</p>
+<p><a href="https://css-tricks.com/">css tricks</a> <a href="https://qishaoxuan.github.io/css_tricks/">qishaoxuan css tricks</a> <a href="https://codepen.io/jakealbaugh/">Jake Albaugh</a></p>
+]]></content>
+      <categories>
+        <category>CSS</category>
       </categories>
   </entry>
   <entry>
@@ -2079,77 +2126,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Create new product type</title>
-    <url>/create-new-product-type/</url>
-    <content><![CDATA[<ul>
-<li>Simple Proudct a simple product can be sold individually, or as part of a grouped, configurable, or bundle product. A simple product can have custom options with a variety of input controls, which makes it possible to sell many product variations from a single SKU</li>
-<li>Configurable Product A configurable product allows the shopper to choose options from drop-down lists. Each option in a configurable product represents a separate, simple product with a distinct SKU, which makes it possible to track inventory for each variation. Each drop-down list value is based on an attribute of the “Dropdown” input type(You can choose from (Dropdown &#x2F;visual swatch &#x2F; text swatch)). The drop-down attributes must be included in the attribute set, which is then used as a template for the configurable product. The thumbnail image in the shopping cart can be set to display the image from the configurable product record, or from the product variation. Simple and virtual products that are part of a configurable product cannot have custom options.</li>
-<li>Group Product A grouped product is essentially a collection of simple associated products. Simple and virtual products that are part of a grouped product cannot have custom options. Each item purchased appears individually in the shopping cart, rather than as part of the group. The thumbnail image in the shopping cart can be set to display the image from the grouped parent product, or the associated product. For example with demo data: <a href="http://example.com/set-of-sprite-yoga-straps.html">http://example.com/set-of-sprite-yoga-straps.html</a></li>
-<li>Bundled Product The main point that distinguishes bundled product from grouped products is that when items are bundled together, it is hardly possible for any of the products to be removed from the set. In simple words, one product cannot live without the other, would hardly function if the other is missing. One product complements the other. For example with demo data: <a href="http://example.com/sprite-yoga-companion-kit.html">http://example.com/sprite-yoga-companion-kit.html</a></li>
-<li>Downloadable Products Downloadable products can be uploaded to the server, or linked to from another server on the Internet. You can determine the number of times a customer can download a product. Customers who purchase a downloadable product can be required to log in before going through checkout. The delivery of a downloadable product can be made when the order is in either a “Pending” or “Invoiced” state.</li>
-<li>Virtual Products Virtual products are used for non-tangible products such as services, subscriptions, and warranties. Virtual products are much like simple products, but without the Weight. Shipping Options do not appear during checkout unless there is a tangible product in the cart.</li>
-</ul>
-<h2 id="Experients"><a href="#Experients" class="headerlink" title="Experients"></a><a href="#experients"></a>Experients</h2><h3 id="Config-XML"><a href="#Config-XML" class="headerlink" title="Config XML"></a><a href="#config-xml"></a>Config XML</h3><p>etc&#x2F;product_types.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;config xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:module:Magento_Catalog:etc/product_types.xsd&quot;&gt;</span><br><span class="line">    &lt;type name=&quot;new_product_type&quot; label=&quot;New Product Type&quot; modelInstance=&quot;VendorName\TestModule\Model\Product\Type\NewProductType&quot; indexPriority=&quot;60&quot; sortOrder=&quot;80&quot; isQty=&quot;true&quot;&gt;</span><br><span class="line">        &lt;priceModel instance=&quot;VendorName\TestModule\Model\Product\Price&quot; /&gt;</span><br><span class="line">    &lt;/type&gt;</span><br><span class="line">&lt;/config&gt;</span><br></pre></td></tr></table></figure>
-
-<p>The <code>type</code> node has three required attributes.</p>
-<ul>
-<li>name: This attribute defines the custom product code which is used in code and in the database.</li>
-<li>label: Defines the product type label in the Magento admin.</li>
-<li>modelInstance: Specifies the fully qualified namespace of the corresponding product type model.</li>
-</ul>
-<h3 id="Product-Type-Model"><a href="#Product-Type-Model" class="headerlink" title="Product Type Model"></a><a href="#product-type-model"></a>Product Type Model</h3><p>Each product instance is associated with an instance of the corresponding product type model. This model has the opportunity to modify product type behavior and attributes and is called during many product manipulation processes.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product\Type;</span><br><span class="line"></span><br><span class="line">class NewProductType extends \Magento\Catalog\Model\Product\Type\AbstractType</span><br><span class="line">&#123;</span><br><span class="line">    const TYPE_ID = &#x27;new_product_type&#x27;;</span><br><span class="line"></span><br><span class="line">    public function deleteTypeSpecificData(\Magento\Catalog\Model\Product $product)</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>A product model must inherit from the <code>\Magento\Catalog\Model\Product\Type\AbstractType</code> base class. The base class has only one abstract method: <code>deleteTypeSpecificData</code>. This oddly specific method is called during a product instance save if its type has changed, and gives the original product type the opportunity to clean up any type-specific data before the type change is finalized.</p>
-<h3 id="Price-Model"><a href="#Price-Model" class="headerlink" title="Price Model"></a><a href="#price-model"></a>Price Model</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Model\Product;</span><br><span class="line"></span><br><span class="line">class Price extends \Magento\Catalog\Model\Product\Type\Price</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function getPrice($product)</span><br><span class="line">    &#123;</span><br><span class="line">        return $product-&gt;getData(&#x27;price&#x27;) + 200;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Associate-With-Price-Attributes"><a href="#Associate-With-Price-Attributes" class="headerlink" title="Associate With Price Attributes"></a><a href="#associate-with-price-attributes"></a>Associate With Price Attributes</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace VendorName\TestModule\Setup\Patch\Data;</span><br><span class="line"></span><br><span class="line">use Magento\Framework\Setup\Patch\DataPatchInterface;</span><br><span class="line">use Magento\Customer\Model\Customer;</span><br><span class="line">use Magento\Customer\Setup\CustomerSetupFactory;</span><br><span class="line">use Magento\Eav\Setup\EavSetupFactory;</span><br><span class="line">use Magento\Framework\Setup\ModuleDataSetupInterface;</span><br><span class="line">use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;</span><br><span class="line"></span><br><span class="line">class CustomProductTypePatch implements DataPatchInterface</span><br><span class="line">&#123;</span><br><span class="line">    public function __construct(</span><br><span class="line">        ModuleDataSetupInterface $moduleDataSetup,</span><br><span class="line">        CustomerSetupFactory $customerSetupFactory,</span><br><span class="line">        EavSetupFactory $eavSetupFactory,</span><br><span class="line">        AttributeSetFactory $attributeSetFactory</span><br><span class="line">    ) &#123;</span><br><span class="line">        $this-&gt;moduleDataSetup = $moduleDataSetup;</span><br><span class="line">        $this-&gt;customerSetupFactory = $customerSetupFactory;</span><br><span class="line">        $this-&gt;eavSetupFactory = $eavSetupFactory;</span><br><span class="line">        $this-&gt;attributeSetFactory = $attributeSetFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function getAliases()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This internal Magento method, that means that some patches with time can change their names,</span><br><span class="line">         * but changing name should not affect installation process, that&#x27;s why if we will change name of the patch</span><br><span class="line">         * we will add alias here</span><br><span class="line">         */</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function apply()</span><br><span class="line">    &#123;</span><br><span class="line">        /** @var EavSetup $eavSetup */</span><br><span class="line">        $eavSetup = $this-&gt;eavSetupFactory-&gt;create([&#x27;setup&#x27; =&gt; $this-&gt;moduleDataSetup]);</span><br><span class="line"></span><br><span class="line">        //associate these attributes with new product type</span><br><span class="line">        $fieldList = [</span><br><span class="line">            &#x27;price&#x27;,</span><br><span class="line">            &#x27;special_price&#x27;,</span><br><span class="line">            &#x27;special_from_date&#x27;,</span><br><span class="line">            &#x27;special_to_date&#x27;,</span><br><span class="line">            &#x27;minimal_price&#x27;,</span><br><span class="line">            &#x27;cost&#x27;,</span><br><span class="line">            &#x27;tier_price&#x27;,</span><br><span class="line">            &#x27;weight&#x27;,</span><br><span class="line">        ];</span><br><span class="line"></span><br><span class="line">        // make these attributes applicable to new product type</span><br><span class="line">        foreach ($fieldList as $field) &#123;</span><br><span class="line">            $applyTo = explode(</span><br><span class="line">                &#x27;,&#x27;,</span><br><span class="line">                $eavSetup-&gt;getAttribute(\Magento\Catalog\Model\Product::ENTITY, $field, &#x27;apply_to&#x27;)</span><br><span class="line">            );</span><br><span class="line">            if (!in_array(\VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID, $applyTo)) &#123;</span><br><span class="line">                $applyTo[] = \VendorName\TestModule\Model\Product\Type\NewProductType::TYPE_ID;</span><br><span class="line">                $eavSetup-&gt;updateAttribute(</span><br><span class="line">                    \Magento\Catalog\Model\Product::ENTITY,</span><br><span class="line">                    $field,</span><br><span class="line">                    &#x27;apply_to&#x27;,</span><br><span class="line">                    implode(&#x27;,&#x27;, $applyTo)</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static function getDependencies()</span><br><span class="line">    &#123;</span><br><span class="line">        /**</span><br><span class="line">         * This is dependency to another patch. Dependency should be applied first</span><br><span class="line">         * One patch can have few dependencies</span><br><span class="line">         * Patches do not have versions, so if in old approach with Install/Ugrade data scripts you used</span><br><span class="line">         * versions, right now you need to point from patch with higher version to patch with lower version</span><br><span class="line">         * But please, note, that some of your patches can be independent and can be installed in any sequence</span><br><span class="line">         * So use dependencies only if this important for you</span><br><span class="line">         */</span><br><span class="line">        // return [</span><br><span class="line">        //     SomeDependency::class</span><br><span class="line">        // ];</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>After <code>bin/magento setup:upgrade</code>. Now we create a new product using custom product type. <img src="/wp-content/uploads/2019/06/new_product_type.png"> <img src="/wp-content/uploads/2019/06/custom_product_type.png"> <img src="/wp-content/uploads/2019/06/new_product_type_product.png"> The product type instance and product price type is used in <code>Magento\Catalog\Model\Product</code></p>
-<h2 id="Practices-Tests"><a href="#Practices-Tests" class="headerlink" title="Practices Tests"></a><a href="#practices-tests"></a>Practices Tests</h2><p>You need to create a custom price calculator for simple products. You have already created the new price model. Keeping simplicity in mind, what additional steps do you take to implement this? (Multiple Choice) A. Make your new price model extend \Magento\Catalog\Model\Product\Type\Price. B. Update the frontend templates to use the new price methods. C. Create a plugin for the getPriceModel() method and return your price model. D. In your product_types.xml module, reference the simple product type, and set a value for the priceModel attribute Answer A D</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p><a href="https://www.ubertheme.com/magento-news/magento-product-types/">Manage Magento 2 Product Types and Catalog Data</a> <a href="https://www.classyllama.com/blog/custom-product-types-magento-2">Custom Product Types in Magento 2</a> <a href="https://www.mageplaza.com/devdocs/how-create-new-product-type-magento-2.html">How to Create a New Product Type in Magento 2</a></p>
-]]></content>
-      <categories>
-        <category>M2 Certified Professional Developer</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>css resources</title>
-    <url>/css-resources/</url>
-    <content><![CDATA[<p><a href="http://zh.learnlayout.com/">学习 css 布局</a></p>
-<p>《css 揭秘》</p>
-<p><a href="https://css-tricks.com/">css tricks</a> <a href="https://qishaoxuan.github.io/css_tricks/">qishaoxuan css tricks</a> <a href="https://codepen.io/jakealbaugh/">Jake Albaugh</a></p>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>css 父元素高度崩塌解决办法</title>
-    <url>/css-%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<p>当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">    .child &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">        padding: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">        I am child</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C.png"></p>
-<h2 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%80"></a>解决方法一</h2><p>设置父元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.solution-one .parent &#123;</span><br><span class="line">        overflow: auto;</span><br><span class="line">        zoom: 1;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;div class=&quot;solution-one&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E4%BF%AE%E5%A4%8D.png"></p>
-<h2 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%BA%8C"></a>解决方法二</h2><p>利用 after 伪元素</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.solution-two .parent:after &#123;</span><br><span class="line">        content: &quot; &quot;;</span><br><span class="line">        display: table;</span><br><span class="line">        clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;div class=&quot;solution-two&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E4%BF%AE%E5%A4%8D.png"> 完整的参考代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">    .child &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">        padding: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">    .solution-one .parent &#123;</span><br><span class="line">        overflow: auto;</span><br><span class="line">        zoom: 1;</span><br><span class="line">    &#125;</span><br><span class="line">    .solution-two .parent:after &#123;</span><br><span class="line">        content: &quot; &quot;;</span><br><span class="line">        display: table;</span><br><span class="line">        clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">        I am child</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;clear: both;height: 20px;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;solution-one&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;clear: both;height: 20px;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;solution-two&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-        <tag>float</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>css 的几个选择器</title>
     <url>/css-%E7%9A%84%E5%87%A0%E4%B8%AA%E9%80%89%E6%8B%A9%E5%99%A8/</url>
     <content><![CDATA[<h4 id="相邻兄弟选择器"><a href="#相邻兄弟选择器" class="headerlink" title="+ 相邻兄弟选择器"></a><a href="#+-%E7%9B%B8%E9%82%BB%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8"></a>+ 相邻兄弟选择器</h4><h4 id="兄弟选择器-不相邻也没关系"><a href="#兄弟选择器-不相邻也没关系" class="headerlink" title="~ 兄弟选择器 不相邻也没关系"></a><a href="#~-%E5%85%84%E5%BC%9F%E9%80%89%E6%8B%A9%E5%99%A8-%E4%B8%8D%E7%9B%B8%E9%82%BB%E4%B9%9F%E6%B2%A1%E5%85%B3%E7%B3%BB"></a>~ 兄弟选择器 不相邻也没关系</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .case-1 h1+p &#123;</span><br><span class="line">        color :#e47b7b;</span><br><span class="line">    &#125;</span><br><span class="line">    .case-2 h1~p &#123;</span><br><span class="line">        color :#e47b7b;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;case-1&quot;&gt;</span><br><span class="line">    &lt;h1&gt;h1 相邻兄弟选择器&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;我是紧邻 h1 的 p 我变红&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;我不是紧邻的 p 我没有效果&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;case-2&quot;&gt;</span><br><span class="line">    &lt;h1&gt;h1 兄弟选择器 不相邻也没有关系&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;我是紧邻 h1 的 p &lt;/p&gt;</span><br><span class="line">    &lt;div&gt;我是个 div &lt;/div&gt;</span><br><span class="line">    &lt;p&gt;我不是紧邻的 p &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
@@ -2167,19 +2143,6 @@
         <tag>CSS</tag>
         <tag>选择器</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>货币</title>
-    <url>/currency-overview/</url>
-    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/stores/currency-overview.html">原文地址</a></em></p>
-<h2 id="货币设置"><a href="#货币设置" class="headerlink" title="货币设置"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E8%AE%BE%E7%BD%AE%5D()"></a>货币设置</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-rate-setup_212x129.png"><br>设置基础货币和接受的其他外币。建立用于自动更新货币汇率的导入连接和时间表。</p>
-<h2 id="货币符号"><a href="#货币符号" class="headerlink" title="货币符号"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E7%AC%A6%E5%8F%B7%5D()"></a>货币符号</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-symbols_212x127.png"><br>定义出现在商品价格和销售单据，如订单和发票里的货币符号。Magento支持来自世界各地超过200个国家的货币。</p>
-<h2 id="更新货币汇率"><a href="#更新货币汇率" class="headerlink" title="更新货币汇率"></a><a href="#%5B%E6%9B%B4%E6%96%B0%E8%B4%A7%E5%B8%81%E6%B1%87%E7%8E%87%5D()"></a>更新货币汇率</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-rate-update_212x119.png"><br>汇率可以手动进行更新或根据需要，或根据预定的时间表导入到店铺中。</p>
-<h2 id="货币选择器"><a href="#货币选择器" class="headerlink" title="货币选择器"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E9%80%89%E6%8B%A9%E5%99%A8%5D()"></a>货币选择器</h2><p><img src="/wp-content/uploads/2016/08/storefront-currency-chooser_212x103.png"><br>如果有多种货币可供选择，店头会出现货币选择器。</p>
-]]></content>
-      <categories>
-        <category>Magento 2 用户使用手册</category>
-      </categories>
   </entry>
   <entry>
     <title>调试工具：如何得到页面的布局文件</title>
@@ -2214,28 +2177,28 @@
       </categories>
   </entry>
   <entry>
-    <title>店铺演示提示</title>
-    <url>/demo-notice/</url>
-    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/design/demo-notice.html">原文地址</a></em></p>
-<p>如果您的店铺已经上线但是还在建设中，您可以在店面顶端显示一个演示提示，好让别人知道您的店铺还没有正式开张呢。开张的时候，移除他就行了。这就像门上挂的牌子，从”Closed”翻成”Open”。店铺演示提示的具体格式取决于店铺的主题(theme)。</p>
-<p><img src="/wp-content/uploads/2016/08/storefront-demo-notice_thumb_0_0.png"></p>
-<h2 id="设置店铺演示提示"><a href="#设置店铺演示提示" class="headerlink" title="设置店铺演示提示"></a><a href="#%E8%AE%BE%E7%BD%AE%E5%BA%97%E9%93%BA%E6%BC%94%E7%A4%BA%E6%8F%90%E7%A4%BA"></a>设置店铺演示提示</h2><ol>
-<li><p>后台侧边栏，点击<strong>内容</strong>(Content) &gt; <strong>设计</strong>(Design) &gt; <strong>配置</strong> (Configuration)</p>
-</li>
-<li><p>在表格中找到您要修改的 Store view ，在 Action 列，点击编辑(Edit)</p>
-</li>
-<li><p>在<strong>其他设置</strong>(Other Setttings)下展开<strong>头部</strong>(Header)部分</p>
-</li>
-<li><p>下拉到底，设置<strong>显示店铺演示提示</strong>(Display Demo Store Notice)  </p>
-<p><img src="/wp-content/uploads/2016/08/design-configuration-html-head_thumb_0_0.png"></p>
-</li>
-<li><p>完成后，点击保存配置(Save Configuration)</p>
-</li>
-</ol>
-]]></content>
+    <title>css 父元素高度崩塌解决办法</title>
+    <url>/css-%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>当父元素没有设置高度，（我们本希望它由子元素撑起来），而子元素设置了浮动，这时候子元素脱离了标准的文档流，于是父元素的高度就崩塌了，高度变为 0</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">    .child &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">        padding: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">        I am child</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C.png"></p>
+<h2 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%B8%80"></a>解决方法一</h2><p>设置父元素</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.solution-one .parent &#123;</span><br><span class="line">        overflow: auto;</span><br><span class="line">        zoom: 1;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;div class=&quot;solution-one&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E4%BF%AE%E5%A4%8D.png"></p>
+<h2 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E4%BA%8C"></a>解决方法二</h2><p>利用 after 伪元素</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.solution-two .parent:after &#123;</span><br><span class="line">        content: &quot; &quot;;</span><br><span class="line">        display: table;</span><br><span class="line">        clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;div class=&quot;solution-two&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/wp-content/uploads/2017/08/%E7%88%B6%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%B4%A9%E5%A1%8C%E4%BF%AE%E5%A4%8D.png"> 完整的参考代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ThankIT&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    .parent &#123;</span><br><span class="line">        border:10px solid #f9f2f4;</span><br><span class="line">    &#125;</span><br><span class="line">    .child &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        float: left;</span><br><span class="line">        background-color: yellow;</span><br><span class="line">        padding: 15px;</span><br><span class="line">    &#125;</span><br><span class="line">    .solution-one .parent &#123;</span><br><span class="line">        overflow: auto;</span><br><span class="line">        zoom: 1;</span><br><span class="line">    &#125;</span><br><span class="line">    .solution-two .parent:after &#123;</span><br><span class="line">        content: &quot; &quot;;</span><br><span class="line">        display: table;</span><br><span class="line">        clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">        I am child</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;clear: both;height: 20px;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;solution-one&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;clear: both;height: 20px;&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;solution-two&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;parent&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;child&quot;&gt;</span><br><span class="line">            I am child</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Magento 2 用户使用手册</category>
+        <category>CSS</category>
       </categories>
+      <tags>
+        <tag>CSS</tag>
+        <tag>float</tag>
+      </tags>
   </entry>
   <entry>
     <title>declarative schema</title>
@@ -2279,6 +2242,43 @@
 ]]></content>
       <categories>
         <category>M2 Certified Professional Developer</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>货币</title>
+    <url>/currency-overview/</url>
+    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/stores/currency-overview.html">原文地址</a></em></p>
+<h2 id="货币设置"><a href="#货币设置" class="headerlink" title="货币设置"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E8%AE%BE%E7%BD%AE%5D()"></a>货币设置</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-rate-setup_212x129.png"><br>设置基础货币和接受的其他外币。建立用于自动更新货币汇率的导入连接和时间表。</p>
+<h2 id="货币符号"><a href="#货币符号" class="headerlink" title="货币符号"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E7%AC%A6%E5%8F%B7%5D()"></a>货币符号</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-symbols_212x127.png"><br>定义出现在商品价格和销售单据，如订单和发票里的货币符号。Magento支持来自世界各地超过200个国家的货币。</p>
+<h2 id="更新货币汇率"><a href="#更新货币汇率" class="headerlink" title="更新货币汇率"></a><a href="#%5B%E6%9B%B4%E6%96%B0%E8%B4%A7%E5%B8%81%E6%B1%87%E7%8E%87%5D()"></a>更新货币汇率</h2><p><img src="/wp-content/uploads/2016/08/stores-currency-rate-update_212x119.png"><br>汇率可以手动进行更新或根据需要，或根据预定的时间表导入到店铺中。</p>
+<h2 id="货币选择器"><a href="#货币选择器" class="headerlink" title="货币选择器"></a><a href="#%5B%E8%B4%A7%E5%B8%81%E9%80%89%E6%8B%A9%E5%99%A8%5D()"></a>货币选择器</h2><p><img src="/wp-content/uploads/2016/08/storefront-currency-chooser_212x103.png"><br>如果有多种货币可供选择，店头会出现货币选择器。</p>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用手册</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>店铺演示提示</title>
+    <url>/demo-notice/</url>
+    <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/design/demo-notice.html">原文地址</a></em></p>
+<p>如果您的店铺已经上线但是还在建设中，您可以在店面顶端显示一个演示提示，好让别人知道您的店铺还没有正式开张呢。开张的时候，移除他就行了。这就像门上挂的牌子，从”Closed”翻成”Open”。店铺演示提示的具体格式取决于店铺的主题(theme)。</p>
+<p><img src="/wp-content/uploads/2016/08/storefront-demo-notice_thumb_0_0.png"></p>
+<h2 id="设置店铺演示提示"><a href="#设置店铺演示提示" class="headerlink" title="设置店铺演示提示"></a><a href="#%E8%AE%BE%E7%BD%AE%E5%BA%97%E9%93%BA%E6%BC%94%E7%A4%BA%E6%8F%90%E7%A4%BA"></a>设置店铺演示提示</h2><ol>
+<li><p>后台侧边栏，点击<strong>内容</strong>(Content) &gt; <strong>设计</strong>(Design) &gt; <strong>配置</strong> (Configuration)</p>
+</li>
+<li><p>在表格中找到您要修改的 Store view ，在 Action 列，点击编辑(Edit)</p>
+</li>
+<li><p>在<strong>其他设置</strong>(Other Setttings)下展开<strong>头部</strong>(Header)部分</p>
+</li>
+<li><p>下拉到底，设置<strong>显示店铺演示提示</strong>(Display Demo Store Notice)  </p>
+<p><img src="/wp-content/uploads/2016/08/design-configuration-html-head_thumb_0_0.png"></p>
+</li>
+<li><p>完成后，点击保存配置(Save Configuration)</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用手册</category>
       </categories>
   </entry>
   <entry>
@@ -2361,7 +2361,7 @@
 <p>接触过开源软件的朋友很可能对 GNU协议比较了解，其实GNU与OSL没有本质区别，但是因为今年来一些商业公司针对开源项目提起了一些诉讼，所以产生了法律方面更完善的OSL协议。 我想上面的几条权利和义务已经介绍的很清楚了，更具体的判断行为是否可以，那就需要专业律师咨询了。</p>
 <p>上面一段摘自开源中国社区，<a href="http://www.oschina.net/question/12_4285?_t_t_t=0.3621957151192301">原文地址</a></p>
 <p>可是 magento 的插件算是衍生著作吗？需要继续遵循OSL协议吗？是否必须开源呢？</p>
-<h2 id="询问官方"><a href="#询问官方" class="headerlink" title="询问官方"></a><a href="#%E8%AF%A2%E9%97%AE%E5%AE%98%E6%96%B9"></a>询问官方</h2><p>博主发邮件询问了 magento marketplace 的support(<a href="mailto:&#109;&#97;&#x72;&#x6b;&#x65;&#116;&#112;&#108;&#97;&#99;&#x65;&#64;&#x6d;&#x61;&#103;&#101;&#110;&#116;&#x6f;&#46;&#99;&#111;&#109;">&#109;&#97;&#x72;&#x6b;&#x65;&#116;&#112;&#108;&#97;&#99;&#x65;&#64;&#x6d;&#x61;&#103;&#101;&#110;&#116;&#x6f;&#46;&#99;&#111;&#109;</a>)</p>
+<h2 id="询问官方"><a href="#询问官方" class="headerlink" title="询问官方"></a><a href="#%E8%AF%A2%E9%97%AE%E5%AE%98%E6%96%B9"></a>询问官方</h2><p>博主发邮件询问了 magento marketplace 的support(<a href="mailto:&#x6d;&#x61;&#114;&#x6b;&#101;&#x74;&#112;&#x6c;&#x61;&#x63;&#x65;&#x40;&#x6d;&#97;&#103;&#101;&#110;&#x74;&#111;&#x2e;&#99;&#111;&#x6d;">&#x6d;&#x61;&#114;&#x6b;&#101;&#x74;&#112;&#x6c;&#x61;&#x63;&#x65;&#x40;&#x6d;&#97;&#103;&#101;&#110;&#x74;&#111;&#x2e;&#99;&#111;&#x6d;</a>)</p>
 <p>我：Do extensions submit to Marketplace need to be open source ?（提交给marketplace 的插件必须开源么？）</p>
 <p>对方：No the products do not have to be open source （不是必须开源的）</p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a><a href="#%E7%BB%93%E8%AE%BA"></a>结论</h2><p>如果 magento 的插件不要求开源，那说明他就不是 magento 的衍生著作，他是开发者的著作，开发者可自行决定使用什么协议，是否开源。</p>
@@ -2385,6 +2385,20 @@
       <categories>
         <category>uncategorized</category>
       </categories>
+  </entry>
+  <entry>
+    <title>直接下载 Magento 1 的插件</title>
+    <url>/download-magento1-extension-directly/</url>
+    <content><![CDATA[<p>一般情况下，最好是用 Magento Connect 直接安装插件。不过对开发者来说，可能只需要看一下插件的业务逻辑或者实现什么的，所以直接下载的方式更方便些。</p>
+<p>工具：</p>
+<p><a href="http://freegento.com/ddl-magento-extension.php">http://freegento.com/ddl-magento-extension.php</a></p>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>Magento 1 插件下载</tag>
+      </tags>
   </entry>
   <entry>
     <title>Docker 搭建 lamp 环境 （失败）</title>
@@ -2447,20 +2461,6 @@
       <categories>
         <category>uncategorized</category>
       </categories>
-  </entry>
-  <entry>
-    <title>直接下载 Magento 1 的插件</title>
-    <url>/download-magento1-extension-directly/</url>
-    <content><![CDATA[<p>一般情况下，最好是用 Magento Connect 直接安装插件。不过对开发者来说，可能只需要看一下插件的业务逻辑或者实现什么的，所以直接下载的方式更方便些。</p>
-<p>工具：</p>
-<p><a href="http://freegento.com/ddl-magento-extension.php">http://freegento.com/ddl-magento-extension.php</a></p>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>Magento 1 插件下载</tag>
-      </tags>
   </entry>
   <entry>
     <title>EavSetup classes</title>
@@ -2812,7 +2812,7 @@
     <content><![CDATA[<p>很多用 Magento 的人可能并不是技术人员，他们也不关心 Magento 是怎么发邮件的，只要能用就好了。不过知道这些会有助于发生问题时更快定位问题所在。</p>
 <p>Magento 发送邮件的功能是建立在 Zend Framework 的 Zend_Mail 类基础上。负责完成该工作的是 <code>Zend_Mail_Transport_Sendmail.php</code> ，这个类又是建立在 PHP 的 Mail 基础上的。PHP 的 Mail 使用的是服务器提供的 sendmail 脚本来发送邮件。</p>
 <p>如果你不知道 Magento 默认是使用服务器的 sendmail 来发邮件的，那么在后台弄好邮件相关设置后，就会莫名其妙地发现 Magento 还是不能发送邮件。</p>
-<p>如何搭建一个简单的邮件服务器（邮件传输代理）呢？可以使用 postfix、sendmail 等等。这种做法的直接好处是，可以使用许多个邮箱地址，完成不同的工作。比如：一般的邮件用 <a href="mailto:&#111;&#119;&#110;&#101;&#x72;&#x40;&#x79;&#x6f;&#117;&#x72;&#x64;&#111;&#109;&#97;&#105;&#x6e;&#46;&#99;&#x6f;&#109;">&#111;&#119;&#110;&#101;&#x72;&#x40;&#x79;&#x6f;&#117;&#x72;&#x64;&#111;&#109;&#97;&#105;&#x6e;&#46;&#99;&#x6f;&#109;</a> ，销售相关的用 <a href="mailto:&#x73;&#97;&#x6c;&#101;&#x73;&#64;&#x79;&#x6f;&#x75;&#x72;&#x64;&#111;&#x6d;&#97;&#105;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x73;&#97;&#x6c;&#101;&#x73;&#64;&#x79;&#x6f;&#x75;&#x72;&#x64;&#111;&#x6d;&#97;&#105;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>。下面的方式就不能使用多个邮箱地址了。</p>
+<p>如何搭建一个简单的邮件服务器（邮件传输代理）呢？可以使用 postfix、sendmail 等等。这种做法的直接好处是，可以使用许多个邮箱地址，完成不同的工作。比如：一般的邮件用 <a href="mailto:&#111;&#x77;&#x6e;&#101;&#x72;&#x40;&#x79;&#111;&#x75;&#x72;&#x64;&#x6f;&#x6d;&#97;&#105;&#x6e;&#x2e;&#99;&#111;&#x6d;">&#111;&#x77;&#x6e;&#101;&#x72;&#x40;&#x79;&#111;&#x75;&#x72;&#x64;&#x6f;&#x6d;&#97;&#105;&#x6e;&#x2e;&#99;&#111;&#x6d;</a> ，销售相关的用 <a href="mailto:&#x73;&#97;&#108;&#x65;&#115;&#x40;&#121;&#111;&#117;&#x72;&#x64;&#111;&#109;&#x61;&#105;&#110;&#46;&#x63;&#111;&#109;">&#x73;&#97;&#108;&#x65;&#115;&#x40;&#121;&#111;&#117;&#x72;&#x64;&#111;&#109;&#x61;&#105;&#110;&#46;&#x63;&#111;&#109;</a>。下面的方式就不能使用多个邮箱地址了。</p>
 <p>下面要说到的这种方式是使用 SMTP 插件。这种插件的原理是使用新的类代替 <code>Zend_Mail_Transport_Sendmail.php</code> 完成工作（实际上是<code>\Magento\Framework\Mail\Transport</code> 负责的），这个新的类可以设置 SMTP 。这种方式相当于你把账户名，密码告诉他，他直接用外部的邮件服务器发邮件。</p>
 <p>这种方式只能配置一个账户，所以后台邮件地址得设置地和他一样。</p>
 <p>以上是博主的个人理解，有错误还请各位纠正，谢谢！</p>
@@ -2944,44 +2944,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hyper-v centos 静态 IP 设置</title>
-    <url>/hyper-v-centos-%E9%9D%99%E6%80%81-ip-%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<p>查看系统版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /etc/*release*</span><br></pre></td></tr></table></figure>
-
-<p>结果类似：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CentOS Linux release 7.4.1708 (Core)</span><br><span class="line">Derived from Red Hat Enterprise Linux 7.4 (Source)</span><br><span class="line">NAME=&quot;CentOS Linux&quot;</span><br><span class="line">VERSION=&quot;7 (Core)&quot;</span><br></pre></td></tr></table></figure>
-
-<p>安装工具包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install net-tools</span><br></pre></td></tr></table></figure>
-
-<p>修改静态的 IP</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
-
-<p>适当修改，类似：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E=eth0 //网卡名称</span><br><span class="line"></span><br><span class="line">HWADDR=00:0c:29:5c:94:74</span><br><span class="line"></span><br><span class="line">TYPE=Ethernet</span><br><span class="line"></span><br><span class="line">UUID=36c43db3-95a9-427c-af8f-ba130189de85</span><br><span class="line"></span><br><span class="line">ONBOOT=yes //将 ONBOOT=&quot;no&quot; 改为ONBOOT=&quot;yes&quot;</span><br><span class="line"></span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line"></span><br><span class="line">BOOTPROTO=none</span><br><span class="line"></span><br><span class="line">IPADDR=192.168.0.252 //修改 IP 地址</span><br><span class="line"></span><br><span class="line">NETMASK=255.255.255.0 //修改子网掩码</span><br><span class="line"></span><br><span class="line">GATEWAY=192.168.0.1 //修改网关</span><br><span class="line"></span><br><span class="line">DNS1=8.8.8.8 //修改DNS服务器</span><br></pre></td></tr></table></figure>
-
-<p>增加 DNS 地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/resolv.conf</span><br></pre></td></tr></table></figure>
-
-<p>添加：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nameserver 192.168.0.250</span><br><span class="line">nameserver 218.2.2.2</span><br></pre></td></tr></table></figure>
-
-<p>重启网络服务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
-
-<p>hyper-v 中的网络有时会出现奇怪的问题，可以尝试删除虚拟交换机后重建重启。</p>
-]]></content>
-      <categories>
-        <category>uncategorized</category>
-      </categories>
-      <tags>
-        <tag>centos</tag>
-        <tag>hyper-v</tag>
-        <tag>静态 IP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hyper-v 创建虚拟机</title>
     <url>/hyper-v-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
     <content><![CDATA[<p>博主是 windows 系统，用 wamp 本地开发经常遇到些奇奇怪怪的问题。所以需要一个虚拟机方案。 从 win8 开始，自带 hyper-v ，你也可以考虑用 VirtualBox 、VMware 等其他方案。</p>
@@ -3027,6 +2989,44 @@
       </tags>
   </entry>
   <entry>
+    <title>hyper-v centos 静态 IP 设置</title>
+    <url>/hyper-v-centos-%E9%9D%99%E6%80%81-ip-%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<p>查看系统版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /etc/*release*</span><br></pre></td></tr></table></figure>
+
+<p>结果类似：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CentOS Linux release 7.4.1708 (Core)</span><br><span class="line">Derived from Red Hat Enterprise Linux 7.4 (Source)</span><br><span class="line">NAME=&quot;CentOS Linux&quot;</span><br><span class="line">VERSION=&quot;7 (Core)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>安装工具包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install net-tools</span><br></pre></td></tr></table></figure>
+
+<p>修改静态的 IP</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
+
+<p>适当修改，类似：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E=eth0 //网卡名称</span><br><span class="line"></span><br><span class="line">HWADDR=00:0c:29:5c:94:74</span><br><span class="line"></span><br><span class="line">TYPE=Ethernet</span><br><span class="line"></span><br><span class="line">UUID=36c43db3-95a9-427c-af8f-ba130189de85</span><br><span class="line"></span><br><span class="line">ONBOOT=yes //将 ONBOOT=&quot;no&quot; 改为ONBOOT=&quot;yes&quot;</span><br><span class="line"></span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line"></span><br><span class="line">BOOTPROTO=none</span><br><span class="line"></span><br><span class="line">IPADDR=192.168.0.252 //修改 IP 地址</span><br><span class="line"></span><br><span class="line">NETMASK=255.255.255.0 //修改子网掩码</span><br><span class="line"></span><br><span class="line">GATEWAY=192.168.0.1 //修改网关</span><br><span class="line"></span><br><span class="line">DNS1=8.8.8.8 //修改DNS服务器</span><br></pre></td></tr></table></figure>
+
+<p>增加 DNS 地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nameserver 192.168.0.250</span><br><span class="line">nameserver 218.2.2.2</span><br></pre></td></tr></table></figure>
+
+<p>重启网络服务</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+
+<p>hyper-v 中的网络有时会出现奇怪的问题，可以尝试删除虚拟交换机后重建重启。</p>
+]]></content>
+      <categories>
+        <category>uncategorized</category>
+      </categories>
+      <tags>
+        <tag>centos</tag>
+        <tag>hyper-v</tag>
+        <tag>静态 IP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>id and frontName in routes config file</title>
     <url>/id-and-frontname-in-routes-config-file/</url>
     <content><![CDATA[<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a><a href="#notes"></a>Notes</h2><p>The standard router URL structure is <code>&#123;frontName&#125;/&#123;actionPath&#125;/&#123;action&#125;</code> (standard router class: magento\framework\App\Router\Base.php::match) So, the <code>catalog/product_compare/add</code> correspond to <code>vendor\magento\module-catalog\Controller\Product\Compare\Add.php</code> The naming convention for layout.xmls is <code>&#123;route id&#125;_&#123;controller name&#125;_&#123;action name&#125;.xml</code></p>
@@ -3046,26 +3046,6 @@
 
 <p>Ok, after we visit <code>http://example.com/index.php/customer/account/login</code>, we will go into our controller.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><a href="#reference"></a>Reference</h2><p><a href="https://magento.stackexchange.com/questions/207417/why-to-keep-id-and-frontname-same-in-magento-2-routes-config-file">Why to keep id and frontName same in magento 2 routes config file?</a> <a href="https://www.mageplaza.com/magento-2-module-development/magento-2-routing.html">Magento 2 Routing</a></p>
-]]></content>
-      <categories>
-        <category>M2 Certified Professional Developer</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Install and Upgrade scripts</title>
-    <url>/install-and-upgrade-scripts/</url>
-    <content><![CDATA[<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a><a href="#requirements"></a>Requirements</h2><p>Describe the install&#x2F;upgrade workflow. Where are setup scripts located, and how are they executed? Which types of functionality correspond to each type of setup script?</p>
-<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a><a href="#attention"></a>Attention</h2><p>Magento has introduced a new feature called <strong>Declarative Schema</strong> since 2.3 which aims to simplify the Magento installation and upgrade processes. So this is out of date on the perspective of preparing for the exam</p>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a><a href="#Notes"></a>Notes</h2><p>Install&#x2F;Upgrade scripts are located in the VendorName&#x2F;Module&#x2F;Setup directory. There are 6 types:</p>
-<ul>
-<li>Setup&#x2F;InstallSchema</li>
-<li>Setup&#x2F;UpgradeSchema</li>
-<li>Setup&#x2F;InstallData</li>
-<li>Setup&#x2F;UpgradeData</li>
-<li>Setup&#x2F;Recurring</li>
-<li>Setup&#x2F;Uninstall</li>
-</ul>
-<h2 id="Practice-test"><a href="#Practice-test" class="headerlink" title="Practice test"></a><a href="#Practice-test"></a>Practice test</h2><p>You performing a code review on an existing module. You see some interesting files in the Setup&#x2F;folder. What files in the Setup&#x2F; does Magento understand? (Multiple Choice) A. Setup&#x2F;InstallSchema.php B. Setup&#x2F;Migrations&#x2F;…php C. Setup&#x2F;Recurring.php D. Setup&#x2F;UpgradeSchema.php E. Setup&#x2F;InstallDetails.php Answer A C D While integrating a merchant’s product information management system with Magento, you create a module MyCompany_MerchantPim that adds a catalog product EAV attribute pim_entity_id programmatically. In which type of setup script do you create the EAV attribute? A. Setup&#x2F;InstallSchema.php B. Setup&#x2F;UpgradeSchema.php C. Setup&#x2F;InstallEntity.php D. Setup&#x2F;UpgradeData.php Answer D UpgradeSchema.php only provides one method: upgrade. What method do you use to determine what code to execute for what method? A. Use PHP’s version_compare method to compare the $context-&gt;getVersion() with the required version. B. Use the $setup-&gt;compareVersion method. C. Put the updates into a method named containing the version number that the module is being upgraded to. D. Check the etc&#x2F;module.xml XML file for the version number. Answer A</p>
 ]]></content>
       <categories>
         <category>M2 Certified Professional Developer</category>
@@ -3095,6 +3075,26 @@
 ]]></content>
       <categories>
         <category>uncategorized</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Install and Upgrade scripts</title>
+    <url>/install-and-upgrade-scripts/</url>
+    <content><![CDATA[<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a><a href="#requirements"></a>Requirements</h2><p>Describe the install&#x2F;upgrade workflow. Where are setup scripts located, and how are they executed? Which types of functionality correspond to each type of setup script?</p>
+<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a><a href="#attention"></a>Attention</h2><p>Magento has introduced a new feature called <strong>Declarative Schema</strong> since 2.3 which aims to simplify the Magento installation and upgrade processes. So this is out of date on the perspective of preparing for the exam</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a><a href="#Notes"></a>Notes</h2><p>Install&#x2F;Upgrade scripts are located in the VendorName&#x2F;Module&#x2F;Setup directory. There are 6 types:</p>
+<ul>
+<li>Setup&#x2F;InstallSchema</li>
+<li>Setup&#x2F;UpgradeSchema</li>
+<li>Setup&#x2F;InstallData</li>
+<li>Setup&#x2F;UpgradeData</li>
+<li>Setup&#x2F;Recurring</li>
+<li>Setup&#x2F;Uninstall</li>
+</ul>
+<h2 id="Practice-test"><a href="#Practice-test" class="headerlink" title="Practice test"></a><a href="#Practice-test"></a>Practice test</h2><p>You performing a code review on an existing module. You see some interesting files in the Setup&#x2F;folder. What files in the Setup&#x2F; does Magento understand? (Multiple Choice) A. Setup&#x2F;InstallSchema.php B. Setup&#x2F;Migrations&#x2F;…php C. Setup&#x2F;Recurring.php D. Setup&#x2F;UpgradeSchema.php E. Setup&#x2F;InstallDetails.php Answer A C D While integrating a merchant’s product information management system with Magento, you create a module MyCompany_MerchantPim that adds a catalog product EAV attribute pim_entity_id programmatically. In which type of setup script do you create the EAV attribute? A. Setup&#x2F;InstallSchema.php B. Setup&#x2F;UpgradeSchema.php C. Setup&#x2F;InstallEntity.php D. Setup&#x2F;UpgradeData.php Answer D UpgradeSchema.php only provides one method: upgrade. What method do you use to determine what code to execute for what method? A. Use PHP’s version_compare method to compare the $context-&gt;getVersion() with the required version. B. Use the $setup-&gt;compareVersion method. C. Put the updates into a method named containing the version number that the module is being upgraded to. D. Check the etc&#x2F;module.xml XML file for the version number. Answer A</p>
+]]></content>
+      <categories>
+        <category>M2 Certified Professional Developer</category>
       </categories>
   </entry>
   <entry>
@@ -3207,64 +3207,6 @@
       </categories>
   </entry>
   <entry>
-    <title>js 混淆小记</title>
-    <url>/js-%E6%B7%B7%E6%B7%86%E5%B0%8F%E8%AE%B0/</url>
-    <content><![CDATA[<p>前几天遇到一个 js 文件，看起来就跟乱码似的，节选如下： <img src="/wp-content/uploads/2019/04/js_obfuscate.png"> 一番搜索后，发现这玩意儿 <code>\x62</code> 这种是 16 进制的表示方法。趁着这个机会，来理一理 js 中的进制转换问题吧。</p>
-<h2 id="js-进制转换"><a href="#js-进制转换" class="headerlink" title="js 进制转换"></a><a href="#js-%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"></a>js 进制转换</h2><p>js 中进制转换经常用的两个函数是 <code>toString</code> 和 <code>parseInt</code></p>
-<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a><a href="#%60tostring%60"></a><code>toString</code></h3><p>我们打开浏览器的 console 控制台 看例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(15).toString(); // 把 15 转换成10进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">(15).toString(2); // 把 15 转换成2进制的表示形式</span><br><span class="line">&gt; 1111</span><br><span class="line">(15).toString(8); // 把 15 转换成8进制的表示形式</span><br><span class="line">&gt; 17</span><br><span class="line">(15).toString(16); // 把 15 转换成16进制的表示形式</span><br><span class="line">&gt; f</span><br></pre></td></tr></table></figure>
-
-<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a><a href="#%60parseint%60"></a><code>parseInt</code></h3><p>在浏览器控制台输入下面的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">parseInt(&quot;f&quot;, 16) // 把 f 按照 16 进制转换成 10 进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">parseInt(&quot;17&quot;, 8)  // 把 17 按照 8 进制转换成 10 进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">parseInt(&quot;1111&quot;, 2) // 把 1111 按照 2 进制转换成 10 进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">parseInt(&quot;15&quot;, 10)</span><br><span class="line">&gt; 15</span><br></pre></td></tr></table></figure>
-
-<p><code>parseInt</code>跟 <code>toString</code> 的转换正好是相反的。</p>
-<h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a><a href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"></a>字符编码</h2><p>打开浏览器 console</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;A&quot;.charCodeAt() // 也就是说 A 的内部编码值是 65</span><br><span class="line">&gt; 65</span><br><span class="line">String.fromCharCode(65) // 65 这个编码值对应着字符 A</span><br><span class="line">&quot;A&quot;</span><br></pre></td></tr></table></figure>
-
-<p>这里的 65 指的都是十进制的。</p>
-<h2 id="js-中二进制，八进制，十六进制表示"><a href="#js-中二进制，八进制，十六进制表示" class="headerlink" title="js 中二进制，八进制，十六进制表示"></a><a href="#js-%E4%B8%AD%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%8C%E5%85%AB%E8%BF%9B%E5%88%B6%EF%BC%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA"></a>js 中二进制，八进制，十六进制表示</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0x6D)  // 十六进制 0x 开头</span><br><span class="line">&gt; 109</span><br><span class="line">console.log(0155) // 八进制  0 开头</span><br><span class="line">&gt; 109</span><br><span class="line">console.log(0b01101101) // 二进制 0b 开头</span><br><span class="line">&gt; 109</span><br></pre></td></tr></table></figure>
-
-<h2 id="字符串转义"><a href="#字符串转义" class="headerlink" title="字符串转义"></a><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E4%B9%89"></a>字符串转义</h2><p>Character</p>
-<p>Meaning</p>
-<p>\0</p>
-<p>Null Byte</p>
-<p>\b</p>
-<p>Backspace</p>
-<p>\f</p>
-<p>Form feed</p>
-<p>\n</p>
-<p>New line</p>
-<p>\r</p>
-<p>Carriage return</p>
-<p>\t</p>
-<p>Tab</p>
-<p>\v</p>
-<p>Vertical tab</p>
-<p>\’</p>
-<p>Apostrophe or single quote</p>
-<p>\”</p>
-<p>Double quote</p>
-<p>\</p>
-<p>Backslash character</p>
-<p>\XXX</p>
-<p>The character with the Latin-1 encoding specified by up to three octal digits XXX between 0 and 377. For example, \251 is the octal sequence for the copyright symbol.</p>
-<p>\xXX</p>
-<p>The character with the Latin-1 encoding specified by the two hexadecimal digits XX between 00 and FF. For example, \xA9 is the hexadecimal sequence for the copyright symbol.</p>
-<p>\uXXXX</p>
-<p>The Unicode character specified by the four hexadecimal digits XXXX. For example, \u00A9 is the Unicode sequence for the copyright symbol. See Unicode escape sequences.</p>
-<p>\u{XXXXX}</p>
-<p>Unicode code point escapes. For example, \u{2F804} is the same as the simple Unicode escapes \uD87E\uDC04.</p>
-<p>(以上摘自 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#String_literals">Grammar_and_types#String_literals</a>) 这下就清楚了，遇到 ‘\XXX’ 就按照八进制解码，遇到 ‘\xXX’ 就按照 16 进制解码。 比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;\x64&#x27;);</span><br><span class="line">&gt; d</span><br></pre></td></tr></table></figure>
-
-<h2 id="免费工具"><a href="#免费工具" class="headerlink" title="免费工具"></a><a href="#%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7"></a>免费工具</h2><p>js 加密（混淆）防君子防不住小人的。如果我们只是想增加别人阅读的困难，用一些免费工具，混淆一下，变量名无意义了，就很难看懂了。免费混淆工具 <a href="http://javascriptobfuscator.com/Javascript-Obfuscator.aspx">javascriptobfuscator.com</a> 解密工具 <a href="https://www.sojson.com/jsjiemi.html">www.sojson.com</a></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>参考链接</h2><p><a href="http://blog.knownsec.com/2015/08/use-estools-aid-deobfuscate-javascript/">使用 estools 辅助反混淆 Javascript</a> <a href="https://www.cnblogs.com/52cik/p/js-string-escape.html">浅谈 js 字符串之神奇的转义</a></p>
-]]></content>
-      <categories>
-        <category>uncategorized</category>
-      </categories>
-  </entry>
-  <entry>
     <title>JSON</title>
     <url>/json/</url>
     <content><![CDATA[<p>JSON (JavaScript Object Notation ，JavaScript 对象表示法)，是一种轻量级的数据交换格式，比 xml 更易于解析，更明了。本篇将介绍 JSON 在 JavaScript 和 php 中的使用。 JSON 使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。JSON 解析器和 JSON 库支持许多不同的编程语言。 JSON 主要保存两种结构：对象和数组。</p>
@@ -3323,6 +3265,64 @@
         <tag>JSON.parse()</tag>
         <tag>JSON.stringify</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>js 混淆小记</title>
+    <url>/js-%E6%B7%B7%E6%B7%86%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<p>前几天遇到一个 js 文件，看起来就跟乱码似的，节选如下： <img src="/wp-content/uploads/2019/04/js_obfuscate.png"> 一番搜索后，发现这玩意儿 <code>\x62</code> 这种是 16 进制的表示方法。趁着这个机会，来理一理 js 中的进制转换问题吧。</p>
+<h2 id="js-进制转换"><a href="#js-进制转换" class="headerlink" title="js 进制转换"></a><a href="#js-%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"></a>js 进制转换</h2><p>js 中进制转换经常用的两个函数是 <code>toString</code> 和 <code>parseInt</code></p>
+<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a><a href="#%60tostring%60"></a><code>toString</code></h3><p>我们打开浏览器的 console 控制台 看例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(15).toString(); // 把 15 转换成10进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">(15).toString(2); // 把 15 转换成2进制的表示形式</span><br><span class="line">&gt; 1111</span><br><span class="line">(15).toString(8); // 把 15 转换成8进制的表示形式</span><br><span class="line">&gt; 17</span><br><span class="line">(15).toString(16); // 把 15 转换成16进制的表示形式</span><br><span class="line">&gt; f</span><br></pre></td></tr></table></figure>
+
+<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a><a href="#%60parseint%60"></a><code>parseInt</code></h3><p>在浏览器控制台输入下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">parseInt(&quot;f&quot;, 16) // 把 f 按照 16 进制转换成 10 进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">parseInt(&quot;17&quot;, 8)  // 把 17 按照 8 进制转换成 10 进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">parseInt(&quot;1111&quot;, 2) // 把 1111 按照 2 进制转换成 10 进制的表示形式</span><br><span class="line">&gt; 15</span><br><span class="line">parseInt(&quot;15&quot;, 10)</span><br><span class="line">&gt; 15</span><br></pre></td></tr></table></figure>
+
+<p><code>parseInt</code>跟 <code>toString</code> 的转换正好是相反的。</p>
+<h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a><a href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81"></a>字符编码</h2><p>打开浏览器 console</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;A&quot;.charCodeAt() // 也就是说 A 的内部编码值是 65</span><br><span class="line">&gt; 65</span><br><span class="line">String.fromCharCode(65) // 65 这个编码值对应着字符 A</span><br><span class="line">&quot;A&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这里的 65 指的都是十进制的。</p>
+<h2 id="js-中二进制，八进制，十六进制表示"><a href="#js-中二进制，八进制，十六进制表示" class="headerlink" title="js 中二进制，八进制，十六进制表示"></a><a href="#js-%E4%B8%AD%E4%BA%8C%E8%BF%9B%E5%88%B6%EF%BC%8C%E5%85%AB%E8%BF%9B%E5%88%B6%EF%BC%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA"></a>js 中二进制，八进制，十六进制表示</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(0x6D)  // 十六进制 0x 开头</span><br><span class="line">&gt; 109</span><br><span class="line">console.log(0155) // 八进制  0 开头</span><br><span class="line">&gt; 109</span><br><span class="line">console.log(0b01101101) // 二进制 0b 开头</span><br><span class="line">&gt; 109</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串转义"><a href="#字符串转义" class="headerlink" title="字符串转义"></a><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E4%B9%89"></a>字符串转义</h2><p>Character</p>
+<p>Meaning</p>
+<p>\0</p>
+<p>Null Byte</p>
+<p>\b</p>
+<p>Backspace</p>
+<p>\f</p>
+<p>Form feed</p>
+<p>\n</p>
+<p>New line</p>
+<p>\r</p>
+<p>Carriage return</p>
+<p>\t</p>
+<p>Tab</p>
+<p>\v</p>
+<p>Vertical tab</p>
+<p>\’</p>
+<p>Apostrophe or single quote</p>
+<p>\”</p>
+<p>Double quote</p>
+<p>\</p>
+<p>Backslash character</p>
+<p>\XXX</p>
+<p>The character with the Latin-1 encoding specified by up to three octal digits XXX between 0 and 377. For example, \251 is the octal sequence for the copyright symbol.</p>
+<p>\xXX</p>
+<p>The character with the Latin-1 encoding specified by the two hexadecimal digits XX between 00 and FF. For example, \xA9 is the hexadecimal sequence for the copyright symbol.</p>
+<p>\uXXXX</p>
+<p>The Unicode character specified by the four hexadecimal digits XXXX. For example, \u00A9 is the Unicode sequence for the copyright symbol. See Unicode escape sequences.</p>
+<p>\u{XXXXX}</p>
+<p>Unicode code point escapes. For example, \u{2F804} is the same as the simple Unicode escapes \uD87E\uDC04.</p>
+<p>(以上摘自 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#String_literals">Grammar_and_types#String_literals</a>) 这下就清楚了，遇到 ‘\XXX’ 就按照八进制解码，遇到 ‘\xXX’ 就按照 16 进制解码。 比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(&#x27;\x64&#x27;);</span><br><span class="line">&gt; d</span><br></pre></td></tr></table></figure>
+
+<h2 id="免费工具"><a href="#免费工具" class="headerlink" title="免费工具"></a><a href="#%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7"></a>免费工具</h2><p>js 加密（混淆）防君子防不住小人的。如果我们只是想增加别人阅读的困难，用一些免费工具，混淆一下，变量名无意义了，就很难看懂了。免费混淆工具 <a href="http://javascriptobfuscator.com/Javascript-Obfuscator.aspx">javascriptobfuscator.com</a> 解密工具 <a href="https://www.sojson.com/jsjiemi.html">www.sojson.com</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"></a>参考链接</h2><p><a href="http://blog.knownsec.com/2015/08/use-estools-aid-deobfuscate-javascript/">使用 estools 辅助反混淆 Javascript</a> <a href="https://www.cnblogs.com/52cik/p/js-string-escape.html">浅谈 js 字符串之神奇的转义</a></p>
+]]></content>
+      <categories>
+        <category>uncategorized</category>
+      </categories>
   </entry>
   <entry>
     <title>Layout instruction 之 argument 和 action</title>
@@ -3392,26 +3392,6 @@
       </categories>
   </entry>
   <entry>
-    <title>了解 Magento</title>
-    <url>/learn-magento-before-use-archive/</url>
-    <content><![CDATA[<p>您可能希望在使用 Magento 之前，先了解下 Magento 怎么样？他有哪些功能，和其他系统相比如何？</p>
-<p>下面的文章可能会帮助你更了解 Magento，文章或是翻译，或是博主自己的看法，请各位自行判断。欢迎留言。</p>
-<p><a href="/bibi-ecommerce-platform/">漫谈网上商城系统——从技术角度进行比较</a></p>
-<p><a href="/magento_in_my_eyes/">Magento 之我见</a></p>
-<p><a href="/new-era-commerce-innovation/">商业创新的新时代(翻译)</a></p>
-<p><a href="/magento-2-goals/">Magento 2 Goals （翻译）</a></p>
-<p><a href="/magento-feature-list-chinese-1/">Magento 基本功能列表（翻译一）</a></p>
-<p><a href="/magento-feature-list-chinese-2/">Magento 基本功能列表（翻译二）</a></p>
-<p><a href="/magento-feature-list-chinese-3/">Magento 基本功能列表（翻译三）</a></p>
-]]></content>
-      <categories>
-        <category>Magento 2 用户使用教程</category>
-      </categories>
-      <tags>
-        <tag>推荐</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 的文件权限</title>
     <url>/linux-%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</url>
     <content><![CDATA[<p>Linux 是一个多人多任务环境。 一般文件文件可存取的身份分为三个类别： owner&#x2F;group&#x2F;others 三个身份各有 read&#x2F;write&#x2F;execute 等权限 默认情况下，所有系统上的帐号与一般身份使用者，包括 root 都记录在 &#x2F;etc&#x2F;passwd 这个文件内。个人密码在 &#x2F;etc&#x2F;shadow 文件下。所有组名记录在 &#x2F;etc&#x2F;group 内。 <code>ls -al</code> 查看文件属性（包括隐藏文件和权限） <img src="/wp-content/uploads/2017/11/filepermission_3.gif" alt="文件的权限"> 档案类型： 当为[ d ]则是目录； 当为[ - ]则是文件； 若是[ l ]则表示为连结档(link file)； 若是[ b ]则表示为装置文件里面的可供储存的接口设备(可随机存取装置)； 若是[ c ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。 chgrp ：改变文件所属群组 chown ：改变文件拥有者 chmod ：改变文件的权限, SUID, SGID, SBIT等等的特性 -R 可以递归 chown [-R] user:group 文件或目录 权限可以用数字或是符号进行权限变更 r:4 w:2 r:1 chmod 777 file 就是 - rwx rwx rwx <img src="/wp-content/uploads/2017/11/chmod.png" alt="chmod 修改权限"></p>
@@ -3442,6 +3422,26 @@
       </categories>
       <tags>
         <tag>鸟哥的 Linux 私房菜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>了解 Magento</title>
+    <url>/learn-magento-before-use-archive/</url>
+    <content><![CDATA[<p>您可能希望在使用 Magento 之前，先了解下 Magento 怎么样？他有哪些功能，和其他系统相比如何？</p>
+<p>下面的文章可能会帮助你更了解 Magento，文章或是翻译，或是博主自己的看法，请各位自行判断。欢迎留言。</p>
+<p><a href="/bibi-ecommerce-platform/">漫谈网上商城系统——从技术角度进行比较</a></p>
+<p><a href="/magento_in_my_eyes/">Magento 之我见</a></p>
+<p><a href="/new-era-commerce-innovation/">商业创新的新时代(翻译)</a></p>
+<p><a href="/magento-2-goals/">Magento 2 Goals （翻译）</a></p>
+<p><a href="/magento-feature-list-chinese-1/">Magento 基本功能列表（翻译一）</a></p>
+<p><a href="/magento-feature-list-chinese-2/">Magento 基本功能列表（翻译二）</a></p>
+<p><a href="/magento-feature-list-chinese-3/">Magento 基本功能列表（翻译三）</a></p>
+]]></content>
+      <categories>
+        <category>Magento 2 用户使用教程</category>
+      </categories>
+      <tags>
+        <tag>推荐</tag>
       </tags>
   </entry>
   <entry>
@@ -3931,17 +3931,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Magento 2 custom theme layout xml not working</title>
-    <url>/magento-2-custom-theme-layout-xml-not-working/</url>
-    <content><![CDATA[<p>Check your DB. There is a table called <code>theme</code> that stores a reference to all the themes that have ever been installed in your store. If the <code>type</code> of the theme is set to 1, that means Magento sees the theme are virtual (what ever that means) and will no longer load your xml files. If that is the case, just change it to 0. I don’t know the why of this issue, but it has tripped me up a few time. Reference:</p>
-<p><a href="https://magento.stackexchange.com/questions/134523/magento-2-custom-theme-layout-xml-and-css-not-working">Magento 2 custom theme layout xml and css not working</a></p>
-<p><a href="https://www.nahuelsanchez.com/magento-virtual-themes-or-why-theme-changes-dont-show-up-in-the-front-end/">Magento virtual themes or why theme changes don’t show up in the front end</a></p>
-]]></content>
-      <categories>
-        <category>Magento 开发教程</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Magento 2 最新源文件下载</title>
     <url>/magento-2-download/</url>
     <content><![CDATA[<p>Magento 源文件去官方下载速度比较慢，要登录，有点麻烦。这里给大家提供我下载的源文件，放在百度运盘中了。我会尽快把最新的版本放到盘里。</p>
@@ -3950,6 +3939,17 @@
 ]]></content>
       <categories>
         <category>Magento 2 入门</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Magento 2 custom theme layout xml not working</title>
+    <url>/magento-2-custom-theme-layout-xml-not-working/</url>
+    <content><![CDATA[<p>Check your DB. There is a table called <code>theme</code> that stores a reference to all the themes that have ever been installed in your store. If the <code>type</code> of the theme is set to 1, that means Magento sees the theme are virtual (what ever that means) and will no longer load your xml files. If that is the case, just change it to 0. I don’t know the why of this issue, but it has tripped me up a few time. Reference:</p>
+<p><a href="https://magento.stackexchange.com/questions/134523/magento-2-custom-theme-layout-xml-and-css-not-working">Magento 2 custom theme layout xml and css not working</a></p>
+<p><a href="https://www.nahuelsanchez.com/magento-virtual-themes-or-why-theme-changes-dont-show-up-in-the-front-end/">Magento virtual themes or why theme changes don’t show up in the front end</a></p>
+]]></content>
+      <categories>
+        <category>Magento 开发教程</category>
       </categories>
   </entry>
   <entry>
@@ -4126,41 +4126,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Magento 2 如何引入 CSS</title>
-    <url>/magento-2-include-css/</url>
-    <content><![CDATA[<p>Magento 2 通过 layout 文件引入 CSS。从技术讲，使用模板文件也可以引入 CSS，但是我们强烈推荐<strong>不要</strong>这样做。</p>
-<p><em>CSS 的类名可以用在 templates 和 layouts 中</em></p>
-<p>本篇描述 Magento 应用文件系统中默认情况下 CSS 文件是如何组织的，以及在布局中引入 CSS 的推荐做法。</p>
-<h2 id="Magento-的-CSS-是如何组织的"><a href="#Magento-的-CSS-是如何组织的" class="headerlink" title="Magento 的 CSS 是如何组织的"></a><a href="#magento-%E7%9A%84-css-%E6%98%AF%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E7%9A%84"></a>Magento 的 CSS 是如何组织的</h2><p>按照惯例来讲， CSS 和 LESS 文件只存在 theme 中。Module 文件夹中不包含任何样式。<br>在 theme 文件夹中，样式表被存放在如下位置：</p>
-<p>Directory, relative to</p>
-<p>Description</p>
-<p><code>/&lt;Namespace&gt;_&lt;Module&gt;/web/css</code></p>
-<p>特定模块的样式</p>
-<p><code>/web/css</code></p>
-<p>包含以下文件:</p>
-<ul>
-<li><code>print.less</code>: used to generate styles for the printed version of store pages.</li>
-<li><code>_styles.less</code> – a composite file, which includes all LESS files used in the theme. The underscore sign (<code>_</code>) in a file name conventionally means that a file is not used independently, but is included in other files.</li>
-<li><code>styles-m.less</code>: used to generate mobile-specific styles, includes <code>_styles.less</code></li>
-<li><code>styles-l.less</code>: used to generate desktop-specific styles, includes <code>_styles.less</code>.</li>
-<li><code>/source</code>: this subdirectory contains LESS configuration files that invoke mixins from the Magento UI library.</li>
-<li><code>/source/_theme.less</code>: overrides the default Magento UI library variables values.</li>
-</ul>
-<h2 id="通过布局引入-CSS"><a href="#通过布局引入-CSS" class="headerlink" title="通过布局引入 CSS"></a><a href="#%E9%80%9A%E8%BF%87%E5%B8%83%E5%B1%80%E5%BC%95%E5%85%A5-css"></a>通过布局引入 CSS</h2><p>通常来讲，你引入的 CSS ，所有的店铺页都是可以访问的。<code>Magento_Theme</code>的<code>default_head_blocks.xml</code>定义了所有 Magento 页面的<code>&lt;head&gt;</code>部分。推荐做法是在你自己的theme 中增加一个<code>default_head_blocks.xml</code>来扩展它。</p>
-<p>你 theme 中的<code>default_head_blocks.xml</code>应该放置在类似下面的位置<code>&lt;theme_dir&gt;/Magento_Theme/layout/default_head_blocks.xml</code>。要引入某个 css 文件，在<code>&lt;head&gt;</code>部分添加这样的代码：<code>&lt;css src=&quot;&lt;path&gt;/&lt;file&gt;&quot; media=&quot;print&lt;option&gt;&quot;/&gt;</code><br><code>&lt;path&gt;</code>是相对于你主题文件目录的（<code>&lt;theme_dir&gt;/web</code>）。下面是 Blank 主题引入 css 的例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#File: &lt;Magento_Blank_theme_dir&gt;/Magento_Theme/layout/default_head_blocks.xml</span><br><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;css src=&quot;css/styles-m.css&quot; /&gt;</span><br><span class="line">        &lt;css src=&quot;css/styles-l.css&quot; media=&quot;screen and (min-width: 768px)&quot;/&gt;</span><br><span class="line">        &lt;css src=&quot;css/print.css&quot; media=&quot;print&quot; /&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
-
-<p><em>如果系统没有找到css 文件，就会找同名的<code>.less</code>文件。这是Magento 内置的机制，可以参考 <a href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css-preprocess.html">CSS Preprocessing</a> 获得更多信息</em></p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css-themes.html">Include CSS</a></p>
-]]></content>
-      <categories>
-        <category>Magento 2 主题</category>
-      </categories>
-      <tags>
-        <tag>Magento 2 引入 css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>type=&quot;text/x-magento-init&quot;</title>
     <url>/magento-2-javascript-init-ways/</url>
     <content><![CDATA[<p>我们在 magento 2 的 phtml 中经常会看到 <code>&lt;script type=&quot;text/x-magento-init&quot;&gt;</code> 和 <code>data-mage-init</code> ，那么这两个标签是用来做什么的？本篇将给出解释，并说明这样设计的用意。</p>
@@ -4224,6 +4189,41 @@
         <tag>magneto2</tag>
         <tag>requirejs</tag>
         <tag>x-magento-init</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Magento 2 如何引入 CSS</title>
+    <url>/magento-2-include-css/</url>
+    <content><![CDATA[<p>Magento 2 通过 layout 文件引入 CSS。从技术讲，使用模板文件也可以引入 CSS，但是我们强烈推荐<strong>不要</strong>这样做。</p>
+<p><em>CSS 的类名可以用在 templates 和 layouts 中</em></p>
+<p>本篇描述 Magento 应用文件系统中默认情况下 CSS 文件是如何组织的，以及在布局中引入 CSS 的推荐做法。</p>
+<h2 id="Magento-的-CSS-是如何组织的"><a href="#Magento-的-CSS-是如何组织的" class="headerlink" title="Magento 的 CSS 是如何组织的"></a><a href="#magento-%E7%9A%84-css-%E6%98%AF%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E7%9A%84"></a>Magento 的 CSS 是如何组织的</h2><p>按照惯例来讲， CSS 和 LESS 文件只存在 theme 中。Module 文件夹中不包含任何样式。<br>在 theme 文件夹中，样式表被存放在如下位置：</p>
+<p>Directory, relative to</p>
+<p>Description</p>
+<p><code>/&lt;Namespace&gt;_&lt;Module&gt;/web/css</code></p>
+<p>特定模块的样式</p>
+<p><code>/web/css</code></p>
+<p>包含以下文件:</p>
+<ul>
+<li><code>print.less</code>: used to generate styles for the printed version of store pages.</li>
+<li><code>_styles.less</code> – a composite file, which includes all LESS files used in the theme. The underscore sign (<code>_</code>) in a file name conventionally means that a file is not used independently, but is included in other files.</li>
+<li><code>styles-m.less</code>: used to generate mobile-specific styles, includes <code>_styles.less</code></li>
+<li><code>styles-l.less</code>: used to generate desktop-specific styles, includes <code>_styles.less</code>.</li>
+<li><code>/source</code>: this subdirectory contains LESS configuration files that invoke mixins from the Magento UI library.</li>
+<li><code>/source/_theme.less</code>: overrides the default Magento UI library variables values.</li>
+</ul>
+<h2 id="通过布局引入-CSS"><a href="#通过布局引入-CSS" class="headerlink" title="通过布局引入 CSS"></a><a href="#%E9%80%9A%E8%BF%87%E5%B8%83%E5%B1%80%E5%BC%95%E5%85%A5-css"></a>通过布局引入 CSS</h2><p>通常来讲，你引入的 CSS ，所有的店铺页都是可以访问的。<code>Magento_Theme</code>的<code>default_head_blocks.xml</code>定义了所有 Magento 页面的<code>&lt;head&gt;</code>部分。推荐做法是在你自己的theme 中增加一个<code>default_head_blocks.xml</code>来扩展它。</p>
+<p>你 theme 中的<code>default_head_blocks.xml</code>应该放置在类似下面的位置<code>&lt;theme_dir&gt;/Magento_Theme/layout/default_head_blocks.xml</code>。要引入某个 css 文件，在<code>&lt;head&gt;</code>部分添加这样的代码：<code>&lt;css src=&quot;&lt;path&gt;/&lt;file&gt;&quot; media=&quot;print&lt;option&gt;&quot;/&gt;</code><br><code>&lt;path&gt;</code>是相对于你主题文件目录的（<code>&lt;theme_dir&gt;/web</code>）。下面是 Blank 主题引入 css 的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#File: &lt;Magento_Blank_theme_dir&gt;/Magento_Theme/layout/default_head_blocks.xml</span><br><span class="line">&lt;page xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:View/Layout/etc/page_configuration.xsd&quot;&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;css src=&quot;css/styles-m.css&quot; /&gt;</span><br><span class="line">        &lt;css src=&quot;css/styles-l.css&quot; media=&quot;screen and (min-width: 768px)&quot;/&gt;</span><br><span class="line">        &lt;css src=&quot;css/print.css&quot; media=&quot;print&quot; /&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">&lt;/page&gt;</span><br></pre></td></tr></table></figure>
+
+<p><em>如果系统没有找到css 文件，就会找同名的<code>.less</code>文件。这是Magento 内置的机制，可以参考 <a href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css-preprocess.html">CSS Preprocessing</a> 获得更多信息</em></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"></a>参考文档</h2><p><a href="http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css-themes.html">Include CSS</a></p>
+]]></content>
+      <categories>
+        <category>Magento 2 主题</category>
+      </categories>
+      <tags>
+        <tag>Magento 2 引入 css</tag>
       </tags>
   </entry>
   <entry>
@@ -4776,7 +4776,7 @@
 
 <p>那就戳进去看看咯，这个地址提供了单个的包，找到 <code>zh_CN</code> 然后下载后改名为 <code>zh_Hans_CN.csv</code> 然后丢到相应的位置就可以了。</p>
 <h2 id="中文包的位置"><a href="#中文包的位置" class="headerlink" title="中文包的位置"></a><a href="#%E4%B8%AD%E6%96%87%E5%8C%85%E7%9A%84%E4%BD%8D%E7%BD%AE"></a>中文包的位置</h2><p>接下来我们来说位置。Magento 2 的 Component 主要有三种：module、theme、lanaguage package。在 module 和 theme 中 都有 <code>i18n</code> 这个文件夹（如果没有可以自己建），这个文件夹负责放翻译文件。 经过测试，博主发现，module 中 <code>i18n</code> 下的翻译文件会被应用到前台和后台（假设你前后台都是简体中文的话），但是 theme 中的翻译只会被应用到前台。所以理论上讲，你下载了上面的包改名后丢到任意的 module 中，都是可以的。 至于 language package ，他当然前后台都得负责了，关于 language package 的继承问题，还是以后用到的时候再探索吧。 博主的建议是把整站的中文包丢到 language package 里面比较好。就是说 Magento 自带模块的中文翻译放到 language package 中，你购买的主题，插件什么的中文包放在自己对应的目录下，这样会清晰很多。 Magento 拥有中文的 language package，请各位寻找下，如果包都在 vendor 下，那么在该目录下找名字叫 <code>language-zh_hans_cn</code> 的，如果你是 git 上那种目录结构，那么在 <code>app/i18n/Magento/zh_Hans_CN</code> 下 好了，把你的包丢进去，刷新缓存，有效果了吧？</p>
-<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>官方的语言包托管在 Crowdin 上，如果你注册一下，也可以参与翻译，反正就是给有兴趣锻炼翻译的人准备的，而且会有机器翻译提示，质量不是很好。博主查看了语言包的内容，有些实在是风马牛不相及，当然不相关的还是很少的。 另一个问题是 Magento 2 每次有新版本，那么需要翻译的字段都会有一些差异或者是增减。很明显，如果等待官方的更新的话，估计是不太可能了。 然后就是翻译的结构问题。打个比方来说，英文中使用 <code>127 records found</code> 这里的 127 不在翻译短语中，翻译短语是<code>records found</code>，翻成中文就是 <code>找到的记录</code> ，连起来变成 <code>127 找到的记录</code>， 是不是很别扭？因为中英文的句子结构不同。看起来这种事情也没有更好的解决办法了。 最后一个问题就是翻译的情境问题，在 csv 里面你可不知道这个短语在什么情境下面，所以翻译可能不是很贴切，有一些词汇还和业务逻辑有关，如果不是很了解业务逻辑，还真是不可能找到合适的词汇。 好吧，说了这么多，其实总结起来就是中文化是要长期迭代的过程。需要大家的共同努力。 <strong>博主根据上面的官方翻译文件进行了部分校正，发布在 github ，大家可以去下载</strong> 地址是：<a href="https://github.com/PiscesThankIT/zh_Hans_CN">https://github.com/PiscesThankIT/zh_Hans_CN</a> 我的想法是，既然我们有了一个还不错的基础包，<strong>请下载使用的人，在发现有需要改进的词汇或者问题时，在我的 github 下给我提评论，或者在我的博客上评论，或者将你更改后的文件发给我（<a href="mailto:&#x31;&#x35;&#49;&#56;&#x35;&#x32;&#x35;&#56;&#x36;&#x32;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;">&#x31;&#x35;&#49;&#56;&#x35;&#x32;&#x35;&#56;&#x36;&#x32;&#64;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;</a>），我更正后更新到 github 上，这样我们就有一个正向的循环，大家都能受益。</strong></p>
+<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a><a href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"></a>存在的问题</h2><p>官方的语言包托管在 Crowdin 上，如果你注册一下，也可以参与翻译，反正就是给有兴趣锻炼翻译的人准备的，而且会有机器翻译提示，质量不是很好。博主查看了语言包的内容，有些实在是风马牛不相及，当然不相关的还是很少的。 另一个问题是 Magento 2 每次有新版本，那么需要翻译的字段都会有一些差异或者是增减。很明显，如果等待官方的更新的话，估计是不太可能了。 然后就是翻译的结构问题。打个比方来说，英文中使用 <code>127 records found</code> 这里的 127 不在翻译短语中，翻译短语是<code>records found</code>，翻成中文就是 <code>找到的记录</code> ，连起来变成 <code>127 找到的记录</code>， 是不是很别扭？因为中英文的句子结构不同。看起来这种事情也没有更好的解决办法了。 最后一个问题就是翻译的情境问题，在 csv 里面你可不知道这个短语在什么情境下面，所以翻译可能不是很贴切，有一些词汇还和业务逻辑有关，如果不是很了解业务逻辑，还真是不可能找到合适的词汇。 好吧，说了这么多，其实总结起来就是中文化是要长期迭代的过程。需要大家的共同努力。 <strong>博主根据上面的官方翻译文件进行了部分校正，发布在 github ，大家可以去下载</strong> 地址是：<a href="https://github.com/PiscesThankIT/zh_Hans_CN">https://github.com/PiscesThankIT/zh_Hans_CN</a> 我的想法是，既然我们有了一个还不错的基础包，<strong>请下载使用的人，在发现有需要改进的词汇或者问题时，在我的 github 下给我提评论，或者在我的博客上评论，或者将你更改后的文件发给我（<a href="mailto:&#49;&#x35;&#49;&#x38;&#x35;&#50;&#53;&#x38;&#x36;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;">&#49;&#x35;&#49;&#x38;&#x35;&#50;&#53;&#x38;&#x36;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#111;&#x6d;</a>），我更正后更新到 github 上，这样我们就有一个正向的循环，大家都能受益。</strong></p>
 <h2 id="如何更正中文包"><a href="#如何更正中文包" class="headerlink" title="如何更正中文包"></a><a href="#%E5%A6%82%E4%BD%95%E6%9B%B4%E6%AD%A3%E4%B8%AD%E6%96%87%E5%8C%85"></a>如何更正中文包</h2><p>很多朋友不知道如何修改 csv 文件。csv 文件就是纯文本文件，只是用逗号分隔符来分割字段。你完全可以用记事本打开，不过记事本打开实在是很不好查看。默认情况下，你的电脑一定会替你用 EXCEL 打开， 用它打开有中文是会乱码的，要想不乱码，方法有点复杂，修改又有麻烦，所以博主还是放弃了这个念头。 你可以用任何编辑器打开，比如 notepad sublime 之类。博主觉得 notepad 编辑 csv 比较好。他的文件搜索在搜模板文件的时候真的很好用（题外话）。 有朋友推荐使用 csv 的编辑器，当然针对 csv 的编辑器，那查看起来真是很舒服的，but，大部分 csv 编辑器中文依然会乱码，因为不支持 unicode 编码的方式吧。博主找到一个很好用的，可惜免费版不能进行修改，破解版刚下载就提示有毒，吓得宝宝还是不要用了。这个编辑器的名字叫 Ron’s Editor ，不差钱的朋友可以支持下开发者哈。 回到正题，我们现在已经有合适的编辑器来编辑 csv 文件了。打开它，会发现至少有两栏。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;Report Bugs&quot;,报告错误,module,Magento_Backend</span><br></pre></td></tr></table></figure>
 
@@ -4787,35 +4787,6 @@
       </categories>
       <tags>
         <tag>Magento 2中文化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Magento 2 中文化与 language package（原创）</title>
-    <url>/magento-2-%E4%B8%AD%E6%96%87%E5%8C%96%E4%B8%8E-language-package%EF%BC%88%E5%8E%9F%E5%88%9B%EF%BC%89/</url>
-    <content><![CDATA[<p><em>转载请注明出处</em> 关于 Magento 2 的中文化，之前博主已经写过三篇文章，感兴趣的请参阅本文的相关阅读部分。 下面我们来回顾一下。</p>
-<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a><a href="#%E5%9B%9E%E9%A1%BE"></a>回顾</h2><p>首先是设置问题。 前台设置，<em>Stores &gt; Configuration &gt; General &gt; Local</em> 中设置 Local 为 Chinese（China） 账户设置，后台你的账户 <em>Account Setting &gt; Interface Local 中设置 Interface Local</em> 为 Chinese（China） Magento 2 的 component 有三种，module、theme、language package。 module 和 theme 中都有 <code>i18n</code> ，只要把 zh_Hans_CN.csv 放进去就可以了。module 中 <code>i18n</code> 下的翻译文件会被应用到前台和后台（假设你前后台都是简体中文的话），但是 theme 中的翻译只会被应用到前台。 提取的 csv 有四列，但是其实只有前两列有用。重复的字段，实际使用的是最后一个翻译值。 之前的文章博主教大家的方法是，寻找 Magento 自带的 language package。这个有一些局限性。 主要问题就在于，假如我们采用命令行的方式更新，那么文件会被退回到初始状态，我们放进去的 zh_Hans_CN 会被丢掉。 所以更妥当的做法是，我们建一个自己的 language package，或者下载一个，然后放到 app&#x2F;i18n 下面。</p>
-<h2 id="如何创建-language-package"><a href="#如何创建-language-package" class="headerlink" title="如何创建 language package"></a><a href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA-language-package"></a>如何创建 language package</h2><p>以创建中文包为例，但是方法是通用的。 我们在 app&#x2F;i18n 下创建一个文件夹 <code>ThankIT</code> ，在 <code>ThankIT</code> 下创建 <code>zh_Hans_CN</code>，然后在创建以下文件</p>
-<h4 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a><a href="#composer.json"></a>composer.json</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;thankit/language-zh_hans_cn&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Chinese (China) language&quot;,</span><br><span class="line">    &quot;version&quot;: &quot;100.3.0-dev&quot;,</span><br><span class="line">    &quot;license&quot;: [</span><br><span class="line">        &quot;OSL-3.0&quot;,</span><br><span class="line">        &quot;AFL-3.0&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;magento/framework&quot;: &quot;100.3.*&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;type&quot;: &quot;magento2-language&quot;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;files&quot;: [</span><br><span class="line">            &quot;registration.php&quot;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="language-xml"><a href="#language-xml" class="headerlink" title="language.xml"></a><a href="#language.xml"></a>language.xml</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;language xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:App/Language/package.xsd&quot;&gt;</span><br><span class="line">    &lt;code&gt;zh_Hans_CN&lt;/code&gt;</span><br><span class="line">    &lt;vendor&gt;ThankIT&lt;/vendor&gt;</span><br><span class="line">    &lt;package&gt;zh_Hans_CN&lt;/package&gt;</span><br><span class="line">&lt;/language&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="registration-php"><a href="#registration-php" class="headerlink" title="registration.php"></a><a href="#registration.php"></a>registration.php</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::LANGUAGE,</span><br><span class="line">    &#x27;thankit_zh_hans-cn&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>最后把之前的 <code>zh_Hans_CN.csv</code> 放进去，齐活。 正确设置，并使用命令行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">php bin/magento setup:static-content:deploy</span><br></pre></td></tr></table></figure>
-
-<p>然后就可以看到效果了。</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"></a>常见问题</h2><p>经常有人说安装中文包以后出错了，这通常是因为你的 <code>zh_Hans_CN.csv</code> 中含有空行，特别是在结尾的部分，有时候是提供安装包的人不小心干的，有时候是自己不小心干的。</p>
-<h2 id="福利"><a href="#福利" class="headerlink" title="福利"></a><a href="#%E7%A6%8F%E5%88%A9"></a>福利</h2><p>上面的 package 上传到 github 了，可以自己下载，然后放到 app&#x2F;i18n 目录下。 <a href="https://github.com/PiscesThankIT/language-zh-hans-cn">PiscesThankIT&#x2F;language-zh-hans-cn</a> 另外放一个台湾繁体的。由于繁体的官方的翻译比率太低，所以，博主拿简体中文转化成了繁体中文，翻译比率大概是 88%。 <a href="https://github.com/PiscesThankIT/language-zh-hant-tw">PiscesThankIT&#x2F;language-zh-hant-tw</a> <a href="https://github.com/Magento2Translations">Magento 2 Translations &amp; language packs （所有语言）</a> 如果你想修改翻译，请参考相关阅读部分。</p>
-<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a><a href="#%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB"></a>相关阅读</h2><p><a href="/magento-2-zh-hans-cn-csv/">Magento 2 中文化问题（原创）</a> <a href="/how-to-update-csv-using-older-csv-file/">关于中文包的更新方法问题 （原创）</a> <a href="/magento-csv-php-update/">中文包的更新方法问题（二）</a> 其他相关 <a href="/magento-2-validation-js-bug-fix/">Magento 2.0&#x2F;2.1 表单验证翻译 bug 修复</a> <a href="/excel-csv-utf8/">Excel 编辑 csv 中文乱码</a></p>
-]]></content>
-      <categories>
-        <category>Magento 2 入门</category>
-        <category>Magento 2 用户使用教程</category>
-      </categories>
-      <tags>
-        <tag>推荐</tag>
-        <tag>中文化</tag>
       </tags>
   </entry>
   <entry>
@@ -4888,6 +4859,35 @@
       <categories>
         <category>Magento 开发教程</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Magento 2 中文化与 language package（原创）</title>
+    <url>/magento-2-%E4%B8%AD%E6%96%87%E5%8C%96%E4%B8%8E-language-package%EF%BC%88%E5%8E%9F%E5%88%9B%EF%BC%89/</url>
+    <content><![CDATA[<p><em>转载请注明出处</em> 关于 Magento 2 的中文化，之前博主已经写过三篇文章，感兴趣的请参阅本文的相关阅读部分。 下面我们来回顾一下。</p>
+<h2 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a><a href="#%E5%9B%9E%E9%A1%BE"></a>回顾</h2><p>首先是设置问题。 前台设置，<em>Stores &gt; Configuration &gt; General &gt; Local</em> 中设置 Local 为 Chinese（China） 账户设置，后台你的账户 <em>Account Setting &gt; Interface Local 中设置 Interface Local</em> 为 Chinese（China） Magento 2 的 component 有三种，module、theme、language package。 module 和 theme 中都有 <code>i18n</code> ，只要把 zh_Hans_CN.csv 放进去就可以了。module 中 <code>i18n</code> 下的翻译文件会被应用到前台和后台（假设你前后台都是简体中文的话），但是 theme 中的翻译只会被应用到前台。 提取的 csv 有四列，但是其实只有前两列有用。重复的字段，实际使用的是最后一个翻译值。 之前的文章博主教大家的方法是，寻找 Magento 自带的 language package。这个有一些局限性。 主要问题就在于，假如我们采用命令行的方式更新，那么文件会被退回到初始状态，我们放进去的 zh_Hans_CN 会被丢掉。 所以更妥当的做法是，我们建一个自己的 language package，或者下载一个，然后放到 app&#x2F;i18n 下面。</p>
+<h2 id="如何创建-language-package"><a href="#如何创建-language-package" class="headerlink" title="如何创建 language package"></a><a href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA-language-package"></a>如何创建 language package</h2><p>以创建中文包为例，但是方法是通用的。 我们在 app&#x2F;i18n 下创建一个文件夹 <code>ThankIT</code> ，在 <code>ThankIT</code> 下创建 <code>zh_Hans_CN</code>，然后在创建以下文件</p>
+<h4 id="composer-json"><a href="#composer-json" class="headerlink" title="composer.json"></a><a href="#composer.json"></a>composer.json</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;thankit/language-zh_hans_cn&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Chinese (China) language&quot;,</span><br><span class="line">    &quot;version&quot;: &quot;100.3.0-dev&quot;,</span><br><span class="line">    &quot;license&quot;: [</span><br><span class="line">        &quot;OSL-3.0&quot;,</span><br><span class="line">        &quot;AFL-3.0&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;magento/framework&quot;: &quot;100.3.*&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;type&quot;: &quot;magento2-language&quot;,</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;files&quot;: [</span><br><span class="line">            &quot;registration.php&quot;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="language-xml"><a href="#language-xml" class="headerlink" title="language.xml"></a><a href="#language.xml"></a>language.xml</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;language xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;urn:magento:framework:App/Language/package.xsd&quot;&gt;</span><br><span class="line">    &lt;code&gt;zh_Hans_CN&lt;/code&gt;</span><br><span class="line">    &lt;vendor&gt;ThankIT&lt;/vendor&gt;</span><br><span class="line">    &lt;package&gt;zh_Hans_CN&lt;/package&gt;</span><br><span class="line">&lt;/language&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="registration-php"><a href="#registration-php" class="headerlink" title="registration.php"></a><a href="#registration.php"></a>registration.php</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">\Magento\Framework\Component\ComponentRegistrar::register(</span><br><span class="line">    \Magento\Framework\Component\ComponentRegistrar::LANGUAGE,</span><br><span class="line">    &#x27;thankit_zh_hans-cn&#x27;,</span><br><span class="line">    __DIR__</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>最后把之前的 <code>zh_Hans_CN.csv</code> 放进去，齐活。 正确设置，并使用命令行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">php bin/magento setup:static-content:deploy</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以看到效果了。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a><a href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"></a>常见问题</h2><p>经常有人说安装中文包以后出错了，这通常是因为你的 <code>zh_Hans_CN.csv</code> 中含有空行，特别是在结尾的部分，有时候是提供安装包的人不小心干的，有时候是自己不小心干的。</p>
+<h2 id="福利"><a href="#福利" class="headerlink" title="福利"></a><a href="#%E7%A6%8F%E5%88%A9"></a>福利</h2><p>上面的 package 上传到 github 了，可以自己下载，然后放到 app&#x2F;i18n 目录下。 <a href="https://github.com/PiscesThankIT/language-zh-hans-cn">PiscesThankIT&#x2F;language-zh-hans-cn</a> 另外放一个台湾繁体的。由于繁体的官方的翻译比率太低，所以，博主拿简体中文转化成了繁体中文，翻译比率大概是 88%。 <a href="https://github.com/PiscesThankIT/language-zh-hant-tw">PiscesThankIT&#x2F;language-zh-hant-tw</a> <a href="https://github.com/Magento2Translations">Magento 2 Translations &amp; language packs （所有语言）</a> 如果你想修改翻译，请参考相关阅读部分。</p>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a><a href="#%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB"></a>相关阅读</h2><p><a href="/magento-2-zh-hans-cn-csv/">Magento 2 中文化问题（原创）</a> <a href="/how-to-update-csv-using-older-csv-file/">关于中文包的更新方法问题 （原创）</a> <a href="/magento-csv-php-update/">中文包的更新方法问题（二）</a> 其他相关 <a href="/magento-2-validation-js-bug-fix/">Magento 2.0&#x2F;2.1 表单验证翻译 bug 修复</a> <a href="/excel-csv-utf8/">Excel 编辑 csv 中文乱码</a></p>
+]]></content>
+      <categories>
+        <category>Magento 2 入门</category>
+        <category>Magento 2 用户使用教程</category>
+      </categories>
+      <tags>
+        <tag>推荐</tag>
+        <tag>中文化</tag>
+      </tags>
   </entry>
   <entry>
     <title>Magento 2 使用 Grunt 编译 Less</title>
@@ -5608,29 +5608,6 @@
       </categories>
   </entry>
   <entry>
-    <title>MySQL 插入中文出错</title>
-    <url>/mysql-incorrect-string-value/</url>
-    <content><![CDATA[<p>插入中文 MySQL 报告错误：incorrect string value …</p>
-<p>原来是字符集的问题。我的数据库，表都使用了默认的字符集 latin1</p>
-<p>修改数据字符集</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter database databasename default character set utf8;</span><br></pre></td></tr></table></figure>
-
-<p>查看</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create database databasename;</span><br></pre></td></tr></table></figure>
-
-<p>修改表的字符集</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table tablename convert to character set utf8 collate utf8_general_ci;</span><br></pre></td></tr></table></figure>
-
-<p>查看</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create table tablename;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>uncategorized</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL 远程访问</title>
     <url>/mysql-%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/</url>
     <content><![CDATA[<h2 id="授权问题"><a href="#授权问题" class="headerlink" title="授权问题"></a><a href="#%E6%8E%88%E6%9D%83%E9%97%AE%E9%A2%98"></a>授权问题</h2><p>以 root 身份登陆 MySQL</p>
@@ -5655,6 +5632,29 @@
       </categories>
       <tags>
         <tag>mysql 远程访问</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL 插入中文出错</title>
+    <url>/mysql-incorrect-string-value/</url>
+    <content><![CDATA[<p>插入中文 MySQL 报告错误：incorrect string value …</p>
+<p>原来是字符集的问题。我的数据库，表都使用了默认的字符集 latin1</p>
+<p>修改数据字符集</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter database databasename default character set utf8;</span><br></pre></td></tr></table></figure>
+
+<p>查看</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create database databasename;</span><br></pre></td></tr></table></figure>
+
+<p>修改表的字符集</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table tablename convert to character set utf8 collate utf8_general_ci;</span><br></pre></td></tr></table></figure>
+
+<p>查看</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show create table tablename;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>uncategorized</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -6014,6 +6014,16 @@
       </categories>
   </entry>
   <entry>
+    <title>PHPStorm 一直 index</title>
+    <url>/phpstorm-%E4%B8%80%E7%9B%B4-index/</url>
+    <content><![CDATA[<p>解决方法： 删除 <code>Users\.PhpStorm2017.3\system</code> 下的 <code>caches</code> 文件夹</p>
+<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p><a href="https://stackoverflow.com/questions/15991561/intelli-j-idea-takes-forever-to-update-indices">https://stackoverflow.com/questions/15991561/intelli-j-idea-takes-forever-to-update-indices</a></p>
+]]></content>
+      <categories>
+        <category>uncategorized</category>
+      </categories>
+  </entry>
+  <entry>
     <title>PHP 调试</title>
     <url>/php-%E8%B0%83%E8%AF%95/</url>
     <content><![CDATA[<h2 id="500-错误"><a href="#500-错误" class="headerlink" title="500 错误"></a><a href="#500-%E9%94%99%E8%AF%AF"></a>500 错误</h2><p><img src="/wp-content/uploads/2018/02/50-http-error.png"> 下面我们对开发环境（Apache）做一些配置，使其返回错误提示： 修改配置文件 <code>vi /etc/php/7.0/apache2/php.ini</code> 使得：</p>
@@ -6051,16 +6061,6 @@
 ]]></content>
       <categories>
         <category>PHP</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>PHPStorm 一直 index</title>
-    <url>/phpstorm-%E4%B8%80%E7%9B%B4-index/</url>
-    <content><![CDATA[<p>解决方法： 删除 <code>Users\.PhpStorm2017.3\system</code> 下的 <code>caches</code> 文件夹</p>
-<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a><a href="#%E5%8F%82%E8%80%83%E7%BD%91%E5%9D%80"></a>参考网址</h2><p><a href="https://stackoverflow.com/questions/15991561/intelli-j-idea-takes-forever-to-update-indices">https://stackoverflow.com/questions/15991561/intelli-j-idea-takes-forever-to-update-indices</a></p>
-]]></content>
-      <categories>
-        <category>uncategorized</category>
       </categories>
   </entry>
   <entry>
@@ -6246,7 +6246,7 @@
 <p>以上摘自<a href="http://cn.linux.vbird.org/linux_server/0380mail.php#postfix_basic">鸟哥的 Linux 私房菜</a>，更详细的介绍也可参考该文章。 比较重要的参数设置</p>
 <ul>
 <li><strong>myhostname</strong> 设定主机名 这个参数会被很多其他参数所引用，所以务必设置正确，在本例中，它的值是 <code>mail.example.com</code></li>
-<li><strong>myorigin</strong> 发信时显示的“发信源主机” 在通过 Postfix 发送邮件的时候，如果 From 字段不完整，例如 From: user，Postfix 会根据 myorigin 的值将地址补全为 From: <a href="mailto:&#117;&#x73;&#x65;&#114;&#64;&#109;&#x61;&#105;&#108;&#x2e;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#117;&#x73;&#x65;&#114;&#64;&#109;&#x61;&#105;&#108;&#x2e;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;</a>。在本例中，我们将它的值设置为 <code>$myhostname</code></li>
+<li><strong>myorigin</strong> 发信时显示的“发信源主机” 在通过 Postfix 发送邮件的时候，如果 From 字段不完整，例如 From: user，Postfix 会根据 myorigin 的值将地址补全为 From: <a href="mailto:&#x75;&#x73;&#101;&#x72;&#x40;&#109;&#97;&#x69;&#x6c;&#46;&#x65;&#120;&#97;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#x6d;">&#x75;&#x73;&#101;&#x72;&#x40;&#109;&#97;&#x69;&#x6c;&#46;&#x65;&#120;&#97;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a>。在本例中，我们将它的值设置为 <code>$myhostname</code></li>
 <li><strong>mynetworks</strong> 规定信任的客户端，默认只有自己</li>
 <li><strong>mydestination</strong> 规定能够收信的主机名 这个设置很重要。在本例中，我希望这台服务器能接受主域名 example.com 的邮件，所以 example.com 要出现在其中。</li>
 </ul>
@@ -7794,6 +7794,15 @@
       </categories>
   </entry>
   <entry>
+    <title>Should you rebase or merge to update feature branches in git?</title>
+    <url>/should-you-rebase-or-merge-to-update-feature-branches-in-git/</url>
+    <content><![CDATA[<p><em>Try rebase. If that dissolves into conflict-resolution-hell then give up, merge master into your branch and move on.” ~ Tim Abell</em> <a href="https://timwise.co.uk/2019/10/14/merge-vs-rebase/">Should you rebase or merge to update feature branches in git?</a></p>
+]]></content>
+      <categories>
+        <category>uncategorized</category>
+      </categories>
+  </entry>
+  <entry>
     <title>表费率(Table Rates)</title>
     <url>/shipping-table-rate/</url>
     <content><![CDATA[<p><em><a href="http://docs.magento.com/m2/ce/user_guide/shipping/shipping-table-rate.html">原文地址</a></em></p>
@@ -7878,12 +7887,18 @@
       </categories>
   </entry>
   <entry>
-    <title>Should you rebase or merge to update feature branches in git?</title>
-    <url>/should-you-rebase-or-merge-to-update-feature-branches-in-git/</url>
-    <content><![CDATA[<p><em>Try rebase. If that dissolves into conflict-resolution-hell then give up, merge master into your branch and move on.” ~ Tim Abell</em> <a href="https://timwise.co.uk/2019/10/14/merge-vs-rebase/">Should you rebase or merge to update feature branches in git?</a></p>
+    <title>source_model / backend_model / frontend_model</title>
+    <url>/source-model-backend-model-frontend-model/</url>
+    <content><![CDATA[<h2 id="Practice-Tests"><a href="#Practice-Tests" class="headerlink" title="Practice Tests"></a><a href="#practice-tests"></a>Practice Tests</h2><p>You are configuring a new entry in etc&#x2F;adminhtml&#x2F;system.xml that is a select &#x2F; dropdown type. What must the class for the source model extend or implement? A. \Magento\Framework\Data\OptionSourceInterface B. \Magento\Backend\Model\AbstractSource C. \Magento\Framework\Source\OptionInterface D. \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource Answer A for example: vendor\magento\module-authorizenet-acceptjs\etc\adminhtml\system.xml</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;field id=&quot;payment_action&quot; translate=&quot;label&quot; type=&quot;select&quot; sortOrder=&quot;20&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;1&quot; showInStore=&quot;0&quot; canRestore=&quot;1&quot;&gt;</span><br><span class="line">    &lt;label&gt;Payment Action&lt;/label&gt;</span><br><span class="line">    &lt;source_model&gt;Magento\AuthorizenetAcceptjs\Model\Adminhtml\Source\PaymentAction&lt;/source_model&gt;</span><br><span class="line">    &lt;config_path&gt;payment/authorizenet_acceptjs/payment_action&lt;/config_path&gt;</span><br><span class="line">&lt;/field&gt;</span><br></pre></td></tr></table></figure>
+
+<p>class PaymentAction implements \Magento\Framework\Data\OptionSourceInterface</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interface OptionSourceInterface</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Return array of options as value-label pairs</span><br><span class="line">     *</span><br><span class="line">     * @return array Format: array(array(&#x27;value&#x27; =&gt; &#x27;&lt;value&gt;&#x27;, &#x27;label&#x27; =&gt; &#x27;&lt;label&gt;&#x27;), ...)</span><br><span class="line">     */</span><br><span class="line">    public function toOptionArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p>Shortly speaking, the Source Model is a model of data that we can use for configuration. <a href="https://magently.com/blog/magento-2-backend-configuration-source-model/">Magento 2 Backend Configuration: Source Model (part 1&#x2F;3)</a> Managing actions before and after saving <a href="https://magently.com/blog/magento-2-backend-configuration-backend-model-part-23/">Magento 2 Backend Configuration: Backend Model (part 2&#x2F;3)</a> The Frontend Model responsible for our fields view. We don’t mean changing the height&#x2F;width of the input, but a non-standard fields for our non-standard configuration. <a href="https://magently.com/blog/magento-2-backend-configuration-frontend-model-part-33/">Magento 2 Backend Configuration: Frontend Model (part 3&#x2F;3)</a></p>
 ]]></content>
       <categories>
-        <category>uncategorized</category>
+        <category>M2 Certified Professional Developer</category>
       </categories>
   </entry>
   <entry>
@@ -7900,21 +7915,6 @@
       <tags>
         <tag>Magento1 ，soap 缓存</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>source_model / backend_model / frontend_model</title>
-    <url>/source-model-backend-model-frontend-model/</url>
-    <content><![CDATA[<h2 id="Practice-Tests"><a href="#Practice-Tests" class="headerlink" title="Practice Tests"></a><a href="#practice-tests"></a>Practice Tests</h2><p>You are configuring a new entry in etc&#x2F;adminhtml&#x2F;system.xml that is a select &#x2F; dropdown type. What must the class for the source model extend or implement? A. \Magento\Framework\Data\OptionSourceInterface B. \Magento\Backend\Model\AbstractSource C. \Magento\Framework\Source\OptionInterface D. \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource Answer A for example: vendor\magento\module-authorizenet-acceptjs\etc\adminhtml\system.xml</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;field id=&quot;payment_action&quot; translate=&quot;label&quot; type=&quot;select&quot; sortOrder=&quot;20&quot; showInDefault=&quot;1&quot; showInWebsite=&quot;1&quot; showInStore=&quot;0&quot; canRestore=&quot;1&quot;&gt;</span><br><span class="line">    &lt;label&gt;Payment Action&lt;/label&gt;</span><br><span class="line">    &lt;source_model&gt;Magento\AuthorizenetAcceptjs\Model\Adminhtml\Source\PaymentAction&lt;/source_model&gt;</span><br><span class="line">    &lt;config_path&gt;payment/authorizenet_acceptjs/payment_action&lt;/config_path&gt;</span><br><span class="line">&lt;/field&gt;</span><br></pre></td></tr></table></figure>
-
-<p>class PaymentAction implements \Magento\Framework\Data\OptionSourceInterface</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interface OptionSourceInterface</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Return array of options as value-label pairs</span><br><span class="line">     *</span><br><span class="line">     * @return array Format: array(array(&#x27;value&#x27; =&gt; &#x27;&lt;value&gt;&#x27;, &#x27;label&#x27; =&gt; &#x27;&lt;label&gt;&#x27;), ...)</span><br><span class="line">     */</span><br><span class="line">    public function toOptionArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a><a href="#references"></a>References</h2><p>Shortly speaking, the Source Model is a model of data that we can use for configuration. <a href="https://magently.com/blog/magento-2-backend-configuration-source-model/">Magento 2 Backend Configuration: Source Model (part 1&#x2F;3)</a> Managing actions before and after saving <a href="https://magently.com/blog/magento-2-backend-configuration-backend-model-part-23/">Magento 2 Backend Configuration: Backend Model (part 2&#x2F;3)</a> The Frontend Model responsible for our fields view. We don’t mean changing the height&#x2F;width of the input, but a non-standard fields for our non-standard configuration. <a href="https://magently.com/blog/magento-2-backend-configuration-frontend-model-part-33/">Magento 2 Backend Configuration: Frontend Model (part 3&#x2F;3)</a></p>
-]]></content>
-      <categories>
-        <category>M2 Certified Professional Developer</category>
-      </categories>
   </entry>
   <entry>
     <title>Standard Page Layouts</title>
@@ -8337,12 +8337,12 @@
     <title>telnet 登录 SMTP 发邮件</title>
     <url>/telnet-smtp-send-email/</url>
     <content><![CDATA[<p>这篇是有助于理解 SMTP 。</p>
-<p>博主用腾讯的企业邮箱注册了一个 <a href="mailto:&#111;&#119;&#110;&#101;&#114;&#64;&#109;&#97;&#105;&#x6c;&#46;&#104;&#101;&#108;&#108;&#x6f;&#109;&#x61;&#x67;&#101;&#110;&#x74;&#111;&#50;&#x2e;&#99;&#111;&#x6d;">&#111;&#119;&#110;&#101;&#114;&#64;&#109;&#97;&#105;&#x6c;&#46;&#104;&#101;&#108;&#108;&#x6f;&#109;&#x61;&#x67;&#101;&#110;&#x74;&#111;&#50;&#x2e;&#99;&#111;&#x6d;</a> 的地址，下面就以登录该邮箱发送邮件为例。</p>
-<p>首先我们准备好 <a href="mailto:&#111;&#x77;&#x6e;&#x65;&#114;&#x40;&#109;&#x61;&#105;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#x6c;&#x6f;&#109;&#x61;&#x67;&#101;&#x6e;&#x74;&#x6f;&#x32;&#46;&#x63;&#111;&#x6d;">&#111;&#x77;&#x6e;&#x65;&#114;&#x40;&#109;&#x61;&#105;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#x6c;&#x6f;&#109;&#x61;&#x67;&#101;&#x6e;&#x74;&#x6f;&#x32;&#46;&#x63;&#111;&#x6d;</a> 的用户名及密码的 base64 编码：</p>
+<p>博主用腾讯的企业邮箱注册了一个 <a href="mailto:&#111;&#119;&#x6e;&#101;&#114;&#64;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#x65;&#x6c;&#x6c;&#x6f;&#109;&#97;&#x67;&#101;&#110;&#x74;&#111;&#50;&#46;&#99;&#x6f;&#x6d;">&#111;&#119;&#x6e;&#101;&#114;&#64;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#x65;&#x6c;&#x6c;&#x6f;&#109;&#97;&#x67;&#101;&#110;&#x74;&#111;&#50;&#46;&#99;&#x6f;&#x6d;</a> 的地址，下面就以登录该邮箱发送邮件为例。</p>
+<p>首先我们准备好 <a href="mailto:&#111;&#119;&#x6e;&#101;&#x72;&#64;&#x6d;&#97;&#105;&#108;&#x2e;&#104;&#x65;&#x6c;&#108;&#111;&#x6d;&#97;&#103;&#101;&#110;&#116;&#x6f;&#50;&#46;&#99;&#x6f;&#x6d;">&#111;&#119;&#x6e;&#101;&#x72;&#64;&#x6d;&#97;&#105;&#108;&#x2e;&#104;&#x65;&#x6c;&#108;&#111;&#x6d;&#97;&#103;&#101;&#110;&#116;&#x6f;&#50;&#46;&#99;&#x6f;&#x6d;</a> 的用户名及密码的 base64 编码：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户名：b3duZXJAbWFpbC5oZWxsb21hZ2VudG8yLmNvbQ==</span><br><span class="line">密码（当然是假的）：MTIzNDU2</span><br></pre></td></tr></table></figure>
 
 <p>以下是 CMD 的测试记录（加粗部分是输入）：</p>
-<p><strong>telnet smtp.exmail.qq.com 25</strong><br>220 smtp.qq.com Esmtp QQ Mail Server<br><strong>EHLO smtp.qq.com</strong><br>250-smtp.qq.com<br>250-PIPELINING<br>250-SIZE 73400320<br>250-STARTTLS<br>250-AUTH LOGIN PLAIN<br>250-AUTH&#x3D;LOGIN<br>250-MAILCOMPRESS<br>250 8BITMIME<br><strong>AUTH LOGIN</strong><br>334 VXNlcm5hbWU6<br><strong>b3duZXJAbWFpbC5oZWxsb21hZ2VudG8yLmNvbQ&#x3D;&#x3D;</strong><br>334 UGFzc3dvcmQ6<br><strong>MTIzNDU2</strong><br>235 Authentication successful<br><strong>MAIL FROM: <a href="mailto:&#111;&#x77;&#110;&#x65;&#x72;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#101;&#x6c;&#108;&#111;&#x6d;&#97;&#103;&#x65;&#x6e;&#116;&#x6f;&#x32;&#x2e;&#99;&#x6f;&#109;">&#111;&#x77;&#110;&#x65;&#x72;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#104;&#101;&#x6c;&#108;&#111;&#x6d;&#97;&#103;&#x65;&#x6e;&#116;&#x6f;&#x32;&#x2e;&#99;&#x6f;&#109;</a></strong><br>250 Ok<br><strong>RCPT TO: <a href="mailto:&#x31;&#x35;&#49;&#56;&#x35;&#x32;&#53;&#56;&#54;&#x32;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#109;">&#x31;&#x35;&#49;&#56;&#x35;&#x32;&#53;&#56;&#54;&#x32;&#x40;&#x71;&#x71;&#46;&#99;&#x6f;&#109;</a></strong><br>250 Ok<br><strong>DATA</strong><br>354 End data with <CR><LF>.<CR><LF><br><strong>From: <a href="mailto:&#111;&#119;&#110;&#x65;&#x72;&#64;&#x6d;&#x61;&#105;&#108;&#46;&#104;&#x65;&#x6c;&#108;&#111;&#x6d;&#97;&#103;&#x65;&#110;&#116;&#x6f;&#x32;&#46;&#99;&#x6f;&#109;">&#111;&#119;&#110;&#x65;&#x72;&#64;&#x6d;&#x61;&#105;&#108;&#46;&#104;&#x65;&#x6c;&#108;&#111;&#x6d;&#97;&#103;&#x65;&#110;&#116;&#x6f;&#x32;&#46;&#99;&#x6f;&#109;</a></strong><br><strong>Subject: test</strong></p>
+<p><strong>telnet smtp.exmail.qq.com 25</strong><br>220 smtp.qq.com Esmtp QQ Mail Server<br><strong>EHLO smtp.qq.com</strong><br>250-smtp.qq.com<br>250-PIPELINING<br>250-SIZE 73400320<br>250-STARTTLS<br>250-AUTH LOGIN PLAIN<br>250-AUTH&#x3D;LOGIN<br>250-MAILCOMPRESS<br>250 8BITMIME<br><strong>AUTH LOGIN</strong><br>334 VXNlcm5hbWU6<br><strong>b3duZXJAbWFpbC5oZWxsb21hZ2VudG8yLmNvbQ&#x3D;&#x3D;</strong><br>334 UGFzc3dvcmQ6<br><strong>MTIzNDU2</strong><br>235 Authentication successful<br><strong>MAIL FROM: <a href="mailto:&#x6f;&#x77;&#x6e;&#101;&#x72;&#x40;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#x6c;&#x6f;&#109;&#97;&#x67;&#101;&#110;&#116;&#x6f;&#50;&#46;&#99;&#111;&#x6d;">&#x6f;&#x77;&#x6e;&#101;&#x72;&#x40;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x68;&#x65;&#x6c;&#x6c;&#x6f;&#109;&#97;&#x67;&#101;&#110;&#116;&#x6f;&#50;&#46;&#99;&#111;&#x6d;</a></strong><br>250 Ok<br><strong>RCPT TO: <a href="mailto:&#49;&#53;&#49;&#56;&#53;&#50;&#53;&#x38;&#x36;&#50;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#49;&#53;&#49;&#56;&#53;&#50;&#53;&#x38;&#x36;&#50;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;</a></strong><br>250 Ok<br><strong>DATA</strong><br>354 End data with <CR><LF>.<CR><LF><br><strong>From: <a href="mailto:&#x6f;&#x77;&#x6e;&#x65;&#x72;&#64;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x68;&#101;&#108;&#108;&#x6f;&#x6d;&#x61;&#103;&#x65;&#110;&#116;&#x6f;&#50;&#x2e;&#x63;&#x6f;&#x6d;">&#x6f;&#x77;&#x6e;&#x65;&#x72;&#64;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x68;&#101;&#108;&#108;&#x6f;&#x6d;&#x61;&#103;&#x65;&#110;&#116;&#x6f;&#50;&#x2e;&#x63;&#x6f;&#x6d;</a></strong><br><strong>Subject: test</strong></p>
 <p><strong>body</strong><br><strong>.</strong><br>250 Ok: queued as</p>
 <p>注意：邮件正文前空了一行。<br>然后查看邮件就知道已经收到啦！</p>
 ]]></content>
@@ -8547,13 +8547,13 @@
   <entry>
     <title>免费域名邮箱 —— 使用腾讯企业邮箱</title>
     <url>/use-exmail-qq/</url>
-    <content><![CDATA[<p>博主已经有 hellomagento2.com 的域名了，现在想要一个自己域名的邮箱，就像 <a href="mailto:&#x74;&#x68;&#x61;&#110;&#x6b;&#x69;&#116;&#64;&#x68;&#101;&#108;&#x6c;&#111;&#x6d;&#97;&#x67;&#x65;&#110;&#116;&#111;&#x32;&#46;&#x63;&#111;&#109;">&#x74;&#x68;&#x61;&#110;&#x6b;&#x69;&#116;&#64;&#x68;&#101;&#108;&#x6c;&#111;&#x6d;&#97;&#x67;&#x65;&#110;&#116;&#111;&#x32;&#46;&#x63;&#111;&#109;</a> 这样的，还得是免费的。该怎么做呢？本篇就将介绍如何使用腾讯的企业邮箱服务来配置自己的域名邮箱。</p>
+    <content><![CDATA[<p>博主已经有 hellomagento2.com 的域名了，现在想要一个自己域名的邮箱，就像 <a href="mailto:&#116;&#104;&#x61;&#x6e;&#107;&#x69;&#116;&#64;&#104;&#101;&#108;&#108;&#x6f;&#x6d;&#x61;&#x67;&#101;&#110;&#x74;&#111;&#x32;&#x2e;&#x63;&#x6f;&#x6d;">&#116;&#104;&#x61;&#x6e;&#107;&#x69;&#116;&#64;&#104;&#101;&#108;&#108;&#x6f;&#x6d;&#x61;&#x67;&#101;&#110;&#x74;&#111;&#x32;&#x2e;&#x63;&#x6f;&#x6d;</a> 这样的，还得是免费的。该怎么做呢？本篇就将介绍如何使用腾讯的企业邮箱服务来配置自己的域名邮箱。</p>
 <p>首先去<a href="http://exmail.qq.com/onlinesell/intro">腾讯企业邮箱的官网</a>开通一个免费版的。</p>
 <p>按照提示一步步操作即可，如果不太清楚，可以参考<a href="http://service.exmail.qq.com/cgi-bin/help?subtype=1&&no=1001214&&id=20012">官方帮助文档</a>。</p>
 <p>注册管理员账号，添加域名，添加成员等步骤省略不讲。</p>
 <p>下面我们配图如何设置 MX 记录，参照上面的官方文档应该很容易理解的。</p>
 <p><img src="/wp-content/uploads/2016/10/aliyun-mx.png"></p>
-<p>博主这个配置的是 <a href="mailto:&#115;&#x6f;&#109;&#x65;&#111;&#110;&#101;&#64;&#x6d;&#x61;&#x69;&#108;&#x2e;&#104;&#101;&#108;&#x6c;&#x6f;&#109;&#x61;&#103;&#x65;&#x6e;&#x74;&#111;&#x32;&#x2e;&#x63;&#x6f;&#109;">&#115;&#x6f;&#109;&#x65;&#111;&#110;&#101;&#64;&#x6d;&#x61;&#x69;&#108;&#x2e;&#104;&#101;&#108;&#x6c;&#x6f;&#109;&#x61;&#103;&#x65;&#x6e;&#x74;&#111;&#x32;&#x2e;&#x63;&#x6f;&#109;</a> 这种哈。现在登录腾讯企业邮箱给自己发邮件，别人收到的就是自己域名的邮件啦！</p>
+<p>博主这个配置的是 <a href="mailto:&#115;&#x6f;&#x6d;&#101;&#x6f;&#x6e;&#x65;&#x40;&#109;&#97;&#105;&#x6c;&#46;&#x68;&#x65;&#108;&#108;&#111;&#x6d;&#x61;&#103;&#x65;&#110;&#x74;&#x6f;&#50;&#46;&#99;&#x6f;&#109;">&#115;&#x6f;&#x6d;&#101;&#x6f;&#x6e;&#x65;&#x40;&#109;&#97;&#105;&#x6c;&#46;&#x68;&#x65;&#108;&#108;&#111;&#x6d;&#x61;&#103;&#x65;&#110;&#x74;&#x6f;&#50;&#46;&#99;&#x6f;&#109;</a> 这种哈。现在登录腾讯企业邮箱给自己发邮件，别人收到的就是自己域名的邮件啦！</p>
 ]]></content>
       <categories>
         <category>uncategorized</category>
