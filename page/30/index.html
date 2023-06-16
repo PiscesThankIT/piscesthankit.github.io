@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="{ Hello Magento 2 }">
-<meta property="og:url" content="http://example.com/page/30/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/page/30/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/page/30/">
+<link rel="canonical" href="https://piscesthankit.github.io/page/30/">
 
 
 <script id="page-configurations">
@@ -184,7 +184,608 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/store-details/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/configuration-scope/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/configuration-scope/" class="post-title-link" itemprop="url">配置范围</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 16:37:38" itemprop="dateCreated datePublished" datetime="2016-08-19T16:37:38+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+Magento 的安装有能力维护多个独立的网站(websites)，店铺(store)和店铺视图(store views)。如果您安装了多层级的网站、店铺和店铺视图，您可以选择将设置应用到上述哪个网站、店铺或是视图上。对于有权限限制的管理员用户，他只可以看到授权内的列表。
+
+管理页面左上角的店铺视图选择器(Store view chooser)决定了您当前设置的作用范围。默认情况下，作用范围是默认配置(Default Config)
+
+除非您的店铺运行在单店模式，不然每个设置字段下面浅灰色的小字表示了该字段的作用范围。如果您有多个网站、店铺或店铺视图，您应该每次都指定您设置作用的店铺
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/configuration-scope/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/storefront-branding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/storefront-branding/" class="post-title-link" itemprop="url">店面品牌</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 15:37:24" itemprop="dateCreated datePublished" datetime="2016-08-19T15:37:24+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+首先要做的事情里有一件事就是替换店面头部的 logo，上传 favicon 图标（就是浏览器里每个网站标题前面的图标）您还将了解怎么修改页脚的版权声明，还有如何使用店铺的演示声明（告诉别人，店铺没正式开张呢。）这些都是您可以马上做到的简单设计任务。如果您的店铺在建设中，就打开演示提示，如果正式开张则移除他。
+
+
+
+相关的文章列表
+ * 上传您的 Logo
+ * 上传 Favicon
+ * 欢迎信息
+ * 版权声明
+ * 店铺演示提示
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/storefront-branding/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/demo-notice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/demo-notice/" class="post-title-link" itemprop="url">店铺演示提示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 15:26:48" itemprop="dateCreated datePublished" datetime="2016-08-19T15:26:48+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+如果您的店铺已经上线但是还在建设中，您可以在店面顶端显示一个演示提示，好让别人知道您的店铺还没有正式开张呢。开张的时候，移除他就行了。这就像门上挂的牌子，从”Closed”翻成”Open”。店铺演示提示的具体格式取决于店铺的主题(theme)。
+
+
+
+设置店铺演示提示
+ 1. 后台侧边栏，点击内容(Content) > 设计(Design) > 配置 (Configuration)
+    
+    
+ 2. 在表格中找到您要修改的 Store view ，在 Action 列，点击编辑(Edit)
+    
+    
+ 3. 在其他设置(Other Setttings)下展开头部
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/demo-notice/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/copyright-notice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/copyright-notice/" class="post-title-link" itemprop="url">版权声明</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 15:12:26" itemprop="dateCreated datePublished" datetime="2016-08-19T15:12:26+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+您店铺的每一页页脚都有版权声明。作为最佳实践，版权声明应该包括本年度，并注明贵公司是该网站内容的合法拥有者。
+
+
+
+这个字符&Copy;可以用来插入版权符号，看例子：
+长格式示例
+Copyright &Copy; 2016 Magento, Inc. All rights reserved.
+短格式示例
+&Copy; 2016 Magento, Inc. All rights reserved.
+
+修改版权声明
+ 1. 后台侧边栏，点击内容(Content) > 设计(Design) > 配置 (Configuration)
+    
+    
+ 2. 在表格中找到您要修改的 St
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/copyright-notice/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/welcome-message/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/welcome-message/" class="post-title-link" itemprop="url">欢迎信息</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 14:57:29" itemprop="dateCreated datePublished" datetime="2016-08-19T14:57:29+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+头部的欢迎信息扩展到包含登录客户的名称。在店铺开张前，请务必修改每个店铺视图的默认欢迎信息。
+
+
+
+修改欢迎信息
+ 1. 后台侧边栏，点击内容(Content) > 设计(Design) > 配置 (Configuration)
+    
+    
+ 2. 在表格中找到您要修改的 Store view ，在 Action 列，点击编辑(Edit)，做如下操作：
+    
+    a. 在其他设置(Other Setttings)下展开头部(Header)部分
+    b. 输入欢迎文本(Welcome Text)
+    
+    
+    
+    
+ 3. 完成后点击，保存设置
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/welcome-message/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/favicon/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/favicon/" class="post-title-link" itemprop="url">上传 Favicon</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 11:35:43" itemprop="dateCreated datePublished" datetime="2016-08-19T11:35:43+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文网址
+
+Favicon 是 favorite icon 的缩略写法，用来指每个浏览器标签页上的小图标。根据不同的浏览器上，该图标也出现在地址栏URL前面。
+
+一般 Favicon 是16 x 16 像素或者 32 x 32 像素。尽管不是所有浏览器都接受ICO, PNG, JPG, and SVG 格式，不过 Magento 全都接受。受到最广泛支持的格式是 ICO 。其他格式也可以使用，只是有些浏览器可能不支持。网上有很多免费的工具可以生成 ICO 图像，或者将其他格式的图像转成 ICO 格式的。
+
+
+
+第一步：创建 Favicon
+ 1. 选择您喜欢的图片编辑工具创建16 x 16 像
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/favicon/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/logo-upload/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/logo-upload/" class="post-title-link" itemprop="url">上传您的 Logo</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 11:04:25" itemprop="dateCreated datePublished" datetime="2016-08-19T11:04:25+08:00">2016-08-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+店铺头部的 logo 大小和位置是由店铺的主题(theme)决定的。您的 Logo 可以是GIF, PNG, JPG, 或 SVG 格式，从后台上传。Magento 样例的 Logo 是 SVG 格式的。它是一种可缩放的矢量图形格式。
+
+
+Logo 图像在服务器的下列位置，这个位置的同名图像会作为主题的 Logo
+实际的路径： app/design/frontend/[vendor]/[theme]/web/images/logo.svg
+相对路径： images/logo.svg
+
+如果您不知道 Logo 的大小，或者其他图像的大小，您可以在浏览器中右击图像，审查该元素。
+
+除了
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/logo-upload/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/store-details/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -271,7 +872,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/contact-us/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/contact-us/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -361,7 +962,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/store-email-addresses/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/store-email-addresses/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -423,613 +1024,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/store-email-addresses/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/currency-overview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/currency-overview/" class="post-title-link" itemprop="url">货币</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-19 08:33:49" itemprop="dateCreated datePublished" datetime="2016-08-19T08:33:49+08:00">2016-08-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文地址
-
-货币设置
-
-设置基础货币和接受的其他外币。建立用于自动更新货币汇率的导入连接和时间表。
-
-货币符号
-
-定义出现在商品价格和销售单据，如订单和发票里的货币符号。Magento支持来自世界各地超过200个国家的货币。
-
-更新货币汇率
-
-汇率可以手动进行更新或根据需要，或根据预定的时间表导入到店铺中。
-
-货币选择器
-
-如果有多种货币可供选择，店头会出现货币选择器。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/currency-overview/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/merchant-location/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/merchant-location/" class="post-title-link" itemprop="url">商户位置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-18 22:23:41" itemprop="dateCreated datePublished" datetime="2016-08-18T22:23:41+08:00">2016-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文地址
-
-商户位置设置用来配置付款方式(Payment methods)，如果没有设置任何值的话，会使用默认的国家(Default Country)
-
-
-
-输入商户位置
- 1. 后台侧边栏，点击店铺(Stores) > 设置(Settings) > 配置(Configuration)
- 2. 在左侧面板选择销售(Sales)> 付款方式(Payment methods)
- 3. 展开 商户位置 (Merchant Location)选择商户位置
- 4. 完成后点击保存设置
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/merchant-location/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/country-options/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/country-options/" class="post-title-link" itemprop="url">国家选项</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-18 22:12:29" itemprop="dateCreated datePublished" datetime="2016-08-18T22:12:29+08:00">2016-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文地址
-
-国家选项确定您开展业务所在的国家及您接受来自哪些国家的付款。
-
-
-
-设置店铺的国家选项
- 1. 后台侧边栏，点击店铺(Stores) > 设置(Settings) > 配置(Configuration)
- 2. 在左侧面板选择常规(General)> 常规(General)
- 3. 展开 国家选项 做如下操作
-    a. 选择您业务所在地的默认国家(Default Country)
-    b. 在接单国家(Allow Countries)列表中选择您接受订单的国家。默认情况下，所有国家都是选中的。（多选用Ctrl(PC)或者Command(Mac)）
-    c. 在邮编可选(
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/country-options/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/state-options/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/state-options/" class="post-title-link" itemprop="url">行政区域选项</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-18 21:35:55" itemprop="dateCreated datePublished" datetime="2016-08-18T21:35:55+08:00">2016-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文地址
-
-在很多国家，省、市或者区、州是邮寄地址的必要组成部分。该信息用来计算运输、开票方面的税率等。在没有这样要求的国家，行政区域字段可以被省略或者作为可选项。
-
-由于各国对地址的格式要求大不相同，您还可以编辑用于发票，装箱单和运输标签上的格式化地址模板。
-
-
-
-设置行政区域选项
- 1. 后台侧边栏，点击店铺(Stores)> 设置(Settings)> 配置(Configuration)
- 2. 左侧面板 常规(General)> 常规(General)
- 3. 展开行政区域设置(State Options)，做以下操作：
-    a. 在哪些国家需要行政区域设置(State is re
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/state-options/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/locale-options/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/locale-options/" class="post-title-link" itemprop="url">区域设置选项</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-18 17:48:21" itemprop="dateCreated datePublished" datetime="2016-08-18T17:48:21+08:00">2016-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文地址
-
-区域决定了您整个店铺中使用的语言，国家，税率以及其他设置。区域设置选项决定了每个店铺的时区、语言，确定每周的营业时间。
-
-
-
-设置区域选项
- 1. 后台侧边栏，点击店铺(Stores)> 设置(Settings)>配置(Configuration)
- 2. 左侧面板，选择常规(General) > 常规(General)
- 3. 展开区域选项(Local Options)
- 4. 从列表中选择时区(Timezone)，然后做以下操作
-    a. 设置地区(Local)他决定了店铺前台的语言
-    b. 设置重量单位，他是发货时用到的一般计量单位
-    c. 设置每周第一天(F
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/locale-options/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/store-information/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/store-information/" class="post-title-link" itemprop="url">店铺信息</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-18 17:21:02" itemprop="dateCreated datePublished" datetime="2016-08-18T17:21:02+08:00">2016-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文地址
-
-店铺信息部分提供了用在销售文件和其他沟通中的基本信息
-
-
-
-输入店铺信息
- 1. 在后台侧标蓝选择店铺(Stores) > 设置(Settings) > 配置（Configuration）
- 2. 左侧面板选择 常规(General) > 常规(General)
- 3. 展开店铺信息(Store Information)部分，做下列操作
-    a. 输入各种沟通途径中使用的店铺名称
-    b. 输入店铺热线(Store Phone Number)，可以组织成您喜欢的格式
-    c. 输入营业时间(Store Hours of Operation)。例如：周一至周五，9-5
- 
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/store-information/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/admin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/admin/" class="post-title-link" itemprop="url">管理后台</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-18 16:45:44" itemprop="dateCreated datePublished" datetime="2016-08-18T16:45:44+08:00">2016-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文网址
-
-您的店铺 Admin 是受密码保护的后台。在后台您可以设置产品，进行促销，管理订单以及执行其他管理任务。所有的基本设置事项和店铺管理操作都是由管理员完成的。
-
-最初的登录凭证是在 Magento 安装过程中设置的，如果您忘记了密码，会发送临时密码到与管理员账户相关的邮箱中。为了增强安全性，您可以设置店铺登录的用户名和密码区分大小写。为了增强安全性，您可以设置管理员登录需要输入验证码。要了解更多，请参阅设置管理员账户安全
-
-相关的文章列表
- * Admin 登录
- * 管理员账户
- * 管理后台菜单
- * 管理工具 * 控制面板
-    * 后台消息收件箱
-    * 后台全局搜索
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/admin/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1118,20 +1112,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-count">320</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-count">137</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1158,7 +1152,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

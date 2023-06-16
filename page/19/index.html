@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="{ Hello Magento 2 }">
-<meta property="og:url" content="http://example.com/page/19/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/page/19/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ThankIT">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/page/19/">
+<link rel="canonical" href="https://piscesthankit.github.io/page/19/">
 
 
 <script id="page-configurations">
@@ -184,7 +184,602 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-2/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/product-create-configurable-add-configurations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-configurable-add-configurations/" class="post-title-link" itemprop="url">可配置商品添加配置项(Adding Configurations)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 21:25:37" itemprop="dateCreated datePublished" datetime="2017-01-03T21:25:37+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+下面这个例子中添加了三个颜色三个尺码的配置项。总共会创建9个简单商品，每个商品都有唯一的 SKU ，页面顶部的进度条会显示你现在在哪里，并引导你完成所有步骤。
+
+
+
+步骤一：选择属性
+ 1. 上一部分 可配置商品(Configurable Product) 点击保存后，下拉到 Configurations 部分，然后点击 Create Configurations
+    
+ 2. 勾选你要包含的属性。比如，这里我们选择 color 和 size
+ 3. 列表显示了该属性集中所有可被应用在可配置商品上的属性
+    
+ 4. 如果你需要添加新的属性，点击 Create New At
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/product-create-configurable-add-configurations/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/product-create-configurable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-configurable/" class="post-title-link" itemprop="url">可配置商品(Configurable Product)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 16:26:29" itemprop="dateCreated datePublished" datetime="2017-01-03T16:26:29+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+可配置商品看起来有一系列的选项。每个选项代表着单独的具有唯一 SKU 的简单商品。这样可以追踪每个变体的库存。你可以通过简单商品的 custom option 来达到类似的效果，但是不能跟踪每个商品变体的库存。
+
+
+
+第一步：选择产品类型
+ 1. 后台侧边栏，点击 Products ，在 Inventory 下选择 Catalog
+ 2. 右上角 Add Product 菜单，选择 Configurable Product
+    
+
+第二步：选择属性集
+属性集决定着该产品中使用的选择字段有哪些。默认情况下，是 default 属性集。对于可配置商品来说，属性集必须包含至少一个 d
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/product-create-configurable/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/product-create-simple/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-create-simple/" class="post-title-link" itemprop="url">简单商品(Simple Product)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 15:45:46" itemprop="dateCreated datePublished" datetime="2017-01-03T15:45:46+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+发挥产品类型的力量的关键之一在于学会什么时候使用简单商品类型。简单商品可以被单独出售，或者作为组合商品、可配置商品及捆绑商品的组成部分出售。拥有自定义选项的简单商品，有时候也被称为符合商品 (composite product)
+
+以下步骤将带领你，使用默认的商品模板和基本的设置，创建一个简单商品。学会基本的设置后，你就可以根据需要完成更高级的设置了。
+
+
+
+第一步：选择产品类型
+ 1. 后台侧边栏，点击 Products ，在 Inventory 下选择 Catalog
+ 2. 右上角 Add Product 菜单，选择 Simple Product
+    
+
+第二步：选择属性
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/product-create-simple/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/product-types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/product-types/" class="post-title-link" itemprop="url">商品类型 (Product Types)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 14:37:57" itemprop="dateCreated datePublished" datetime="2017-01-03T14:37:57+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Magento-2-%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" itemprop="url" rel="index"><span itemprop="name">Magento 2 用户使用手册</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          原文地址
+
+简单商品
+简单商品是具有单独的 SKU 的实体。简单商品有各种定价和输入控件，这样就可以在出售时有一些变化。简单商品可以和组合商品、捆绑商品、可配置商品联系起来使用。
+
+
+可配置商品
+可配置商品看起来有一系列的选项。每个选项代表着单独的具有唯一 SKU 的简单商品。这样可以追踪每个变体的库存（比如具体到某件衣服某个颜色某个尺码的库存）
+
+
+组合商品
+组合商品是组合在一起进行出售的商品，有时候这样是为了促销。可以单独购买，也可以购买几种组合。
+
+
+
+虚拟商品
+虚拟商品是无形的，通常用于出售如下商品：服务、会员资格、担保、订阅的产品等。虚拟商品可以被应用在组合商品和捆绑商品中。
+
+
+
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/product-types/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/excel-csv-utf8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/excel-csv-utf8/" class="post-title-link" itemprop="url">Excel 编辑 csv 中文乱码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-03 12:57:20" itemprop="dateCreated datePublished" datetime="2017-01-03T12:57:20+08:00">2017-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          Magento 中很多地方用到 csv 格式的文件，在 Magento 2 中文化问题（原创） 中提到，对待 csv 文件，你可以使用任何编辑器进行编辑，比如 notepad、sublime text 之类的，或者专门的编辑器 Ron’s Editor。但是 Ron’s Editor 是收费的，破解版也不敢用，而一般的编辑器对付修改不太多的情况还是够用的，但是列一多的话，没有格子，弄起来很不方便。所以看起来还是用 Excel 比较好。
+
+Excel 处理有中文字符的文件会出现乱码，本篇将介绍怎么处理这种情况。
+
+出现乱码的原因是 Excel 以 ANSI 格式打开，不会做编码识别。而我们的 c
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/excel-csv-utf8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/white-paper-magento-2-0-performance-and-scalability/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/white-paper-magento-2-0-performance-and-scalability/" class="post-title-link" itemprop="url">Magento 2.0 性能优化配置建议及 benchmark 测试结果(官方白皮书翻译)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-18 20:33:55" itemprop="dateCreated datePublished" datetime="2016-12-18T20:33:55+08:00">2016-12-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          这是 Magento 官方的白皮书，不代表博主个人观点。翻译也是劳动，谢绝转载！
+
+原文下载
+
+介绍
+Magento 2.0 是为下一代电子商务而设计的 —— 让他比以往更快速、更容易、更低成本地创建完美适应您的业务需求的购物体验。
+
+（一大段的介绍非常安利，博主估计，翻译出来也没有多少人会看，所以就概括一下了，有兴趣的请参阅原文。）
+
+Magento 2 希望比以往更快速，更容易，更低成本，这一切都建立在 Magento 2 在流行的框架上搭建了一个更现代的架构。（也就是说 Magento 2 团队相信用更先进的技术来实现更快的速度，更低的成本，让他更容易。）他的模块化设计是自定义和灵活性的
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/white-paper-magento-2-0-performance-and-scalability/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/magento-feature-list-chinese-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ThankIT">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="{ Hello Magento 2 }">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/magento-feature-list-chinese-3/" class="post-title-link" itemprop="url">Magento 基本功能列表（翻译三）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-12-14 16:20:08" itemprop="dateCreated datePublished" datetime="2016-12-14T16:20:08+08:00">2016-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          架构及安全
+ * 建立在现代的技术栈上，使用了流行的框架，支持行业标准
+ * 可以进行细粒度的自定义，模块化的代码库，很容易添加和移除功能
+ * 业务逻辑使用稳定 service contract interfaces ，以确保站点更容易升级和自定义
+ * 可以使用高效的 web Api （SOAP 和 REST）与第三方应用集成
+ * 通过 plug-ins 和依赖注入的软件设计模式，更顺利的管理扩展之间的交互
+ * 加快上线速度，通过完全自动化的测试框架提高代码质量
+ * Update code with a standalone installer that checks for pre
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/magento-feature-list-chinese-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/magento-feature-list-chinese-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -268,7 +863,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/learn-magento-before-use-archive/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/learn-magento-before-use-archive/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -358,7 +953,7 @@ Magento 基本功能列表（翻译三）
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento-feature-list-chinese-1/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/magento-feature-list-chinese-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -424,625 +1019,6 @@ Magento 基本功能列表（翻译三）
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/magento-feature-list-chinese-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/how-to-update-csv-using-older-csv-file/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/how-to-update-csv-using-older-csv-file/" class="post-title-link" itemprop="url">关于中文包的更新方法问题 （原创）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-12-13 09:59:29" itemprop="dateCreated datePublished" datetime="2016-12-13T09:59:29+08:00">2016-12-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          如何提取翻译短语
-先从制作说起，如果我们要提取某个模块的翻译短语，可以使用下面的命令：
-
-1
-
-
-magento i18n:collect-phrases [-o--output="<csv file path and name>"] [-m--magento] <path to directory to translate>
-
-
-1
-
-
-i18n:collect-phrases -o "zh_Hans_CN.csv" E:\www\M204BSD\vendor\magento\module-backup
-
-
-这个例子是提取 E:\www\M204BSD\vendor\magento\modu
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/how-to-update-csv-using-older-csv-file/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-https/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/magento-2-https/" class="post-title-link" itemprop="url">Magento 2 Https</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-12-12 15:05:57" itemprop="dateCreated datePublished" datetime="2016-12-12T15:05:57+08:00">2016-12-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          本篇我们来谈一谈 Magento 2 如何使用 Https
-
-Https 是什么
-超文本传输安全协议（Hypertext Transfer Protocol Secure 缩写：HTTPS，也被称为HTTP over TLS，HTTP over SSL 或 HTTP Secure）他是一种网络安全传输协议。
-
-HTTPS 使用 HTTP 进行通信，但利用 SSL/TLS 来对数据包进行加密。HTTPS 开发的主要目的，是提供对网络服务器的身份认证，保护交换数据的隐私与完整性。
-
-简单说来，使用 HTTPS 通信，信息是加密的，而使用 HTTP 传输，信息是明文。所以 HTTPS 更加安全。
-
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/magento-2-https/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento2-product-image-zoom/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/magento2-product-image-zoom/" class="post-title-link" itemprop="url">Magento2 产品放大镜效果的实现</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-12-07 15:52:13" itemprop="dateCreated datePublished" datetime="2016-12-07T15:52:13+08:00">2016-12-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">Magento 2 主题</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          产品放大镜效果指的是类似下图这样的功能：
-
-
-
-Magento 2 安装好后一般是没有看到这个功能的。注意，我说的是没有看到，因为实际上他是有的。
-
-当然如果你使用了非内置的主题（blank 或者 luma 之外的），那么你很可能会发现有这个功能，而且有的还可以进行效果配置呢。
-
-这篇文章想要讨论的是放大镜功能实现层面的事情，对于主题开发者来说，可能更有用，对于纯使用者来说，可能就没有必要了解了。
-
-首先，要实现这样的功能一定是涉及到 js 的，为了让 js 工作，需要相应的模板文件（就是 html 代码片段）。Magento 2 自带了实现该功能的 js 和 模板文件，所以你只需要配置，就可
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/magento2-product-image-zoom/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/centos-7-lamp-magento-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/centos-7-lamp-magento-2/" class="post-title-link" itemprop="url">CentOS 7 搭建 LAMP 环境安装 Magento 2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-12-06 16:34:18" itemprop="dateCreated datePublished" datetime="2016-12-06T16:34:18+08:00">2016-12-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98/" itemprop="url" rel="index"><span itemprop="name">系统管理员</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          安装 Apache
-1
-
-
-yum -y install httpd
-
-
-验证安装是否成功
-
-1
-
-
-httpd -v
-
-
-如果出现类似下面的信息就是安装好了
-
-1
-2
-
-
-Server version: Apache/2.4.6 (CentOS)
-Server built: Jul 18 2016 15:30:14
-
-
-启动 apache
-
-1
-
-
-systemctl restart httpd.service
-
-
-访问网站可以看到 Apache HTTP Server 测试页面 Testing 123...
-
-1
-
-
-vi /etc/httpd/conf/httpd.conf
-
-
-更改为：
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/centos-7-lamp-magento-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-zh-hans-cn-csv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/magento-2-zh-hans-cn-csv/" class="post-title-link" itemprop="url">Magento 2 中文化问题（原创）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-12-02 13:33:15" itemprop="dateCreated datePublished" datetime="2016-12-02T13:33:15+08:00">2016-12-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          转载请注明出处 Magento 作为多语言的电商系统，提供了很全面的多语言支持，下面我将总结一下目前我所了解的 Magento 中文化的知识，欢迎补充！谢绝转载。以下中文化指的的简体中文。
-
-设置
-首先我们从简单的使用谈起。 如果你希望你的前台是中文，那么请在后台 Stores > Configuration > General > Local 中设置 Local 为 Chinese（China） 我们知道 *Stores > Configuration 的设置是有作用域的，在左上角如下图， 你的设置会应用到选定的 Store view 上，这样就实现了不同的 store view 或 web
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/magento-2-zh-hans-cn-csv/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/switch-magento-2-system-modes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/switch-magento-2-system-modes/" class="post-title-link" itemprop="url">magento 2 modes - 每种模式的特点及如何切换（翻译）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-11-25 12:03:32" itemprop="dateCreated datePublished" datetime="2016-11-25T12:03:32+08:00">2016-11-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          原文地址
-
-在开始 Magento 2 使用之前，需要了解一些基本的东西，其中之一就是系统可用的模式。
-
- * 每种模式的主要特点
- * 如何切换模式
- * 如何显示当前的模式
-
-Magento 2 总共有三种主要模式：developer(开发者模式), production(生产模式), default(默认模式)
-
-还有一个 maintenance （维护）模式，该模式运行方式很特别，他将完全阻止对系统的访问。
-
-Magento 2 系统模式的主要特点
-Developer Mode
-
-Production Mode
-
-Default Mode
-
-Static File Caching(缓存
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/switch-magento-2-system-modes/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-download/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ThankIT">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{ Hello Magento 2 }">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/magento-2-download/" class="post-title-link" itemprop="url">Magento 2 最新源文件下载</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-11-23 08:53:52" itemprop="dateCreated datePublished" datetime="2016-11-23T08:53:52+08:00">2016-11-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Magento-2-%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">Magento 2 入门</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          Magento 源文件去官方下载速度比较慢，要登录，有点麻烦。这里给大家提供我下载的源文件，放在百度运盘中了。我会尽快把最新的版本放到盘里。
-
-这里提供的是Magento 2 官方下载网址 下载的源文件。
-
-地址：http://pan.baidu.com/s/1skJVqiD
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/magento-2-download/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1131,20 +1107,20 @@ Static File Caching(缓存
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-count">320</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-count">137</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1171,7 +1147,7 @@ Static File Caching(缓存
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

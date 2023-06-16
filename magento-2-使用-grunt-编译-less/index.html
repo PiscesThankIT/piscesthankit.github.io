@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"piscesthankit.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Magento 2 前端使用 Less ，官方推荐的前端工具是 Grunt 。本文将介绍如何安装 Grunt ，使用流程和遇到的问题。  安装 node.js 由于没有找到 Magento 2 官方对 node.js 的版本要求说明，加上安装过程中遇到了一些奇怪的问题，所以博主尝试了 node.js 不同的安装方式和不同的版本。虽然最终问题解决了，但是博主也还是不能确定 Magento 2 使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Magento 2 使用 Grunt 编译 Less">
-<meta property="og:url" content="http://example.com/magento-2-%E4%BD%BF%E7%94%A8-grunt-%E7%BC%96%E8%AF%91-less/index.html">
+<meta property="og:url" content="https://piscesthankit.github.io/magento-2-%E4%BD%BF%E7%94%A8-grunt-%E7%BC%96%E8%AF%91-less/index.html">
 <meta property="og:site_name" content="{ Hello Magento 2 }">
 <meta property="og:description" content="Magento 2 前端使用 Less ，官方推荐的前端工具是 Grunt 。本文将介绍如何安装 Grunt ，使用流程和遇到的问题。  安装 node.js 由于没有找到 Magento 2 官方对 node.js 的版本要求说明，加上安装过程中遇到了一些奇怪的问题，所以博主尝试了 node.js 不同的安装方式和不同的版本。虽然最终问题解决了，但是博主也还是不能确定 Magento 2 使用">
 <meta property="og:locale" content="zh_CN">
@@ -34,7 +34,7 @@
 <meta property="article:tag" content="Less">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/magento-2-%E4%BD%BF%E7%94%A8-grunt-%E7%BC%96%E8%AF%91-less/">
+<link rel="canonical" href="https://piscesthankit.github.io/magento-2-%E4%BD%BF%E7%94%A8-grunt-%E7%BC%96%E8%AF%91-less/">
 
 
 <script id="page-configurations">
@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/magento-2-%E4%BD%BF%E7%94%A8-grunt-%E7%BC%96%E8%AF%91-less/">
+    <link itemprop="mainEntityOfPage" href="https://piscesthankit.github.io/magento-2-%E4%BD%BF%E7%94%A8-grunt-%E7%BC%96%E8%AF%91-less/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -400,20 +400,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">313</span>
+          <span class="site-state-item-count">320</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-count">137</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -440,7 +440,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
